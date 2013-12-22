@@ -578,7 +578,7 @@
       <HintPath>..\..\packages\AdDuplexWP7.2.7.0.2\lib\sl4-windowsphone71\AdDuplex.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="GoogleAds">
-      <HintPath>..\..\..\AdMob WP8\lib\windowsphone8\GoogleAds.dll</HintPath>
+      <HintPath>..\..\packages\AdMob WP8\windowsphone8\GoogleAds.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Advertising.Mobile, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -592,7 +592,7 @@
       <HintPath>..\..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="MobFox.Ads">
-      <HintPath>..\..\..\MobFox-WP7-SDK-1.3.0\MobFox.Ads.dll</HintPath>
+      <HintPath>..\..\packages\MobFox.Ads.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
