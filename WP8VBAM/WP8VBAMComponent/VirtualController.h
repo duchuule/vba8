@@ -53,6 +53,8 @@ namespace Emulator
 		void GetStartSelectRectangle(RECT *rect);
 		void GetLRectangle(RECT *rect);
 		void GetRRectangle(RECT *rect);
+
+		Platform::Collections::Map<unsigned int, Platform::String^> ^pointerDescriptions;
 	private:
 		static VirtualController *singleton;
 

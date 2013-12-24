@@ -1869,7 +1869,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://sdrv.ms/10ehg2a.
+        ///   Looks up a localized string similar to http://sourceforge.net/projects/vba8/.
         /// </summary>
         public static string SourceLink {
             get {
