@@ -56,6 +56,7 @@ namespace PhoneDirect3DXamlAppInterop
                     this.SupportedOrientations = SupportedPageOrientation.Portrait;
                     break;
             }
+            
         }
 
         private void InitAppBar()
@@ -339,6 +340,10 @@ namespace PhoneDirect3DXamlAppInterop
 
         protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+
+            //disable lock screen
+            PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
+
             CameraButtons.ShutterKeyPressed += CameraButtons_ShutterKeyPressed;
             CameraButtons.ShutterKeyHalfPressed += CameraButtons_ShutterKeyHalfPressed;
             CameraButtons.ShutterKeyReleased += CameraButtons_ShutterKeyReleased;
@@ -460,6 +465,9 @@ namespace PhoneDirect3DXamlAppInterop
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
+            //enable lock screen
+            PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Enabled;
+
             try
             {
                 CameraButtons.ShutterKeyHalfPressed -= CameraButtons_ShutterKeyHalfPressed;
