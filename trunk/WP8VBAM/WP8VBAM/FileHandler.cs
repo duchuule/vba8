@@ -14,6 +14,7 @@ using PhoneDirect3DXamlAppInterop.Resources;
 using Windows.Phone.Storage.SharedAccess;
 using PhoneDirect3DXamlAppComponent;
 using Windows.UI;
+using System.IO;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -393,6 +394,31 @@ namespace PhoneDirect3DXamlAppInterop
             }
             db.CommitChanges();
         }
+
+
+        //public static async Task RenameROMFile(string oldname, string newname)
+        //{
+        //    ROMDatabase db = ROMDatabase.Current;
+
+
+        //    StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+        //    StorageFolder romFolder = await localFolder.GetFolderAsync(ROM_DIRECTORY);
+
+        //    StorageFile oldfile = await romFolder.GetFileAsync(oldname);
+        //    StorageFile newfile = await romFolder.CreateFileAsync(newname, CreationCollisionOption.ReplaceExisting);
+
+        //    using (var outputStream = await newfile.OpenStreamForWriteAsync())
+        //    {
+        //        using (var inputStream = await oldfile.OpenStreamForReadAsync())
+        //        {
+        //            await inputStream.CopyToAsync(outputStream);
+        //        }
+        //    }
+
+            
+        //}
+
+
 
         internal static async Task<ROMDBEntry> ImportRomBySharedID(string importRomID, DependencyObject page)
         {

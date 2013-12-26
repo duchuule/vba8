@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using PhoneDirect3DXamlAppInterop.Resources;
+using System.IO;
 
 namespace PhoneDirect3DXamlAppInterop
 {
