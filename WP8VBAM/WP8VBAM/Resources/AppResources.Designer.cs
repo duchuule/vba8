@@ -216,15 +216,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10:9.
-        /// </summary>
-        public static string AspectRatio10to9Setting {
-            get {
-                return ResourceManager.GetString("AspectRatio10to9Setting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 4:3.
         /// </summary>
         public static string AspectRatio4to3Setting {
@@ -252,7 +243,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3:2.
+        ///   Looks up a localized string similar to native.
         /// </summary>
         public static string AspectRatioOriginalSetting {
             get {
@@ -576,7 +567,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restore old values after using cheats.
+        ///   Looks up a localized string similar to Restore old values after cheats (GBA).
         /// </summary>
         public static string CheatRestoreValuesOption {
             get {
@@ -1806,7 +1797,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: The emulator only supports *.gba files..
+        ///   Looks up a localized string similar to Note: The emulator supports *gb, *.gbc and *.gba files..
         /// </summary>
         public static string SkyDriveFileFormatHint {
             get {
@@ -1815,7 +1806,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: The emulator only supports *.gb and *.gbc files..
+        ///   Looks up a localized string similar to Note: The emulator supports *gb, *.gbc and *.gba files..
         /// </summary>
         public static string SkyDriveFileFormatHint2 {
             get {
