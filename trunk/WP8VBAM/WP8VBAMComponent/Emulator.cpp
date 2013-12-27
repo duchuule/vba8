@@ -179,8 +179,7 @@ namespace Emulator
 			ResetEvent(this->updateEvent);
 		}
 
-		extern int turboSkip;
-		turboSkip = EmulatorSettings::Current->TurboFrameSkip;
+		
 
 		this->InitSound();		
 		this->InitThread();

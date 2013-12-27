@@ -1678,15 +1678,16 @@ namespace Emulator
 		EmulatorGame::emulator.emuReset();
 		emulator->Unpause();
 	}
-	task<void> ResetAsync(void)
-	{
-		if(!ROMFile || !ROMFolder)
-			return task<void>();
 
-		
+	//task<void> ResetAsync(void)
+	//{
+	//	if(!ROMFile || !ROMFolder)
+	//		return task<void>();
 
-		return LoadROMAsync(ROMFile, ROMFolder);
-	}
+	//	
+
+	//	return LoadROMAsync(ROMFile, ROMFolder);
+	//}
 
 	task<void> LoadROMAsync(StorageFile ^file, StorageFolder ^folder)
 	{
@@ -1739,8 +1740,12 @@ namespace Emulator
 			int size = data.Length;
 
 			if(rom != NULL) {
-				CPUCleanUp();
+				EmulatorGame::emulator.emuCleanUp; // CPUCleanUp();
 			}
+
+			extern int turboSkip;
+			turboSkip = EmulatorSettings::Current->TurboFrameSkip;
+
 
 			systemSaveUpdateCounter = SYSTEM_SAVE_NOT_UPDATED;
 
@@ -1934,6 +1939,12 @@ namespace Emulator
 			}
 
 			EmulatorSettings ^settings = EmulatorSettings::Current;
+
+			//setting for turbo skip
+			extern int turboSkip;
+			turboSkip = EmulatorSettings::Current->TurboFrameSkip;
+
+
 			auto configs = settings->ROMConfigurations;
 
 			if(configs != nullptr)
@@ -2018,14 +2029,16 @@ namespace Emulator
 
 	void LoadCheats(Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheats)
 	{
-#if GBC
-		LoadCheatsGB(cheats);
-#else
-		LoadCheatsGBA(cheats);
-#endif
+		if (gbaROMLoaded)
+			LoadCheatsGBA(cheats);
+		else
+			LoadCheatsGB(cheats);
+
+		
+
 	}
 
-#ifndef GBC
+
 	void LoadCheatsGBA(Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheats)
 	{
 		cheatsDeleteAll(EmulatorSettings::Current->RestoreOldCheatValues);
@@ -2056,7 +2069,7 @@ namespace Emulator
 		}
 	}
 
-#else
+
 
 	void LoadCheatsGB(Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheats)
 	{
@@ -2087,7 +2100,7 @@ namespace Emulator
 			}
 		}
 	}
-#endif
+
 
 	task<ROMData> GetROMBytesFromFileAsync(StorageFile ^file)
 	{

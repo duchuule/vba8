@@ -56,17 +56,7 @@ namespace PhoneDirect3DXamlAppInterop
             }
 
             ReadSettings();
-#if GBC
-            RestoreListItem.Visibility = Visibility.Collapsed;
 
-            this.turboSkip1Radio.Content = "2";
-            this.turboSkip2Radio.Content = "4";
-            this.turboSkip3Radio.Content = "6";
-            this.turboSkip4Radio.Content = "8";
-            this.turboSkip5Radio.Content = "10";
-            
-            this.aspect32Radio.Content = AppResources.AspectRatio10to9Setting;
-#endif
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -116,27 +106,6 @@ namespace PhoneDirect3DXamlAppInterop
                         break;
                 }
 
-#if GBC
-                switch (emuSettings.TurboFrameSkip)
-                {
-                    default:
-                    case 2:
-                        this.turboSkip1Radio.IsChecked = true;
-                        break;
-                    case 4:
-                        this.turboSkip2Radio.IsChecked = true;
-                        break;
-                    case 6:
-                        this.turboSkip3Radio.IsChecked = true;
-                        break;
-                    case 8:
-                        this.turboSkip4Radio.IsChecked = true;
-                        break;
-                    case 10:
-                        this.turboSkip5Radio.IsChecked = true;
-                        break;
-                }
-#else
                 switch (emuSettings.TurboFrameSkip)
                 {
                     default:
@@ -156,7 +125,7 @@ namespace PhoneDirect3DXamlAppInterop
                         this.turboSkip5Radio.IsChecked = true;
                         break;
                 }
-#endif
+
                 //switch (emuSettings.PowerFrameSkip)
                 //{
                 //    default:
@@ -574,11 +543,9 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-#if GBC
-                EmulatorSettings.Current.TurboFrameSkip = 2;
-#else
+
                 EmulatorSettings.Current.TurboFrameSkip = 1;
-#endif
+
             }
         }
 
@@ -586,11 +553,8 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-#if GBC
-                EmulatorSettings.Current.TurboFrameSkip = 4;
-#else
                 EmulatorSettings.Current.TurboFrameSkip = 2;
-#endif
+
             }
         }
 
@@ -598,11 +562,8 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-#if GBC
-                EmulatorSettings.Current.TurboFrameSkip = 6;
-#else
                 EmulatorSettings.Current.TurboFrameSkip = 3;
-#endif
+
             }
         }
 
@@ -610,11 +571,9 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-#if GBC
-                EmulatorSettings.Current.TurboFrameSkip = 8;
-#else
+
                 EmulatorSettings.Current.TurboFrameSkip = 4;
-#endif
+
             }
         }
 
@@ -622,11 +581,8 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-#if GBC
-                EmulatorSettings.Current.TurboFrameSkip = 10;
-#else
                 EmulatorSettings.Current.TurboFrameSkip = 5;
-#endif
+
             }
         }
 

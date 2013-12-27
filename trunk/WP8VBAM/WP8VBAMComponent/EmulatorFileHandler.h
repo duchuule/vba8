@@ -40,11 +40,8 @@ namespace Emulator
 	task<void> LoadGBSRAMAsync(void);
 	void LoadCheatsOnROMLoad(Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheats);
 	void LoadCheats(Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheats);
-#ifndef GBC
 	void LoadCheatsGBA(Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheats);
-#else
 	void LoadCheatsGB(Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheats);
-#endif
 
 	task<void> SaveBytesToFileAsync(StorageFile ^file, unsigned char *bytes, size_t length);
 	task<ROMData> GetBytesFromFileAsync(StorageFile ^file);

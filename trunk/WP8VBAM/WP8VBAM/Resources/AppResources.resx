@@ -405,7 +405,7 @@ The author is not responsible for any illegal use of this software. Furthermore,
     <value>1:1</value>
   </data>
   <data name="AspectRatioOriginalSetting" xml:space="preserve">
-    <value>3:2</value>
+    <value>native</value>
   </data>
   <data name="AspectRatioSetting" xml:space="preserve">
     <value>Aspect Ratio</value>
@@ -538,7 +538,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Note: If your ROMs do not start, see the "issues" section of the help page.</value>
   </data>
   <data name="SkyDriveFileFormatHint" xml:space="preserve">
-    <value>Note: The emulator only supports *.gba files.</value>
+    <value>Note: The emulator supports *gb, *.gbc and *.gba files.</value>
   </data>
   <data name="DPadAnalogueDynamic" xml:space="preserve">
     <value>dynamic analogue stick</value>
@@ -623,7 +623,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gbc or *.gb file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gbc or *.gb file, just tap on it and the emulator will start and import the ROM.</value>
   </data>
   <data name="SkyDriveFileFormatHint2" xml:space="preserve">
-    <value>Note: The emulator only supports *.gb and *.gbc files.</value>
+    <value>Note: The emulator supports *gb, *.gbc and *.gba files.</value>
   </data>
   <data name="CameraAssignLR" xml:space="preserve">
     <value>L-Button and R-Button</value>
@@ -683,7 +683,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Invalid code format. The codes must be in the format XXX-XXX-XXX, XXX-XXX or an 8 digit hexadecimal number per line.</value>
   </data>
   <data name="CheatRestoreValuesOption" xml:space="preserve">
-    <value>Restore old values after using cheats</value>
+    <value>Restore old values after cheats (GBA)</value>
   </data>
   <data name="CheatsDescription2" xml:space="preserve">
     <value>You can enter Gameshark and GameGenie codes. Using cheat codes can make your game unstable.</value>
@@ -729,9 +729,6 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
   </data>
   <data name="RenamePageTitle" xml:space="preserve">
     <value>rename</value>
-  </data>
-  <data name="AspectRatio10to9Setting" xml:space="preserve">
-    <value>10:9</value>
   </data>
   <data name="ContextTitle" xml:space="preserve">
     <value>options</value>

@@ -344,7 +344,7 @@ namespace PhoneDirect3DXamlAppInterop
                 {
 #if GBC
                     // Must be divisible by two for GBC
-                    isoSettings[SettingsPage.TurboFrameSkipKey] = 6;
+                    isoSettings[SettingsPage.TurboFrameSkipKey] = 4;
 #else
                     isoSettings[SettingsPage.TurboFrameSkipKey] = 4;
 #endif

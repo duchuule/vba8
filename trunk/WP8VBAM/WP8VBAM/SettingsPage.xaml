@@ -55,7 +55,8 @@
                                             IsChecked="true" Name="restoreLastStateSwitch"
                                             />
                     </ListBoxItem>
-                    <ListBoxItem HorizontalContentAlignment="Stretch" Name="RestoreListItem">
+                    <ListBoxItem HorizontalContentAlignment="Stretch" Name="RestoreListItem"
+                                 >
                         <CheckBox Content="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
                                           Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
                                           IsChecked="false" Name="cheatRestoreSwitch"

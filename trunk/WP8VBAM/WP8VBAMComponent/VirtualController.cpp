@@ -436,21 +436,21 @@ namespace Emulator
 		this->rRectangle.top = 1165;
 		this->rRectangle.bottom = 1260;
 
-		if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
-		{
+		//if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
+		//{
 			this->padCrossRectangle.top += 80;
 			this->padCrossRectangle.bottom += 80;
 			
 			this->buttonsRectangle.top += 80;
 			this->buttonsRectangle.bottom += 80;
-		}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
-		{
-			this->padCrossRectangle.top -= 80;
-			this->padCrossRectangle.bottom -= 80;
-			
-			this->buttonsRectangle.top -= 80;
-			this->buttonsRectangle.bottom -= 80;
-		}
+		//}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
+		//{
+		//	this->padCrossRectangle.top -= 80;
+		//	this->padCrossRectangle.bottom -= 80;
+		//	
+		//	this->buttonsRectangle.top -= 80;
+		//	this->buttonsRectangle.bottom -= 80;
+		//}
 
 		// Scale controller
 		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
@@ -514,22 +514,22 @@ namespace Emulator
 		this->rRectangle.top = 728;
 		this->rRectangle.bottom = 788;	
 
-		if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
-		{
+		//if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
+		//{
 			this->padCrossRectangle.top += 50;
 			this->padCrossRectangle.bottom += 50;
 			
 			this->buttonsRectangle.top += 50;
 			this->buttonsRectangle.bottom += 50;
-		}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
-		{
-			this->padCrossRectangle.top -= 50;
-			this->padCrossRectangle.bottom -= 50;
-			
-			this->buttonsRectangle.top -= 50;
-			this->buttonsRectangle.bottom -= 50;
-		}
-		
+		//}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
+		//{
+		//	this->padCrossRectangle.top -= 50;
+		//	this->padCrossRectangle.bottom -= 50;
+		//	
+		//	this->buttonsRectangle.top -= 50;
+		//	this->buttonsRectangle.bottom -= 50;
+		//}
+		//
 		// Scale controller
 		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
 		this->padCrossRectangle.right -= (LONG)(75.0f * value);
@@ -591,21 +591,21 @@ namespace Emulator
 		this->rRectangle.top = 1184;
 		this->rRectangle.bottom = 1260;
 
-		if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
-		{
+		//if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
+		//{
 			this->padCrossRectangle.top += 40;
 			this->padCrossRectangle.bottom += 40;
 			
 			this->buttonsRectangle.top += 40;
 			this->buttonsRectangle.bottom += 40;
-		}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
-		{
-			this->padCrossRectangle.top -= 80;
-			this->padCrossRectangle.bottom -= 80;
-			
-			this->buttonsRectangle.top -= 80;
-			this->buttonsRectangle.bottom -= 80;
-		}
+		//}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
+		//{
+		//	this->padCrossRectangle.top -= 80;
+		//	this->padCrossRectangle.bottom -= 80;
+		//	
+		//	this->buttonsRectangle.top -= 80;
+		//	this->buttonsRectangle.bottom -= 80;
+		//}
 
 		// Scale controller
 		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;

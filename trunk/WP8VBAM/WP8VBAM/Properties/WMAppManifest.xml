@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" Title="VGBC8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Duc Le" Description="" Publisher="Duc Le" PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIconFilledGBC.png</IconPath>
+  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" 
+       Title="VBA8" RuntimeType="Silverlight" 
+       Version="1.0.0.0" 
+       Genre="apps.normal" 
+       Author="Duc Le" 
+       Description="" 
+       Publisher="Duc Le" 
+       PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
+    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIconFilled.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
@@ -19,11 +26,11 @@
     <Tokens>
       <PrimaryToken TokenID="PhoneDirect3DXamlAppInteropToken" TaskName="_default">
         <TemplateCycle>
-          <!--<SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>-->
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmallGBC.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <!--<SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmallGBC.png</SmallImageURI>-->
           <Title>VBA8</Title>
-          <!--<Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\tileIconLarge.png</Photo01ImageURI>-->
-          <Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\tileIconLargeGBC.png</Photo01ImageURI>
+          <Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\tileIconLarge.png</Photo01ImageURI>
+          <!--<Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\tileIconLargeGBC.png</Photo01ImageURI>-->
           <Photo02ImageURI IsRelative="true" IsResource="false">
           </Photo02ImageURI>
           <Photo03ImageURI IsRelative="true" IsResource="false">
@@ -48,18 +55,17 @@
       </PrimaryToken>
     </Tokens>
     <Extensions>
-      <!--<FileTypeAssociation Name="Gameboy Advance ROM file" TaskID="_default" NavUriFragment="fileToken=%s">-->
-        <FileTypeAssociation Name="Gameboy ROM file" TaskID="_default" NavUriFragment="fileToken=%s">
+      <FileTypeAssociation Name="Gameboy ROM file" TaskID="_default" NavUriFragment="fileToken=%s">
         <Logos>
-          <!--<Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33.png</Logo>
+          <Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33.png</Logo>
           <Logo Size="medium" IsRelative="true">Assets/Tiles/icon69x69.png</Logo>
-          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176.png</Logo>-->
-          <Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33GBC.png</Logo>
+          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176.png</Logo>
+          <!--<Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33GBC.png</Logo>
           <Logo Size="medium" IsRelative="true">Assets/Tiles/icon69x69GBC.png</Logo>
-          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176GBC.png</Logo>
+          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176GBC.png</Logo>-->
         </Logos>
         <SupportedFileTypes>
-          <!--<FileType ContentType="application/gba">.gba</FileType>-->
+          <FileType ContentType="application/gba">.gba</FileType>
           <FileType ContentType="application/gbc">.gbc</FileType>
           <FileType ContentType="application/gbc">.gb</FileType>
         </SupportedFileTypes>

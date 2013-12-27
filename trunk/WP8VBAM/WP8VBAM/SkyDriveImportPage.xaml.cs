@@ -302,11 +302,8 @@ namespace PhoneDirect3DXamlAppInterop
                         if ((dotIndex = name.LastIndexOf('.')) != -1)
                         {
                             String substrName = name.Substring(dotIndex).ToLower();
-#if GBC
-                            if (substrName.Equals(".gb") || substrName.Equals(".gbc"))
-#else
-                            if (substrName.Equals(".gba"))
-#endif
+                            if (substrName.Equals(".gb") || substrName.Equals(".gbc") || substrName.Equals(".gba"))
+
                             {
                                 type = SkyDriveItemType.ROM;
                             }

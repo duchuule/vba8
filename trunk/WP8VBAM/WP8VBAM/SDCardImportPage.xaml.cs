@@ -101,11 +101,8 @@ namespace PhoneDirect3DXamlAppInterop
                     // Add each rom file to the Routes collection.
                     foreach (ExternalStorageFile esf in routeFiles)
                     {
-#if GBC
-                        if (esf.Path.ToLower().EndsWith(".gb") || esf.Path.ToLower().EndsWith(".gbc"))
-#else
-                        if (esf.Path.ToLower().EndsWith(".gba") )
-#endif
+
+                        if (esf.Path.ToLower().EndsWith(".gb") || esf.Path.ToLower().EndsWith(".gbc") || esf.Path.ToLower().EndsWith(".gba"))
                         {
                             Routes.Add(esf);
                         }
