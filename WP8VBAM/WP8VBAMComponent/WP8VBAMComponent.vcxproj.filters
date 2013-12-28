@@ -164,6 +164,19 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="CPositionComponent.cpp">
+      <Filter>controllerposition</Filter>
+    </ClCompile>
+    <ClCompile Include="CPositionContentProvider.cpp">
+      <Filter>controllerposition</Filter>
+    </ClCompile>
+    <ClCompile Include="CPositionRenderer.cpp">
+      <Filter>controllerposition</Filter>
+    </ClCompile>
+    <ClCompile Include="CPositionVirtualController.cpp">
+      <Filter>controllerposition</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicTimer.h" />
@@ -338,6 +351,19 @@
     <ClInclude Include="OnFrameBuffer.h" />
     <ClInclude Include="OnResizeBuffer.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="CPositionComponent.h">
+      <Filter>controllerposition</Filter>
+    </ClInclude>
+    <ClInclude Include="CPositionContentProvider.h">
+      <Filter>controllerposition</Filter>
+    </ClInclude>
+    <ClInclude Include="CPositionRenderer.h">
+      <Filter>controllerposition</Filter>
+    </ClInclude>
+    <ClInclude Include="CPositionVirtualController.h">
+      <Filter>controllerposition</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vbam">
@@ -357,6 +383,9 @@
     </Filter>
     <Filter Include="vbam\gb">
       <UniqueIdentifier>{a3212231-40cf-4928-8859-0db86aa68454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controllerposition">
+      <UniqueIdentifier>{3421073e-d80c-499c-abfc-53587ba328ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

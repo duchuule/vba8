@@ -324,6 +324,18 @@
                     </ListBoxItem>
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Button x:Name="CPositionPortraitBtn"
+                                Content="Customize Portrait Control Position" Click="CPositionPortraitBtn_Click"
+                                />
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                    <Button x:Name="CPositionLandscapeBtn"
+                                Content="Customize Landscape Control Position" Click="CPositionLandscapeBtn_Click"
+                                />
+                    </ListBoxItem>
+                    
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox Content="{Binding Path=LocalizedResources.VControllerPosSetting, Source={StaticResource LocalizedStrings}}"
                                           Checked="vcontrollerPosSwitch_Checked_1" Unchecked="vcontrollerPosSwitch_Unchecked_1"
                                           Name="vcontrollerPosSwitch"/>

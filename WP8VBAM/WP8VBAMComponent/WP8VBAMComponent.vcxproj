@@ -531,15 +531,20 @@
     <ClInclude Include="BasicTimer.h" />
     <ClInclude Include="CheatData.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="CPositionRenderer.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="DXSpriteBatch.h" />
     <ClInclude Include="Emulator.h" />
     <ClInclude Include="EmulatorFileHandler.h" />
     <ClInclude Include="EmulatorSettings.h" />
+    <ClInclude Include="CPositionComponent.h" />
+    <ClInclude Include="CPositionContentProvider.h" />
+    <ClInclude Include="CPositionVirtualController.h" />
     <ClInclude Include="OnFrameBuffer.h" />
     <ClInclude Include="OnResizeBuffer.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="ROMConfig.h" />
     <ClInclude Include="Size.h" />
     <ClInclude Include="TextureLoader.h" />
@@ -639,13 +644,18 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugTrialGBC|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugGBC|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="CPositionRenderer.cpp" />
     <ClCompile Include="DXSpriteBatch.cpp" />
     <ClCompile Include="Emulator.cpp" />
     <ClCompile Include="EmulatorFileHandler.cpp" />
     <ClCompile Include="EmulatorSettings.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ROMConfig.cpp" />
+    <ClCompile Include="CPositionComponent.cpp" />
+    <ClCompile Include="CPositionContentProvider.cpp" />
+    <ClCompile Include="CPositionVirtualController.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="vbaFunctions.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">NotUsing</PrecompiledHeader>

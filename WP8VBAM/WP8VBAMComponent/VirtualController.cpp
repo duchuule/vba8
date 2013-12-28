@@ -374,7 +374,14 @@ namespace Emulator
 		this->startRect.Height = (this->startSelectRectangle.bottom - this->startSelectRectangle.top) / touchVisualQuotientH;
 
 		int dpad = settings->DPadStyle;
-		if(dpad >= 2)
+		if (dpad <=1)
+		{
+			this->stickBoundaries.Y = 0;
+			this->stickBoundaries.X = 0;
+			this->stickBoundaries.Height = this->selectRect.X;
+			this->stickBoundaries.Width = this->lRect.Y;
+		}
+		else
 		{
 			this->stickPos.Y = this->leftRect.X + this->leftRect.Width * 1.5f;
 			this->stickPos.X = this->leftRect.Y + this->leftRect.Height / 2.0f;
@@ -703,7 +710,14 @@ namespace Emulator
 		this->startRect.Width = ((this->startSelectRectangle.bottom - this->startSelectRectangle.top) / (float)this->width) * this->touchWidth;
 
 		int dpad = EmulatorSettings::Current->DPadStyle;
-		if(dpad >= 2)
+		if (dpad <=1)
+		{
+			this->stickBoundaries.Y = this->leftRect.X;
+			this->stickBoundaries.X = this->leftRect.Y;
+			this->stickBoundaries.Width = this->leftRect.Width;
+			this->stickBoundaries.Height = this->leftRect.Height * 3;
+		}
+		else
 		{
 			this->stickPos.X = this->leftRect.Y + this->leftRect.Height * 1.8f;
 			this->stickPos.Y = this->leftRect.X + this->leftRect.Width / 2.0f;
