@@ -1,13 +1,29 @@
-﻿#pragma once
+#pragma once
 
-#include "Renderer.h"
+#include <ppltasks.h>
+#include "Direct3DBase.h"
+#include "defines.h"
+#include "CPositionVirtualController.h"
+#include "EmulatorSettings.h"
+#include <collection.h>
+#include "DXSpriteBatch.h"
+
+using namespace Engine;
+using namespace DirectX;
+using namespace concurrency;
+using namespace Windows::Storage;
+using namespace Windows::UI::Input;
+using namespace Microsoft::WRL;
+using namespace PhoneDirect3DXamlAppComponent;
+using namespace Emulator;
+
 
 // This class renders a simple spinning cube.
-ref class EmulatorRenderer sealed : public Renderer
+ref class CPositionRenderer sealed : public Direct3DBase
 {
 public:
-	EmulatorRenderer();
-	virtual ~EmulatorRenderer(void);
+	CPositionRenderer();
+	virtual ~CPositionRenderer(void);
 
 	// Direct3DBase methods.
 	virtual void CreateDeviceResources() override;
@@ -21,8 +37,8 @@ public:
 	void ChangeOrientation(int orientation);
 
 internal:
-	void SetVirtualController(VirtualController *controller);
-	void GetBackbufferData(uint8 **backbufferPtr, size_t *pitch, int *imageWidth, int *imageHeight);
+	void SetVirtualController(Emulator::CPositionVirtualController *controller);
+
 
 private:
 	size_t pitch;
@@ -32,7 +48,8 @@ private:
 	HANDLE waitEvent;
 	int frames;
 
-	VirtualController					*controller;
+	Emulator::CPositionVirtualController *controller;
+	const Emulator::ControllerState *cstate;
 	RECT buttonsRectangle;
 	RECT crossRectangle;
 	RECT startSelectRectangle;
@@ -45,7 +62,6 @@ private:
 	int									width, height;
 
 	DXSpriteBatch						*dxSpriteBatch;
-	EmulatorGame						*emulator;
 	ComPtr<ID3D11Texture2D>				buffers[2];
 	ComPtr<ID3D11ShaderResourceView>	bufferSRVs[2];
 	ComPtr<ID3D11BlendState>			alphablend;

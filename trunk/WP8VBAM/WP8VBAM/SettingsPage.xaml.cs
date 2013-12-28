@@ -772,6 +772,18 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+        private void CPositionPortraitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/CustomizeControllerPage.xaml?orientation=2", UriKind.Relative));
+        }
+
+        private void CPositionLandscapeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/CustomizeControllerPage.xaml?orientation=0", UriKind.Relative));
+        }
+
+        
+
        
     }
 }

@@ -290,6 +290,9 @@
     <Compile Include="ContextPage.xaml.cs">
       <DependentUpon>ContextPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomizeControllerPage.xaml.cs">
+      <DependentUpon>CustomizeControllerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database\ROMDBEntry.cs" />
     <Compile Include="Database\SavestateEntry.cs" />
     <Compile Include="EmulatorPage.xaml.cs">
@@ -371,6 +374,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomizeControllerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmulatorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -428,6 +435,18 @@
     <Content Include="Assets\ApplicationIconFilled.png" />
     <Content Include="Assets\ApplicationIconFilledGBC.png" />
     <Content Include="Assets\ApplicationIconGBC.png" />
+    <Content Include="Assets\pad_start.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\pad_select.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\pad_b_button.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\pad_a_button.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Icons\appbar.lock.png" />
     <Content Include="Assets\Icons\appbar.unlock.png" />
     <Content Include="Assets\Icons\marketplace.png" />

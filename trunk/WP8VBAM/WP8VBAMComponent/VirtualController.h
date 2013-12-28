@@ -14,6 +14,7 @@ namespace Emulator
 
 	struct ControllerState
 	{
+		bool JoystickPressed;
 		bool LeftPressed;
 		bool UpPressed;
 		bool RightPressed;
@@ -38,11 +39,11 @@ namespace Emulator
 		void SetOrientation(int orientation);
 		int GetFormat(void);
 
-		void PointerPressed(PointerPoint ^point);
-		void PointerMoved(PointerPoint ^point);
-		void PointerReleased(PointerPoint ^point);
+		virtual void PointerPressed(PointerPoint ^point);
+		virtual void PointerMoved(PointerPoint ^point);
+		virtual void PointerReleased(PointerPoint ^point);
 
-		const ControllerState *GetControllerState(void);
+		virtual const ControllerState *GetControllerState(void);
 
 		void GetStickRectangle(RECT *rect);
 		void GetStickCenterRectangle(RECT *rect);
@@ -55,8 +56,19 @@ namespace Emulator
 		void GetRRectangle(RECT *rect);
 
 		Platform::Collections::Map<unsigned int, Platform::String^> ^pointerDescriptions;
-	private:
-		static VirtualController *singleton;
+
+	protected:
+		void CreateWXGARectangles(void);
+		void CreateWVGARectangles(void);
+		void Create720PRectangles(void);
+		void CreateWXGAPortraitRectangles(void);
+		void CreateWVGAPortraitRectangles(void);
+		void Create720PPortraitRectangles(void);
+		void CreateTouchLandscapeRectangles(void);
+		void CreateTouchPortraitRectangles(void);
+		double CalculateDistanceDiff(Windows::Foundation::Point point1, Windows::Foundation::Point point2, Windows::Foundation::Point target);
+
+		
 
 		Platform::Collections::Map<unsigned int, Windows::UI::Input::PointerPoint ^> ^pointers;
 		CRITICAL_SECTION cs;
@@ -91,14 +103,7 @@ namespace Emulator
 		Windows::Foundation::Rect aRect;
 		Windows::Foundation::Rect bRect;
 		
-		void CreateWXGARectangles(void);
-		void CreateWVGARectangles(void);
-		void Create720PRectangles(void);
-		void CreateWXGAPortraitRectangles(void);
-		void CreateWVGAPortraitRectangles(void);
-		void Create720PPortraitRectangles(void);
-		void CreateTouchLandscapeRectangles(void);
-		void CreateTouchPortraitRectangles(void);
-		double CalculateDistanceDiff(Windows::Foundation::Point point1, Windows::Foundation::Point point2, Windows::Foundation::Point target);
+	private:
+		static VirtualController *singleton;
 	};
 }

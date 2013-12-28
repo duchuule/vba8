@@ -1,30 +1,45 @@
-﻿#pragma once
+#pragma once
 
-#include "Renderer.h"
+#include <ppltasks.h>
+#include "Direct3DBase.h"
+#include "Emulator.h"
+#include "defines.h"
+#include "VirtualController.h"
+#include "EmulatorSettings.h"
+#include <collection.h>
+#include "DXSpriteBatch.h"
+
+using namespace Engine;
+using namespace Emulator;
+using namespace DirectX;
+using namespace concurrency;
+using namespace Windows::Storage;
+using namespace Windows::UI::Input;
+using namespace Microsoft::WRL;
+using namespace PhoneDirect3DXamlAppComponent;
 
 // This class renders a simple spinning cube.
-ref class EmulatorRenderer sealed : public Renderer
+ref class Renderer abstract: public Direct3DBase 
 {
 public:
-	EmulatorRenderer();
-	virtual ~EmulatorRenderer(void);
+	virtual ~Renderer(void);
+
+internal:
+	Renderer();
+	
 
 	// Direct3DBase methods.
 	virtual void CreateDeviceResources() override;
 	virtual void CreateWindowSizeDependentResources() override;
 	virtual void Render() override;
 	virtual void UpdateForWindowSizeChange(float width, float height) override;
-	void UpdateController(void);
 	
 	// Method for updating time-dependent objects.
 	void Update(float timeTotal, float timeDelta);
 	void ChangeOrientation(int orientation);
 
-internal:
-	void SetVirtualController(VirtualController *controller);
-	void GetBackbufferData(uint8 **backbufferPtr, size_t *pitch, int *imageWidth, int *imageHeight);
 
-private:
+
 	size_t pitch;
 	uint8 *backbufferPtr;
 	float elapsedTime;
@@ -32,7 +47,7 @@ private:
 	HANDLE waitEvent;
 	int frames;
 
-	VirtualController					*controller;
+
 	RECT buttonsRectangle;
 	RECT crossRectangle;
 	RECT startSelectRectangle;
@@ -70,5 +85,4 @@ private:
 	XMMATRIX							outputTransform;
 	
 	void CreateTransformMatrix(void);
-	void *MapBuffer(int index, size_t *rowPitch);
 };
