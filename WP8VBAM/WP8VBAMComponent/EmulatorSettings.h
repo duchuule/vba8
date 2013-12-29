@@ -84,18 +84,18 @@ namespace PhoneDirect3DXamlAppComponent
 		}
 
 
-		property bool VirtualControllerOnTop
-		{
-			bool get() { return this->vcontrollerOnTop; }
-			void set(bool value) 
-			{ 
-				this->vcontrollerOnTop = value; 
-				if(this->SettingsChanged)
-				{
-					this->SettingsChanged();
-				}
-			}
-		}
+		//property bool VirtualControllerOnTop
+		//{
+		//	bool get() { return this->vcontrollerOnTop; }
+		//	void set(bool value) 
+		//	{ 
+		//		this->vcontrollerOnTop = value; 
+		//		if(this->SettingsChanged)
+		//		{
+		//			this->SettingsChanged();
+		//		}
+		//	}
+		//}
 
 		property bool LowFrequencyMode
 		{
@@ -388,6 +388,381 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
+		property int PadCenterXP
+		{
+			int get() { return this->padCenterXP; }
+			void set(int value) 
+			{ 
+				this->padCenterXP = value; 
+				//if(this->SettingsChanged)
+				//{
+				//	this->SettingsChanged();
+				//}
+			}
+		}
+
+		property int PadCenterYP
+		{
+			int get() { return this->padCenterYP; }
+			void set(int value) 
+			{ 
+				this->padCenterYP = value; 
+	/*			if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int ALeftP
+		{
+			int get() { return this->aLeftP; }
+			void set(int value) 
+			{ 
+				this->aLeftP = value; 
+			/*	if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int ATopP
+		{
+			int get() { return this->aTopP; }
+			void set(int value) 
+			{ 
+				this->aTopP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int BLeftP
+		{
+			int get() { return this->bLeftP; }
+			void set(int value) 
+			{ 
+				this->bLeftP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int BTopP
+		{
+			int get() { return this->bTopP; }
+			void set(int value) 
+			{ 
+				this->bTopP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int StartLeftP
+		{
+			int get() { return this->startLeftP; }
+			void set(int value) 
+			{ 
+				this->startLeftP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int StartTopP
+		{
+			int get() { return this->startTopP; }
+			void set(int value) 
+			{ 
+				this->startTopP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int SelectRightP
+		{
+			int get() { return this->selectRightP; }
+			void set(int value) 
+			{ 
+				this->selectRightP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int SelectTopP
+		{
+			int get() { return this->selectTopP; }
+			void set(int value) 
+			{ 
+				this->selectTopP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int LLeftP
+		{
+			int get() { return this->lLeftP; }
+			void set(int value) 
+			{ 
+				this->lLeftP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int LTopP
+		{
+			int get() { return this->lTopP; }
+			void set(int value) 
+			{ 
+				this->lTopP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int RRightP
+		{
+			int get() { return this->rRightP; }
+			void set(int value) 
+			{ 
+				this->rRightP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int RTopP
+		{
+			int get() { return this->rTopP; }
+			void set(int value) 
+			{ 
+				this->rTopP = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int PadCenterXL
+		{
+			int get() { return this->padCenterXL; }
+			void set(int value) 
+			{ 
+				this->padCenterXL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int PadCenterYL
+		{
+			int get() { return this->padCenterYL; }
+			void set(int value) 
+			{ 
+				this->padCenterYL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int ALeftL
+		{
+			int get() { return this->aLeftL; }
+			void set(int value) 
+			{ 
+				this->aLeftL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int ATopL
+		{
+			int get() { return this->aTopL; }
+			void set(int value) 
+			{ 
+				this->aTopL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int BLeftL
+		{
+			int get() { return this->bLeftL; }
+			void set(int value) 
+			{ 
+				this->bLeftL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int BTopL
+		{
+			int get() { return this->bTopL; }
+			void set(int value) 
+			{ 
+				this->bTopL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int StartLeftL
+		{
+			int get() { return this->startLeftL; }
+			void set(int value) 
+			{ 
+				this->startLeftL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int StartTopL
+		{
+			int get() { return this->startTopL; }
+			void set(int value) 
+			{ 
+				this->startTopL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int SelectRightL
+		{
+			int get() { return this->selectRightL; }
+			void set(int value) 
+			{ 
+				this->selectRightL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int SelectTopL
+		{
+			int get() { return this->selectTopL; }
+			void set(int value) 
+			{ 
+				this->selectTopL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int LLeftL
+		{
+			int get() { return this->lLeftL; }
+			void set(int value) 
+			{ 
+				this->lLeftL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int LTopL
+		{
+			int get() { return this->lTopL; }
+			void set(int value) 
+			{ 
+				this->lTopL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+
+		property int RRightL
+		{
+			int get() { return this->rRightL; }
+			void set(int value) 
+			{ 
+				this->rRightL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
+		property int RTopL
+		{
+			int get() { return this->rTopL; }
+			void set(int value) 
+			{ 
+				this->rTopL = value; 
+				/*if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}*/
+			}
+		}
+
 		EmulatorSettings(void);
 	private:
 		bool soundEnabled;
@@ -418,6 +793,41 @@ namespace PhoneDirect3DXamlAppComponent
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;
 
 		static EmulatorSettings ^instance;
+
+		int padCenterXP;
+		int padCenterYP;
+		int aLeftP;
+		int aTopP;
+		int bLeftP;
+		int bTopP;
+		int startLeftP;
+		int startTopP;
+		int selectRightP;
+		int selectTopP;
+		int lLeftP;
+		int lTopP;
+		int rRightP;
+		int rTopP;
+
+
+
+		int padCenterXL;
+		int padCenterYL;
+		int aLeftL;
+		int aTopL;
+		int bLeftL;
+		int bTopL;
+		int startLeftL;
+		int startTopL;
+		int selectRightL;
+		int selectTopL;
+		int lLeftL;
+		int lTopL;
+		int rRightL;
+		int rTopL;
+
+
+		
 	};
 }
 

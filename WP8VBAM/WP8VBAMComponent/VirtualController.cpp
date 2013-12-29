@@ -56,264 +56,132 @@ namespace Emulator
 			this->height = 768;
 			this->touchWidth = 800;
 			this->touchHeight = 480;
-			if(this->orientation != ORIENTATION_PORTRAIT)
-			{
-				this->CreateWXGARectangles();
-			}else
-			{
-				this->CreateWXGAPortraitRectangles();
-			}
+
 			break;
 		case HD720P:
 			this->width = 1280;
 			this->height = 720;
 			this->touchWidth = 853;
 			this->touchHeight = 480;
-			if(this->orientation != ORIENTATION_PORTRAIT)
-			{
-				this->Create720PRectangles();
-			}else
-			{
-				this->Create720PPortraitRectangles();
-			}
 			break;
 		default:
 			this->width = 800;
 			this->height = 480;
 			this->touchWidth = 800;
 			this->touchHeight = 480;
-			if(this->orientation != ORIENTATION_PORTRAIT)
-			{
-				this->CreateWVGARectangles();
-			}else
-			{
-				this->CreateWVGAPortraitRectangles();
-			}
 			break;
 		}
+		this->hscale = ((float)this->height) / this->touchHeight;
+
+		this->SetControllerPositionFromSettings();
+
+		this->CreateRenderRectangles();
+
+		if(this->orientation != ORIENTATION_PORTRAIT)
+			this->CreateTouchLandscapeRectangles();
+		else
+			this->CreateTouchPortraitRectangles();		
+
 	}
 
-	void VirtualController::CreateWXGARectangles(void)
+	void VirtualController::SetControllerPositionFromSettings(void)
 	{
-		int yOffset = 0;
-		int buttonYOffset = 0;
-		if(virtualControllerOnTop)
+		EmulatorSettings ^settings = EmulatorSettings::Current;
+
+		if(this->orientation != ORIENTATION_PORTRAIT)
 		{
-			yOffset = VCONTROLLER_Y_OFFSET_WXGA;
-			buttonYOffset = VCONTROLLER_BUTTON_Y_OFFSET_WXGA;
+			padCenterX = settings->PadCenterXL;
+			padCenterY = settings->PadCenterYL;
+			aLeft = settings->ALeftL;
+			aTop = settings->ATopL;
+			bLeft = settings->BLeftL;
+			bTop = settings->BTopL;
+			startLeft = settings->StartLeftL;
+			startTop = settings->StartTopL;
+			selectRight = settings->SelectRightL;
+			selectTop = settings->SelectTopL;
+			lLeft = settings->LLeftL;
+			lTop = settings->LTopL;
+			rRight = settings->RRightL;
+			rTop = settings->RTopL;
 		}
-
-		// Visible Rectangles
-		this->padCrossRectangle.left = 30;
-		this->padCrossRectangle.right = 380;
-		this->padCrossRectangle.top = 388;
-		this->padCrossRectangle.bottom = 738;
-
-		this->buttonsRectangle.left = 860;
-		this->buttonsRectangle.right = 1270;
-		this->buttonsRectangle.top = 348;
-		this->buttonsRectangle.bottom = 758;
-
-		this->startSelectRectangle.left = 430;
-		this->startSelectRectangle.right = 850;
-		this->startSelectRectangle.top = 670;
-		this->startSelectRectangle.bottom = 748;
-
-		this->lRectangle.left = 0;
-		this->lRectangle.right = 170;
-		this->lRectangle.top = 75;
-		this->lRectangle.bottom = 170;
-
-		this->rRectangle.left = 1110;
-		this->rRectangle.right = 1280;
-		this->rRectangle.top = 75;
-		this->rRectangle.bottom = 170;
-
-		// Scale controller
-		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
-		this->padCrossRectangle.right -= (LONG)(350.0f * value);
-		this->padCrossRectangle.top += (LONG)(350.0f * value);
-
-		float value2 = 1.0f - EmulatorSettings::Current->ButtonScale / 100.0f;
-		this->buttonsRectangle.left += (LONG)(410.0f * value2);
-		this->buttonsRectangle.top += (LONG)(410.0f * value2);
-		this->startSelectRectangle.left += (LONG)(125.0f * value2);
-		this->startSelectRectangle.right -= (LONG)(125.0f * value2);
-		this->startSelectRectangle.top += (LONG)(46.0f * value2);
-		this->lRectangle.right -= (LONG)(100.0f * value2);
-		this->lRectangle.bottom -= (LONG)(56.0f * value2);
-		this->rRectangle.left += (LONG)(100.0f * value2);
-		this->rRectangle.bottom -= (LONG)(56.0f * value2);		
-
-		this->padCrossRectangle.top -= yOffset;
-		this->padCrossRectangle.bottom -= yOffset;
-
-		this->buttonsRectangle.top -= buttonYOffset;
-		this->buttonsRectangle.bottom -= buttonYOffset;
-
-		this->lRectangle.top += yOffset + 60;
-		this->lRectangle.bottom += yOffset + 60;
-		
-		this->rRectangle.top += yOffset + 60;
-		this->rRectangle.bottom += yOffset + 60;
-
-		this->visibleStickPos.x = (LONG) (this->padCrossRectangle.left + (this->padCrossRectangle.right - this->padCrossRectangle.left) / 2.0f);
-		this->visibleStickPos.y = (LONG) (this->padCrossRectangle.top + (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 2.0f);
-
-		this->visibleStickOffset.x = 0;
-		this->visibleStickOffset.y = 0;
-
-		// Touch Rectangles
-		this->CreateTouchLandscapeRectangles();
+		else
+		{
+			padCenterX = settings->PadCenterXP;
+			padCenterY = settings->PadCenterYP;
+			aLeft = settings->ALeftP;
+			aTop = settings->ATopP;
+			bLeft = settings->BLeftP;
+			bTop = settings->BTopP;
+			startLeft = settings->StartLeftP;
+			startTop = settings->StartTopP;
+			selectRight = settings->SelectRightP;
+			selectTop = settings->SelectTopP;
+			lLeft = settings->LLeftP;
+			lTop = settings->LTopP;
+			rRight = settings->RRightP;
+			rTop = settings->RTopP;
+		}
 	}
 
-	void VirtualController::CreateWVGARectangles(void)
+	void VirtualController::CreateRenderRectangles(void)
 	{	
-		int yOffset = 0;
-		int buttonYOffset = 0;
-		if(virtualControllerOnTop)
-		{
-			yOffset = VCONTROLLER_Y_OFFSET_WVGA;
-			buttonYOffset = VCONTROLLER_BUTTON_Y_OFFSET_WVGA;
-		}
+
+		float value = EmulatorSettings::Current->ControllerScale / 100.0f;
+		float value2 = EmulatorSettings::Current->ButtonScale / 100.0f;
 
 		// Visible Rectangles
-		this->padCrossRectangle.left = 19;
-		this->padCrossRectangle.right = 238;
-		this->padCrossRectangle.top = 242;
-		this->padCrossRectangle.bottom = 461;
+		this->padCrossRectangle.left = padCenterX - 105 * value * this->hscale ;
+		this->padCrossRectangle.right =  padCenterX + 105 * value * this->hscale ;
+		this->padCrossRectangle.top = padCenterY -  105 * value * this->hscale;
+		this->padCrossRectangle.bottom = padCenterY +  105 * value * this->hscale;
 
-		this->buttonsRectangle.left = 538;
-		this->buttonsRectangle.right = 794;
-		this->buttonsRectangle.top = 217;
-		this->buttonsRectangle.bottom = 474;
+		this->aRectangle.left = aLeft; 
+		this->aRectangle.right =  this->aRectangle.left + 120 * value2 * this->hscale;
+		this->aRectangle.top = aTop;
+		this->aRectangle.bottom = this->aRectangle.top + 120 * value2 * this->hscale;
 
-		this->startSelectRectangle.left = 269;
-		this->startSelectRectangle.right = 531;
-		this->startSelectRectangle.top = 419;
-		this->startSelectRectangle.bottom = 468;
+		this->bRectangle.left = bLeft; 
+		this->bRectangle.right = this->bRectangle.left + 120 * value2 * this->hscale;
+		this->bRectangle.top = bTop; 
+		this->bRectangle.bottom = this->bRectangle.top + 120 * value2 * this->hscale;
 
-		this->lRectangle.left = 0;
-		this->lRectangle.right = 106;
-		this->lRectangle.top = 47;
-		this->lRectangle.bottom = 106;
 
-		this->rRectangle.left = 694;
-		this->rRectangle.right = 800;
-		this->rRectangle.top = 47;
-		this->rRectangle.bottom = 106;
+		this->startRectangle.left = startLeft;
+		this->startRectangle.right = this->startRectangle.left + 100 * value2 * this->hscale; 
+		this->startRectangle.top = startTop; 
+		this->startRectangle.bottom = this->startRectangle.top + 50 * value2 * this->hscale;
 
-		// Scale controller
-		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
-		this->padCrossRectangle.right -= (LONG)(219.0f * value);
-		this->padCrossRectangle.top += (LONG)(219.0f * value);
+		this->selectRectangle.right = selectRight;
+		this->selectRectangle.left = this->selectRectangle.right - 100 * value2 * this->hscale; 
+		this->selectRectangle.top = selectTop; 
+		this->selectRectangle.bottom = this->selectRectangle.top + 50 * value2 * this->hscale;
 
-		float value2 = 1.0f - EmulatorSettings::Current->ButtonScale / 100.0f;
-		this->buttonsRectangle.left += (LONG)(256.0f * value2);
-		this->buttonsRectangle.top += (LONG)(256.0f * value2);
-		this->startSelectRectangle.left += (LONG)(78.0f * value2);
-		this->startSelectRectangle.right -= (LONG)(78.0f * value2);
-		this->startSelectRectangle.top += (LONG)(29.0f * value2);
-		this->lRectangle.right -= (LONG)(61.0f * value2);
-		this->lRectangle.bottom -= (LONG)(34.0f * value2);
-		this->rRectangle.left += (LONG)(61.0f * value2);
-		this->rRectangle.bottom -= (LONG)(34.0f * value2);
 
-		this->padCrossRectangle.top -= yOffset;
-		this->padCrossRectangle.bottom -= yOffset;
 
-		this->buttonsRectangle.top -= buttonYOffset;
-		this->buttonsRectangle.bottom -= buttonYOffset;
+		this->lRectangle.left = lLeft;
+		this->lRectangle.right = this->lRectangle.left +  90 * value2 * this->hscale;
+		this->lRectangle.top =  lTop; 
+		this->lRectangle.bottom = this->lRectangle.top +  53 * value2 * this->hscale;
 
-		this->lRectangle.top += yOffset + 38;
-		this->lRectangle.bottom += yOffset + 38;
 		
-		this->rRectangle.top += yOffset + 38;
-		this->rRectangle.bottom += yOffset + 38;
+		this->rRectangle.right = rRight;
+		this->rRectangle.left = this->rRectangle.right - 90 * value2 * this->hscale; 
+		this->rRectangle.top =  rTop; 
+		this->rRectangle.bottom = this->rRectangle.top +  53 * value2 * this->hscale; 
 
-		this->visibleStickPos.x = (LONG) (this->padCrossRectangle.left + (this->padCrossRectangle.right - this->padCrossRectangle.left) / 2.0f);
-		this->visibleStickPos.y = (LONG) (this->padCrossRectangle.top + (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 2.0f);
+		
+
+
+		this->visibleStickPos.x = (LONG) ((this->padCrossRectangle.right + this->padCrossRectangle.left) / 2.0f);
+		this->visibleStickPos.y = (LONG) ((this->padCrossRectangle.top + this->padCrossRectangle.bottom) / 2.0f);
 
 		this->visibleStickOffset.x = 0;
 		this->visibleStickOffset.y = 0;
 
-		// Touch Rectangles
-		this->CreateTouchLandscapeRectangles();
-	}
-
-	void VirtualController::Create720PRectangles(void)
-	{
-		int yOffset = 0;
-		int buttonYOffset = 0;
-		if(virtualControllerOnTop)
-		{
-			yOffset = VCONTROLLER_Y_OFFSET_720P;
-			buttonYOffset = VCONTROLLER_BUTTON_Y_OFFSET_720P;
-		}
-
-		// Visible Rectangles
-		this->padCrossRectangle.left = 30;
-		this->padCrossRectangle.right = 380;
-		this->padCrossRectangle.top = 340;
-		this->padCrossRectangle.bottom = 690;
-
-		this->buttonsRectangle.left = 860;
-		this->buttonsRectangle.right = 1270;
-		this->buttonsRectangle.top = 300;
-		this->buttonsRectangle.bottom = 710;
-
-		this->startSelectRectangle.left = 430;
-		this->startSelectRectangle.right = 850;
-		this->startSelectRectangle.top = 622;
-		this->startSelectRectangle.bottom = 700;
-
-		this->lRectangle.left = 0;
-		this->lRectangle.right = 170;
-		this->lRectangle.top = 27;
-		this->lRectangle.bottom = 122;
-
-		this->rRectangle.left = 1110;
-		this->rRectangle.right = 1280;
-		this->rRectangle.top = 27;
-		this->rRectangle.bottom = 122;
-
-		// Scale controller
-		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
-		this->padCrossRectangle.right -= (LONG)(350.0f * value);
-		this->padCrossRectangle.top += (LONG)(350.0f * value);
-
-		float value2 = 1.0f - EmulatorSettings::Current->ButtonScale / 100.0f;
-		this->buttonsRectangle.left += (LONG)(410.0f * value2);
-		this->buttonsRectangle.top += (LONG)(410.0f * value2);
-		this->startSelectRectangle.left += (LONG)(125.0f * value2);
-		this->startSelectRectangle.right -= (LONG)(125.0f * value2);
-		this->startSelectRectangle.top += (LONG)(46.0f * value2);
-		this->lRectangle.right -= (LONG)(100.0f * value2);
-		this->lRectangle.bottom -= (LONG)(56.0f * value2);
-		this->rRectangle.left += (LONG)(100.0f * value2);
-		this->rRectangle.bottom -= (LONG)(56.0f * value2);
-
-		this->padCrossRectangle.top -= yOffset;
-		this->padCrossRectangle.bottom -= yOffset;
-
-		this->buttonsRectangle.top -= buttonYOffset;
-		this->buttonsRectangle.bottom -= buttonYOffset;
-
-		this->lRectangle.top += yOffset + 120;
-		this->lRectangle.bottom += yOffset + 120;
 		
-		this->rRectangle.top += yOffset + 120;
-		this->rRectangle.bottom += yOffset + 120;
-
-		this->visibleStickPos.x = (LONG) (this->padCrossRectangle.left + (this->padCrossRectangle.right - this->padCrossRectangle.left) / 2.0f);
-		this->visibleStickPos.y = (LONG) (this->padCrossRectangle.top + (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 2.0f);
-
-		this->visibleStickOffset.x = 0;
-		this->visibleStickOffset.y = 0;
-
-		// Touch Rectangles
-		this->CreateTouchLandscapeRectangles();
 	}
+
 
 	void VirtualController::CreateTouchLandscapeRectangles(void)
 	{
@@ -353,33 +221,43 @@ namespace Emulator
 		this->downRect.Y = (this->height - this->padCrossRectangle.bottom) / touchVisualQuotientH;
 		this->downRect.Width = (this->padCrossRectangle.right - this->padCrossRectangle.left) / touchVisualQuotientW;
 				
-		this->aRect.Width = ((this->buttonsRectangle.right - this->buttonsRectangle.left) / 2.0f) / touchVisualQuotientW;
-		this->aRect.X = (this->buttonsRectangle.left / touchVisualQuotientW) + this->aRect.Width;
-		this->aRect.Y = (this->height - this->buttonsRectangle.bottom) / touchVisualQuotientH;
-		this->aRect.Height = ((this->buttonsRectangle.bottom - this->buttonsRectangle.top) / 2.0f) / touchVisualQuotientH;
+		
+		this->aRect.X = this->aRectangle.left / touchVisualQuotientW;
+		this->aRect.Y = (this->height - this->aRectangle.bottom) / touchVisualQuotientH;
+		this->aRect.Width = (this->aRectangle.right - this->aRectangle.left) / touchVisualQuotientW;
+		this->aRect.Height = (this->aRectangle.bottom - this->aRectangle.top)  / touchVisualQuotientH;
 			
-		this->bRect.Height = ((this->buttonsRectangle.bottom - this->buttonsRectangle.top) / 2.0f) / touchVisualQuotientH;
-		this->bRect.X = (this->buttonsRectangle.left) / touchVisualQuotientW;
-		this->bRect.Y = (this->height - this->buttonsRectangle.bottom) / touchVisualQuotientH;
-		this->bRect.Width = ((this->buttonsRectangle.right - this->buttonsRectangle.left) / 2.0f) / touchVisualQuotientW;
-		
-		this->selectRect.X = startSelectRectangle.left / touchVisualQuotientW;
-		this->selectRect.Y = (this->height - startSelectRectangle.bottom) / touchVisualQuotientH;
-		this->selectRect.Width = ((this->startSelectRectangle.right - this->startSelectRectangle.left) / 2.0f) / touchVisualQuotientW;
-		this->selectRect.Height = (this->startSelectRectangle.bottom - this->startSelectRectangle.top) / touchVisualQuotientH;
-		
-		this->startRect.Width = ((this->startSelectRectangle.right - this->startSelectRectangle.left) / 2.0f) / touchVisualQuotientW;
-		this->startRect.X = startSelectRectangle.left / touchVisualQuotientW + this->startRect.Width;
-		this->startRect.Y = (this->height - startSelectRectangle.bottom) / touchVisualQuotientH;
-		this->startRect.Height = (this->startSelectRectangle.bottom - this->startSelectRectangle.top) / touchVisualQuotientH;
+		this->bRect.X = this->bRectangle.left / touchVisualQuotientW;
+		this->bRect.Y = (this->height - this->bRectangle.bottom) / touchVisualQuotientH;
+		this->bRect.Width = (this->bRectangle.right - this->bRectangle.left) / touchVisualQuotientW;
+		this->bRect.Height = (this->bRectangle.bottom - this->bRectangle.top)  / touchVisualQuotientH;
+
+		this->selectRect.X = this->selectRectangle.left / touchVisualQuotientW;
+		this->selectRect.Y = (this->height - this->selectRectangle.bottom) / touchVisualQuotientH;
+		this->selectRect.Width = (this->selectRectangle.right - this->selectRectangle.left) / touchVisualQuotientW;
+		this->selectRect.Height = (this->selectRectangle.bottom - this->selectRectangle.top)  / touchVisualQuotientH;
+
+
+		this->startRect.X = this->startRectangle.left / touchVisualQuotientW;
+		this->startRect.Y = (this->height - this->startRectangle.bottom) / touchVisualQuotientH;
+		this->startRect.Width = (this->startRectangle.right - this->startRectangle.left) / touchVisualQuotientW;
+		this->startRect.Height = (this->startRectangle.bottom - this->startRectangle.top)  / touchVisualQuotientH;
+
+
+
 
 		int dpad = settings->DPadStyle;
 		if (dpad <=1)
 		{
-			this->stickBoundaries.Y = 0;
-			this->stickBoundaries.X = 0;
-			this->stickBoundaries.Height = this->selectRect.X;
-			this->stickBoundaries.Width = this->lRect.Y;
+			//this->stickBoundaries.Y = 0;
+			//this->stickBoundaries.X = 0;
+			//this->stickBoundaries.Height = this->selectRect.X;
+			//this->stickBoundaries.Width = this->lRect.Y;
+
+			this->stickBoundaries.Y = this->leftRect.X;
+			this->stickBoundaries.X = this->leftRect.Y;
+			this->stickBoundaries.Width = this->leftRect.Width * 3;
+			this->stickBoundaries.Height = this->leftRect.Height;
 		}
 		else
 		{
@@ -397,255 +275,24 @@ namespace Emulator
 				this->stickBoundaries.Height = this->leftRect.Height;
 			}else
 			{
-				if(!settings->VirtualControllerOnTop)
-				{
-					this->stickBoundaries.Y = 0;
-					this->stickBoundaries.X = 0;
-					this->stickBoundaries.Height = this->selectRect.X;
-					this->stickBoundaries.Width = this->lRect.Y;
-				}
-				else
-				{					
-					this->stickBoundaries.Y = 0;
-					this->stickBoundaries.X = this->lRect.Y + this->lRect.Height;
-					this->stickBoundaries.Height = this->selectRect.X;
-					this->stickBoundaries.Width = this->touchHeight;
-				}
+				this->stickBoundaries.Y = this->leftRect.X;
+				this->stickBoundaries.X = this->leftRect.Y;
+				this->stickBoundaries.Width = this->leftRect.Width * 3;
+				this->stickBoundaries.Height = this->leftRect.Height;
+
+				//this->stickBoundaries.Y = 0;
+				//this->stickBoundaries.X = 0;
+				//this->stickBoundaries.Height = this->selectRect.X;
+				//this->stickBoundaries.Width = this->lRect.Y;
+
 			}
 		}
 	}
 
-	void VirtualController::CreateWXGAPortraitRectangles(void)
-	{
-		// Visible Rectangles
-		this->padCrossRectangle.left = 10;
-		this->padCrossRectangle.right = 310;
-		this->padCrossRectangle.top = 700;
-		this->padCrossRectangle.bottom = 1000;
 
-		this->buttonsRectangle.left = 400;
-		this->buttonsRectangle.right = 790;
-		this->buttonsRectangle.top = 670;
-		this->buttonsRectangle.bottom = 1060;
 
-		this->startSelectRectangle.left = 174;
-		this->startSelectRectangle.right = 594;
-		this->startSelectRectangle.top = 1182;
-		this->startSelectRectangle.bottom = 1260;
 
-		this->lRectangle.left = 0;
-		this->lRectangle.right = 150;
-		this->lRectangle.top = 1165;
-		this->lRectangle.bottom = 1260;
 
-		this->rRectangle.left = 618;
-		this->rRectangle.right = 768;
-		this->rRectangle.top = 1165;
-		this->rRectangle.bottom = 1260;
-
-		//if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
-		//{
-			this->padCrossRectangle.top += 80;
-			this->padCrossRectangle.bottom += 80;
-			
-			this->buttonsRectangle.top += 80;
-			this->buttonsRectangle.bottom += 80;
-		//}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
-		//{
-		//	this->padCrossRectangle.top -= 80;
-		//	this->padCrossRectangle.bottom -= 80;
-		//	
-		//	this->buttonsRectangle.top -= 80;
-		//	this->buttonsRectangle.bottom -= 80;
-		//}
-
-		// Scale controller
-		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
-		this->padCrossRectangle.right -= (LONG)(120.0f * value);
-		this->padCrossRectangle.left += (LONG)(120.0f * value);
-		this->padCrossRectangle.top += (LONG)(120.0f * value);
-		this->padCrossRectangle.bottom -= (LONG)(120.0f * value);
-
-		float value2 = 1.0f - EmulatorSettings::Current->ButtonScale / 100.0f;
-
-		this->buttonsRectangle.left += (LONG)(156.0f * value2);
-		this->buttonsRectangle.right -= (LONG)(156.0f * value2);
-		this->buttonsRectangle.top += (LONG)(156.0f * value2);
-		this->buttonsRectangle.bottom -= (LONG)(156.0f * value2);
-
-		this->startSelectRectangle.left += (LONG)(100.0f * value2);
-		this->startSelectRectangle.right -= (LONG)(100.0f * value2);
-		this->startSelectRectangle.top += (LONG)(36.8f * value2);
-
-		this->lRectangle.right -= (LONG)(70.0f * value2);
-		this->lRectangle.bottom -= (LONG)(39.0f * value2);
-
-		this->rRectangle.left += (LONG)(70.0f * value2);
-		this->rRectangle.bottom -= (LONG)(39.0f * value2);
-
-		this->visibleStickPos.x = (LONG) (this->padCrossRectangle.left + ((this->padCrossRectangle.right - this->padCrossRectangle.left) * 1.2f) / 2.0f);
-		this->visibleStickPos.y = (LONG) (this->padCrossRectangle.top + (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 2.0f);
-
-		this->visibleStickOffset.x = 0;
-		this->visibleStickOffset.y = 0;
-
-		// Touch Rectangles
-		this->CreateTouchPortraitRectangles();	
-	}
-
-	void VirtualController::CreateWVGAPortraitRectangles(void)
-	{	
-		// Visible Rectangles
-		this->padCrossRectangle.left = 6;
-		this->padCrossRectangle.right = 194;
-		this->padCrossRectangle.top = 438;
-		this->padCrossRectangle.bottom = 625;
-
-		this->buttonsRectangle.left = 250;
-		this->buttonsRectangle.right = 494;
-		this->buttonsRectangle.top = 419;
-		this->buttonsRectangle.bottom = 663;
-
-		this->startSelectRectangle.left = 109;
-		this->startSelectRectangle.right = 371;
-		this->startSelectRectangle.top = 739;
-		this->startSelectRectangle.bottom = 788;
-
-		this->lRectangle.left = 0;
-		this->lRectangle.right = 94;
-		this->lRectangle.top = 728;
-		this->lRectangle.bottom = 788;
-
-		this->rRectangle.left = 386;
-		this->rRectangle.right = 480;
-		this->rRectangle.top = 728;
-		this->rRectangle.bottom = 788;	
-
-		//if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
-		//{
-			this->padCrossRectangle.top += 50;
-			this->padCrossRectangle.bottom += 50;
-			
-			this->buttonsRectangle.top += 50;
-			this->buttonsRectangle.bottom += 50;
-		//}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
-		//{
-		//	this->padCrossRectangle.top -= 50;
-		//	this->padCrossRectangle.bottom -= 50;
-		//	
-		//	this->buttonsRectangle.top -= 50;
-		//	this->buttonsRectangle.bottom -= 50;
-		//}
-		//
-		// Scale controller
-		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
-		this->padCrossRectangle.right -= (LONG)(75.0f * value);
-		this->padCrossRectangle.left += (LONG)(75.0f * value);
-		this->padCrossRectangle.top += (LONG)(75.0f * value);
-		this->padCrossRectangle.bottom -= (LONG)(75.0f * value);
-
-		float value2 = 1.0f - EmulatorSettings::Current->ButtonScale / 100.0f;
-		this->buttonsRectangle.left += (LONG)(97.0f * value2);
-		this->buttonsRectangle.right -= (LONG)(97.0f * value2);
-		this->buttonsRectangle.top += (LONG)(97.0f * value2);
-		this->buttonsRectangle.bottom -= (LONG)(97.0f * value2);
-
-		this->startSelectRectangle.left += (LONG)(70.0f * value2);
-		this->startSelectRectangle.right -= (LONG)(70.0f * value2);
-		this->startSelectRectangle.top += (LONG)(25.0f * value2);
-
-		this->lRectangle.right -= (LONG)(55.0f * value2);
-		this->lRectangle.bottom -= (LONG)(30.0f * value2);
-
-		this->rRectangle.left += (LONG)(55.0f * value2);
-		this->rRectangle.bottom -= (LONG)(30.0f * value2);
-
-		this->visibleStickPos.x = (LONG) (this->padCrossRectangle.left + ((this->padCrossRectangle.right - this->padCrossRectangle.left) * 1.2f) / 2.0f);
-		this->visibleStickPos.y = (LONG) (this->padCrossRectangle.top + (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 2.0f);
-
-		this->visibleStickOffset.x = 0;
-		this->visibleStickOffset.y = 0;
-
-		// Touch Rectangles
-		this->CreateTouchPortraitRectangles();		
-	}
-
-	void VirtualController::Create720PPortraitRectangles(void)
-	{
-		// Visible Rectangles
-		this->padCrossRectangle.left = 20;
-		this->padCrossRectangle.right = 310;
-		this->padCrossRectangle.top = 700;
-		this->padCrossRectangle.bottom = 990;
-
-		this->buttonsRectangle.left = 380;
-		this->buttonsRectangle.right = 720;
-		this->buttonsRectangle.top = 670;
-		this->buttonsRectangle.bottom = 1010;
-
-		this->startSelectRectangle.left = 194;
-		this->startSelectRectangle.right = 526;
-		this->startSelectRectangle.top = 1198;
-		this->startSelectRectangle.bottom = 1260;
-
-		this->lRectangle.left = 0;
-		this->lRectangle.right = 120;
-		this->lRectangle.top = 1184;
-		this->lRectangle.bottom = 1260;
-
-		this->rRectangle.left = 600;
-		this->rRectangle.right = 720;
-		this->rRectangle.top = 1184;
-		this->rRectangle.bottom = 1260;
-
-		//if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::One || !gbaROMLoaded)
-		//{
-			this->padCrossRectangle.top += 40;
-			this->padCrossRectangle.bottom += 40;
-			
-			this->buttonsRectangle.top += 40;
-			this->buttonsRectangle.bottom += 40;
-		//}else if(EmulatorSettings::Current->AspectRatio == AspectRatioMode::Original)
-		//{
-		//	this->padCrossRectangle.top -= 80;
-		//	this->padCrossRectangle.bottom -= 80;
-		//	
-		//	this->buttonsRectangle.top -= 80;
-		//	this->buttonsRectangle.bottom -= 80;
-		//}
-
-		// Scale controller
-		float value = 1.0f - EmulatorSettings::Current->ControllerScale / 100.0f;
-		this->padCrossRectangle.right -= (LONG)(100.0f * value);
-		this->padCrossRectangle.left += (LONG)(100.0f * value);
-		this->padCrossRectangle.top += (LONG)(100.0f * value);
-		this->padCrossRectangle.bottom -= (LONG)(100.0f * value);
-
-		float value2 = 1.0f - EmulatorSettings::Current->ButtonScale / 100.0f;
-		this->buttonsRectangle.left += (LONG)(125.0f * value2);
-		this->buttonsRectangle.right -= (LONG)(125.0f * value2);
-		this->buttonsRectangle.top += (LONG)(125.0f * value2);
-		this->buttonsRectangle.bottom -= (LONG)(125.0f * value2);
-
-		this->startSelectRectangle.left += (LONG)(100.0f * value2);
-		this->startSelectRectangle.right -= (LONG)(100.0f * value2);
-		this->startSelectRectangle.top += (LONG)(36.8f * value2);
-
-		this->lRectangle.right -= (LONG)(60.0f * value2);
-		this->lRectangle.bottom -= (LONG)(32.0f * value2);
-
-		this->rRectangle.left += (LONG)(60.0f * value2);
-		this->rRectangle.bottom -= (LONG)(32.0f * value2);
-
-		this->visibleStickPos.x = (LONG) (this->padCrossRectangle.left + ((this->padCrossRectangle.right - this->padCrossRectangle.left) * 1.2f) / 2.0f);
-		this->visibleStickPos.y = (LONG) (this->padCrossRectangle.top + (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 2.0f);
-
-		this->visibleStickOffset.x = 0;
-		this->visibleStickOffset.y = 0;
-
-		// Touch Rectangles
-		this->CreateTouchPortraitRectangles();	
-	}
 	
 	void VirtualController::CreateTouchPortraitRectangles(void)
 	{
@@ -684,30 +331,25 @@ namespace Emulator
 
 		// Buttons
 	
-		this->aRect.Height = (((this->buttonsRectangle.right - this->buttonsRectangle.left) / 2.0f) / (float)this->height) * this->touchHeight;
-		this->aRect.X = (this->buttonsRectangle.top / (float)this->width) * this->touchWidth;
-		this->aRect.Y = ((this->buttonsRectangle.left / (float) this->height) * this->touchHeight) + this->aRect.Height;
-		this->aRect.Width = (((this->buttonsRectangle.bottom - this->buttonsRectangle.top) / 2.0f) / (float)this->width) * this->touchWidth;
+		this->aRect.X = (this->aRectangle.top / (float)this->width) * this->touchWidth;
+		this->aRect.Y = (this->aRectangle.left / (float) this->height) * this->touchHeight;
+		this->aRect.Width = ((this->aRectangle.bottom - this->aRectangle.top) / (float)this->width) * this->touchWidth;
+		this->aRect.Height = ((this->aRectangle.right - this->aRectangle.left) / (float)this->height) * this->touchHeight;
 
-		this->bRect.Height = (((this->buttonsRectangle.right - this->buttonsRectangle.left) / 2.0f) / (float)this->height) * this->touchHeight;
-		this->bRect.X = ((this->buttonsRectangle.top / (float)this->width) * this->touchWidth) + this->bRect.Height;
-		this->bRect.Y = ((this->buttonsRectangle.left / (float) this->height) * this->touchHeight);
-		this->bRect.Width = (((this->buttonsRectangle.bottom - this->buttonsRectangle.top) / 2.0f) / (float)this->width) * this->touchWidth;
+		this->bRect.X = (this->bRectangle.top / (float)this->width) * this->touchWidth;
+		this->bRect.Y = (this->bRectangle.left / (float) this->height) * this->touchHeight;
+		this->bRect.Width = ((this->bRectangle.bottom - this->bRectangle.top) / (float)this->width) * this->touchWidth;
+		this->bRect.Height = ((this->bRectangle.right - this->bRectangle.left) / (float)this->height) * this->touchHeight;
 	
-		/*this->bRect.Width = (((this->buttonsRectangle.bottom - this->buttonsRectangle.top) / 2.0f) / (float)this->width) * this->touchWidth;
-		this->bRect.X = ((this->buttonsRectangle.top / (float)this->width) * this->touchWidth) + 2.0f * this->bRect.Width;
-		this->bRect.Y = (this->buttonsRectangle.left / (float) this->height) * this->touchHeight;
-		this->bRect.Height = ((this->buttonsRectangle.right - this->buttonsRectangle.left) / (float)this->height) * this->touchHeight;*/
-		
-		this->selectRect.X = (this->startSelectRectangle.top / (float)this->width) * this->touchWidth;
-		this->selectRect.Y = (this->startSelectRectangle.left / (float) this->height) * this->touchHeight;
-		this->selectRect.Width = ((this->startSelectRectangle.bottom - this->startSelectRectangle.top) / (float)this->width) * this->touchWidth;
-		this->selectRect.Height = (((this->startSelectRectangle.right - this->startSelectRectangle.left) / 2.0f) / (float)this->height) * this->touchHeight;
-		
-		this->startRect.Height = (((this->startSelectRectangle.right - this->startSelectRectangle.left) / 2.0f) / (float)this->height) * this->touchHeight;
-		this->startRect.X = (this->startSelectRectangle.top / (float)this->width) * this->touchWidth;
-		this->startRect.Y = (this->startSelectRectangle.left / (float) this->height) * this->touchHeight + this->startRect.Height;
-		this->startRect.Width = ((this->startSelectRectangle.bottom - this->startSelectRectangle.top) / (float)this->width) * this->touchWidth;
+		this->selectRect.X = (this->selectRectangle.top / (float)this->width) * this->touchWidth;
+		this->selectRect.Y = (this->selectRectangle.left / (float) this->height) * this->touchHeight;
+		this->selectRect.Width = ((this->selectRectangle.bottom - this->selectRectangle.top) / (float)this->width) * this->touchWidth;
+		this->selectRect.Height = ((this->selectRectangle.right - this->selectRectangle.left) / (float)this->height) * this->touchHeight;
+
+		this->startRect.X = (this->startRectangle.top / (float)this->width) * this->touchWidth;
+		this->startRect.Y = (this->startRectangle.left / (float) this->height) * this->touchHeight;
+		this->startRect.Width = ((this->startRectangle.bottom - this->startRectangle.top) / (float)this->width) * this->touchWidth;
+		this->startRect.Height = ((this->startRectangle.right - this->startRectangle.left) / (float)this->height) * this->touchHeight;
 
 		int dpad = EmulatorSettings::Current->DPadStyle;
 		if (dpad <=1)
@@ -719,7 +361,7 @@ namespace Emulator
 		}
 		else
 		{
-			this->stickPos.X = this->leftRect.Y + this->leftRect.Height * 1.8f;
+			this->stickPos.X = this->leftRect.Y + this->leftRect.Height * 1.5f;
 			this->stickPos.Y = this->leftRect.X + this->leftRect.Width / 2.0f;
 
 			this->stickOffset.X = 0.0f;
@@ -732,10 +374,14 @@ namespace Emulator
 				this->stickBoundaries.Height = this->leftRect.Height * 3;
 			}else
 			{
+				//this->stickBoundaries.Y = this->leftRect.X;
+				//this->stickBoundaries.X = 0;
+				//this->stickBoundaries.Height = abs(this->stickBoundaries.Y - this->lRect.X);
+				//this->stickBoundaries.Width = this->bRect.Y;
 				this->stickBoundaries.Y = this->leftRect.X;
-				this->stickBoundaries.X = 0;
-				this->stickBoundaries.Height = abs(this->stickBoundaries.Y - this->lRect.X);
-				this->stickBoundaries.Width = this->bRect.Y;
+				this->stickBoundaries.X = this->leftRect.Y;
+				this->stickBoundaries.Width = this->leftRect.Width;
+				this->stickBoundaries.Height = this->leftRect.Height * 3;
 			}
 		}
 	}
@@ -775,9 +421,7 @@ namespace Emulator
 				if(dpad == 3)
 				{
 					stickPos = p;
-				}
-				if(dpad == 3)
-				{
+
 					if(this->orientation != ORIENTATION_PORTRAIT)
 					{
 						this->visibleStickPos.x = this->stickPos.Y * scale;
@@ -1088,15 +732,27 @@ namespace Emulator
 		*rect = this->padCrossRectangle;
 	}
 
-	void VirtualController::GetButtonsRectangle(RECT *rect)
+	void VirtualController::GetARectangle(RECT *rect)
 	{
-		*rect = this->buttonsRectangle;
+		*rect = this->aRectangle;
 	}
 
-	void VirtualController::GetStartSelectRectangle(RECT *rect)
+	void VirtualController::GetBRectangle(RECT *rect)
 	{
-		*rect = this->startSelectRectangle;
+		*rect = this->bRectangle;
 	}
+
+
+	void VirtualController::GetStartRectangle(RECT *rect)
+	{
+		*rect = this->startRectangle;
+	}
+
+	void VirtualController::GetSelectRectangle(RECT *rect)
+	{
+		*rect = this->selectRectangle;
+	}
+
 
 	void VirtualController::GetLRectangle(RECT *rect)
 	{
@@ -1110,8 +766,8 @@ namespace Emulator
 	
 	void VirtualController::GetStickRectangle(RECT *rect)
 	{
-		int quarterWidth = (this->padCrossRectangle.right - this->padCrossRectangle.left) / 4;
-		int quarterHeight = (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 4;
+		int quarterWidth = (this->padCrossRectangle.right - this->padCrossRectangle.left) / 5;
+		int quarterHeight = (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 5;
 
 		if(this->orientation != ORIENTATION_PORTRAIT)
 		{
@@ -1131,8 +787,8 @@ namespace Emulator
 	
 	void VirtualController::GetStickCenterRectangle(RECT *rect)
 	{
-		int quarterWidth = (this->padCrossRectangle.right - this->padCrossRectangle.left) / 16;
-		int quarterHeight = (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 16;
+		int quarterWidth = (this->padCrossRectangle.right - this->padCrossRectangle.left) / 20;
+		int quarterHeight = (this->padCrossRectangle.bottom - this->padCrossRectangle.top) / 20;
 
 		if(this->orientation != ORIENTATION_PORTRAIT)
 		{

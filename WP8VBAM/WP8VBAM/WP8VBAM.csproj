@@ -473,9 +473,6 @@
     <Content Include="Assets\pad_r_button.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\pad_start_select.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Tiles\icon176x176.png" />
     <Content Include="Assets\Tiles\icon33x33.png" />
     <Content Include="Assets\Tiles\icon69x69.png" />
@@ -491,12 +488,6 @@
     <Content Include="tileIcon.png" />
     <Content Include="Assets\vba-over.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\pad_buttons_landscape.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\pad_buttons_portrait.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Bunny Advance %28Demo%29.gba" />
     <Content Include="Assets\ThumbStick.dds">

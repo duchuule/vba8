@@ -83,6 +83,17 @@ namespace PhoneDirect3DXamlAppComponent
 		}
 	}
 
+	void CPositionDirect3DBackground::SetControllerPosition(IVector<int>^ cpos)
+	{
+		this->vController->SetControllerPosition(cpos);
+
+	}
+
+	void CPositionDirect3DBackground::GetControllerPosition(Windows::Foundation::Collections::IVector<int>^ ret)
+	{
+		this->vController->GetControllerPosition(ret);
+	}
+
 	// Interface With Direct3DContentProvider
 	HRESULT CPositionDirect3DBackground::Connect(_In_ IDrawingSurfaceRuntimeHostNative* host, _In_ ID3D11Device1* device)
 	{
@@ -94,8 +105,6 @@ namespace PhoneDirect3DXamlAppComponent
 		m_renderer->UpdateForWindowSizeChange(WindowBounds.Width, WindowBounds.Height);
 		
 
-
-		vController->VirtualControllerOnTop(EmulatorSettings::Current->VirtualControllerOnTop);
 		
 
 		// Restart timer after renderer has finished initializing.

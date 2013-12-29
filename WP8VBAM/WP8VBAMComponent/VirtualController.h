@@ -50,20 +50,20 @@ namespace Emulator
 		bool StickFingerDown(void);
 
 		void GetCrossRectangle(RECT *rect);
-		void GetButtonsRectangle(RECT *rect);
-		void GetStartSelectRectangle(RECT *rect);
+		void GetARectangle(RECT *rect);
+		void GetBRectangle(RECT *rect);
+
+		void GetStartRectangle(RECT *rect);
+		void GetSelectRectangle(RECT *rect);
 		void GetLRectangle(RECT *rect);
 		void GetRRectangle(RECT *rect);
 
 		Platform::Collections::Map<unsigned int, Platform::String^> ^pointerDescriptions;
 
 	protected:
-		void CreateWXGARectangles(void);
-		void CreateWVGARectangles(void);
-		void Create720PRectangles(void);
-		void CreateWXGAPortraitRectangles(void);
-		void CreateWVGAPortraitRectangles(void);
-		void Create720PPortraitRectangles(void);
+		void SetControllerPositionFromSettings(void);
+		void CreateRenderRectangles(void);
+
 		void CreateTouchLandscapeRectangles(void);
 		void CreateTouchPortraitRectangles(void);
 		double CalculateDistanceDiff(Windows::Foundation::Point point1, Windows::Foundation::Point point2, Windows::Foundation::Point target);
@@ -78,6 +78,7 @@ namespace Emulator
 		int format;
 		int width, height;
 		int touchWidth, touchHeight;
+		float hscale;
 
 		bool stickFingerDown;
 		int stickFingerID;
@@ -88,8 +89,10 @@ namespace Emulator
 		Windows::Foundation::Rect stickBoundaries;
 
 		RECT padCrossRectangle;
-		RECT startSelectRectangle;
-		RECT buttonsRectangle;
+		RECT startRectangle;
+		RECT selectRectangle;
+		RECT aRectangle;
+		RECT bRectangle;
 		RECT lRectangle;
 		RECT rRectangle;
 		Windows::Foundation::Rect leftRect;
@@ -103,6 +106,20 @@ namespace Emulator
 		Windows::Foundation::Rect aRect;
 		Windows::Foundation::Rect bRect;
 		
+		int padCenterX;
+		int padCenterY;
+		int aLeft;
+		int aTop;
+		int bLeft;
+		int bTop;
+		int startLeft;
+		int startTop;
+		int selectRight;
+		int selectTop;
+		int lLeft;
+		int lTop;
+		int rRight;
+		int rTop;
 	private:
 		static VirtualController *singleton;
 	};

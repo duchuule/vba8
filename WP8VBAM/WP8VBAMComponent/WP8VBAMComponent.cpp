@@ -230,7 +230,6 @@ namespace PhoneDirect3DXamlAppComponent
 			LoadstateSlot = 0;
 		}
 
-		vController->VirtualControllerOnTop(EmulatorSettings::Current->VirtualControllerOnTop);
 		
 		this->m_renderer->ChangeOrientation(orientation);
 

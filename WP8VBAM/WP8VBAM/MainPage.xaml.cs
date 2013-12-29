@@ -401,11 +401,129 @@ namespace PhoneDirect3DXamlAppInterop
                     isoSettings[SettingsPage.UseMogaControllerKey] = false;
 #endif
                 }
+
+                //get default controller position
+                int[] cpos = CustomizeControllerPage.GetDefaultControllerPosition();
+                
+
+                //set default controller position
+                if (!isoSettings.Contains(SettingsPage.PadCenterXPKey))
+                {
+                    isoSettings[SettingsPage.PadCenterXPKey] = cpos[0];
+                }
+                if (!isoSettings.Contains(SettingsPage.PadCenterYPKey))
+                {
+                    isoSettings[SettingsPage.PadCenterYPKey] = cpos[1];
+                }
+                if (!isoSettings.Contains(SettingsPage.ALeftPKey))
+                {
+                    isoSettings[SettingsPage.ALeftPKey] = cpos[2];
+                }
+                if (!isoSettings.Contains(SettingsPage.ATopPKey))
+                {
+                    isoSettings[SettingsPage.ATopPKey] = cpos[3];
+                }
+                if (!isoSettings.Contains(SettingsPage.BLeftPKey))
+                {
+                    isoSettings[SettingsPage.BLeftPKey] = cpos[4];
+                }
+                if (!isoSettings.Contains(SettingsPage.BTopPKey))
+                {
+                    isoSettings[SettingsPage.BTopPKey] = cpos[5];
+                }
+                if (!isoSettings.Contains(SettingsPage.StartLeftPKey))
+                {
+                    isoSettings[SettingsPage.StartLeftPKey] = cpos[6];
+                }
+                if (!isoSettings.Contains(SettingsPage.StartTopPKey))
+                {
+                    isoSettings[SettingsPage.StartTopPKey] = cpos[7];
+                }
+                if (!isoSettings.Contains(SettingsPage.SelectRightPKey))
+                {
+                    isoSettings[SettingsPage.SelectRightPKey] = cpos[8];
+                }
+                if (!isoSettings.Contains(SettingsPage.SelectTopPKey))
+                {
+                    isoSettings[SettingsPage.SelectTopPKey] = cpos[9];
+                }
+                if (!isoSettings.Contains(SettingsPage.LLeftPKey))
+                {
+                    isoSettings[SettingsPage.LLeftPKey] = cpos[10];
+                }
+                if (!isoSettings.Contains(SettingsPage.LTopPKey))
+                {
+                    isoSettings[SettingsPage.LTopPKey] = cpos[11];
+                }
+                if (!isoSettings.Contains(SettingsPage.RRightPKey))
+                {
+                    isoSettings[SettingsPage.RRightPKey] = cpos[12];
+                }
+                if (!isoSettings.Contains(SettingsPage.RTopPKey))
+                {
+                    isoSettings[SettingsPage.RTopPKey] = cpos[13];
+                }
+                if (!isoSettings.Contains(SettingsPage.PadCenterXLKey))
+                {
+                    isoSettings[SettingsPage.PadCenterXLKey] = cpos[14];
+                }
+                if (!isoSettings.Contains(SettingsPage.PadCenterYLKey))
+                {
+                    isoSettings[SettingsPage.PadCenterYLKey] = cpos[15];
+                }
+                if (!isoSettings.Contains(SettingsPage.ALeftLKey))
+                {
+                    isoSettings[SettingsPage.ALeftLKey] = cpos[16];
+                }
+                if (!isoSettings.Contains(SettingsPage.ATopLKey))
+                {
+                    isoSettings[SettingsPage.ATopLKey] = cpos[17];
+                }
+                if (!isoSettings.Contains(SettingsPage.BLeftLKey))
+                {
+                    isoSettings[SettingsPage.BLeftLKey] = cpos[18];
+                }
+                if (!isoSettings.Contains(SettingsPage.BTopLKey))
+                {
+                    isoSettings[SettingsPage.BTopLKey] = cpos[19];
+                }
+                if (!isoSettings.Contains(SettingsPage.StartLeftLKey))
+                {
+                    isoSettings[SettingsPage.StartLeftLKey] = cpos[20];
+                }
+                if (!isoSettings.Contains(SettingsPage.StartTopLKey))
+                {
+                    isoSettings[SettingsPage.StartTopLKey] = cpos[21];
+                }
+                if (!isoSettings.Contains(SettingsPage.SelectRightLKey))
+                {
+                    isoSettings[SettingsPage.SelectRightLKey] = cpos[22];
+                }
+                if (!isoSettings.Contains(SettingsPage.SelectTopLKey))
+                {
+                    isoSettings[SettingsPage.SelectTopLKey] = cpos[23];
+                }
+                if (!isoSettings.Contains(SettingsPage.LLeftLKey))
+                {
+                    isoSettings[SettingsPage.LLeftLKey] = cpos[24];
+                }
+                if (!isoSettings.Contains(SettingsPage.LTopLKey))
+                {
+                    isoSettings[SettingsPage.LTopLKey] = cpos[25];
+                }
+                if (!isoSettings.Contains(SettingsPage.RRightLKey))
+                {
+                    isoSettings[SettingsPage.RRightLKey] = cpos[26];
+                }
+                if (!isoSettings.Contains(SettingsPage.RTopLKey))
+                {
+                    isoSettings[SettingsPage.RTopLKey] = cpos[27];
+                }
                 isoSettings.Save();
 
                 settings.LowFrequencyMode = (bool)isoSettings[SettingsPage.LowFreqModeKey];
                 settings.SoundEnabled = (bool)isoSettings[SettingsPage.EnableSoundKey];
-                settings.VirtualControllerOnTop = (bool)isoSettings[SettingsPage.VControllerPosKey];
+                //settings.VirtualControllerOnTop = (bool)isoSettings[SettingsPage.VControllerPosKey];
                 //settings.LowFrequencyModeMeasured = (bool)isoSettings[SettingsPage.LowFreqModeMeasuredKey];
                 settings.Orientation = (int)isoSettings[SettingsPage.OrientationKey];
                 settings.ControllerScale = (int)isoSettings[SettingsPage.ControllerScaleKey];
@@ -428,9 +546,43 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.ManualSnapshots = (bool)isoSettings[SettingsPage.CreateManualSnapshotKey];
                 settings.UseMogaController = (bool)isoSettings[SettingsPage.UseMogaControllerKey];
 
+                settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
+                settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
+                settings.ALeftP = (int)isoSettings[SettingsPage.ALeftPKey];
+                settings.ATopP = (int)isoSettings[SettingsPage.ATopPKey];
+                settings.BLeftP = (int)isoSettings[SettingsPage.BLeftPKey];
+                settings.BTopP = (int)isoSettings[SettingsPage.BTopPKey];
+                settings.StartLeftP = (int)isoSettings[SettingsPage.StartLeftPKey];
+                settings.StartTopP = (int)isoSettings[SettingsPage.StartTopPKey];
+                settings.SelectRightP = (int)isoSettings[SettingsPage.SelectRightPKey];
+                settings.SelectTopP = (int)isoSettings[SettingsPage.SelectTopPKey];
+                settings.LLeftP = (int)isoSettings[SettingsPage.LLeftPKey];
+                settings.LTopP = (int)isoSettings[SettingsPage.LTopPKey];
+                settings.RRightP = (int)isoSettings[SettingsPage.RRightPKey];
+                settings.RTopP = (int)isoSettings[SettingsPage.RTopPKey];
+
+
+                settings.PadCenterXL = (int)isoSettings[SettingsPage.PadCenterXLKey];
+                settings.PadCenterYL = (int)isoSettings[SettingsPage.PadCenterYLKey];
+                settings.ALeftL = (int)isoSettings[SettingsPage.ALeftLKey];
+                settings.ATopL = (int)isoSettings[SettingsPage.ATopLKey];
+                settings.BLeftL = (int)isoSettings[SettingsPage.BLeftLKey];
+                settings.BTopL = (int)isoSettings[SettingsPage.BTopLKey];
+                settings.StartLeftL = (int)isoSettings[SettingsPage.StartLeftLKey];
+                settings.StartTopL = (int)isoSettings[SettingsPage.StartTopLKey];
+                settings.SelectRightL = (int)isoSettings[SettingsPage.SelectRightLKey];
+                settings.SelectTopL = (int)isoSettings[SettingsPage.SelectTopLKey];
+                settings.LLeftL = (int)isoSettings[SettingsPage.LLeftLKey];
+                settings.LTopL = (int)isoSettings[SettingsPage.LTopLKey];
+                settings.RRightL = (int)isoSettings[SettingsPage.RRightLKey];
+                settings.RTopL = (int)isoSettings[SettingsPage.RTopLKey];
+
+
                 settings.SettingsChanged = this.SettingsChangedDelegate;
             }
         }
+
+        
 
         private void SettingsChangedDelegate()
         {
@@ -438,7 +590,7 @@ namespace PhoneDirect3DXamlAppInterop
             IsolatedStorageSettings isoSettings = IsolatedStorageSettings.ApplicationSettings;
 
             isoSettings[SettingsPage.EnableSoundKey] = settings.SoundEnabled;
-            isoSettings[SettingsPage.VControllerPosKey] = settings.VirtualControllerOnTop;
+            //isoSettings[SettingsPage.VControllerPosKey] = settings.VirtualControllerOnTop;
             isoSettings[SettingsPage.LowFreqModeKey] = settings.LowFrequencyMode;
             //isoSettings[SettingsPage.LowFreqModeMeasuredKey] = settings.LowFrequencyModeMeasured;
             isoSettings[SettingsPage.OrientationKey] = settings.Orientation;
