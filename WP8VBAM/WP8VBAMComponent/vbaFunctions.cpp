@@ -211,84 +211,88 @@ u32 systemReadJoypad(int gamepad)
 
 	}
 
-	const Emulator::ControllerState *state = controller->GetControllerState();
+	try
+	{
+		const Emulator::ControllerState *state = controller->GetControllerState();
 
 
-	if(state->APressed || a)
-		res |= 1;
-	if(state->BPressed || b)
-		res |= 2;
-	if(state->SelectPressed || select)
-		res |= 4;
-	if(state->StartPressed || start)
-		res |= 8;
-	if(state->RightPressed || right)
-		res |= 16;
-	if(state->LeftPressed || left)
-		res |= 32;
-	if(state->UpPressed || up)
-		res |= 64;
-	if(state->DownPressed || down)
-		res |= 128;
+		if(state->APressed || a)
+			res |= 1;
+		if(state->BPressed || b)
+			res |= 2;
+		if(state->SelectPressed || select)
+			res |= 4;
+		if(state->StartPressed || start)
+			res |= 8;
+		if(state->RightPressed || right)
+			res |= 16;
+		if(state->LeftPressed || left)
+			res |= 32;
+		if(state->UpPressed || up)
+			res |= 64;
+		if(state->DownPressed || down)
+			res |= 128;
 
-	// disallow left + right or up + down of being pressed at the same time
-	if((res & 48) == 48)
-		res &= ~16;
-	if((res & 192) == 192)
-		res &= ~128;
-
-
+		// disallow left + right or up + down of being pressed at the same time
+		if((res & 48) == 48)
+			res &= ~16;
+		if((res & 192) == 192)
+			res &= ~128;
 
 
 
 
-	EmulatorSettings ^settings = EmulatorSettings::Current;
+
+
+		EmulatorSettings ^settings = EmulatorSettings::Current;
 	
-	if(settings->CameraButtonAssignment == 0)
-	{
-		if(enableTurboMode && !settings->IsTrial)
-		{ 
-			// Speed
-			res |= 1024;
+		if(settings->CameraButtonAssignment == 0)
+		{
+			if(enableTurboMode && !settings->IsTrial)
+			{ 
+				// Speed
+				res |= 1024;
+			}
+			if(state->RPressed | r)
+				res |= 256;
+			if(state->LPressed | l)
+				res |= 512;
+		}else if(settings->CameraButtonAssignment == 1)
+		{
+			if(enableTurboMode)
+			{ 
+				// R Button
+				res |= 256;
+			}
+			if((state->RPressed | r) && !settings->IsTrial)
+				res |= 1024;
+			if(state->LPressed | l)
+				res |= 512;
+		}else if(settings->CameraButtonAssignment == 2)
+		{
+			if(enableTurboMode)
+			{ 
+				// L Button
+				res |= 512;
+			}
+			if(state->RPressed | r)
+				res |= 256;
+			if((state->LPressed | l) && !settings->IsTrial)
+				res |= 1024;
+		}else if(settings->CameraButtonAssignment == 3)
+		{
+			if(enableTurboMode)
+			{ 
+				// L + R Button
+				res |= 512;
+				res |= 256;
+			}
+			if((state->LPressed || state->RPressed || l || r) && !settings->IsTrial)
+				res |= 1024;
 		}
-		if(state->RPressed | r)
-			res |= 256;
-		if(state->LPressed | l)
-			res |= 512;
-	}else if(settings->CameraButtonAssignment == 1)
-	{
-		if(enableTurboMode)
-		{ 
-			// R Button
-			res |= 256;
-		}
-		if((state->RPressed | r) && !settings->IsTrial)
-			res |= 1024;
-		if(state->LPressed | l)
-			res |= 512;
-	}else if(settings->CameraButtonAssignment == 2)
-	{
-		if(enableTurboMode)
-		{ 
-			// L Button
-			res |= 512;
-		}
-		if(state->RPressed | r)
-			res |= 256;
-		if((state->LPressed | l) && !settings->IsTrial)
-			res |= 1024;
-	}else if(settings->CameraButtonAssignment == 3)
-	{
-		if(enableTurboMode)
-		{ 
-			// L + R Button
-			res |= 512;
-			res |= 256;
-		}
-		if((state->LPressed || state->RPressed || l || r) && !settings->IsTrial)
-			res |= 1024;
 	}
-
+	catch (exception ex) 
+	{}
 	return res;
 }
 

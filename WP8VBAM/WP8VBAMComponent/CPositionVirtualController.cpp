@@ -176,6 +176,7 @@ namespace Emulator
 				this->CreateTouchLandscapeRectangles();
 			else
 				this->CreateTouchPortraitRectangles();		
+
 		}
 
 		
@@ -214,9 +215,22 @@ namespace Emulator
 		if (i != this->pointerInfos->end()) //we only read in one point
 		{
 			PointerPoint ^p = i->second->point;
-			Windows::Foundation::Point point = Windows::Foundation::Point(p->Position.Y, p->Position.X);
 
-			if (this->stickBoundaries.Contains(p->Position))
+			Windows::Foundation::Point point;
+
+			if (this->orientation == ORIENTATION_PORTRAIT)
+				point = Windows::Foundation::Point(p->Position.X, p->Position.Y);
+			else
+			{
+				point = Windows::Foundation::Point(p->Position.Y, p->Position.X);
+				if(this->orientation == ORIENTATION_LANDSCAPE_RIGHT)
+				{
+					point.X = this->touchWidth - point.X;
+					point.Y = this->touchHeight - point.Y;
+				}
+			}
+
+			if (this->stickBoundaries.Contains(point))
 			{
 				i->second->description = "joystick";
 				state.JoystickPressed = true;
