@@ -77,7 +77,7 @@ namespace Emulator
 		int orientation;
 		int format;
 		int width, height;
-		int touchWidth, touchHeight;
+		int touchWidth, touchHeight; //scaled, orientation-aware
 		float hscale;
 
 		bool stickFingerDown;
