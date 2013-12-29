@@ -35,6 +35,8 @@ namespace PhoneDirect3DXamlAppComponent
 		property Windows::Foundation::Size RenderResolution;
 	
 		void ChangeOrientation(int orientation);
+		void CPositionDirect3DBackground::SetControllerPosition(IVector<int>^ cpos);
+		void CPositionDirect3DBackground::GetControllerPosition(Windows::Foundation::Collections::IVector<int>^ ret);
 
 	protected:
 		// Event Handlers

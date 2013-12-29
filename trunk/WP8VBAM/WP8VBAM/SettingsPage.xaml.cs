@@ -41,6 +41,37 @@ namespace PhoneDirect3DXamlAppInterop
         public const String CreateManualSnapshotKey = "ManualSnapshotKey";
         public const String UseMogaControllerKey = "UseMogaControllerKey";
 
+        public const String PadCenterXPKey = "PadCenterXPKey";
+        public const String PadCenterYPKey = "PadCenterYPKey";
+        public const String ALeftPKey = "ALeftPKey";
+        public const String ATopPKey = "ATopPKey";
+        public const String BLeftPKey = "BLeftPKey";
+        public const String BTopPKey = "BTopPKey";
+        public const String StartLeftPKey = "StartLeftPKey";
+        public const String StartTopPKey = "StartTopPKey";
+        public const String SelectRightPKey = "SelectRightPKey";
+        public const String SelectTopPKey = "SelectTopPKey";
+        public const String LLeftPKey = "LLeftPKey";
+        public const String LTopPKey = "LTopPKey";
+        public const String RRightPKey = "RRightPKey";
+        public const String RTopPKey = "RTopPKey";
+
+
+        public const String PadCenterXLKey = "PadCenterXLKey";
+        public const String PadCenterYLKey = "PadCenterYLKey";
+        public const String ALeftLKey = "ALeftLKey";
+        public const String ATopLKey = "ATopLKey";
+        public const String BLeftLKey = "BLeftLKey";
+        public const String BTopLKey = "BTopLKey";
+        public const String StartLeftLKey = "StartLeftLKey";
+        public const String StartTopLKey = "StartTopLKey";
+        public const String SelectRightLKey = "SelectRightLKey";
+        public const String SelectTopLKey = "SelectTopLKey";
+        public const String LLeftLKey = "LLeftLKey";
+        public const String LTopLKey = "LTopLKey";
+        public const String RRightLKey = "RRightLKey";
+        public const String RTopLKey = "RTopLKey";
+
         bool initdone = false;
 
         public SettingsPage()
@@ -71,7 +102,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             EmulatorSettings emuSettings = EmulatorSettings.Current;
 
-            this.vcontrollerPosSwitch.IsChecked = emuSettings.VirtualControllerOnTop;
+            //this.vcontrollerPosSwitch.IsChecked = emuSettings.VirtualControllerOnTop;
             this.enableSoundSwitch.IsChecked = emuSettings.SoundEnabled;
             this.lowFreqSwitch.IsChecked = emuSettings.LowFrequencyMode;
             //this.stretchToggle.IsChecked = emuSettings.FullscreenStretch;
@@ -226,21 +257,21 @@ namespace PhoneDirect3DXamlAppInterop
 
         }
 
-        private void vcontrollerPosSwitch_Checked_1(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.VirtualControllerOnTop = true;
-            }
-        }
+        //private void vcontrollerPosSwitch_Checked_1(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.initdone)
+        //    {
+        //        EmulatorSettings.Current.VirtualControllerOnTop = true;
+        //    }
+        //}
 
-        private void vcontrollerPosSwitch_Unchecked_1(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.VirtualControllerOnTop = false;
-            }
-        }
+        //private void vcontrollerPosSwitch_Unchecked_1(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.initdone)
+        //    {
+        //        EmulatorSettings.Current.VirtualControllerOnTop = false;
+        //    }
+        //}
 
         private void enableSoundSwitch_Checked_1(object sender, RoutedEventArgs e)
         {

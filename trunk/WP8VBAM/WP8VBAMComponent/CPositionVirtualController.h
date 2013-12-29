@@ -30,6 +30,9 @@ namespace Emulator
 		CPositionVirtualController(void);
 		~CPositionVirtualController(void);
 
+		void CPositionVirtualController::SetControllerPosition(Windows::Foundation::Collections::IVector<int>^ cpos);
+		void CPositionVirtualController::GetControllerPosition(Windows::Foundation::Collections::IVector<int>^ ret);
+
 
 		virtual void PointerPressed(PointerPoint ^point) override;
 		virtual void PointerMoved(PointerPoint ^point) override;

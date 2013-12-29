@@ -35,6 +35,55 @@ namespace Emulator
 	{
 		DeleteCriticalSection(&this->cs);
 	}
+
+	void CPositionVirtualController::SetControllerPosition(IVector<int>^ cpos)
+	{
+		padCenterX = cpos->GetAt(0);
+		padCenterY = cpos->GetAt(1);
+		aLeft = cpos->GetAt(2);
+		aTop = cpos->GetAt(3);
+		bLeft = cpos->GetAt(4);
+		bTop = cpos->GetAt(5);
+		startLeft = cpos->GetAt(6);
+		startTop = cpos->GetAt(7);
+		selectRight = cpos->GetAt(8);
+		selectTop = cpos->GetAt(9);
+		lLeft = cpos->GetAt(10);
+		lTop = cpos->GetAt(11);
+		rRight = cpos->GetAt(12);
+		rTop = cpos->GetAt(13);
+	
+
+		//update 
+		this->CreateRenderRectangles();
+
+		if(this->orientation != ORIENTATION_PORTRAIT)
+			this->CreateTouchLandscapeRectangles();
+		else
+			this->CreateTouchPortraitRectangles();
+	}
+
+
+	void CPositionVirtualController::GetControllerPosition(Windows::Foundation::Collections::IVector<int>^ ret)
+	{
+
+		ret->SetAt(0, padCenterX);
+		ret->SetAt(1, padCenterY);
+		ret->SetAt(2, aLeft);
+		ret->SetAt(3, aTop);
+		ret->SetAt(4, bLeft);
+		ret->SetAt(5, bTop);
+		ret->SetAt(6, startLeft);
+		ret->SetAt(7, startTop);
+		ret->SetAt(8, selectRight);
+		ret->SetAt(9, selectTop);
+		ret->SetAt(10, lLeft);
+		ret->SetAt(11, lTop);
+		ret->SetAt(12, rRight);
+		ret->SetAt(13, rTop);
+		
+
+	}
 	
 
 	void CPositionVirtualController::PointerPressed(PointerPoint ^point)
@@ -62,8 +111,74 @@ namespace Emulator
 		{
 			PointerInfo* pinfo = iter->second;
 			pinfo->IsMoved = true;
+
+
+			//move the control
+			float dx = 0; 
+			float dy = 0; 
+
+			
+			if(this->orientation != ORIENTATION_PORTRAIT)
+			{
+				dx = point->Position.Y - pinfo->point->Position.Y;
+				dy = -(point->Position.X - pinfo->point->Position.X);
+			}
+			else
+			{
+				dx = point->Position.X - pinfo->point->Position.X;
+				dy = point->Position.Y - pinfo->point->Position.Y;
+			}
+
+			if (pinfo->description == "joystick")
+			{
+				this->padCenterX += dx;
+				this->padCenterY += dy;
+			}
+			else if (pinfo->description == "l")
+			{
+				this->lLeft += dx;
+				this->lTop += dy;
+			}
+			else if (pinfo->description == "r")
+			{
+				this->rRight += dx;
+				this->rTop += dy;
+			}
+			else if (pinfo->description == "a")
+			{
+				this->aLeft += dx;
+				this->aTop += dy;
+			}
+			else if (pinfo->description == "b")
+			{
+				this->bLeft += dx;
+				this->bTop += dy;
+			}
+			else if (pinfo->description == "select")
+			{
+				this->selectRight += dx;
+				this->selectTop += dy;
+			}
+			else if (pinfo->description == "start")
+			{
+				this->startLeft += dx;
+				this->startTop += dy;
+			}
+
+			//record new touch position
 			pinfo->point = point;
+
+			//update controller position on screen
+			this->CreateRenderRectangles();
+
+			//update touh region on screen
+			if(this->orientation != ORIENTATION_PORTRAIT)
+				this->CreateTouchLandscapeRectangles();
+			else
+				this->CreateTouchPortraitRectangles();		
 		}
+
+		
 		
 
 		LeaveCriticalSection(&this->cs);

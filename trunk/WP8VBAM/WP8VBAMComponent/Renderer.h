@@ -18,11 +18,26 @@ using namespace Windows::UI::Input;
 using namespace Microsoft::WRL;
 using namespace PhoneDirect3DXamlAppComponent;
 
+#define CROSS_TEXTURE_FILE_NAME						L"Assets/pad_cross.dds"
+#define START_TEXTURE_FILE_NAME						L"Assets/pad_start.dds"
+#define SELECT_TEXTURE_FILE_NAME					L"Assets/pad_select.dds"
+#define A_TEXTURE_FILE_NAME							L"Assets/pad_a_button.dds"
+#define B_TEXTURE_FILE_NAME							L"Assets/pad_b_button.dds"
+#define L_TEXTURE_FILE_NAME							L"Assets/pad_l_button.dds"
+#define R_TEXTURE_FILE_NAME							L"Assets/pad_r_button.dds"
+#define STICK_TEXTURE_FILE_NAME						L"Assets/ThumbStick.dds"
+#define STICK_CENTER_TEXTURE_FILE_NAME				L"Assets/ThumbStickCenter.dds"
+
+#define AUTOSAVE_INTERVAL			60.0f
+
 // This class renders a simple spinning cube.
 ref class Renderer abstract: public Direct3DBase 
 {
 public:
 	virtual ~Renderer(void);
+
+protected:
+	void DrawController(void);
 
 internal:
 	Renderer();
@@ -35,9 +50,7 @@ internal:
 	virtual void UpdateForWindowSizeChange(float width, float height) override;
 	
 	// Method for updating time-dependent objects.
-	void Update(float timeTotal, float timeDelta);
-	void ChangeOrientation(int orientation);
-
+	virtual void Update(float timeTotal, float timeDelta);
 
 
 	size_t pitch;
@@ -48,11 +61,26 @@ internal:
 	int frames;
 
 
-	RECT buttonsRectangle;
+	RECT aRectangle;
+	RECT bRectangle;
 	RECT crossRectangle;
-	RECT startSelectRectangle;
+	RECT startRectangle;
+	RECT selectRectangle;
 	RECT lRectangle;
 	RECT rRectangle;
+
+	Color joystick_color;
+	Color joystick_center_color;
+	Color l_color;
+	Color r_color;
+	Color select_color;
+	Color start_color;
+	Color a_color;
+	Color b_color;
+	int pad_to_draw;
+	bool should_draw_LR;
+	RECT stickRect;
+	RECT centerRect;
 
 	int									orientation;
 	int									format;
@@ -71,12 +99,14 @@ internal:
 	ComPtr<ID3D11ShaderResourceView>	stickSRV;
 	ComPtr<ID3D11Resource>				crossResource;
 	ComPtr<ID3D11ShaderResourceView>	crossSRV;
-	ComPtr<ID3D11Resource>				buttonsLandscapeResource;
-	ComPtr<ID3D11ShaderResourceView>	buttonsLandscapeSRV;
-	ComPtr<ID3D11Resource>				buttonsPortraitResource;
-	ComPtr<ID3D11ShaderResourceView>	buttonsPortraitSRV;
-	ComPtr<ID3D11Resource>				startSelectResource;
-	ComPtr<ID3D11ShaderResourceView>	startSelectSRV;
+	ComPtr<ID3D11Resource>				aResource;
+	ComPtr<ID3D11ShaderResourceView>	aSRV;
+	ComPtr<ID3D11Resource>				bResource;
+	ComPtr<ID3D11ShaderResourceView>	bSRV;
+	ComPtr<ID3D11Resource>				startResource;
+	ComPtr<ID3D11ShaderResourceView>	startSRV;
+	ComPtr<ID3D11Resource>				selectResource;
+	ComPtr<ID3D11ShaderResourceView>	selectSRV;
 	ComPtr<ID3D11Resource>				lButtonResource;
 	ComPtr<ID3D11ShaderResourceView>	lButtonSRV;
 	ComPtr<ID3D11Resource>				rButtonResource;

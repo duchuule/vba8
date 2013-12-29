@@ -11,16 +11,7 @@ using namespace Windows::Foundation;
 using namespace Windows::UI::Core;
 using namespace Windows::Graphics::Display;
 
-#define CROSS_TEXTURE_FILE_NAME						L"Assets/pad_cross.dds"
-#define BUTTONS_LANDSCAPE_TEXTURE_FILE_NAME			L"Assets/pad_buttons_landscape.dds"
-#define BUTTONS_PORTRAIT_TEXTURE_FILE_NAME			L"Assets/pad_buttons_portrait.dds"
-#define SS_TEXTURE_FILE_NAME						L"Assets/pad_start_select.dds"
-#define L_TEXTURE_FILE_NAME							L"Assets/pad_l_button.dds"
-#define R_TEXTURE_FILE_NAME							L"Assets/pad_r_button.dds"
-#define STICK_TEXTURE_FILE_NAME						L"Assets/ThumbStick.dds"
-#define STICK_CENTER_TEXTURE_FILE_NAME				L"Assets/ThumbStickCenter.dds"
 
-#define AUTOSAVE_INTERVAL			60.0f
 
 
 Renderer::Renderer()
@@ -31,6 +22,69 @@ Renderer::~Renderer(void)
 {
 }
 
+void Renderer::DrawController(void)
+{
+
+
+	//A-B button
+	Engine::Rectangle aRect (this->aRectangle.left, this->aRectangle.top, this->aRectangle.right - this->aRectangle.left, this->aRectangle.bottom - this->aRectangle.top);
+	ComPtr<ID3D11Texture2D> tex;
+	this->aResource.As(&tex);
+	this->dxSpriteBatch->Draw(aRect, this->aSRV.Get(), tex.Get(), a_color);
+
+	Engine::Rectangle bRect (this->bRectangle.left, this->bRectangle.top, this->bRectangle.right - this->bRectangle.left, this->bRectangle.bottom - this->bRectangle.top);
+	ComPtr<ID3D11Texture2D> tex2;
+	this->bResource.As(&tex2);
+	this->dxSpriteBatch->Draw(bRect, this->bSRV.Get(), tex2.Get(), b_color);
+
+	if(pad_to_draw == 0)
+	{
+		Engine::Rectangle crossRect (this->crossRectangle.left, this->crossRectangle.top, this->crossRectangle.right - this->crossRectangle.left, this->crossRectangle.bottom - this->crossRectangle.top);
+
+		ComPtr<ID3D11Texture2D> tex;
+		this->crossResource.As(&tex);
+		this->dxSpriteBatch->Draw(crossRect, this->crossSRV.Get(), tex.Get(), joystick_color);
+	}else if(pad_to_draw == 1)
+	{
+
+		Engine::Rectangle stickRectE (stickRect.left, stickRect.top, stickRect.right - stickRect.left, stickRect.bottom - stickRect.top);
+		Engine::Rectangle stickRectCenterE (centerRect.left, centerRect.top, centerRect.right - centerRect.left, centerRect.bottom - centerRect.top);
+
+		ComPtr<ID3D11Texture2D> tex;
+		this->stickResource.As(&tex);
+		ComPtr<ID3D11Texture2D> tex2;
+		this->stickCenterResource.As(&tex2);
+		this->dxSpriteBatch->Draw(stickRectCenterE, this->stickCenterSRV.Get(), tex2.Get(), joystick_center_color);
+		this->dxSpriteBatch->Draw(stickRectE, this->stickSRV.Get(), tex.Get(), joystick_color);
+	}
+
+	//start select buttons
+	Engine::Rectangle startRectE (startRectangle.left, startRectangle.top, startRectangle.right - startRectangle.left, startRectangle.bottom - startRectangle.top);
+	ComPtr<ID3D11Texture2D> texS;
+	this->startResource.As(&texS);
+	this->dxSpriteBatch->Draw(startRectE, this->startSRV.Get(), texS.Get(), start_color);
+
+	Engine::Rectangle selectRectE (selectRectangle.left, selectRectangle.top, selectRectangle.right - selectRectangle.left, selectRectangle.bottom - selectRectangle.top);
+	ComPtr<ID3D11Texture2D> texSS;
+	this->selectResource.As(&texSS);
+	this->dxSpriteBatch->Draw(selectRectE, this->selectSRV.Get(), texSS.Get(), select_color);
+
+
+	//L-R buttons
+	if(should_draw_LR)
+	{
+		Engine::Rectangle lRectE (lRectangle.left, lRectangle.top, lRectangle.right - lRectangle.left, lRectangle.bottom - lRectangle.top);
+		Engine::Rectangle rRectE (rRectangle.left, rRectangle.top, rRectangle.right - rRectangle.left, rRectangle.bottom - rRectangle.top);
+
+		ComPtr<ID3D11Texture2D> tex;
+		this->lButtonResource.As(&tex);
+		ComPtr<ID3D11Texture2D> tex2;
+		this->rButtonResource.As(&tex2);
+		this->dxSpriteBatch->Draw(lRectE, this->lButtonSRV.Get(), tex.Get(), l_color);
+		this->dxSpriteBatch->Draw(rRectE, this->rButtonSRV.Get(), tex2.Get(), r_color);
+	}
+
+}
 void Renderer::CreateDeviceResources()
 {
 	Direct3DBase::CreateDeviceResources();
@@ -60,23 +114,32 @@ void Renderer::CreateDeviceResources()
 
 	LoadTextureFromFile(
 		this->m_d3dDevice.Get(), 
-		BUTTONS_LANDSCAPE_TEXTURE_FILE_NAME,
-		this->buttonsLandscapeResource.GetAddressOf(), 
-		this->buttonsLandscapeSRV.GetAddressOf()
+		A_TEXTURE_FILE_NAME,
+		this->aResource.GetAddressOf(), 
+		this->aSRV.GetAddressOf()
 		);
 
 	LoadTextureFromFile(
 		this->m_d3dDevice.Get(), 
-		BUTTONS_PORTRAIT_TEXTURE_FILE_NAME,
-		this->buttonsPortraitResource.GetAddressOf(), 
-		this->buttonsPortraitSRV.GetAddressOf()
+		B_TEXTURE_FILE_NAME,
+		this->bResource.GetAddressOf(), 
+		this->bSRV.GetAddressOf()
+		);
+
+
+
+	LoadTextureFromFile(
+		this->m_d3dDevice.Get(), 
+		START_TEXTURE_FILE_NAME,
+		this->startResource.GetAddressOf(), 
+		this->startSRV.GetAddressOf()
 		);
 
 	LoadTextureFromFile(
 		this->m_d3dDevice.Get(), 
-		SS_TEXTURE_FILE_NAME,
-		this->startSelectResource.GetAddressOf(), 
-		this->startSelectSRV.GetAddressOf()
+		SELECT_TEXTURE_FILE_NAME,
+		this->selectResource.GetAddressOf(), 
+		this->selectSRV.GetAddressOf()
 		);
 
 	LoadTextureFromFile(
@@ -131,7 +194,6 @@ void Renderer::CreateDeviceResources()
 
 
 	
-
 	D3D11_BLEND_DESC blendDesc;
 	ZeroMemory(&blendDesc, sizeof(D3D11_BLEND_DESC));
 
