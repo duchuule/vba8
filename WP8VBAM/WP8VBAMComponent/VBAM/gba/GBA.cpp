@@ -120,6 +120,9 @@ int capture = 0;
 int capturePrevious = 0;
 int captureNumber = 0;
 
+int armOpcodeCount = 0;
+int thumbOpcodeCount = 0;
+
 const int TIMER_TICKS[4] = {
   0,
   6,
@@ -2087,6 +2090,7 @@ void doDMA(u32 &s, u32 &d, u32 si, u32 di, u32 c, int transfer32)
   int dw = 0;
   int sc = c;
 
+  cpuDmaHack = true;
   cpuDmaCount = c;
   // This is done to get the correct waitstates.
   if (sm>15)
@@ -2155,7 +2159,7 @@ void doDMA(u32 &s, u32 &d, u32 si, u32 di, u32 c, int transfer32)
   }
 
   cpuDmaTicksToUpdate += totalTicks;
-
+  cpuDmaHack = false;
 }
 
 void CPUCheckDMA(int reason, int dmamask)
@@ -2198,7 +2202,6 @@ void CPUCheckDMA(int reason, int dmamask)
       doDMA(dma0Source, dma0Dest, sourceIncrement, destIncrement,
             DM0CNT_L ? DM0CNT_L : 0x4000,
             DM0CNT_H & 0x0400);
-      cpuDmaHack = true;
 
       if(DM0CNT_H & 0x4000) {
         IF |= 0x0100;
@@ -2267,7 +2270,6 @@ void CPUCheckDMA(int reason, int dmamask)
               DM1CNT_L ? DM1CNT_L : 0x4000,
               DM1CNT_H & 0x0400);
       }
-      cpuDmaHack = true;
 
       if(DM1CNT_H & 0x4000) {
         IF |= 0x0200;
@@ -2337,7 +2339,6 @@ void CPUCheckDMA(int reason, int dmamask)
               DM2CNT_L ? DM2CNT_L : 0x4000,
               DM2CNT_H & 0x0400);
       }
-      cpuDmaHack = true;
 
       if(DM2CNT_H & 0x4000) {
         IF |= 0x0400;
@@ -2440,7 +2441,7 @@ void CPUUpdateRegister(u32 address, u16 value)
       windowOn = (layerEnable & 0x6000) ? true : false;
       if(change && !((value & 0x80))) {
         if(!(DISPSTAT & 1)) {
-          lcdTicks = 1008;
+          //lcdTicks = 1008;
           //      VCOUNT = 0;
           //      UPDATE_REG(0x06, VCOUNT);
           DISPSTAT &= 0xFFFC;
@@ -3463,9 +3464,11 @@ void CPULoop(int ticks)
   // variable used by the CPU core
   cpuTotalTicks = 0;
 
+#ifndef NO_LINK
   // shuffle2: what's the purpose?
   if(gba_link_enabled)
     cpuNextEvent = 1;
+#endif
 
   cpuBreakLoop = false;
   cpuNextEvent = CPUUpdateTicks();
@@ -3501,9 +3504,11 @@ void CPULoop(int ticks)
 
     if(!holdState && !SWITicks) {
       if(armState) {
+		  armOpcodeCount++;
         if (!armExecute())
           return;
       } else {
+		  thumbOpcodeCount++;
         if (!thumbExecute())
           return;
       }
@@ -3526,7 +3531,6 @@ void CPULoop(int ticks)
 
       clockTicks = cpuNextEvent;
       cpuTotalTicks = 0;
-      cpuDmaHack = false;
 
     updateLoop:
 
@@ -3560,7 +3564,7 @@ void CPULoop(int ticks)
             }
           }
 
-          if(VCOUNT >= 228) { //Reaching last line
+          if(VCOUNT > 227) { //Reaching last line
             DISPSTAT &= 0xFFFC;
             UPDATE_REG(0x04, DISPSTAT);
             VCOUNT = 0;
@@ -3921,8 +3925,10 @@ void CPULoop(int ticks)
 	  if (gba_joybus_enabled)
 		  JoyBusUpdate(clockTicks);
 
+#ifndef NO_LINK
 	  if (gba_link_enabled)
 		  LinkUpdate(clockTicks);
+#endif
 
       cpuNextEvent = CPUUpdateTicks();
 
@@ -3934,13 +3940,14 @@ void CPULoop(int ticks)
         cpuDmaTicksToUpdate -= clockTicks;
         if(cpuDmaTicksToUpdate < 0)
           cpuDmaTicksToUpdate = 0;
-        cpuDmaHack = true;
         goto updateLoop;
       }
 
+#ifndef NO_LINK
 	  // shuffle2: what's the purpose?
 	  if(gba_link_enabled)
   	       cpuNextEvent = 1;
+#endif
 
       if(IF && (IME & 1) && armIrqEnable) {
         int res = IF & IE;
