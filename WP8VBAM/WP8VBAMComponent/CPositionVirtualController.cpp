@@ -116,17 +116,17 @@ namespace Emulator
 			//move the control
 			float dx = 0; 
 			float dy = 0; 
-
+			float scale = (int) Windows::Graphics::Display::DisplayProperties::ResolutionScale / 100.0f;
 			
 			if(this->orientation != ORIENTATION_PORTRAIT)
 			{
-				dx = point->Position.Y - pinfo->point->Position.Y;
-				dy = -(point->Position.X - pinfo->point->Position.X);
+				dx = (point->Position.Y - pinfo->point->Position.Y) * scale;
+				dy = -(point->Position.X - pinfo->point->Position.X) * scale;
 			}
 			else
 			{
-				dx = point->Position.X - pinfo->point->Position.X;
-				dy = point->Position.Y - pinfo->point->Position.Y;
+				dx = (point->Position.X - pinfo->point->Position.X) * scale;
+				dy = (point->Position.Y - pinfo->point->Position.Y) * scale;
 			}
 
 			if (pinfo->description == "joystick")
