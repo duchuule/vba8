@@ -404,8 +404,8 @@ namespace Emulator
 
 					if(this->orientation != ORIENTATION_PORTRAIT)
 					{
-						this->visibleStickPos.x = this->stickPos.Y * scale;
-						this->visibleStickPos.y = this->height - this->stickPos.X * scale;
+						this->visibleStickPos.x = this->stickPos.X * scale;
+						this->visibleStickPos.y = this->height - this->stickPos.Y * scale;
 					}else
 					{
 						this->visibleStickPos.x = this->stickPos.X * scale;
