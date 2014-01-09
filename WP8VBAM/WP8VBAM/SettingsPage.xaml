@@ -366,29 +366,43 @@
                 <ListBox>
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <toolkit:ListPicker Header="{Binding Path=LocalizedResources.FrameSkipSetting, Source={StaticResource LocalizedStrings}}" 
+                        <toolkit:ListPicker  ItemTemplate="{StaticResource ListPickerTemplate}"
+					                            FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
+                                             Header="{Binding Path=LocalizedResources.FrameSkipSetting, Source={StaticResource LocalizedStrings}}" 
                                             FullModeHeader="{Binding Path=LocalizedResources.FrameSkipSetting, Source={StaticResource LocalizedStrings}}" 
-                                            SelectionChanged="frameSkipPicker_SelectionChanged_1" Name="frameSkipPicker" SelectedIndex="0">
-                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.FrameSkipAutoSetting, Source={StaticResource LocalizedStrings}}" />
-                            <toolkit:ListPickerItem Content="0" />
-                            <toolkit:ListPickerItem Content="1" />
-                            <toolkit:ListPickerItem Content="2" />
-                            <toolkit:ListPickerItem Content="3" />
+                                            SelectionChanged="frameSkipPicker_SelectionChanged_1" 
+                                             Name="frameSkipPicker" 
+                                             SelectedIndex="0">
+
                         </toolkit:ListPicker>
                     </ListBoxItem>
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <toolkit:ListPicker Header="{Binding Path=LocalizedResources.PowerFrameSkipText, Source={StaticResource LocalizedStrings}}" 
+                        <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                                             FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
+                                        Header="{Binding Path=LocalizedResources.PowerFrameSkipText, Source={StaticResource LocalizedStrings}}" 
                                             FullModeHeader="{Binding Path=LocalizedResources.PowerFrameSkipText, Source={StaticResource LocalizedStrings}}" 
-                                            SelectionChanged="powerFrameSkipPicker_SelectionChanged_1" Name="powerFrameSkipPicker" SelectedIndex="0">
-                            <toolkit:ListPickerItem Content="0" />
-                            <toolkit:ListPickerItem Content="1" />
-                            <toolkit:ListPickerItem Content="2" />
+                                            SelectionChanged="powerFrameSkipPicker_SelectionChanged_1" 
+                                            Name="powerFrameSkipPicker"
+                                            SelectedIndex="0">
+
                         </toolkit:ListPicker>
                     </ListBoxItem>
                     
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <toolkit:ListPicker  ItemTemplate="{StaticResource ListPickerTemplate}"
+					                            FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
+                                             Header="{Binding Path=LocalizedResources.TurboFrameSkipText, Source={StaticResource LocalizedStrings}}"
+                                            FullModeHeader="{Binding Path=LocalizedResources.TurboFrameSkipText, Source={StaticResource LocalizedStrings}}"
+                                            SelectionChanged="turboFrameSkipPicker_SelectionChanged_1" 
+                                             Name="turboFrameSkipPicker" 
+                                             SelectedIndex="0">
+
+                        </toolkit:ListPicker>
+                    </ListBoxItem>
+                    
+                    <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Path=LocalizedResources.TurboFrameSkipText, Source={StaticResource LocalizedStrings}}" 
                                        FontSize="24"/>
@@ -414,7 +428,7 @@
                                              Content="5" Grid.Row="1" Grid.Column="1"/>
                             </Grid>
                         </StackPanel>
-                    </ListBoxItem>
+                    </ListBoxItem>-->
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Path=LocalizedResources.AspectRatioSetting, Source={StaticResource LocalizedStrings}}" 

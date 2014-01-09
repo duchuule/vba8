@@ -16,6 +16,9 @@ namespace PhoneDirect3DXamlAppInterop
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
+        private String[] frameskiplist = { AppResources.FrameSkipAutoSetting, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        private String[] frameskiplist2 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
         public const String VControllerPosKey = "VirtualControllerOnTop";
         public const String EnableSoundKey = "EnableSound";
         public const String LowFreqModeKey = "LowFrequencyModeNew";
@@ -86,6 +89,11 @@ namespace PhoneDirect3DXamlAppInterop
                 adControl.SetValue(Grid.RowProperty, 1);
             }
 
+            //set frameskip option
+            frameSkipPicker.ItemsSource = frameskiplist;
+            powerFrameSkipPicker.ItemsSource = frameskiplist2;
+            turboFrameSkipPicker.ItemsSource = frameskiplist2;
+
             ReadSettings();
 
         }
@@ -137,25 +145,27 @@ namespace PhoneDirect3DXamlAppInterop
                         break;
                 }
 
-                switch (emuSettings.TurboFrameSkip)
-                {
-                    default:
-                    case 1:
-                        this.turboSkip1Radio.IsChecked = true;
-                        break;
-                    case 2:
-                        this.turboSkip2Radio.IsChecked = true;
-                        break;
-                    case 3:
-                        this.turboSkip3Radio.IsChecked = true;
-                        break;
-                    case 4:
-                        this.turboSkip4Radio.IsChecked = true;
-                        break;
-                    case 5:
-                        this.turboSkip5Radio.IsChecked = true;
-                        break;
-                }
+                //switch (emuSettings.TurboFrameSkip)
+                //{
+                //    default:
+                //    case 1:
+                //        this.turboSkip1Radio.IsChecked = true;
+                //        break;
+                //    case 2:
+                //        this.turboSkip2Radio.IsChecked = true;
+                //        break;
+                //    case 3:
+                //        this.turboSkip3Radio.IsChecked = true;
+                //        break;
+                //    case 4:
+                //        this.turboSkip4Radio.IsChecked = true;
+                //        break;
+                //    case 5:
+                //        this.turboSkip5Radio.IsChecked = true;
+                //        break;
+                //}
+
+                this.turboFrameSkipPicker.SelectedIndex = emuSettings.TurboFrameSkip;
 
                 //switch (emuSettings.PowerFrameSkip)
                 //{
@@ -702,6 +712,7 @@ namespace PhoneDirect3DXamlAppInterop
             if (this.initdone)
             {
                 EmulatorSettings.Current.FrameSkip = (int)this.frameSkipPicker.SelectedIndex - 1;
+
             }
         }
 
@@ -811,6 +822,14 @@ namespace PhoneDirect3DXamlAppInterop
         private void CPositionLandscapeBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/CustomizeControllerPage.xaml?orientation=0", UriKind.Relative));
+        }
+
+        private void turboFrameSkipPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                EmulatorSettings.Current.TurboFrameSkip = this.turboFrameSkipPicker.SelectedIndex;
+            }
         }
 
         

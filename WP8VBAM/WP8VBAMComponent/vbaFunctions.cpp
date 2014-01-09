@@ -199,12 +199,12 @@ u32 systemReadJoypad(int gamepad)
 			down = true;
 		}
 
-		if(ctrl->GetKeyCode(KeyCode::L1) == ControllerAction::Pressed || ctrl->GetKeyCode(KeyCode::L2) == ControllerAction::Pressed)
+		if(ctrl->GetKeyCode(KeyCode::L1) == ControllerAction::Pressed || abs(ctrl->GetAxisValue(Axis::LeftTrigger)) > 0.5f)
 		{
 			l = true;
 		}
 
-		if(ctrl->GetKeyCode(KeyCode::R1) == ControllerAction::Pressed || ctrl->GetKeyCode(KeyCode::R2) == ControllerAction::Pressed)
+		if(ctrl->GetKeyCode(KeyCode::R1) == ControllerAction::Pressed || abs(ctrl->GetAxisValue(Axis::RightTrigger)) > 0.5f)
 		{
 			r = true;
 		}
