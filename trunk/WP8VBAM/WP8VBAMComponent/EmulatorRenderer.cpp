@@ -266,8 +266,7 @@ void EmulatorRenderer::Update(float timeTotal, float timeDelta)
 	a_color = color;
 	b_color = color;
 
-	this->controller->GetStickRectangle(&stickRect);
-	this->controller->GetStickCenterRectangle(&centerRect);
+	
 
 	if(settings->DPadStyle == 0 || settings->DPadStyle == 1)
 		pad_to_draw = 0;
@@ -458,7 +457,8 @@ void EmulatorRenderer::Render()
 		this->controller->GetSelectRectangle(&selectRectangle);
 		this->controller->GetLRectangle(&lRectangle);
 		this->controller->GetRRectangle(&rRectangle);
-
+		this->controller->GetStickRectangle(&stickRect);
+		this->controller->GetStickCenterRectangle(&centerRect);
 
 		DrawController();
 	}

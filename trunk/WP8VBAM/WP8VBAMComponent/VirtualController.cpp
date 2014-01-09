@@ -328,8 +328,8 @@ namespace Emulator
 	
 		this->selectRect.Y = this->selectRectangle.top / touchVisualQuotient;
 		this->selectRect.X = this->selectRectangle.left / touchVisualQuotient;
-		this->selectRect.Width = (this->selectRectangle.bottom - this->selectRectangle.top) / touchVisualQuotient;
-		this->selectRect.Height = (this->selectRectangle.right - this->selectRectangle.left) / touchVisualQuotient;
+		this->selectRect.Height = (this->selectRectangle.bottom - this->selectRectangle.top) / touchVisualQuotient;
+		this->selectRect.Width = (this->selectRectangle.right - this->selectRectangle.left) / touchVisualQuotient;
 
 		this->startRect.Y = this->startRectangle.top / touchVisualQuotient;
 		this->startRect.X = this->startRectangle.left / touchVisualQuotient;
