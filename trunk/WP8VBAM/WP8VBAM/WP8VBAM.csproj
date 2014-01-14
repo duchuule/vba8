@@ -287,6 +287,9 @@
     <Compile Include="CheatPage.xaml.cs">
       <DependentUpon>CheatPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorChooserControl.xaml.cs">
+      <DependentUpon>ColorChooserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContextPage.xaml.cs">
       <DependentUpon>ContextPage.xaml</DependentUpon>
     </Compile>
@@ -370,6 +373,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ColorChooserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContextPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -432,9 +439,20 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ApplicationBar.Cancel.png" />
+    <Content Include="Assets\ApplicationBar.Check.png" />
     <Content Include="Assets\ApplicationIconFilled.png" />
     <Content Include="Assets\ApplicationIconFilledGBC.png" />
     <Content Include="Assets\ApplicationIconGBC.png" />
+    <Content Include="Assets\divider.dds" />
+    <Content Include="Assets\pad_a_button_color.dds" />
+    <Content Include="Assets\pad_b_button_color.dds" />
+    <Content Include="Assets\pad_cross_color.dds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\pad_l_button_color.dds" />
+    <Content Include="Assets\pad_r_button_color.dds" />
+    <Content Include="Assets\pad_select_color.dds" />
     <Content Include="Assets\pad_start.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -455,6 +473,8 @@
     <Content Include="Assets\Icons\open.png" />
     <Content Include="Assets\Icons\plus_sign.png" />
     <Content Include="Assets\Icons\social.like.png" />
+    <Content Include="Assets\pad_start_color.dds" />
+    <Content Include="Assets\ThumbStick_color.dds" />
     <Content Include="Assets\Tiles\FlipCycleTileLargeGBC.png" />
     <Content Include="Assets\Tiles\FlipCycleTileMediumGBC.png" />
     <Content Include="Assets\Tiles\FlipCycleTileSmallGBC.png" />
@@ -586,6 +606,9 @@
   <ItemGroup>
     <Reference Include="AdDuplex.WindowsPhone">
       <HintPath>..\..\packages\AdDuplexWP7.2.7.0.2\lib\sl4-windowsphone71\AdDuplex.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls">
+      <HintPath>..\..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
     <Reference Include="GoogleAds">
       <HintPath>..\..\packages\AdMob WP8\windowsphone8\GoogleAds.dll</HintPath>

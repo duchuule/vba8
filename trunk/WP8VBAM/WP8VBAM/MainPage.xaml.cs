@@ -401,6 +401,22 @@ namespace PhoneDirect3DXamlAppInterop
                     isoSettings[SettingsPage.UseMogaControllerKey] = false;
 #endif
                 }
+                if (!isoSettings.Contains(SettingsPage.UseColorButtonKey))
+                {
+                    isoSettings[SettingsPage.UseColorButtonKey] = true;
+                }
+                if (!isoSettings.Contains(SettingsPage.BgcolorRKey))
+                {
+                    isoSettings[SettingsPage.BgcolorRKey] = 210;
+                }
+                if (!isoSettings.Contains(SettingsPage.BgcolorGKey))
+                {
+                    isoSettings[SettingsPage.BgcolorGKey] = 210;
+                }
+                if (!isoSettings.Contains(SettingsPage.BgcolorBKey))
+                {
+                    isoSettings[SettingsPage.BgcolorBKey] = 210;
+                }
 
                 //get default controller position
                 int[] cpos = CustomizeControllerPage.GetDefaultControllerPosition();
@@ -545,6 +561,10 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.RestoreOldCheatValues = (bool)isoSettings[SettingsPage.RestoreCheatKey];
                 settings.ManualSnapshots = (bool)isoSettings[SettingsPage.CreateManualSnapshotKey];
                 settings.UseMogaController = (bool)isoSettings[SettingsPage.UseMogaControllerKey];
+                settings.UseColorButtons = (bool)isoSettings[SettingsPage.UseColorButtonKey];
+                settings.BgcolorR = (int)isoSettings[SettingsPage.BgcolorRKey];
+                settings.BgcolorG = (int)isoSettings[SettingsPage.BgcolorGKey];
+                settings.BgcolorB = (int)isoSettings[SettingsPage.BgcolorBKey];
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
                 settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
@@ -613,6 +633,10 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.RestoreCheatKey] = settings.RestoreOldCheatValues;
             isoSettings[SettingsPage.CreateManualSnapshotKey] = settings.ManualSnapshots;
             isoSettings[SettingsPage.UseMogaControllerKey] = settings.UseMogaController;
+            isoSettings[SettingsPage.UseColorButtonKey] = settings.UseColorButtons;
+            isoSettings[SettingsPage.BgcolorRKey] = settings.BgcolorR;
+            isoSettings[SettingsPage.BgcolorGKey] = settings.BgcolorG;
+            isoSettings[SettingsPage.BgcolorBKey] = settings.BgcolorB;
             isoSettings.Save();
         }
 

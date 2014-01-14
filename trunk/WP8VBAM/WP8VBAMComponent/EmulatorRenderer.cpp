@@ -254,7 +254,11 @@ void EmulatorRenderer::Update(float timeTotal, float timeDelta)
 		}
 	}
 
-	float opacity = this->settings->ControllerOpacity / 100.0f;
+	float opacity = 1.0f;
+	
+	if(this->orientation != ORIENTATION_PORTRAIT || !this->settings->UseColorButtons) //only opacity in landscape or when using simple button
+		opacity = this->settings->ControllerOpacity / 100.0f;
+
 	Color color(1.0f, 1.0f, 1.0f, opacity);
 	Color color2(1.0f, 1.0f, 1.0f, opacity + 0.2f);
 	joystick_color = color;
@@ -295,10 +299,17 @@ void EmulatorRenderer::Render()
 		m_depthStencilView.Get()
 		);
 
-	const float black[] = { 0.0f, 0.0f, 0.0f, 1.000f };
+	float bgcolor[] = { 0.0f, 0.0f, 0.0f, 1.000f }; //black
+	if (this->settings->UseColorButtons && this->orientation == ORIENTATION_PORTRAIT)
+	{
+		bgcolor[0] = (float)this->settings->BgcolorR / 255;
+		bgcolor[1] = (float)this->settings->BgcolorG / 255;
+		bgcolor[2] = (float)this->settings->BgcolorB / 255;
+	}
+	
 	m_d3dContext->ClearRenderTargetView(
 		m_renderTargetView.Get(),
-		black
+		bgcolor
 		);
 
 	m_d3dContext->ClearDepthStencilView(
@@ -334,6 +345,8 @@ void EmulatorRenderer::Render()
 
 	int height, width;
 	RECT rect;
+	RECT dividerRect = RECT();
+
 
 	if(this->orientation != ORIENTATION_PORTRAIT)
 	{
@@ -369,6 +382,8 @@ void EmulatorRenderer::Render()
 		rect.right = width + leftOffset;
 		rect.top = 0;
 		rect.bottom = height;
+
+
 	}else
 	{
 		width = this->height;
@@ -402,6 +417,12 @@ void EmulatorRenderer::Render()
 		rect.right = width;
 		rect.top = 0;
 		rect.bottom = height;
+
+		dividerRect.left = 0;
+		dividerRect.right = width;
+		dividerRect.top = height;
+		float scale = ((int)DisplayProperties::ResolutionScale) / 100.0f;
+		dividerRect.bottom = height + 4 * scale;
 	}
 
 	RECT source;
@@ -436,6 +457,7 @@ void EmulatorRenderer::Render()
 	Color white(1.0f, 1.0f, 1.0f, 1.0f);
 	Color color(1.0f, 1.0f, 1.0f, opacity);
 	Color color2(1.0f, 1.0f, 1.0f, opacity + 0.2f);
+	Color dividerColor(86.0f/255, 105.0f/255, 108.0f/255, 1.0f);
 
 	this->dxSpriteBatch->Begin(this->outputTransform);
 	
@@ -443,8 +465,18 @@ void EmulatorRenderer::Render()
 	Engine::Rectangle sourceRect(source.left, source.top, source.right - source.left, source.bottom - source.top);
 	Engine::Rectangle targetRect(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
 
-	this->dxSpriteBatch->Draw(targetRect, &sourceRect, this->bufferSRVs[this->frontbuffer].Get(), this->buffers[this->frontbuffer].Get(), white);
+	this->dxSpriteBatch->Draw(targetRect,  &sourceRect, this->bufferSRVs[this->frontbuffer].Get(), this->buffers[this->frontbuffer].Get(), white);
 
+
+	//draw divider 
+	if(this->orientation == ORIENTATION_PORTRAIT && this->settings->UseColorButtons)
+	{
+		ComPtr<ID3D11Texture2D> tex;
+		this->dividerResource.As(&tex);
+
+		Engine::Rectangle targetRect(dividerRect.left, dividerRect.top, dividerRect.right - dividerRect.left, dividerRect.bottom - dividerRect.top);
+		this->dxSpriteBatch->Draw(targetRect,  this->dividerSRV.Get(), tex.Get(), dividerColor);
+	}
 	//===draw virtual controller if moga controller is not loaded
 	using namespace Moga::Windows::Phone;
 	Moga::Windows::Phone::ControllerManager^ ctrl = Direct3DBackground::getController();

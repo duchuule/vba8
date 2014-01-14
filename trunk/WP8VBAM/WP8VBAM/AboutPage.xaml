@@ -27,6 +27,7 @@
             <TextBlock Text="{Binding LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
+        
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ListBox IsHitTestVisible="True" Margin="0,0,0,0">
@@ -48,6 +49,7 @@
                                    Text="{Binding LocalizedResources.AboutContact, Source={StaticResource LocalizedStrings}}" />
                     </StackPanel>
                 </ListBoxItem>
+                
                 <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
                     <TextBlock TextWrapping="Wrap" FontSize="22" Margin="0,15,0,0"
                         Text="{Binding LocalizedResources.AboutSnes9x, Source={StaticResource LocalizedStrings}}" />

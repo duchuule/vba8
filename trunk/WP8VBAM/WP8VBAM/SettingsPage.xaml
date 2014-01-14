@@ -23,48 +23,7 @@
         </Grid.RowDefinitions>
         
         <phone:Pivot Name="pivot" Title="{Binding Path=LocalizedResources.SettingsPageTitle, Source={StaticResource LocalizedStrings}}">
-            <phone:PivotItem Name="generalPivot" Header="{Binding Path=LocalizedResources.GeneralSettingsTitle, Source={StaticResource LocalizedStrings}}">
-                <ListBox>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Checked="manualSnapshotSwitch_Checked" Unchecked="manualSnapshotSwitch_Unchecked"
-                                  Content="{Binding Path=LocalizedResources.ManualSnapshotSetting, Source={StaticResource LocalizedStrings}}" 
-                                  Name="manualSnapshotSwitch" IsChecked="false"
-                                  />
-                    </ListBoxItem>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.HideConfirmationSetting, Source={StaticResource LocalizedStrings}}"
-                                    Checked="confirmationSwitch_Checked_1" Unchecked="confirmationSwitch_Unchecked_1"
-                                    IsChecked="false" Name="confirmationSwitch"
-                                           />
-                    </ListBoxItem>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.HideConfirmationLoadSetting, Source={StaticResource LocalizedStrings}}"
-                                          Checked="confirmationLoadSwitch_Checked_1" Unchecked="confirmationLoadSwitch_Unchecked_1"
-                                          IsChecked="false" Name="confirmationLoadSwitch"
-                                           />
-                    </ListBoxItem>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.AutoIncSavestateSetting, Source={StaticResource LocalizedStrings}}"
-                                            Checked="autoIncSwitch_Checked_1" Unchecked="autoIncSwitch_Unchecked_1"
-                                            IsChecked="false" Name="autoIncSwitch"
-                                            />
-                    </ListBoxItem>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.RestoreLastStateSetting, Source={StaticResource LocalizedStrings}}"
-                                            Checked="restoreLastStateSwitch_Checked_1" Unchecked="restoreLastStateSwitch_Unchecked_1"
-                                            IsChecked="true" Name="restoreLastStateSwitch"
-                                            />
-                    </ListBoxItem>
-                    <ListBoxItem HorizontalContentAlignment="Stretch" Name="RestoreListItem"
-                                 >
-                        <CheckBox Content="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
-                                          Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
-                                          IsChecked="false" Name="cheatRestoreSwitch"
-                                           />
-                    </ListBoxItem>
-                </ListBox>
-            </phone:PivotItem>
-
+            
             <phone:PivotItem Name="inputPivot" Header="{Binding Path=LocalizedResources.InputSettingsPageTitle, Source={StaticResource LocalizedStrings}}">
                 <ListBox>
                     <ListBoxItem HorizontalContentAlignment="Stretch">
@@ -126,7 +85,23 @@
                             <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadAnalogueDynamic, Source={StaticResource LocalizedStrings}}" />
                         </toolkit:ListPicker>
                     </ListBoxItem>
-                    
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="Use realistic color buttons"
+                                            IsChecked="true" 
+                                  Name="useColorButtonSwitch" 
+                                  Click="useColorButtonSwitch_Click"
+                                  
+                                            />
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Button x:Name="CustomizeBgcolorBtn"
+                                Content="Choose portrait background color..." 
+                                Click="CustomizeBgcolorBtn_Click"
+                                />
+                    </ListBoxItem>
+
                     <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 
@@ -344,24 +319,6 @@
                 </ListBox>
             </phone:PivotItem>
 
-            <phone:PivotItem Name="audioPivot" Header="{Binding Path=LocalizedResources.AudioSettingsPageTitle, Source={StaticResource LocalizedStrings}}">
-                <ListBox>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}"
-                                          Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
-                                          IsChecked="true" Name="enableSoundSwitch"
-                                           />
-                    </ListBoxItem>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.SyncSoundSetting, Source={StaticResource LocalizedStrings}}"
-                                            Checked="syncSoundSwitch_Checked_1" Unchecked="syncSoundSwitch_Unchecked_1"
-                                            IsChecked="true" Name="syncSoundSwitch"
-                                            />
-                    </ListBoxItem>
-                </ListBox>
-            </phone:PivotItem>
-
-
             <phone:PivotItem Name="videoPivot" Header="{Binding Path=LocalizedResources.VideoSettingsPageTitle, Source={StaticResource LocalizedStrings}}">
                 <ListBox>
 
@@ -388,7 +345,7 @@
 
                         </toolkit:ListPicker>
                     </ListBoxItem>
-                    
+
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <toolkit:ListPicker  ItemTemplate="{StaticResource ListPickerTemplate}"
@@ -401,7 +358,7 @@
 
                         </toolkit:ListPicker>
                     </ListBoxItem>
-                    
+
                     <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Path=LocalizedResources.TurboFrameSkipText, Source={StaticResource LocalizedStrings}}" 
@@ -492,6 +449,70 @@
                     </ListBoxItem>
                 </ListBox>
             </phone:PivotItem>
+
+            <phone:PivotItem Name="generalPivot" Header="{Binding Path=LocalizedResources.GeneralSettingsTitle, Source={StaticResource LocalizedStrings}}">
+                <ListBox>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="manualSnapshotSwitch_Checked" Unchecked="manualSnapshotSwitch_Unchecked"
+                                  Content="{Binding Path=LocalizedResources.ManualSnapshotSetting, Source={StaticResource LocalizedStrings}}" 
+                                  Name="manualSnapshotSwitch" IsChecked="false"
+                                  />
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="{Binding Path=LocalizedResources.HideConfirmationSetting, Source={StaticResource LocalizedStrings}}"
+                                    Checked="confirmationSwitch_Checked_1" Unchecked="confirmationSwitch_Unchecked_1"
+                                    IsChecked="false" Name="confirmationSwitch"
+                                           />
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="{Binding Path=LocalizedResources.HideConfirmationLoadSetting, Source={StaticResource LocalizedStrings}}"
+                                          Checked="confirmationLoadSwitch_Checked_1" Unchecked="confirmationLoadSwitch_Unchecked_1"
+                                          IsChecked="false" Name="confirmationLoadSwitch"
+                                           />
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="{Binding Path=LocalizedResources.AutoIncSavestateSetting, Source={StaticResource LocalizedStrings}}"
+                                            Checked="autoIncSwitch_Checked_1" Unchecked="autoIncSwitch_Unchecked_1"
+                                            IsChecked="false" Name="autoIncSwitch"
+                                            />
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="{Binding Path=LocalizedResources.RestoreLastStateSetting, Source={StaticResource LocalizedStrings}}"
+                                            Checked="restoreLastStateSwitch_Checked_1" Unchecked="restoreLastStateSwitch_Unchecked_1"
+                                            IsChecked="true" Name="restoreLastStateSwitch"
+                                            />
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch" Name="RestoreListItem"
+                                 >
+                        <CheckBox Content="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
+                                          Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
+                                          IsChecked="false" Name="cheatRestoreSwitch"
+                                           />
+                    </ListBoxItem>
+                </ListBox>
+            </phone:PivotItem>
+
+            
+            
+            <phone:PivotItem Name="audioPivot" Header="{Binding Path=LocalizedResources.AudioSettingsPageTitle, Source={StaticResource LocalizedStrings}}">
+                <ListBox>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}"
+                                          Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
+                                          IsChecked="true" Name="enableSoundSwitch"
+                                           />
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="{Binding Path=LocalizedResources.SyncSoundSetting, Source={StaticResource LocalizedStrings}}"
+                                            Checked="syncSoundSwitch_Checked_1" Unchecked="syncSoundSwitch_Unchecked_1"
+                                            IsChecked="true" Name="syncSoundSwitch"
+                                            />
+                    </ListBoxItem>
+                </ListBox>
+            </phone:PivotItem>
+
+
+            
         </phone:Pivot>
     </Grid>
 </phone:PhoneApplicationPage>

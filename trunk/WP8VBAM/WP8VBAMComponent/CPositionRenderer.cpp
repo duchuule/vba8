@@ -114,6 +114,8 @@ void CPositionRenderer::Update(float timeTotal, float timeDelta)
 {
 	cstate = controller->GetControllerState();
 	
+
+
 	float opacity = 0.5; //this->settings->ControllerOpacity / 100.0f;
 	Color color(1.0f, 1.0f, 1.0f, opacity);
 	Color color2(1.0f, 0.0f, 0.0f, opacity);
