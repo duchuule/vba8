@@ -388,6 +388,60 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
+		property bool UseColorButtons
+		{
+			bool get(void) { return this->useColorButtons; }
+			void set(bool value) 
+			{ 
+				this->useColorButtons = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+
+		property int BgcolorR
+		{
+			int get(void) { return this->bgcolorR; }
+			void set(int value) 
+			{ 
+				this->bgcolorR = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+		property int BgcolorG
+		{
+			int get(void) { return this->bgcolorG; }
+			void set(int value) 
+			{ 
+				this->bgcolorG = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+
+		property int BgcolorB
+		{
+			int get(void) { return this->bgcolorB; }
+			void set(int value) 
+			{ 
+				this->bgcolorB = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
 		property int PadCenterXP
 		{
 			int get() { return this->padCenterXP; }
@@ -790,6 +844,11 @@ namespace PhoneDirect3DXamlAppComponent
 		bool selectLastState;
 		bool restoreOldCheatValues;
 		bool manualSnapshots;
+		bool useColorButtons;
+		int bgcolorR;
+		int bgcolorG;
+		int bgcolorB;
+
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;
 
 		static EmulatorSettings ^instance;

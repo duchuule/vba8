@@ -198,8 +198,8 @@ namespace PhoneDirect3DXamlAppInterop
                         });
 
                     //enable moga controller (in case user does not know that he has to enable it)
-                    if (key == "premiumfeatures" || key == "noads_premium")
-                        EmulatorSettings.Current.UseMogaController = true;
+                    //if (key == "premiumfeatures" || key == "noads_premium")
+                    //    EmulatorSettings.Current.UseMogaController = true;
                 }
                 catch (Exception)
                 { }

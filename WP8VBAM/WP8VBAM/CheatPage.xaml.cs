@@ -161,6 +161,11 @@ namespace PhoneDirect3DXamlAppInterop
                 string codePart = codeParts[i].ToUpper().Trim().Replace("\t", "");
                 string tmp = Regex.Replace(codePart, "[\t\r ]", "");
                 StringBuilder sb = new StringBuilder();
+                if (tmp.Length == 8)
+                {
+                    sb.Append(tmp);
+                }
+                else
                 if (tmp.Length == 12)
                 {
                     sb.Append(tmp.Substring(0, 8));
@@ -201,7 +206,7 @@ namespace PhoneDirect3DXamlAppInterop
                     messageCallback(AppResources.CheatInvalidFormat);
                     return false;
                 }
-                if (tmp.Length != 12 && tmp.Length != 16)
+                if (tmp.Length != 8 && tmp.Length != 12 && tmp.Length != 16)
                 {
                     messageCallback(AppResources.CheatInvalidFormat);
                     return false;

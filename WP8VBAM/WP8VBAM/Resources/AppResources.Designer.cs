@@ -90,7 +90,10 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Feel free to report any bugs or broken games.
         ///
-        ///The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages..
+        ///The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages.
+        ///
+        ///Credits:
+        ///Eddi Bento for logo design.
         /// </summary>
         public static string AboutSnes9x {
             get {
@@ -1946,6 +1949,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string TurboModeTip {
             get {
                 return ResourceManager.GetString("TurboModeTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporting &apos;{0}&apos;.
+        /// </summary>
+        public static string UploadProgressText {
+            get {
+                return ResourceManager.GetString("UploadProgressText", resourceCulture);
             }
         }
         

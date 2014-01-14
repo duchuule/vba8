@@ -92,70 +92,146 @@ void Renderer::CreateDeviceResources()
 	this->m_d3dDevice->GetImmediateContext1(this->m_d3dContext.GetAddressOf());
 
 	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		STICK_TEXTURE_FILE_NAME,
-		this->stickResource.GetAddressOf(), 
-		this->stickSRV.GetAddressOf()
-		);
+			this->m_d3dDevice.Get(), 
+			DIVIDER_TEXTURE_FILE_NAME,
+			this->dividerResource.GetAddressOf(), 
+			this->dividerSRV.GetAddressOf()
+			);
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		STICK_CENTER_TEXTURE_FILE_NAME,
-		this->stickCenterResource.GetAddressOf(), 
-		this->stickCenterSRV.GetAddressOf()
-		);
+	if (this->settings->UseColorButtons)
+	{
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			STICK_COLOR_TEXTURE_FILE_NAME,
+			this->stickResource.GetAddressOf(), 
+			this->stickSRV.GetAddressOf()
+			);
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		CROSS_TEXTURE_FILE_NAME,
-		this->crossResource.GetAddressOf(), 
-		this->crossSRV.GetAddressOf()
-		);
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			STICK_CENTER_TEXTURE_FILE_NAME,
+			this->stickCenterResource.GetAddressOf(), 
+			this->stickCenterSRV.GetAddressOf()
+			);
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		A_TEXTURE_FILE_NAME,
-		this->aResource.GetAddressOf(), 
-		this->aSRV.GetAddressOf()
-		);
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			CROSS_COLOR_TEXTURE_FILE_NAME,
+			this->crossResource.GetAddressOf(), 
+			this->crossSRV.GetAddressOf()
+			);
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		B_TEXTURE_FILE_NAME,
-		this->bResource.GetAddressOf(), 
-		this->bSRV.GetAddressOf()
-		);
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			A_COLOR_TEXTURE_FILE_NAME,
+			this->aResource.GetAddressOf(), 
+			this->aSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			B_COLOR_TEXTURE_FILE_NAME,
+			this->bResource.GetAddressOf(), 
+			this->bSRV.GetAddressOf()
+			);
 
 
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		START_TEXTURE_FILE_NAME,
-		this->startResource.GetAddressOf(), 
-		this->startSRV.GetAddressOf()
-		);
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			START_COLOR_TEXTURE_FILE_NAME,
+			this->startResource.GetAddressOf(), 
+			this->startSRV.GetAddressOf()
+			);
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		SELECT_TEXTURE_FILE_NAME,
-		this->selectResource.GetAddressOf(), 
-		this->selectSRV.GetAddressOf()
-		);
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			SELECT_COLOR_TEXTURE_FILE_NAME,
+			this->selectResource.GetAddressOf(), 
+			this->selectSRV.GetAddressOf()
+			);
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		L_TEXTURE_FILE_NAME,
-		this->lButtonResource.GetAddressOf(), 
-		this->lButtonSRV.GetAddressOf()
-		);
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			L_COLOR_TEXTURE_FILE_NAME,
+			this->lButtonResource.GetAddressOf(), 
+			this->lButtonSRV.GetAddressOf()
+			);
 
-	LoadTextureFromFile(
-		this->m_d3dDevice.Get(), 
-		R_TEXTURE_FILE_NAME,
-		this->rButtonResource.GetAddressOf(), 
-		this->rButtonSRV.GetAddressOf()
-		);
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			R_COLOR_TEXTURE_FILE_NAME,
+			this->rButtonResource.GetAddressOf(), 
+			this->rButtonSRV.GetAddressOf()
+			);
+	}
+	else
+	{
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			STICK_TEXTURE_FILE_NAME,
+			this->stickResource.GetAddressOf(), 
+			this->stickSRV.GetAddressOf()
+			);
 
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			STICK_CENTER_TEXTURE_FILE_NAME,
+			this->stickCenterResource.GetAddressOf(), 
+			this->stickCenterSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			CROSS_TEXTURE_FILE_NAME,
+			this->crossResource.GetAddressOf(), 
+			this->crossSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			A_TEXTURE_FILE_NAME,
+			this->aResource.GetAddressOf(), 
+			this->aSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			B_TEXTURE_FILE_NAME,
+			this->bResource.GetAddressOf(), 
+			this->bSRV.GetAddressOf()
+			);
+
+
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			START_TEXTURE_FILE_NAME,
+			this->startResource.GetAddressOf(), 
+			this->startSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			SELECT_TEXTURE_FILE_NAME,
+			this->selectResource.GetAddressOf(), 
+			this->selectSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			L_TEXTURE_FILE_NAME,
+			this->lButtonResource.GetAddressOf(), 
+			this->lButtonSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			R_TEXTURE_FILE_NAME,
+			this->rButtonResource.GetAddressOf(), 
+			this->rButtonSRV.GetAddressOf()
+			);
+	}
 	// Create Textures and SRVs for front and backbuffer
 	D3D11_TEXTURE2D_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_TEXTURE2D_DESC));

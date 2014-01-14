@@ -11,11 +11,14 @@ using PhoneDirect3DXamlAppInterop.Resources;
 using PhoneDirect3DXamlAppComponent;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls.Primitives;
 
 namespace PhoneDirect3DXamlAppInterop
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
+        public Popup popupWindow = null;
+
         private String[] frameskiplist = { AppResources.FrameSkipAutoSetting, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         private String[] frameskiplist2 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -43,6 +46,10 @@ namespace PhoneDirect3DXamlAppInterop
         public const String RestoreCheatKey = "RestoreCheatKey";
         public const String CreateManualSnapshotKey = "ManualSnapshotKey";
         public const String UseMogaControllerKey = "UseMogaControllerKey";
+        public const String UseColorButtonKey = "UseColorButtonKey";
+        public const String BgcolorRKey = "BgcolorRKey";
+        public const String BgcolorGKey = "BgcolorGKey";
+        public const String BgcolorBKey = "BgcolorBKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -106,6 +113,27 @@ namespace PhoneDirect3DXamlAppInterop
             base.OnNavigatedTo(e);
         }
 
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            //Check if the PopUp window is open
+            if (popupWindow != null && popupWindow.IsOpen)
+            {
+                //Close the PopUp Window
+                popupWindow.IsOpen = false;
+
+                //Keep the back button from navigating away from the current page
+                e.Cancel = true;
+            }
+
+            else
+            {
+                //There is no PopUp open, use the back button normally
+                base.OnBackKeyPress(e);
+            }
+
+        }
+
         private void ReadSettings()
         {
             EmulatorSettings emuSettings = EmulatorSettings.Current;
@@ -126,8 +154,12 @@ namespace PhoneDirect3DXamlAppInterop
             this.restoreLastStateSwitch.IsChecked = emuSettings.SelectLastState;
             this.cheatRestoreSwitch.IsChecked = emuSettings.RestoreOldCheatValues;
             this.manualSnapshotSwitch.IsChecked = emuSettings.ManualSnapshots;
+            this.useColorButtonSwitch.IsChecked = emuSettings.UseColorButtons;
 
-            
+            if (this.useColorButtonSwitch.IsChecked.Value)
+                CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
+            else
+                CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
 
             this.Loaded += (o, e) =>
             {
@@ -830,6 +862,59 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 EmulatorSettings.Current.TurboFrameSkip = this.turboFrameSkipPicker.SelectedIndex;
             }
+        }
+
+        private void useColorButtonSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.useColorButtonSwitch.IsChecked.Value)
+                CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
+            else
+                CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
+
+            if (this.initdone)
+            {
+                EmulatorSettings.Current.UseColorButtons = this.useColorButtonSwitch.IsChecked.Value;
+            }
+        }
+
+        private void CustomizeBgcolorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (App.IsPremium || App.HasAds == false)
+            {
+
+
+                //disable current page
+                this.IsHitTestVisible = false;
+                //this.Content.Visibility = Visibility.Collapsed;
+
+                //create new popup instance
+
+                popupWindow = new Popup();
+
+                popupWindow.Child = new ColorChooserControl();
+
+                popupWindow.VerticalOffset = 130;
+                popupWindow.HorizontalOffset = 10;
+                popupWindow.IsOpen = true;
+
+                popupWindow.Closed += (s1, e1) =>
+                {
+                    this.IsHitTestVisible = true;
+                    //this.Content.Visibility = Visibility.Visible;
+
+                };
+            }
+            else
+            {
+                //prompt to buy
+                MessageBoxResult result = MessageBox.Show("This is a premium feature. Do you want to go to the purchase page?", "Unlock feature", MessageBoxButton.OKCancel);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    NavigationService.Navigate(new Uri("/PurchasePage.xaml", UriKind.Relative));
+                }
+            }
+
         }
 
         

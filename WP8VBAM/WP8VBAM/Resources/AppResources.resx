@@ -264,7 +264,10 @@
   <data name="AboutSnes9x" xml:space="preserve">
     <value>Feel free to report any bugs or broken games.
 
-The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages.</value>
+The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages.
+
+Credits:
+Eddi Bento for logo design</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -795,5 +798,8 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</value>
   </data>
   <data name="DPad8way" xml:space="preserve">
     <value>8-way</value>
+  </data>
+  <data name="UploadProgressText" xml:space="preserve">
+    <value>Exporting '{0}'</value>
   </data>
 </root>

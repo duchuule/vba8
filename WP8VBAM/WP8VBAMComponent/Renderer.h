@@ -28,6 +28,17 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define STICK_TEXTURE_FILE_NAME						L"Assets/ThumbStick.dds"
 #define STICK_CENTER_TEXTURE_FILE_NAME				L"Assets/ThumbStickCenter.dds"
 
+#define CROSS_COLOR_TEXTURE_FILE_NAME				L"Assets/pad_cross_color.dds"
+#define START_COLOR_TEXTURE_FILE_NAME				L"Assets/pad_start_color.dds"
+#define SELECT_COLOR_TEXTURE_FILE_NAME				L"Assets/pad_select_color.dds"
+#define A_COLOR_TEXTURE_FILE_NAME					L"Assets/pad_a_button_color.dds"
+#define B_COLOR_TEXTURE_FILE_NAME					L"Assets/pad_b_button_color.dds"
+#define L_COLOR_TEXTURE_FILE_NAME					L"Assets/pad_l_button_color.dds"
+#define R_COLOR_TEXTURE_FILE_NAME					L"Assets/pad_r_button_color.dds"
+#define STICK_COLOR_TEXTURE_FILE_NAME				L"Assets/ThumbStick_color.dds"
+
+#define DIVIDER_TEXTURE_FILE_NAME					L"Assets/divider.dds"
+
 #define AUTOSAVE_INTERVAL			60.0f
 
 // This class renders a simple spinning cube.
@@ -111,6 +122,8 @@ internal:
 	ComPtr<ID3D11ShaderResourceView>	lButtonSRV;
 	ComPtr<ID3D11Resource>				rButtonResource;
 	ComPtr<ID3D11ShaderResourceView>	rButtonSRV;
+	ComPtr<ID3D11Resource>				dividerResource;
+	ComPtr<ID3D11ShaderResourceView>	dividerSRV;
 	EmulatorSettings					^settings;
 	XMMATRIX							outputTransform;
 	
