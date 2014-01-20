@@ -35,7 +35,7 @@ namespace PhoneDirect3DXamlAppComponent
 	IDrawingSurfaceBackgroundContentProvider^ Direct3DBackground::CreateContentProvider()
 	{
 		ComPtr<Direct3DContentProvider> provider = Make<Direct3DContentProvider>(this);
-		return reinterpret_cast<IDrawingSurfaceBackgroundContentProvider^>(provider.Detach());
+		return reinterpret_cast<IDrawingSurfaceBackgroundContentProvider^>(provider.Get());
 	}
 
 
