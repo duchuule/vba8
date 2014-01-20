@@ -24,7 +24,7 @@ namespace PhoneDirect3DXamlAppInterop
     public partial class EmulatorPage : PhoneApplicationPage
     {
         public static bool ROMLoaded = false;
-        private Direct3DBackground m_d3dBackground = new Direct3DBackground();
+        private Direct3DBackground m_d3dBackground = null; 
         private LoadROMParameter cache = null;
         private bool initialized = false;
         private bool buyPopupOpened = false;
@@ -39,11 +39,9 @@ namespace PhoneDirect3DXamlAppInterop
             InitializeComponent();
             this.BackKeyPress += EmulatorPage_BackKeyPress;
             this.OrientationChanged += EmulatorPage_OrientationChanged;
-            this.m_d3dBackground.SetContinueNotifier(this.ContinueEmulation);
-            this.m_d3dBackground.SnapshotAvailable = FileHandler.CaptureSnapshot;
-            this.m_d3dBackground.SavestateCreated = FileHandler.CreateSavestate;
-            this.m_d3dBackground.SavestateSelected = this.savestateSelected;
-            this.InitAppBar();
+            
+            
+            
             switch (EmulatorSettings.Current.Orientation)
             {
                 case 0:
@@ -175,10 +173,24 @@ namespace PhoneDirect3DXamlAppInterop
             };
             loadstateButton.Click += loadstateButton_Click;
 
+
+            var configButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/feature.settings.png", UriKind.Relative))
+            {
+                Text = AppResources.SettingsButtonText
+            };
+            configButton.Click += configButton_Click;
+
             ApplicationBar.Buttons.Add(loadstateButton);
             ApplicationBar.Buttons.Add(resetButton);
             ApplicationBar.Buttons.Add(savestateButton);
-            ApplicationBar.Buttons.Add(backButton);
+            ApplicationBar.Buttons.Add(configButton); 
+            //ApplicationBar.Buttons.Add(backButton);
+        }
+
+        private void configButton_Click(object sender, EventArgs e)
+        {
+            ApplicationBar.IsVisible = false;
+            NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative)); 
         }
 
         private void savestateSelected(int slot, int oldSlot)
@@ -209,16 +221,16 @@ namespace PhoneDirect3DXamlAppInterop
             this.ChangeAppBarVisibility(false);
         }
 
-        async void loadstateButton_Click(object sender, EventArgs e)
+        void loadstateButton_Click(object sender, EventArgs e)
         {
             if (!App.IsTrial)
             {
                 if (EmulatorSettings.Current.HideLoadConfirmationDialogs)
                 {
-                    ROMDatabase db = ROMDatabase.Current;
-                    var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
-                    var cheats = await FileHandler.LoadCheatCodes(entry);
-                    this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
+                    //ROMDatabase db = ROMDatabase.Current;
+                    //var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
+                    //var cheats = await FileHandler.LoadCheatCodes(entry);
+                    //this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
 
                     this.m_d3dBackground.LoadState();
                 }
@@ -286,11 +298,15 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+
+
         void backbutton_click(object sender, EventArgs e)
         {
             //this.NavigationService.GoBack();
             this.ChangeAppBarVisibility(false);
         }
+
+        
 
         void EmulatorPage_OrientationChanged(object sender, OrientationChangedEventArgs e)
         {
@@ -340,6 +356,15 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+        protected override void OnTap(System.Windows.Input.GestureEventArgs e)
+        {
+            if (this.ApplicationBar.IsVisible)
+            {
+                this.ApplicationBar.IsVisible = false;
+                this.m_d3dBackground.UnpauseEmulation();
+                base.OnTap(e);
+            }
+        }
         protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
 
@@ -500,40 +525,40 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async void DrawingSurfaceBackground_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set window bounds in dips
-            m_d3dBackground.WindowBounds = new Windows.Foundation.Size(
-                (float)Application.Current.Host.Content.ActualWidth,
-                (float)Application.Current.Host.Content.ActualHeight
-                );
-
-            // Set native resolution in pixels
-            m_d3dBackground.NativeResolution = new Windows.Foundation.Size(
-                (float)Math.Floor(Application.Current.Host.Content.ActualWidth * Application.Current.Host.Content.ScaleFactor / 100.0f + 0.5f),
-                (float)Math.Floor(Application.Current.Host.Content.ActualHeight * Application.Current.Host.Content.ScaleFactor / 100.0f + 0.5f)
-                );
-
-            // Set render resolution to the full native resolution
-            m_d3dBackground.RenderResolution = m_d3dBackground.NativeResolution;
-
-            // Hook-up native component to DrawingSurfaceBackgroundGrid
-            DrawingSurfaceBackground.SetBackgroundContentProvider(m_d3dBackground.CreateContentProvider());
-            DrawingSurfaceBackground.SetBackgroundManipulationHandler(m_d3dBackground);
-
-            this.initialized = true;
-
-            ROMDatabase db = ROMDatabase.Current;
-
-            if (ROMLoaded && this.cache == null)
+            if (m_d3dBackground == null)
             {
-                var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
-                var cheats = await FileHandler.LoadCheatCodes(entry);
-                this.m_d3dBackground.LoadCheats(cheats);
+                this.m_d3dBackground = new Direct3DBackground();
 
-                this.m_d3dBackground.UnpauseEmulation();
-            }
-            else if (this.cache != null && this.cache.file != null && this.cache.folder != null)
-            {
-                if (ROMLoaded && this.m_d3dBackground.LoadadROMFile.Name.Equals(this.cache.file.Name))
+                this.m_d3dBackground.SetContinueNotifier(this.ContinueEmulation);
+                this.m_d3dBackground.SnapshotAvailable = FileHandler.CaptureSnapshot;
+                this.m_d3dBackground.SavestateCreated = FileHandler.CreateSavestate;
+                this.m_d3dBackground.SavestateSelected = this.savestateSelected;
+                this.InitAppBar();
+
+                // Set window bounds in dips
+                m_d3dBackground.WindowBounds = new Windows.Foundation.Size(
+                    (float)Application.Current.Host.Content.ActualWidth,
+                    (float)Application.Current.Host.Content.ActualHeight
+                    );
+
+                // Set native resolution in pixels
+                m_d3dBackground.NativeResolution = new Windows.Foundation.Size(
+                    (float)Math.Floor(Application.Current.Host.Content.ActualWidth * Application.Current.Host.Content.ScaleFactor / 100.0f + 0.5f),
+                    (float)Math.Floor(Application.Current.Host.Content.ActualHeight * Application.Current.Host.Content.ScaleFactor / 100.0f + 0.5f)
+                    );
+
+                // Set render resolution to the full native resolution
+                m_d3dBackground.RenderResolution = m_d3dBackground.NativeResolution;
+
+                // Hook-up native component to DrawingSurfaceBackgroundGrid
+                DrawingSurfaceBackground.SetBackgroundContentProvider(m_d3dBackground.CreateContentProvider());
+                DrawingSurfaceBackground.SetBackgroundManipulationHandler(m_d3dBackground);
+
+                this.initialized = true;
+
+                ROMDatabase db = ROMDatabase.Current;
+
+                if (ROMLoaded && this.cache == null)
                 {
                     var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
                     var cheats = await FileHandler.LoadCheatCodes(entry);
@@ -541,38 +566,49 @@ namespace PhoneDirect3DXamlAppInterop
 
                     this.m_d3dBackground.UnpauseEmulation();
                 }
-                else
+                else if (this.cache != null && this.cache.file != null && this.cache.folder != null)
                 {
-                    var entry = db.GetROM(this.cache.file.Name);
-                    var cheats = await FileHandler.LoadCheatCodes(entry);
-                    this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
-
-                    // Load new ROM
-                    this.m_d3dBackground.LoadROMAsync(this.cache.file, this.cache.folder);
-                    if (EmulatorSettings.Current.SelectLastState)
+                    if (ROMLoaded && this.m_d3dBackground.LoadadROMFile.Name.Equals(this.cache.file.Name))
                     {
-                        RestoreLastSavestate(this.cache.file.Name);
-                    }
-                    ROMLoaded = true;
-                }
-            }
+                        var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
+                        var cheats = await FileHandler.LoadCheatCodes(entry);
+                        this.m_d3dBackground.LoadCheats(cheats);
 
-            int orientation = 0;
-            switch (this.Orientation)
-            {
-                case PageOrientation.LandscapeLeft:
-                case PageOrientation.Landscape:
-                    orientation = 0;
-                    break;
-                case PageOrientation.LandscapeRight:
-                    orientation = 1;
-                    break;
-                case PageOrientation.PortraitUp:
-                case PageOrientation.Portrait:
-                    orientation = 2;
-                    break;
+                        this.m_d3dBackground.UnpauseEmulation();
+                    }
+                    else
+                    {
+                        var entry = db.GetROM(this.cache.file.Name);
+                        var cheats = await FileHandler.LoadCheatCodes(entry);
+                        this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
+
+                        // Load new ROM
+                        this.m_d3dBackground.LoadROMAsync(this.cache.file, this.cache.folder);
+                        if (EmulatorSettings.Current.SelectLastState)
+                        {
+                            RestoreLastSavestate(this.cache.file.Name);
+                        }
+                        ROMLoaded = true;
+                    }
+                }
+
+                int orientation = 0;
+                switch (this.Orientation)
+                {
+                    case PageOrientation.LandscapeLeft:
+                    case PageOrientation.Landscape:
+                        orientation = 0;
+                        break;
+                    case PageOrientation.LandscapeRight:
+                        orientation = 1;
+                        break;
+                    case PageOrientation.PortraitUp:
+                    case PageOrientation.Portrait:
+                        orientation = 2;
+                        break;
+                }
+                this.m_d3dBackground.ChangeOrientation(orientation);
             }
-            this.m_d3dBackground.ChangeOrientation(orientation);
         }
 
         private void RestoreLastSavestate(string filename)
