@@ -151,17 +151,33 @@ namespace PhoneDirect3DXamlAppInterop
             this.cheatList.ItemsSource = this.cheatCodes;
         }
 
-#if !GBC
+
         private string[] GetCodes(string code)
         {
             string[] codeParts = code.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             string[] codes = new string[codeParts.Length];
             for (int i = 0; i < codeParts.Length; i++)
             {
+
                 string codePart = codeParts[i].ToUpper().Trim().Replace("\t", "");
                 string tmp = Regex.Replace(codePart, "[\t\r ]", "");
+                tmp = Regex.Replace(tmp, "[- ]", "");
                 StringBuilder sb = new StringBuilder();
-                if (tmp.Length == 8)
+                if (tmp.Length == 6)
+                {
+                    sb.Append(tmp.Substring(0, 3));
+                    sb.Append('-');
+                    sb.Append(tmp.Substring(3, 3));
+                }
+                else if (tmp.Length == 9)
+                {
+                    sb.Append(tmp.Substring(0, 3));
+                    sb.Append('-');
+                    sb.Append(tmp.Substring(3, 3));
+                    sb.Append('-');
+                    sb.Append(tmp.Substring(6, 3));
+                }
+                else if (tmp.Length == 8)
                 {
                     sb.Append(tmp);
                 }
@@ -197,6 +213,7 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 string line = codeParts[i].ToUpper().Trim().Replace("\t", "");
                 string tmp = Regex.Replace(line, "[\t\r ]", "");
+                tmp = Regex.Replace(tmp, "[- ]", "");
                 try
                 {
                     Int64.Parse(tmp, System.Globalization.NumberStyles.HexNumber);
@@ -206,7 +223,7 @@ namespace PhoneDirect3DXamlAppInterop
                     messageCallback(AppResources.CheatInvalidFormat);
                     return false;
                 }
-                if (tmp.Length != 8 && tmp.Length != 12 && tmp.Length != 16)
+                if (tmp.Length != 6 && tmp.Length != 9 && tmp.Length != 8 && tmp.Length != 12 && tmp.Length != 16)
                 {
                     messageCallback(AppResources.CheatInvalidFormat);
                     return false;
@@ -214,70 +231,7 @@ namespace PhoneDirect3DXamlAppInterop
             }
             return true;
         }
-#else
-        private string[] GetCodes(string code)
-        {
-            string[] codeParts = code.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] codes = new string[codeParts.Length];
-            for (int i = 0; i < codeParts.Length; i++)
-            {
-                string codePart = codeParts[i].ToUpper().Trim().Replace("\t", "");
-                string tmp = Regex.Replace(codePart, "[- ]", "");
-                StringBuilder sb = new StringBuilder();
-                if (tmp.Length == 6)
-                {
-                    sb.Append(tmp.Substring(0, 3));
-                    sb.Append('-');
-                    sb.Append(tmp.Substring(3, 3));
-                }
-                else if (tmp.Length == 9)
-                {
-                    sb.Append(tmp.Substring(0, 3));
-                    sb.Append('-');
-                    sb.Append(tmp.Substring(3, 3));
-                    sb.Append('-');
-                    sb.Append(tmp.Substring(6, 3));
-                }
-                else if (tmp.Length == 8)
-                {
-                    sb.Append(tmp);
-                }
-                codes[i] = sb.ToString();
-            }
 
-            return codes;
-        }
-
-        private bool CheckCodeFormat(string code, Action<String> messageCallback)
-        {
-            if (String.IsNullOrWhiteSpace(code))
-            {
-                messageCallback(AppResources.CheatNoCodeEntered);
-                return false;
-            }
-            string[] codeParts = code.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < codeParts.Length; i++)
-            {
-                string line = codeParts[i].ToUpper().Trim().Replace("\t", "");
-                string tmp = Regex.Replace(line, "[- ]", "");
-                try
-                {
-                    Int64.Parse(tmp, System.Globalization.NumberStyles.HexNumber);
-                }
-                catch (Exception)
-                {
-                    messageCallback(AppResources.CheatInvalidFormat2);
-                    return false;
-                }
-                if (tmp.Length != 6 && tmp.Length != 9 && tmp.Length != 8)
-                {
-                    messageCallback(AppResources.CheatInvalidFormat2);
-                    return false;
-                }
-            }
-            return true;
-        }
-#endif
 
         private void cheatEnabledBox_Checked(object sender, RoutedEventArgs e)
         {

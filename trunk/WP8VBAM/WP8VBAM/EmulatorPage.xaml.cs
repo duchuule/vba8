@@ -154,6 +154,8 @@ namespace PhoneDirect3DXamlAppInterop
                 Text = AppResources.EmulatorBackIcon
             };
             backButton.Click += backbutton_click;
+            
+
 
             var resetButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/refresh.png", UriKind.Relative))
             {

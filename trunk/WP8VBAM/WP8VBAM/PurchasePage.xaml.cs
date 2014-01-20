@@ -64,6 +64,32 @@ namespace PhoneDirect3DXamlAppInterop
                 string pname = "";
                 Visibility buyButtonVisibility = Visibility.Collapsed;
 
+                // get gold in-app purcase
+                key = "noads_premium";
+                imageLink = "/Assets/Icons/noad_plus_icon.png";
+                if (li.ProductListings.TryGetValue(key, out pListing))
+                {
+                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? "Purchased, thank you!" : pListing.FormattedPrice;
+                    buyButtonVisibility = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? Visibility.Collapsed : Visibility.Visible;
+                    pname = pListing.Name;
+                }
+                else
+                {
+                    status = "Product is in certification with MS. Please try again in tomorrow.";
+                    buyButtonVisibility = Visibility.Collapsed;
+                    pname = "No Ads + Premium Features";
+                }
+
+                picItems.Add(
+                    new ProductItem
+                    {
+                        imgLink = imageLink,
+                        Name = pname,
+                        Status = status,
+                        key = key,
+                        BuyNowButtonVisible = buyButtonVisibility
+                    }
+                );
 
                 // no ads
                 key = "removeads";
@@ -123,32 +149,7 @@ namespace PhoneDirect3DXamlAppInterop
                     }
                 );
 
-                // get gold in-app purcase
-                key = "noads_premium";
-                imageLink = "/Assets/Icons/noad_plus_icon.png";
-                if (li.ProductListings.TryGetValue(key, out pListing))
-                {
-                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? "Purchased, thank you!" : pListing.FormattedPrice;
-                    buyButtonVisibility = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? Visibility.Collapsed : Visibility.Visible;
-                    pname = pListing.Name;
-                }
-                else
-                {
-                    status = "Product is in certification with MS. Please try again in tomorrow.";
-                    buyButtonVisibility = Visibility.Collapsed;
-                    pname = "No Ads + Premium Features";
-                }
-
-                picItems.Add(
-                    new ProductItem
-                    {
-                        imgLink = imageLink,
-                        Name = pname,
-                        Status = status,
-                        key = key,
-                        BuyNowButtonVisible = buyButtonVisibility
-                    }
-                );
+                
 
 
 

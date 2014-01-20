@@ -259,7 +259,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDevice|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -275,7 +275,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugGBC|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;GBC;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;GBC;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -291,7 +291,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugTrial|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -307,7 +307,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugTrialGBC|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;GBC;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;GBC;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -323,7 +323,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -339,7 +339,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBeta|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -355,7 +355,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGBC|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;GBC;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;GBC;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -371,7 +371,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>

@@ -82,6 +82,17 @@ namespace PhoneDirect3DXamlAppInterop
         public const String RRightLKey = "RRightLKey";
         public const String RTopLKey = "RTopLKey";
 
+        public const String MogaAKey = "MogaAKey";
+        public const String MogaBKey = "MogaBKey";
+        public const String MogaXKey = "MogaXKey";
+        public const String MogaYKey = "MogaYKey";
+        public const String MogaL1Key = "MogaL1Key";
+        public const String MogaL2Key = "MogaL2Key";
+        public const String MogaR1Key = "MogaR1Key";
+        public const String MogaR2Key = "MogaR2Key";
+        public const String MogaLeftJoystickKey = "MogaLeftJoystickKey";
+        public const String MogaRightJoystickKey = "MogaRightJoystickKey";
+
         bool initdone = false;
 
         public SettingsPage()
@@ -109,6 +120,11 @@ namespace PhoneDirect3DXamlAppInterop
         {
             //use MOGA controller needs to be set here incase we are coming back from purchase page
             this.toggleUseMogaController.IsChecked = EmulatorSettings.Current.UseMogaController;
+
+            if (EmulatorSettings.Current.UseMogaController)
+                MappingBtn.Visibility = Visibility.Visible;
+            else
+                MappingBtn.Visibility = Visibility.Collapsed;
 
             base.OnNavigatedTo(e);
         }
@@ -780,6 +796,11 @@ namespace PhoneDirect3DXamlAppInterop
                     }
                 }
 #endif
+                if (EmulatorSettings.Current.UseMogaController)
+                    MappingBtn.Visibility = Visibility.Visible;
+                else
+                    MappingBtn.Visibility = Visibility.Collapsed;
+
             }
         }
 
@@ -915,6 +936,11 @@ namespace PhoneDirect3DXamlAppInterop
                 }
             }
 
+        }
+
+        private void MappingBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MogaMappingPage.xaml", UriKind.Relative));
         }
 
         

@@ -229,7 +229,7 @@
     <value>Error while accessing SkyDrive: {0}</value>
   </data>
   <data name="SkyDriveImportTitle" xml:space="preserve">
-    <value>SkyDrive</value>
+    <value>import ROMs</value>
   </data>
   <data name="StatusLabelContent" xml:space="preserve">
     <value>Status: </value>
@@ -267,7 +267,8 @@
 The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages.
 
 Credits:
-Eddi Bento for logo design</value>
+Eddi Bento for logo design.
+MOGA company for the surprised gift.</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -351,7 +352,7 @@ Eddi Bento for logo design</value>
     <value>Error while uploading a file: {0}. Try to sign out from SkyDrive and sign back in if this error persists.</value>
   </data>
   <data name="BackupInstructions" xml:space="preserve">
-    <value>To export saves, click on the name of the ROM in the list below. The savestates and battery file will be uploaded to a SkyDrive directory. </value>
+    <value>Choose the game to export saves.</value>
   </data>
   <data name="BackupPageTitle" xml:space="preserve">
     <value>export saves</value>
@@ -659,7 +660,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value />
   </data>
   <data name="CheatInvalidFormat" xml:space="preserve">
-    <value>Invalid code format. The codes must be 12 or 16 digit hexadecimal values per line.</value>
+    <value>Invalid code format. The codes must be 6, 8, 9, 12 or 16 hexadecimal values per line.</value>
   </data>
   <data name="CheatListGameLabel" xml:space="preserve">
     <value>Cheats for game:</value>
@@ -801,5 +802,14 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</value>
   </data>
   <data name="UploadProgressText" xml:space="preserve">
     <value>Exporting '{0}'</value>
+  </data>
+  <data name="PremiumText" xml:space="preserve">
+    <value>Premium features include: 
+- support for MOGA controller. 
+- customize background in portrain mode.
+
+VBA8 and VGBC8 now have identical feature set. You should only purchase features on one app only.
+
+***PLEASE READ THIS***: MOGA controller support is free in Snes8x, before you purchase this feature, please download Snes8x and test if your controller works with your phone.</value>
   </data>
 </root>

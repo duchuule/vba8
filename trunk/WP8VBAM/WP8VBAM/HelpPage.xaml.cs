@@ -57,7 +57,7 @@ namespace PhoneDirect3DXamlAppInterop
 #else
             emailcomposer.To = AppResources.AboutContact2;
 #endif
-            emailcomposer.Subject = "bug report or feature suggestion";
+            emailcomposer.Subject = "VBA8/VGBC8 bug report or feature suggestion";
             emailcomposer.Body = "Insert your bug report or feature request here.";
             emailcomposer.Show();
         }

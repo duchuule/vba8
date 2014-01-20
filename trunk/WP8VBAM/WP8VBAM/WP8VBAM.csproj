@@ -321,6 +321,9 @@
     <Compile Include="ManageSavestatePage.xaml.cs">
       <DependentUpon>ManageSavestatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MogaMappingPage.xaml.cs">
+      <DependentUpon>MogaMappingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchasePage.xaml.cs">
       <DependentUpon>PurchasePage.xaml</DependentUpon>
@@ -406,6 +409,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManageSavestatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MogaMappingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

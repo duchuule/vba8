@@ -47,6 +47,7 @@ extern SoundDriver *newXAudio2_Output();
 extern void soundShutdown();
 void systemGbPrint(unsigned char *, int, int, int, int, int) { }
 Moga::Windows::Phone::ControllerManager^ GetMogaController(void);
+void GetMogaMapping(int pressedButton, bool* a, bool* b, bool* l, bool* r );
 
 SoundDriver * systemSoundInit()
 {
@@ -79,6 +80,8 @@ u32 systemReadJoypad(int gamepad)
 	bool b = false;
 	bool l = false;
 	bool r = false;
+
+	EmulatorSettings ^settings = EmulatorSettings::Current;
 
 	//Moga
 	using namespace Moga::Windows::Phone;
@@ -159,15 +162,22 @@ u32 systemReadJoypad(int gamepad)
 		}
 
 		
-		if(ctrl->GetKeyCode(KeyCode::A) == ControllerAction::Pressed || ctrl->GetKeyCode(KeyCode::X) == ControllerAction::Pressed)
+		if(ctrl->GetKeyCode(KeyCode::A) == ControllerAction::Pressed )
 		{
-			b = true;
+			GetMogaMapping(settings->MogaA, &a, &b, &l, &r );
 		}
 
-		if(ctrl->GetKeyCode(KeyCode::B) == ControllerAction::Pressed || ctrl->GetKeyCode(KeyCode::Y) == ControllerAction::Pressed)
-		{
-			a = true;
-		}
+		
+		if(ctrl->GetKeyCode(KeyCode::B) == ControllerAction::Pressed)
+			GetMogaMapping(settings->MogaB, &a, &b, &l, &r );
+
+
+		if (ctrl->GetKeyCode(KeyCode::X) == ControllerAction::Pressed)
+			GetMogaMapping(settings->MogaX, &a, &b, &l, &r );
+
+
+		if(ctrl->GetKeyCode(KeyCode::Y) == ControllerAction::Pressed)
+			GetMogaMapping(settings->MogaY, &a, &b, &l, &r );
 
 		if(ctrl->GetKeyCode(KeyCode::Start) == ControllerAction::Pressed)
 		{
@@ -199,15 +209,25 @@ u32 systemReadJoypad(int gamepad)
 			down = true;
 		}
 
-		if(ctrl->GetKeyCode(KeyCode::L1) == ControllerAction::Pressed || abs(ctrl->GetAxisValue(Axis::LeftTrigger)) > 0.5f)
-		{
-			l = true;
-		}
+		if(ctrl->GetKeyCode(KeyCode::L1) == ControllerAction::Pressed )
+			GetMogaMapping(settings->MogaL1, &a, &b, &l, &r );
 
-		if(ctrl->GetKeyCode(KeyCode::R1) == ControllerAction::Pressed || abs(ctrl->GetAxisValue(Axis::RightTrigger)) > 0.5f)
-		{
-			r = true;
-		}
+		if (abs(ctrl->GetAxisValue(Axis::LeftTrigger)) > 0.5f)
+			GetMogaMapping(settings->MogaL2, &a, &b, &l, &r );
+
+
+		if(ctrl->GetKeyCode(KeyCode::R1) == ControllerAction::Pressed )
+			GetMogaMapping(settings->MogaR1, &a, &b, &l, &r );
+
+
+		if (abs(ctrl->GetAxisValue(Axis::RightTrigger)) > 0.5f)
+			GetMogaMapping(settings->MogaR2, &a, &b, &l, &r );
+
+		if(ctrl->GetKeyCode(KeyCode::ThumbLeft) == ControllerAction::Pressed )
+			GetMogaMapping(settings->MogaLeftJoystick, &a, &b, &l, &r );
+
+		if(ctrl->GetKeyCode(KeyCode::ThumbRight) == ControllerAction::Pressed )
+			GetMogaMapping(settings->MogaRightJoystick, &a, &b, &l, &r );
 
 	}
 
@@ -244,7 +264,7 @@ u32 systemReadJoypad(int gamepad)
 
 
 
-		EmulatorSettings ^settings = EmulatorSettings::Current;
+		
 	
 		if(settings->CameraButtonAssignment == 0)
 		{
@@ -295,6 +315,20 @@ u32 systemReadJoypad(int gamepad)
 	{}
 	return res;
 }
+
+void GetMogaMapping(int pressedButton, bool* a, bool* b, bool* l, bool* r )
+{
+	if (pressedButton & 1)
+		*a = true;
+	if (pressedButton & 2)
+		*b = true;
+	if (pressedButton & 4) 
+		*l = true;
+	if (pressedButton & 8)
+		*r = true;
+	
+}
+
 
 int RGB_LOW_BITS_MASK = 65793;
 int emulating;

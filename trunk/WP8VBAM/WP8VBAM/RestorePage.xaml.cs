@@ -57,9 +57,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.BackKeyPress += SkyDriveImportPage_BackKeyPress;
 
-#if GBC
-            this.titleLabel.Text = AppResources.ApplicationTitle2;
-#endif
+
         }
 
         async void skydriveList_SelectionChanged(object sender, SelectionChangedEventArgs e)
