@@ -49,9 +49,6 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.romList.ItemsSource = db.GetROMList();
 
-#if GBC
-            this.titleLabel.Text = AppResources.ApplicationTitle2;
-#endif
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

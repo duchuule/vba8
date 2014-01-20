@@ -42,7 +42,7 @@
                       Grid.Row="1">
             <StackPanel x:Name="ContentPanel" Grid.Row="1" 
                         Margin="21,0,0,0">
-                <TextBlock Text="Premium features include support for MOGA controller. ***PLEASE READ THIS***: this feature is free in Snes8x, before you purchase this feature, please download Snes8x and test if your controller works with your phone." 
+                <TextBlock Text="{Binding Path=LocalizedResources.PremiumText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                        />

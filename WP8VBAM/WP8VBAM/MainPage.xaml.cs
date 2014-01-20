@@ -535,6 +535,48 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     isoSettings[SettingsPage.RTopLKey] = cpos[27];
                 }
+
+                //moga mapping
+                if (!isoSettings.Contains(SettingsPage.MogaAKey))
+                {
+                    isoSettings[SettingsPage.MogaAKey] = 2;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaBKey))
+                {
+                    isoSettings[SettingsPage.MogaBKey] = 1;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaXKey))
+                {
+                    isoSettings[SettingsPage.MogaXKey] = 16;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaYKey))
+                {
+                    isoSettings[SettingsPage.MogaYKey] = 16;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaL1Key))
+                {
+                    isoSettings[SettingsPage.MogaL1Key] = 4;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaL2Key))
+                {
+                    isoSettings[SettingsPage.MogaL2Key] = 4;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaR1Key))
+                {
+                    isoSettings[SettingsPage.MogaR1Key] = 8;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaR2Key))
+                {
+                    isoSettings[SettingsPage.MogaR2Key] = 8;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaLeftJoystickKey))
+                {
+                    isoSettings[SettingsPage.MogaLeftJoystickKey] = 16;
+                }
+                if (!isoSettings.Contains(SettingsPage.MogaRightJoystickKey))
+                {
+                    isoSettings[SettingsPage.MogaRightJoystickKey] = 16;
+                }
                 isoSettings.Save();
 
                 settings.LowFrequencyMode = (bool)isoSettings[SettingsPage.LowFreqModeKey];
@@ -597,6 +639,16 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.RRightL = (int)isoSettings[SettingsPage.RRightLKey];
                 settings.RTopL = (int)isoSettings[SettingsPage.RTopLKey];
 
+                settings.MogaA = (int)isoSettings[SettingsPage.MogaAKey];
+                settings.MogaB = (int)isoSettings[SettingsPage.MogaBKey];
+                settings.MogaX = (int)isoSettings[SettingsPage.MogaXKey];
+                settings.MogaY = (int)isoSettings[SettingsPage.MogaYKey];
+                settings.MogaL1 = (int)isoSettings[SettingsPage.MogaL1Key];
+                settings.MogaL2 = (int)isoSettings[SettingsPage.MogaL2Key];
+                settings.MogaR1 = (int)isoSettings[SettingsPage.MogaR1Key];
+                settings.MogaR2 = (int)isoSettings[SettingsPage.MogaR2Key];
+                settings.MogaLeftJoystick = (int)isoSettings[SettingsPage.MogaLeftJoystickKey];
+                settings.MogaRightJoystick = (int)isoSettings[SettingsPage.MogaRightJoystickKey];
 
                 settings.SettingsChanged = this.SettingsChangedDelegate;
             }

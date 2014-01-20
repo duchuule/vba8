@@ -94,6 +94,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         ///
         ///Credits:
         ///Eddi Bento for logo design.
+        ///MOGA company for the surprised gift..
         /// </summary>
         public static string AboutSnes9x {
             get {
@@ -318,7 +319,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To export saves, click on the name of the ROM in the list below. The savestates and battery file will be uploaded to a SkyDrive directory. .
+        ///   Looks up a localized string similar to Choose the game to export saves..
         /// </summary>
         public static string BackupInstructions {
             get {
@@ -507,7 +508,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid code format. The codes must be 12 or 16 digit hexadecimal values per line..
+        ///   Looks up a localized string similar to Invalid code format. The codes must be 6, 8, 9, 12 or 16 hexadecimal values per line..
         /// </summary>
         public static string CheatInvalidFormat {
             get {
@@ -1458,6 +1459,21 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Premium features include: 
+        ///- support for MOGA controller. 
+        ///- customize background in portrain mode.
+        ///
+        ///VBA8 and VGBC8 now have identical feature set. You should only purchase features on one app only.
+        ///
+        ///***PLEASE READ THIS***: MOGA controller support is free in Snes8x, before you purchase this feature, please download Snes8x and test if your controller works with your phone..
+        /// </summary>
+        public static string PremiumText {
+            get {
+                return ResourceManager.GetString("PremiumText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to purchase.
         /// </summary>
         public static string PurchaseText {
@@ -1827,7 +1843,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SkyDrive.
+        ///   Looks up a localized string similar to import ROMs.
         /// </summary>
         public static string SkyDriveImportTitle {
             get {
