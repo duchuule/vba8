@@ -806,6 +806,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert your bug report or feature request here..
+        /// </summary>
+        public static string EmailBodyText {
+            get {
+                return ResourceManager.GetString("EmailBodyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VBA8/VGBC bug report or feature suggestion.
+        /// </summary>
+        public static string EmailSubjectText {
+            get {
+                return ResourceManager.GetString("EmailSubjectText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to hide bar.
         /// </summary>
         public static string EmulatorBackIcon {
@@ -1459,6 +1477,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is a premium feature. Do you want to go to the purchase page?.
+        /// </summary>
+        public static string PremiumFeaturePromptText {
+            get {
+                return ResourceManager.GetString("PremiumFeaturePromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Premium features include: 
         ///- support for MOGA controller. 
         ///- customize background in portrain mode.
@@ -1965,6 +1992,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string TurboModeTip {
             get {
                 return ResourceManager.GetString("TurboModeTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock feature.
+        /// </summary>
+        public static string UnlockFeatureText {
+            get {
+                return ResourceManager.GetString("UnlockFeatureText", resourceCulture);
             }
         }
         
