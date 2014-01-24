@@ -82,6 +82,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
 
                 </Grid.RowDefinitions>
 
@@ -243,7 +244,17 @@
                             >
 
                 </toolkit:ListPicker>
+
+                <TextBlock Text="Note: Emulator Menu function will be implemented at a later date." 
+                           Grid.Row="11"
+                           FontSize="20"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           Foreground="Red"
+                           Margin="0,12,0,0"
+                           />
             </Grid>
+
 
         </ScrollViewer>
 

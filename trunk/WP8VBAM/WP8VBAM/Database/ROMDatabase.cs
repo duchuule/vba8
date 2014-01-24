@@ -261,7 +261,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
             return this.context.ROMTable
                 .Where(r => (r.LastPlayed != FileHandler.DEFAULT_DATETIME))
                 .OrderByDescending(f => f.LastPlayed)
-                .Take(3)
+                .Take(5)
                 .ToArray();
         }
 

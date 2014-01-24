@@ -802,6 +802,8 @@ namespace PhoneDirect3DXamlAppInterop
         void aboutItem_Click(object sender, EventArgs e)
         {
             this.NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+
+            
         }
 
         void resumeButton_Click(object sender, EventArgs e)
@@ -927,7 +929,8 @@ namespace PhoneDirect3DXamlAppInterop
             EmailComposeTask emailcomposer = new EmailComposeTask();
 
             emailcomposer.To = AppResources.AboutContact;
-            emailcomposer.Subject = "VBA8/VGBC bug report or feature suggestion";
+            emailcomposer.Subject = AppResources.EmailSubjectText;
+            emailcomposer.Body = AppResources.EmailBodyText;
             emailcomposer.Show();
         }
 

@@ -193,101 +193,14 @@ namespace PhoneDirect3DXamlAppInterop
                         break;
                 }
 
-                //switch (emuSettings.TurboFrameSkip)
-                //{
-                //    default:
-                //    case 1:
-                //        this.turboSkip1Radio.IsChecked = true;
-                //        break;
-                //    case 2:
-                //        this.turboSkip2Radio.IsChecked = true;
-                //        break;
-                //    case 3:
-                //        this.turboSkip3Radio.IsChecked = true;
-                //        break;
-                //    case 4:
-                //        this.turboSkip4Radio.IsChecked = true;
-                //        break;
-                //    case 5:
-                //        this.turboSkip5Radio.IsChecked = true;
-                //        break;
-                //}
+
 
                 this.turboFrameSkipPicker.SelectedIndex = emuSettings.TurboFrameSkip;
-
-                //switch (emuSettings.PowerFrameSkip)
-                //{
-                //    default:
-                //    case 0:
-                //        this.powerSkip0Radio.IsChecked = true;
-                //        break;
-                //    case 1:
-                //        this.powerSkip1Radio.IsChecked = true;
-                //        break;
-                //    case 2:
-                //        this.powerSkip2Radio.IsChecked = true;
-                //        break;
-                //}
-
                 this.powerFrameSkipPicker.SelectedIndex = emuSettings.PowerFrameSkip;
-
-
-                //switch (emuSettings.FrameSkip)
-                //{
-                //    case -1:
-                //        this.skipAutoRadio.IsChecked = true;
-                //        break;
-                //    default: 
-                //    case 0:
-                //        this.skip0Radio.IsChecked = true;
-                //        break;
-                //    case 1:
-                //        this.skip1Radio.IsChecked = true;
-                //        break;
-                //    case 2:
-                //        this.skip2Radio.IsChecked = true;
-                //        break;
-                //    case 3:
-                //        this.skip3Radio.IsChecked = true;
-                //        break;
-                //}
-
                 this.frameSkipPicker.SelectedIndex = Math.Min(emuSettings.FrameSkip + 1, this.frameSkipPicker.Items.Count - 1);
-
-                //switch (emuSettings.DPadStyle)
-                //{
-                //    default:
-                //    case 0:
-                //        this.dpadStandardRadio.IsChecked = true;
-                //        break;
-                //    case 1:
-                //        this.dpadFixedRadio.IsChecked = true;
-                //        break;
-                //    case 2:
-                //        this.dpadDynamicRadio.IsChecked = true;
-                //        break;
-                //}
-
                 this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad
-
-
-                //switch (emuSettings.CameraButtonAssignment)
-                //{
-                //    default:
-                //    case 0:
-                //        this.cameraTurboRadio.IsChecked = true;
-                //        break;
-                //    case 1:
-                //        this.cameraRRadio.IsChecked = true;
-                //        break;
-                //    case 2:
-                //        this.cameraLRadio.IsChecked = true;
-                //        break;
-                //}
-
                 this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
-
-                
+               
 
                 
 
@@ -788,7 +701,7 @@ namespace PhoneDirect3DXamlAppInterop
                     toggleUseMogaController.IsChecked = EmulatorSettings.Current.UseMogaController;
 
                     //prompt to buy
-                    MessageBoxResult result = MessageBox.Show("This is a premium feature. Do you want to go to the purchase page?", "Unlock feature", MessageBoxButton.OKCancel);
+                    MessageBoxResult result = MessageBox.Show(AppResources.PremiumFeaturePromptText, AppResources.UnlockFeatureText, MessageBoxButton.OKCancel);
 
                     if (result == MessageBoxResult.OK)
                     {
@@ -928,7 +841,7 @@ namespace PhoneDirect3DXamlAppInterop
             else
             {
                 //prompt to buy
-                MessageBoxResult result = MessageBox.Show("This is a premium feature. Do you want to go to the purchase page?", "Unlock feature", MessageBoxButton.OKCancel);
+                MessageBoxResult result = MessageBox.Show(AppResources.PremiumFeaturePromptText, AppResources.UnlockFeatureText, MessageBoxButton.OKCancel);
 
                 if (result == MessageBoxResult.OK)
                 {

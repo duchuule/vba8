@@ -481,6 +481,7 @@
     <Content Include="Assets\Icons\plus_sign.png" />
     <Content Include="Assets\Icons\social.like.png" />
     <Content Include="Assets\pad_start_color.dds" />
+    <Content Include="Assets\resumetext.dds" />
     <Content Include="Assets\ThumbStick_color.dds" />
     <Content Include="Assets\Tiles\FlipCycleTileLargeGBC.png" />
     <Content Include="Assets\Tiles\FlipCycleTileMediumGBC.png" />

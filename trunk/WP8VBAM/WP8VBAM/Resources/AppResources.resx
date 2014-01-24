@@ -812,4 +812,16 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
 
 ***PLEASE READ THIS***: MOGA controller support is free in Snes8x, before you purchase this feature, please download Snes8x and test if your controller works with your phone.</value>
   </data>
+  <data name="EmailBodyText" xml:space="preserve">
+    <value>Insert your bug report or feature request here.</value>
+  </data>
+  <data name="EmailSubjectText" xml:space="preserve">
+    <value>VBA8/VGBC bug report or feature suggestion</value>
+  </data>
+  <data name="PremiumFeaturePromptText" xml:space="preserve">
+    <value>This is a premium feature. Do you want to go to the purchase page?</value>
+  </data>
+  <data name="UnlockFeatureText" xml:space="preserve">
+    <value>Unlock feature</value>
+  </data>
 </root>
