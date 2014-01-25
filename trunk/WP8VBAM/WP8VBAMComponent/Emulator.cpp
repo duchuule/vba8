@@ -228,6 +228,8 @@ namespace Emulator
 	void EmulatorGame::Unpause(void)
 	{
 		//EnterCriticalSection(&this->pauseSync);
+		
+
 		if(!emulating)
 		{
 			emulating = TRUE;

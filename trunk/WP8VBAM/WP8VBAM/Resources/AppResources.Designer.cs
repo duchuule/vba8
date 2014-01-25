@@ -1488,7 +1488,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Premium features include: 
         ///- support for MOGA controller. 
-        ///- customize background in portrain mode.
+        ///- customize background in portrait mode.
         ///
         ///VBA8 and VGBC8 now have identical feature set. You should only purchase features on one app only.
         ///

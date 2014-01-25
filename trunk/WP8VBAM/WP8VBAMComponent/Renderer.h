@@ -37,7 +37,9 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define R_COLOR_TEXTURE_FILE_NAME					L"Assets/pad_r_button_color.dds"
 #define STICK_COLOR_TEXTURE_FILE_NAME				L"Assets/ThumbStick_color.dds"
 
+
 #define DIVIDER_TEXTURE_FILE_NAME					L"Assets/divider.dds"
+#define RESUME_TEXTURE_FILE_NAME					L"Assets/resumetext.dds"
 
 #define AUTOSAVE_INTERVAL			60.0f
 
@@ -88,6 +90,7 @@ internal:
 	Color start_color;
 	Color a_color;
 	Color b_color;
+	Color resume_text_color;
 	int pad_to_draw;
 	bool should_draw_LR;
 	RECT stickRect;
@@ -97,6 +100,7 @@ internal:
 	int									format;
 	int									frontbuffer;
 	int									width, height;
+	bool								should_show_resume_text;
 
 	DXSpriteBatch						*dxSpriteBatch;
 	EmulatorGame						*emulator;
@@ -124,6 +128,8 @@ internal:
 	ComPtr<ID3D11ShaderResourceView>	rButtonSRV;
 	ComPtr<ID3D11Resource>				dividerResource;
 	ComPtr<ID3D11ShaderResourceView>	dividerSRV;
+	ComPtr<ID3D11Resource>				resumeTextResource;
+	ComPtr<ID3D11ShaderResourceView>	resumeTextSRV;
 	EmulatorSettings					^settings;
 	XMMATRIX							outputTransform;
 	
