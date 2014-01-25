@@ -4,6 +4,7 @@
 #include "Vector4.h"
 #include "TextureLoader.h"
 #include "WP8VBAMComponent.h"
+#include <math.h>
 
 using namespace DirectX;
 using namespace Microsoft::WRL;
@@ -64,6 +65,7 @@ EmulatorRenderer::EmulatorRenderer()
 	elapsedTime = 0.0f;
 	settings = EmulatorSettings::Current;
 	frames = 0;
+	should_show_resume_text = false;
 
 	this->waitEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
 
@@ -269,7 +271,9 @@ void EmulatorRenderer::Update(float timeTotal, float timeDelta)
 	start_color = color;
 	a_color = color;
 	b_color = color;
-
+	
+	float text_opacity = (sinf(timeTotal*2) + 1.0f) / 2.0f;
+	resume_text_color = Color(1.0f, 0.0f, 0.0f, text_opacity);
 	
 
 	if(settings->DPadStyle == 0 || settings->DPadStyle == 1)
@@ -455,6 +459,7 @@ void EmulatorRenderer::Render()
 
 	// Render last frame to screen
 	Color white(1.0f, 1.0f, 1.0f, 1.0f);
+	Color red(1.0f, 0.0f, 0.0f, 1.0f);
 	Color color(1.0f, 1.0f, 1.0f, opacity);
 	Color color2(1.0f, 1.0f, 1.0f, opacity + 0.2f);
 	Color dividerColor(86.0f/255, 105.0f/255, 108.0f/255, 1.0f);
@@ -467,6 +472,16 @@ void EmulatorRenderer::Render()
 
 	this->dxSpriteBatch->Draw(targetRect,  &sourceRect, this->bufferSRVs[this->frontbuffer].Get(), this->buffers[this->frontbuffer].Get(), white);
 
+	//resume text if paused
+	if(should_show_resume_text)
+	{
+		Engine::Rectangle resumeTextRect (0.25*width, 0.4*height, 0.5*width, 0.12*height);
+
+		ComPtr<ID3D11Texture2D> tex;
+		this->resumeTextResource.As(&tex);
+		this->dxSpriteBatch->Draw(resumeTextRect, this->resumeTextSRV.Get(), tex.Get(), resume_text_color);
+
+	}
 
 	//draw divider 
 	if(this->orientation == ORIENTATION_PORTRAIT && this->settings->UseColorButtons)

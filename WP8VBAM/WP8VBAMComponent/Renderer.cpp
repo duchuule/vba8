@@ -98,6 +98,13 @@ void Renderer::CreateDeviceResources()
 			this->dividerSRV.GetAddressOf()
 			);
 
+	LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			RESUME_TEXTURE_FILE_NAME,
+			this->resumeTextResource.GetAddressOf(), 
+			this->resumeTextSRV.GetAddressOf()
+			);
+
 	if (this->settings->UseColorButtons)
 	{
 		LoadTextureFromFile(
