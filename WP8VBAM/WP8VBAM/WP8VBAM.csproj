@@ -450,7 +450,6 @@
     <Content Include="Assets\ApplicationBar.Check.png" />
     <Content Include="Assets\ApplicationIconFilled.png" />
     <Content Include="Assets\ApplicationIconFilledGBC.png" />
-    <Content Include="Assets\ApplicationIconGBC.png" />
     <Content Include="Assets\divider.dds" />
     <Content Include="Assets\pad_a_button_color.dds" />
     <Content Include="Assets\pad_b_button_color.dds" />
@@ -541,7 +540,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
-    <Content Include="Assets\ApplicationIcon.png" />
     <Content Include="Assets\Icons\add.png" />
     <Content Include="Assets\Icons\back.png" />
     <Content Include="Assets\Icons\basecircle.png" />
