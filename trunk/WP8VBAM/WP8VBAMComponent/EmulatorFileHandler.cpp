@@ -64,7 +64,8 @@ namespace Emulator
 	StorageFolder ^ROMFolder = nullptr;
 	int SavestateSlot = 0;
 	int LoadstateSlot = 0;
-	bool gbaROMLoaded = true;
+	bool gbaROMLoaded = true; //false if gb ROM, true if gba ROM 
+	
 	Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheatsTmp = nullptr;
 
 	Platform::Array<unsigned char> ^GetSnapshotBuffer(unsigned char *backbuffer, size_t pitch, int imageWidth, int imageHeight)

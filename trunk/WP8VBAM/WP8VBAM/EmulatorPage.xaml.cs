@@ -335,7 +335,13 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (!buyPopupOpened && !confirmPopupOpened)
             {
-                if (!this.ApplicationBar.IsVisible) //if app bar is not visible, cancel the back action and show app bar
+                if (m_d3dBackground == null || m_d3dBackground.IsROMLoaded() == false)
+                {
+                    MessageBox.Show("Please wait until ROM finishes loading");
+                    e.Cancel = true;
+                }
+
+                else if (!this.ApplicationBar.IsVisible) //if app bar is not visible, cancel the back action and show app bar
                 {
                     e.Cancel = true;
                     this.ChangeAppBarVisibility(!this.ApplicationBar.IsVisible);

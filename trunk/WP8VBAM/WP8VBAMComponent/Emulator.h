@@ -55,9 +55,10 @@ namespace Emulator
 
 		Windows::Foundation::IAsyncAction ^threadAction;
 		CRITICAL_SECTION cs;
-		HANDLE swapEvent;
-		HANDLE updateEvent;
+		HANDLE swapEvent; //EmulatorLoop return control to Render
+		HANDLE updateEvent; //Render returns control to EmulatorLoop
 		HANDLE sleepEvent;
+		HANDLE endEvent;  //end of an Emulator loop 
 		bool stopThread;
 		
 		BYTE *gfxbuffer;

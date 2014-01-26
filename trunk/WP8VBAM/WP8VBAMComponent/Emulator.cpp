@@ -62,6 +62,7 @@ namespace Emulator
 		CloseHandle(this->sleepEvent);
 		CloseHandle(this->updateEvent);
 		CloseHandle(this->swapEvent);
+		CloseHandle(this->endEvent);
 		DeleteCriticalSection(&this->cs);
 		DeleteCriticalSection(&pauseSync);
 
@@ -84,6 +85,7 @@ namespace Emulator
 
 		this->swapEvent = CreateEventEx(NULL, NULL, CREATE_EVENT_INITIAL_SET, EVENT_ALL_ACCESS);
 		this->updateEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
+		this->endEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
 		this->sleepEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
 		InitializeCriticalSectionEx(&this->cs, 0, 0);
 		InitializeCriticalSectionEx(&pauseSync, NULL, NULL);
@@ -164,7 +166,7 @@ namespace Emulator
 
 		//SetEvent(this->updateEvent);
 		// Wait for thread termination
-		WaitForSingleObjectEx(this->swapEvent, INFINITE, false);
+		WaitForSingleObjectEx(this->endEvent, INFINITE, false);
 
 		this->threadAction = nullptr;
 
@@ -296,7 +298,8 @@ namespace Emulator
 		}
 
 		// Signal for terminated thread
-		SetEvent(this->swapEvent);
+		SetEvent(this->endEvent);  //this is only called once when the user exists the game.
+
 
 		OutputDebugStringW(L"THREAD ENDED.\n");
 	}

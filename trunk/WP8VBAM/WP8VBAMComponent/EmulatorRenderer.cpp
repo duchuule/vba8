@@ -472,10 +472,13 @@ void EmulatorRenderer::Render()
 
 	this->dxSpriteBatch->Draw(targetRect,  &sourceRect, this->bufferSRVs[this->frontbuffer].Get(), this->buffers[this->frontbuffer].Get(), white);
 
-	//resume text if paused
+	//display resume text if paused
 	if(should_show_resume_text)
 	{
-		Engine::Rectangle resumeTextRect (0.25*width, 0.4*height, 0.5*width, 0.12*height);
+		int textWidth = 0.5*width;
+		int textHeight = textWidth / 480.0f * 80.0f;
+
+		Engine::Rectangle resumeTextRect ((width - textWidth) / 2, (height - textHeight) / 2, textWidth, textHeight);
 
 		ComPtr<ID3D11Texture2D> tex;
 		this->resumeTextResource.As(&tex);
