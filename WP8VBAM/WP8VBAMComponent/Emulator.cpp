@@ -87,6 +87,7 @@ namespace Emulator
 		this->updateEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
 		this->endEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
 		this->sleepEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
+
 		InitializeCriticalSectionEx(&this->cs, 0, 0);
 		InitializeCriticalSectionEx(&pauseSync, NULL, NULL);
 

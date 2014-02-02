@@ -62,6 +62,8 @@ namespace PhoneDirect3DXamlAppInterop
             ApplicationBar = new ApplicationBar();
             ApplicationBar.IsVisible = false;
             ApplicationBar.IsMenuEnabled = true;
+            ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
+            ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
 
             var item0 = new ApplicationBarMenuItem(AppResources.SelectState0);
             item0.Click += (o, e) => { this.m_d3dBackground.SelectSaveState(0); };
@@ -373,6 +375,7 @@ namespace PhoneDirect3DXamlAppInterop
         }
         protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            
 
             //disable lock screen
             PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
@@ -395,7 +398,7 @@ namespace PhoneDirect3DXamlAppInterop
                 var cheats = await FileHandler.LoadCheatCodes(entry);
                 this.m_d3dBackground.LoadCheats(cheats);
 
-                this.m_d3dBackground.UnpauseEmulation();
+                this.m_d3dBackground.UnpauseEmulation(); //if LoadCheats was not called first, this produced access violation exception, why???
             }
             else if (romInfo != null)
             {
@@ -614,6 +617,13 @@ namespace PhoneDirect3DXamlAppInterop
                         break;
                 }
                 this.m_d3dBackground.ChangeOrientation(orientation);
+            }
+
+            //set app bar color in case returning from setting page
+            if (ApplicationBar != null)
+            {
+                ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
+                ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
             }
         }
 

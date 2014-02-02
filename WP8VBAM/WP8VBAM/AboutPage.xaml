@@ -11,10 +11,18 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="False" 
+                                 IsVisible="True" 
+                                 Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+                                  />
+    </shell:SystemTray.ProgressIndicator>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -23,18 +31,17 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Name="titleLabel" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+                       Margin="12,-7,0,0" 
+                       Style="{StaticResource MyTitle1Style}"
+                       x:Name="tblkTitle"/>
         </StackPanel>
 
         
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,0,24,0">
             <ListBox IsHitTestVisible="True" Margin="0,0,0,0">
-                <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
-                    <TextBlock TextWrapping="Wrap" FontSize="28" Name="appnameLabel"
-                        Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" />
-                </ListBoxItem>
+               
                 <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
                     <TextBlock x:Name="tblkVersion"
                         TextWrapping="Wrap" FontSize="26"
@@ -73,7 +80,8 @@
                 </ListBoxItem>
                 <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="True">
                     <Button Content="{Binding LocalizedResources.MoreLicenseButton, Source={StaticResource LocalizedStrings}}"
-                            Click="Button_Click" />
+                            Click="Button_Click"
+                            Margin="-12,0,-12,0"/>
                 </ListBoxItem>
             </ListBox>
         </Grid>

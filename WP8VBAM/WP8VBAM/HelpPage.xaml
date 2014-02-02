@@ -11,19 +11,39 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
 
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="False" 
+                                 IsVisible="True" 
+                                 Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+                                  />
+    </shell:SystemTray.ProgressIndicator>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
         <phone:Pivot Grid.Row="0"
-            Title="{Binding LocalizedResources.HelpTitle, Source={StaticResource LocalizedStrings}}"
-                     x:Name="MainPivotControl">
-            <phone:PivotItem Header="{Binding LocalizedResources.HelpHowToHeader, Source={StaticResource LocalizedStrings}}">
+                x:Name="MainPivotControl">
+            <phone:Pivot.Title>
+                <TextBlock Text="{Binding LocalizedResources.HelpTitle, Source={StaticResource LocalizedStrings}}"
+                                FontSize="20"
+                           FontWeight="Bold"
+                           Margin="0,-8,0,0"/>
+            </phone:Pivot.Title>
+            <phone:PivotItem 
+                            Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding LocalizedResources.HelpHowToHeader, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
+                
                 <!--ContentPanel - place additional content here-->
                 <ListBox Margin="12,0,12,0">
 
@@ -67,7 +87,12 @@
                 </ListBox>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="{Binding LocalizedResources.HelpTipsHeader, Source={StaticResource LocalizedStrings}}">
+            <phone:PivotItem 
+                             Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding LocalizedResources.HelpTipsHeader, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
                 <ListBox Margin="12,0,12,0">
 
                     <ListBoxItem HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
@@ -99,7 +124,12 @@
                 </ListBox>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="{Binding LocalizedResources.HelpIssuesHeader, Source={StaticResource LocalizedStrings}}">
+            <phone:PivotItem 
+                            Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding LocalizedResources.HelpIssuesHeader, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
                 <ListBox Margin="12,0,12,0">
                     <ListBoxItem HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">

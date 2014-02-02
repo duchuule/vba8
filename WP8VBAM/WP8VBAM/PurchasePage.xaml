@@ -11,7 +11,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
 
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="False" 
@@ -20,8 +21,10 @@
                                   />
     </shell:SystemTray.ProgressIndicator>
 
+
+
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -29,8 +32,10 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Name="titleLabel" Text="PURCHASE"
-                       Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Name="titleLabel" 
+                       Text="purchase"
+                       Margin="10,-7,0,0" 
+                       Style="{StaticResource MyTitle1Style}"/>
 
         </StackPanel>
 
@@ -41,7 +46,7 @@
                       Margin="0,0,0,0" 
                       Grid.Row="1">
             <StackPanel x:Name="ContentPanel" Grid.Row="1" 
-                        Margin="21,0,0,0">
+                        Margin="24,0,24,0">
                 <TextBlock Text="{Binding Path=LocalizedResources.PremiumText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
@@ -81,24 +86,28 @@
                             <StackPanel>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Margin="0" Source="{Binding imgLink}"/>
-                                    <StackPanel Grid.Column="1" Margin="0,30,0,0">
-                                        <TextBlock Foreground="white" 
-                                                   FontWeight="ExtraBold" 
-                                                   Text="{Binding Name}" 
-                                                   FontSize="25"/>
-                                        <TextBlock Foreground="white" 
-                                                   FontWeight="Normal" 
-                                                   Text="{Binding Status}"
-                                                   TextWrapping="Wrap"/>
-                                        <Button Content="Purchase" 
-                                                Visibility="{Binding BuyNowButtonVisible}" 
-                                                Click="ButtonBuyNow_Clicked" 
-                                                Tag="{Binding key}" />
-                                    </StackPanel>
+                                    <Grid Grid.Column="1" 
+                                          Margin="12,0,0,0"
+                                          >
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock FontWeight="ExtraBold" 
+                                                       Text="{Binding Name}" 
+                                                       FontSize="25"
+                                                       TextWrapping="Wrap"/>
+                                            <TextBlock FontWeight="Normal" 
+                                                       Text="{Binding Status}"
+                                                       TextWrapping="Wrap"/>
+                                            <Button Content="Purchase" 
+                                                    Visibility="{Binding BuyNowButtonVisible}" 
+                                                    Click="ButtonBuyNow_Clicked" 
+                                                    Tag="{Binding key}"
+                                                    Margin="-12, 0, -12, 0"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </Grid>
                             </StackPanel>
                         </DataTemplate>

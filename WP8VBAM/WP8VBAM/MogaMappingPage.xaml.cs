@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using PhoneDirect3DXamlAppComponent;
 using System.IO.IsolatedStorage;
+using PhoneDirect3DXamlAppInterop.Resources;
+using System.Windows.Media;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -19,6 +21,13 @@ namespace PhoneDirect3DXamlAppInterop
         public MogaMappingPage()
         {
             InitializeComponent();
+
+#if GBC
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
+#endif
+            ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
+            ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
+
             Abtn.ItemsSource = appFunctionList;
             Bbtn.ItemsSource = appFunctionList;
             Xbtn.ItemsSource = appFunctionList;

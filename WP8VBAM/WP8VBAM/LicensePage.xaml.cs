@@ -27,7 +27,7 @@ namespace PhoneDirect3DXamlAppInterop
             }
 
 #if GBC
-            this.pivot.Title = AppResources.ApplicationTitle2;
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
         }
 

@@ -33,6 +33,7 @@ namespace PhoneDirect3DXamlAppInterop
             importEmailText.Text = AppResources.HelpImportEmailText2;
             importWebText.Text = AppResources.HelpImportWebText2;
             contactBlock.Text = AppResources.AboutContact2;
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
         }
 

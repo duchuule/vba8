@@ -11,9 +11,17 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="False" 
+                                 IsVisible="True" 
+                                 Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+                                  />
+    </shell:SystemTray.ProgressIndicator>
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
@@ -21,9 +29,21 @@
         
         <phone:Pivot Name="pivot" 
                      Grid.Row="0"
-                     Title="{Binding Path=LocalizedResources.CheatPageTitle, Source={StaticResource LocalizedStrings}}"
                      SelectionChanged="pivot_SelectionChanged">
-            <phone:PivotItem Name="addPivot" Header="{Binding Path=LocalizedResources.CheatCodesAddPivotTitle, Source={StaticResource LocalizedStrings}}">
+            <phone:Pivot.Title>
+                <TextBlock Text="{Binding Path=LocalizedResources.CheatPageTitle, Source={StaticResource LocalizedStrings}}"
+                                FontSize="20"
+                           FontWeight="Bold"
+                           Margin="0,-8,0,0"/>
+            </phone:Pivot.Title>
+            
+            <phone:PivotItem Name="addPivot" 
+                             Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.CheatCodesAddPivotTitle, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
+                            
                 <Grid x:Name="ContentPanel" Margin="12,0,12,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -33,10 +53,14 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" FontSize="20" Name="descLabel"
-                       Text="{Binding Path=LocalizedResources.CheatsDescription, Source={StaticResource LocalizedStrings}}"/>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left"
+                               TextWrapping="Wrap" 
+                               FontSize="20" 
+                               Name="descLabel"
+                       Text="{Binding Path=LocalizedResources.CheatsDescription, Source={StaticResource LocalizedStrings}}"
+                               />
 
-                    <Grid Grid.Row="2" Margin="10,0,0,0">
+                    <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="140" />
                             <ColumnDefinition Width="*" />
@@ -44,7 +68,7 @@
                         <TextBlock Text="Description" Grid.Column="0" VerticalAlignment="Center" FontSize="22" />
                         <TextBox Name="cheatDescBox" Grid.Column="1" />
                     </Grid>
-                    <Grid Grid.Row="3" Margin="10,0,0,0">
+                    <Grid Grid.Row="3" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="140" />
                             <ColumnDefinition Width="*" />
@@ -53,10 +77,17 @@
                         <TextBox Name="cheatCodeBox" AcceptsReturn="True" Height="auto" Grid.Column="1" />
                     </Grid>
                     <Button Grid.Row="4" Content="{Binding Path=LocalizedResources.AddCheatButtonText, Source={StaticResource LocalizedStrings}}" 
-                            Click="addButton_Click"/>
+                            Click="addButton_Click"
+                            Margin="-12,0,-12,0"/>
                 </Grid>
             </phone:PivotItem>
-            <phone:PivotItem Name="listPivot" Header="{Binding Path=LocalizedResources.CheatCodesListPivotTitle, Source={StaticResource LocalizedStrings}}">
+            <phone:PivotItem Name="listPivot"
+                           Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.CheatCodesListPivotTitle, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>  
+                            
                 <Grid x:Name="listPanel" Margin="12,0,12,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -77,7 +108,8 @@
                                     <StackPanel Orientation="Horizontal">
                                         <CheckBox Name="cheatEnabledBox" IsChecked="{Binding Enabled}" 
                                                   Checked="cheatEnabledBox_Checked"
-                                                  Unchecked="cheatEnabledBox_Unchecked"/>
+                                                  Unchecked="cheatEnabledBox_Unchecked"
+                                                  Margin="-12,0,0,0"/>
                                         <StackPanel Orientation="Vertical">
                                             <TextBlock Text="{Binding CheatCode}" FontSize="28" />
                                             <TextBlock Text="{Binding Description}" FontSize="20" />

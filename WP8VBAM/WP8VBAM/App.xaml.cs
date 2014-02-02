@@ -17,6 +17,8 @@ using Windows.ApplicationModel.Core;
 using PhoneDirect3DXamlAppComponent;
 using Windows.ApplicationModel.Store;
 using Store = Windows.ApplicationModel.Store;
+using System.Collections;
+using System.IO.IsolatedStorage;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -63,6 +65,11 @@ namespace PhoneDirect3DXamlAppInterop
             
         }
 
+
+
+        
+
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -79,6 +86,9 @@ namespace PhoneDirect3DXamlAppInterop
 
             // Standard Silverlight initialization
             InitializeComponent();
+
+            //merge custom theme
+            MergeCustomColors();
 
             // Phone-specific initialization
             InitializePhoneApplication();
@@ -102,6 +112,84 @@ namespace PhoneDirect3DXamlAppInterop
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+        }
+
+        public static void MergeCustomColors()
+        {
+            var dictionaries = new ResourceDictionary();
+            string source;
+            Color systemTrayColor;
+            SolidColorBrush brush;
+
+            int themeChoice = 0; //0: light, 1: dark
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("ThemeSelectionKey"))
+            {
+                themeChoice = (int)IsolatedStorageSettings.ApplicationSettings["ThemeSelectionKey"];
+            }
+
+
+            //remove then add, stupid silverlight does not allow to change value
+            App.Current.Resources.Remove("CustomForegroundColor");
+            App.Current.Resources.Remove("CustomChromeColor");
+
+            if (themeChoice == 0)
+            {
+                source = String.Format("/CustomTheme/LightTheme.xaml");
+
+                App.Current.Resources.Add("CustomChromeColor", Color.FromArgb(255, 221, 221, 221)); //same as PhoneChromeColor
+                App.Current.Resources.Add("CustomForegroundColor", Color.FromArgb(0xDE, 0, 0, 0)); //same as PhoneForegroundColor
+                 
+            }
+            else
+            {
+                source = String.Format("/CustomTheme/DarkTheme.xaml");
+
+                App.Current.Resources.Add("CustomChromeColor", Color.FromArgb(255, 0x1f, 0x1f, 0x1f)); 
+                App.Current.Resources.Add("CustomForegroundColor", Color.FromArgb(255, 255, 255, 255));
+
+                
+            }
+
+            //system color
+            systemTrayColor = Color.FromArgb(255, 0x4d, 0x3a, 0x89);
+#if GBC
+            systemTrayColor = Color.FromArgb(255, 0xb6, 0x1e, 0x45);
+#endif      
+            App.Current.Resources.Remove("SystemTrayColor"); 
+            App.Current.Resources.Add("SystemTrayColor", systemTrayColor);
+
+            //brushes
+
+            SolidColorBrush brush1 = App.Current.Resources["HeaderBackgroundBrush"] as SolidColorBrush;
+            brush1.Color = systemTrayColor;
+            brush1.Opacity = 0.7;
+
+            SolidColorBrush brush3 = App.Current.Resources["HeaderForegroundBrush"] as SolidColorBrush;
+            brush3.Color = Colors.White;
+            brush3.Opacity = 1.0;
+
+
+            SolidColorBrush brush2 = App.Current.Resources["ListboxBackgroundBrush"] as SolidColorBrush;
+            brush2.Color = systemTrayColor;
+            brush2.Opacity = 0.1;
+
+
+
+            var themeStyles = new ResourceDictionary { Source = new Uri(source, UriKind.Relative) };
+            dictionaries.MergedDictionaries.Add(themeStyles);
+
+
+            ResourceDictionary appResources = App.Current.Resources;
+            foreach (DictionaryEntry entry in dictionaries.MergedDictionaries[0])
+            {
+                SolidColorBrush colorBrush = entry.Value as SolidColorBrush;
+                SolidColorBrush existingBrush = appResources[entry.Key] as SolidColorBrush;
+                if (existingBrush != null && colorBrush != null)
+                {
+                    existingBrush.Color = colorBrush.Color;
+                }
+            }
+
         }
 
         // Code to execute when the application is launching (eg, from Start)

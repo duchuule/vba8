@@ -8,12 +8,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Controls="clr-namespace:Microsoft.Live.Controls;assembly=Microsoft.Live.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data" 
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:local="clr-namespace:PhoneDirect3DXamlAppInterop"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
 
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="False" 
@@ -22,128 +27,407 @@
                                   />
     </shell:SystemTray.ProgressIndicator>
 
+
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot" 
+          Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <phone:Panorama Grid.Row="0"
-                        >
+                         >
+            <!--<phone:Panorama.Background>
+                <ImageBrush ImageSource="Assets\landscape1.jpg"
+                            Opacity="0.2"/>
+            </phone:Panorama.Background>-->
             <phone:PanoramaItem  >
                 <phone:PanoramaItem.Header >
                     <TextBlock Text="{Binding Path=LocalizedResources.RomListTitle, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource MyTitle1Style}" 
+                               Margin="0,6,0,0"
                                />
                 </phone:PanoramaItem.Header>
-                
-                <ListBox x:Name="romList" 
-                         SelectionChanged="romList_SelectionChanged"
-                         toolkit:TiltEffect.IsTiltEnabled="True"
-                         Margin="0, -24, 0, 0"
-                         >
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Height="60" Hold="StackPanel_Hold">
-                                <Image Source="{Binding SnapshotURI, Converter={StaticResource IsoImageConverter}}" Stretch="Fill" Width="60" Height="40" />
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Margin="14,0,0,0"  Text="{Binding DisplayName}" FontSize="26" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Margin="14,0,0,0"  Text="{Binding Path=LocalizedResources.LastPlayedLabel, Source={StaticResource LocalizedStrings}}" FontSize="14" />
-                                        <TextBlock Margin="14,0,0,0"  Text="{Binding LastPlayed, Converter={StaticResource LastPlayedConverter}}" FontSize="14" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                
+
+
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              Margin="0,-12,0,0">
+                    <StackPanel >
+
+                        <local:TiltableGrid Grid.Column="0" 
+                                                Grid.Row="0"
+                                  VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Stretch"
+                                   Height="272"  
+                                  Margin="12, 0, 0, 24"
+                                    toolkit:TiltEffect.IsTiltEnabled="True"
+                                            x:Name="lastRomGrid"
+                                  >
+
+                            <!--<local:TiltableCanvas Height="272" 
+                                    Margin="12, 0, 0, 24"
+                                    toolkit:TiltEffect.IsTiltEnabled="True"
+                                    VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Stretch">-->
+                            <Grid Tap="Image_Tap">
+                                <Image Source="{Binding SnapshotURI, Converter={StaticResource IsoImageConverter}}" 
+                                    Stretch="UniformToFill"  
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                   d:DataContext="{Binding DesignROMDBEntry[0]}"
+                                       
+                                   Grid.Row="0"
+                                    Grid.Column="0" 
+                                    />
+
+                                
+                                
+
+                                <Grid>
+                                    <Grid.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Offset="0.6"/>
+                                            <GradientStop Color="#B2000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                    <TextBlock Text="{Binding DisplayName}" 
+                                               d:DataContext="{Binding DesignROMDBEntry[0]}"
+                                           VerticalAlignment="Bottom"
+                                           TextWrapping="Wrap"
+                                           FontSize="30"
+                                         
+                                           LineHeight="38"
+                                           LineStackingStrategy="BaselineToBaseline"
+                                           Margin="20, 0, 20, 12"
+                                           Foreground="White"
+                                           
+                                           />
+                                </Grid>
+
+                                <Image Source="/Assets/Icons/play.png" 
+                                       Width="100"
+                                       Opacity="0.7"/>
+
+                            </Grid>
+                        </local:TiltableGrid>
+
+
+                        <!-- RECENT ROM LIST -->
+
+                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                              Margin="12,0,0,12"
+                              Height="36"
+                              VerticalAlignment="Stretch"
+                              
+                              >
+                            <TextBlock Text="RECENT"
+                                 FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                       Margin="12,0,0,0"
+                                       Foreground="{StaticResource HeaderForegroundBrush}"
+                                  />
+                        </Grid>
+
+                        <ListBox Name="recentList" 
+                                 SelectionChanged="recentList_SelectionChanged_1"
+                                 toolkit:TiltEffect.IsTiltEnabled="True"
+                                 Margin="12,0,0,0"
+                                  ItemsSource="{Binding}"
+                                 DataContext="{Binding DesignROMDBEntry}"
+                                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                                 >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="{StaticResource ListboxBackgroundBrush}"
+                                        Margin="0,0,0,12"
+                                          Height="80" >
+                                       
+
+                                        <toolkit:ContextMenuService.ContextMenu>
+                                            <toolkit:ContextMenu IsZoomEnabled="False"
+                                                                  >
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
+                                                            Click="pinBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.RenameMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Click="renameBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.DeleteMenuItemText, Source={StaticResource LocalizedStrings}}" 
+                                                            Click="deleteBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.DeleteSavesEntry, Source={StaticResource LocalizedStrings}}"
+                                                                Click="deleteSavesBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.ManageSavestateMenuItem, Source={StaticResource LocalizedStrings}}" 
+                                                            Click="deleteManageBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.CheatMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Click="cheatBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                            </toolkit:ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>
+                                        
+                                        
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0" 
+                                              VerticalAlignment="Stretch" 
+                                              HorizontalAlignment="Stretch"
+                                              >
+                                            <Image Source="{Binding SnapshotURI, Converter={StaticResource IsoImageConverter}}" 
+                                                    Stretch="UniformToFill"  
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    />
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical"
+                                                    VerticalAlignment="Center"
+                                                    Grid.Column="1" >
+                                            <TextBlock Margin="14,0,0,0"  
+                                                   Text="{Binding DisplayName}" 
+                                                   
+                                                   TextWrapping="Wrap" 
+                                                   FontSize="22" />
+                                            <StackPanel Orientation="Horizontal"
+                                                        Height="24"
+                                                        >
+                                                <TextBlock Margin="14,0,0,0"  
+                                                       Text="{Binding Path=LocalizedResources.LastPlayedLabel, Source={StaticResource LocalizedStrings}}" 
+                                                       FontSize="14" 
+                                                           
+                                                          />
+                                                <TextBlock Margin="14,0,0,0"  
+                                                       Text="{Binding LastPlayed, Converter={StaticResource LastPlayedShortConverter}}" 
+                                                       FontSize="14"
+                                                           />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <!--ALL LIST-->
+
+                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                              Margin="12,12,0,12"
+                              Height="36"
+                              VerticalAlignment="Stretch"
+                              >
+                            <TextBlock Text="ALL"
+                                 FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                       Margin="12,0,0,0"
+                                       Foreground="{StaticResource HeaderForegroundBrush}"
+                                  />
+                        </Grid>
+
+                        <ListBox x:Name="romList" 
+                                 SelectionChanged="romList_SelectionChanged"
+                                 toolkit:TiltEffect.IsTiltEnabled="True"
+                                 Margin="12, 0, 0, 0"  
+                                 ItemsSource="{Binding}"
+                                 DataContext="{Binding DesignROMDBEntry}"
+                                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                                 >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+
+                                <DataTemplate>
+                                    <Grid Background="{StaticResource ListboxBackgroundBrush}"
+                                                Margin="0,0,0,12"
+                                                
+                                                Height="60" >
+
+                                        <toolkit:ContextMenuService.ContextMenu>
+                                            <toolkit:ContextMenu IsZoomEnabled="False"
+                                                                  >
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
+                                                            Click="pinBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.RenameMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Click="renameBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.DeleteMenuItemText, Source={StaticResource LocalizedStrings}}" 
+                                                            Click="deleteBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.DeleteSavesEntry, Source={StaticResource LocalizedStrings}}"
+                                                                Click="deleteSavesBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.ManageSavestateMenuItem, Source={StaticResource LocalizedStrings}}" 
+                                                            Click="deleteManageBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.CheatMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Click="cheatBlock_Tap"
+                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                            </toolkit:ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="90"/>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0"
+                                              VerticalAlignment="Stretch" 
+                                              HorizontalAlignment="Stretch"
+                                              >
+                                            <Image Source="{Binding SnapshotURI, Converter={StaticResource IsoImageConverter}}" 
+                                                   Stretch="UniformToFill" 
+                                                    HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical"
+                                                    VerticalAlignment="Center"
+                                                    Grid.Column="1"
+                                                    >
+                                            <TextBlock Margin="14,0,0,0"  
+                                                       Text="{Binding DisplayName}" 
+                                                       FontSize="22" 
+                                                       TextWrapping="NoWrap"
+                                                       />
+                                            <!--<StackPanel Orientation="Horizontal">
+                                                <TextBlock Margin="14,0,0,0"  
+                                                           Text="{Binding Path=LocalizedResources.LastPlayedLabel, Source={StaticResource LocalizedStrings}}" 
+                                                           FontSize="14" />
+                                                <TextBlock Margin="14,0,0,0"  
+                                                           Text="{Binding LastPlayed, Converter={StaticResource LastPlayedConverter}}" FontSize="14" />
+                                            </StackPanel>-->
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                    </StackPanel>
+                </ScrollViewer>
                 <!--<Grid />-->
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem >
-                <phone:PanoramaItem.Header >
-                    <TextBlock Text="{Binding Path=LocalizedResources.RecentTitle, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource MyTitle1Style}" 
-                               />
-                </phone:PanoramaItem.Header>
-                <ListBox Name="recentList" 
-                         SelectionChanged="recentList_SelectionChanged_1"
-                         toolkit:TiltEffect.IsTiltEnabled="True"
-                         Margin="0,-24,0,0">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" 
-                                        Margin="0,0,0,20" 
-                                        Hold="StackPanel_Hold">
-                                <Image Source="{Binding SnapshotURI, Converter={StaticResource IsoImageConverter}}" Stretch="Fill" Width="130" Height="87" />
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Margin="14,0,0,0"  Text="{Binding DisplayName}" Width="320" TextWrapping="Wrap" FontSize="26" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Margin="14,0,0,0"  Text="{Binding Path=LocalizedResources.LastPlayedLabel, Source={StaticResource LocalizedStrings}}" FontSize="14" />
-                                        <TextBlock Margin="14,0,0,0"  Text="{Binding LastPlayed, Converter={StaticResource LastPlayedShortConverter}}" FontSize="14" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </phone:PanoramaItem>
 
             <phone:PanoramaItem  >
                 <phone:PanoramaItem.Header >
                     <TextBlock Text="{Binding Path=LocalizedResources.ImportTitle, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource MyTitle1Style}" 
-                               />
+                               Margin="0,6,0,0"/>
                 </phone:PanoramaItem.Header>
-                
-                <ScrollViewer Margin="0,-24,0,0">
-                    
-                
+
+                <ScrollViewer Margin="0,-12,0,0">
                     <StackPanel Margin="0,0,0,0">
+
+                        <!--SD Card-->
+                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                              Margin="12,0,0,12"
+                              Height="36"
+                              VerticalAlignment="Stretch"
+                              >
+                            <TextBlock Text="SD CARD"
+                                 FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                       Margin="12,0,0,0"
+                                       Foreground="{StaticResource HeaderForegroundBrush}"
+                                  />
+                        </Grid>
                         <Button x:Name="ImportSD" 
                                         Click="ImportSD_Click"
-                                        Content="Import ROMs from SD Card"/>
-                    
+                                        Content="Import ROMs from SD Card"
+                                        Margin="0,0,-12,12"/>
 
 
-                                    <TextBlock TextWrapping="Wrap" FontSize="24"
-                                               Text="{Binding Path=LocalizedResources.ImportInstructionsText, Source={StaticResource LocalizedStrings}}" />
-                         
-                            
-   
-                           
-                                <TextBlock Text="{Binding Path=LocalizedResources.RomListTroubleshootNote, Source={StaticResource LocalizedStrings}}" 
-                                           TextWrapping="Wrap" FontSize="24" Foreground="#FF0000" />
-                            
-                            
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                                            Margin="0,0,0,0">
-                                    <Controls:SignInButton Content="SignInButton" Name="signinButton"
-                                        ClientId="000000004810CC31"
-                                        Branding="Skydrive"
-                                        Scopes="wl.signin wl.skydrive_update wl.offline_access"
-                                        SessionChanged="btnSignin_SessionChanged" Width="200" Height="72" VerticalAlignment="Top"/>
-                                    <Button Name="gotoImportButton" Width="200"
-                                            IsEnabled="False" Click="gotoImportButton_Click_1"
-                                            Content="{Binding Path=LocalizedResources.ImportFromSkyDriveButtonText, Source={StaticResource LocalizedStrings}}"/>
-                                </StackPanel>
-                           
-                                <TextBlock TextWrapping="Wrap" FontSize="24"
-                                    Text="{Binding Path=LocalizedResources.BackupAndRestoreInstructions, Source={StaticResource LocalizedStrings}}" />
-                            
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                                            Margin="0,0,0,0">
-                                    <Button Name="gotoBackupButton" Width="200"
-                                                IsEnabled="False" Click="gotoBackupButton_Click_1"
-                                                Content="{Binding Path=LocalizedResources.BackupButton, Source={StaticResource LocalizedStrings}}"/>
-                                    <Button Name="gotoRestoreButton"  Width="200"
-                                                IsEnabled="False" Click="gotoRestoreButton_Click_1"
-                                                Content="{Binding Path=LocalizedResources.RestoreButton, Source={StaticResource LocalizedStrings}}"/>
-                                </StackPanel>
-                            
-                            <!--<ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
+
+
+                        <!--Skydrive-->
+                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                              Margin="12,0,0,12"
+                              Height="36"
+                              VerticalAlignment="Stretch"
+                              >
+                            <TextBlock Text="SKYDRIVE"
+                                 FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                       Margin="12,0,0,0"
+                                       Foreground="{StaticResource HeaderForegroundBrush}"
+                                  />
+                        </Grid>
+
+                        <TextBlock TextWrapping="Wrap" FontSize="20"
+                                    Text="{Binding Path=LocalizedResources.ImportInstructionsText, Source={StaticResource LocalizedStrings}}"
+                                    Margin="12,0,0,0"/>
+
+
+
+                        <Grid  Margin="12,0,0,0"
+                                    >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Controls:SignInButton Content="SignInButton" 
+                                                        Name="signinButton"
+                                                    ClientId="000000004810CC31"
+                                                    Branding="Skydrive"
+                                                    Scopes="wl.signin wl.skydrive_update wl.offline_access"
+                                                    SessionChanged="btnSignin_SessionChanged" 
+                                                        Margin="-12,0,-6,0"/>
+                            <Button Name="gotoImportButton"
+                                        IsEnabled="False" 
+                                        Grid.Column="1"
+                                        Click="gotoImportButton_Click_1"
+                                        Margin="-6,0,-12,0"
+                                        Content="{Binding Path=LocalizedResources.ImportFromSkyDriveButtonText, Source={StaticResource LocalizedStrings}}"/>
+                        </Grid>
+
+                        <!--Save states-->
+                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                              Margin="12,12,0,12"
+                              Height="36"
+                              VerticalAlignment="Stretch"
+                              >
+                            <TextBlock Text="SAVE STATES"
+                                 FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                       Margin="12,0,0,0"
+                                       Foreground="{StaticResource HeaderForegroundBrush}"
+                                  />
+                        </Grid>
+                        <TextBlock TextWrapping="Wrap" FontSize="20"
+                                    Text="{Binding Path=LocalizedResources.ImportSaveInstructionsText, Source={StaticResource LocalizedStrings}}"
+                                    Margin="12,0,0,0"/>
+
+                        <Grid  Margin="12,0,0,0"
+                                       >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Name="gotoBackupButton" 
+                                                    IsEnabled="False"
+                                        Click="gotoBackupButton_Click_1"
+                                        Margin="-12,0,-6,0"
+                                                    Content="{Binding Path=LocalizedResources.BackupButton, Source={StaticResource LocalizedStrings}}"/>
+                            <Button Name="gotoRestoreButton"  
+                                                    IsEnabled="False" 
+                                                Margin="-6,0,-12,0"
+                                                Grid.Column="1"
+                                                Click="gotoRestoreButton_Click_1"
+                                                    Content="{Binding Path=LocalizedResources.RestoreButton, Source={StaticResource LocalizedStrings}}"/>
+                        </Grid>
+
+                        <!--<ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="24"
                                                Text="{Binding Path=LocalizedResources.StatusLabelContent, Source={StaticResource LocalizedStrings}}" />
@@ -152,60 +436,112 @@
                                                Text="{Binding Path=LocalizedResources.StatusNotSignedIn, Source={StaticResource LocalizedStrings}}" />
                                 </StackPanel>
                             </ListBoxItem>-->
-                    
+
                     </StackPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem  >
                 <phone:PanoramaItem.Header >
-                    <TextBlock Text="help&amp;guides"
+                    <TextBlock Text="{Binding Path=LocalizedResources.GuidesTitle, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource MyTitle1Style}" 
-                               />
+                               Margin="0,6,0,0"/>
                 </phone:PanoramaItem.Header>
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                               Margin="12,-24,0,0">
-                    <StackPanel
-                                >
+                               Margin="12,-12,0,0">
+                    <StackPanel >
+                        <!--guides-->
+                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                              Margin="0,0,0,12"
+                              Height="36"
+                              VerticalAlignment="Stretch"
+                              >
+                            <TextBlock Text="GUIDES"
+                                 FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                       Margin="12,0,0,0"
+                                       Foreground="{StaticResource HeaderForegroundBrush}"
+                                  />
+                        </Grid>
+
                         <TextBlock Text="Video: MOGA controller instruction" 
                            TextWrapping="Wrap"
-                           Margin="0,0,12,12"
+                           Margin="0,0,0,12"
+                               FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_1" 
                            />
                         <TextBlock Text="Video: cheat code tutorial" 
                            TextWrapping="Wrap"
-                           Margin="0,0,12,12"
+                           Margin="0,0,0,12"
+                                   FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap" 
                            />
                         <TextBlock Text="Guide: 4 ways to import ROMs" 
                            TextWrapping="Wrap"
-                           Margin="0,0,12,12"
+                           Margin="0,0,0,12"
+                                   FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_3"
                            />
                         <TextBlock Text="Guide: how to improve performance" 
                            TextWrapping="Wrap"
-                           Margin="0,0,12,12"
+                           Margin="0,0,0,12"
+                                   FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_4" 
                            />
                         <TextBlock Text="Guide: troubleshoot blank screen" 
                            TextWrapping="Wrap"
-                           Margin="0,0,12,12"
+                           Margin="0,0,0,12"
+                                   FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_5" 
                            />
+
+                        <!--contacts-->
+                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                              Margin="0,12,0,12"
+                              Height="36"
+                              VerticalAlignment="Stretch"
+                              >
+                            <TextBlock Text="CONTACT"
+                                 FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                       Margin="12,0,0,0"
+                                       Foreground="{StaticResource HeaderForegroundBrush}"
+                                  />
+                        </Grid>
                         <TextBlock Text="Forum dicussions" 
                            TextWrapping="Wrap"
-                           Margin="0,0,12,12"
+                           Margin="0,0,0,12"
+                                   FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_2"  
                            />
 
                         <TextBlock TextWrapping="Wrap" Tap="contactBlock_Tap_1" 
                                        TextDecorations="Underline" 
+                                   FontSize="22"
                                        Text="Contact developer" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>
-            
+
         </phone:Panorama>
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" 
+               VerticalAlignment="Top" 
+               Height="800" 
+               Width="480" 
+               Margin="0" 
+               Grid.Row="0" 
+               Grid.RowSpan="2" 
+               IsHitTestVisible="False" />-->
+
     </Grid>
+
+
 
 </phone:PhoneApplicationPage>

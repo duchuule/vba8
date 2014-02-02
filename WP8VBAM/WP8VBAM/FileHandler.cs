@@ -23,7 +23,14 @@ namespace PhoneDirect3DXamlAppInterop
         public const String ROM_URI_STRING = "rom";
         public const String ROM_DIRECTORY = "roms";
         public const String SAVE_DIRECTORY = "saves";
+
+#if GBC
+        public const String DEFAULT_SNAPSHOT_ALT = "Assets/no_snapshot.png";
+        public const String DEFAULT_SNAPSHOT = "Assets/no_snapshot_gbc.png";
+#else
+        public const String DEFAULT_SNAPSHOT_ALT = "Assets/no_snapshot_gbc.png";
         public const String DEFAULT_SNAPSHOT = "Assets/no_snapshot.png";
+#endif
         public static DateTime DEFAULT_DATETIME = new DateTime(1989, 02, 22);
 
         public static ROMDBEntry InsertNewDBEntry(string fileName)
@@ -287,7 +294,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             FlipTileData data = new FlipTileData();
             data.Title = re.DisplayName;
-            if (re.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT))
+            if (re.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT) || re.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT_ALT))
             {
 #if !GBC
                 data.SmallBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative);

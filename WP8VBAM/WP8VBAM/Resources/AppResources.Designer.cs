@@ -526,7 +526,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cheats for game:.
+        ///   Looks up a localized string similar to Cheats for:.
         /// </summary>
         public static string CheatListGameLabel {
             get {
@@ -562,7 +562,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cheats.
+        ///   Looks up a localized string similar to CHEATS.
         /// </summary>
         public static string CheatPageTitle {
             get {
@@ -652,17 +652,11 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This program is free software; you can redistribute it and/or modify
-        ///it under the terms of the GNU General Public License as published by
-        ///the Free Software Foundation; either version 3, or(at your option)
-        ///any later version.
+        ///   Looks up a localized string similar to This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3, or(at your option) any later version.
         ///
-        ///This program is distributed in the hope that it will be useful,
-        ///but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ///MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ///GNU General Public License for more details.
+        ///This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
         ///
-        ///You should have received a copy of the GNU [rest of string was truncated]&quot;;.
+        ///You should have received a copy of the GNU Gener [rest of string was truncated]&quot;;.
         /// </summary>
         public static string CopyRightText {
             get {
@@ -685,6 +679,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string CreateSnapshotMenuItem {
             get {
                 return ResourceManager.GetString("CreateSnapshotMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string DarkText {
+            get {
+                return ResourceManager.GetString("DarkText", resourceCulture);
             }
         }
         
@@ -725,7 +728,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete save file.
+        ///   Looks up a localized string similar to delete in-game save.
         /// </summary>
         public static string DeleteSavesEntry {
             get {
@@ -919,6 +922,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string GPLv3Title {
             get {
                 return ResourceManager.GetString("GPLv3Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to guides.
+        /// </summary>
+        public static string GuidesTitle {
+            get {
+                return ResourceManager.GetString("GuidesTitle", resourceCulture);
             }
         }
         
@@ -1135,7 +1147,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to help.
+        ///   Looks up a localized string similar to HELP.
         /// </summary>
         public static string HelpTitle {
             get {
@@ -1207,11 +1219,28 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Instruction: 1. upload ROMs to your SkyDrive folder. 2. click on &quot;Sign in&quot; to sign into SkyDrive. 3. click on &quot;import ROMs&quot; in order to import ROMs to your phone. .
+        ///   Looks up a localized string similar to To import ROM:
+        ///1. upload ROMs to your SkyDrive folder. 
+        ///2. click on &quot;Sign in&quot; and sign in.
+        ///3. click on &quot;import ROMs&quot;..
         /// </summary>
         public static string ImportInstructionsText {
             get {
                 return ResourceManager.GetString("ImportInstructionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To restore saves:
+        ///1. Make sure the names of the rom and the save file match exactly.
+        ///2. Quit the app completely (hit back button several times).
+        ///3. Start the app.
+        ///4. Import the save files.
+        ///5. Start the game..
+        /// </summary>
+        public static string ImportSaveInstructionsText {
+            get {
+                return ResourceManager.GetString("ImportSaveInstructionsText", resourceCulture);
             }
         }
         
@@ -1225,7 +1254,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to import&amp;export.
+        ///   Looks up a localized string similar to data.
         /// </summary>
         public static string ImportTitle {
             get {
@@ -1275,6 +1304,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string LicenseCopyRightTitle {
             get {
                 return ResourceManager.GetString("LicenseCopyRightTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LICENSE.
+        /// </summary>
+        public static string LicenseTitle {
+            get {
+                return ResourceManager.GetString("LicenseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        public static string LightText {
+            get {
+                return ResourceManager.GetString("LightText", resourceCulture);
             }
         }
         
@@ -1636,6 +1683,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please restart the app (hit back button several times) for the new setting to take effect..
+        /// </summary>
+        public static string RestartPromptText {
+            get {
+                return ResourceManager.GetString("RestartPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please restart.
+        /// </summary>
+        public static string RestartPromptTitle {
+            get {
+                return ResourceManager.GetString("RestartPromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to import.
         /// </summary>
         public static string RestoreButton {
@@ -1690,7 +1755,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to rom list.
+        ///   Looks up a localized string similar to roms.
         /// </summary>
         public static string RomListTitle {
             get {
@@ -1843,7 +1908,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: The emulator supports *gb, *.gbc and *.gba files..
+        ///   Looks up a localized string similar to Note: The app supports *gb, *.gbc and *.gba files..
         /// </summary>
         public static string SkyDriveFileFormatHint {
             get {
@@ -1852,7 +1917,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: The emulator supports *gb, *.gbc and *.gba files..
+        ///   Looks up a localized string similar to Note: The app supports *gb, *.gbc and *.gba files..
         /// </summary>
         public static string SkyDriveFileFormatHint2 {
             get {
@@ -1870,7 +1935,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to import ROMs.
+        ///   Looks up a localized string similar to import roms.
         /// </summary>
         public static string SkyDriveImportTitle {
             get {
@@ -1965,6 +2030,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string SyncSoundSetting2 {
             get {
                 return ResourceManager.GetString("SyncSoundSetting2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string ThemeText {
+            get {
+                return ResourceManager.GetString("ThemeText", resourceCulture);
             }
         }
         

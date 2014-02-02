@@ -58,7 +58,7 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 #if GBC
-            this.titleLabel.Text = AppResources.ApplicationTitle2;
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
         
 

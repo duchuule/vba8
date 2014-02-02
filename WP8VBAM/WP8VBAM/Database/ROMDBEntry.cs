@@ -9,10 +9,13 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 
+
 namespace PhoneDirect3DXamlAppInterop.Database
 {
+    
+
     [Table(Name = "ROMs")]
-    class ROMDBEntry : INotifyPropertyChanged, INotifyPropertyChanging
+    public class ROMDBEntry : INotifyPropertyChanged, INotifyPropertyChanging
     {
         public event PropertyChangingEventHandler PropertyChanging;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -22,6 +25,8 @@ namespace PhoneDirect3DXamlAppInterop.Database
         private DateTime lastPlayed;
         private readonly EntitySet<SavestateEntry> savestateRefs = new EntitySet<SavestateEntry>();
         private string snapshotUri;
+
+        public string Header; //the value of this will be set at run time
 
         [Column(Storage="displayName", CanBeNull=false)]
         public String DisplayName
@@ -86,7 +91,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
             }
             set
             {
-                if (value != this.snapshotUri)
+                //if (value != this.snapshotUri) DL: comment this to force image change whenever image is updated
                 {
                     this.NotifyPropertyChanging("SnapshotURI");
                     this.snapshotUri = value;

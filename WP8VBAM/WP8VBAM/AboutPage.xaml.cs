@@ -30,8 +30,8 @@ namespace PhoneDirect3DXamlAppInterop
 
 #if GBC
             contactBlock.Text = AppResources.AboutContact2;
-            appnameLabel.Text = AppResources.ApplicationTitle2;
-            titleLabel.Text = AppResources.ApplicationTitle2;
+            tblkTitle.Text = AppResources.ApplicationTitle2;
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
         }
 

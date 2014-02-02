@@ -12,6 +12,8 @@ using PhoneDirect3DXamlAppComponent;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls.Primitives;
+using System.IO.IsolatedStorage;
+using System.Windows.Media;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -21,6 +23,8 @@ namespace PhoneDirect3DXamlAppInterop
 
         private String[] frameskiplist = { AppResources.FrameSkipAutoSetting, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         private String[] frameskiplist2 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        private String[] aspectRatioList = { AppResources.AspectRatioOriginalSetting, AppResources.AspectRatioStretchSetting, AppResources.AspectRatioOneSetting, AppResources.AspectRatio4to3Setting, AppResources.AspectRatio5to4Setting };
+        private String[] orientationList = { AppResources.OrientationBoth, AppResources.OrientationLandscape, AppResources.OrientationPortrait };
 
         public const String VControllerPosKey = "VirtualControllerOnTop";
         public const String EnableSoundKey = "EnableSound";
@@ -50,6 +54,7 @@ namespace PhoneDirect3DXamlAppInterop
         public const String BgcolorRKey = "BgcolorRKey";
         public const String BgcolorGKey = "BgcolorGKey";
         public const String BgcolorBKey = "BgcolorBKey";
+        //public const String ThemeSelectionKey = "ThemeSelectionKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -99,6 +104,9 @@ namespace PhoneDirect3DXamlAppInterop
         {
             InitializeComponent();
 
+#if GBC
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
+#endif
             //create ad control
             if (App.HasAds)
             {
@@ -111,6 +119,8 @@ namespace PhoneDirect3DXamlAppInterop
             frameSkipPicker.ItemsSource = frameskiplist;
             powerFrameSkipPicker.ItemsSource = frameskiplist2;
             turboFrameSkipPicker.ItemsSource = frameskiplist2;
+            aspectRatioPicker.ItemsSource = aspectRatioList;
+            orientationPicker.ItemsSource = orientationList;
 
             ReadSettings();
 
@@ -179,70 +189,27 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.Loaded += (o, e) =>
             {
-                switch (emuSettings.Orientation)
-                {
-                    default:
-                    case 0:
-                        this.orientationBothRadio.IsChecked = true;
-                        break;
-                    case 1:
-                        this.orientationLandscapeRadio.IsChecked = true;
-                        break;
-                    case 2:
-                        this.orientationPortraitRadio.IsChecked = true;
-                        break;
-                }
+               
 
 
 
                 this.turboFrameSkipPicker.SelectedIndex = emuSettings.TurboFrameSkip;
                 this.powerFrameSkipPicker.SelectedIndex = emuSettings.PowerFrameSkip;
                 this.frameSkipPicker.SelectedIndex = Math.Min(emuSettings.FrameSkip + 1, this.frameSkipPicker.Items.Count - 1);
+                this.aspectRatioPicker.SelectedIndex = (int)emuSettings.AspectRatio;
+                this.orientationPicker.SelectedIndex = emuSettings.Orientation;
+
                 this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad
                 this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
-               
+                this.themePicker.SelectedIndex = (int)IsolatedStorageSettings.ApplicationSettings["ThemeSelectionKey"];
 
                 
 
-                switch (emuSettings.AspectRatio)
-                {
-                    default:
-                    case AspectRatioMode.Original:
-                        this.aspect32Radio.IsChecked = true;
-                        break;
-                    case AspectRatioMode.Stretch:
-                        this.aspectStretchRadio.IsChecked = true;
-                        break;
-                    case AspectRatioMode.FourToThree:
-                        this.aspect43Radio.IsChecked = true;
-                        break;
-                    case AspectRatioMode.FiveToFour:
-                        this.aspect54Radio.IsChecked = true;
-                        break;
-                    case AspectRatioMode.One:
-                        this.aspect1Radio.IsChecked = true;
-                        break;
-                }
                 initdone = true;
             };
 
         }
 
-        //private void vcontrollerPosSwitch_Checked_1(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.VirtualControllerOnTop = true;
-        //    }
-        //}
-
-        //private void vcontrollerPosSwitch_Unchecked_1(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.VirtualControllerOnTop = false;
-        //    }
-        //}
 
         private void enableSoundSwitch_Checked_1(object sender, RoutedEventArgs e)
         {
@@ -428,203 +395,22 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        //private void cameraTurboRadio_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.CameraButtonAssignment = 0;
-        //    }
-        //}
-
-        //private void cameraRRadio_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.CameraButtonAssignment = 1;
-        //    }
-        //}
-
-        //private void cameraLRadio_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.CameraButtonAssignment = 2;
-        //    }
-        //}
-
-        //private void dpadStandardRadio_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.DPadStyle = 0;
-        //    }
-        //}
-
-        //private void dpadFixedRadio_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.DPadStyle = 1;
-        //    }
-        //}
-
-        //private void dpadDynamicRadio_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.DPadStyle = 2;
-        //    }
-        //}
-
-        private void skipAutoRadio_Checked(object sender, RoutedEventArgs e)
+        private void aspectRatioPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             if (this.initdone)
             {
-                EmulatorSettings.Current.FrameSkip = -1;
+                EmulatorSettings.Current.AspectRatio = (AspectRatioMode)aspectRatioPicker.SelectedIndex;
             }
         }
 
-        private void skip0Radio_Checked(object sender, RoutedEventArgs e)
+
+   
+
+        private void orientationPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             if (this.initdone)
             {
-                EmulatorSettings.Current.FrameSkip = 0;
-            }
-        }
-
-        private void skip1Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.FrameSkip = 1;
-            }
-        }
-
-        private void skip2Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.FrameSkip = 2;
-            }
-        }
-
-        private void skip3Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.FrameSkip = 3;
-            }
-        }
-
-        private void powerSkip0Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.PowerFrameSkip = 0;
-            }
-        }
-
-        private void powerSkip1Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.PowerFrameSkip = 1;
-            }
-        }
-
-        private void powerSkip2Radio_Checked(object sender, RoutedEventArgs e)
-        {
-
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.PowerFrameSkip = 2;
-            }
-        }
-
-        private void turboSkip1Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-
-                EmulatorSettings.Current.TurboFrameSkip = 1;
-
-            }
-        }
-
-        private void turboSkip2Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.TurboFrameSkip = 2;
-
-            }
-        }
-
-        private void turboSkip3Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.TurboFrameSkip = 3;
-
-            }
-        }
-
-        private void turboSkip4Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-
-                EmulatorSettings.Current.TurboFrameSkip = 4;
-
-            }
-        }
-
-        private void turboSkip5Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.TurboFrameSkip = 5;
-
-            }
-        }
-
-        private void aspect32Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.AspectRatio = AspectRatioMode.Original;
-            }
-        }
-
-        private void aspectStretchRadio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.AspectRatio = AspectRatioMode.Stretch;
-            }
-        }
-
-        private void aspect43Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.AspectRatio = AspectRatioMode.FourToThree;
-            }
-        }
-
-        private void aspect54Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.AspectRatio = AspectRatioMode.FiveToFour;
-            }
-        }
-
-        private void aspect1Radio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.AspectRatio = AspectRatioMode.One;
+                EmulatorSettings.Current.Orientation = orientationPicker.SelectedIndex;
             }
         }
 
@@ -855,6 +641,28 @@ namespace PhoneDirect3DXamlAppInterop
         {
             NavigationService.Navigate(new Uri("/MogaMappingPage.xaml", UriKind.Relative));
         }
+
+        private void themePicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                IsolatedStorageSettings.ApplicationSettings["ThemeSelectionKey"] = themePicker.SelectedIndex;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+
+                App.MergeCustomColors();
+                //CustomMessageBox msgbox = new CustomMessageBox();
+                //msgbox.Background = (SolidColorBrush)App.Current.Resources["PhoneChromeBrush"];
+                //msgbox.Foreground = (SolidColorBrush)App.Current.Resources["PhoneForegroundBrush"];
+                //msgbox.Message = AppResources.RestartPromptText;
+                //msgbox.Caption = AppResources.RestartPromptTitle;
+                //msgbox.LeftButtonContent = "OK";
+                //msgbox.Show();
+            }
+        }
+
+
+
+
 
         
 
