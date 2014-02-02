@@ -9,11 +9,29 @@
     <!--Application Resources-->
     <Application.Resources>
         <ResourceDictionary>
+
+            <!--<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CustomTheme/LightTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>-->
+
+
+
             <local:LocalizedStrings x:Key="LocalizedStrings"/>
             <local:IsoImageConverter x:Key="IsoImageConverter"/>
             <local:LastPlayedConverter x:Key="LastPlayedConverter"/>
             <local:SavestateConverter x:Key="SavestateConverter"/>
             <local:LastPlayedShortConverter x:Key="LastPlayedShortConverter"/>
+
+            <!-- dummy key so that the designer does not complain, will change at run time -->
+            <Color x:Key="CustomForegroundColor"></Color>
+            <Color x:Key="CustomChromeColor"></Color>
+            <Color x:Key="SystemTrayColor"></Color>
+            <SolidColorBrush x:Key="HeaderBackgroundBrush"> </SolidColorBrush>
+            <SolidColorBrush x:Key="HeaderForegroundBrush"></SolidColorBrush>
+            <SolidColorBrush x:Key="ListboxBackgroundBrush"></SolidColorBrush>
+
+
+
 
             <DataTemplate x:Name="ListPickerTemplate">
                 <!--For short list of items-->
@@ -30,7 +48,7 @@
 
             <Style x:Key="MyTitle1Style" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}" />
-                <Setter Property="FontSize" Value="54" />
+                <Setter Property="FontSize" Value="44" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

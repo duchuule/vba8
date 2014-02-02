@@ -32,7 +32,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.nameBox.Text = this.entry.DisplayName;
 #if GBC
-            appnameLabel.Text = AppResources.ApplicationTitle2;
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
         }
 

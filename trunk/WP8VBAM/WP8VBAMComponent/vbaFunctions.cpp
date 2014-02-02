@@ -162,22 +162,7 @@ u32 systemReadJoypad(int gamepad)
 		}
 
 		
-		if(ctrl->GetKeyCode(KeyCode::A) == ControllerAction::Pressed )
-		{
-			GetMogaMapping(settings->MogaA, &a, &b, &l, &r );
-		}
 
-		
-		if(ctrl->GetKeyCode(KeyCode::B) == ControllerAction::Pressed)
-			GetMogaMapping(settings->MogaB, &a, &b, &l, &r );
-
-
-		if (ctrl->GetKeyCode(KeyCode::X) == ControllerAction::Pressed)
-			GetMogaMapping(settings->MogaX, &a, &b, &l, &r );
-
-
-		if(ctrl->GetKeyCode(KeyCode::Y) == ControllerAction::Pressed)
-			GetMogaMapping(settings->MogaY, &a, &b, &l, &r );
 
 		if(ctrl->GetKeyCode(KeyCode::Start) == ControllerAction::Pressed)
 		{
@@ -208,6 +193,23 @@ u32 systemReadJoypad(int gamepad)
 		{
 			down = true;
 		}
+
+		if(ctrl->GetKeyCode(KeyCode::A) == ControllerAction::Pressed )
+		{
+			GetMogaMapping(settings->MogaA, &a, &b, &l, &r );
+		}
+
+		
+		if(ctrl->GetKeyCode(KeyCode::B) == ControllerAction::Pressed)
+			GetMogaMapping(settings->MogaB, &a, &b, &l, &r );
+
+
+		if (ctrl->GetKeyCode(KeyCode::X) == ControllerAction::Pressed)
+			GetMogaMapping(settings->MogaX, &a, &b, &l, &r );
+
+
+		if(ctrl->GetKeyCode(KeyCode::Y) == ControllerAction::Pressed)
+			GetMogaMapping(settings->MogaY, &a, &b, &l, &r );
 
 		if(ctrl->GetKeyCode(KeyCode::L1) == ControllerAction::Pressed )
 			GetMogaMapping(settings->MogaL1, &a, &b, &l, &r );

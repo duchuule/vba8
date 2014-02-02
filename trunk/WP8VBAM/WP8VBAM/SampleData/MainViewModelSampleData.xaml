@@ -1,0 +1,13 @@
+﻿<vm:MainViewModel
+    xmlns:vm="clr-namespace:PhoneDirect3DXamlAppInterop.ViewModels"
+    xmlns:db="clr-namespace:PhoneDirect3DXamlAppInterop.Database">
+
+    <vm:MainViewModel.DesignROMDBEntry>
+        <db:ROMDBEntry DisplayName="ROM display name name name name" LastPlayed="10/21/2013 4:40 PM" SnapshotURI="Assets/no_snapshot.png"/>
+        <db:ROMDBEntry DisplayName="ROM display name" LastPlayed="10/21/2013 4:40 PM" SnapshotURI="Assets/no_snapshot.png"/>
+        <db:ROMDBEntry DisplayName="ROM display name" LastPlayed="10/21/2013 4:40 PM" SnapshotURI="Assets/no_snapshot.png"/>
+    
+    </vm:MainViewModel.DesignROMDBEntry>
+
+</vm:MainViewModel>
+

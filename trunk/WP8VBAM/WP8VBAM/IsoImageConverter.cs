@@ -15,12 +15,13 @@ namespace PhoneDirect3DXamlAppInterop
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            BitmapImage bitmap = new BitmapImage();
-            string path = (string)value;
-            if (path.Equals(FileHandler.DEFAULT_SNAPSHOT))
-                return path;
             try
             {
+                BitmapImage bitmap = new BitmapImage();
+                string path = (string)value;
+                if (path.Equals(FileHandler.DEFAULT_SNAPSHOT) || path.Equals(FileHandler.DEFAULT_SNAPSHOT_ALT))
+                    return path;
+            
                 if (!String.IsNullOrEmpty(path))
                 {
                     using (var isoStore = IsolatedStorageFile.GetUserStoreForApplication())
@@ -31,12 +32,14 @@ namespace PhoneDirect3DXamlAppInterop
                         }
                     }
                 }
+                return bitmap;
             }
             catch (Exception)
             {
+                return null;
             }
 
-            return bitmap;
+            
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

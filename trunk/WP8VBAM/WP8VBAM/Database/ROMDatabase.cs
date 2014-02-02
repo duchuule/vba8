@@ -140,7 +140,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
                 throw new InvalidOperationException("Database does not exist.");
             }
             return this.context.ROMTable
-                .Where(r => !r.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT))
+                .Where(r => !r.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT) && !r.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT_ALT))
                 .OrderByDescending(r => r.LastPlayed)
                 .Take(3)
                 .Select(r => r.SnapshotURI)
@@ -258,18 +258,39 @@ namespace PhoneDirect3DXamlAppInterop.Database
 
         public IEnumerable<ROMDBEntry> GetRecentlyPlayed()
         {
+            //ROMDBEntry last = this.context.ROMTable
+            //    .Where(r => (r.LastPlayed != FileHandler.DEFAULT_DATETIME))
+            //    .OrderByDescending(f => f.LastPlayed)
+            //    .FirstOrDefault();
+
             return this.context.ROMTable
                 .Where(r => (r.LastPlayed != FileHandler.DEFAULT_DATETIME))
                 .OrderByDescending(f => f.LastPlayed)
                 .Take(5)
+                //.Where(r => (r.FileName != last.FileName))
                 .ToArray();
+
+           
+          
+        }
+
+        public ROMDBEntry GetLastPlayed()
+        {
+            return this.context.ROMTable
+                .Where(r => (r.LastPlayed != FileHandler.DEFAULT_DATETIME))
+                .OrderByDescending(f => f.LastPlayed)
+                .FirstOrDefault();
+
+
         }
 
         public IEnumerable<ROMDBEntry> GetROMList()
         {
-            return this.context.ROMTable
+            return  this.context.ROMTable
                 .OrderBy(f => f.DisplayName)
                 .ToArray();
+
+
         }
 
         public IEnumerable<SavestateEntry> GetSavestatesForROM(ROMDBEntry entry)

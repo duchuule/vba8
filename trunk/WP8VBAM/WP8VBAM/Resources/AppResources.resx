@@ -157,10 +157,13 @@
     <value>import ROMs</value>
   </data>
   <data name="ImportInstructionsText" xml:space="preserve">
-    <value>Instruction: 1. upload ROMs to your SkyDrive folder. 2. click on "Sign in" to sign into SkyDrive. 3. click on "import ROMs" in order to import ROMs to your phone. </value>
+    <value>To import ROM:
+1. upload ROMs to your SkyDrive folder. 
+2. click on "Sign in" and sign in.
+3. click on "import ROMs".</value>
   </data>
   <data name="ImportTitle" xml:space="preserve">
-    <value>import&amp;export</value>
+    <value>data</value>
   </data>
   <data name="InputSettingsPageTitle" xml:space="preserve">
     <value>input</value>
@@ -184,7 +187,7 @@
     <value>resume</value>
   </data>
   <data name="RomListTitle" xml:space="preserve">
-    <value>rom list</value>
+    <value>roms</value>
   </data>
   <data name="SaveStateButton" xml:space="preserve">
     <value>save state</value>
@@ -229,7 +232,7 @@
     <value>Error while accessing SkyDrive: {0}</value>
   </data>
   <data name="SkyDriveImportTitle" xml:space="preserve">
-    <value>import ROMs</value>
+    <value>import roms</value>
   </data>
   <data name="StatusLabelContent" xml:space="preserve">
     <value>Status: </value>
@@ -466,7 +469,7 @@ MOGA company for the surprised gift.</value>
     <value>Contact:</value>
   </data>
   <data name="HelpTitle" xml:space="preserve">
-    <value>help</value>
+    <value>HELP</value>
   </data>
   <data name="HelpDownloadROMsHeader" xml:space="preserve">
     <value>How to import ROMs</value>
@@ -542,7 +545,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Note: If your ROMs do not start, see the "issues" section of the help page.</value>
   </data>
   <data name="SkyDriveFileFormatHint" xml:space="preserve">
-    <value>Note: The emulator supports *gb, *.gbc and *.gba files.</value>
+    <value>Note: The app supports *gb, *.gbc and *.gba files.</value>
   </data>
   <data name="DPadAnalogueDynamic" xml:space="preserve">
     <value>dynamic analogue stick</value>
@@ -627,13 +630,13 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gbc or *.gb file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gbc or *.gb file, just tap on it and the emulator will start and import the ROM.</value>
   </data>
   <data name="SkyDriveFileFormatHint2" xml:space="preserve">
-    <value>Note: The emulator supports *gb, *.gbc and *.gba files.</value>
+    <value>Note: The app supports *gb, *.gbc and *.gba files.</value>
   </data>
   <data name="CameraAssignLR" xml:space="preserve">
     <value>L-Button and R-Button</value>
   </data>
   <data name="DeleteSavesEntry" xml:space="preserve">
-    <value>delete save file</value>
+    <value>delete in-game save</value>
   </data>
   <data name="AddCheatButtonText" xml:space="preserve">
     <value>add</value>
@@ -645,7 +648,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>cheat codes</value>
   </data>
   <data name="CheatPageTitle" xml:space="preserve">
-    <value>cheats</value>
+    <value>CHEATS</value>
   </data>
   <data name="CheatsDescription" xml:space="preserve">
     <value>You can enter GameShark and CodeBreaker codes. Cheat codes can make your game unstable.</value>
@@ -663,7 +666,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Invalid code format. The codes must be 6, 8, 9, 12 or 16 hexadecimal values per line.</value>
   </data>
   <data name="CheatListGameLabel" xml:space="preserve">
-    <value>Cheats for game:</value>
+    <value>Cheats for:</value>
   </data>
   <data name="CheatListUnknownGame" xml:space="preserve">
     <value>unknown</value>
@@ -738,19 +741,11 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>options</value>
   </data>
   <data name="CopyRightText" xml:space="preserve">
-    <value>This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or(at your option)
-any later version.
+    <value>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3, or(at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software Foundation,
-Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</value>
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</value>
   </data>
   <data name="GPLv3" xml:space="preserve">
     <value>http://www.gnu.org/licenses/gpl-3.0.txt</value>
@@ -823,5 +818,34 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   </data>
   <data name="UnlockFeatureText" xml:space="preserve">
     <value>Unlock feature</value>
+  </data>
+  <data name="GuidesTitle" xml:space="preserve">
+    <value>guides</value>
+  </data>
+  <data name="ImportSaveInstructionsText" xml:space="preserve">
+    <value>To restore saves:
+1. Make sure the names of the rom and the save file match exactly.
+2. Quit the app completely (hit back button several times).
+3. Start the app.
+4. Import the save files.
+5. Start the game.</value>
+  </data>
+  <data name="DarkText" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="LightText" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="ThemeText" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="LicenseTitle" xml:space="preserve">
+    <value>LICENSE</value>
+  </data>
+  <data name="RestartPromptText" xml:space="preserve">
+    <value>Please restart the app (hit back button several times) for the new setting to take effect.</value>
+  </data>
+  <data name="RestartPromptTitle" xml:space="preserve">
+    <value>Please restart</value>
   </data>
 </root>

@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Text;
 using PhoneDirect3DXamlAppInterop.Database;
 using PhoneDirect3DXamlAppComponent;
+using System.Windows.Media;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -71,6 +72,8 @@ namespace PhoneDirect3DXamlAppInterop
         {
             ApplicationBar = new ApplicationBar();
             ApplicationBar.IsVisible = false;
+            ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
+            ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
 
             var removeButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/delete.png", UriKind.Relative))
             {

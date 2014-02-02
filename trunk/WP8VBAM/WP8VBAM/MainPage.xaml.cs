@@ -19,6 +19,9 @@ using System.Windows.Media;
 using Microsoft.Phone.Tasks;
 using Windows.Phone.Storage.SharedAccess;
 using System.IO;
+using System.Collections.ObjectModel;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
 
 //"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts xd 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
 
@@ -42,6 +45,8 @@ namespace PhoneDirect3DXamlAppInterop
         private ROMDatabase db;
         private Task createFolderTask, copyDemoTask, initTask;
 
+        
+
         public MainPage()
         {
             InitializeComponent();
@@ -55,6 +60,10 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 #endif
+            //add tilt effect to tiltablegrid
+            TiltEffect.TiltableItems.Add(typeof(TiltableGrid));
+            TiltEffect.TiltableItems.Add(typeof(TiltableCanvas)); 
+
             //create ad control
             if (App.HasAds)
             {
@@ -186,6 +195,13 @@ namespace PhoneDirect3DXamlAppInterop
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            //set app bar color in case the user return from setting page
+            if (ApplicationBar != null)
+            {
+                ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
+                ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
+            }
+
             //await this.createFolderTask;
             //await this.copyDemoTask;
             await this.initTask;
@@ -577,6 +593,11 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     isoSettings[SettingsPage.MogaRightJoystickKey] = 16;
                 }
+                if (!isoSettings.Contains("ThemeSelectionKey"))
+                {
+                    isoSettings["ThemeSelectionKey"] = 0;
+                }
+
                 isoSettings.Save();
 
                 settings.LowFrequencyMode = (bool)isoSettings[SettingsPage.LowFreqModeKey];
@@ -702,8 +723,19 @@ namespace PhoneDirect3DXamlAppInterop
             //{
             //    romNames.Add(new ROMEntry() { Name = file.Name } );
             //}
-            this.romList.ItemsSource = this.db.GetROMList();// romNames;
+            DataContext = this.db.GetLastPlayed();
+
+            if (DataContext == null)
+                lastRomGrid.Visibility = Visibility.Collapsed;
+            else
+                lastRomGrid.Visibility = Visibility.Visible;
+
+            this.romList.ItemsSource = this.db.GetROMList();
+
             this.recentList.ItemsSource = this.db.GetRecentlyPlayed();
+
+
+          
         }
 
         private void romList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -742,6 +774,9 @@ namespace PhoneDirect3DXamlAppInterop
         {
             ApplicationBar = new ApplicationBar();
             ApplicationBar.IsMenuEnabled = true;
+            ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
+            ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
+            //ApplicationBar.Mode = ApplicationBarMode.Minimized;
 
             var helpButton = new ApplicationBarMenuItem(AppResources.HelpButtonText);
             helpButton.Click += helpButton_Click;
@@ -817,10 +852,10 @@ namespace PhoneDirect3DXamlAppInterop
             this.NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
         }
 
-        void importButton_Click(object sender, EventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("/ImportPage.xaml", UriKind.Relative));
-        }
+        //void importButton_Click(object sender, EventArgs e)
+        //{
+        //    this.NavigationService.Navigate(new Uri("/ImportPage.xaml", UriKind.Relative));
+        //}
 
         private void gotoBackupButton_Click_1(object sender, RoutedEventArgs e)
         {
@@ -874,6 +909,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private static void ShowDialog(String text)
         {
+
             var result = MessageBox.Show(text, AppResources.InfoCaption, MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
@@ -888,13 +924,13 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        private void StackPanel_Hold(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            ROMDBEntry entry = (sender as StackPanel).DataContext as ROMDBEntry;
-            PhoneApplicationService.Current.State["parameter"] = entry;
+        //private void StackPanel_Hold(object sender, System.Windows.Input.GestureEventArgs e)
+        //{
+        //    ROMDBEntry entry = (sender as Grid).DataContext as ROMDBEntry;
+        //    PhoneApplicationService.Current.State["parameter"] = entry;
 
-            this.NavigationService.Navigate(new Uri("/ContextPage.xaml", UriKind.Relative));
-        }
+        //    this.NavigationService.Navigate(new Uri("/ContextPage.xaml", UriKind.Relative));
+        //}
 
         private void ImportSD_Click(object sender, RoutedEventArgs e)
         {
@@ -949,6 +985,114 @@ namespace PhoneDirect3DXamlAppInterop
             this.NavigationService.Navigate(new Uri("/HelpPage.xaml?index=2", UriKind.Relative));
         }
 
+        private async void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ROMDBEntry entry = (ROMDBEntry)this.DataContext;
+            await StartROM(entry);
+        }
 
+
+       
+
+        private void pinBlock_Tap(object sender, RoutedEventArgs e)
+        {
+            if (!App.IsTrial)
+            {
+                try
+                {
+                    var menuItem = sender as MenuItem;
+                    var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+
+                    FileHandler.CreateROMTile(fe.DataContext as ROMDBEntry);
+                }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show(AppResources.MaximumTilesPinned);
+                }
+            }
+            else
+            {
+                ShowBuyDialog();
+            }
+        }
+
+
+        private void renameBlock_Tap(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+            PhoneApplicationService.Current.State["parameter"] = fe.DataContext as ROMDBEntry;
+            PhoneApplicationService.Current.State["parameter2"] = ROMDatabase.Current;
+
+            this.NavigationService.Navigate(new Uri("/RenamePage.xaml", UriKind.Relative));
+        }
+
+
+        private void cheatBlock_Tap(object sender, RoutedEventArgs e)
+        {
+            if (!App.IsTrial)
+            {
+                var menuItem = sender as MenuItem;
+                var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+                PhoneApplicationService.Current.State["parameter"] = fe.DataContext as ROMDBEntry;
+                this.NavigationService.Navigate(new Uri("/CheatPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                ShowBuyDialog();
+            }
+        }
+
+        private void deleteManageBlock_Tap(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+            PhoneApplicationService.Current.State["parameter"] = fe.DataContext as ROMDBEntry;
+            this.NavigationService.Navigate(new Uri("/ManageSavestatePage.xaml", UriKind.Relative));
+        }
+
+        private async void deleteSavesBlock_Tap(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+
+            await FileHandler.DeleteSRAMFile(fe.DataContext as ROMDBEntry);
+
+            //CustomMessageBox msgbox = new CustomMessageBox();
+            //msgbox.Background = (SolidColorBrush)App.Current.Resources["PhoneChromeBrush"];
+            //msgbox.Foreground = (SolidColorBrush)App.Current.Resources["PhoneForegroundBrush"];
+            //msgbox.Message = AppResources.SRAMDeletedSuccessfully;
+            //msgbox.Caption = AppResources.InfoCaption;
+            //msgbox.LeftButtonContent = "OK";
+            //msgbox.Show();
+            MessageBox.Show(AppResources.SRAMDeletedSuccessfully, AppResources.InfoCaption, MessageBoxButton.OK);
+        }
+
+        private async void deleteBlock_Tap(object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var menuItem = sender as MenuItem;
+                var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+
+                ROMDBEntry entry = fe.DataContext as ROMDBEntry;
+                await FileHandler.DeleteROMAsync(entry);
+
+            }
+            catch (System.IO.FileNotFoundException)
+            { }
+        }
+
+    } //end MainPage class
+
+
+    // add these 3 lines  
+    public class TiltableGrid : Grid
+    {
     }
+
+    public class TiltableCanvas : Canvas
+    {
+    }  
+
 }

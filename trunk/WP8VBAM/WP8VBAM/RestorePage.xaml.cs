@@ -28,6 +28,10 @@ namespace PhoneDirect3DXamlAppInterop
         {
             InitializeComponent();
 
+#if GBC
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
+#endif
+
             //create ad control
             if (App.HasAds)
             {
