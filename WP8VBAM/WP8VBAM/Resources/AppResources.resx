@@ -848,4 +848,13 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   <data name="RestartPromptTitle" xml:space="preserve">
     <value>Please restart</value>
   </data>
+  <data name="DeleteConfirmText" xml:space="preserve">
+    <value>This cannot be undone, continue?</value>
+  </data>
+  <data name="DeleteConfirmTitle" xml:space="preserve">
+    <value>Confirm deletion</value>
+  </data>
+  <data name="ShowThreeDotsSetting" xml:space="preserve">
+    <value>Show context menu hint</value>
+  </data>
 </root>

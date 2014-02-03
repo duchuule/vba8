@@ -62,7 +62,8 @@ namespace PhoneDirect3DXamlAppInterop
 #endif
             //add tilt effect to tiltablegrid
             TiltEffect.TiltableItems.Add(typeof(TiltableGrid));
-            TiltEffect.TiltableItems.Add(typeof(TiltableCanvas)); 
+            TiltEffect.TiltableItems.Add(typeof(TiltableCanvas));
+
 
             //create ad control
             if (App.HasAds)
@@ -593,10 +594,7 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     isoSettings[SettingsPage.MogaRightJoystickKey] = 16;
                 }
-                if (!isoSettings.Contains("ThemeSelectionKey"))
-                {
-                    isoSettings["ThemeSelectionKey"] = 0;
-                }
+
 
                 isoSettings.Save();
 
@@ -992,18 +990,20 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
 
-       
 
-        private void pinBlock_Tap(object sender, RoutedEventArgs e)
+
+        private void pinBlock_Tap(object sender, ContextMenuItemSelectedEventArgs e)
         {
             if (!App.IsTrial)
             {
                 try
                 {
-                    var menuItem = sender as MenuItem;
+                    var menuItem = sender as RadContextMenuItem;
                     var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+                    ROMDBEntry entry = fe.DataContext as ROMDBEntry;
 
-                    FileHandler.CreateROMTile(fe.DataContext as ROMDBEntry);
+
+                    FileHandler.CreateROMTile(entry);
                 }
                 catch (InvalidOperationException)
                 {
@@ -1017,24 +1017,28 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
 
-        private void renameBlock_Tap(object sender, RoutedEventArgs e)
+        private void renameBlock_Tap(object sender, ContextMenuItemSelectedEventArgs e)
         {
-            var menuItem = sender as MenuItem;
+            var menuItem = sender as RadContextMenuItem;
             var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
-            PhoneApplicationService.Current.State["parameter"] = fe.DataContext as ROMDBEntry;
+            ROMDBEntry entry = fe.DataContext as ROMDBEntry;
+
+            PhoneApplicationService.Current.State["parameter"] = entry;
             PhoneApplicationService.Current.State["parameter2"] = ROMDatabase.Current;
 
             this.NavigationService.Navigate(new Uri("/RenamePage.xaml", UriKind.Relative));
         }
 
 
-        private void cheatBlock_Tap(object sender, RoutedEventArgs e)
+        private void cheatBlock_Tap(object sender, ContextMenuItemSelectedEventArgs e)
         {
             if (!App.IsTrial)
             {
-                var menuItem = sender as MenuItem;
+                var menuItem = sender as RadContextMenuItem;
                 var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
-                PhoneApplicationService.Current.State["parameter"] = fe.DataContext as ROMDBEntry;
+                ROMDBEntry entry = fe.DataContext as ROMDBEntry;
+
+                PhoneApplicationService.Current.State["parameter"] = entry;
                 this.NavigationService.Navigate(new Uri("/CheatPage.xaml", UriKind.Relative));
             }
             else
@@ -1043,20 +1047,29 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        private void deleteManageBlock_Tap(object sender, RoutedEventArgs e)
+        private void deleteManageBlock_Tap(object sender, ContextMenuItemSelectedEventArgs e)
         {
-            var menuItem = sender as MenuItem;
+            var menuItem = sender as RadContextMenuItem;
             var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
-            PhoneApplicationService.Current.State["parameter"] = fe.DataContext as ROMDBEntry;
+            ROMDBEntry entry = fe.DataContext as ROMDBEntry;
+
+            PhoneApplicationService.Current.State["parameter"] = entry;
             this.NavigationService.Navigate(new Uri("/ManageSavestatePage.xaml", UriKind.Relative));
         }
 
-        private async void deleteSavesBlock_Tap(object sender, RoutedEventArgs e)
+        private async void deleteSavesBlock_Tap(object sender, ContextMenuItemSelectedEventArgs e)
         {
-            var menuItem = sender as MenuItem;
+            MessageBoxResult result = MessageBox.Show(AppResources.DeleteConfirmText, AppResources.DeleteConfirmTitle, MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.Cancel)
+                return;
+
+
+            var menuItem = sender as RadContextMenuItem;
             var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
 
-            await FileHandler.DeleteSRAMFile(fe.DataContext as ROMDBEntry);
+            ROMDBEntry entry = fe.DataContext as ROMDBEntry;
+
+            await FileHandler.DeleteSRAMFile(entry);
 
             //CustomMessageBox msgbox = new CustomMessageBox();
             //msgbox.Background = (SolidColorBrush)App.Current.Resources["PhoneChromeBrush"];
@@ -1068,11 +1081,15 @@ namespace PhoneDirect3DXamlAppInterop
             MessageBox.Show(AppResources.SRAMDeletedSuccessfully, AppResources.InfoCaption, MessageBoxButton.OK);
         }
 
-        private async void deleteBlock_Tap(object sender, RoutedEventArgs e )
+        private async void deleteBlock_Tap(object sender, ContextMenuItemSelectedEventArgs e)
         {
             try
             {
-                var menuItem = sender as MenuItem;
+                MessageBoxResult result = MessageBox.Show(AppResources.DeleteConfirmText, AppResources.DeleteConfirmTitle, MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.Cancel)
+                    return;
+
+                var menuItem = sender as RadContextMenuItem;
                 var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
 
                 ROMDBEntry entry = fe.DataContext as ROMDBEntry;
@@ -1082,6 +1099,17 @@ namespace PhoneDirect3DXamlAppInterop
             catch (System.IO.FileNotFoundException)
             { }
         }
+
+
+        private void test_Tapped(object sender, ContextMenuItemSelectedEventArgs e)
+        {
+            var menuItem = sender as RadContextMenuItem;
+            var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
+
+            ROMDBEntry entry = fe.DataContext as ROMDBEntry;
+        }
+
+
 
     } //end MainPage class
 

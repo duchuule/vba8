@@ -30,6 +30,8 @@ namespace PhoneDirect3DXamlAppInterop
         public static bool HasAds { get; private set; }
         public static bool IsPremium { get; private set; }
 
+        public static AppSettings metroSettings = new AppSettings();
+
         public static void DetermineIsTrail()
         {
 #if TRIAL
@@ -121,18 +123,14 @@ namespace PhoneDirect3DXamlAppInterop
             Color systemTrayColor;
             SolidColorBrush brush;
 
-            int themeChoice = 0; //0: light, 1: dark
-            if (IsolatedStorageSettings.ApplicationSettings.Contains("ThemeSelectionKey"))
-            {
-                themeChoice = (int)IsolatedStorageSettings.ApplicationSettings["ThemeSelectionKey"];
-            }
+           
 
 
             //remove then add, stupid silverlight does not allow to change value
             App.Current.Resources.Remove("CustomForegroundColor");
             App.Current.Resources.Remove("CustomChromeColor");
 
-            if (themeChoice == 0)
+            if (metroSettings.ThemeSelection == 0)
             {
                 source = String.Format("/CustomTheme/LightTheme.xaml");
 
