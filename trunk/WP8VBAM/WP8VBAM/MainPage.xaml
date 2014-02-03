@@ -27,6 +27,9 @@
                                   />
     </shell:SystemTray.ProgressIndicator>
 
+    <phone:PhoneApplicationPage.Resources>
+        <local:AppSettings x:Key="appSettings" />
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" 
@@ -149,31 +152,34 @@
                                     <Grid Background="{StaticResource ListboxBackgroundBrush}"
                                         Margin="0,0,0,12"
                                           Height="80" >
-                                       
 
-                                        <toolkit:ContextMenuService.ContextMenu>
-                                            <toolkit:ContextMenu IsZoomEnabled="False"
-                                                                  >
-                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
-                                                            Click="pinBlock_Tap"
-                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.RenameMenuItemText, Source={StaticResource LocalizedStrings}}"
-                                                                Click="renameBlock_Tap"
-                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.DeleteMenuItemText, Source={StaticResource LocalizedStrings}}" 
-                                                            Click="deleteBlock_Tap"
-                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.DeleteSavesEntry, Source={StaticResource LocalizedStrings}}"
-                                                                Click="deleteSavesBlock_Tap"
-                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.ManageSavestateMenuItem, Source={StaticResource LocalizedStrings}}" 
-                                                            Click="deleteManageBlock_Tap"
-                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.CheatMenuItemText, Source={StaticResource LocalizedStrings}}"
-                                                                Click="cheatBlock_Tap"
-                                                                  Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                            </toolkit:ContextMenu>
-                                        </toolkit:ContextMenuService.ContextMenu>
+
+                                        <telerikPrimitives:RadContextMenu.ContextMenu>
+                                            <telerikPrimitives:RadContextMenu IsFadeEnabled="False"
+                                                                              RegionOfInterest="0,750,0,0">
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="pinBlock_Tap"
+                                                                />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.RenameMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="renameBlock_Tap"
+                                                                  />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteMenuItemText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteBlock_Tap"
+                                                                  />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteSavesEntry, Source={StaticResource LocalizedStrings}}"
+                                                               Tapped="deleteSavesBlock_Tap"
+                                                                 />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.ManageSavestateMenuItem, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteManageBlock_Tap"
+                                                                 />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.CheatMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                                <telerikPrimitives:RadContextMenuItem Content=" "
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                            </telerikPrimitives:RadContextMenu>
+                                        </telerikPrimitives:RadContextMenu.ContextMenu>
                                         
                                         
                                         <Grid.ColumnDefinitions>
@@ -213,6 +219,75 @@
                                                            />
                                             </StackPanel>
                                         </StackPanel>
+
+                                        <!--<Grid Grid.Column="1" Width="50" 
+                                              Height="40"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Bottom">
+                                            <TextBlock Text="..." 
+                                                       FontSize="50"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Bottom"/>
+                                            <telerikPrimitives:RadContextMenu.ContextMenu>
+                                                <telerikPrimitives:RadContextMenu OpenGesture="Tap"
+                                              IsZoomEnabled="False">
+                                                    <telerikPrimitives:RadContextMenuItem Content="change color" 
+                                                  />
+                                                </telerikPrimitives:RadContextMenu>
+                                            </telerikPrimitives:RadContextMenu.ContextMenu>
+                                        </Grid>-->
+
+                                        <Button Grid.Column="1"
+                                                HorizontalContentAlignment="Right"
+                                                VerticalContentAlignment="Bottom"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Bottom"
+                                                Margin="0,0,0,0"
+                                                Padding="0,0,0,0"
+                                                BorderThickness="0"
+                                                FontSize="40"
+                                                FontWeight="Light"
+                                                Width="70"
+                                                Height="80"
+                                                Style="{StaticResource MinimalButtonStyle}"
+                                               >
+                                            <Button.Content >
+                                                <TextBlock Text="..."
+                                                           Margin="0,0,6,-6"
+                                                            Foreground="{StaticResource PhoneSubtleBrush}"
+                                                            Visibility="{Binding Source={StaticResource appSettings}, Path=ShowThreeDots,  Converter={StaticResource VisibilityConverter}}"/>
+                                            </Button.Content>
+                                            <telerikPrimitives:RadContextMenu.ContextMenu>
+                                                <telerikPrimitives:RadContextMenu IsFadeEnabled="False"
+                                                                                  OpenGesture="Tap"
+                                                                                  RegionOfInterest="0,750,0,0">
+
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="pinBlock_Tap"
+                                                                />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.RenameMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="renameBlock_Tap"
+                                                                  />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteMenuItemText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteBlock_Tap"
+                                                                  />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteSavesEntry, Source={StaticResource LocalizedStrings}}"
+                                                               Tapped="deleteSavesBlock_Tap"
+                                                                 />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.ManageSavestateMenuItem, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteManageBlock_Tap"
+                                                                 />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.CheatMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                                    <telerikPrimitives:RadContextMenuItem Content=" "
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                                </telerikPrimitives:RadContextMenu>
+                                            </telerikPrimitives:RadContextMenu.ContextMenu>
+                                        </Button>
+
+
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -232,6 +307,7 @@
                                        Foreground="{StaticResource HeaderForegroundBrush}"
                                   />
                         </Grid>
+
 
                         <ListBox x:Name="romList" 
                                  SelectionChanged="romList_SelectionChanged"
@@ -254,7 +330,7 @@
                                                 
                                                 Height="60" >
 
-                                        <toolkit:ContextMenuService.ContextMenu>
+                                        <!--<toolkit:ContextMenuService.ContextMenu>
                                             <toolkit:ContextMenu IsZoomEnabled="False"
                                                                   >
                                                 <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
@@ -276,7 +352,35 @@
                                                                 Click="cheatBlock_Tap"
                                                                   Foreground="{StaticResource PhoneForegroundBrush}"/>
                                             </toolkit:ContextMenu>
-                                        </toolkit:ContextMenuService.ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>-->
+
+                                        <telerikPrimitives:RadContextMenu.ContextMenu>
+                                            <telerikPrimitives:RadContextMenu IsFadeEnabled="False"
+                                                                              RegionOfInterest="0,750,0,0">
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="pinBlock_Tap"
+                                                                />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.RenameMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="renameBlock_Tap"
+                                                                  />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteMenuItemText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteBlock_Tap"
+                                                                  />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteSavesEntry, Source={StaticResource LocalizedStrings}}"
+                                                               Tapped="deleteSavesBlock_Tap"
+                                                                 />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.ManageSavestateMenuItem, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteManageBlock_Tap"
+                                                                 />
+                                                <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.CheatMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                                <telerikPrimitives:RadContextMenuItem Content=" "
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                            </telerikPrimitives:RadContextMenu>
+                                        </telerikPrimitives:RadContextMenu.ContextMenu>
+                                        
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="90"/>
                                             <ColumnDefinition Width="*" />
@@ -308,6 +412,56 @@
                                                            Text="{Binding LastPlayed, Converter={StaticResource LastPlayedConverter}}" FontSize="14" />
                                             </StackPanel>-->
                                         </StackPanel>
+
+                                        <Button Grid.Column="1"
+                                                HorizontalContentAlignment="Right"
+                                                VerticalContentAlignment="Bottom"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Bottom"
+                                                Margin="0,0,0,0"
+                                                Padding="0,0,0,0"
+                                                BorderThickness="0"
+                                                FontSize="40"
+                                                FontWeight="Light"
+                                                Width="70"
+                                                Height="80"
+                                                Style="{StaticResource MinimalButtonStyle}"
+                                               >
+                                            <Button.Content >
+                                                <TextBlock Text="..."
+                                                           Margin="0,0,6,-6"
+                                                            Foreground="{StaticResource PhoneSubtleBrush}"
+                                                            Visibility="{Binding Source={StaticResource appSettings}, Path=ShowThreeDots,  Converter={StaticResource VisibilityConverter}}"/>
+                                            </Button.Content>
+
+                                            <telerikPrimitives:RadContextMenu.ContextMenu>
+                                                <telerikPrimitives:RadContextMenu IsFadeEnabled="False"
+                                                                              RegionOfInterest="0,750,0,0"
+                                                                                  OpenGesture="Tap">
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.PinToStartText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="pinBlock_Tap"
+                                                                />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.RenameMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="renameBlock_Tap"
+                                                                  />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteMenuItemText, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteBlock_Tap"
+                                                                  />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.DeleteSavesEntry, Source={StaticResource LocalizedStrings}}"
+                                                               Tapped="deleteSavesBlock_Tap"
+                                                                 />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.ManageSavestateMenuItem, Source={StaticResource LocalizedStrings}}" 
+                                                            Tapped="deleteManageBlock_Tap"
+                                                                 />
+                                                    <telerikPrimitives:RadContextMenuItem Content="{Binding Path=LocalizedResources.CheatMenuItemText, Source={StaticResource LocalizedStrings}}"
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                                    <telerikPrimitives:RadContextMenuItem Content=" "
+                                                                Tapped="cheatBlock_Tap"
+                                                                 />
+                                                </telerikPrimitives:RadContextMenu>
+                                            </telerikPrimitives:RadContextMenu.ContextMenu>
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

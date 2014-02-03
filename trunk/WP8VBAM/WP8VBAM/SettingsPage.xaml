@@ -397,6 +397,13 @@
                             <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.DarkText, Source={StaticResource LocalizedStrings}}" />
                         </telerikInput:RadListPicker>
 
+                        <CheckBox 
+                                  Content="{Binding Path=LocalizedResources.ShowThreeDotsSetting, Source={StaticResource LocalizedStrings}}" 
+                                  Name="showThreeDotsSwitch"
+                            Click="showThreeDotsSwitch_Click"
+                            
+                                  />
+
                         <CheckBox Checked="manualSnapshotSwitch_Checked" Unchecked="manualSnapshotSwitch_Unchecked"
                                   Content="{Binding Path=LocalizedResources.ManualSnapshotSetting, Source={StaticResource LocalizedStrings}}" 
                                   Name="manualSnapshotSwitch" IsChecked="false"

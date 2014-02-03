@@ -54,7 +54,7 @@ namespace PhoneDirect3DXamlAppInterop
         public const String BgcolorRKey = "BgcolorRKey";
         public const String BgcolorGKey = "BgcolorGKey";
         public const String BgcolorBKey = "BgcolorBKey";
-        //public const String ThemeSelectionKey = "ThemeSelectionKey";
+        
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -100,6 +100,10 @@ namespace PhoneDirect3DXamlAppInterop
 
         bool initdone = false;
 
+        
+
+      
+
         public SettingsPage()
         {
             InitializeComponent();
@@ -114,6 +118,9 @@ namespace PhoneDirect3DXamlAppInterop
                 LayoutRoot.Children.Add(adControl);
                 adControl.SetValue(Grid.RowProperty, 1);
             }
+
+
+
 
             //set frameskip option
             frameSkipPicker.ItemsSource = frameskiplist;
@@ -182,6 +189,8 @@ namespace PhoneDirect3DXamlAppInterop
             this.manualSnapshotSwitch.IsChecked = emuSettings.ManualSnapshots;
             this.useColorButtonSwitch.IsChecked = emuSettings.UseColorButtons;
 
+            this.showThreeDotsSwitch.IsChecked = App.metroSettings.ShowThreeDots;
+
             if (this.useColorButtonSwitch.IsChecked.Value)
                 CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
             else
@@ -201,7 +210,7 @@ namespace PhoneDirect3DXamlAppInterop
 
                 this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad
                 this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
-                this.themePicker.SelectedIndex = (int)IsolatedStorageSettings.ApplicationSettings["ThemeSelectionKey"];
+                this.themePicker.SelectedIndex = App.metroSettings.ThemeSelection;
 
                 
 
@@ -646,8 +655,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-                IsolatedStorageSettings.ApplicationSettings["ThemeSelectionKey"] = themePicker.SelectedIndex;
-                IsolatedStorageSettings.ApplicationSettings.Save();
+                App.metroSettings.ThemeSelection = themePicker.SelectedIndex;
 
                 App.MergeCustomColors();
                 //CustomMessageBox msgbox = new CustomMessageBox();
@@ -657,6 +665,14 @@ namespace PhoneDirect3DXamlAppInterop
                 //msgbox.Caption = AppResources.RestartPromptTitle;
                 //msgbox.LeftButtonContent = "OK";
                 //msgbox.Show();
+            }
+        }
+
+        private void showThreeDotsSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if  (this.initdone)
+            {
+                App.metroSettings.ShowThreeDots = showThreeDotsSwitch.IsChecked.Value;
             }
         }
 

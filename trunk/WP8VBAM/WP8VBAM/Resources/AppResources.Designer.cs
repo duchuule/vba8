@@ -719,6 +719,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This cannot be undone, continue?.
+        /// </summary>
+        public static string DeleteConfirmText {
+            get {
+                return ResourceManager.GetString("DeleteConfirmText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm deletion.
+        /// </summary>
+        public static string DeleteConfirmTitle {
+            get {
+                return ResourceManager.GetString("DeleteConfirmTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete.
         /// </summary>
         public static string DeleteMenuItemText {
@@ -1895,6 +1913,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string SettingsPageTitle {
             get {
                 return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show context menu hint.
+        /// </summary>
+        public static string ShowThreeDotsSetting {
+            get {
+                return ResourceManager.GetString("ShowThreeDotsSetting", resourceCulture);
             }
         }
         
