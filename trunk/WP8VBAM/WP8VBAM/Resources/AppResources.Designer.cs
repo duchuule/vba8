@@ -292,6 +292,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background image opacity.
+        /// </summary>
+        public static string BackgroundOpacitySetting {
+            get {
+                return ResourceManager.GetString("BackgroundOpacitySetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export and import savegames:.
         /// </summary>
         public static string BackupAndRestoreInstructions {
@@ -1192,6 +1201,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to image editor.
+        /// </summary>
+        public static string ImageEditorTitle {
+            get {
+                return ResourceManager.GetString("ImageEditorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scale Image (landscape only).
         /// </summary>
         public static string ImageScaleSetting {
@@ -1553,7 +1571,8 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Premium features include: 
         ///- support for MOGA controller. 
-        ///- customize background in portrait mode.
+        ///- customize in-game background color.
+        ///- choose your own background image.
         ///
         ///VBA8 and VGBC8 now have identical feature set. You should only purchase features on one app only.
         ///
@@ -1917,6 +1936,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show snapshot of last played game.
+        /// </summary>
+        public static string ShowLastPlayedGameText {
+            get {
+                return ResourceManager.GetString("ShowLastPlayedGameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show context menu hint.
         /// </summary>
         public static string ShowThreeDotsSetting {
@@ -2111,6 +2139,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string UploadProgressText {
             get {
                 return ResourceManager.GetString("UploadProgressText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use background image.
+        /// </summary>
+        public static string UseBackgroundImageSetting {
+            get {
+                return ResourceManager.GetString("UseBackgroundImageSetting", resourceCulture);
             }
         }
         

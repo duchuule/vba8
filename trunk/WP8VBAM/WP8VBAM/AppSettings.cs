@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace PhoneDirect3DXamlAppInterop
 {
-    public class AppSettings
+    public class AppSettings: INotifyPropertyChanged
     {
 
         // Our isolated storage settings
@@ -16,6 +16,10 @@ namespace PhoneDirect3DXamlAppInterop
         //the following keys are use in metro mode only
         const String ThemeSelectionKey = "ThemeSelectionKey";
         const String ShowThreeDotsKey = "ShowThreeDotsKey";
+        const String BackgroundUriKey = "BackgroundUriKey";
+        const String BackgroundOpacityKey = "BackgroundOpacityKey";
+        const String UseDefaultBackgroundKey = "UseDefaultBackgroundKey";
+        const String ShowLastPlayedGameKey = "ShowLastPlayedGameKey";
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -128,6 +132,75 @@ namespace PhoneDirect3DXamlAppInterop
                 Save();
             }
         }
+
+        public String BackgroundUri
+        {
+            get
+            {
+                return GetValueOrDefault<String>(BackgroundUriKey, FileHandler.DEFAULT_BACKGROUND_IMAGE);
+            }
+            set
+            {
+                AddOrUpdateValue(BackgroundUriKey, value);
+                Save();
+                NotifyPropertyChanged("BackgroundUri");
+            }
+        }
+
+
+        public double BackgroundOpacity
+        {
+            get
+            {
+                return GetValueOrDefault<double>(BackgroundOpacityKey, 0.2);
+            }
+            set
+            {
+                AddOrUpdateValue(BackgroundOpacityKey, value);
+                Save();
+            }
+        }
+
+        public bool UseDefaultBackground
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(UseDefaultBackgroundKey, true);
+            }
+            set
+            {
+                AddOrUpdateValue(UseDefaultBackgroundKey, value);
+                Save();
+            }
+        }
+
+        public bool ShowLastPlayedGame
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(ShowLastPlayedGameKey, true);
+            }
+            set
+            {
+                AddOrUpdateValue(ShowLastPlayedGameKey, value);
+                Save();
+            }
+        }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // Used to notify that a property changed
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
 
 
     }

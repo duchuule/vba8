@@ -22,6 +22,9 @@
             <local:SavestateConverter x:Key="SavestateConverter"/>
             <local:LastPlayedShortConverter x:Key="LastPlayedShortConverter"/>
             <local:VisibilityConverter x:Key="VisibilityConverter" />
+            <local:VisibilityConverter2 x:Key="VisibilityConverter2" />
+            <local:AppSettings x:Key="AppSettings" />
+            <local:ImageSourceConverter x:Key="ImageSourceConverter"/>
 
             <!-- dummy key so that the designer does not complain, will change at run time -->
             <Color x:Key="CustomForegroundColor"></Color>
@@ -30,6 +33,7 @@
             <SolidColorBrush x:Key="HeaderBackgroundBrush"> </SolidColorBrush>
             <SolidColorBrush x:Key="HeaderForegroundBrush"></SolidColorBrush>
             <SolidColorBrush x:Key="ListboxBackgroundBrush"></SolidColorBrush>
+           
 
 
 

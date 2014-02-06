@@ -23,67 +23,78 @@
     
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
-                       Margin="12,-7,0,0" 
-                       Style="{StaticResource MyTitle1Style}"
-                       x:Name="tblkTitle"/>
-        </StackPanel>
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                        Stretch="None"
+                        AlignmentX="Center"
+                        AlignmentY="Center"
+                        Opacity="0.2"/>
+
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+                           Margin="12,-7,0,0" 
+                           Style="{StaticResource MyTitle1Style}"
+                           x:Name="tblkTitle"/>
+            </StackPanel>
 
         
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,0,24,0">
-            <ListBox IsHitTestVisible="True" Margin="0,0,0,0">
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,0,24,0">
+                <ListBox IsHitTestVisible="True" Margin="0,0,0,0">
                
-                <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
-                    <TextBlock x:Name="tblkVersion"
-                        TextWrapping="Wrap" FontSize="26"
-                        Text="{Binding LocalizedResources.AboutVersion, Source={StaticResource LocalizedStrings}}" />
-                </ListBoxItem>
-                <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="True">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock TextWrapping="Wrap" FontSize="26" IsHitTestVisible="False"
-                            Text="{Binding LocalizedResources.AboutContactLabel, Source={StaticResource LocalizedStrings}}" />
-                        <TextBlock TextWrapping="Wrap" FontSize="26" Tap="contactBlock_Tap_1" Name="contactBlock"
-                                   TextDecorations="Underline" Foreground="#4444D9" Margin="10,0,0,0"
-                                   Text="{Binding LocalizedResources.AboutContact, Source={StaticResource LocalizedStrings}}" />
-                    </StackPanel>
-                </ListBoxItem>
+                    <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
+                        <TextBlock x:Name="tblkVersion"
+                            TextWrapping="Wrap" FontSize="26"
+                            Text="{Binding LocalizedResources.AboutVersion, Source={StaticResource LocalizedStrings}}" />
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="True">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextWrapping="Wrap" FontSize="26" IsHitTestVisible="False"
+                                Text="{Binding LocalizedResources.AboutContactLabel, Source={StaticResource LocalizedStrings}}" />
+                            <TextBlock TextWrapping="Wrap" FontSize="26" Tap="contactBlock_Tap_1" Name="contactBlock"
+                                       TextDecorations="Underline" Foreground="#4444D9" Margin="10,0,0,0"
+                                       Text="{Binding LocalizedResources.AboutContact, Source={StaticResource LocalizedStrings}}" />
+                        </StackPanel>
+                    </ListBoxItem>
                 
-                <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
-                    <TextBlock TextWrapping="Wrap" FontSize="22" Margin="0,15,0,0"
-                        Text="{Binding LocalizedResources.AboutSnes9x, Source={StaticResource LocalizedStrings}}" />
-                </ListBoxItem>
-                <!--<ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
-                    <TextBlock TextWrapping="Wrap" Margin="0,15,0,0" FontSize="22"
-                               Text="{Binding LocalizedResources.AboutSnes9xLicense, Source={StaticResource LocalizedStrings}}" />
-                </ListBoxItem>-->
-                <!--<ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
-                    <TextBlock TextWrapping="Wrap" FontSize="20"
-                               Text="{Binding LocalizedResources.AboutSnes9xLicenseText, Source={StaticResource LocalizedStrings}}" />
-                </ListBoxItem>-->
-                <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="True">
-                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Stretch">
-                        <TextBlock TextWrapping="Wrap" FontSize="22" IsHitTestVisible="False"
-                                   Text="{Binding LocalizedResources.AboutSnes9xLinkLabel, Source={StaticResource LocalizedStrings}}" />
-                        <HyperlinkButton Content="{Binding LocalizedResources.AboutSnes9xLink, Source={StaticResource LocalizedStrings}}"
-                                         NavigateUri="{Binding LocalizedResources.AboutSnes9xLink, Source={StaticResource LocalizedStrings}}"
-                                         TargetName="_anything" />
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="True">
-                    <Button Content="{Binding LocalizedResources.MoreLicenseButton, Source={StaticResource LocalizedStrings}}"
-                            Click="Button_Click"
-                            Margin="-12,0,-12,0"/>
-                </ListBoxItem>
-            </ListBox>
+                    <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
+                        <TextBlock TextWrapping="Wrap" FontSize="22" Margin="0,15,0,0"
+                            Text="{Binding LocalizedResources.AboutSnes9x, Source={StaticResource LocalizedStrings}}" />
+                    </ListBoxItem>
+                    <!--<ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
+                        <TextBlock TextWrapping="Wrap" Margin="0,15,0,0" FontSize="22"
+                                   Text="{Binding LocalizedResources.AboutSnes9xLicense, Source={StaticResource LocalizedStrings}}" />
+                    </ListBoxItem>-->
+                    <!--<ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
+                        <TextBlock TextWrapping="Wrap" FontSize="20"
+                                   Text="{Binding LocalizedResources.AboutSnes9xLicenseText, Source={StaticResource LocalizedStrings}}" />
+                    </ListBoxItem>-->
+                    <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="True">
+                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Stretch">
+                            <TextBlock TextWrapping="Wrap" FontSize="22" IsHitTestVisible="False"
+                                       Text="{Binding LocalizedResources.AboutSnes9xLinkLabel, Source={StaticResource LocalizedStrings}}" />
+                            <HyperlinkButton Content="{Binding LocalizedResources.AboutSnes9xLink, Source={StaticResource LocalizedStrings}}"
+                                             NavigateUri="{Binding LocalizedResources.AboutSnes9xLink, Source={StaticResource LocalizedStrings}}"
+                                             TargetName="_anything" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="True">
+                        <Button Content="{Binding LocalizedResources.MoreLicenseButton, Source={StaticResource LocalizedStrings}}"
+                                Click="Button_Click"
+                                Margin="-12,0,-12,0"/>
+                    </ListBoxItem>
+                </ListBox>
+            </Grid>
         </Grid>
     </Grid>
 

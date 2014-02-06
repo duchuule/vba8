@@ -27,9 +27,7 @@
                                   />
     </shell:SystemTray.ProgressIndicator>
 
-    <phone:PhoneApplicationPage.Resources>
-        <local:AppSettings x:Key="appSettings" />
-    </phone:PhoneApplicationPage.Resources>
+
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" 
@@ -39,12 +37,18 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <phone:Panorama Grid.Row="0"
+        <phone:Panorama Grid.Row="0" x:Name="panorama"
                          >
-            <!--<phone:Panorama.Background>
-                <ImageBrush ImageSource="Assets\landscape1.jpg"
-                            Opacity="0.2"/>
-            </phone:Panorama.Background>-->
+         
+
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                            Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"
+                            Stretch="None"
+                            AlignmentX="Center"
+                            AlignmentY="Top"
+                            />
+            </phone:Panorama.Background>
             <phone:PanoramaItem  >
                 <phone:PanoramaItem.Header >
                     <TextBlock Text="{Binding Path=LocalizedResources.RomListTitle, Source={StaticResource LocalizedStrings}}"
@@ -80,6 +84,7 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                    d:DataContext="{Binding DesignROMDBEntry[0]}"
+
                                        
                                    Grid.Row="0"
                                     Grid.Column="0" 
@@ -255,7 +260,7 @@
                                                 <TextBlock Text="..."
                                                            Margin="0,0,6,-6"
                                                             Foreground="{StaticResource PhoneSubtleBrush}"
-                                                            Visibility="{Binding Source={StaticResource appSettings}, Path=ShowThreeDots,  Converter={StaticResource VisibilityConverter}}"/>
+                                                            Visibility="{Binding Source={StaticResource AppSettings}, Path=ShowThreeDots,  Converter={StaticResource VisibilityConverter}}"/>
                                             </Button.Content>
                                             <telerikPrimitives:RadContextMenu.ContextMenu>
                                                 <telerikPrimitives:RadContextMenu IsFadeEnabled="False"
@@ -431,7 +436,7 @@
                                                 <TextBlock Text="..."
                                                            Margin="0,0,6,-6"
                                                             Foreground="{StaticResource PhoneSubtleBrush}"
-                                                            Visibility="{Binding Source={StaticResource appSettings}, Path=ShowThreeDots,  Converter={StaticResource VisibilityConverter}}"/>
+                                                            Visibility="{Binding Source={StaticResource AppSettings}, Path=ShowThreeDots,  Converter={StaticResource VisibilityConverter}}"/>
                                             </Button.Content>
 
                                             <telerikPrimitives:RadContextMenu.ContextMenu>
