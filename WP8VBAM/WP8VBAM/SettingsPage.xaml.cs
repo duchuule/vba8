@@ -26,6 +26,8 @@ namespace PhoneDirect3DXamlAppInterop
         private String[] aspectRatioList = { AppResources.AspectRatioOriginalSetting, AppResources.AspectRatioStretchSetting, AppResources.AspectRatioOneSetting, AppResources.AspectRatio4to3Setting, AppResources.AspectRatio5to4Setting };
         private String[] orientationList = { AppResources.OrientationBoth, AppResources.OrientationLandscape, AppResources.OrientationPortrait };
 
+        public static bool shouldUpdateBackgroud = false;
+
         public const String VControllerPosKey = "VirtualControllerOnTop";
         public const String EnableSoundKey = "EnableSound";
         public const String LowFreqModeKey = "LowFrequencyModeNew";
@@ -143,6 +145,17 @@ namespace PhoneDirect3DXamlAppInterop
             else
                 MappingBtn.Visibility = Visibility.Collapsed;
 
+            //in case return from image chooser page
+            if (shouldUpdateBackgroud)
+            {
+
+                //manually update background and signal main page
+                this.UpdateBackgroundImage();
+                MainPage.shouldUpdateBackgroud = true;
+
+                shouldUpdateBackgroud = false;
+
+            }
             base.OnNavigatedTo(e);
         }
 
@@ -190,11 +203,30 @@ namespace PhoneDirect3DXamlAppInterop
             this.useColorButtonSwitch.IsChecked = emuSettings.UseColorButtons;
 
             this.showThreeDotsSwitch.IsChecked = App.metroSettings.ShowThreeDots;
+            this.showLastPlayedGameSwitch.IsChecked = App.metroSettings.ShowLastPlayedGame;
+
+            if (App.metroSettings.BackgroundUri != null)
+            {
+                this.useBackgroundImageSwitch.IsChecked = true;
+                this.backgroundOpacityPanel.Visibility = Visibility.Visible;
+                this.ChooseBackgroundImageGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.useBackgroundImageSwitch.IsChecked = false;
+                this.backgroundOpacityPanel.Visibility = Visibility.Collapsed;
+                this.ChooseBackgroundImageGrid.Visibility = Visibility.Collapsed;
+            }
+
+            
 
             if (this.useColorButtonSwitch.IsChecked.Value)
                 CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
             else
                 CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
+
+            
+            
 
             this.Loaded += (o, e) =>
             {
@@ -212,7 +244,7 @@ namespace PhoneDirect3DXamlAppInterop
                 this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
                 this.themePicker.SelectedIndex = App.metroSettings.ThemeSelection;
 
-                
+                this.backgroundOpacitySlider.Value = App.metroSettings.BackgroundOpacity * 100;
 
                 initdone = true;
             };
@@ -561,6 +593,20 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+        private void backgroundOpacityLock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (backgroundOpacitySlider.IsEnabled)
+            {
+                backgroundOpacitySlider.IsEnabled = false;
+                backgroundOpacityImage.ImageSource = new BitmapImage(new Uri("Assets/Icons/appbar.lock.png", UriKind.Relative));
+            }
+            else
+            {
+                backgroundOpacitySlider.IsEnabled = true;
+                backgroundOpacityImage.ImageSource = new BitmapImage(new Uri("Assets/Icons/appbar.unlock.png", UriKind.Relative));
+            }
+        }
+
         private void buttonScaleLock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (buttonScaleSlider.IsEnabled)
@@ -676,8 +722,141 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+        private void useBackgroundImageSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                if (useBackgroundImageSwitch.IsChecked.Value)
+                {
+                    if (App.metroSettings.UseDefaultBackground)
+                        App.metroSettings.BackgroundUri = FileHandler.DEFAULT_BACKGROUND_IMAGE;
+                    else
+                        App.metroSettings.BackgroundUri = "CustomBackground.jpg";
+
+                    this.backgroundOpacityPanel.Visibility = Visibility.Visible;
+                    this.ChooseBackgroundImageGrid.Visibility = Visibility.Visible;
+
+                    
+                }
+                else
+                {
+                    App.metroSettings.BackgroundUri = null;
+                    this.backgroundOpacityPanel.Visibility = Visibility.Collapsed;
+                    this.ChooseBackgroundImageGrid.Visibility = Visibility.Collapsed;
+
+                    
+                }
+
+                //manually update background (can't find a better way)
+                this.UpdateBackgroundImage();
+
+                //signal main page
+                MainPage.shouldUpdateBackgroud = true;
+            }
+        }
+
+        private void backgroundOpacitySlider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (this.initdone)
+            {
+                App.metroSettings.BackgroundOpacity = this.backgroundOpacitySlider.Value / 100f;
+
+                //manually update background (can't find a better way)
+                this.UpdateBackgroundImage();
+
+                //signal main page
+                MainPage.shouldUpdateBackgroud = true;
+            }
+        }
+
+        private void ChooseBackgroundImageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (App.IsPremium)
+            {
+                PhotoChooserTask task = new PhotoChooserTask();
+                task.Completed += photoChooserTask_Completed;
+                task.ShowCamera = true;
+
+                task.Show();
+            }
+            else
+            {
+                //prompt to buy
+                MessageBoxResult result = MessageBox.Show(AppResources.PremiumFeaturePromptText, AppResources.UnlockFeatureText, MessageBoxButton.OKCancel);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    NavigationService.Navigate(new Uri("/PurchasePage.xaml", UriKind.Relative));
+                }
+            }
 
 
+            
+        }
+
+        private void photoChooserTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+                BitmapImage bmp = new BitmapImage();
+                bmp.SetSource(e.ChosenPhoto);  //this does not have info about width and length
+
+                WriteableBitmap wb = new WriteableBitmap(bmp); //this has info about width and length
+
+                ImageCroppingPage.wbSource = wb;
+
+               
+                NavigationService.Navigate(new Uri("/ImageCroppingPage.xaml", UriKind.Relative));
+
+                
+                
+            
+            }
+        }
+
+
+
+        private void ResetBackgroundImageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.metroSettings.BackgroundUri = FileHandler.DEFAULT_BACKGROUND_IMAGE;
+            App.metroSettings.UseDefaultBackground = true;
+
+            //manually update background and signal main page
+            this.UpdateBackgroundImage();
+            MainPage.shouldUpdateBackgroud = true;
+
+        }
+
+
+
+        private void UpdateBackgroundImage()
+        {
+            if (App.metroSettings.BackgroundUri != null)
+            {
+                pivot.Background = new ImageBrush
+                {
+                    Opacity = App.metroSettings.BackgroundOpacity,
+                    Stretch = Stretch.None,
+                    AlignmentX = System.Windows.Media.AlignmentX.Center,
+                    AlignmentY = System.Windows.Media.AlignmentY.Top,
+                    ImageSource = FileHandler.getBitmapImage(App.metroSettings.BackgroundUri, FileHandler.DEFAULT_BACKGROUND_IMAGE)
+
+
+                };
+            }
+            else
+            {
+                pivot.Background = null;
+            }
+        }
+
+        private void showLastPlayedGameSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                App.metroSettings.ShowLastPlayedGame =  showLastPlayedGameSwitch.IsChecked.Value;
+            }
+        }
 
 
         

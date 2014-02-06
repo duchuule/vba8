@@ -801,7 +801,8 @@ You should have received a copy of the GNU General Public License along with thi
   <data name="PremiumText" xml:space="preserve">
     <value>Premium features include: 
 - support for MOGA controller. 
-- customize background in portrait mode.
+- customize in-game background color.
+- choose your own background image.
 
 VBA8 and VGBC8 now have identical feature set. You should only purchase features on one app only.
 
@@ -856,5 +857,17 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   </data>
   <data name="ShowThreeDotsSetting" xml:space="preserve">
     <value>Show context menu hint</value>
+  </data>
+  <data name="UseBackgroundImageSetting" xml:space="preserve">
+    <value>Use background image</value>
+  </data>
+  <data name="BackgroundOpacitySetting" xml:space="preserve">
+    <value>Background image opacity</value>
+  </data>
+  <data name="ImageEditorTitle" xml:space="preserve">
+    <value>image editor</value>
+  </data>
+  <data name="ShowLastPlayedGameText" xml:space="preserve">
+    <value>Show snapshot of last played game</value>
   </data>
 </root>

@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Windows.Storage;
 using System.Globalization;
+using System.Windows.Media;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -50,6 +51,8 @@ namespace PhoneDirect3DXamlAppInterop
     }
 
 
+
+
     public class VisibilityConverter : System.Windows.Data.IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -70,6 +73,61 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class VisibilityConverter2 : System.Windows.Data.IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (value == null)
+                    return Visibility.Collapsed;
+                else
+                {
+                    bool usePassword = (bool)value;
+
+                    if (usePassword)
+                        return Visibility.Visible;
+                    else
+                        return Visibility.Collapsed;
+                }
+            }
+            catch (Exception)
+            {
+                return Visibility.Collapsed;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+
+    public class ImageSourceConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            try
+            {
+
+                return FileHandler.getBitmapImage((string)value, FileHandler.DEFAULT_BACKGROUND_IMAGE);
+                
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }

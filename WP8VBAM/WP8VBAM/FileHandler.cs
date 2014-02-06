@@ -33,6 +33,37 @@ namespace PhoneDirect3DXamlAppInterop
 #endif
         public static DateTime DEFAULT_DATETIME = new DateTime(1989, 02, 22);
 
+        public static String DEFAULT_BACKGROUND_IMAGE = "Assets/GameboyAdvance.jpg";
+
+
+        public static BitmapImage getBitmapImage(String path, String default_path)
+        {
+
+            BitmapImage img = new BitmapImage();
+
+            if (path.Equals(FileHandler.DEFAULT_BACKGROUND_IMAGE))
+            {
+                Uri uri = new Uri(path, UriKind.Relative);
+
+                img = new BitmapImage(uri);
+                return img;
+            }
+
+            if (!String.IsNullOrEmpty(path))
+            {
+                using (var isoStore = IsolatedStorageFile.GetUserStoreForApplication())
+                {
+                    using (IsolatedStorageFileStream fs = isoStore.OpenFile(path, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                    {
+                        img.SetSource(fs);
+                    }
+                }
+            }
+
+            return img;
+
+        }
+
         public static ROMDBEntry InsertNewDBEntry(string fileName)
         {
             ROMDatabase db = ROMDatabase.Current;

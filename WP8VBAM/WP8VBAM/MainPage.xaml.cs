@@ -22,6 +22,7 @@ using System.IO;
 using System.Collections.ObjectModel;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
+using System.Windows.Media.Imaging;
 
 //"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts xd 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
 
@@ -45,6 +46,7 @@ namespace PhoneDirect3DXamlAppInterop
         private ROMDatabase db;
         private Task createFolderTask, copyDemoTask, initTask;
 
+        public static bool shouldUpdateBackgroud = false;
         
 
         public MainPage()
@@ -209,6 +211,13 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.LoadInitialSettings();
 
+            if (shouldUpdateBackgroud)
+            {
+                UpdateBackgroundImage();
+                shouldUpdateBackgroud = false;
+
+            }
+
             this.RefreshROMList();
 
             this.resumeButton.IsEnabled = EmulatorPage.ROMLoaded;
@@ -217,6 +226,26 @@ namespace PhoneDirect3DXamlAppInterop
             base.OnNavigatedTo(e);
         }
 
+
+        private void UpdateBackgroundImage()
+        {
+            if (App.metroSettings.BackgroundUri != null)
+            {
+                panorama.Background = new ImageBrush
+                {
+                    Opacity = App.metroSettings.BackgroundOpacity,
+                    Stretch = Stretch.None,
+                    AlignmentX = System.Windows.Media.AlignmentX.Center,
+                    AlignmentY = System.Windows.Media.AlignmentY.Top,
+                    ImageSource = FileHandler.getBitmapImage(App.metroSettings.BackgroundUri, FileHandler.DEFAULT_BACKGROUND_IMAGE)
+
+                };
+            }
+            else
+            {
+                panorama.Background = null;
+            }
+        }
 
         void btnSignin_SessionChanged(object sender, Microsoft.Live.Controls.LiveConnectSessionChangedEventArgs e)
         {
@@ -723,10 +752,10 @@ namespace PhoneDirect3DXamlAppInterop
             //}
             DataContext = this.db.GetLastPlayed();
 
-            if (DataContext == null)
-                lastRomGrid.Visibility = Visibility.Collapsed;
-            else
+            if (DataContext != null && App.metroSettings.ShowLastPlayedGame == true)
                 lastRomGrid.Visibility = Visibility.Visible;
+            else
+                lastRomGrid.Visibility = Visibility.Collapsed;
 
             this.romList.ItemsSource = this.db.GetROMList();
 
