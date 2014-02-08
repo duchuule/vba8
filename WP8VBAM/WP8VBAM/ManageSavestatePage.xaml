@@ -22,39 +22,51 @@
     </shell:SystemTray.ProgressIndicator>
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Name="titleLabel" 
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                        Stretch="None"
+                        AlignmentX="Center"
+                        AlignmentY="Top"
+                        Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
+
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Name="titleLabel" 
                        Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
                        Style="{StaticResource PhoneTextNormalStyle}"
                        />
-            <TextBlock Text="{Binding Path=LocalizedResources.ManageSavestatesTitle, Source={StaticResource LocalizedStrings}}" 
+                <TextBlock Text="{Binding Path=LocalizedResources.ManageSavestatesTitle, Source={StaticResource LocalizedStrings}}" 
                        Margin="9,-7,0,0" 
                        Style="{StaticResource MyTitle1Style}"/>
-        </StackPanel>
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,0,24,0">
-            <ListBox x:Name="stateList" Margin="0,0,0,0">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical" Margin="0,0,0,5">
-                            <TextBlock Text="{Binding Slot, Converter={StaticResource SavestateConverter}}" FontSize="28" />
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Path=LocalizedResources.ManageSaveTimeLabel, Source={StaticResource LocalizedStrings}}" FontSize="20" />
-                                <TextBlock Text="{Binding Savetime, Converter={StaticResource LastPlayedConverter}}" FontSize="20" />
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,0,24,0">
+                <ListBox x:Name="stateList" Margin="0,0,0,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <TextBlock Text="{Binding Slot, Converter={StaticResource SavestateConverter}}" FontSize="28" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=LocalizedResources.ManageSaveTimeLabel, Source={StaticResource LocalizedStrings}}" FontSize="20" />
+                                    <TextBlock Text="{Binding Savetime, Converter={StaticResource LastPlayedConverter}}" FontSize="20" />
+                                </StackPanel>
+                                <Line Margin="0,3,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="1" />
                             </StackPanel>
-                            <Line Margin="0,3,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="1" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </Grid>
     </Grid>
 

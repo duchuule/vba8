@@ -23,38 +23,49 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-          
-            <TextBlock Text="{Binding LocalizedResources.RenamePageTitle, Source={StaticResource LocalizedStrings}}" 
-                       Margin="9,-7,0,0" Style="{StaticResource MyTitle1Style}"/>
-        </StackPanel>
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                        Stretch="None"
+                        AlignmentX="Center"
+                        AlignmentY="Top"
+                        Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            </Grid.Background>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding LocalizedResources.RenameLabel, Source={StaticResource LocalizedStrings}}" 
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+
+                <TextBlock Text="{Binding LocalizedResources.RenamePageTitle, Source={StaticResource LocalizedStrings}}" 
+                       Margin="9,-7,0,0" Style="{StaticResource MyTitle1Style}"/>
+            </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding LocalizedResources.RenameLabel, Source={StaticResource LocalizedStrings}}" 
                        Grid.Row="0" 
                        Margin="12, 0, 12, 0"/>
-            <TextBox Name="nameBox" Grid.Row="1" />
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Content="{Binding LocalizedResources.RenameOkButton, Source={StaticResource LocalizedStrings}}"
+                <TextBox Name="nameBox" Grid.Row="1" />
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Content="{Binding LocalizedResources.RenameOkButton, Source={StaticResource LocalizedStrings}}"
                         Name="renameButton" Grid.Column="0" Click="renameButton_Click" />
-                <Button Content="{Binding LocalizedResources.RenameCancelButton, Source={StaticResource LocalizedStrings}}"
+                    <Button Content="{Binding LocalizedResources.RenameCancelButton, Source={StaticResource LocalizedStrings}}"
                         Name="cancelButton" Grid.Column="1" Click="cancelButton_Click" />
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

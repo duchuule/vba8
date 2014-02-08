@@ -58,71 +58,81 @@
     
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="moga mapping" 
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                        Stretch="None"
+                        AlignmentX="Center"
+                        AlignmentY="Top"
+                        Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
+
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Text="moga mapping" 
                        Margin="9,-7,0,0" Style="{StaticResource MyTitle1Style}"/>
-        </StackPanel>
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+            <!--ContentPanel - place additional content here-->
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       Grid.Row="1" Margin="24,0,24,0">
-            <Grid x:Name="ContentPanel" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid x:Name="ContentPanel" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
 
-                </Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
 
-                <TextBlock Text="MOGA BUTTON" 
+                    <TextBlock Text="MOGA BUTTON" 
                        Margin="0,0,0,12"
                        FontSize="26"/>
 
-                <TextBlock Text="APP FUNCTION"
+                    <TextBlock Text="APP FUNCTION"
                         Grid.Column="1"
                         Margin="0,0,0,12"
                        FontSize="26"/>
 
-                <TextBlock Text="A button" 
+                    <TextBlock Text="A button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="1"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					            FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                                 Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
                                 Grid.Row="1"
                                 Name="Abtn"
                                 >
-                </toolkit:ListPicker>
+                    </toolkit:ListPicker>
 
-                <TextBlock Text="B button" 
+                    <TextBlock Text="B button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="2"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
@@ -130,14 +140,14 @@
                             Name="Bbtn"
                             >
 
-                </toolkit:ListPicker>
+                    </toolkit:ListPicker>
 
-                <TextBlock Text="X button" 
+                    <TextBlock Text="X button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="3"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
@@ -145,13 +155,13 @@
                            Name="Xbtn"
                             >
 
-                </toolkit:ListPicker>
-                <TextBlock Text="Y button" 
+                    </toolkit:ListPicker>
+                    <TextBlock Text="Y button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="4"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                             Grid.Row="4"
@@ -159,13 +169,13 @@
                                 Name="Ybtn"
                             >
 
-                </toolkit:ListPicker>
-                <TextBlock Text="L1 button" 
+                    </toolkit:ListPicker>
+                    <TextBlock Text="L1 button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="5"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                             Grid.Row="5"
@@ -173,15 +183,15 @@
                                 Name="L1btn"
                             >
 
-                </toolkit:ListPicker>
+                    </toolkit:ListPicker>
 
 
-                <TextBlock Text="L2 button" 
+                    <TextBlock Text="L2 button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="6"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
@@ -189,14 +199,14 @@
                              Name="L2btn"
                             >
 
-                </toolkit:ListPicker>
-                
-                <TextBlock Text="R1 button" 
+                    </toolkit:ListPicker>
+
+                    <TextBlock Text="R1 button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="7"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
@@ -204,16 +214,16 @@
                              Name="R1btn"
                             >
 
-                </toolkit:ListPicker>
+                    </toolkit:ListPicker>
 
-                
 
-                <TextBlock Text="R2 button" 
+
+                    <TextBlock Text="R2 button" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="8"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
@@ -221,14 +231,14 @@
                              Name="R2btn"
                             >
 
-                </toolkit:ListPicker>
+                    </toolkit:ListPicker>
 
-                <TextBlock Text="Left joystick click" 
+                    <TextBlock Text="Left joystick click" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="9"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
@@ -236,14 +246,14 @@
                              Name="LeftJoystickbtn"
                             >
 
-                </toolkit:ListPicker>
+                    </toolkit:ListPicker>
 
-                <TextBlock Text="Right joystick click" 
+                    <TextBlock Text="Right joystick click" 
                        Style="{StaticResource MogaTextStyle}"
                        Grid.Row="10"
                        />
 
-                <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
+                    <toolkit:ListPicker ItemTemplate="{StaticResource ListPickerTemplate}"
 					        FullModeItemTemplate="{StaticResource ListPickerFullTemplate}"
                             Grid.Column="1"
                                 Style="{StaticResource AppFunctionStyle}"
@@ -251,9 +261,9 @@
                              Name="RightJoystickbtn"
                             >
 
-                </toolkit:ListPicker>
+                    </toolkit:ListPicker>
 
-                <TextBlock Text="Note: Emulator Menu function will be implemented at a later date." 
+                    <TextBlock Text="Note: Emulator Menu function will be implemented at a later date." 
                            Grid.Row="11"
                            FontSize="20"
                            TextWrapping="Wrap"
@@ -261,12 +271,12 @@
                            Foreground="Red"
                            Margin="0,12,0,0"
                            />
-            </Grid>
+                </Grid>
 
 
-        </ScrollViewer>
+            </ScrollViewer>
 
-
+        </Grid>
 
     </Grid>
 

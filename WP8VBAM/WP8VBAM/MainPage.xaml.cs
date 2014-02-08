@@ -788,6 +788,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async Task StartROM(ROMDBEntry entry)
         {
+            EmulatorPage.currentROMEntry = entry;
             LoadROMParameter param = await FileHandler.GetROMFileToPlayAsync(entry.FileName);
 
             entry.LastPlayed = DateTime.Now;

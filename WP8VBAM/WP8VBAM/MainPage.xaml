@@ -623,7 +623,7 @@
                                   />
                         </Grid>
 
-                        <TextBlock Text="Video: MOGA controller instruction" 
+                        <TextBlock Text="Video: MOGA controller instructions" 
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                FontSize="22"
@@ -667,7 +667,7 @@
                                        Foreground="{StaticResource HeaderForegroundBrush}"
                                   />
                         </Grid>
-                        <TextBlock Text="Forum dicussions" 
+                        <TextBlock Text="Forum discussions" 
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"

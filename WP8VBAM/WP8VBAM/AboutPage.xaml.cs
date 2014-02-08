@@ -22,7 +22,7 @@ namespace PhoneDirect3DXamlAppInterop
             if (App.HasAds)
             {
                 AdControl adControl = new AdControl();
-                LayoutRoot.Children.Add(adControl);
+                ((Grid)(LayoutRoot.Children[0])).Children.Add(adControl);
                 adControl.SetValue(Grid.RowProperty, 2);
             }
             tblkVersion.Text = AppResources.AboutVersion + ": " + System.Reflection.Assembly.GetExecutingAssembly()
