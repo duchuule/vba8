@@ -44,7 +44,12 @@ namespace PhoneDirect3DXamlAppInterop
         private void appBarOkButton_Click(object sender, EventArgs e)
         {
             WriteableBitmap wb = this.cropControl.CropImage();
-            wb = wb.Resize((int)((double)wb.PixelWidth / wb.PixelHeight * 800), 800, WriteableBitmapExtensions.Interpolation.Bilinear);
+            int height = 772; //system tray is 32 pixel, so there is only 768 pixel of content
+
+            if (App.Current.Host.Content.ScaleFactor == 150) //only 720p has this scale factor
+                height = 825;  //853.3 is total screen height
+
+            wb = wb.Resize((int)((double)wb.PixelWidth / wb.PixelHeight * height), height, WriteableBitmapExtensions.Interpolation.Bilinear);
 
             using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
             {

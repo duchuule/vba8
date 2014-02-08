@@ -388,7 +388,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Icons\play.png" />
-    <Content Include="Assets\landscape1.jpg" />
     <Content Include="Assets\no_snapshot_gbc.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -535,6 +534,9 @@
     </Content>
     <Content Include="Assets\Tiles\tileIconLargeGBC.png" />
     <Content Include="README_FIRST.txt" />
+    <Content Include="SplashScreenImage.screen-720p.jpg" />
+    <Content Include="SplashScreenImage.screen-WVGA.jpg" />
+    <Content Include="SplashScreenImage.screen-WXGA.jpg" />
     <Content Include="tileIcon.png" />
     <Content Include="Assets\vba-over.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -599,7 +601,6 @@
     <Content Include="Assets\Icons\transport.pause.png" />
     <Content Include="Assets\Icons\transport.play.png" />
     <Content Include="Assets\Icons\upload.png" />
-    <Content Include="SplashScreenImage.jpg" />
     <Content Include="Assets\Icons\AlignmentGrid.png" />
     <Content Include="Assets\Icons\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
