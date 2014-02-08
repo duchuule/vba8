@@ -25,33 +25,43 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Name="titleLabel" 
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                        Stretch="None"
+                        AlignmentX="Center"
+                        AlignmentY="Top"
+                        Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
+
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Name="titleLabel" 
                        Text="purchase"
                        Margin="10,-7,0,0" 
                        Style="{StaticResource MyTitle1Style}"/>
 
-        </StackPanel>
+            </StackPanel>
 
 
 
-        <!--ContentPanel - place additional content here-->
-        <ScrollViewer HorizontalAlignment="Left" 
+            <!--ContentPanel - place additional content here-->
+            <ScrollViewer HorizontalAlignment="Left" 
                       Margin="0,0,0,0" 
                       Grid.Row="1">
-            <StackPanel x:Name="ContentPanel" Grid.Row="1" 
+                <StackPanel x:Name="ContentPanel" Grid.Row="1" 
                         Margin="24,0,24,0">
-                <TextBlock Text="{Binding Path=LocalizedResources.PremiumText, Source={StaticResource LocalizedStrings}}" 
+                    <TextBlock Text="{Binding Path=LocalizedResources.PremiumText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                        />
-                <TextBlock Text="Tap here to download Snes8x" 
+                    <TextBlock Text="Tap here to download Snes8x" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                             TextDecorations="Underline" 
@@ -59,13 +69,13 @@
                            
                        />
 
-                <TextBlock Text="Tap here for MOGA controller instruction" 
+                    <TextBlock Text="Tap here for MOGA controller instructions" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                             TextDecorations="Underline" Tap="TextBlock_Tap_1" 
                            
                        />
-                <TextBlock Text="Loading product list. Please wait..." 
+                    <TextBlock Text="Loading product list. Please wait..." 
                        TextWrapping="Wrap"
                        Margin="0,48,0,12"
                            Visibility="Visible"
@@ -73,48 +83,49 @@
                            
                        />
 
-                <TextBlock Text="Error! No Internet connection or Microsoft server error. Please try again later." 
+                    <TextBlock Text="Error! No Internet connection or Microsoft server error. Please try again later." 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                            Foreground="Red"
                            Visibility="Collapsed"
                            x:Name="txtError"
                        />
-                <ItemsControl x:Name="pics">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Margin="0" Source="{Binding imgLink}"/>
-                                    <Grid Grid.Column="1" 
+                    <ItemsControl x:Name="pics">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Margin="0" Source="{Binding imgLink}"/>
+                                        <Grid Grid.Column="1" 
                                           Margin="12,0,0,0"
                                           >
-                                        <StackPanel VerticalAlignment="Center">
-                                            <TextBlock FontWeight="ExtraBold" 
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock FontWeight="ExtraBold" 
                                                        Text="{Binding Name}" 
                                                        FontSize="25"
                                                        TextWrapping="Wrap"/>
-                                            <TextBlock FontWeight="Normal" 
+                                                <TextBlock FontWeight="Normal" 
                                                        Text="{Binding Status}"
                                                        TextWrapping="Wrap"/>
-                                            <Button Content="Purchase" 
+                                                <Button Content="Purchase" 
                                                     Visibility="{Binding BuyNowButtonVisible}" 
                                                     Click="ButtonBuyNow_Clicked" 
                                                     Tag="{Binding key}"
                                                     Margin="-12, 0, -12, 0"/>
-                                        </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-        </ScrollViewer>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>

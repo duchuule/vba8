@@ -29,8 +29,8 @@
                 <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
                         Stretch="None"
                         AlignmentX="Center"
-                        AlignmentY="Center"
-                        Opacity="0.2"/>
+                        AlignmentY="Top"
+                        Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
 
             </Grid.Background>
             <Grid.RowDefinitions>

@@ -78,7 +78,7 @@
                         <TextBlock TextWrapping="Wrap" Margin="12,0,12,0"
                                    Text="Note: MOGA controller requires GDR3 to work."
                                    />
-                        <TextBlock Text="Tap here for MOGA controller instruction" 
+                        <TextBlock Text="Tap here for MOGA controller instructions" 
                        TextWrapping="Wrap"
                        Margin="12,0,12,12"
                             TextDecorations="Underline" Tap="TextBlock_Tap_1" 

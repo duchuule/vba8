@@ -34,11 +34,12 @@ namespace PhoneDirect3DXamlAppInterop
 #if GBC
             SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
+
             //create ad control
             if (App.HasAds)
             {
                 AdControl adControl = new AdControl();
-                LayoutRoot.Children.Add(adControl);
+                ((Grid)(LayoutRoot.Children[0])).Children.Add(adControl);
                 adControl.SetValue(Grid.RowProperty, 2);
             }
 

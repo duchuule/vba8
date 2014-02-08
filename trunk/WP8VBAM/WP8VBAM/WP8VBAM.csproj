@@ -315,9 +315,6 @@
       <DependentUpon>ImageCroppingPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ImageEditorPage.xaml.cs">
-      <DependentUpon>ImageEditorPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LastPlayedConverter.cs" />
     <Compile Include="LicensePage.xaml.cs">
       <DependentUpon>LicensePage.xaml</DependentUpon>
@@ -424,10 +421,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImageCroppingPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ImageEditorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

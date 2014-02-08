@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.Windows.Media.Imaging;
 using System.IO.IsolatedStorage;
 using System.IO;
+using PhoneDirect3DXamlAppInterop.Resources;
 
 namespace PhoneDirect3DXamlAppInterop
 {

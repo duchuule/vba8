@@ -31,12 +31,22 @@
         <!--Pivot Control-->
         <phone:Pivot Grid.Row="0"
             Name="pivot">
+            
             <phone:Pivot.Title>
                 <TextBlock Text="{Binding LocalizedResources.LicenseTitle, Source={StaticResource LocalizedStrings}}"
                                 FontSize="20"
                            FontWeight="Bold"
                            Margin="0,-8,0,0"/>
             </phone:Pivot.Title>
+
+            <phone:Pivot.Background>
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                            Stretch="None"
+                            AlignmentX="Center"
+                            AlignmentY="Top"
+                            Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
+            </phone:Pivot.Background>
+            
             
             <!--Pivot item one-->
             <phone:PivotItem 

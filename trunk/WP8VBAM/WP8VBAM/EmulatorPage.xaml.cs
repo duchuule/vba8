@@ -32,6 +32,7 @@ namespace PhoneDirect3DXamlAppInterop
         bool wasHalfPressed = false;
         private ApplicationBarMenuItem[] menuItems;
         private String[] menuItemLabels;
+        public static ROMDBEntry currentROMEntry;
 
         // Constructor
         public EmulatorPage()
@@ -65,6 +66,9 @@ namespace PhoneDirect3DXamlAppInterop
             ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
             ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
 
+            var itemCheat = new ApplicationBarMenuItem(AppResources.CheatMenuItemText);
+            itemCheat.Click += (o, e) => { this.cheatBlock_Tap(); };
+
             var item0 = new ApplicationBarMenuItem(AppResources.SelectState0);
             item0.Click += (o, e) => { this.m_d3dBackground.SelectSaveState(0); };
             var item1 = new ApplicationBarMenuItem(AppResources.SelectState1);
@@ -85,7 +89,7 @@ namespace PhoneDirect3DXamlAppInterop
             item8.Click += (o, e) => { this.m_d3dBackground.SelectSaveState(8); };
             var itemA = new ApplicationBarMenuItem(AppResources.SelectStateAuto);
             itemA.Click += (o, e) => { this.m_d3dBackground.SelectSaveState(9); };
-
+            
             if (EmulatorSettings.Current.ManualSnapshots)
             {
                 var itemSnapshot = new ApplicationBarMenuItem(AppResources.CreateSnapshotMenuItem);
@@ -93,14 +97,14 @@ namespace PhoneDirect3DXamlAppInterop
 
                 this.menuItems = new ApplicationBarMenuItem[] 
                 {
-                    itemSnapshot,
+                    itemCheat, itemSnapshot,
                     item0, item1, item2, item3, item4, 
                     item5, item6, item7, item8, itemA
                 };
 
                 this.menuItemLabels = new String[]
                 {
-                    AppResources.CreateSnapshotMenuItem,
+                    AppResources.CheatMenuItemText, AppResources.CreateSnapshotMenuItem,
                     AppResources.SelectState0, AppResources.SelectState1, AppResources.SelectState2, AppResources.SelectState3,
                     AppResources.SelectState4, AppResources.SelectState5, AppResources.SelectState6, AppResources.SelectState7,
                     AppResources.SelectState8, AppResources.SelectStateAuto
@@ -110,19 +114,21 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 this.menuItems = new ApplicationBarMenuItem[] 
                 {
+                    itemCheat, 
                     item0, item1, item2, item3, item4, 
                     item5, item6, item7, item8, itemA
                 };
 
                 this.menuItemLabels = new String[]
                 {
+                    AppResources.CheatMenuItemText,
                     AppResources.SelectState0, AppResources.SelectState1, AppResources.SelectState2, AppResources.SelectState3,
                     AppResources.SelectState4, AppResources.SelectState5, AppResources.SelectState6, AppResources.SelectState7,
                     AppResources.SelectState8, AppResources.SelectStateAuto
                 };
             }
 
-            int offset = EmulatorSettings.Current.ManualSnapshots ? 1 : 0;
+            int offset = EmulatorSettings.Current.ManualSnapshots ? 2 : 1;
             this.menuItems[this.m_d3dBackground.SelectedSavestateSlot + offset].Text = this.menuItemLabels[this.m_d3dBackground.SelectedSavestateSlot + offset] + AppResources.ActiveSavestateText;
 
             foreach (var item in menuItems)
@@ -189,6 +195,17 @@ namespace PhoneDirect3DXamlAppInterop
             //ApplicationBar.Buttons.Add(backButton);
         }
 
+
+        private void cheatBlock_Tap()
+        {
+
+
+            PhoneApplicationService.Current.State["parameter"] = currentROMEntry;
+            this.NavigationService.Navigate(new Uri("/CheatPage.xaml", UriKind.Relative));
+
+        }
+
+
         private void configButton_Click(object sender, EventArgs e)
         {
             ApplicationBar.IsVisible = false;
@@ -199,7 +216,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             Deployment.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                int offset = EmulatorSettings.Current.ManualSnapshots ? 1 : 0;
+                int offset = EmulatorSettings.Current.ManualSnapshots ? 2 : 1;
                 this.menuItems[oldSlot + offset].Text = this.menuItemLabels[oldSlot + offset];
                 this.menuItems[slot + offset].Text = this.menuItemLabels[slot + offset] + AppResources.ActiveSavestateText;
             }));
