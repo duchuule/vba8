@@ -40,6 +40,9 @@ namespace PhoneDirect3DXamlAppInterop
         // A collection of routes (.GPX files) for binding to the ListBox.
         public ObservableCollection<ExternalStorageFile> Routes { get; set; }
 
+      
+
+
         ExternalStorageDevice sdCard = null;
 
         // Constructor
@@ -60,8 +63,6 @@ namespace PhoneDirect3DXamlAppInterop
 #if GBC
             SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
-        
-
 
 
 
@@ -69,6 +70,8 @@ namespace PhoneDirect3DXamlAppInterop
 
             // Initialize the collection for routes.
             Routes = new ObservableCollection<ExternalStorageFile>();
+            
+            
 
             // Enable data binding to the page itself.
             this.DataContext = this;

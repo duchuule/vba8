@@ -40,6 +40,8 @@ bool skipSaveGameCheats = false;
 // 0x0000 to 0x7FFF: set custom 15 bit color
 int customBackdropColor = -1;
 
+//DEVICEMEMORY deviceMemory[2];
+
 u8 *bios = 0;
 u8 *rom = 0;
 u8 *internalRAM = 0;

@@ -18,6 +18,11 @@ namespace Emulator
 	extern StorageFolder ^ROMFolder;
 	extern int SavestateSlot;
 	extern int LoadstateSlot;
+	extern int ROMSize2;
+	extern StorageFile ^ROMFile2;
+	extern StorageFolder ^ROMFolder2;
+	extern int SavestateSlot2;
+	extern int LoadstateSlot2;
 
 	Platform::Array<unsigned char> ^GetSnapshotBuffer(unsigned char *backbuffer, size_t pitch, int imageWidth, int imageHeight);
 	task<void> SaveStateAsync(void);

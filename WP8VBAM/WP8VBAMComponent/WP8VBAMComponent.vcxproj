@@ -533,6 +533,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="CPositionRenderer.h" />
     <ClInclude Include="defines.h" />
+    <ClInclude Include="Delegates.h" />
     <ClInclude Include="DXSpriteBatch.h" />
     <ClInclude Include="Emulator.h" />
     <ClInclude Include="EmulatorFileHandler.h" />
@@ -540,6 +541,8 @@
     <ClInclude Include="CPositionComponent.h" />
     <ClInclude Include="CPositionContentProvider.h" />
     <ClInclude Include="CPositionVirtualController.h" />
+    <ClInclude Include="LinkComponent.h" />
+    <ClInclude Include="LinkContentProvider.h" />
     <ClInclude Include="OnFrameBuffer.h" />
     <ClInclude Include="OnResizeBuffer.h" />
     <ClInclude Include="Point.h" />
@@ -649,6 +652,8 @@
     <ClCompile Include="Emulator.cpp" />
     <ClCompile Include="EmulatorFileHandler.cpp" />
     <ClCompile Include="EmulatorSettings.cpp" />
+    <ClCompile Include="LinkComponent.cpp" />
+    <ClCompile Include="LinkContentProvider.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Renderer.cpp" />

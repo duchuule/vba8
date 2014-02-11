@@ -47,8 +47,8 @@ namespace PhoneDirect3DXamlAppInterop
         private Task createFolderTask, copyDemoTask, initTask;
 
         public static bool shouldUpdateBackgroud = false;
-        
 
+        
         public MainPage()
         {
             InitializeComponent();
@@ -62,6 +62,8 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 #endif
+
+
             //add tilt effect to tiltablegrid
             TiltEffect.TiltableItems.Add(typeof(TiltableGrid));
             TiltEffect.TiltableItems.Add(typeof(TiltableCanvas));
@@ -220,7 +222,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.RefreshROMList();
 
-            this.resumeButton.IsEnabled = EmulatorPage.ROMLoaded;
+            //this.resumeButton.IsEnabled = EmulatorPage.ROMLoaded;
 
 
             base.OnNavigatedTo(e);
@@ -814,13 +816,20 @@ namespace PhoneDirect3DXamlAppInterop
             aboutItem.Click += aboutItem_Click;
             ApplicationBar.MenuItems.Add(aboutItem);
 
-            resumeButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/transport.play.png", UriKind.Relative))
+            //resumeButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/transport.play.png", UriKind.Relative))
+            //{
+            //    Text = AppResources.ResumeButtonText,
+            //    IsEnabled = false
+            //};
+            //resumeButton.Click += resumeButton_Click;
+            //ApplicationBar.Buttons.Add(resumeButton);
+
+            var linkButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/appbar.link.png", UriKind.Relative))
             {
-                Text = AppResources.ResumeButtonText,
-                IsEnabled = false
+                Text = "start link",
             };
-            resumeButton.Click += resumeButton_Click;
-            ApplicationBar.Buttons.Add(resumeButton);
+            linkButton.Click += linkButton_Click;
+            ApplicationBar.Buttons.Add(linkButton);
 
             var settingsButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/feature.settings.png", UriKind.Relative))
             {
@@ -843,6 +852,11 @@ namespace PhoneDirect3DXamlAppInterop
             };
             reviewButton.Click += reviewButton_Click;
             ApplicationBar.Buttons.Add(reviewButton);
+        }
+
+        private void linkButton_Click(object sender, EventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/PreLinkPage.xaml", UriKind.Relative));
         }
 
         private void purchaseButton_Click(object sender, EventArgs e)
