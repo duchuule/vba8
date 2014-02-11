@@ -177,6 +177,12 @@
       <Filter>controllerposition</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="LinkComponent.cpp">
+      <Filter>link</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkContentProvider.cpp">
+      <Filter>link</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicTimer.h" />
@@ -364,6 +370,13 @@
       <Filter>controllerposition</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Delegates.h" />
+    <ClInclude Include="LinkComponent.h">
+      <Filter>link</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkContentProvider.h">
+      <Filter>link</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vbam">
@@ -386,6 +399,9 @@
     </Filter>
     <Filter Include="controllerposition">
       <UniqueIdentifier>{3421073e-d80c-499c-abfc-53587ba328ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="link">
+      <UniqueIdentifier>{b754ea57-e9f5-448a-a8ed-762316ff23f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -436,6 +436,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gameboy cable.
+        /// </summary>
+        public static string CableLinkText {
+            get {
+                return ResourceManager.GetString("CableLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to L-Button.
         /// </summary>
         public static string CameraAssignL {
@@ -886,6 +895,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string FileAssociationError {
             get {
                 return ResourceManager.GetString("FileAssociationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to first game.
+        /// </summary>
+        public static string FirstGameText {
+            get {
+                return ResourceManager.GetString("FirstGameText", resourceCulture);
             }
         }
         
@@ -1362,6 +1380,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Emulated link medium.
+        /// </summary>
+        public static string LinkMediumText {
+            get {
+                return ResourceManager.GetString("LinkMediumText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link type.
+        /// </summary>
+        public static string LinkTypeText {
+            get {
+                return ResourceManager.GetString("LinkTypeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to load state.
         /// </summary>
         public static string LoadStateButton {
@@ -1533,6 +1569,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Over bluetooth/wifi (not available).
+        /// </summary>
+        public static string OverNetworkText {
+            get {
+                return ResourceManager.GetString("OverNetworkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to pin to start screen.
         /// </summary>
         public static string PinToStartText {
@@ -1556,6 +1601,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string PowerFrameSkipText2 {
             get {
                 return ResourceManager.GetString("PowerFrameSkipText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set up link.
+        /// </summary>
+        public static string PreLinkTitle {
+            get {
+                return ResourceManager.GetString("PreLinkTitle", resourceCulture);
             }
         }
         
@@ -1810,11 +1864,29 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Same device.
+        /// </summary>
+        public static string SameDeviceText {
+            get {
+                return ResourceManager.GetString("SameDeviceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to save state.
         /// </summary>
         public static string SaveStateButton {
             get {
                 return ResourceManager.GetString("SaveStateButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to second game (can be the same as first game).
+        /// </summary>
+        public static string SecondGameText {
+            get {
+                return ResourceManager.GetString("SecondGameText", resourceCulture);
             }
         }
         
@@ -2044,6 +2116,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start link!.
+        /// </summary>
+        public static string StartLinkText {
+            get {
+                return ResourceManager.GetString("StartLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status: .
         /// </summary>
         public static string StatusLabelContent {
@@ -2247,6 +2328,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string VirtualControllerButtonStyle {
             get {
                 return ResourceManager.GetString("VirtualControllerButtonStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wireless adapter (not available).
+        /// </summary>
+        public static string WirelessLinkText {
+            get {
+                return ResourceManager.GetString("WirelessLinkText", resourceCulture);
             }
         }
     }

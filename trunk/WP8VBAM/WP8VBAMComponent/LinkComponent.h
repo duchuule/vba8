@@ -15,17 +15,13 @@ using namespace Windows::ApplicationModel;
 
 namespace PhoneDirect3DXamlAppComponent
 {
-//public delegate void RequestAdditionalFrameHandler();
-//public delegate void ContinueEmulationNotifier(void);
-//public delegate void SnapshotCallback(const Platform::Array<unsigned char> ^pixelData, int pitch, Platform::String ^fileName);
-//public delegate void SavestateCreatedCallback(int slot, Platform::String ^romFileName);
-//public delegate void SavestateSelectedCallback(int newSlot, int oldSlot);
+
 
 [Windows::Foundation::Metadata::WebHostHidden]
-public ref class Direct3DBackground sealed : public Windows::Phone::Input::Interop::IDrawingSurfaceManipulationHandler
+public ref class LinkDirect3DBackground sealed : public Windows::Phone::Input::Interop::IDrawingSurfaceManipulationHandler
 {	
 public:
-	Direct3DBackground();
+	LinkDirect3DBackground();
 
 	Windows::Phone::Graphics::Interop::IDrawingSurfaceBackgroundContentProvider^ CreateContentProvider();
 
@@ -42,11 +38,27 @@ public:
 		}
 	}
 
+	property StorageFile ^LoadadROMFile2
+	{
+		StorageFile ^get()
+		{
+			return ROMFile2;
+		}
+	}
+
 	property int SelectedSavestateSlot
 	{
 		int get()
 		{
 			return SavestateSlot;
+		}
+	}
+
+	property int SelectedSavestateSlot2
+	{
+		int get()
+		{
+			return SavestateSlot2;
 		}
 	}
 

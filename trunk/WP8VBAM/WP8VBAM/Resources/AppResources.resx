@@ -870,4 +870,34 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   <data name="ShowLastPlayedGameText" xml:space="preserve">
     <value>Show snapshot of last played game</value>
   </data>
+  <data name="CableLinkText" xml:space="preserve">
+    <value>Gameboy cable</value>
+  </data>
+  <data name="FirstGameText" xml:space="preserve">
+    <value>first game</value>
+  </data>
+  <data name="LinkMediumText" xml:space="preserve">
+    <value>Emulated link medium</value>
+  </data>
+  <data name="LinkTypeText" xml:space="preserve">
+    <value>Link type</value>
+  </data>
+  <data name="OverNetworkText" xml:space="preserve">
+    <value>Over bluetooth/wifi (not available)</value>
+  </data>
+  <data name="PreLinkTitle" xml:space="preserve">
+    <value>set up link</value>
+  </data>
+  <data name="SameDeviceText" xml:space="preserve">
+    <value>Same device</value>
+  </data>
+  <data name="SecondGameText" xml:space="preserve">
+    <value>second game (can be the same as first game)</value>
+  </data>
+  <data name="StartLinkText" xml:space="preserve">
+    <value>Start link!</value>
+  </data>
+  <data name="WirelessLinkText" xml:space="preserve">
+    <value>Wireless adapter (not available)</value>
+  </data>
 </root>

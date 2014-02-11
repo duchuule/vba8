@@ -1,0 +1,103 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PhoneDirect3DXamlAppInterop.PreLinkPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="False" 
+                                 IsVisible="True" 
+                                 Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+                                  />
+    </shell:SystemTray.ProgressIndicator>
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Name="PickerItemTemplate">
+                <TextBlock Text="{Binding DisplayName}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="PickerFullItemTemplate">
+            <TextBlock Text="{Binding DisplayName}"/>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+        <Grid>
+            <Grid.Background>
+
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                        Stretch="None"
+                        AlignmentX="Center"
+                        AlignmentY="Top"
+                        Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
+
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Text="{Binding Path=LocalizedResources.PreLinkTitle, Source={StaticResource LocalizedStrings}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource MyTitle1Style}"/>
+            </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+                <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.LinkTypeText, Source={StaticResource LocalizedStrings}}" 
+                                            Name="linkTypePicker"
+                                            InlineModeThreshold="30"
+                                            >
+                    <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.SameDeviceText, Source={StaticResource LocalizedStrings}}" />
+                    <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.OverNetworkText, Source={StaticResource LocalizedStrings}}" />
+                </telerikInput:RadListPicker>
+
+                <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.LinkMediumText, Source={StaticResource LocalizedStrings}}" 
+                                            Name="linkMediumPicker"
+                                            InlineModeThreshold="30"
+                                            >
+                    <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.CableLinkText, Source={StaticResource LocalizedStrings}}" />
+                    <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.WirelessLinkText, Source={StaticResource LocalizedStrings}}" />
+                </telerikInput:RadListPicker>
+
+                <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.FirstGameText, Source={StaticResource LocalizedStrings}}" 
+                                            Name="firstGamePicker"
+                                            InlineModeThreshold="30"
+                                             ItemTemplate="{StaticResource PickerItemTemplate}"
+                                            PopupItemTemplate="{StaticResource PickerFullItemTemplate}"
+                                            >
+
+                </telerikInput:RadListPicker>
+
+                <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.SecondGameText, Source={StaticResource LocalizedStrings}}" 
+                                            Name="secondGamePicker"
+                                            InlineModeThreshold="30"
+                                             ItemTemplate="{StaticResource PickerItemTemplate}"
+                                            PopupItemTemplate="{StaticResource PickerFullItemTemplate}"
+                                            >
+                </telerikInput:RadListPicker>
+
+                <Button Content="{Binding Path=LocalizedResources.StartLinkText, Source={StaticResource LocalizedStrings}}"
+                        Click="linkStartButton_Click"
+                        Margin="0,12,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

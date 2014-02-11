@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "WP8VBAMComponent.h"
-#include "Direct3DContentProvider.h"
+#include "LinkComponent.h"
+#include "LinkContentProvider.h"
 #include "EmulatorFileHandler.h"
 
 #if _DEBUG
@@ -18,7 +18,7 @@ using namespace Windows::Phone::Graphics::Interop;
 using namespace Windows::Phone::Input::Interop;
 using namespace Windows::ApplicationModel::Core;
 
-Moga::Windows::Phone::ControllerManager^ Direct3DBackground::mogacontroller;
+Moga::Windows::Phone::ControllerManager^ LinkDirect3DBackground::mogacontroller;
 
 extern bool enableTurboMode;
 
@@ -27,56 +27,56 @@ extern bool enableTurboMode;
 namespace PhoneDirect3DXamlAppComponent
 {
 
-	Direct3DBackground::Direct3DBackground() :
+	LinkDirect3DBackground::LinkDirect3DBackground() :
 		m_timer(ref new BasicTimer())
 	{
 	}
 
-	IDrawingSurfaceBackgroundContentProvider^ Direct3DBackground::CreateContentProvider()
+	IDrawingSurfaceBackgroundContentProvider^ LinkDirect3DBackground::CreateContentProvider()
 	{
-		ComPtr<Direct3DContentProvider> provider = Make<Direct3DContentProvider>(this);
+		ComPtr<LinkDirect3DContentProvider> provider = Make<LinkDirect3DContentProvider>(this);
 		return reinterpret_cast<IDrawingSurfaceBackgroundContentProvider^>(provider.Get());
 	}
 
 
 
 	// IDrawingSurfaceManipulationHandler
-	void Direct3DBackground::SetManipulationHost(DrawingSurfaceManipulationHost^ manipulationHost)
+	void LinkDirect3DBackground::SetManipulationHost(DrawingSurfaceManipulationHost^ manipulationHost)
 	{
 		manipulationHost->PointerPressed +=
-			ref new TypedEventHandler<DrawingSurfaceManipulationHost^, PointerEventArgs^>(this, &Direct3DBackground::OnPointerPressed);
+			ref new TypedEventHandler<DrawingSurfaceManipulationHost^, PointerEventArgs^>(this, &LinkDirect3DBackground::OnPointerPressed);
 
 		manipulationHost->PointerMoved +=
-			ref new TypedEventHandler<DrawingSurfaceManipulationHost^, PointerEventArgs^>(this, &Direct3DBackground::OnPointerMoved);
+			ref new TypedEventHandler<DrawingSurfaceManipulationHost^, PointerEventArgs^>(this, &LinkDirect3DBackground::OnPointerMoved);
 
 		manipulationHost->PointerReleased +=
-			ref new TypedEventHandler<DrawingSurfaceManipulationHost^, PointerEventArgs^>(this, &Direct3DBackground::OnPointerReleased);
+			ref new TypedEventHandler<DrawingSurfaceManipulationHost^, PointerEventArgs^>(this, &LinkDirect3DBackground::OnPointerReleased);
 	}
 
 	// Event Handlers
-	void Direct3DBackground::OnPointerPressed(DrawingSurfaceManipulationHost^ sender, PointerEventArgs^ args)
+	void LinkDirect3DBackground::OnPointerPressed(DrawingSurfaceManipulationHost^ sender, PointerEventArgs^ args)
 	{
 		this->vController->PointerPressed(args->CurrentPoint);
 	}
 
-	void Direct3DBackground::OnPointerMoved(DrawingSurfaceManipulationHost^ sender, PointerEventArgs^ args)
+	void LinkDirect3DBackground::OnPointerMoved(DrawingSurfaceManipulationHost^ sender, PointerEventArgs^ args)
 	{
 		this->vController->PointerMoved(args->CurrentPoint);
 	}
 
-	void Direct3DBackground::OnPointerReleased(DrawingSurfaceManipulationHost^ sender, PointerEventArgs^ args)
+	void LinkDirect3DBackground::OnPointerReleased(DrawingSurfaceManipulationHost^ sender, PointerEventArgs^ args)
 	{
 		this->vController->PointerReleased(args->CurrentPoint);
 	}
 
-	void Direct3DBackground::SetContinueNotifier(PhoneDirect3DXamlAppComponent::ContinueEmulationNotifier ^notifier)
+	void LinkDirect3DBackground::SetContinueNotifier(PhoneDirect3DXamlAppComponent::ContinueEmulationNotifier ^notifier)
 	{
 		this->ContinueEmulationNotifier = notifier;
 	}
 	
 
 
-	void Direct3DBackground::ChangeOrientation(int orientation)
+	void LinkDirect3DBackground::ChangeOrientation(int orientation)
 	{
 #if _DEBUG
 		wstringstream wss;
@@ -91,49 +91,49 @@ namespace PhoneDirect3DXamlAppComponent
 		}
 	}
 
-	void Direct3DBackground::ToggleTurboMode(void)
+	void LinkDirect3DBackground::ToggleTurboMode(void)
 	{
 		enableTurboMode = !enableTurboMode;
 	}
 
-	void Direct3DBackground::StartTurboMode(void)
+	void LinkDirect3DBackground::StartTurboMode(void)
 	{
 		enableTurboMode = true;
 	}
 
-	void Direct3DBackground::StopTurboMode(void)
+	void LinkDirect3DBackground::StopTurboMode(void)
 	{
 		enableTurboMode = false;
 	}
 
-	bool Direct3DBackground::IsROMLoaded(void)
+	bool LinkDirect3DBackground::IsROMLoaded(void)
 	{
 		return this->emulator->IsROMLoaded();
 	}
 
-	void Direct3DBackground::PauseEmulation(void)
+	void LinkDirect3DBackground::PauseEmulation(void)
 	{
 		this->emulator->Pause();
 		this->m_renderer->should_show_resume_text = true;
 	}
 
-	void Direct3DBackground::UnpauseEmulation(void)
+	void LinkDirect3DBackground::UnpauseEmulation(void)
 	{
 		this->m_renderer->should_show_resume_text = false;
 		this->emulator->Unpause();
 	}
 	
-	void Direct3DBackground::LoadCheatsOnROMLoad(Windows::Foundation::Collections::IVector<CheatData ^> ^cheats)
+	void LinkDirect3DBackground::LoadCheatsOnROMLoad(Windows::Foundation::Collections::IVector<CheatData ^> ^cheats)
 	{
 		Emulator::LoadCheatsOnROMLoad(cheats);
 	}
 
-	void Direct3DBackground::LoadCheats(Windows::Foundation::Collections::IVector<CheatData ^> ^cheats)
+	void LinkDirect3DBackground::LoadCheats(Windows::Foundation::Collections::IVector<CheatData ^> ^cheats)
 	{
 		Emulator::LoadCheats(cheats);
 	}
 
-	void Direct3DBackground::SelectSaveState(int slot)
+	void LinkDirect3DBackground::SelectSaveState(int slot)
 	{
 		int oldSlot = SavestateSlot;
 		SavestateSlot = slot % MAX_SAVESTATE_SLOTS;
@@ -144,7 +144,7 @@ namespace PhoneDirect3DXamlAppComponent
 		}
 	}
 
-	void Direct3DBackground::SaveState(void)
+	void LinkDirect3DBackground::SaveState(void)
 	{
 		this->m_renderer->should_show_resume_text = false;
 
@@ -167,7 +167,7 @@ namespace PhoneDirect3DXamlAppComponent
 		this->ContinueEmulationNotifier();
 	}
 
-	void Direct3DBackground::LoadState(void)
+	void LinkDirect3DBackground::LoadState(void)
 	{
 		this->m_renderer->should_show_resume_text = false;
 
@@ -178,7 +178,7 @@ namespace PhoneDirect3DXamlAppComponent
 		this->ContinueEmulationNotifier();
 	}
 
-	void Direct3DBackground::Reset(void)
+	void LinkDirect3DBackground::Reset(void)
 	{
 		this->m_renderer->should_show_resume_text = false;
 
@@ -193,13 +193,13 @@ namespace PhoneDirect3DXamlAppComponent
 		}
 	}
 
-	void Direct3DBackground::LoadROMAsync(StorageFile ^file, StorageFolder ^folder)
+	void LinkDirect3DBackground::LoadROMAsync(StorageFile ^file, StorageFolder ^folder)
 	{
 		Emulator::LoadROMAsync(file, folder);
 	}
 
 	// Interface With Direct3DContentProvider
-	HRESULT Direct3DBackground::Connect(_In_ IDrawingSurfaceRuntimeHostNative* host, _In_ ID3D11Device1* device)
+	HRESULT LinkDirect3DBackground::Connect(_In_ IDrawingSurfaceRuntimeHostNative* host, _In_ ID3D11Device1* device)
 	{
 		waitEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
 
@@ -247,7 +247,7 @@ namespace PhoneDirect3DXamlAppComponent
 		return S_OK;
 	}
 
-	void Direct3DBackground::TriggerSnapshot(void)
+	void LinkDirect3DBackground::TriggerSnapshot(void)
 	{
 		unsigned char *backbuffer;
 		size_t pitch;
@@ -257,7 +257,7 @@ namespace PhoneDirect3DXamlAppComponent
 		this->SnapshotAvailable(pixels, 4 * width, ROMFile->Name);
 	}
 
-	void Direct3DBackground::Disconnect()
+	void LinkDirect3DBackground::Disconnect()
 	{
 		create_task([this]()
 		{
@@ -300,7 +300,7 @@ namespace PhoneDirect3DXamlAppComponent
 		waitEvent = nullptr;
 	}
 
-	HRESULT Direct3DBackground::PrepareResources(_In_ const LARGE_INTEGER* presentTargetTime, _Inout_ DrawingSurfaceSizeF* desiredRenderTargetSize)
+	HRESULT LinkDirect3DBackground::PrepareResources(_In_ const LARGE_INTEGER* presentTargetTime, _Inout_ DrawingSurfaceSizeF* desiredRenderTargetSize)
 	{
 		m_timer->Update();
 		m_renderer->Update(m_timer->Total, m_timer->Delta);
@@ -311,7 +311,7 @@ namespace PhoneDirect3DXamlAppComponent
 		return S_OK;
 	}
 
-	HRESULT Direct3DBackground::Draw(_In_ ID3D11Device1* device, _In_ ID3D11DeviceContext1* context, _In_ ID3D11RenderTargetView* renderTargetView)
+	HRESULT LinkDirect3DBackground::Draw(_In_ ID3D11Device1* device, _In_ ID3D11DeviceContext1* context, _In_ ID3D11RenderTargetView* renderTargetView)
 	{
 		m_renderer->UpdateDevice(device, context, renderTargetView);
 		m_renderer->Render();

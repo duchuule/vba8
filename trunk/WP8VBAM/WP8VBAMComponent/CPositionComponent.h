@@ -6,14 +6,15 @@
 #include "CPositionVirtualController.h"
 #include "EmulatorSettings.h"
 #include <DrawingSurfaceNative.h>
+#include "Delegates.h"
 
 using namespace Emulator;
 using namespace Windows::ApplicationModel;
 
 namespace PhoneDirect3DXamlAppComponent
 {
-	public delegate void RequestAdditionalFrameHandler();
-	public delegate void ContinueEmulationNotifier(void);
+	//public delegate void RequestAdditionalFrameHandler();
+	//public delegate void ContinueEmulationNotifier(void);
 
 
 	[Windows::Foundation::Metadata::WebHostHidden]

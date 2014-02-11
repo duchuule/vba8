@@ -291,6 +291,9 @@
     <Compile Include="ColorChooserControl.xaml.cs">
       <DependentUpon>ColorChooserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinkedEmulatorPage.xaml.cs">
+      <DependentUpon>LinkedEmulatorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CropControl.xaml.cs">
       <DependentUpon>CropControl.xaml</DependentUpon>
     </Compile>
@@ -328,6 +331,9 @@
     </Compile>
     <Compile Include="MogaMappingPage.xaml.cs">
       <DependentUpon>MogaMappingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PreLinkPage.xaml.cs">
+      <DependentUpon>PreLinkPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchasePage.xaml.cs">
@@ -387,6 +393,7 @@
     <Content Include="Assets\GameboyAdvance.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\appbar.link.png" />
     <Content Include="Assets\Icons\play.png" />
     <Content Include="Assets\no_snapshot_gbc.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -395,6 +402,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="LinkedEmulatorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CropControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -436,6 +447,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MogaMappingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreLinkPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -60,11 +60,17 @@ extern int gbRamSize;
 namespace Emulator
 {
 	int ROMSize = 0;
+	int ROMSize2 = 0;
 	StorageFile ^ROMFile = nullptr;
+	StorageFile ^ROMFile2 = nullptr;
 	StorageFolder ^ROMFolder = nullptr;
+	StorageFolder ^ROMFolder2 = nullptr;
 	int SavestateSlot = 0;
 	int LoadstateSlot = 0;
+	int SavestateSlot2 = 0;
+	int LoadstateSlot2 = 0;
 	bool gbaROMLoaded = true; //false if gb ROM, true if gba ROM 
+	bool gbaROMLoaded2 = true; //false if gb ROM, true if gba ROM 
 	
 	Windows::Foundation::Collections::IVector<PhoneDirect3DXamlAppComponent::CheatData ^> ^cheatsTmp = nullptr;
 
