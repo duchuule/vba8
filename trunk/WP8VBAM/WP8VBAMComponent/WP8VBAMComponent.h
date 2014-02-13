@@ -77,6 +77,8 @@ public:
 	void UnpauseEmulation(void);
 	void LoadROMAsync(Windows::Storage::StorageFile ^file, Windows::Storage::StorageFolder ^folder);
 
+	void ConnectSocket(void);
+
 	static Moga::Windows::Phone::ControllerManager^ getController() {
 		return mogacontroller;
 	};

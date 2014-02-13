@@ -291,8 +291,8 @@
     <Compile Include="ColorChooserControl.xaml.cs">
       <DependentUpon>ColorChooserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LinkedEmulatorPage.xaml.cs">
-      <DependentUpon>LinkedEmulatorPage.xaml</DependentUpon>
+    <Compile Include="FindPeersPage.xaml.cs">
+      <DependentUpon>FindPeersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CropControl.xaml.cs">
       <DependentUpon>CropControl.xaml</DependentUpon>
@@ -402,9 +402,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Page Include="LinkedEmulatorPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="FindPeersPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CropControl.xaml">
       <SubType>Designer</SubType>

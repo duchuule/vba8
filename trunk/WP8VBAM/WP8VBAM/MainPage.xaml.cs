@@ -856,7 +856,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private void linkButton_Click(object sender, EventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/PreLinkPage.xaml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("/FindPeersPage.xaml", UriKind.Relative));
         }
 
         private void purchaseButton_Click(object sender, EventArgs e)

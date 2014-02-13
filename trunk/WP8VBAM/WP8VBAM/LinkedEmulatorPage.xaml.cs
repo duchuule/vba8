@@ -129,7 +129,7 @@ namespace PhoneDirect3DXamlAppInterop
                 };
             }
 
-            int offset = EmulatorSettings.Current.ManualSnapshots ? 2 : 1;
+            int offset = EmulatorSettings.Current.ManualSnapshots ? 3 : 2;
             this.menuItems[this.m_d3dBackground.SelectedSavestateSlot + offset].Text = this.menuItemLabels[this.m_d3dBackground.SelectedSavestateSlot + offset] + AppResources.ActiveSavestateText;
 
             foreach (var item in menuItems)
@@ -217,7 +217,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             Deployment.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                int offset = EmulatorSettings.Current.ManualSnapshots ? 2 : 1;
+                int offset = EmulatorSettings.Current.ManualSnapshots ? 3 : 2;
                 this.menuItems[oldSlot + offset].Text = this.menuItemLabels[oldSlot + offset];
                 this.menuItems[slot + offset].Text = this.menuItemLabels[slot + offset] + AppResources.ActiveSavestateText;
             }));

@@ -243,16 +243,17 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_OGL;NO_OAL;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)\VBAM\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>d3d11.lib;dxguid.lib;xaudio2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;xaudio2.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
     </Link>
@@ -387,16 +388,17 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDevice|ARM'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)\VBAM\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>d3d11.lib;dxguid.lib;xaudio2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;xaudio2.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
     </Link>
@@ -451,16 +453,17 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);C_CORE;NO_ASM;NO_OGL;NO_OAL;NO_LINK;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions);C_CORE;NO_ASM;NO_OGL;NO_OAL;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)\VBAM\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>d3d11.lib;dxguid.lib;xaudio2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;xaudio2.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
     </Link>
@@ -613,6 +616,17 @@
     <ClInclude Include="VBAM\gb\gbSGB.h" />
     <ClInclude Include="VBAM\gb\gbSound.h" />
     <ClInclude Include="VBAM\NLS.h" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Ftp.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Http.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\IPAddress.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Packet.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Selector.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SelectorBase.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SocketHelper.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SocketTCP.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SocketUDP.hpp" />
+    <ClInclude Include="VBAM\SFML\include\SFML\System\NonCopyable.hpp" />
     <ClInclude Include="VBAM\System.h" />
     <ClInclude Include="VBAM\Util.h" />
     <ClInclude Include="VBAM\zlib\zconf.h" />
@@ -1538,6 +1552,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseBeta|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseGBC|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Ftp.cpp" />
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Http.cpp" />
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\IPAddress.cpp" />
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Packet.cpp" />
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\SelectorBase.cpp" />
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\SocketTCP.cpp" />
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\SocketUDP.cpp" />
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Win32\SocketHelper.cpp" />
     <ClCompile Include="VBAM\Util.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugDevice|ARM'">NotUsing</PrecompiledHeader>
@@ -1754,6 +1776,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SpriteBatch.hlsli" />
+    <None Include="VBAM\SFML\include\SFML\Network\Selector.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />
