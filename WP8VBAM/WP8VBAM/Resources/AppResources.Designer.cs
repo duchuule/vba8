@@ -652,6 +652,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect to selected.
+        /// </summary>
+        public static string ConnectButtonCaption {
+            get {
+                return ResourceManager.GetString("ConnectButtonCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to options.
         /// </summary>
         public static string ContextTitle {
@@ -881,6 +890,105 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bluetooth is turned off. To see the current Bluetooth settings tap &apos;ok&apos;..
+        /// </summary>
+        public static string Err_BluetoothOff {
+            get {
+                return ResourceManager.GetString("Err_BluetoothOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bluetooth Off.
+        /// </summary>
+        public static string Err_BluetoothOffCaption {
+            get {
+                return ResourceManager.GetString("Err_BluetoothOffCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To run this app, you must have ID_CAP_PROXIMITY enabled in WMAppManifest.xaml.
+        /// </summary>
+        public static string Err_MissingCaps {
+            get {
+                return ResourceManager.GetString("Err_MissingCaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a name to join..
+        /// </summary>
+        public static string Err_NoChatName {
+            get {
+                return ResourceManager.GetString("Err_NoChatName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is empty.
+        /// </summary>
+        public static string Err_NoChatNameCaption {
+            get {
+                return ResourceManager.GetString("Err_NoChatNameCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t connect.
+        /// </summary>
+        public static string Err_NoConnectTitle {
+            get {
+                return ResourceManager.GetString("Err_NoConnectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a message to send..
+        /// </summary>
+        public static string Err_NoMessageToSend {
+            get {
+                return ResourceManager.GetString("Err_NoMessageToSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select a peer from the list..
+        /// </summary>
+        public static string Err_NoPeer {
+            get {
+                return ResourceManager.GetString("Err_NoPeer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not connected to a Peer..
+        /// </summary>
+        public static string Err_NoPeerConnected {
+            get {
+                return ResourceManager.GetString("Err_NoPeerConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t send.
+        /// </summary>
+        public static string Err_NoSendTitle {
+            get {
+                return ResourceManager.GetString("Err_NoSendTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are currently not advertising yourself, i.e., a call to PeerFinder.Start() must proceed FindAllPeersAsync().
+        /// </summary>
+        public static string Err_NotAdvertising {
+            get {
+                return ResourceManager.GetString("Err_NotAdvertising", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string ErrorCaption {
@@ -895,6 +1003,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string FileAssociationError {
             get {
                 return ResourceManager.GetString("FileAssociationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh peers.
+        /// </summary>
+        public static string FindButtonCaption {
+            get {
+                return ResourceManager.GetString("FindButtonCaption", resourceCulture);
             }
         }
         
@@ -1502,6 +1619,42 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string MoreLicenseButton {
             get {
                 return ResourceManager.GetString("MoreLicenseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to link with {0}?.
+        /// </summary>
+        public static string Msg_ChatPrompt {
+            get {
+                return ResourceManager.GetString("Msg_ChatPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incoming Link Request.
+        /// </summary>
+        public static string Msg_ChatPromptTitle {
+            get {
+                return ResourceManager.GetString("Msg_ChatPromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Peers found: {0}. Tap &apos;refresh peers&apos; to update..
+        /// </summary>
+        public static string Msg_FoundPeers {
+            get {
+                return ResourceManager.GetString("Msg_FoundPeers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No peers found. Tap &apos;refresh peers&apos; to update..
+        /// </summary>
+        public static string Msg_NoPeers {
+            get {
+                return ResourceManager.GetString("Msg_NoPeers", resourceCulture);
             }
         }
         
@@ -2116,11 +2269,20 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start link!.
+        ///   Looks up a localized string similar to start link.
         /// </summary>
         public static string StartLinkText {
             get {
                 return ResourceManager.GetString("StartLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to start link.
+        /// </summary>
+        public static string StartLinkTitle {
+            get {
+                return ResourceManager.GetString("StartLinkTitle", resourceCulture);
             }
         }
         

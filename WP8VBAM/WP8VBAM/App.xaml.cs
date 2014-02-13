@@ -19,6 +19,8 @@ using Windows.ApplicationModel.Store;
 using Store = Windows.ApplicationModel.Store;
 using System.Collections;
 using System.IO.IsolatedStorage;
+using Windows.Networking.Sockets;
+
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -31,6 +33,8 @@ namespace PhoneDirect3DXamlAppInterop
         public static bool IsPremium { get; private set; }
 
         public static AppSettings metroSettings = new AppSettings();
+
+        public static StreamSocket linkSocket;           // The socket object used to communicate with a peer
 
         public static void DetermineIsTrail()
         {

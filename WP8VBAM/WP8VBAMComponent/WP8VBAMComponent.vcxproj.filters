@@ -57,12 +57,6 @@
     <ClCompile Include="VBAM\gba\GBAGfx.cpp">
       <Filter>vbam\gba</Filter>
     </ClCompile>
-    <ClCompile Include="VBAM\gba\GBALink.cpp">
-      <Filter>vbam\gba</Filter>
-    </ClCompile>
-    <ClCompile Include="VBAM\gba\GBASockClient.cpp">
-      <Filter>vbam\gba</Filter>
-    </ClCompile>
     <ClCompile Include="VBAM\gba\GBA-thumb.cpp">
       <Filter>vbam\gba</Filter>
     </ClCompile>
@@ -178,10 +172,40 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="LinkComponent.cpp">
-      <Filter>link</Filter>
+      <Filter>vbam\linking</Filter>
     </ClCompile>
     <ClCompile Include="LinkContentProvider.cpp">
-      <Filter>link</Filter>
+      <Filter>vbam\linking</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\gba\GBASockClient.cpp">
+      <Filter>vbam\linking</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\gba\GBALink.cpp">
+      <Filter>vbam\linking</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Ftp.cpp">
+      <Filter>vbam\smfl</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Http.cpp">
+      <Filter>vbam\smfl</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\IPAddress.cpp">
+      <Filter>vbam\smfl</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Packet.cpp">
+      <Filter>vbam\smfl</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\SelectorBase.cpp">
+      <Filter>vbam\smfl</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\SocketTCP.cpp">
+      <Filter>vbam\smfl</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\SocketUDP.cpp">
+      <Filter>vbam\smfl</Filter>
+    </ClCompile>
+    <ClCompile Include="VBAM\SFML\src\SFML\Network\Win32\SocketHelper.cpp">
+      <Filter>vbam\smfl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,12 +274,6 @@
       <Filter>vbam\gba</Filter>
     </ClInclude>
     <ClInclude Include="VBAM\gba\GBAinline.h">
-      <Filter>vbam\gba</Filter>
-    </ClInclude>
-    <ClInclude Include="VBAM\gba\GBALink.h">
-      <Filter>vbam\gba</Filter>
-    </ClInclude>
-    <ClInclude Include="VBAM\gba\GBASockClient.h">
       <Filter>vbam\gba</Filter>
     </ClInclude>
     <ClInclude Include="VBAM\gba\Globals.h">
@@ -372,10 +390,49 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Delegates.h" />
     <ClInclude Include="LinkComponent.h">
-      <Filter>link</Filter>
+      <Filter>vbam\linking</Filter>
     </ClInclude>
     <ClInclude Include="LinkContentProvider.h">
-      <Filter>link</Filter>
+      <Filter>vbam\linking</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\gba\GBASockClient.h">
+      <Filter>vbam\linking</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\gba\GBALink.h">
+      <Filter>vbam\linking</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\System\NonCopyable.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Ftp.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Http.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\IPAddress.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Packet.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\Selector.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SelectorBase.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SocketHelper.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SocketTCP.hpp">
+      <Filter>vbam\smfl</Filter>
+    </ClInclude>
+    <ClInclude Include="VBAM\SFML\include\SFML\Network\SocketUDP.hpp">
+      <Filter>vbam\smfl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -400,11 +457,17 @@
     <Filter Include="controllerposition">
       <UniqueIdentifier>{3421073e-d80c-499c-abfc-53587ba328ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="link">
+    <Filter Include="vbam\linking">
       <UniqueIdentifier>{b754ea57-e9f5-448a-a8ed-762316ff23f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vbam\smfl">
+      <UniqueIdentifier>{e0dab4ae-292b-428b-9d87-248c3c3379f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SpriteBatch.hlsli" />
+    <None Include="VBAM\SFML\include\SFML\Network\Selector.inl">
+      <Filter>vbam\smfl</Filter>
+    </None>
   </ItemGroup>
 </Project>

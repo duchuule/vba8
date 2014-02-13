@@ -2,6 +2,7 @@
 #include "WP8VBAMComponent.h"
 #include "Direct3DContentProvider.h"
 #include "EmulatorFileHandler.h"
+#include "GBALink.h"
 
 #if _DEBUG
 #include <string>
@@ -319,6 +320,33 @@ namespace PhoneDirect3DXamlAppComponent
 		RequestAdditionalFrame();
 
 		return S_OK;
+	}
+
+
+	void Direct3DBackground::ConnectSocket(void)
+	{
+		SetLinkTimeout(10000);
+
+		bool valid = SetLinkServerHost("192.168.0.2");
+		if (!valid) {
+			return;
+		}
+
+		ConnectionState state = InitLink(LINK_CABLE_SOCKET);
+
+		
+
+		if (state == LINK_NEEDS_UPDATE) 
+		{
+			while (state == LINK_NEEDS_UPDATE) 
+			{
+				char message[256];
+				state = ConnectLinkUpdate(message, 256);
+			}
+
+		}
+
+
 	}
 
 }

@@ -895,9 +895,63 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
     <value>second game (can be the same as first game)</value>
   </data>
   <data name="StartLinkText" xml:space="preserve">
-    <value>Start link!</value>
+    <value>start link</value>
   </data>
   <data name="WirelessLinkText" xml:space="preserve">
     <value>Wireless adapter (not available)</value>
+  </data>
+  <data name="ConnectButtonCaption" xml:space="preserve">
+    <value>Connect to selected</value>
+  </data>
+  <data name="Err_BluetoothOff" xml:space="preserve">
+    <value>Bluetooth is turned off. To see the current Bluetooth settings tap 'ok'.</value>
+  </data>
+  <data name="Err_BluetoothOffCaption" xml:space="preserve">
+    <value>Bluetooth Off</value>
+  </data>
+  <data name="Err_MissingCaps" xml:space="preserve">
+    <value>To run this app, you must have ID_CAP_PROXIMITY enabled in WMAppManifest.xaml</value>
+  </data>
+  <data name="Err_NoChatName" xml:space="preserve">
+    <value>Please enter a name to join.</value>
+  </data>
+  <data name="Err_NoChatNameCaption" xml:space="preserve">
+    <value>Name is empty</value>
+  </data>
+  <data name="Err_NoConnectTitle" xml:space="preserve">
+    <value>Can't connect</value>
+  </data>
+  <data name="Err_NoMessageToSend" xml:space="preserve">
+    <value>Please enter a message to send.</value>
+  </data>
+  <data name="Err_NoPeer" xml:space="preserve">
+    <value>You must select a peer from the list.</value>
+  </data>
+  <data name="Err_NoPeerConnected" xml:space="preserve">
+    <value>You are not connected to a Peer.</value>
+  </data>
+  <data name="Err_NoSendTitle" xml:space="preserve">
+    <value>Can't send</value>
+  </data>
+  <data name="Err_NotAdvertising" xml:space="preserve">
+    <value>You are currently not advertising yourself, i.e., a call to PeerFinder.Start() must proceed FindAllPeersAsync()</value>
+  </data>
+  <data name="FindButtonCaption" xml:space="preserve">
+    <value>Refresh peers</value>
+  </data>
+  <data name="Msg_ChatPrompt" xml:space="preserve">
+    <value>Do you want to link with {0}?</value>
+  </data>
+  <data name="Msg_ChatPromptTitle" xml:space="preserve">
+    <value>Incoming Link Request</value>
+  </data>
+  <data name="Msg_FoundPeers" xml:space="preserve">
+    <value>Peers found: {0}. Tap 'refresh peers' to update.</value>
+  </data>
+  <data name="Msg_NoPeers" xml:space="preserve">
+    <value>No peers found. Tap 'refresh peers' to update.</value>
+  </data>
+  <data name="StartLinkTitle" xml:space="preserve">
+    <value>start link</value>
   </data>
 </root>

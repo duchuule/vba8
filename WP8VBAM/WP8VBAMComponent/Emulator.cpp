@@ -8,6 +8,12 @@
 #include <Util.h>
 #include <SoundDriver.h>
 
+/* Link
+---------------------*/
+#include "GBALink.h"
+/* ---------------- */
+
+
 using namespace concurrency;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
@@ -289,7 +295,10 @@ namespace Emulator
 				{
 					WaitForSingleObjectEx(this->sleepEvent, 0, false);
 				}*/
-
+#ifndef NO_LINK
+			if (GetLinkMode() != LINK_DISCONNECTED)
+				CheckLinkConnection();
+#endif
 			
 		/*	}*/
 			/*LeaveCriticalSection(&pauseSync);
