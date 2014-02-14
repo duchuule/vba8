@@ -362,6 +362,9 @@
       <DependentUpon>SkyDriveImportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="GBAUriMapper.cs" />
+    <Compile Include="StartLinkControl.xaml.cs">
+      <DependentUpon>StartLinkControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -478,6 +481,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SkyDriveImportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartLinkControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

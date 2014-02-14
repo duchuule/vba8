@@ -954,4 +954,25 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   <data name="StartLinkTitle" xml:space="preserve">
     <value>start link</value>
   </data>
+  <data name="CablePeerText" xml:space="preserve">
+    <value>Cable - Bluetooth</value>
+  </data>
+  <data name="CableSocketText" xml:space="preserve">
+    <value>Wifi TCP/IP</value>
+  </data>
+  <data name="ClientText" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="HostText" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="IPAddressText" xml:space="preserve">
+    <value>Server IP address</value>
+  </data>
+  <data name="LinkTimeoutText" xml:space="preserve">
+    <value>Link timeout (ms)</value>
+  </data>
+  <data name="RoleText" xml:space="preserve">
+    <value>Role</value>
+  </data>
 </root>

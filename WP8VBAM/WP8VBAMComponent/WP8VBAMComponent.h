@@ -77,7 +77,11 @@ public:
 	void UnpauseEmulation(void);
 	void LoadROMAsync(Windows::Storage::StorageFile ^file, Windows::Storage::StorageFolder ^folder);
 
-	void ConnectSocket(void);
+
+	Platform::String^ Direct3DBackground::SetupSocket(bool isServer, int numplayers, int timeout, String^ ipaddress);
+	Windows::Foundation::IAsyncOperation<int>^ ConnectSocket(void);
+
+	void EndLink(void);
 
 	static Moga::Windows::Phone::ControllerManager^ getController() {
 		return mogacontroller;

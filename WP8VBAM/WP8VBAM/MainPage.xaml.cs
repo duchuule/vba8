@@ -28,16 +28,7 @@ using System.Windows.Media.Imaging;
 
 namespace PhoneDirect3DXamlAppInterop
 {
-    class ROMEntry
-    {
-        public String Name { get; set; }
-    }
 
-    class LoadROMParameter
-    {
-        public StorageFile file;
-        public StorageFolder folder;
-    }
 
     public partial class MainPage : PhoneApplicationPage
     {
@@ -222,7 +213,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.RefreshROMList();
 
-            //this.resumeButton.IsEnabled = EmulatorPage.ROMLoaded;
+            this.resumeButton.IsEnabled = EmulatorPage.ROMLoaded;
 
 
             base.OnNavigatedTo(e);
@@ -816,20 +807,15 @@ namespace PhoneDirect3DXamlAppInterop
             aboutItem.Click += aboutItem_Click;
             ApplicationBar.MenuItems.Add(aboutItem);
 
-            //resumeButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/transport.play.png", UriKind.Relative))
-            //{
-            //    Text = AppResources.ResumeButtonText,
-            //    IsEnabled = false
-            //};
-            //resumeButton.Click += resumeButton_Click;
-            //ApplicationBar.Buttons.Add(resumeButton);
-
-            var linkButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/appbar.link.png", UriKind.Relative))
+            resumeButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/transport.play.png", UriKind.Relative))
             {
-                Text = "start link",
+                Text = AppResources.ResumeButtonText,
+                IsEnabled = false
             };
-            linkButton.Click += linkButton_Click;
-            ApplicationBar.Buttons.Add(linkButton);
+            resumeButton.Click += resumeButton_Click;
+            ApplicationBar.Buttons.Add(resumeButton);
+
+
 
             var settingsButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/feature.settings.png", UriKind.Relative))
             {
@@ -854,10 +840,7 @@ namespace PhoneDirect3DXamlAppInterop
             ApplicationBar.Buttons.Add(reviewButton);
         }
 
-        private void linkButton_Click(object sender, EventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("/FindPeersPage.xaml", UriKind.Relative));
-        }
+
 
         private void purchaseButton_Click(object sender, EventArgs e)
         {
@@ -1158,6 +1141,17 @@ namespace PhoneDirect3DXamlAppInterop
     } //end MainPage class
 
 
+    class ROMEntry
+    {
+        public String Name { get; set; }
+    }
+
+    class LoadROMParameter
+    {
+        public StorageFile file;
+        public StorageFolder folder;
+    }
+
     // add these 3 lines  
     public class TiltableGrid : Grid
     {
@@ -1166,5 +1160,7 @@ namespace PhoneDirect3DXamlAppInterop
     public class TiltableCanvas : Canvas
     {
     }  
+
+
 
 }

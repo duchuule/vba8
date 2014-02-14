@@ -1588,7 +1588,8 @@ lserver::lserver(void){
 
 void lserver::Send(void){
 	if(lanlink.type==0){	// TCP
-		if(savedlinktime==-1){
+		if(savedlinktime==-1)
+		{
 			outbuffer[0] = 4;
 			outbuffer[1] = -32;	//0xe0
 			for(i=1;i<=lanlink.numslaves;i++){

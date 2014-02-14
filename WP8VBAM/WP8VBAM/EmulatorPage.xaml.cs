@@ -18,11 +18,14 @@ using Windows.Storage;
 using PhoneDirect3DXamlAppInterop.Database;
 using Microsoft.Devices;
 using Microsoft.Phone.Tasks;
+using System.Windows.Controls.Primitives;
 
 namespace PhoneDirect3DXamlAppInterop
 {
     public partial class EmulatorPage : PhoneApplicationPage
     {
+        public Popup popupWindow = null;
+
         public static bool ROMLoaded = false;
         private Direct3DBackground m_d3dBackground = null; 
         private LoadROMParameter cache = null;
@@ -38,7 +41,7 @@ namespace PhoneDirect3DXamlAppInterop
         public EmulatorPage()
         {
             InitializeComponent();
-            this.BackKeyPress += EmulatorPage_BackKeyPress;
+            //this.BackKeyPress += EmulatorPage_BackKeyPress;
             this.OrientationChanged += EmulatorPage_OrientationChanged;
             
             
@@ -66,11 +69,14 @@ namespace PhoneDirect3DXamlAppInterop
             ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
             ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
 
+
+
+            var itemReset = new ApplicationBarMenuItem(AppResources.ResetROMButton);
+            itemReset.Click += (o, e) => { this.resetButton_Click(); };
+
             var itemCheat = new ApplicationBarMenuItem(AppResources.CheatMenuItemText);
             itemCheat.Click += (o, e) => { this.cheatBlock_Tap(); };
-
-            var itemLink = new ApplicationBarMenuItem(AppResources.StartLinkText);
-            itemLink.Click += (o, e) => { this.startLink_Tap(); };
+            
 
             var item0 = new ApplicationBarMenuItem(AppResources.SelectState0);
             item0.Click += (o, e) => { this.m_d3dBackground.SelectSaveState(0); };
@@ -100,14 +106,14 @@ namespace PhoneDirect3DXamlAppInterop
 
                 this.menuItems = new ApplicationBarMenuItem[] 
                 {
-                    itemCheat, itemLink, itemSnapshot,
+                    itemReset, itemCheat, itemSnapshot, 
                     item0, item1, item2, item3, item4, 
                     item5, item6, item7, item8, itemA
                 };
 
                 this.menuItemLabels = new String[]
                 {
-                    AppResources.StartLinkText, AppResources.CheatMenuItemText, AppResources.CreateSnapshotMenuItem,
+                    AppResources.ResetROMButton, AppResources.CheatMenuItemText, AppResources.CreateSnapshotMenuItem,
                     AppResources.SelectState0, AppResources.SelectState1, AppResources.SelectState2, AppResources.SelectState3,
                     AppResources.SelectState4, AppResources.SelectState5, AppResources.SelectState6, AppResources.SelectState7,
                     AppResources.SelectState8, AppResources.SelectStateAuto
@@ -117,14 +123,14 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 this.menuItems = new ApplicationBarMenuItem[] 
                 {
-                    itemLink, itemCheat, 
+                    itemReset, itemCheat, 
                     item0, item1, item2, item3, item4, 
                     item5, item6, item7, item8, itemA
                 };
 
                 this.menuItemLabels = new String[]
                 {
-                    AppResources.StartLinkText, AppResources.CheatMenuItemText,
+                    AppResources.ResetROMButton, AppResources.CheatMenuItemText,
                     AppResources.SelectState0, AppResources.SelectState1, AppResources.SelectState2, AppResources.SelectState3,
                     AppResources.SelectState4, AppResources.SelectState5, AppResources.SelectState6, AppResources.SelectState7,
                     AppResources.SelectState8, AppResources.SelectStateAuto
@@ -139,50 +145,34 @@ namespace PhoneDirect3DXamlAppInterop
                 ApplicationBar.MenuItems.Add(item);
             }
 
-            //ApplicationBar.MenuItems.Add(item0);
-            //ApplicationBar.MenuItems.Add(item1);
-            //ApplicationBar.MenuItems.Add(item2);
-            //ApplicationBar.MenuItems.Add(item3);
-            //ApplicationBar.MenuItems.Add(item4);
-            //ApplicationBar.MenuItems.Add(item5);
-            //ApplicationBar.MenuItems.Add(item6);
-            //ApplicationBar.MenuItems.Add(item7);
-            //ApplicationBar.MenuItems.Add(item8);
-            //ApplicationBar.MenuItems.Add(itemA);
-            //ApplicationBar.MenuItems.Add(itemCheats);
-
-            //var resumeButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/transport.play.png", UriKind.Relative))
-            //{
-            //    Text = AppResources.ResumeButtonText
-            //};
-            //resumeButton.Click += resumeButton_Click;
-            //ApplicationBar.Buttons.Add(resumeButton);
-
-            var backButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/back.png", UriKind.Relative))
-            {
-                Text = AppResources.EmulatorBackIcon
-            };
-            backButton.Click += backbutton_click;
-            
 
 
-            var resetButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/refresh.png", UriKind.Relative))
-            {
-                Text = AppResources.ResetROMButton
-            };
-            resetButton.Click += resetButton_Click;
-
-            var savestateButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/save.png", UriKind.Relative))
-            {
-                Text = AppResources.SaveStateButton
-            };
-            savestateButton.Click += savestateButton_Click;
 
             var loadstateButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/open.png", UriKind.Relative))
             {
                 Text = AppResources.LoadStateButton
             };
             loadstateButton.Click += loadstateButton_Click;
+            ApplicationBar.Buttons.Add(loadstateButton);
+
+
+            var linkButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/appbar.link.png", UriKind.Relative))
+            {
+                Text = "start link",
+            };
+            linkButton.Click += linkButton_Click;
+            ApplicationBar.Buttons.Add(linkButton);
+
+
+            var savestateButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/save.png", UriKind.Relative))
+            {
+                Text = AppResources.SaveStateButton
+            };
+            savestateButton.Click += savestateButton_Click;
+            ApplicationBar.Buttons.Add(savestateButton);
+
+
+            
 
 
             var configButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/feature.settings.png", UriKind.Relative))
@@ -190,18 +180,44 @@ namespace PhoneDirect3DXamlAppInterop
                 Text = AppResources.SettingsButtonText
             };
             configButton.Click += configButton_Click;
-
-            ApplicationBar.Buttons.Add(loadstateButton);
-            ApplicationBar.Buttons.Add(resetButton);
-            ApplicationBar.Buttons.Add(savestateButton);
             ApplicationBar.Buttons.Add(configButton); 
-            //ApplicationBar.Buttons.Add(backButton);
+            
+
+           
+
         }
 
-        private void startLink_Tap()
+        private void linkButton_Click(object sender, EventArgs e)
         {
-            this.m_d3dBackground.ConnectSocket();
+            //disable current page
+            this.IsHitTestVisible = false;
+            ApplicationBar.IsVisible = false;
+
+            //create new popup instance
+
+
+            popupWindow = new Popup();
+
+            StartLinkControl.m_d3dBackground = this.m_d3dBackground;
+
+            popupWindow.Child = new StartLinkControl();
+            
+
+            popupWindow.VerticalOffset = 0;
+            popupWindow.HorizontalOffset = 0;
+            popupWindow.IsOpen = true;
+
+            popupWindow.Closed += (s1, e1) =>
+            {
+                this.IsHitTestVisible = true;
+                ApplicationBar.IsVisible = true;
+
+            };
+
+
+            //this.m_d3dBackground.ConnectSocket();
         }
+
 
 
         private void cheatBlock_Tap()
@@ -238,38 +254,29 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        void resetButton_Click(object sender, EventArgs e)
+        void resetButton_Click()
         {
             this.m_d3dBackground.Reset();
         }
 
-        void resumeButton_Click(object sender, EventArgs e)
-        {
-            this.ChangeAppBarVisibility(false);
-        }
 
         void loadstateButton_Click(object sender, EventArgs e)
         {
-            if (!App.IsTrial)
-            {
-                if (EmulatorSettings.Current.HideLoadConfirmationDialogs)
-                {
-                    //ROMDatabase db = ROMDatabase.Current;
-                    //var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
-                    //var cheats = await FileHandler.LoadCheatCodes(entry);
-                    //this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
 
-                    this.m_d3dBackground.LoadState();
-                }
-                else
-                {
-                    this.ShowLoadDialog();
-                }
+            if (EmulatorSettings.Current.HideLoadConfirmationDialogs)
+            {
+                //ROMDatabase db = ROMDatabase.Current;
+                //var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
+                //var cheats = await FileHandler.LoadCheatCodes(entry);
+                //this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
+
+                this.m_d3dBackground.LoadState();
             }
             else
             {
-                this.ShowBuyDialog();
+                this.ShowLoadDialog();
             }
+
         }
 
         void ShowLoadDialog()
@@ -283,8 +290,6 @@ namespace PhoneDirect3DXamlAppInterop
 
         void savestateButton_Click(object sender, EventArgs e)
         {
-            if (!App.IsTrial)
-            {
                 if (EmulatorSettings.Current.HideConfirmationDialogs)
                 {
                     this.m_d3dBackground.SaveState();
@@ -293,11 +298,6 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     ShowSaveDialog();
                 }
-            }
-            else
-            {
-                this.ShowBuyDialog();
-            }
         }
 
         void ShowSaveDialog()
@@ -309,29 +309,6 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        void ShowBuyDialog()
-        {
-            var result = MessageBox.Show(AppResources.BuyNowText, AppResources.InfoCaption, MessageBoxButton.OKCancel);
-            if (result == MessageBoxResult.OK)
-            {
-                MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
-                marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
-#if !GBC
-                marketplaceDetailTask.ContentIdentifier = "4e3142c4-b99c-4075-bedc-b10a3086327d";
-#else
-                marketplaceDetailTask.ContentIdentifier = "be33ce3e-e519-4d2c-b30e-83347601ed57";                    
-#endif
-                marketplaceDetailTask.Show();
-            }
-        }
-
-
-
-        void backbutton_click(object sender, EventArgs e)
-        {
-            //this.NavigationService.GoBack();
-            this.ChangeAppBarVisibility(false);
-        }
 
         
 
@@ -358,7 +335,7 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        void EmulatorPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
             if (!buyPopupOpened && !confirmPopupOpened)
             {
@@ -367,15 +344,28 @@ namespace PhoneDirect3DXamlAppInterop
                     MessageBox.Show("Please wait until ROM finishes loading");
                     e.Cancel = true;
                 }
+                else if (popupWindow != null && popupWindow.IsOpen)
+                {
+                    //Close the PopUp Window
+                    popupWindow.IsOpen = false;
+
+                    //Keep the back button from navigating away from the current page
+                    e.Cancel = true;
+                }
 
                 else if (!this.ApplicationBar.IsVisible) //if app bar is not visible, cancel the back action and show app bar
                 {
                     e.Cancel = true;
                     this.ChangeAppBarVisibility(!this.ApplicationBar.IsVisible);
                 }
+                else
+                    base.OnBackKeyPress(e);
             }
+
+            
         }
 
+ 
         void ChangeAppBarVisibility(bool visible)
         {
             this.ApplicationBar.IsVisible = visible;
@@ -498,21 +488,16 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (EmulatorSettings.Current.CameraButtonAssignment == 0)
             {   // Turbo button
-                if (!App.IsTrial)
+
+                if (this.m_d3dBackground != null)
                 {
-                    if (this.m_d3dBackground != null)
+                    if (!wasHalfPressed)
                     {
-                        if (!wasHalfPressed)
-                        {
-                            this.m_d3dBackground.ToggleTurboMode();
-                        }
-                        wasHalfPressed = false;
+                        this.m_d3dBackground.ToggleTurboMode();
                     }
+                    wasHalfPressed = false;
                 }
-                else
-                {
-                    this.ShowBuyDialog();
-                }
+
             }
             else
             {   // L or R button
