@@ -3466,8 +3466,9 @@ void CPULoop(int ticks)
 
 #ifndef NO_LINK
   // shuffle2: what's the purpose?
-  if(GetLinkMode() != LINK_DISCONNECTED)
-    cpuNextEvent = 1;
+  //DL: this slows down emulator even when there is no data transfer!
+  //if(GetLinkMode() != LINK_DISCONNECTED)
+  //  cpuNextEvent = 1;
 #endif
 
   cpuBreakLoop = false;
@@ -3944,8 +3945,9 @@ void CPULoop(int ticks)
 
 #ifndef NO_LINK
 	  // shuffle2: what's the purpose?
-	  if(GetLinkMode() != LINK_DISCONNECTED)
-  	       cpuNextEvent = 1;
+	  //DL: this slows down emulator even when there is no data transfer!
+	  //if(GetLinkMode() != LINK_DISCONNECTED)
+  	//       cpuNextEvent = 1;
 #endif
 
       if(IF && (IME & 1) && armIrqEnable) {

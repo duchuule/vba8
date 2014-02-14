@@ -322,31 +322,69 @@ namespace PhoneDirect3DXamlAppComponent
 		return S_OK;
 	}
 
-
-	void Direct3DBackground::ConnectSocket(void)
+	//return IP address of server if a server, otherwise nothing
+	String^ Direct3DBackground::SetupSocket(bool isServer, int numplayers, int timeout, String^ ipaddress)
 	{
-		SetLinkTimeout(10000);
+		const int length = 256; 
 
-		bool valid = SetLinkServerHost("192.168.0.2");
-		if (!valid) {
-			return;
+		SetLinkTimeout(timeout);
+	
+
+		if (!isServer ) //client
+		{
+			std::wstring fooW(ipaddress->Begin());
+			std::string fooA(fooW.begin(), fooW.end());
+
+			bool valid = SetLinkServerHost(fooA.c_str());
+			if (!valid) {
+				return "Error";
+			}
 		}
 
-		ConnectionState state = InitLink(LINK_CABLE_SOCKET);
+		EnableLinkServer(isServer,  numplayers - 1);
 
-		
+		char localhost[length];
 
-		if (state == LINK_NEEDS_UPDATE) 
+		if (isServer) // server
 		{
-			while (state == LINK_NEEDS_UPDATE) 
+			GetLinkServerHost(localhost, length);
+			//convert to Platform::String
+			wchar_t buffer[ length ];
+			mbstowcs( buffer, localhost, length );
+			return ref new Platform::String( buffer );
+		}
+		else //client does not return anything
+			return "OK";
+
+	}
+	Windows::Foundation::IAsyncOperation<int>^ Direct3DBackground::ConnectSocket(void)
+	{
+
+		return create_async([]
+		{
+			ConnectionState state = InitLink(LINK_CABLE_SOCKET);
+	
+
+			if (state == LINK_NEEDS_UPDATE) 
 			{
-				char message[256];
-				state = ConnectLinkUpdate(message, 256);
+				while (state == LINK_NEEDS_UPDATE) 
+				{
+					char message[256];
+					state = ConnectLinkUpdate(message, 256);
+				}
+
 			}
 
-		}
+			return (int)state;
+		});
 
 
+	}
+
+
+	void Direct3DBackground::EndLink()
+	{
+		CloseLink();
 	}
 
 }
