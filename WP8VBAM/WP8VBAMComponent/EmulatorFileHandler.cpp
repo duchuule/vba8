@@ -2070,8 +2070,16 @@ namespace Emulator
 				cheatsAddCBACode(codeString.c_str(), descString.c_str());
 			}else if(code->Length() == 16)
 			{
-				// Gameshark
-				cheatsAddGSACode(codeString.c_str(), descString.c_str(), true);
+				//gameshark v1, 2
+				cheatsAddGSACode(codeString.c_str(), descString.c_str(), false); 
+			}
+			else if(code->Length() == 17)
+			{
+				//gameshark v3
+				//remove space				
+				codeString = codeString.substr(0, 8) + codeString.substr(9, 8);
+
+				cheatsAddGSACode(codeString.c_str(), descString.c_str(), true); 
 			}
 		}
 	}

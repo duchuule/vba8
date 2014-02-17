@@ -165,6 +165,8 @@ int WaitForSingleObject(sem_t *s, int t)
 #endif
 #endif
 
+using namespace Windows::System::Threading;
+
 #define UNSUPPORTED -1
 #define MULTIPLAYER 0
 #define NORMAL8 1
@@ -194,6 +196,10 @@ static void JoyBusUpdate(int ticks);
 static void UpdateCableIPC(int ticks);
 static void UpdateRFUIPC(int ticks);
 static void UpdateSocket(int ticks);
+
+
+
+
 
 static ConnectionState ConnectUpdateSocket(char * const message, size_t size);
 
@@ -252,6 +258,7 @@ typedef struct {
 	int type;
 	bool server;
 	bool speed;
+	Windows::Foundation::IAsyncAction ^linkthread;
 } LANLINKDATA;
 
 class lserver{
@@ -370,6 +377,14 @@ static const int trtimeend[3][4] = {
 };
 
 static int GetSIOMode(u16, u16);
+
+static HANDLE startSendEvent; //signal start sending
+static HANDLE finishSendEvent; //signal finish sending
+static HANDLE startReceiveEvent; //signal start receiving
+static HANDLE finishReceiveEvent; //singal stop receiving
+static void LANLinkThread();
+static bool endLANThread;
+static bool newMasterCycle;
 
 // The GBA wireless RFU (see adapter3.txt)
 // Just try to avert your eyes for now ^^ (note, it currently can be called, tho)
@@ -722,22 +737,27 @@ void StartCableSocket(u16 value)
 {
 	switch (GetSIOMode(value, READ16LE(&ioMem[COMM_RCNT]))) {
 	case MULTIPLAYER: {
-		bool start = (value & 0x80) && !linkid && !transfer;
+		bool start = (value & 0x80) && !linkid && !transfer;  //only master can have start == true, the 9th bit: 0 = inactive, 1=start/busy (gbaktek document is wrong on this?)
 		// clear start, seqno, si (RO on slave, start = pulse on master)
 		value &= 0xff4b;
 		// get current si.  This way, on slaves, it is low during xfer
-		if(linkid) {
+		if(linkid) 
+		{
 			if(!transfer)
 				value |= 4;
 			else
 				value |= READ16LE(&ioMem[COMM_SIOCNT]) & 4;
 		}
-		if (start) //this got called on the host after the player has started linking in the game (after save game in pokemon)
+		if (start ) //&& !endLANthread) //this got called on the host after the player has started linking in the game (after save game in pokemon)
 		{
 			linkdata[0] = READ16LE(&ioMem[COMM_SIODATA8]);
-			savedlinktime = linktime;
+			savedlinktime = linktime; //linktime is sent to salves later
 			tspeed = value & 3;
-			ls.Send(); //server send data from all clients back to each client
+			
+			//SetEvent(startSendEvent);
+			//newMasterCycle = true; //signal start of a new send-receive cycle
+
+			ls.Send(); //server send data from all clients back to each client. when slave is busy, this keeps executing. Also ls.Recv() keep executing too
 			transfer = 1;
 			linktime = 0;
 			UPDATE_REG(COMM_SIOMULTI0, linkdata[0]);
@@ -1056,11 +1076,12 @@ static void UpdateSocket(int ticks)
 			return;
 	}
 
-	if (linkid && !transfer && lc.numtransfers > 0 && linktime >= savedlinktime)
+if (linkid && !transfer && lc.numtransfers > 0 && linktime >= savedlinktime)
 	{
 		linkdata[linkid] = READ16LE(&ioMem[COMM_SIODATA8]);
 
-		lc.Send(); //each client send their data to host
+		//SetEvent(startSendEvent);
+		lc.Send();
 
 		UPDATE_REG(COMM_SIODATA32_L, linkdata[0]);
 		UPDATE_REG(COMM_SIOCNT, READ16LE(&ioMem[COMM_SIOCNT]) | 0x80);
@@ -1070,8 +1091,14 @@ static void UpdateSocket(int ticks)
 		else
 			linktime -= savedlinktime;
 	}
+	//else if (linkid == 0 && transfer && newMasterCycle ) //master
+	//{
+	//	WaitForSingleObjectEx(finishReceiveEvent, INFINITE, false);
+	//	ResetEvent(finishReceiveEvent);
+	//	newMasterCycle = false; //set to false so code does not go in here until master sends new data
+	//}
 
-	if (transfer && linktime >= trtimeend[lanlink.numslaves-1][tspeed])
+	if (transfer && linktime >= trtimeend[lanlink.numslaves-1][tspeed]) //only start receive data after transfer is done
 	{
 		if (READ16LE(&ioMem[COMM_SIOCNT]) & 0x4000)
 		{
@@ -1087,14 +1114,20 @@ static void UpdateSocket(int ticks)
 		if (!lanlink.speed)
 		{
 			if (linkid)
-				lc.Recv();  //client read data from host which contains data from other clients as well
+			{
+				//WaitForSingleObjectEx(finishReceiveEvent, INFINITE, false);
+				//ResetEvent(finishReceiveEvent);
+				lc.Recv(); //slave tries to receive data from master, have to wait for master to receive data and resent data, quite slow
+			}
 			else
-				ls.Recv(); // WTF is the point of this?
-
+			{
+				ls.Recv(); // server tries receive data from slaves, should move this one up
+			}
 			UPDATE_REG(COMM_SIOMULTI1, linkdata[1]);
 			UPDATE_REG(COMM_SIOMULTI2, linkdata[2]);
 			UPDATE_REG(COMM_SIOMULTI3, linkdata[3]);
 			oncewait = true;
+			
 
 		} else {
 
@@ -1301,8 +1334,8 @@ ConnectionState InitLink(LinkMode mode)
 {
 	// Do nothing if we are already connected
 	if (GetLinkMode() != LINK_DISCONNECTED) {
-		systemMessage(0, N_("Error, link already connected"));
-		return LINK_ERROR;
+		systemMessage(0, N_("Link already connected"));
+		return LINK_OK;
 	}
 
 	// Find the link driver
@@ -1321,6 +1354,12 @@ ConnectionState InitLink(LinkMode mode)
 
 	// Connect the link
 	gba_connection_state = linkDriver->connect();
+
+	//create event
+	//startSendEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
+	//finishSendEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
+	//startReceiveEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
+	//finishReceiveEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
 
 	if (gba_connection_state == LINK_ERROR) {
 		CloseLink();
@@ -1370,6 +1409,15 @@ static ConnectionState ConnectUpdateSocket(char * const message, size_t size) {
 
 			snprintf(message, size, N_("All players connected"));
 			newState = LINK_OK;
+
+			//create thread
+			//endLANThread = false;
+
+			//lanlink.linkthread = ThreadPool::RunAsync(ref new WorkItemHandler([](Windows::Foundation::IAsyncAction ^action)
+			//{
+			//	LANLinkThread();
+			//}), WorkItemPriority::Normal, WorkItemOptions::None);
+
 		}
 	} else {
 
@@ -1397,9 +1445,18 @@ static ConnectionState ConnectUpdateSocket(char * const message, size_t size) {
 				bool gameReady;
 				packet >> gameReady;
 
-				if (packet && gameReady) {
+				if (packet && gameReady) 
+				{
 					newState = LINK_OK;
 					snprintf(message, size, N_("All players joined."));
+
+					//create thread
+					//endLANThread = false;
+
+					//lanlink.linkthread = ThreadPool::RunAsync(ref new WorkItemHandler([](Windows::Foundation::IAsyncAction ^action)
+					//{
+					//	LANLinkThread();
+					//}), WorkItemPriority::Normal, WorkItemOptions::None);
 				}
 			}
 
@@ -1560,7 +1617,11 @@ void CloseLink(void){
 	linkDriver->close();
 	linkDriver = NULL;
 
+	endLANThread = true; //so that LanLinkThread knows to terminate
+
 	return;
+
+	
 }
 
 // call this to clean up crashed program's shared state
@@ -1575,6 +1636,63 @@ void CleanLocalLink()
 		sem_unlink(linkevent);
 	}
 #endif
+}
+
+
+void LANLinkThread()
+{
+	while (!endLANThread)
+	{
+		if (linkid == 0) //master
+		{
+			WaitForSingleObjectEx(startSendEvent, INFINITE, false);  
+			ResetEvent(startSendEvent);
+			ls.Send(); //send data to slaves
+
+			ls.Recv(); //start receive data from slave right away
+
+			SetEvent(finishReceiveEvent); //signal receive is complete
+
+
+			//WaitForSingleObjectEx(startReceiveEvent, INFINITE, false); 
+			//ResetEvent(startReceiveEvent);
+			//ls.Recv();  //wait for data from slave
+
+			//ls.Send(); //send data back to slaves right away
+
+			//SetEvent(finishSendEvent); //signal sending is complete
+
+		}
+		else //slave
+		{
+			WaitForSingleObjectEx(startSendEvent, INFINITE, false);  
+			ResetEvent(startSendEvent);
+			lc.Send();  //send to master
+			
+
+			lc.Recv(); //start receive back from master right away
+
+			SetEvent(finishReceiveEvent); //signal receive is complete
+		}
+
+
+	}
+
+	//	//set all events to prevent deadlock
+	//SetEvent(startSendEvent);
+	//SetEvent(startReceiveEvent);
+	//SetEvent(finishSendEvent);
+	//SetEvent(finishReceiveEvent);
+
+	CloseHandle(startSendEvent);
+	CloseHandle(finishSendEvent);
+	CloseHandle(startReceiveEvent);
+	CloseHandle(finishReceiveEvent);
+
+
+	return;
+
+
 }
 
 // Server
@@ -1640,18 +1758,28 @@ void lserver::Recv(void){
 			fdset.Add(tcpsocket[i+1]);
 
 		// was linktimeout/1000 (i.e., drop ms part), but that's wrong
-		if (fdset.Wait((float)(linktimeout / 1000.)) == 0)
+		if (fdset.Wait((float)(linktimeout / 1000.)) == 0)  //this keeps executing even when slave is down
+															//this function wait for data sent from sleep
+															//when slave is slow, this slows down emulation a lot
 		{
 			return;
 		}
-		howmanytimes++; //guess: this is 1 without speed hack
+		howmanytimes++; //this returns 1 without speed hack
 		for(i=0;i<lanlink.numslaves;i++){
 			numbytes = 0;
 			inbuffer[0] = 1;
+
+			sf::Socket::Status status;
 			while(numbytes<howmanytimes*inbuffer[0]) {  //read all data from a client
 				size_t nr;
-				tcpsocket[i+1].Receive(inbuffer+numbytes, howmanytimes*inbuffer[0]-numbytes, nr);
+				status = tcpsocket[i+1].Receive(inbuffer+numbytes, howmanytimes*inbuffer[0]-numbytes, nr);
 				numbytes += nr;
+
+				if (status == sf::Socket::Disconnected)
+				{
+					CloseLink();
+					return;
+				}
 			}
 			if(howmanytimes>1)
 				memmove(inbuffer, inbuffer+inbuffer[0]*(howmanytimes-1), inbuffer[0]); //speed hack?
@@ -1699,14 +1827,22 @@ lclient::lclient(void){
 	return;
 }
 
+//this function runs on slave to periodically check for available data from master
 void lclient::CheckConn(void){
 	size_t nr;
-	lanlink.tcpsocket.Receive(inbuffer, 1, nr);
+	lanlink.tcpsocket.Receive(inbuffer, 1, nr); //read 1 byte, whose content is number of bytes to read after that
 	numbytes = nr;
 	if(numbytes>0){
+		sf::Socket::Status status;
 		while(numbytes<inbuffer[0]) {
-			lanlink.tcpsocket.Receive(inbuffer+numbytes, inbuffer[0] - numbytes, nr);
+			status = lanlink.tcpsocket.Receive(inbuffer+numbytes, inbuffer[0] - numbytes, nr);
 			numbytes += nr;
+
+			if (status == sf::Socket::Disconnected)
+			{
+				CloseLink();
+				return;
+			}
 		}
 		if(inbuffer[1]==-32){
 			outbuffer[0] = 4;
@@ -1735,7 +1871,9 @@ void lclient::Recv(void){
 	// old code used socket # instead of mask again
 	fdset.Add(lanlink.tcpsocket);
 	// old code stripped off ms again
-	if (fdset.Wait((float)(linktimeout / 1000.)) == 0)
+	if (fdset.Wait((float)(linktimeout / 1000.)) == 0)  //afer a period of no data from master, set numtransfer to 0 to stop trying to receive data
+														//then periodically check for data from master by CheckConn
+														//when connection is slow, waiting for data slow down emulation a lot
 	{
 		numtransfers = 0;
 		return;
@@ -1747,9 +1885,17 @@ void lclient::Recv(void){
 	//retrieve data from host after host has received data from all clients
 	//first loop read only 1 byte, store in inbuffer[0], which is the total number of bytes to receive
 	//subsequence loop read the remaining data
+
+	sf::Socket::Status status;
 	while(numbytes<inbuffer[0]) {
-		lanlink.tcpsocket.Receive(inbuffer+numbytes, inbuffer[0] - numbytes, nr);
+		status = lanlink.tcpsocket.Receive(inbuffer+numbytes, inbuffer[0] - numbytes, nr);
+		if (status == sf::Socket::Disconnected)
+		{
+			CloseLink();
+			return;
+		}
 		numbytes += nr;
+
 	}
 
 	//check inbuffer[1] for error code

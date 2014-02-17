@@ -369,6 +369,7 @@ namespace PhoneDirect3DXamlAppInterop
         void ChangeAppBarVisibility(bool visible)
         {
             this.ApplicationBar.IsVisible = visible;
+            this.ApplicationBar.Mode = ApplicationBarMode.Default;
             if (visible)
             {
                 this.m_d3dBackground.PauseEmulation();

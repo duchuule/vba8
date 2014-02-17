@@ -2,7 +2,8 @@
 #include "WP8VBAMComponent.h"
 #include "Direct3DContentProvider.h"
 #include "EmulatorFileHandler.h"
-#include "GBALink.h"
+
+
 
 #if _DEBUG
 #include <string>
@@ -21,6 +22,9 @@ using namespace Windows::ApplicationModel::Core;
 
 Moga::Windows::Phone::ControllerManager^ Direct3DBackground::mogacontroller;
 
+ConnectionState gba_conect_state;
+bool user_abort_connection = false;
+
 extern bool enableTurboMode;
 
 
@@ -37,6 +41,7 @@ namespace PhoneDirect3DXamlAppComponent
 	{
 		ComPtr<Direct3DContentProvider> provider = Make<Direct3DContentProvider>(this);
 		return reinterpret_cast<IDrawingSurfaceBackgroundContentProvider^>(provider.Get());
+
 	}
 
 
@@ -299,6 +304,7 @@ namespace PhoneDirect3DXamlAppComponent
 
 		CloseHandle(waitEvent);
 		waitEvent = nullptr;
+
 	}
 
 	HRESULT Direct3DBackground::PrepareResources(_In_ const LARGE_INTEGER* presentTargetTime, _Inout_ DrawingSurfaceSizeF* desiredRenderTargetSize)
@@ -325,6 +331,8 @@ namespace PhoneDirect3DXamlAppComponent
 	//return IP address of server if a server, otherwise nothing
 	String^ Direct3DBackground::SetupSocket(bool isServer, int numplayers, int timeout, String^ ipaddress)
 	{
+		linkEndEvent = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
+
 		const int length = 256; 
 
 		SetLinkTimeout(timeout);
@@ -362,29 +370,42 @@ namespace PhoneDirect3DXamlAppComponent
 
 		return create_async([]
 		{
-			ConnectionState state = InitLink(LINK_CABLE_SOCKET);
+			gba_conect_state = InitLink(LINK_CABLE_SOCKET);
 	
 
-			if (state == LINK_NEEDS_UPDATE) 
+			if (gba_conect_state == LINK_NEEDS_UPDATE) 
 			{
-				while (state == LINK_NEEDS_UPDATE) 
+				while (gba_conect_state == LINK_NEEDS_UPDATE) 
 				{
 					char message[256];
-					state = ConnectLinkUpdate(message, 256);
+					gba_conect_state = ConnectLinkUpdate(message, 256);
+
+					if (user_abort_connection)
+					{
+						gba_conect_state = LINK_ABORT;
+						user_abort_connection = false; //set to false in case the user want to retry connecting
+
+					}
 				}
 
 			}
 
-			return (int)state;
+			if (gba_conect_state == LINK_ABORT)
+				CloseLink();
+
+			return (int)gba_conect_state;
 		});
 
 
 	}
 
 
-	void Direct3DBackground::EndLink()
+	void Direct3DBackground::StopConnectLoop()
 	{
-		CloseLink();
+		user_abort_connection = true;
 	}
+
+
+
 
 }

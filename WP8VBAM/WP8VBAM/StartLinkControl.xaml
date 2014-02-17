@@ -21,7 +21,7 @@
                     >
             <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.LinkTypeText, Source={StaticResource LocalizedStrings}}" 
                                             Name="linkTypePicker"
-                                            InlineModeThreshold="30"
+                                            InlineModeThreshold="10"
                                         
                                             >
                 <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.CableSocketText, Source={StaticResource LocalizedStrings}}" />
@@ -29,7 +29,7 @@
 
             <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.RoleText, Source={StaticResource LocalizedStrings}}" 
                                             Name="rolePicker"
-                                            InlineModeThreshold="30" SelectionChanged="rolePicker_SelectionChanged"
+                                            InlineModeThreshold="10" SelectionChanged="rolePicker_SelectionChanged"
                                             >
                 <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.HostText, Source={StaticResource LocalizedStrings}}" />
                 <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.ClientText, Source={StaticResource LocalizedStrings}}" />
@@ -44,7 +44,7 @@
                        Margin="12,0,0,0" 
                        Foreground="{StaticResource PhoneSubtleBrush}" 
                        x:Name="tblkTimeout" />
-            <TextBox x:Name="txtTimeout" Text="3000" />
+            <TextBox x:Name="txtTimeout" Text="5000" />
 
 
 
@@ -57,7 +57,7 @@
             <TextBlock x:Name="tblkStatus" Height="70" 
                        Margin="12, 0, 12, 0"
                        TextWrapping="Wrap"
-                       Text="Tap Start server to get the server IP Address."/>
+                       Text="Tap Start server to get the server IP address."/>
                 
                 
             <c4f:RoundButton ImageSource="Assets\ApplicationBar.Cancel.png"

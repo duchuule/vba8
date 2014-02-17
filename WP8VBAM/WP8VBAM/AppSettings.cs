@@ -20,6 +20,8 @@ namespace PhoneDirect3DXamlAppInterop
         const String BackgroundOpacityKey = "BackgroundOpacityKey";
         const String UseDefaultBackgroundKey = "UseDefaultBackgroundKey";
         const String ShowLastPlayedGameKey = "ShowLastPlayedGameKey";
+        const String LastIPAddressKey = "LastIPAddressKey";
+        const String LastTimeoutKey = "LastTimeoutKey";
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -186,6 +188,34 @@ namespace PhoneDirect3DXamlAppInterop
                 Save();
             }
         }
+
+        public string LastIPAddress
+        {
+            get
+            {
+                return GetValueOrDefault<string>(LastIPAddressKey, "");
+            }
+            set
+            {
+                AddOrUpdateValue(LastIPAddressKey, value);
+                Save();
+            }
+        }
+
+
+        public int LastTimeout
+        {
+            get
+            {
+                return GetValueOrDefault<int>(LastTimeoutKey, 3000);
+            }
+            set
+            {
+                AddOrUpdateValue(LastTimeoutKey, value);
+                Save();
+            }
+        }
+
 
         #region INotifyPropertyChanged Members
 

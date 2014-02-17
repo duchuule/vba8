@@ -981,7 +981,7 @@ namespace PhoneDirect3DXamlAppInterop
         private void TextBlock_Tap_2(object sender, System.Windows.Input.GestureEventArgs e)
         {
             WebBrowserTask wbtask = new WebBrowserTask();
-            wbtask.Uri = new Uri("http://forums.wpcentral.com/windows-phone-apps/252987-trio-nintendo-emulators-new-tutorial-using-cheat-codes.html");
+            wbtask.Uri = new Uri("http://forums.wpcentral.com/showthread.php?t=252987");
             wbtask.Show();
         }
 

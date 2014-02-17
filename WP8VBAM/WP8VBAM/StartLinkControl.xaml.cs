@@ -27,10 +27,14 @@ namespace PhoneDirect3DXamlAppInterop
         public StartLinkControl()
         {
             InitializeComponent();
+
+            txtAddress.Text = App.metroSettings.LastIPAddress ;
+            txtTimeout.Text = App.metroSettings.LastTimeout.ToString();
         }
 
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
         {
+            m_d3dBackground.StopConnectLoop();
             ClosePopup();
         }
 
@@ -44,6 +48,10 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
+            //save setting
+            App.metroSettings.LastIPAddress = txtAddress.Text;
+            App.metroSettings.LastTimeout = int.Parse(txtTimeout.Text);
+
             if (rolePicker.SelectedIndex == 0) //server
             {
                 ConnectButton.IsEnabled = false;
@@ -53,6 +61,7 @@ namespace PhoneDirect3DXamlAppInterop
                 tblkStatus.Text = "Host's IP address: " + ipaddress + ". Waiting for client..." ;
 
                 var asyncAction = m_d3dBackground.ConnectSocket();
+
 
                 await asyncAction;
 
@@ -103,11 +112,13 @@ namespace PhoneDirect3DXamlAppInterop
             if (rolePicker.SelectedIndex == 0) //server
             {
                 txtAddress.Visibility = Visibility.Collapsed;
+                tblkStatus.Text = "Tap Start server to get the server IP address.";
                 ConnectButton.Content = "Start server";
             }
             else
             {
                 txtAddress.Visibility = Visibility.Visible;
+                tblkStatus.Text = "Start server on the other device to get server's IP address.";
                 ConnectButton.Content = "Connect";
             }
 
