@@ -9,6 +9,7 @@
 #include "CheatData.h"
 #include <DrawingSurfaceNative.h>
 #include "Delegates.h"
+#include "GBALink.h"
 
 using namespace Emulator;
 using namespace Windows::ApplicationModel;
@@ -56,6 +57,7 @@ public:
 	property Windows::Foundation::Size WindowBounds;
 	property Windows::Foundation::Size NativeResolution;
 	property Windows::Foundation::Size RenderResolution;
+	
 
 	void ToggleTurboMode(void);
 	void StartTurboMode(void);
@@ -81,7 +83,7 @@ public:
 	Platform::String^ Direct3DBackground::SetupSocket(bool isServer, int numplayers, int timeout, String^ ipaddress);
 	Windows::Foundation::IAsyncOperation<int>^ ConnectSocket(void);
 
-	void EndLink(void);
+	void StopConnectLoop(void);
 
 	static Moga::Windows::Phone::ControllerManager^ getController() {
 		return mogacontroller;
@@ -110,6 +112,8 @@ private:
 	static Moga::Windows::Phone::ControllerManager^ mogacontroller;
 	int orientation;
 	HANDLE waitEvent;
+	HANDLE linkEndEvent;
+	
 };
 
 }

@@ -163,8 +163,8 @@ namespace PhoneDirect3DXamlAppInterop
             {
 
                 string codePart = codeParts[i].ToUpper().Trim().Replace("\t", "");
-                string tmp = Regex.Replace(codePart, "[\t\r ]", "");
-                tmp = Regex.Replace(tmp, "[- ]", "");
+                string tmp = Regex.Replace(codePart, "[\t\r]", "");
+                tmp = Regex.Replace(tmp, "[-]", "");
                 StringBuilder sb = new StringBuilder();
                 if (tmp.Length == 6)
                 {
@@ -191,7 +191,7 @@ namespace PhoneDirect3DXamlAppInterop
                     sb.Append(' ');
                     sb.Append(tmp.Substring(8, 4));
                 }
-                else if (tmp.Length == 16)
+                else if (tmp.Length == 16 || tmp.Length == 17)  //two version of gameshark codes for GBA
                 {
                     //sb.Append(tmp.Substring(0, 8));
                     //sb.Append(' ');

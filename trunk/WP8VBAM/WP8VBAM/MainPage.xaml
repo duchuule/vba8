@@ -667,7 +667,7 @@
                                        Foreground="{StaticResource HeaderForegroundBrush}"
                                   />
                         </Grid>
-                        <TextBlock Text="Forum discussions" 
+                        <TextBlock Text="FAQs &amp; forum discussions" 
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"
