@@ -248,13 +248,13 @@ namespace PhoneDirect3DXamlAppInterop
                 //this.statusLabel.Text = AppResources.StatusSignedIn;
                 this.gotoImportButton.IsEnabled = true;
                 this.gotoBackupButton.IsEnabled = true;
-                this.gotoRestoreButton.IsEnabled = true;
+                //this.gotoRestoreButton.IsEnabled = true;
             }
             else
             {
                 this.gotoImportButton.IsEnabled = false;
                 this.gotoBackupButton.IsEnabled = false;
-                this.gotoRestoreButton.IsEnabled = false;
+                //this.gotoRestoreButton.IsEnabled = false;
                 //this.statusLabel.Text = AppResources.StatusNotSignedIn;
                 session = null;
 
@@ -784,8 +784,8 @@ namespace PhoneDirect3DXamlAppInterop
             EmulatorPage.currentROMEntry = entry;
             LoadROMParameter param = await FileHandler.GetROMFileToPlayAsync(entry.FileName);
 
-            entry.LastPlayed = DateTime.Now;
-            this.db.CommitChanges();
+            //entry.LastPlayed = DateTime.Now;
+            //this.db.CommitChanges();
 
             PhoneApplicationService.Current.State["parameter"] = param;
             this.NavigationService.Navigate(new Uri("/EmulatorPage.xaml", UriKind.Relative));

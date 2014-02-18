@@ -16,27 +16,11 @@ using PhoneDirect3DXamlAppInterop.Resources;
 using PhoneDirect3DXamlAppInterop.Database;
 using System.Windows.Media;
 using Microsoft.Phone.Tasks;
+using System.IO;
 
 namespace PhoneDirect3DXamlAppInterop
 {
-    public enum SkyDriveItemType
-    {
-        File,
-        Folder,
-        ROM,
-        SRAM,
-        Savestate
-    }
 
-    public class SkyDriveListItem
-    {
-        public String Name { get; set; }
-        public String SkyDriveID { get; set; }
-        public String ParentID { get; set; }
-        public int FolderChildrenCount { get; set; }
-        public SkyDriveItemType Type { get; set; }
-        public bool Downloading { get; set; }
-    }
 
     public partial class SkyDriveImportPage : PhoneApplicationPage
     {
@@ -73,7 +57,7 @@ namespace PhoneDirect3DXamlAppInterop
             this.skydriveStack.Add(new List<SkyDriveListItem>());
             this.skydriveStack[0].Add(new SkyDriveListItem()
             {
-                Name = "SkyDrive",
+                Name = "Root",
                 SkyDriveID = "me/skydrive",
                 Type = SkyDriveItemType.Folder,
                 ParentID = ""
@@ -120,7 +104,7 @@ namespace PhoneDirect3DXamlAppInterop
                         {
                             this.downloadsInProgress++;
                             item.Downloading = true;
-                            await this.DownloadFile(item, client);
+                            await this.DownloadROM(item, client);
                         }
                         catch (Exception ex)
                         {
@@ -136,6 +120,54 @@ namespace PhoneDirect3DXamlAppInterop
                         MessageBox.Show(AppResources.AlreadyDownloadingText, AppResources.ErrorCaption, MessageBoxButton.OK);
                     }
                 }
+                else if (item.Type == SkyDriveItemType.Savestate || item.Type == SkyDriveItemType.SRAM)
+                {
+                    //check to make sure there is a rom with matching name
+                    ROMDBEntry entry = null;
+
+                    if (item.Type == SkyDriveItemType.Savestate)
+                        entry = db.GetROMFromSavestateName(item.Name);
+                    else if (item.Type == SkyDriveItemType.SRAM)
+                        entry = db.GetROMFromSRAMName(item.Name);
+
+                    if (entry == null) //no matching file name
+                    {
+                        MessageBox.Show(AppResources.NoMatchingNameText, AppResources.ErrorCaption, MessageBoxButton.OK);
+                        return;
+                    }
+
+                    //check to make sure format is right
+                    if (item.Type == SkyDriveItemType.Savestate)
+                    {
+                        string slot = item.Name.Substring(item.Name.Length - 5, 1);
+                        int parsedSlot = 0;
+                        if (!int.TryParse(slot, out parsedSlot))
+                        {
+                            MessageBox.Show(AppResources.ImportSavestateInvalidFormat, AppResources.ErrorCaption, MessageBoxButton.OK);
+                            return;
+                        }
+                    }
+                    // Download
+                    if (!item.Downloading)
+                    {
+                        try
+                        {
+                            item.Downloading = true;
+                            await this.DownloadSave(item, client);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppResources.AlreadyDownloadingText, AppResources.ErrorCaption, MessageBoxButton.OK);
+                    }
+                }
+
+
+
                 this.statusLabel.Height = 0;
             }
             catch (LiveConnectException)
@@ -145,7 +177,110 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        private async Task DownloadFile(SkyDriveListItem item, LiveConnectClient client)
+
+        private async Task DownloadSave(SkyDriveListItem item, LiveConnectClient client)
+        {
+            StorageFolder folder = ApplicationData.Current.LocalFolder;
+            StorageFolder romFolder = await folder.CreateFolderAsync(FileHandler.ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
+            StorageFolder saveFolder = await romFolder.CreateFolderAsync(FileHandler.SAVE_DIRECTORY, CreationCollisionOption.OpenIfExists);
+
+            String path = romFolder.Path;
+            String savePath = saveFolder.Path;
+
+            ROMDatabase db = ROMDatabase.Current;
+
+            var indicator = SystemTray.GetProgressIndicator(this);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.DownloadingProgressText, item.Name);
+
+            LiveDownloadOperationResult e = await client.DownloadAsync(item.SkyDriveID + "/content");
+            if (e != null)
+            {
+                byte[] tmpBuf = new byte[e.Stream.Length];
+                StorageFile destinationFile = null;
+
+                ROMDBEntry entry = null;
+
+                if (item.Type == SkyDriveItemType.SRAM)
+                {
+                    entry = db.GetROMFromSRAMName(item.Name);
+                    if (entry != null)
+                        destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", CreationCollisionOption.ReplaceExisting);
+
+                    else
+                        destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+                }
+                else if (item.Type == SkyDriveItemType.Savestate)
+                {
+                    entry = db.GetROMFromSavestateName(item.Name);
+
+
+                    if (entry != null)
+                        destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + item.Name.Substring(item.Name.Length - 5), CreationCollisionOption.ReplaceExisting);
+                    else
+                        destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+                }
+
+                using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
+                using (DataWriter writer = new DataWriter(destStream))
+                {
+                    while (e.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
+                    {
+                        writer.WriteBytes(tmpBuf);
+                    }
+                    await writer.StoreAsync();
+                    await writer.FlushAsync();
+                    writer.DetachStream();
+                }
+                e.Stream.Close();
+                item.Downloading = false;
+
+                if (item.Type == SkyDriveItemType.Savestate)
+                {
+                    String number = item.Name.Substring(item.Name.Length - 5, 1);
+                    int slot = int.Parse(number);
+
+                    if (entry != null) //NULL = do nothing
+                    {
+                        SavestateEntry saveentry = db.SavestateEntryExisting(entry.FileName, slot);
+                        if (saveentry != null)
+                        {
+                            //delete entry
+                            db.RemoveSavestateFromDB(saveentry);
+
+                        }
+                        SavestateEntry ssEntry = new SavestateEntry()
+                        {
+                            ROM = entry,
+                            Savetime = DateTime.Now,
+                            Slot = slot,
+                            FileName = item.Name
+                        };
+                        db.Add(ssEntry);
+                        db.CommitChanges();
+
+                    }
+                }
+
+                MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
+            }
+            else
+            {
+
+                MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, "Api error"), AppResources.ErrorCaption, MessageBoxButton.OK);
+            }
+
+#if GBC
+            indicator.Text = AppResources.ApplicationTitle2;
+#else
+            indicator.Text = AppResources.ApplicationTitle;
+#endif
+            indicator.IsIndeterminate = false;
+        }
+
+
+
+        private async Task DownloadROM(SkyDriveListItem item, LiveConnectClient client)
         {
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             StorageFolder romFolder = await folder.CreateFolderAsync("roms", CreationCollisionOption.OpenIfExists);
@@ -162,14 +297,11 @@ namespace PhoneDirect3DXamlAppInterop
                 //return;
             }
 
-            var indicator = new ProgressIndicator()
-            {
-                IsIndeterminate = true,
-                IsVisible = true,
-                Text = String.Format(AppResources.DownloadingProgressText, item.Name)
-            };
+            var indicator = SystemTray.GetProgressIndicator(this);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.DownloadingProgressText, item.Name);
 
-            SystemTray.SetProgressIndicator(this, indicator);
+
 
             LiveDownloadOperationResult e = await client.DownloadAsync(item.SkyDriveID + "/content");
             if (e != null)
@@ -189,7 +321,6 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 e.Stream.Close();
                 item.Downloading = false;
-                SystemTray.GetProgressIndicator(this).IsVisible = false;
                 if (!fileExisted)
                 {
                     var entry = FileHandler.InsertNewDBEntry(destinationFile.Name);
@@ -200,10 +331,17 @@ namespace PhoneDirect3DXamlAppInterop
             }
             else
             {
-                SystemTray.GetProgressIndicator(this).IsVisible = false;
                 MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, "Api error"), AppResources.ErrorCaption, MessageBoxButton.OK);
             }
+#if GBC
+            indicator.Text = AppResources.ApplicationTitle2;
+#else
+            indicator.Text = AppResources.ApplicationTitle;
+#endif
+            indicator.IsIndeterminate = false;
         }
+
+
 
         void SkyDriveImportPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -301,9 +439,16 @@ namespace PhoneDirect3DXamlAppInterop
                         {
                             String substrName = name.Substring(dotIndex).ToLower();
                             if (substrName.Equals(".gb") || substrName.Equals(".gbc") || substrName.Equals(".gba"))
-
                             {
                                 type = SkyDriveItemType.ROM;
+                            }
+                            else if (substrName.Equals(".sgm") )
+                            {
+                                type = SkyDriveItemType.Savestate;
+                            }
+                            else if (substrName.Equals(".sav"))
+                            {
+                                type = SkyDriveItemType.SRAM;
                             }
                         }
                     }
@@ -360,5 +505,24 @@ namespace PhoneDirect3DXamlAppInterop
                 }
             }
         }
+    } //end class
+
+    public enum SkyDriveItemType
+    {
+        File,
+        Folder,
+        ROM,
+        SRAM,
+        Savestate
+    }
+
+    public class SkyDriveListItem
+    {
+        public String Name { get; set; }
+        public String SkyDriveID { get; set; }
+        public String ParentID { get; set; }
+        public int FolderChildrenCount { get; set; }
+        public SkyDriveItemType Type { get; set; }
+        public bool Downloading { get; set; }
     }
 }

@@ -503,15 +503,17 @@
                         </Grid>
                         <Button x:Name="ImportSD" 
                                         Click="ImportSD_Click"
-                                        Content="Import ROMs from SD Card"
-                                        Margin="0,0,-12,12"/>
+                                        Content="{Binding Path=LocalizedResources.ImportSDCardText, Source={StaticResource LocalizedStrings}}"
+                                        Margin="0,0,-12,0"/>
 
-
+                        <TextBlock TextWrapping="Wrap" FontSize="20"
+                                    Text="{Binding Path=LocalizedResources.SDCardReadOnlyText, Source={StaticResource LocalizedStrings}}"
+                                    Margin="12,0,0,12"/>
 
 
                         <!--Skydrive-->
                         <Grid Background="{StaticResource HeaderBackgroundBrush}"
-                              Margin="12,0,0,12"
+                              Margin="12,12,0,12"
                               Height="36"
                               VerticalAlignment="Stretch"
                               >
@@ -523,17 +525,14 @@
                                   />
                         </Grid>
 
-                        <TextBlock TextWrapping="Wrap" FontSize="20"
-                                    Text="{Binding Path=LocalizedResources.ImportInstructionsText, Source={StaticResource LocalizedStrings}}"
-                                    Margin="12,0,0,0"/>
+                        
 
 
 
-                        <Grid  Margin="12,0,0,0"
+                        <Grid  Margin="0,0,-12,0"
                                     >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Controls:SignInButton Content="SignInButton" 
                                                         Name="signinButton"
@@ -541,17 +540,35 @@
                                                     Branding="Skydrive"
                                                     Scopes="wl.signin wl.skydrive_update wl.offline_access"
                                                     SessionChanged="btnSignin_SessionChanged" 
-                                                        Margin="-12,0,-6,0"/>
-                            <Button Name="gotoImportButton"
-                                        IsEnabled="False" 
-                                        Grid.Column="1"
-                                        Click="gotoImportButton_Click_1"
-                                        Margin="-6,0,-12,0"
-                                        Content="{Binding Path=LocalizedResources.ImportFromSkyDriveButtonText, Source={StaticResource LocalizedStrings}}"/>
+                                                        Margin="0,0,0,0"/>
+                            
                         </Grid>
 
+
+                        <Grid  Margin="12,0,0,0"
+                                    >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Name="gotoImportButton"
+                                        IsEnabled="False" 
+                                        Grid.Column="0"
+                                        Click="gotoImportButton_Click_1"
+                                        Margin="-12,0,-6,0"
+                                        Content="{Binding Path=LocalizedResources.ImportFromSkyDriveButtonText, Source={StaticResource LocalizedStrings}}"/>
+                            <Button Name="gotoBackupButton" 
+                                                    IsEnabled="False"
+                                        Click="gotoBackupButton_Click_1"
+                                    Grid.Column="1"
+                                        Margin="-6,0,-12,0"
+                                                    Content="{Binding Path=LocalizedResources.BackupButton, Source={StaticResource LocalizedStrings}}"/>
+                        </Grid>
+
+
+                        
                         <!--Save states-->
-                        <Grid Background="{StaticResource HeaderBackgroundBrush}"
+                        <!--<Grid Background="{StaticResource HeaderBackgroundBrush}"
                               Margin="12,12,0,12"
                               Height="36"
                               VerticalAlignment="Stretch"
@@ -562,29 +579,16 @@
                                        Margin="12,0,0,0"
                                        Foreground="{StaticResource HeaderForegroundBrush}"
                                   />
-                        </Grid>
+                        </Grid>-->
+                        <TextBlock TextWrapping="Wrap" FontSize="20"
+                                    Text="{Binding Path=LocalizedResources.ImportInstructionsText, Source={StaticResource LocalizedStrings}}"
+                                    Margin="12,12,0,0"/>
+                        
                         <TextBlock TextWrapping="Wrap" FontSize="20"
                                     Text="{Binding Path=LocalizedResources.ImportSaveInstructionsText, Source={StaticResource LocalizedStrings}}"
-                                    Margin="12,0,0,0"/>
+                                    Margin="12,18,0,0"/>
 
-                        <Grid  Margin="12,0,0,0"
-                                       >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Button Name="gotoBackupButton" 
-                                                    IsEnabled="False"
-                                        Click="gotoBackupButton_Click_1"
-                                        Margin="-12,0,-6,0"
-                                                    Content="{Binding Path=LocalizedResources.BackupButton, Source={StaticResource LocalizedStrings}}"/>
-                            <Button Name="gotoRestoreButton"  
-                                                    IsEnabled="False" 
-                                                Margin="-6,0,-12,0"
-                                                Grid.Column="1"
-                                                Click="gotoRestoreButton_Click_1"
-                                                    Content="{Binding Path=LocalizedResources.RestoreButton, Source={StaticResource LocalizedStrings}}"/>
-                        </Grid>
+                        
 
                         <!--<ListBoxItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsHitTestVisible="False">
                                 <StackPanel Orientation="Horizontal">

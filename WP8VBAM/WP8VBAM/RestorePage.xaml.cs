@@ -96,7 +96,7 @@ namespace PhoneDirect3DXamlAppInterop
 
                     if (entry == null) //no matching file name
                     {
-                        MessageBox.Show("Please make sure the name of the save file matches the name of the ROM", AppResources.ErrorCaption, MessageBoxButton.OK);
+                        MessageBox.Show(AppResources.NoMatchingNameText, AppResources.ErrorCaption, MessageBoxButton.OK);
                         return;
                     }
 
@@ -148,14 +148,10 @@ namespace PhoneDirect3DXamlAppInterop
             String savePath = saveFolder.Path;
 
             ROMDatabase db = ROMDatabase.Current;
-            var indicator = new ProgressIndicator()
-            {
-                IsIndeterminate = true,
-                IsVisible = true,
-                Text = String.Format(AppResources.DownloadingProgressText, item.Name)
-            };
 
-            SystemTray.SetProgressIndicator(this, indicator);
+            var indicator = SystemTray.GetProgressIndicator(this);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.DownloadingProgressText, item.Name);
 
             LiveDownloadOperationResult e = await client.DownloadAsync(item.SkyDriveID + "/content");
             if (e != null)
@@ -198,7 +194,6 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 e.Stream.Close();
                 item.Downloading = false;
-                SystemTray.GetProgressIndicator(this).IsVisible = false;
 
                 if (item.Type == SkyDriveItemType.Savestate)
                 {
@@ -231,9 +226,16 @@ namespace PhoneDirect3DXamlAppInterop
             }
             else
             {
-                SystemTray.GetProgressIndicator(this).IsVisible = false;
+
                 MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, "Api error"), AppResources.ErrorCaption, MessageBoxButton.OK);
             }
+
+#if GBC
+            indicator.Text = AppResources.ApplicationTitle2;
+#else
+            indicator.Text = AppResources.ApplicationTitle;
+#endif
+            indicator.IsIndeterminate = false;
         }
 
         void SkyDriveImportPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)

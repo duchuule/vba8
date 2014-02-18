@@ -79,7 +79,7 @@ public:
 	void LoadCheats(Windows::Foundation::Collections::IVector<CheatData ^> ^cheats);
 	void SelectSaveState(int slot);
 	void SaveState(void);
-	void LoadState(void);
+	void LoadState(int slot);
 	void Reset(void);
 	void SetContinueNotifier(ContinueEmulationNotifier ^notifier);
 

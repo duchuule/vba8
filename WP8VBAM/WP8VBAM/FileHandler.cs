@@ -526,95 +526,114 @@ namespace PhoneDirect3DXamlAppInterop
         internal static async Task<List<CheatData>> LoadCheatCodes(ROMDBEntry re)
         {
             List<CheatData> cheats = new List<CheatData>();
-            String romFileName = re.FileName;
-            int index = romFileName.LastIndexOf('.');
-            int diff = romFileName.Length - index;
-
-            string cheatFileName = romFileName.Substring(0, romFileName.Length - diff);
-            cheatFileName += ".cht";
-
-            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder romFolder = await localFolder.GetFolderAsync(ROM_DIRECTORY);
-            StorageFolder saveFolder = await romFolder.GetFolderAsync(SAVE_DIRECTORY);
-
-            StorageFile file = null;
             try
             {
-                file = await saveFolder.GetFileAsync(cheatFileName);
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                return cheats;
-            }
-            string codes = null;
-            using (var stream = await file.OpenReadAsync())
-            {
-                using (var readStream = stream.GetInputStreamAt(0L))
+                String romFileName = re.FileName;
+                int index = romFileName.LastIndexOf('.');
+                int diff = romFileName.Length - index;
+
+                string cheatFileName = romFileName.Substring(0, romFileName.Length - diff);
+                cheatFileName += ".cht";
+
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder romFolder = await localFolder.GetFolderAsync(ROM_DIRECTORY);
+                StorageFolder saveFolder = await romFolder.GetFolderAsync(SAVE_DIRECTORY);
+
+                StorageFile file = null;
+                try
                 {
-                    using (DataReader reader = new DataReader(readStream))
+                    file = await saveFolder.GetFileAsync(cheatFileName);
+                }
+                catch (Exception)
+                {
+                    return cheats;
+                }
+                string codes = null;
+                using (var stream = await file.OpenReadAsync())
+                {
+                    using (var readStream = stream.GetInputStreamAt(0L))
                     {
-                        await reader.LoadAsync((uint)stream.Size);
-                        codes = reader.ReadString((uint)stream.Size);
+                        using (DataReader reader = new DataReader(readStream))
+                        {
+                            await reader.LoadAsync((uint)stream.Size);
+                            codes = reader.ReadString((uint)stream.Size);
+                        }
+                    }
+                }
+                if (!String.IsNullOrWhiteSpace(codes))
+                {
+                    string[] lines = codes.Split('\n');
+                    for (int i = 0; i < lines.Length; i += 3)
+                    {
+                        if (lines.Length - i < 3)
+                            continue;
+                        CheatData data = new CheatData();
+                        data.Description = lines[i];
+                        data.CheatCode = lines[i + 1];
+                        data.Enabled = lines[i + 2].Equals("1");
+
+                        cheats.Add(data);
                     }
                 }
             }
-            if (!String.IsNullOrWhiteSpace(codes))
+            catch (Exception ex)
             {
-                string[] lines = codes.Split('\n');
-                for (int i = 0; i < lines.Length; i += 3)
-                {
-                    if (lines.Length - i < 3)
-                        continue;
-                    CheatData data = new CheatData();
-                    data.Description = lines[i];
-                    data.CheatCode = lines[i + 1];
-                    data.Enabled = lines[i + 2].Equals("1");
-
-                    cheats.Add(data);
-                }
+                MessageBox.Show(ex.Message);
             }
 
             return cheats;
         }
 
-        internal static async void SaveCheatCodes(ROMDBEntry re, List<CheatData> cheatCodes)
+        public static async Task SaveCheatCodes(ROMDBEntry re, List<CheatData> cheatCodes)
         {
-            String romFileName = re.FileName;
-            int index = romFileName.LastIndexOf('.');
-            int diff = romFileName.Length - index;
-
-            string cheatFileName = romFileName.Substring(0, romFileName.Length - diff);
-            cheatFileName += ".cht";
-
-            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder romFolder = await localFolder.GetFolderAsync(ROM_DIRECTORY);
-            StorageFolder saveFolder = await romFolder.GetFolderAsync(SAVE_DIRECTORY);
-
-            StorageFile file = await saveFolder.CreateFileAsync(cheatFileName, CreationCollisionOption.ReplaceExisting);
-            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            try
             {
-                using (IOutputStream outStream = stream.GetOutputStreamAt(0L))
-                {
-                    using (DataWriter writer = new DataWriter(outStream))
-                    {
-                        writer.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
-                        writer.ByteOrder = Windows.Storage.Streams.ByteOrder.LittleEndian;
+                String romFileName = re.FileName;
+                int index = romFileName.LastIndexOf('.');
+                int diff = romFileName.Length - index;
 
-                        for (int i = 0; i < cheatCodes.Count; i++)
+                string cheatFileName = romFileName.Substring(0, romFileName.Length - diff);
+                cheatFileName += ".cht";
+
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder romFolder = await localFolder.GetFolderAsync(ROM_DIRECTORY);
+                StorageFolder saveFolder = await romFolder.GetFolderAsync(SAVE_DIRECTORY);
+
+               
+                StorageFile file = await saveFolder.CreateFileAsync("cheattmp.cht", CreationCollisionOption.ReplaceExisting);
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    using (IOutputStream outStream = stream.GetOutputStreamAt(0L))
+                    {
+                        using (DataWriter writer = new DataWriter(outStream))
                         {
-                            if (i > 0)
+                            writer.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
+                            writer.ByteOrder = Windows.Storage.Streams.ByteOrder.LittleEndian;
+
+                            for (int i = 0; i < cheatCodes.Count; i++)
+                            {
+                                if (i > 0)
+                                    writer.WriteString("\n");
+                                writer.WriteString(cheatCodes[i].Description);
                                 writer.WriteString("\n");
-                            writer.WriteString(cheatCodes[i].Description);
-                            writer.WriteString("\n");
-                            writer.WriteString(cheatCodes[i].CheatCode);
-                            writer.WriteString("\n");
-                            writer.WriteString(cheatCodes[i].Enabled ? "1" : "0");
+                                writer.WriteString(cheatCodes[i].CheatCode);
+                                writer.WriteString("\n");
+                                writer.WriteString(cheatCodes[i].Enabled ? "1" : "0");
+                            }
+                            await writer.StoreAsync();
+                            await writer.FlushAsync();
+                            writer.DetachStream();
                         }
-                        await writer.StoreAsync();
-                        await writer.FlushAsync();
-                        writer.DetachStream();
                     }
                 }
+
+                //rename the temp file to the offical file
+                await file.RenameAsync(cheatFileName, NameCollisionOption.ReplaceExisting);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Save cheat code error: " + ex.Message);
             }
         }
 

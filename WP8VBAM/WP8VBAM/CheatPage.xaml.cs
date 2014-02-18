@@ -21,6 +21,7 @@ namespace PhoneDirect3DXamlAppInterop
         private string game;
         private ROMDBEntry romEntry;
         private List<CheatData> cheatCodes = new List<CheatData>();
+        private bool initdone = false;
 
         public CheatPage()
         {
@@ -59,14 +60,32 @@ namespace PhoneDirect3DXamlAppInterop
             catch (Exception) { }
 
             this.RefreshCheatList();
+
+
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        //protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        //{
+        //    await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);  //this caused crash because the app leave this page before this is done, so UnauthorizedAcessException
+
+        //    base.OnNavigatingFrom(e);
+        //}
+
+        protected override async void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+            e.Cancel = true;
 
-            base.OnNavigatingFrom(e);
+            //save the cheat code
+            await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+
+            if (this.NavigationService.CanGoBack)
+                this.NavigationService.GoBack();
+
         }
+
+
+
+        
 
         private void CreateAppBar()
         {
@@ -75,16 +94,53 @@ namespace PhoneDirect3DXamlAppInterop
             ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
             ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
 
-            var removeButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/delete.png", UriKind.Relative))
+
+            //var button = new ApplicationBarIconButton(new Uri("/Assets/Icons/cancel.png", UriKind.Relative))
+            //{
+            //    Text = AppResources.CancelButtonText
+            //};
+            //button.Click += cancelButton_Click;
+
+            //ApplicationBar.Buttons.Add(button);
+
+
+
+            var button = new ApplicationBarIconButton(new Uri("/Assets/Icons/delete.png", UriKind.Relative))
             {
                 Text = AppResources.DeleteCheatButtonText
             };
-            removeButton.Click += removeButton_Click;
+            button.Click += removeButton_Click;
 
-            ApplicationBar.Buttons.Add(removeButton);
+            ApplicationBar.Buttons.Add(button);
+
+            //button = new ApplicationBarIconButton(new Uri("/Assets/Icons/check.png", UriKind.Relative))
+            //{
+            //    Text = AppResources.OKButtonText
+            //};
+            //button.Click += OKButton_Click;
+
+            //ApplicationBar.Buttons.Add(button);
+
         }
 
-        void removeButton_Click(object sender, EventArgs e)
+        private async void OKButton_Click(object sender, EventArgs e)
+        {
+                await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+
+
+
+
+                if (this.NavigationService.CanGoBack)
+                    this.NavigationService.GoBack();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (this.NavigationService.CanGoBack)
+                this.NavigationService.GoBack();
+        }
+
+        private async void removeButton_Click(object sender, EventArgs e)
         {
             if (this.cheatList.SelectedItem == null)
             {
@@ -120,7 +176,7 @@ namespace PhoneDirect3DXamlAppInterop
             ApplicationBar.IsVisible = false;
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private async void  addButton_Click(object sender, RoutedEventArgs e)
         {
             if (!this.CheckCodeFormat(this.cheatCodeBox.Text,
                 (s) =>
@@ -236,18 +292,32 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
 
-        private void cheatEnabledBox_Checked(object sender, RoutedEventArgs e)
-        {
-            ListBoxItem contextMenuListItem = this.cheatList.ItemContainerGenerator.ContainerFromItem((sender as CheckBox).DataContext) as ListBoxItem;
-            CheatData cheatData = contextMenuListItem.DataContext as CheatData;
-            cheatData.Enabled = true;
-        }
+        //private async void cheatEnabledBox_Checked(object sender, RoutedEventArgs e)
+        //{
 
-        private void cheatEnabledBox_Unchecked(object sender, RoutedEventArgs e)
+        //        ListBoxItem contextMenuListItem = this.cheatList.ItemContainerGenerator.ContainerFromItem((sender as CheckBox).DataContext) as ListBoxItem;
+        //        CheatData cheatData = contextMenuListItem.DataContext as CheatData;
+        //        cheatData.Enabled = true;
+
+
+        //}
+
+        //private async void cheatEnabledBox_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //        ListBoxItem contextMenuListItem = this.cheatList.ItemContainerGenerator.ContainerFromItem((sender as CheckBox).DataContext) as ListBoxItem;
+        //        CheatData cheatData = contextMenuListItem.DataContext as CheatData;
+        //        cheatData.Enabled = false;
+
+        //}
+
+        private void cheatEnabledBox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            bool isChecked = (sender as CheckBox).IsChecked.Value;
+
             ListBoxItem contextMenuListItem = this.cheatList.ItemContainerGenerator.ContainerFromItem((sender as CheckBox).DataContext) as ListBoxItem;
             CheatData cheatData = contextMenuListItem.DataContext as CheatData;
-            cheatData.Enabled = false;
+            cheatData.Enabled = isChecked;
         }
+        
     }
 }

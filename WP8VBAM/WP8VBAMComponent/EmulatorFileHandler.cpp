@@ -495,19 +495,36 @@ namespace Emulator
 		});
 	}
 
-	task<void> LoadStateAsync(void)
+	//task<void> LoadStateAsync(void)
+	//{
+	//	if(gbaROMLoaded)
+	//	{
+	//		return LoadGBAStateAsync();
+	//	}else
+	//	{
+	//		return LoadGBStateAsync();
+	//	}
+	//}
+
+	task<void> LoadStateAsync(int slot)
 	{
 		if(gbaROMLoaded)
 		{
-			return LoadGBAStateAsync();
+			return LoadGBAStateAsync(slot);
 		}else
 		{
-			return LoadGBStateAsync();
+			return LoadGBStateAsync(slot);
 		}
 	}
 
-	task<void> LoadGBStateAsync(void)
+	task<void> LoadGBStateAsync(int slot)
 	{
+		int whichslot;
+		if (slot <0 ) 
+			whichslot = LoadstateSlot;
+		else
+			whichslot = slot;
+
 		EmulatorGame *emulator = EmulatorGame::GetInstance();
 		return create_task([]()
 		{
@@ -516,7 +533,7 @@ namespace Emulator
 				throw ref new Exception(E_FAIL, "No ROM loaded.");
 			}
 			return ROMFolder->GetFolderAsync(SAVE_FOLDER);
-		}).then([emulator](StorageFolder ^folder)
+		}).then([emulator, whichslot](StorageFolder ^folder)
 		{
 			emulator->Pause();
 			wstringstream extension;
@@ -526,7 +543,7 @@ namespace Emulator
 			while(*end != '.') end--;
 			size_t diff = tmp->End() - end;
 
-			extension << LoadstateSlot << L".sgm";
+			extension << whichslot << L".sgm";
 			Platform::String ^nameWithoutExtension = ref new Platform::String(ROMFile->Name->Data(), ROMFile->Name->Length() - diff);			
 			Platform::String ^statePath = folder->Path + "\\" + nameWithoutExtension + ref new Platform::String(extension.str().c_str());
 			wstring strPath (statePath->Begin(), statePath->End());
@@ -908,8 +925,14 @@ namespace Emulator
 		});
 	}
 
-	task<void> LoadGBAStateAsync(void)
+	task<void> LoadGBAStateAsync(int slot)
 	{
+		int whichslot;
+		if (slot <0 ) 
+			whichslot = LoadstateSlot;
+		else
+			whichslot = slot;
+
 		EmulatorGame *emulator = EmulatorGame::GetInstance();
 		return create_task([]()
 		{
@@ -918,12 +941,12 @@ namespace Emulator
 				throw ref new Exception(E_FAIL, "No ROM loaded.");
 			}
 			return ROMFolder->GetFolderAsync(SAVE_FOLDER);
-		}).then([emulator](StorageFolder ^folder)
+		}).then([emulator, whichslot](StorageFolder ^folder)
 		{
 			emulator->Pause();
 			wstringstream extension;
 
-			extension << LoadstateSlot << L".sgm";
+			extension << whichslot << L".sgm";
 			Platform::String ^nameWithoutExtension = ref new Platform::String(ROMFile->Name->Data(), ROMFile->Name->Length() - 4);			
 			Platform::String ^statePath = folder->Path + "\\" + nameWithoutExtension + ref new Platform::String(extension.str().c_str());
 			wstring strPath (statePath->Begin(), statePath->End());

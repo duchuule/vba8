@@ -397,6 +397,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Icons\appbar.link.png" />
+    <Content Include="Assets\Icons\appbar.question.png" />
     <Content Include="Assets\Icons\play.png" />
     <Content Include="Assets\no_snapshot_gbc.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

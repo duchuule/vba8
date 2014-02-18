@@ -62,6 +62,8 @@
           <FileType ContentType="application/gba">.gba</FileType>
           <FileType ContentType="application/gbc">.gbc</FileType>
           <FileType ContentType="application/gbc">.gb</FileType>
+          <FileType ContentType="application/gbc">.sav</FileType>
+          <FileType ContentType="application/gbc">.sgm</FileType>
         </SupportedFileTypes>
       </FileTypeAssociation>
     </Extensions>
