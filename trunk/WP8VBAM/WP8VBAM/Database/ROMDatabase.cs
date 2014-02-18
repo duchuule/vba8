@@ -236,6 +236,24 @@ namespace PhoneDirect3DXamlAppInterop.Database
             return 0;
         }
 
+        public int GetLastSavestateSlotByFileNameIncludingAuto(string filename)
+        {
+            if (!context.DatabaseExists())
+            {
+                throw new InvalidOperationException("Database does not exist.");
+            }
+            filename = filename.ToLower();
+            SavestateEntry save = this.context.SavestateTable
+                .Where(s => s.ROMFileName.ToLower().Equals(filename) )
+                .OrderByDescending(s => s.Savetime)
+                .FirstOrDefault();
+            if (save != null)
+            {
+                return save.Slot;
+            }
+            return 0;
+        }
+
         public void RemoveROM(string fileName)
         {
             ROMDBEntry entry = this.GetROM(fileName);

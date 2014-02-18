@@ -173,11 +173,22 @@ namespace PhoneDirect3DXamlAppComponent
 		this->ContinueEmulationNotifier();
 	}
 
-	void Direct3DBackground::LoadState(void)
+	//void Direct3DBackground::LoadState(void)
+	//{
+	//	this->m_renderer->should_show_resume_text = false;
+
+	//	LoadStateAsync().then([this]()
+	//	{
+	//		this->emulator->Unpause();
+	//	});
+	//	this->ContinueEmulationNotifier();
+	//}
+
+	void Direct3DBackground::LoadState(int slot)
 	{
 		this->m_renderer->should_show_resume_text = false;
 
-		LoadStateAsync().then([this]()
+		LoadStateAsync(slot).then([this]()
 		{
 			this->emulator->Unpause();
 		});
@@ -199,9 +210,14 @@ namespace PhoneDirect3DXamlAppComponent
 		}
 	}
 
-	void Direct3DBackground::LoadROMAsync(StorageFile ^file, StorageFolder ^folder)
+	Windows::Foundation::IAsyncAction^ Direct3DBackground::LoadROMAsync(StorageFile ^file, StorageFolder ^folder)
 	{
-		Emulator::LoadROMAsync(file, folder);
+		return create_async([this, file, folder]
+		{
+			Emulator::LoadROMAsync(file, folder).wait();
+
+		});
+		
 	}
 
 	// Interface With Direct3DContentProvider
@@ -269,9 +285,12 @@ namespace PhoneDirect3DXamlAppComponent
 		{
 			this->emulator->Pause();
 			SaveSRAMAsync().wait();
+
 			int oldstate = SavestateSlot;
 			SavestateSlot = AUTOSAVE_SLOT;
 			SaveStateAsync().wait();
+			this->SavestateCreated(SavestateSlot, ROMFile->Name);
+
 			SavestateSlot = oldstate;
 			this->emulator->Unpause();
 		}).then([this]()

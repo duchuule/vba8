@@ -61,11 +61,19 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" HorizontalAlignment="Left"
+                    <!--<TextBlock Grid.Row="0" HorizontalAlignment="Left"
                                TextWrapping="Wrap" 
                                FontSize="20" 
                                Name="descLabel"
                        Text="{Binding Path=LocalizedResources.CheatsDescription, Source={StaticResource LocalizedStrings}}"
+                               />-->
+
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left"
+                               TextWrapping="Wrap" 
+                               FontSize="20" 
+                               Foreground="Red"
+                               Name="descLabel"
+                       Text="NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be re-entered to work again. And don't forget the space."
                                />
 
                     <Grid Grid.Row="2">
@@ -115,9 +123,7 @@
                                 <StackPanel Orientation="Vertical" Margin="0,0,0,5">
                                     <StackPanel Orientation="Horizontal">
                                         <CheckBox Name="cheatEnabledBox" IsChecked="{Binding Enabled}" 
-                                                  Checked="cheatEnabledBox_Checked"
-                                                  Unchecked="cheatEnabledBox_Unchecked"
-                                                  Margin="-12,0,0,0"/>
+                                                  Margin="-12,0,0,0" Tap="cheatEnabledBox_Tap"/>
                                         <StackPanel Orientation="Vertical">
                                             <TextBlock Text="{Binding CheatCode}" FontSize="28" />
                                             <TextBlock Text="{Binding Description}" FontSize="20" />

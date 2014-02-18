@@ -167,11 +167,11 @@ namespace PhoneDirect3DXamlAppComponent
 		this->ContinueEmulationNotifier();
 	}
 
-	void LinkDirect3DBackground::LoadState(void)
+	void LinkDirect3DBackground::LoadState(int slot)
 	{
 		this->m_renderer->should_show_resume_text = false;
 
-		LoadStateAsync().then([this]()
+		LoadStateAsync(slot).then([this]()
 		{
 			this->emulator->Unpause();
 		});

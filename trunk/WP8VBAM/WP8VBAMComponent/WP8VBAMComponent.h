@@ -69,7 +69,8 @@ public:
 	void LoadCheats(Windows::Foundation::Collections::IVector<CheatData ^> ^cheats);
 	void SelectSaveState(int slot);
 	void SaveState(void);
-	void LoadState(void);
+	//void LoadState(void);
+	void LoadState(int slot);
 	void Reset(void);
 	void SetContinueNotifier(ContinueEmulationNotifier ^notifier);
 
@@ -77,7 +78,7 @@ public:
 	bool IsROMLoaded(void);
 	void PauseEmulation(void);
 	void UnpauseEmulation(void);
-	void LoadROMAsync(Windows::Storage::StorageFile ^file, Windows::Storage::StorageFolder ^folder);
+	Windows::Foundation::IAsyncAction^ LoadROMAsync(Windows::Storage::StorageFile ^file, Windows::Storage::StorageFolder ^folder);
 
 
 	Platform::String^ Direct3DBackground::SetupSocket(bool isServer, int numplayers, int timeout, String^ ipaddress);

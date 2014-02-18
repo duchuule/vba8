@@ -136,10 +136,10 @@
     <value>Completed downloading file '{0}'</value>
   </data>
   <data name="DownloadErrorText" xml:space="preserve">
-    <value>Error while downloading file '{0}' from SkyDrive: {1}</value>
+    <value>Error while downloading file '{0}': {1}</value>
   </data>
   <data name="DownloadingProgressText" xml:space="preserve">
-    <value>Downloading ROM '{0}'</value>
+    <value>Downloading '{0}'</value>
   </data>
   <data name="EmulatorBackIcon" xml:space="preserve">
     <value>hide bar</value>
@@ -154,7 +154,7 @@
     <value>import</value>
   </data>
   <data name="ImportFromSkyDriveButtonText" xml:space="preserve">
-    <value>import ROMs</value>
+    <value>Import</value>
   </data>
   <data name="ImportInstructionsText" xml:space="preserve">
     <value>To import ROM:
@@ -232,7 +232,7 @@
     <value>Error while accessing SkyDrive: {0}</value>
   </data>
   <data name="SkyDriveImportTitle" xml:space="preserve">
-    <value>import roms</value>
+    <value>SkyDrive</value>
   </data>
   <data name="StatusLabelContent" xml:space="preserve">
     <value>Status: </value>
@@ -343,7 +343,7 @@ MOGA company for the surprised gift.</value>
     <value>Export and import savegames:</value>
   </data>
   <data name="BackupButton" xml:space="preserve">
-    <value>export</value>
+    <value>Export</value>
   </data>
   <data name="RestoreButton" xml:space="preserve">
     <value>import</value>
@@ -545,7 +545,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Note: If your ROMs do not start, see the "issues" section of the help page.</value>
   </data>
   <data name="SkyDriveFileFormatHint" xml:space="preserve">
-    <value>Note: The app supports *gb, *.gbc and *.gba files.</value>
+    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav</value>
   </data>
   <data name="DPadAnalogueDynamic" xml:space="preserve">
     <value>dynamic analogue stick</value>
@@ -587,7 +587,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Automatically increment save state</value>
   </data>
   <data name="CancelButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>cancel</value>
   </data>
   <data name="ConfirmationCheckBoxText" xml:space="preserve">
     <value>Do not show this again</value>
@@ -611,7 +611,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Disable confirmation on save state</value>
   </data>
   <data name="RestoreLastStateSetting" xml:space="preserve">
-    <value>Select last state when loading ROM</value>
+    <value>Use 9th slot for auto save/load</value>
   </data>
   <data name="AboutContact2" xml:space="preserve">
     <value>store.support@outlook.com</value>
@@ -628,9 +628,6 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
   </data>
   <data name="HelpImportWebText2" xml:space="preserve">
     <value>In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gbc or *.gb file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gbc or *.gb file, just tap on it and the emulator will start and import the ROM.</value>
-  </data>
-  <data name="SkyDriveFileFormatHint2" xml:space="preserve">
-    <value>Note: The app supports *gb, *.gbc and *.gba files.</value>
   </data>
   <data name="CameraAssignLR" xml:space="preserve">
     <value>L-Button and R-Button</value>
@@ -974,5 +971,23 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   </data>
   <data name="RoleText" xml:space="preserve">
     <value>Role</value>
+  </data>
+  <data name="ImportSDCardText" xml:space="preserve">
+    <value>Import from SD Card</value>
+  </data>
+  <data name="NoMatchingNameText" xml:space="preserve">
+    <value>Please make sure the name of the save file matches the name of the ROM</value>
+  </data>
+  <data name="SDCardHintText" xml:space="preserve">
+    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav</value>
+  </data>
+  <data name="SDCardImportTitle" xml:space="preserve">
+    <value>SD Card</value>
+  </data>
+  <data name="SDCardReadOnlyText" xml:space="preserve">
+    <value>Note: SD Card is read-only to app developers. Export to SD Card feature will be added when Microsoft give developers write access.</value>
+  </data>
+  <data name="OKButtonText" xml:space="preserve">
+    <value>ok</value>
   </data>
 </root>

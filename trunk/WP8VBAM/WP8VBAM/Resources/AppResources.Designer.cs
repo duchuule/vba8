@@ -310,7 +310,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to export.
+        ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string BackupButton {
             get {
@@ -508,7 +508,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to cancel.
         /// </summary>
         public static string CancelButtonText {
             get {
@@ -818,7 +818,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error while downloading file &apos;{0}&apos; from SkyDrive: {1}.
+        ///   Looks up a localized string similar to Error while downloading file &apos;{0}&apos;: {1}.
         /// </summary>
         public static string DownloadErrorText {
             get {
@@ -827,7 +827,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading ROM &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Downloading &apos;{0}&apos;.
         /// </summary>
         public static string DownloadingProgressText {
             get {
@@ -1408,7 +1408,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to import ROMs.
+        ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string ImportFromSkyDriveButtonText {
             get {
@@ -1457,6 +1457,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string ImportSavestateInvalidFormat {
             get {
                 return ResourceManager.GetString("ImportSavestateInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import from SD Card.
+        /// </summary>
+        public static string ImportSDCardText {
+            get {
+                return ResourceManager.GetString("ImportSDCardText", resourceCulture);
             }
         }
         
@@ -1722,11 +1731,29 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please make sure the name of the save file matches the name of the ROM.
+        /// </summary>
+        public static string NoMatchingNameText {
+            get {
+                return ResourceManager.GetString("NoMatchingNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are not signed in. Sign in first to import ROMs from SkyDrive..
         /// </summary>
         public static string NotSignedInError {
             get {
                 return ResourceManager.GetString("NotSignedInError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ok.
+        /// </summary>
+        public static string OKButtonText {
+            get {
+                return ResourceManager.GetString("OKButtonText", resourceCulture);
             }
         }
         
@@ -2008,7 +2035,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select last state when loading ROM.
+        ///   Looks up a localized string similar to Use 9th slot for auto save/load.
         /// </summary>
         public static string RestoreLastStateSetting {
             get {
@@ -2094,6 +2121,33 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string SaveStateButton {
             get {
                 return ResourceManager.GetString("SaveStateButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav.
+        /// </summary>
+        public static string SDCardHintText {
+            get {
+                return ResourceManager.GetString("SDCardHintText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SD Card.
+        /// </summary>
+        public static string SDCardImportTitle {
+            get {
+                return ResourceManager.GetString("SDCardImportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: SD Card is read-only to app developers. Export to SD Card feature will be added when Microsoft give developers write access..
+        /// </summary>
+        public static string SDCardReadOnlyText {
+            get {
+                return ResourceManager.GetString("SDCardReadOnlyText", resourceCulture);
             }
         }
         
@@ -2251,20 +2305,11 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: The app supports *gb, *.gbc and *.gba files..
+        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav.
         /// </summary>
         public static string SkyDriveFileFormatHint {
             get {
                 return ResourceManager.GetString("SkyDriveFileFormatHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Note: The app supports *gb, *.gbc and *.gba files..
-        /// </summary>
-        public static string SkyDriveFileFormatHint2 {
-            get {
-                return ResourceManager.GetString("SkyDriveFileFormatHint2", resourceCulture);
             }
         }
         
@@ -2278,7 +2323,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to import roms.
+        ///   Looks up a localized string similar to SkyDrive.
         /// </summary>
         public static string SkyDriveImportTitle {
             get {

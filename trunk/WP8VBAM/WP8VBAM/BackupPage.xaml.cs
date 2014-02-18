@@ -80,13 +80,11 @@ namespace PhoneDirect3DXamlAppInterop
                 return;
             }
 
-            var indicator = new ProgressIndicator()
-            {
-                IsIndeterminate = true,
-                IsVisible = true,
-                Text = String.Format(AppResources.BackupUploadProgressText, entry.DisplayName)
-            };
-            SystemTray.SetProgressIndicator(this, indicator);
+            var indicator = SystemTray.GetProgressIndicator(this);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.BackupUploadProgressText, entry.DisplayName);
+
+
             
             this.uploading = true;
 
@@ -156,19 +154,21 @@ namespace PhoneDirect3DXamlAppInterop
                     MessageBox.Show(AppResources.BackupUploadSuccessful);
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception ex)
             {
-                MessageBox.Show(AppResources.CreateBackupFolderError, AppResources.ErrorCaption, MessageBoxButton.OK);
-            }
-            catch (LiveConnectException)
-            {
-                MessageBox.Show(AppResources.CreateBackupFolderError, AppResources.ErrorCaption, MessageBoxButton.OK);
+                MessageBox.Show(ex.Message, AppResources.ErrorCaption, MessageBoxButton.OK);
             }
             finally
             {
-                SystemTray.GetProgressIndicator(this).IsVisible = false;
                 this.uploading = false;
             }
+
+#if GBC
+            indicator.Text = AppResources.ApplicationTitle2;
+#else
+            indicator.Text = AppResources.ApplicationTitle;
+#endif
+            indicator.IsIndeterminate = false;
         }
 
         private async Task<String> CreateExportFolder(LiveConnectClient client)

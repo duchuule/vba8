@@ -28,8 +28,8 @@ namespace PhoneDirect3DXamlAppInterop
 
         public static bool ROMLoaded = false;
         private Direct3DBackground m_d3dBackground = null; 
-        private LoadROMParameter cache = null;
-        private bool initialized = false;
+        private static LoadROMParameter cache = null;
+        //private bool initialized = false;
         private bool buyPopupOpened = false;
         private bool confirmPopupOpened = false;
         bool wasHalfPressed = false;
@@ -222,9 +222,20 @@ namespace PhoneDirect3DXamlAppInterop
 
         private void cheatBlock_Tap()
         {
-
-
             PhoneApplicationService.Current.State["parameter"] = currentROMEntry;
+
+            //popupWindow = new Popup();
+
+            //popupWindow.Child = new CheatPage();
+
+
+            //popupWindow.VerticalOffset = 0;
+            //popupWindow.HorizontalOffset = 0;
+            //popupWindow.IsOpen = true;
+
+
+
+            
             this.NavigationService.Navigate(new Uri("/CheatPage.xaml", UriKind.Relative));
 
         }
@@ -270,7 +281,7 @@ namespace PhoneDirect3DXamlAppInterop
                 //var cheats = await FileHandler.LoadCheatCodes(entry);
                 //this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
 
-                this.m_d3dBackground.LoadState();
+                this.m_d3dBackground.LoadState(-1);
             }
             else
             {
@@ -284,7 +295,7 @@ namespace PhoneDirect3DXamlAppInterop
             var result = MessageBox.Show(AppResources.ConfirmLoadText, AppResources.InfoCaption, MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
-                this.m_d3dBackground.LoadState();
+                this.m_d3dBackground.LoadState(-1);
             }
         }
 
@@ -408,47 +419,53 @@ namespace PhoneDirect3DXamlAppInterop
 
             ROMDatabase db = ROMDatabase.Current;
 
-            if (initialized && this.m_d3dBackground.IsROMLoaded() && romInfo == null)
-            {
-                var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
-                var cheats = await FileHandler.LoadCheatCodes(entry);
-                this.m_d3dBackground.LoadCheats(cheats);
+            if (romInfo != null)
+                EmulatorPage.cache = romInfo;
 
-                this.m_d3dBackground.UnpauseEmulation(); //if LoadCheats was not called first, this produced access violation exception, why???
-            }
-            else if (romInfo != null)
-            {
-                if (this.initialized)
-                {
-                    if (this.m_d3dBackground.LoadadROMFile.Name.Equals(romInfo.file.Name))
-                    {
-                        var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
-                        var cheats = await FileHandler.LoadCheatCodes(entry);
-                        this.m_d3dBackground.LoadCheats(cheats);
 
-                        this.m_d3dBackground.UnpauseEmulation();
-                    }
-                    else
-                    {
-                        var entry = db.GetROM(romInfo.file.Name);
-                        var cheats = await FileHandler.LoadCheatCodes(entry);
-                        this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
+            //if (initialized && this.m_d3dBackground.IsROMLoaded() && romInfo == null)
+            //if (m_d3dBackground != null && this.m_d3dBackground.IsROMLoaded() && romInfo == null)
+            //{
+                //var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
+                //var cheats = await FileHandler.LoadCheatCodes(entry);
+                //this.m_d3dBackground.LoadCheats(cheats);
 
-                        cache = null;
-                        // Load new ROM
-                        m_d3dBackground.LoadROMAsync(romInfo.file, romInfo.folder);
-                        if (EmulatorSettings.Current.SelectLastState)
-                        {
-                            RestoreLastSavestate(romInfo.file.Name);
-                        }
-                        ROMLoaded = true;
-                    }
-                }
-                else
-                {
-                    this.cache = romInfo;
-                }
-            }
+                //this.m_d3dBackground.UnpauseEmulation(); //if LoadCheats was not called first, this produced access violation exception, why???
+            //}
+            //else if (romInfo != null)
+            //{
+                //if (this.initialized)
+                //{
+                //    if (this.m_d3dBackground.LoadadROMFile.Name.Equals(romInfo.file.Name))
+                //    {
+                //        var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
+                //        var cheats = await FileHandler.LoadCheatCodes(entry);
+                //        this.m_d3dBackground.LoadCheats(cheats);
+
+                //        this.m_d3dBackground.UnpauseEmulation();
+                //    }
+                //    else
+                //    {
+                //        var entry = db.GetROM(romInfo.file.Name);
+                //        var cheats = await FileHandler.LoadCheatCodes(entry);
+                //        this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
+
+                //        cache = null;
+                //        // Load new ROM
+                //        await m_d3dBackground.LoadROMAsync(romInfo.file, romInfo.folder);
+                //        //if (EmulatorSettings.Current.SelectLastState)
+                //        {
+                //            RestoreLastSavestate(romInfo.file.Name);
+                //        }
+                        
+                //        ROMLoaded = true;
+                //    }
+                //}
+                //else
+                //{
+                //    this.cache = romInfo;
+                //}
+            //}
 
             base.OnNavigatedTo(e);
         }
@@ -522,7 +539,8 @@ namespace PhoneDirect3DXamlAppInterop
                 CameraButtons.ShutterKeyReleased -= CameraButtons_ShutterKeyReleased;
             }
             catch (Exception) { }
-            if (initialized && this.m_d3dBackground.IsROMLoaded())
+            //if (initialized && this.m_d3dBackground.IsROMLoaded())
+            if ( this.m_d3dBackground.IsROMLoaded())
             {
                 //this.m_d3dBackground.PauseEmulation();
             }
@@ -573,44 +591,49 @@ namespace PhoneDirect3DXamlAppInterop
                 // Hook-up native component to DrawingSurfaceBackgroundGrid
                 DrawingSurfaceBackground.SetBackgroundContentProvider(m_d3dBackground.CreateContentProvider());
                 DrawingSurfaceBackground.SetBackgroundManipulationHandler(m_d3dBackground);
+            }
 
-                this.initialized = true;
+            //this.initialized = true;
 
-                ROMDatabase db = ROMDatabase.Current;
+            ROMDatabase db = ROMDatabase.Current;
 
-                if (ROMLoaded && this.cache == null)
+            //if (ROMLoaded && this.cache == null)  //this never happens so just get rid of it
+            //{
+            //    var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
+            //    var cheats = await FileHandler.LoadCheatCodes(entry);
+            //    this.m_d3dBackground.LoadCheats(cheats);
+
+            //    this.m_d3dBackground.UnpauseEmulation();
+            //}
+
+
+            if (EmulatorPage.cache != null && EmulatorPage.cache.file != null && EmulatorPage.cache.folder != null) //just a safeguard to make sure we have enough info to load ROM
+            {
+                if (ROMLoaded && this.m_d3dBackground.LoadadROMFile.Name.Equals(EmulatorPage.cache.file.Name))  //name match, we are resuming to current game
                 {
                     var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
                     var cheats = await FileHandler.LoadCheatCodes(entry);
                     this.m_d3dBackground.LoadCheats(cheats);
 
-                    this.m_d3dBackground.UnpauseEmulation();
+                    //this.m_d3dBackground.UnpauseEmulation();
                 }
-                else if (this.cache != null && this.cache.file != null && this.cache.folder != null)
+                else  //name does not match or ROM is not loaded, we are loading a new rom
                 {
-                    if (ROMLoaded && this.m_d3dBackground.LoadadROMFile.Name.Equals(this.cache.file.Name))
-                    {
-                        var entry = db.GetROM(this.m_d3dBackground.LoadadROMFile.Name);
-                        var cheats = await FileHandler.LoadCheatCodes(entry);
-                        this.m_d3dBackground.LoadCheats(cheats);
+                    var entry = db.GetROM(EmulatorPage.cache.file.Name);
+                    var cheats = await FileHandler.LoadCheatCodes(entry);
+                    this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
 
-                        this.m_d3dBackground.UnpauseEmulation();
-                    }
-                    else
-                    {
-                        var entry = db.GetROM(this.cache.file.Name);
-                        var cheats = await FileHandler.LoadCheatCodes(entry);
-                        this.m_d3dBackground.LoadCheatsOnROMLoad(cheats);
+                    // Load new ROM
 
-                        // Load new ROM
-                        this.m_d3dBackground.LoadROMAsync(this.cache.file, this.cache.folder);
-                        if (EmulatorSettings.Current.SelectLastState)
-                        {
-                            RestoreLastSavestate(this.cache.file.Name);
-                        }
-                        ROMLoaded = true;
+                    await this.m_d3dBackground.LoadROMAsync(EmulatorPage.cache.file, EmulatorPage.cache.folder);
+                    //if (EmulatorSettings.Current.SelectLastState)
+                    {
+                        RestoreLastSavestate(EmulatorPage.cache.file.Name);
                     }
+
+                    ROMLoaded = true;
                 }
+                
 
                 int orientation = 0;
                 switch (this.Orientation)
@@ -638,11 +661,17 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+
+
         private void RestoreLastSavestate(string filename)
         {
             ROMDatabase db = ROMDatabase.Current;
             int slot = db.GetLastSavestateSlotByFileNameExceptAuto(filename);
             m_d3dBackground.SelectSaveState(slot);
+
+            slot = db.GetLastSavestateSlotByFileNameIncludingAuto(filename);
+            m_d3dBackground.LoadState(slot);
+
         }
     }
 }

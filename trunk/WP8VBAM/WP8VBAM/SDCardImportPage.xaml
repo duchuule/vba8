@@ -35,50 +35,49 @@
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <!--TitlePanel contains the name of the application and page title-->
-            <StackPanel Grid.Row="0" Margin="12,17,0,28">
-           
-                <TextBlock Text="SD Card" Margin="9,-7,0,0" 
+            <StackPanel Grid.Row="0" Margin="12,17,0,12">
+                <TextBlock Text="{Binding LocalizedResources.SDCardImportTitle, Source={StaticResource LocalizedStrings}}"
+                           Margin="9,-7,0,0" 
                            Style="{StaticResource MyTitle1Style}"/>
             </StackPanel>
 
-            <!--ContentPanel - place additional content here-->
-            <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-                <TextBlock Text="Instruction: Roms has be be stored in a folder named 'roms' (lower case) in the root folder of the SD card." 
-                           TextWrapping="Wrap"
-                           Margin="12,0,12,0"
-                           />
-                <Button
-                    x:Name="scanExternalStorageButton"
-                    Content="Scan SD card"
-                    Click="scanExternalStorageButton_Click_1"   
-                    />
-            </StackPanel>
-            <!-- ListBox is bound to a collection of GPX files named Routes -->
-            <ListBox
-                x:Name="romFilesListBox"
-                ItemsSource="{Binding Routes}"
-                SelectionChanged="romFilesListBox_SelectionChanged_1"
-                Grid.Row="2"    
-                >
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock
-                            Margin="24, 12, 24, 0"
-                            Text="{Binding DisplayName}"
-                            Style="{StaticResource PhoneTextTitle2Style}"
-                            />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-     
-        
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,0,24,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Name="currentFolderBox" FontSize="34" Margin="0,0,0,0" Height="50" VerticalAlignment="Top"
+                           Text="Root"/>
+                <TextBlock Grid.Row="1" Foreground="#FF0000" Margin="0,0,0,0" Name="fileFormatLabel" 
+                    Text="{Binding LocalizedResources.SDCardHintText, Source={StaticResource LocalizedStrings}}" 
+                    TextWrapping="Wrap" FontSize="18"/>
+                <Line Grid.Row="2" Margin="0,5,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="4" />
+                <TextBlock Grid.Row="3" Name="statusLabel" TextWrapping="Wrap" />
+                
+                <ListBox Grid.Row="4" Margin="0,5,0,0" Name="skydriveList" SelectionChanged="skydriveList_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <TextBlock Margin="0,0,0,5" Text="{Binding Name}" VerticalAlignment="Stretch" TextWrapping="Wrap" FontSize="26"/>
+                                <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="2" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
         </Grid>
     </Grid>
 

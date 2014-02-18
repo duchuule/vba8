@@ -197,7 +197,7 @@ namespace PhoneDirect3DXamlAppInterop
             this.confirmationSwitch.IsChecked = emuSettings.HideConfirmationDialogs;
             this.autoIncSwitch.IsChecked = emuSettings.AutoIncrementSavestates;
             this.confirmationLoadSwitch.IsChecked = emuSettings.HideLoadConfirmationDialogs;
-            this.restoreLastStateSwitch.IsChecked = emuSettings.SelectLastState;
+            //this.restoreLastStateSwitch.IsChecked = emuSettings.SelectLastState;
             this.cheatRestoreSwitch.IsChecked = emuSettings.RestoreOldCheatValues;
             this.manualSnapshotSwitch.IsChecked = emuSettings.ManualSnapshots;
             this.useColorButtonSwitch.IsChecked = emuSettings.UseColorButtons;
@@ -388,21 +388,21 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        private void restoreLastStateSwitch_Checked_1(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.SelectLastState = true;
-            }
-        }
+        //private void restoreLastStateSwitch_Checked_1(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.initdone)
+        //    {
+        //        EmulatorSettings.Current.SelectLastState = true;
+        //    }
+        //}
 
-        private void restoreLastStateSwitch_Unchecked_1(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.SelectLastState = false;
-            }
-        }
+        //private void restoreLastStateSwitch_Unchecked_1(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.initdone)
+        //    {
+        //        EmulatorSettings.Current.SelectLastState = false;
+        //    }
+        //}
 
         private void cheatRestoreSwitch_Checked(object sender, RoutedEventArgs e)
         {

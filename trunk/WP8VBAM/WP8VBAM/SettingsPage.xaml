@@ -580,13 +580,13 @@
                                             IsChecked="false" Name="autoIncSwitch"
                                             />
                         </ListBoxItem>
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                             <CheckBox Content="{Binding Path=LocalizedResources.RestoreLastStateSetting, Source={StaticResource LocalizedStrings}}"
                                             Checked="restoreLastStateSwitch_Checked_1" Unchecked="restoreLastStateSwitch_Unchecked_1"
                                             IsChecked="true" Name="restoreLastStateSwitch"
                                             />
 
-                        </ListBoxItem>
+                        </ListBoxItem>-->
                         <ListBoxItem HorizontalContentAlignment="Stretch">
                             <CheckBox Content="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
                                           Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"

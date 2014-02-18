@@ -38,7 +38,7 @@
             <telerikPrimitives:RadTextBox x:Name="txtAddress"
                      Header="{Binding Path=LocalizedResources.IPAddressText, Source={StaticResource LocalizedStrings}}" 
                     Watermark="enter host's IP address here"
-                        Visibility="Collapsed"/>
+                        Visibility="Collapsed" InputScope="Number"/>
             
             <TextBlock Text="{Binding Path=LocalizedResources.LinkTimeoutText, Source={StaticResource LocalizedStrings}}" 
                        Margin="12,0,0,0" 
