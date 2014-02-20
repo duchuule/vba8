@@ -291,6 +291,10 @@
     <Compile Include="ColorChooserControl.xaml.cs">
       <DependentUpon>ColorChooserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditCheatControl.xaml.cs">
+      <DependentUpon>EditCheatControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExternalStorageFileWrapper.cs" />
     <Compile Include="FindPeersPage.xaml.cs">
       <DependentUpon>FindPeersPage.xaml</DependentUpon>
     </Compile>
@@ -348,9 +352,6 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Database\ROMDatabase.cs" />
-    <Compile Include="RestorePage.xaml.cs">
-      <DependentUpon>RestorePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SavestateConverter.cs" />
     <Compile Include="SDCardImportPage.xaml.cs">
       <DependentUpon>SDCardImportPage.xaml</DependentUpon>
@@ -406,6 +407,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="EditCheatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FindPeersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -463,10 +468,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RenamePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RestorePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -577,6 +578,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <None Include="Assets\Bunny Advance %28Demo%29.zip" />
     <None Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
@@ -665,6 +667,10 @@
     </Reference>
     <Reference Include="GoogleAds">
       <HintPath>..\..\packages\AdMob WP8\windowsphone8\GoogleAds.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Advertising.Mobile, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />

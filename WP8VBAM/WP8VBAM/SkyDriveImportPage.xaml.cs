@@ -17,6 +17,8 @@ using PhoneDirect3DXamlAppInterop.Database;
 using System.Windows.Media;
 using Microsoft.Phone.Tasks;
 using System.IO;
+using Ionic.Zip;
+
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -64,7 +66,6 @@ namespace PhoneDirect3DXamlAppInterop
             });
             this.currentFolderBox.Text = this.skydriveStack[0][0].Name;
 
-            this.BackKeyPress += SkyDriveImportPage_BackKeyPress;
 
         }
 
@@ -95,25 +96,40 @@ namespace PhoneDirect3DXamlAppInterop
                         this.client_GetCompleted(result);
                     }
                 }
+
+                else if (item.Type == SkyDriveItemType.Zip)
+                {
+                    if (this.session != null)
+                    {
+                        this.skydriveList.ItemsSource = null;
+                        this.currentFolderBox.Text = item.Name;
+                        this.downloadsInProgress++;
+
+                        await this.DownloadFile(item, client);
+
+                        List<SkyDriveListItem> listItems =  this.GetFilesInZip(item);
+                        
+                        this.skydriveStack.Add(listItems);
+                        this.skydriveList.ItemsSource = listItems;
+                        this.downloadsInProgress--;
+                            
+                    }
+                }
+
                 else if (item.Type == SkyDriveItemType.ROM)
                 {
                     // Download
                     if (!item.Downloading)
                     {
-                        try
-                        {
-                            this.downloadsInProgress++;
-                            item.Downloading = true;
-                            await this.DownloadROM(item, client);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
-                        }
-                        finally
-                        {
-                            this.downloadsInProgress--;
-                        }
+                        this.downloadsInProgress++;
+                        if (item.Stream == null)
+                            await this.DownloadFile(item, client);
+
+                       
+                        await ImportROM(item, this);
+
+                        this.downloadsInProgress--;
+   
                     }
                     else
                     {
@@ -150,188 +166,312 @@ namespace PhoneDirect3DXamlAppInterop
                     // Download
                     if (!item.Downloading)
                     {
-                        try
-                        {
-                            item.Downloading = true;
-                            await this.DownloadSave(item, client);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
-                        }
+                        this.downloadsInProgress++;
+
+                        if (item.Stream == null)
+                            await this.DownloadFile(item, client);
+
+                        await ImportSave(item, this);
+
+                        this.downloadsInProgress--;
+  
                     }
                     else
                     {
                         MessageBox.Show(AppResources.AlreadyDownloadingText, AppResources.ErrorCaption, MessageBoxButton.OK);
                     }
-                }
 
+                }
 
 
                 this.statusLabel.Height = 0;
             }
-            catch (LiveConnectException)
+            catch (Exception ex)
             {
-                this.statusLabel.Height = this.labelHeight;
-                this.statusLabel.Text = AppResources.SkyDriveInternetLost;
+                MessageBox.Show(ex.Message, AppResources.ErrorCaption, MessageBoxButton.OK);
             }
         }
 
 
-        private async Task DownloadSave(SkyDriveListItem item, LiveConnectClient client)
+
+        private async Task DownloadFile(SkyDriveListItem item, LiveConnectClient client)
         {
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
-            StorageFolder romFolder = await folder.CreateFolderAsync(FileHandler.ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
-            StorageFolder saveFolder = await romFolder.CreateFolderAsync(FileHandler.SAVE_DIRECTORY, CreationCollisionOption.OpenIfExists);
-
-            String path = romFolder.Path;
-            String savePath = saveFolder.Path;
-
-            ROMDatabase db = ROMDatabase.Current;
-
             var indicator = SystemTray.GetProgressIndicator(this);
             indicator.IsIndeterminate = true;
             indicator.Text = String.Format(AppResources.DownloadingProgressText, item.Name);
 
-            LiveDownloadOperationResult e = await client.DownloadAsync(item.SkyDriveID + "/content");
-            if (e != null)
+            item.Downloading = true;
+            try
             {
-                byte[] tmpBuf = new byte[e.Stream.Length];
-                StorageFile destinationFile = null;
-
-                ROMDBEntry entry = null;
-
-                if (item.Type == SkyDriveItemType.SRAM)
+                LiveDownloadOperationResult e = await client.DownloadAsync(item.SkyDriveID + "/content");
+                if (e != null)
                 {
-                    entry = db.GetROMFromSRAMName(item.Name);
-                    if (entry != null)
-                        destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", CreationCollisionOption.ReplaceExisting);
-
-                    else
-                        destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+                    item.Stream = e.Stream;
                 }
-                else if (item.Type == SkyDriveItemType.Savestate)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
+            }
+
+#if GBC
+            indicator.Text = AppResources.ApplicationTitle2;
+#else
+            indicator.Text = AppResources.ApplicationTitle;
+#endif
+            indicator.IsIndeterminate = false;
+
+            item.Downloading = false;
+        }
+
+        private List<SkyDriveListItem> GetFilesInZip(SkyDriveListItem item)
+        {
+            List<SkyDriveListItem> listItems = new List<SkyDriveListItem>();
+
+            if (item.Stream != null)
+            {
+
+                //get list of file
+                using (ZipFile zip = ZipFile.Read(item.Stream))
                 {
-                    entry = db.GetROMFromSavestateName(item.Name);
-
-
-                    if (entry != null)
-                        destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + item.Name.Substring(item.Name.Length - 5), CreationCollisionOption.ReplaceExisting);
-                    else
-                        destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
-                }
-
-                using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
-                using (DataWriter writer = new DataWriter(destStream))
-                {
-                    while (e.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
+                    foreach (ZipEntry entry in zip)
                     {
-                        writer.WriteBytes(tmpBuf);
-                    }
-                    await writer.StoreAsync();
-                    await writer.FlushAsync();
-                    writer.DetachStream();
-                }
-                e.Stream.Close();
-                item.Downloading = false;
+                        MemoryStream data = new MemoryStream();
+                        entry.Extract(data);
+                        data.Seek(0, SeekOrigin.Begin);
+                        String name = entry.FileName;
 
-                if (item.Type == SkyDriveItemType.Savestate)
-                {
-                    String number = item.Name.Substring(item.Name.Length - 5, 1);
-                    int slot = int.Parse(number);
-
-                    if (entry != null) //NULL = do nothing
-                    {
-                        SavestateEntry saveentry = db.SavestateEntryExisting(entry.FileName, slot);
-                        if (saveentry != null)
+                        SkyDriveItemType type = SkyDriveItemType.File;
+                        int dotIndex = -1;
+                        if ((dotIndex = name.LastIndexOf('.')) != -1)
                         {
-                            //delete entry
-                            db.RemoveSavestateFromDB(saveentry);
+                            String substrName = name.Substring(dotIndex).ToLower();
+                            if (substrName.Equals(".gb") || substrName.Equals(".gbc") || substrName.Equals(".gba"))
+                            {
+                                type = SkyDriveItemType.ROM;
+                            }
+                            else if (substrName.Equals(".sgm"))
+                            {
+                                type = SkyDriveItemType.Savestate;
+                            }
+                            else if (substrName.Equals(".sav"))
+                            {
+                                type = SkyDriveItemType.SRAM;
+                            }
+                        }
+
+                        if (type == SkyDriveItemType.File)
+                        {
+                            data.Close();
+                            continue;
+                        }
+
+                        SkyDriveListItem listItem = new SkyDriveListItem()
+                        {
+                            Name = name,
+                            SkyDriveID = "",
+                            Type = type,
+                            ParentID = item.SkyDriveID,
+                            Stream = data
+                        };
+
+                        listItems.Add(listItem);
+
+                    }
+                }
+
+                //close the zip stream since we have the stream of each item inside it already
+                item.Stream.Close();
+                item.Stream = null;
+            }
+
+            return listItems;
+        }
+
+        public static async Task ImportSave(FileListItem item, DependencyObject page)
+        {
+            var indicator = SystemTray.GetProgressIndicator(page);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.ImportingProgressText, item.Name);
+
+            try
+            {
+
+                StorageFolder folder = ApplicationData.Current.LocalFolder;
+                StorageFolder romFolder = await folder.CreateFolderAsync(FileHandler.ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
+                StorageFolder saveFolder = await romFolder.CreateFolderAsync(FileHandler.SAVE_DIRECTORY, CreationCollisionOption.OpenIfExists);
+
+                String path = romFolder.Path;
+                String savePath = saveFolder.Path;
+
+                ROMDatabase db = ROMDatabase.Current;
+
+
+                if (item.Stream != null)
+                {
+                    byte[] tmpBuf = new byte[item.Stream.Length];
+                    StorageFile destinationFile = null;
+
+                    ROMDBEntry entry = null;
+
+                    if (item.Type == SkyDriveItemType.SRAM)
+                    {
+                        entry = db.GetROMFromSRAMName(item.Name);
+                        if (entry != null)
+                        {
+                            entry.AutoLoadLastState = false;
+                            destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", CreationCollisionOption.ReplaceExisting);
 
                         }
-                        SavestateEntry ssEntry = new SavestateEntry()
-                        {
-                            ROM = entry,
-                            Savetime = DateTime.Now,
-                            Slot = slot,
-                            FileName = item.Name
-                        };
-                        db.Add(ssEntry);
-                        db.CommitChanges();
+                        else
+                            destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
 
+                        
                     }
-                }
-
-                MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
-            }
-            else
-            {
-
-                MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, "Api error"), AppResources.ErrorCaption, MessageBoxButton.OK);
-            }
-
-#if GBC
-            indicator.Text = AppResources.ApplicationTitle2;
-#else
-            indicator.Text = AppResources.ApplicationTitle;
-#endif
-            indicator.IsIndeterminate = false;
-        }
-
-
-
-        private async Task DownloadROM(SkyDriveListItem item, LiveConnectClient client)
-        {
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
-            StorageFolder romFolder = await folder.CreateFolderAsync("roms", CreationCollisionOption.OpenIfExists);
-
-            String path = romFolder.Path;
-
-            ROMDatabase db = ROMDatabase.Current;
-            var romEntry = db.GetROM(item.Name);
-            bool fileExisted = false;
-            if (romEntry != null)
-            {
-                fileExisted = true;
-                //MessageBox.Show(String.Format(AppResources.ROMAlreadyExistingError, item.Name), AppResources.ErrorCaption, MessageBoxButton.OK);
-                //return;
-            }
-
-            var indicator = SystemTray.GetProgressIndicator(this);
-            indicator.IsIndeterminate = true;
-            indicator.Text = String.Format(AppResources.DownloadingProgressText, item.Name);
-
-
-
-            LiveDownloadOperationResult e = await client.DownloadAsync(item.SkyDriveID + "/content");
-            if (e != null)
-            {
-                byte[] tmpBuf = new byte[e.Stream.Length];
-                StorageFile destinationFile = await romFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
-                using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
-                using (DataWriter writer = new DataWriter(destStream))
-                {
-                    while (e.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
+                    else if (item.Type == SkyDriveItemType.Savestate)
                     {
-                        writer.WriteBytes(tmpBuf);
+                        entry = db.GetROMFromSavestateName(item.Name);
+
+
+                        if (entry != null)
+                            destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + item.Name.Substring(item.Name.Length - 5), CreationCollisionOption.ReplaceExisting);
+                        else
+                            destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+
                     }
-                    await writer.StoreAsync();
-                    await writer.FlushAsync();
-                    writer.DetachStream();
+
+                   
+                        
+
+                    using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
+                    using (DataWriter writer = new DataWriter(destStream))
+                    {
+                        item.Stream.Seek(0, SeekOrigin.Begin);
+                        while (item.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
+                        {
+                            writer.WriteBytes(tmpBuf);
+                        }
+                        await writer.StoreAsync();
+                        await writer.FlushAsync();
+                        writer.DetachStream();
+                    }
+
+                    item.Downloading = false;
+
+                    if (item.Type == SkyDriveItemType.Savestate)
+                    {
+                        String number = item.Name.Substring(item.Name.Length - 5, 1);
+                        int slot = int.Parse(number);
+
+                        if (entry != null) //NULL = do nothing
+                        {
+                            SavestateEntry saveentry = db.SavestateEntryExisting(entry.FileName, slot);
+                            if (saveentry != null)
+                            {
+                                //delete entry
+                                db.RemoveSavestateFromDB(saveentry);
+
+                            }
+                            SavestateEntry ssEntry = new SavestateEntry()
+                            {
+                                ROM = entry,
+                                Savetime = DateTime.Now,
+                                Slot = slot,
+                                FileName = item.Name
+                            };
+                            db.Add(ssEntry);
+                            db.CommitChanges();
+
+                        }
+                    }
+
+                    MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
                 }
-                e.Stream.Close();
-                item.Downloading = false;
-                if (!fileExisted)
+                else
                 {
-                    var entry = FileHandler.InsertNewDBEntry(destinationFile.Name);
-                    await FileHandler.FindExistingSavestatesForNewROM(entry);
-                    db.CommitChanges();
+
+                    MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, "Import error"), AppResources.ErrorCaption, MessageBoxButton.OK);
                 }
-                MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, "Api error"), AppResources.ErrorCaption, MessageBoxButton.OK);
+                MessageBox.Show(ex.Message, AppResources.ErrorCaption, MessageBoxButton.OK);
+            }
+
+#if GBC
+            indicator.Text = AppResources.ApplicationTitle2;
+#else
+            indicator.Text = AppResources.ApplicationTitle;
+#endif
+            indicator.IsIndeterminate = false;
+
+        }
+
+        
+
+
+
+        public static async Task ImportROM(FileListItem item, DependencyObject page)
+        {
+            var indicator = SystemTray.GetProgressIndicator(page);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.ImportingProgressText, item.Name);
+
+            try
+            {
+                StorageFolder folder = ApplicationData.Current.LocalFolder;
+                StorageFolder romFolder = await folder.CreateFolderAsync("roms", CreationCollisionOption.OpenIfExists);
+
+                String path = romFolder.Path;
+
+                ROMDatabase db = ROMDatabase.Current;
+                var romEntry = db.GetROM(item.Name);
+                bool fileExisted = false;
+                if (romEntry != null)
+                {
+                    fileExisted = true;
+                    //MessageBox.Show(String.Format(AppResources.ROMAlreadyExistingError, item.Name), AppResources.ErrorCaption, MessageBoxButton.OK);
+                    //return;
+                }
+
+
+                if (item.Stream != null)
+                {
+                    byte[] tmpBuf = new byte[item.Stream.Length];
+                    StorageFile destinationFile = await romFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+                    using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
+                    using (DataWriter writer = new DataWriter(destStream))
+                    {
+                        item.Stream.Seek(0, SeekOrigin.Begin);
+                        while (item.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
+                        {
+                            writer.WriteBytes(tmpBuf);
+                        }
+
+
+                        await writer.StoreAsync();
+                        await writer.FlushAsync();
+                        writer.DetachStream();
+                    }
+
+                    item.Downloading = false;
+                    if (!fileExisted)
+                    {
+                        var entry = FileHandler.InsertNewDBEntry(destinationFile.Name);
+                        await FileHandler.FindExistingSavestatesForNewROM(entry);
+                        db.CommitChanges();
+                    }
+                    MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
+                }
+                else
+                {
+                    MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, "Import error"), AppResources.ErrorCaption, MessageBoxButton.OK);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, AppResources.ErrorCaption, MessageBoxButton.OK);
             }
 #if GBC
             indicator.Text = AppResources.ApplicationTitle2;
@@ -339,11 +479,12 @@ namespace PhoneDirect3DXamlAppInterop
             indicator.Text = AppResources.ApplicationTitle;
 #endif
             indicator.IsIndeterminate = false;
+
         }
 
 
 
-        void SkyDriveImportPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
             if (this.downloadsInProgress > 0)
             {
@@ -359,6 +500,16 @@ namespace PhoneDirect3DXamlAppInterop
 
             try
             {
+                //close the zip stream
+                foreach (SkyDriveListItem item in this.skydriveStack[this.skydriveStack.Count - 1])
+                {
+                    if (item.Stream != null)
+                    {
+                        item.Stream.Close();
+                        item.Stream = null;
+                    }
+                }
+
                 // Ordner zurückspringen
                 this.skydriveStack.RemoveAt(this.skydriveStack.Count - 1);
                 this.skydriveList.ItemsSource = this.skydriveStack.Last();
@@ -450,6 +601,10 @@ namespace PhoneDirect3DXamlAppInterop
                             {
                                 type = SkyDriveItemType.SRAM;
                             }
+                            else if (substrName.Equals(".zip") || substrName.Equals(".zib"))
+                            {
+                                type = SkyDriveItemType.Zip;
+                            }
                         }
                     }
 
@@ -513,16 +668,24 @@ namespace PhoneDirect3DXamlAppInterop
         Folder,
         ROM,
         SRAM,
-        Savestate
+        Savestate,
+        Zip
     }
 
-    public class SkyDriveListItem
+    public class FileListItem
     {
         public String Name { get; set; }
+        public SkyDriveItemType Type { get; set; }
+        public bool Downloading { get; set; }
+        public Stream Stream { get; set; } //the Stream corresponding to this item
+    }
+
+
+    public class SkyDriveListItem:FileListItem
+    {
         public String SkyDriveID { get; set; }
         public String ParentID { get; set; }
         public int FolderChildrenCount { get; set; }
-        public SkyDriveItemType Type { get; set; }
-        public bool Downloading { get; set; }
+
     }
 }

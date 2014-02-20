@@ -22,6 +22,7 @@ namespace PhoneDirect3DXamlAppInterop
         const String ShowLastPlayedGameKey = "ShowLastPlayedGameKey";
         const String LastIPAddressKey = "LastIPAddressKey";
         const String LastTimeoutKey = "LastTimeoutKey";
+        const String LoadLastStateKey = "LoadLastStateKey";
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -212,6 +213,19 @@ namespace PhoneDirect3DXamlAppInterop
             set
             {
                 AddOrUpdateValue(LastTimeoutKey, value);
+                Save();
+            }
+        }
+
+        public bool LoadLastState
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(LoadLastStateKey, true);
+            }
+            set
+            {
+                AddOrUpdateValue(LoadLastStateKey, value);
                 Save();
             }
         }

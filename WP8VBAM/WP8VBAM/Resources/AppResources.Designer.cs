@@ -292,6 +292,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically save and load game.
+        /// </summary>
+        public static string AutoLoadLastStateText {
+            get {
+                return ResourceManager.GetString("AutoLoadLastStateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background image opacity.
         /// </summary>
         public static string BackgroundOpacitySetting {
@@ -319,7 +328,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error while uploading a file: {0}. Try to sign out from SkyDrive and sign back in if this error persists..
+        ///   Looks up a localized string similar to Error while uploading a file: {0}. Try to sign out from OneDrive and sign back in if this error persists..
         /// </summary>
         public static string BackupErrorUpload {
             get {
@@ -598,6 +607,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select a cheat code first..
+        /// </summary>
+        public static string CheatNoSelection {
+            get {
+                return ResourceManager.GetString("CheatNoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CHEATS.
         /// </summary>
         public static string CheatPageTitle {
@@ -764,15 +782,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must select a cheat to remove first..
-        /// </summary>
-        public static string DeleteCheatNoSelection {
-            get {
-                return ResourceManager.GetString("DeleteCheatNoSelection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This cannot be undone, continue?.
         /// </summary>
         public static string DeleteConfirmText {
@@ -877,6 +886,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string DPadStyleHeader {
             get {
                 return ResourceManager.GetString("DPadStyleHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit.
+        /// </summary>
+        public static string EditText {
+            get {
+                return ResourceManager.GetString("EditText", resourceCulture);
             }
         }
         
@@ -1417,7 +1435,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importing ROM &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Importing &apos;{0}&apos;.
         /// </summary>
         public static string ImportingProgressText {
             get {
@@ -1426,10 +1444,10 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To import ROM:
-        ///1. upload ROMs to your SkyDrive folder. 
-        ///2. click on &quot;Sign in&quot; and sign in.
-        ///3. click on &quot;import ROMs&quot;..
+        ///   Looks up a localized string similar to To import ROM from OneDrive:
+        ///1. Upload ROMs to your OneDrive folder. 
+        ///2. Tap &quot;Sign in&quot; to sign in into OneDrive
+        ///3. Tap &quot;Import&quot; and choose the ROM..
         /// </summary>
         public static string ImportInstructionsText {
             get {
@@ -1440,10 +1458,8 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to To restore saves:
         ///1. Make sure the names of the rom and the save file match exactly.
-        ///2. Quit the app completely (hit back button several times).
-        ///3. Start the app.
-        ///4. Import the save files.
-        ///5. Start the game..
+        ///2. Tap &quot;Import&quot; and choose the save file.
+        ///3. Start the game..
         /// </summary>
         public static string ImportSaveInstructionsText {
             get {
@@ -2125,7 +2141,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav.
+        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav. .zib.
         /// </summary>
         public static string SDCardHintText {
             get {
@@ -2143,7 +2159,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: SD Card is read-only to app developers. Export to SD Card feature will be added when Microsoft give developers write access..
+        ///   Looks up a localized string similar to Note: SD card is read-only to developers. Handling of .zip extension is reserved by the OS, please use .zib for your zip files..
         /// </summary>
         public static string SDCardReadOnlyText {
             get {
@@ -2296,7 +2312,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SkyDriveError: {0}.
+        ///   Looks up a localized string similar to OneDrive Error: {0}.
         /// </summary>
         public static string SkyDriveError {
             get {
@@ -2305,7 +2321,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav.
+        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav, .zip.
         /// </summary>
         public static string SkyDriveFileFormatHint {
             get {
@@ -2314,7 +2330,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error while accessing SkyDrive: {0}.
+        ///   Looks up a localized string similar to Error while accessing OneDrive: {0}.
         /// </summary>
         public static string SkyDriveGeneralError {
             get {
@@ -2323,7 +2339,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SkyDrive.
+        ///   Looks up a localized string similar to OneDrive.
         /// </summary>
         public static string SkyDriveImportTitle {
             get {
@@ -2332,7 +2348,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot connect to SkyDrive. Check your internet connection..
+        ///   Looks up a localized string similar to Cannot connect to OneDrive. Check your internet connection..
         /// </summary>
         public static string SkyDriveInternetLost {
             get {

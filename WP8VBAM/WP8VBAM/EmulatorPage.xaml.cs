@@ -669,8 +669,16 @@ namespace PhoneDirect3DXamlAppInterop
             int slot = db.GetLastSavestateSlotByFileNameExceptAuto(filename);
             m_d3dBackground.SelectSaveState(slot);
 
-            slot = db.GetLastSavestateSlotByFileNameIncludingAuto(filename);
-            m_d3dBackground.LoadState(slot);
+            if (currentROMEntry.AutoLoadLastState)  //general this is true, except after importing saves
+            {
+                if (App.metroSettings.LoadLastState)
+                {
+                    slot = db.GetLastSavestateSlotByFileNameIncludingAuto(filename);
+                    m_d3dBackground.LoadState(slot);
+                }
+            }
+            else
+                currentROMEntry.AutoLoadLastState = true; //so that next time it autoload
 
         }
     }
