@@ -73,7 +73,7 @@
                                FontSize="20" 
                                Foreground="Red"
                                Name="descLabel"
-                       Text="NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be re-entered to work again. And don't forget the space."
+                       Text="NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be *edited* with proper space to work again."
                                />
 
                     <Grid Grid.Row="2">

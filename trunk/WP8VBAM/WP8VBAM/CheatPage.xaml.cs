@@ -13,6 +13,8 @@ using System.Text;
 using PhoneDirect3DXamlAppInterop.Database;
 using PhoneDirect3DXamlAppComponent;
 using System.Windows.Media;
+using Telerik.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -22,6 +24,8 @@ namespace PhoneDirect3DXamlAppInterop
         private ROMDBEntry romEntry;
         private List<CheatData> cheatCodes = new List<CheatData>();
         private bool initdone = false;
+
+        public Popup popupWindow = null;
 
         public CheatPage()
         {
@@ -73,13 +77,30 @@ namespace PhoneDirect3DXamlAppInterop
 
         protected override async void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
+            //Check if the PopUp window is open
+            if (popupWindow != null && popupWindow.IsOpen)
+            {
+                //Close the PopUp Window
+                popupWindow.IsOpen = false;
 
-            //save the cheat code
-            await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+                //Keep the back button from navigating away from the current page
+                e.Cancel = true;
+            }
+            else
+            {
+                //There is no PopUp open, save then go back
+                e.Cancel = true;
 
-            if (this.NavigationService.CanGoBack)
-                this.NavigationService.GoBack();
+
+                //save the cheat code
+                await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+
+                if (this.NavigationService.CanGoBack)
+                    this.NavigationService.GoBack();
+            }
+
+
+            
 
         }
 
@@ -113,6 +134,14 @@ namespace PhoneDirect3DXamlAppInterop
 
             ApplicationBar.Buttons.Add(button);
 
+            button = new ApplicationBarIconButton(new Uri("/Assets/Icons/edit.png", UriKind.Relative))
+            {
+                Text = AppResources.EditText
+            };
+            button.Click += editButton_Click;
+
+            ApplicationBar.Buttons.Add(button);
+
             //button = new ApplicationBarIconButton(new Uri("/Assets/Icons/check.png", UriKind.Relative))
             //{
             //    Text = AppResources.OKButtonText
@@ -123,35 +152,89 @@ namespace PhoneDirect3DXamlAppInterop
 
         }
 
-        private async void OKButton_Click(object sender, EventArgs e)
+        private async void editButton_Click(object sender, EventArgs e)
         {
-                await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+            if (this.cheatList.SelectedItem == null)
+            {
+                MessageBox.Show(AppResources.CheatNoSelection, AppResources.ErrorCaption, MessageBoxButton.OK);
+                return;
+            }
+
+            CheatData cheatdata = this.cheatList.SelectedItem as CheatData;
 
 
+            //disable current page
+            this.IsHitTestVisible = false;
+            ApplicationBar.IsVisible = false;
+
+            //create new popup instance
 
 
-                if (this.NavigationService.CanGoBack)
-                    this.NavigationService.GoBack();
+            popupWindow = new Popup();
+            EditCheatControl.TextToEdit = cheatdata.CheatCode;
+
+            popupWindow.Child = new EditCheatControl();
+
+
+            popupWindow.VerticalOffset = 0;
+            popupWindow.HorizontalOffset = 0;
+            popupWindow.IsOpen = true;
+
+            popupWindow.Closed += async (s1, e1) =>
+            {
+                this.IsHitTestVisible = true;
+                ApplicationBar.IsVisible = true;
+
+                if (EditCheatControl.IsOKClicked &&
+                    this.CheckCodeFormat(EditCheatControl.TextToEdit,
+                    (s) =>
+                    {
+                        MessageBox.Show(s, AppResources.ErrorCaption, MessageBoxButton.OK);
+                    }))
+                {
+                    cheatdata.CheatCode = EditCheatControl.TextToEdit;
+                    RefreshCheatList();
+                    await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+                }
+
+            };
+
+            
+                
+
+
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            if (this.NavigationService.CanGoBack)
-                this.NavigationService.GoBack();
-        }
+
+        //private async void OKButton_Click(object sender, EventArgs e)
+        //{
+        //        await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+
+
+
+
+        //        if (this.NavigationService.CanGoBack)
+        //            this.NavigationService.GoBack();
+        //}
+
+        //private void cancelButton_Click(object sender, EventArgs e)
+        //{
+        //    if (this.NavigationService.CanGoBack)
+        //        this.NavigationService.GoBack();
+        //}
 
         private async void removeButton_Click(object sender, EventArgs e)
         {
             if (this.cheatList.SelectedItem == null)
             {
-                MessageBox.Show(AppResources.DeleteCheatNoSelection, AppResources.ErrorCaption, MessageBoxButton.OK);
+                MessageBox.Show(AppResources.CheatNoSelection, AppResources.ErrorCaption, MessageBoxButton.OK);
                 return;
             }
 
             this.cheatCodes.Remove(this.cheatList.SelectedItem as CheatData);
             this.cheatList.SelectedItem = null;
             this.RefreshCheatList();
-            FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+            await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
         }
 
         private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)

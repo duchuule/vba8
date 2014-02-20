@@ -204,6 +204,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.showThreeDotsSwitch.IsChecked = App.metroSettings.ShowThreeDots;
             this.showLastPlayedGameSwitch.IsChecked = App.metroSettings.ShowLastPlayedGame;
+            this.loadLastStateSwitch.IsChecked = App.metroSettings.LoadLastState;
 
             if (App.metroSettings.BackgroundUri != null)
             {
@@ -855,6 +856,14 @@ namespace PhoneDirect3DXamlAppInterop
             if (this.initdone)
             {
                 App.metroSettings.ShowLastPlayedGame =  showLastPlayedGameSwitch.IsChecked.Value;
+            }
+        }
+
+        private void loaLastStateSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                App.metroSettings.LoadLastState = loadLastStateSwitch.IsChecked.Value;
             }
         }
 

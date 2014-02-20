@@ -30,6 +30,8 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 
 
+using Ionic.Zip;
+
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -42,7 +44,6 @@ namespace PhoneDirect3DXamlAppInterop
         public ObservableCollection<ExternalStorageFile> Routes { get; set; }
         List<List<SDCardListItem>> skydriveStack;
         int downloadsInProgress = 0;
-        bool initialPageLoaded = false;
 
 
         ExternalStorageDevice sdCard = null;
@@ -79,11 +80,14 @@ namespace PhoneDirect3DXamlAppInterop
 
             // Enable data binding to the page itself.
             this.DataContext = this;
+
+            
         }
 
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+
             // Connect to the current SD card.
             sdCard = (await ExternalStorage.GetExternalStorageDevicesAsync()).FirstOrDefault();
 
@@ -96,7 +100,7 @@ namespace PhoneDirect3DXamlAppInterop
                     Name = "Root",
                     isFolder = true,
                     ThisFolder = sdCard.RootFolder,
-                    Parent = null
+                    ParentPath = null
                 });
 
 
@@ -130,7 +134,7 @@ namespace PhoneDirect3DXamlAppInterop
                     {
                         isFolder = true,
                         Name = folder.Name,
-                        Parent = folderToOpen,
+                        ParentPath = folderToOpen.Path,
                         ThisFolder = folder
                     };
                     listItems.Add(item);
@@ -144,7 +148,7 @@ namespace PhoneDirect3DXamlAppInterop
                     {
                         isFolder = false,
                         Name = file.Name,
-                        Parent = folderToOpen,
+                        ParentPath = folderToOpen.Path,
                         ThisFile = file
                     };
                     if (item.ThisFile.Path.ToLower().EndsWith(".gb") || item.ThisFile.Path.ToLower().EndsWith(".gbc") || item.ThisFile.Path.ToLower().EndsWith(".gba"))
@@ -153,11 +157,16 @@ namespace PhoneDirect3DXamlAppInterop
                         item.Type = SkyDriveItemType.SRAM;
                     else if (item.ThisFile.Path.ToLower().EndsWith(".sgm"))
                         item.Type = SkyDriveItemType.Savestate;
+                    else if (item.ThisFile.Path.ToLower().EndsWith(".zib") || item.ThisFile.Path.ToLower().EndsWith(".zip"))
+                        item.Type = SkyDriveItemType.Zip;
+                    else
+                        item.Type = SkyDriveItemType.File;
+
                     listItems.Add(item);
                 }
 
-               
-                    
+                //ordered by name
+                listItems = listItems.OrderBy(x => x.Name).ToList();
 
                 this.skydriveStack.Add(listItems);
                 this.skydriveList.ItemsSource = listItems;
@@ -184,150 +193,302 @@ namespace PhoneDirect3DXamlAppInterop
                 this.OpenFolder(item.ThisFolder);
 
             }
-            else if (item.Type == SkyDriveItemType.ROM)
+
+            else  //file
             {
-                await this.ImportROM(item.ThisFile);  
-
-            }
-            else if (item.Type == SkyDriveItemType.Savestate || item.Type == SkyDriveItemType.SRAM)
-            {
-                //check to make sure there is a rom with matching name
-                ROMDBEntry entry = null;
-
-                if (item.Type == SkyDriveItemType.Savestate)  //save state
-                    entry = db.GetROMFromSavestateName(item.Name);
-                else if (item.Type == SkyDriveItemType.SRAM) //sram
-                    entry = db.GetROMFromSRAMName(item.Name);
-
-                if (entry == null) //no matching file name
+                if (item.Type == SkyDriveItemType.Zip)
                 {
-                    MessageBox.Show(AppResources.NoMatchingNameText, AppResources.ErrorCaption, MessageBoxButton.OK);
-                    return;
+                    this.skydriveList.ItemsSource = null;
+                    this.currentFolderBox.Text = item.Name;
+                    this.downloadsInProgress++;
+
+                    await this.DownloadFile(item);
+
+                    List<SDCardListItem> listItems = this.GetFilesInZip(item);
+
+                    this.skydriveStack.Add(listItems);
+                    this.skydriveList.ItemsSource = listItems;
+                    this.downloadsInProgress--;
                 }
 
-                //check to make sure format is right
-                if (item.Type == SkyDriveItemType.Savestate)  //save state
+                else if (item.Type == SkyDriveItemType.ROM)
                 {
-                    string slot = item.Name.Substring(item.Name.Length - 5, 1);
-                    int parsedSlot = 0;
-                    if (!int.TryParse(slot, out parsedSlot))
+                    // Download
+                    if (!item.Downloading)
                     {
-                        MessageBox.Show(AppResources.ImportSavestateInvalidFormat, AppResources.ErrorCaption, MessageBoxButton.OK);
+                        this.downloadsInProgress++;
+                        if (item.Stream == null)
+                            await this.DownloadFile(item);
+
+
+                        await SkyDriveImportPage.ImportROM(item, this);
+
+                        this.downloadsInProgress--;
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppResources.AlreadyDownloadingText, AppResources.ErrorCaption, MessageBoxButton.OK);
+                    }
+
+                }
+
+                else if (item.Type == SkyDriveItemType.Savestate || item.Type == SkyDriveItemType.SRAM)
+                {
+                    //check to make sure there is a rom with matching name
+                    ROMDBEntry entry = null;
+
+                    if (item.Type == SkyDriveItemType.Savestate)  //save state
+                        entry = db.GetROMFromSavestateName(item.Name);
+                    else if (item.Type == SkyDriveItemType.SRAM) //sram
+                        entry = db.GetROMFromSRAMName(item.Name);
+
+                    if (entry == null) //no matching file name
+                    {
+                        MessageBox.Show(AppResources.NoMatchingNameText, AppResources.ErrorCaption, MessageBoxButton.OK);
                         return;
                     }
+
+                    //check to make sure format is right
+                    if (item.Type == SkyDriveItemType.Savestate)  //save state
+                    {
+                        string slot = item.Name.Substring(item.Name.Length - 5, 1);
+                        int parsedSlot = 0;
+                        if (!int.TryParse(slot, out parsedSlot))
+                        {
+                            MessageBox.Show(AppResources.ImportSavestateInvalidFormat, AppResources.ErrorCaption, MessageBoxButton.OK);
+                            return;
+                        }
+                    }
+
+                    // Download
+                    if (!item.Downloading)
+                    {
+                        this.downloadsInProgress++;
+
+                        if (item.Stream == null)
+                            await this.DownloadFile(item);
+
+                        await SkyDriveImportPage.ImportSave(item, this);
+
+                        this.downloadsInProgress--;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppResources.AlreadyDownloadingText, AppResources.ErrorCaption, MessageBoxButton.OK);
+                    }
+
+
                 }
-                
-                // Download
-                await this.ImportSave(item);
-
-
             }
  
         }
 
-        private async Task ImportSave(SDCardListItem item)
-        {
 
+        private async Task DownloadFile(SDCardListItem item)
+        {
             var indicator = SystemTray.GetProgressIndicator(this);
             indicator.IsIndeterminate = true;
-            indicator.Text = String.Format(AppResources.ImportingProgressText, item.Name);
-
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
-            StorageFolder romFolder = await folder.CreateFolderAsync(FileHandler.ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
-            StorageFolder saveFolder = await romFolder.CreateFolderAsync(FileHandler.SAVE_DIRECTORY, CreationCollisionOption.OpenIfExists);
-
-            String path = romFolder.Path;
-            String savePath = saveFolder.Path;
-
-            ROMDatabase db = ROMDatabase.Current;
-
+            indicator.Text = String.Format(AppResources.DownloadingProgressText, item.Name);
             try
             {
                 Stream s = await item.ThisFile.OpenForReadAsync();
-
-
-                byte[] tmpBuf = new byte[s.Length];
-                StorageFile destinationFile = null;
-
-                ROMDBEntry entry = null;
-
-                if (item.Type == SkyDriveItemType.SRAM)
+                if (s != null)
                 {
-                    entry = db.GetROMFromSRAMName(item.Name);
-                    if (entry != null)
-                        destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", CreationCollisionOption.ReplaceExisting);
-
-                    else
-                        destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+                    item.Stream = s;
                 }
-                else if (item.Type == SkyDriveItemType.Savestate)
-                {
-                    entry = db.GetROMFromSavestateName(item.Name);
-
-
-                    if (entry != null)
-                        destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + item.Name.Substring(item.Name.Length - 5), CreationCollisionOption.ReplaceExisting);
-                    else
-                        destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
-                }
-
-                using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
-                using (DataWriter writer = new DataWriter(destStream))
-                {
-                    while (s.Read(tmpBuf, 0, tmpBuf.Length) != 0)
-                    {
-                        writer.WriteBytes(tmpBuf);
-                    }
-                    await writer.StoreAsync();
-                    await writer.FlushAsync();
-                    writer.DetachStream();
-                }
-                s.Close();
-                item.Downloading = false;
-
-
-
-                if (item.Type == SkyDriveItemType.Savestate)
-                {
-                    String number = item.Name.Substring(item.Name.Length - 5, 1);
-                    int slot = int.Parse(number);
-
-                    if (entry != null) //NULL = do nothing
-                    {
-                        SavestateEntry saveentry = db.SavestateEntryExisting(entry.FileName, slot);
-                        if (saveentry != null)
-                        {
-                            //delete entry
-                            db.RemoveSavestateFromDB(saveentry);
-
-                        }
-                        SavestateEntry ssEntry = new SavestateEntry()
-                        {
-                            ROM = entry,
-                            Savetime = DateTime.Now,
-                            Slot = slot,
-                            FileName = item.Name
-                        };
-                        db.Add(ssEntry);
-                        db.CommitChanges();
-
-                    }
-                }
-
-                MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
             }
             catch (Exception ex)
             {
-               
                 MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
             }
+
 #if GBC
             indicator.Text = AppResources.ApplicationTitle2;
 #else
             indicator.Text = AppResources.ApplicationTitle;
 #endif
             indicator.IsIndeterminate = false;
+
+            item.Downloading = false;
+
         }
+
+
+        private List<SDCardListItem> GetFilesInZip(SDCardListItem item)
+        {
+            List<SDCardListItem> listItems = new List<SDCardListItem>();
+
+
+            if (item.Stream != null)
+            {
+                Stream s = new NativeFileStreamFixed(item.Stream);  //need to remove when MS fix the bug in NativeFileStream
+
+                //get list of file
+                using (ZipFile zip = ZipFile.Read(s))
+                {
+                    foreach (ZipEntry entry in zip)
+                    {
+                        MemoryStream data = new MemoryStream();
+                        entry.Extract(data);
+                        data.Seek(0, SeekOrigin.Begin);
+                        String name = entry.FileName;
+
+                        SkyDriveItemType type = SkyDriveItemType.File;
+                        int dotIndex = -1;
+                        if ((dotIndex = name.LastIndexOf('.')) != -1)
+                        {
+                            String substrName = name.Substring(dotIndex).ToLower();
+                            if (substrName.Equals(".gb") || substrName.Equals(".gbc") || substrName.Equals(".gba"))
+                            {
+                                type = SkyDriveItemType.ROM;
+                            }
+                            else if (substrName.Equals(".sgm"))
+                            {
+                                type = SkyDriveItemType.Savestate;
+                            }
+                            else if (substrName.Equals(".sav"))
+                            {
+                                type = SkyDriveItemType.SRAM;
+                            }
+                        }
+
+                        if (type == SkyDriveItemType.File)
+                        {
+                            data.Close();
+                            continue;
+                        }
+
+                        SDCardListItem listItem = new SDCardListItem()
+                        {
+                            Name = name,
+                            Type = type,
+                            isFolder = false,
+                            ParentPath = item.ThisFile.Path,
+                            Stream = data
+                        };
+
+                        listItems.Add(listItem);
+
+                    }
+                }
+
+                //close the zip stream since we have the stream of each item inside it already
+                item.Stream.Close();
+                item.Stream = null;
+            }
+
+            return listItems;
+        }
+
+
+
+//        private async Task ImportSave(SDCardListItem item)
+//        {
+
+//            var indicator = SystemTray.GetProgressIndicator(this);
+//            indicator.IsIndeterminate = true;
+//            indicator.Text = String.Format(AppResources.ImportingProgressText, item.Name);
+
+//            StorageFolder folder = ApplicationData.Current.LocalFolder;
+//            StorageFolder romFolder = await folder.CreateFolderAsync(FileHandler.ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
+//            StorageFolder saveFolder = await romFolder.CreateFolderAsync(FileHandler.SAVE_DIRECTORY, CreationCollisionOption.OpenIfExists);
+
+//            String path = romFolder.Path;
+//            String savePath = saveFolder.Path;
+
+//            ROMDatabase db = ROMDatabase.Current;
+
+//            try
+//            {
+
+//                if (item.Stream != null)
+//                {
+
+//                    byte[] tmpBuf = new byte[item.Stream.Length];
+//                    StorageFile destinationFile = null;
+
+//                    ROMDBEntry entry = null;
+
+//                    if (item.Type == SkyDriveItemType.SRAM)
+//                    {
+//                        entry = db.GetROMFromSRAMName(item.Name);
+//                        if (entry != null)
+//                            destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", CreationCollisionOption.ReplaceExisting);
+
+//                        else
+//                            destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+//                    }
+//                    else if (item.Type == SkyDriveItemType.Savestate)
+//                    {
+//                        entry = db.GetROMFromSavestateName(item.Name);
+
+
+//                        if (entry != null)
+//                            destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + item.Name.Substring(item.Name.Length - 5), CreationCollisionOption.ReplaceExisting);
+//                        else
+//                            destinationFile = await saveFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
+//                    }
+
+//                    using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
+//                    using (DataWriter writer = new DataWriter(destStream))
+//                    {
+//                        item.Stream.Seek(0, SeekOrigin.Begin);
+//                        while (item.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
+//                        {
+//                            writer.WriteBytes(tmpBuf);
+//                        }
+//                        await writer.StoreAsync();
+//                        await writer.FlushAsync();
+//                        writer.DetachStream();
+//                    }
+
+//                    item.Downloading = false;
+
+
+
+//                    if (item.Type == SkyDriveItemType.Savestate)
+//                    {
+//                        String number = item.Name.Substring(item.Name.Length - 5, 1);
+//                        int slot = int.Parse(number);
+
+//                        if (entry != null) //NULL = do nothing
+//                        {
+//                            SavestateEntry saveentry = db.SavestateEntryExisting(entry.FileName, slot);
+//                            if (saveentry != null)
+//                            {
+//                                //delete entry
+//                                db.RemoveSavestateFromDB(saveentry);
+
+//                            }
+//                            SavestateEntry ssEntry = new SavestateEntry()
+//                            {
+//                                ROM = entry,
+//                                Savetime = DateTime.Now,
+//                                Slot = slot,
+//                                FileName = item.Name
+//                            };
+//                            db.Add(ssEntry);
+//                            db.CommitChanges();
+
+//                        }
+//                    }
+
+//                    MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+               
+//                MessageBox.Show(String.Format(AppResources.DownloadErrorText, item.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
+//            }
+//#if GBC
+//            indicator.Text = AppResources.ApplicationTitle2;
+//#else
+//            indicator.Text = AppResources.ApplicationTitle;
+//#endif
+//            indicator.IsIndeterminate = false;
+//        }
 
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -347,12 +508,24 @@ namespace PhoneDirect3DXamlAppInterop
 
             try
             {
+                //close the zip stream
+                foreach (SDCardListItem item in this.skydriveStack[this.skydriveStack.Count - 1])
+                {
+                    if (item.Stream != null)
+                    {
+                        item.Stream.Close();
+                        item.Stream = null;
+                    }
+                }
+
+
+                //remove the last stack
                 this.skydriveStack.RemoveAt(this.skydriveStack.Count - 1);
                 this.skydriveList.ItemsSource = this.skydriveStack.Last();
 
                 string parentName = this.skydriveStack[this.skydriveStack.Count - 2].Where(x => x.isFolder).First(item =>
                 {
-                    return item.ThisFolder.Path.Equals(this.skydriveStack[this.skydriveStack.Count - 1][0].Parent.Path);
+                    return item.ThisFolder.Path.Equals(this.skydriveStack[this.skydriveStack.Count - 1][0].ParentPath);
                 }).Name;
 
                 this.currentFolderBox.Text = parentName;
@@ -366,79 +539,77 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
-        private async Task ImportROM(ExternalStorageFile file)
-        {
-            var indicator = SystemTray.GetProgressIndicator(this);
-            indicator.IsIndeterminate = true;
-            indicator.Text = String.Format(AppResources.ImportingProgressText, file.Name);
+//        private async Task ImportROM(ExternalStorageFile file)
+//        {
+//            var indicator = SystemTray.GetProgressIndicator(this);
+//            indicator.IsIndeterminate = true;
+//            indicator.Text = String.Format(AppResources.ImportingProgressText, file.Name);
 
-            try
-            {
-                ROMDatabase db = ROMDatabase.Current;
-                StorageFolder folder = ApplicationData.Current.LocalFolder;
-                StorageFolder romFolder = await folder.CreateFolderAsync("roms", CreationCollisionOption.OpenIfExists);
+//            try
+//            {
+//                ROMDatabase db = ROMDatabase.Current;
+//                StorageFolder folder = ApplicationData.Current.LocalFolder;
+//                StorageFolder romFolder = await folder.CreateFolderAsync("roms", CreationCollisionOption.OpenIfExists);
 
-                Stream s = await file.OpenForReadAsync();
+//                Stream s = await file.OpenForReadAsync();
 
-                byte[] tmpBuf = new byte[s.Length];
-                StorageFile destinationFile = await romFolder.CreateFileAsync(file.Name, CreationCollisionOption.ReplaceExisting);
+//                byte[] tmpBuf = new byte[s.Length];
+//                StorageFile destinationFile = await romFolder.CreateFileAsync(file.Name, CreationCollisionOption.ReplaceExisting);
 
-                using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
-                using (DataWriter writer = new DataWriter(destStream))
-                {
-                    while (s.Read(tmpBuf, 0, tmpBuf.Length) != 0)
-                    {
-                        writer.WriteBytes(tmpBuf);
-                    }
-                    await writer.StoreAsync();
-                    await writer.FlushAsync();
-                    writer.DetachStream();
-                }
-                s.Close();
+//                using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
+//                using (DataWriter writer = new DataWriter(destStream))
+//                {
+//                    while (s.Read(tmpBuf, 0, tmpBuf.Length) != 0)
+//                    {
+//                        writer.WriteBytes(tmpBuf);
+//                    }
+//                    await writer.StoreAsync();
+//                    await writer.FlushAsync();
+//                    writer.DetachStream();
+//                }
+//                s.Close();
 
                 
 
-                var romEntry = db.GetROM(file.Name);
-                bool fileExisted = false;
-                if (romEntry != null)
-                    fileExisted = true;
+//                var romEntry = db.GetROM(file.Name);
+//                bool fileExisted = false;
+//                if (romEntry != null)
+//                    fileExisted = true;
 
-                if (!fileExisted)
-                {
-                    var entry = FileHandler.InsertNewDBEntry(destinationFile.Name);
-                    await FileHandler.FindExistingSavestatesForNewROM(entry);
-                    db.CommitChanges();
-                }
+//                if (!fileExisted)
+//                {
+//                    var entry = FileHandler.InsertNewDBEntry(destinationFile.Name);
+//                    await FileHandler.FindExistingSavestatesForNewROM(entry);
+//                    db.CommitChanges();
+//                }
 
-                MessageBox.Show(String.Format(AppResources.ImportCompleteText, destinationFile.Name));
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(String.Format(AppResources.DownloadErrorText, file.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
-            }
+//                MessageBox.Show(String.Format(AppResources.ImportCompleteText, destinationFile.Name));
+//            }
+//            catch (Exception ex)
+//            {
+//                //MessageBox.Show(String.Format(AppResources.DownloadErrorText, file.Name, ex.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
+//            }
 
-#if GBC
-            indicator.Text = AppResources.ApplicationTitle2;
-#else
-            indicator.Text = AppResources.ApplicationTitle;
-#endif
-            indicator.IsIndeterminate = false;
-        }
+//#if GBC
+//            indicator.Text = AppResources.ApplicationTitle2;
+//#else
+//            indicator.Text = AppResources.ApplicationTitle;
+//#endif
+//            indicator.IsIndeterminate = false;
+//        }
 
 
     } //end class
 
 
-    public class SDCardListItem
+    public class SDCardListItem:FileListItem
     {
-        public String Name { get; set; }
+
         public bool isFolder { get; set; } //true if folder, false if file
         public ExternalStorageFile ThisFile { get; set; } //only 1 of ThisFile or ThisFolder will be set
         public ExternalStorageFolder ThisFolder { get; set; }
-        public ExternalStorageFolder Parent { get; set; }
+        public string ParentPath { get; set; }
         public int FolderChildrenCount { get; set; }
-        public bool Downloading { get; set; }
-        public SkyDriveItemType Type { get; set; }
         
 
     }

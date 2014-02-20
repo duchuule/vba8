@@ -511,13 +511,13 @@
                                     Margin="12,0,0,12"/>
 
 
-                        <!--Skydrive-->
+                        <!--OneDrive-->
                         <Grid Background="{StaticResource HeaderBackgroundBrush}"
                               Margin="12,12,0,12"
                               Height="36"
                               VerticalAlignment="Stretch"
                               >
-                            <TextBlock Text="SKYDRIVE"
+                            <TextBlock Text="ONEDRIVE"
                                  FontWeight="Bold"
                                 VerticalAlignment="Center"
                                        Margin="12,0,0,0"
@@ -671,7 +671,7 @@
                                        Foreground="{StaticResource HeaderForegroundBrush}"
                                   />
                         </Grid>
-                        <TextBlock Text="FAQs &amp; forum discussions" 
+                        <TextBlock Text="FAQs, forum discussions &amp; PC app" 
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"
@@ -681,7 +681,13 @@
                         <TextBlock TextWrapping="Wrap" Tap="contactBlock_Tap_1" 
                                        TextDecorations="Underline" 
                                    FontSize="22"
-                                       Text="Contact developer" />
+                                   Margin="0,0,0,12"
+                                       Text="Email: store.support@outlook.com" />
+                        <TextBlock TextWrapping="Wrap" Tap="contactBlock_Tap_2" 
+                                       TextDecorations="Underline" 
+                                   FontSize="22"
+                                   Margin="0,0,0,12"
+                                       Text="Twitter: @duchuule" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>

@@ -24,7 +24,7 @@ using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 using System.Windows.Media.Imaging;
 
-//"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts xd 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
+//"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts deviceindex:7 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -213,7 +213,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.RefreshROMList();
 
-            this.resumeButton.IsEnabled = EmulatorPage.ROMLoaded;
+            
 
 
             base.OnNavigatedTo(e);
@@ -745,6 +745,11 @@ namespace PhoneDirect3DXamlAppInterop
             //}
             DataContext = this.db.GetLastPlayed();
 
+            if (DataContext != null)
+                this.resumeButton.IsEnabled = true;
+            else
+                this.resumeButton.IsEnabled = false;
+
             if (DataContext != null && App.metroSettings.ShowLastPlayedGame == true)
                 lastRomGrid.Visibility = Visibility.Visible;
             else
@@ -781,6 +786,9 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async Task StartROM(ROMDBEntry entry)
         {
+            if (entry.AutoLoadLastState == false)
+                EmulatorPage.ROMLoaded = false;  //force reloading of ROM after reimport save file
+
             EmulatorPage.currentROMEntry = entry;
             LoadROMParameter param = await FileHandler.GetROMFileToPlayAsync(entry.FileName);
 
@@ -866,10 +874,14 @@ namespace PhoneDirect3DXamlAppInterop
             
         }
 
-        void resumeButton_Click(object sender, EventArgs e)
+        async void resumeButton_Click(object sender, EventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/EmulatorPage.xaml", UriKind.Relative));
+            var entry = this.db.GetLastPlayed();
+
+            await StartROM(entry);
             this.romList.SelectedItem = null;
+
+
         }
 
         void settingsButton_Click(object sender, EventArgs e)
@@ -1134,6 +1146,14 @@ namespace PhoneDirect3DXamlAppInterop
             var fe = VisualTreeHelper.GetParent(menuItem) as FrameworkElement;
 
             ROMDBEntry entry = fe.DataContext as ROMDBEntry;
+        }
+
+        private void contactBlock_Tap_2(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            WebBrowserTask wbtask = new WebBrowserTask();
+            wbtask.Uri = new Uri("https://twitter.com/duchuule");
+            wbtask.Show();
+
         }
 
 

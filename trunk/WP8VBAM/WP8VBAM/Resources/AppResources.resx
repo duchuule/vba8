@@ -157,10 +157,10 @@
     <value>Import</value>
   </data>
   <data name="ImportInstructionsText" xml:space="preserve">
-    <value>To import ROM:
-1. upload ROMs to your SkyDrive folder. 
-2. click on "Sign in" and sign in.
-3. click on "import ROMs".</value>
+    <value>To import ROM from OneDrive:
+1. Upload ROMs to your OneDrive folder. 
+2. Tap "Sign in" to sign in into OneDrive
+3. Tap "Import" and choose the ROM.</value>
   </data>
   <data name="ImportTitle" xml:space="preserve">
     <value>data</value>
@@ -229,10 +229,10 @@
     <value>settings</value>
   </data>
   <data name="SkyDriveGeneralError" xml:space="preserve">
-    <value>Error while accessing SkyDrive: {0}</value>
+    <value>Error while accessing OneDrive: {0}</value>
   </data>
   <data name="SkyDriveImportTitle" xml:space="preserve">
-    <value>SkyDrive</value>
+    <value>OneDrive</value>
   </data>
   <data name="StatusLabelContent" xml:space="preserve">
     <value>Status: </value>
@@ -349,10 +349,10 @@ MOGA company for the surprised gift.</value>
     <value>import</value>
   </data>
   <data name="SkyDriveError" xml:space="preserve">
-    <value>SkyDriveError: {0}</value>
+    <value>OneDrive Error: {0}</value>
   </data>
   <data name="BackupErrorUpload" xml:space="preserve">
-    <value>Error while uploading a file: {0}. Try to sign out from SkyDrive and sign back in if this error persists.</value>
+    <value>Error while uploading a file: {0}. Try to sign out from OneDrive and sign back in if this error persists.</value>
   </data>
   <data name="BackupInstructions" xml:space="preserve">
     <value>Choose the game to export saves.</value>
@@ -433,7 +433,7 @@ MOGA company for the surprised gift.</value>
     <value>Note: Turbo Mode will be assigned to L or R if the camera button is assigned to L or R.</value>
   </data>
   <data name="SkyDriveInternetLost" xml:space="preserve">
-    <value>Cannot connect to SkyDrive. Check your internet connection.</value>
+    <value>Cannot connect to OneDrive. Check your internet connection.</value>
   </data>
   <data name="BuyNowButtonText" xml:space="preserve">
     <value>Buy now</value>
@@ -545,7 +545,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>Note: If your ROMs do not start, see the "issues" section of the help page.</value>
   </data>
   <data name="SkyDriveFileFormatHint" xml:space="preserve">
-    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav</value>
+    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav, .zip</value>
   </data>
   <data name="DPadAnalogueDynamic" xml:space="preserve">
     <value>dynamic analogue stick</value>
@@ -674,8 +674,8 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
   <data name="DeleteCheatButtonText" xml:space="preserve">
     <value>remove</value>
   </data>
-  <data name="DeleteCheatNoSelection" xml:space="preserve">
-    <value>You must select a cheat to remove first.</value>
+  <data name="CheatNoSelection" xml:space="preserve">
+    <value>You must select a cheat code first.</value>
   </data>
   <data name="ManageSavestateMenuItem" xml:space="preserve">
     <value>manage save states</value>
@@ -778,7 +778,7 @@ You should have received a copy of the GNU General Public License along with thi
     <value>Completed importing file '{0}'</value>
   </data>
   <data name="ImportingProgressText" xml:space="preserve">
-    <value>Importing ROM '{0}'</value>
+    <value>Importing '{0}'</value>
   </data>
   <data name="UseMogaControllerText" xml:space="preserve">
     <value>Use Moga controller</value>
@@ -823,10 +823,8 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   <data name="ImportSaveInstructionsText" xml:space="preserve">
     <value>To restore saves:
 1. Make sure the names of the rom and the save file match exactly.
-2. Quit the app completely (hit back button several times).
-3. Start the app.
-4. Import the save files.
-5. Start the game.</value>
+2. Tap "Import" and choose the save file.
+3. Start the game.</value>
   </data>
   <data name="DarkText" xml:space="preserve">
     <value>Dark</value>
@@ -979,15 +977,21 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
     <value>Please make sure the name of the save file matches the name of the ROM</value>
   </data>
   <data name="SDCardHintText" xml:space="preserve">
-    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav</value>
+    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav. .zib</value>
   </data>
   <data name="SDCardImportTitle" xml:space="preserve">
     <value>SD Card</value>
   </data>
   <data name="SDCardReadOnlyText" xml:space="preserve">
-    <value>Note: SD Card is read-only to app developers. Export to SD Card feature will be added when Microsoft give developers write access.</value>
+    <value>Note: SD card is read-only to developers. Handling of .zip extension is reserved by the OS, please use .zib for your zip files.</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
     <value>ok</value>
+  </data>
+  <data name="EditText" xml:space="preserve">
+    <value>edit</value>
+  </data>
+  <data name="AutoLoadLastStateText" xml:space="preserve">
+    <value>Automatically save and load game</value>
   </data>
 </root>

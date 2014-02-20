@@ -55,7 +55,7 @@ namespace Emulator
 
 
 	EmulatorGame::EmulatorGame(void)
-		: stopThread(false), gfxbuffer(nullptr), threadAction(nullptr)
+		: stopThread(false), gfxbuffer(nullptr), threadAction(nullptr), saveSRAMWhenStop(true)
 	{ 
 	}
 
@@ -258,12 +258,15 @@ namespace Emulator
 			if(this->IsROMLoaded())
 			{
 				this->Pause();
-				SaveSRAMAsync().wait();
-				int oldstate = SavestateSlot;
-				SavestateSlot = AUTOSAVE_SLOT;
-				SaveStateAsync().wait();
-				SavestateSlot = oldstate;
-				this->Pause();
+
+				//SaveSRAMAsync().wait();
+				//int oldstate = SavestateSlot;
+				//SavestateSlot = AUTOSAVE_SLOT;
+				//SaveStateAsync().wait();
+				//SavestateSlot = oldstate;
+				//this->Pause();
+
+
 				this->InitSound();
 				//Memory.ClearSRAM();
 				ROMFile = nullptr;

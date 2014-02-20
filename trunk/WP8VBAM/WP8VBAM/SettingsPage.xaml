@@ -587,7 +587,15 @@
                                             />
 
                         </ListBoxItem>-->
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Content="{Binding Path=LocalizedResources.AutoLoadLastStateText, Source={StaticResource LocalizedStrings}}"
+                                            IsChecked="true" 
+                                        Name="loadLastStateSwitch" Click="loaLastStateSwitch_Click"
+                                            />
+
+                        </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
                             <CheckBox Content="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
                                           Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
                                           IsChecked="false" Name="cheatRestoreSwitch"

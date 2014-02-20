@@ -105,14 +105,18 @@ namespace PhoneDirect3DXamlAppInterop
                     {
                         continue;
                     }
-                    SavestateEntry ssEntry = new SavestateEntry()
+
+                    if (slot != 9) //dont include auto save
                     {
-                        ROM = entry,
-                        Savetime = save.DateCreated.DateTime,
-                        Slot = slot,
-                        FileName = save.Name
-                    };
-                    db.Add(ssEntry);
+                        SavestateEntry ssEntry = new SavestateEntry()
+                        {
+                            ROM = entry,
+                            Savetime = save.DateCreated.DateTime,
+                            Slot = slot,
+                            FileName = save.Name
+                        };
+                        db.Add(ssEntry);
+                    }
                 }
             }
         }
