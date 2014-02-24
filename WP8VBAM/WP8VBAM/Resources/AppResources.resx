@@ -648,7 +648,7 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
     <value>CHEATS</value>
   </data>
   <data name="CheatsDescription" xml:space="preserve">
-    <value>You can enter GameShark and CodeBreaker codes. Cheat codes can make your game unstable.</value>
+    <value>You can enter GameShark and CodeBreaker codes for GBA games and GameShark and GameGenie codes for GB/GBC games.</value>
   </data>
   <data name="CheatCodesAddPivotTitle" xml:space="preserve">
     <value>add</value>
@@ -688,9 +688,6 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
   </data>
   <data name="CheatRestoreValuesOption" xml:space="preserve">
     <value>Restore old values after cheats (GBA)</value>
-  </data>
-  <data name="CheatsDescription2" xml:space="preserve">
-    <value>You can enter Gameshark and GameGenie codes. Using cheat codes can make your game unstable.</value>
   </data>
   <data name="ManageAutoSlotLabel" xml:space="preserve">
     <value>Automatic </value>
@@ -993,5 +990,155 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   </data>
   <data name="AutoLoadLastStateText" xml:space="preserve">
     <value>Automatically save and load game</value>
+  </data>
+  <data name="AllHeader" xml:space="preserve">
+    <value>ALL</value>
+  </data>
+  <data name="CancelText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CheatsDescription2" xml:space="preserve">
+    <value>NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be *edited* with proper space to work again.</value>
+  </data>
+  <data name="CodeText" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="ContactHeader" xml:space="preserve">
+    <value>CONTACT</value>
+  </data>
+  <data name="DescriptionText" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EmailLinkText" xml:space="preserve">
+    <value>Email: store.support@outlook.com</value>
+  </data>
+  <data name="EmulatorMenuText" xml:space="preserve">
+    <value>Note: Emulator Menu function will be implemented at a later date.</value>
+  </data>
+  <data name="EnterNewCheatText" xml:space="preserve">
+    <value>Enter new cheat code:</value>
+  </data>
+  <data name="FAQsLinkText" xml:space="preserve">
+    <value>FAQs, forum discussion &amp; PC app</value>
+  </data>
+  <data name="GuideBlankScreenText" xml:space="preserve">
+    <value>Guide: troubleshoot blank screen</value>
+  </data>
+  <data name="GuideImportROMText" xml:space="preserve">
+    <value>Guide: 4 ways to import ROMS</value>
+  </data>
+  <data name="GuidePerformanceText" xml:space="preserve">
+    <value>Guide: how to improve performance</value>
+  </data>
+  <data name="GuidesHeader" xml:space="preserve">
+    <value>GUIDES</value>
+  </data>
+  <data name="MogaMappingTitle" xml:space="preserve">
+    <value>moga mapping</value>
+  </data>
+  <data name="OKText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OneDriveHeader" xml:space="preserve">
+    <value>ONEDRIVE</value>
+  </data>
+  <data name="PleaseWaitROMLoadingText" xml:space="preserve">
+    <value>Please wait until ROM finishes loading</value>
+  </data>
+  <data name="RecentHeader" xml:space="preserve">
+    <value>RECENT</value>
+  </data>
+  <data name="SDCardHeader" xml:space="preserve">
+    <value>SD CARD</value>
+  </data>
+  <data name="TwitterLinkText" xml:space="preserve">
+    <value>Twitter: @duchuule</value>
+  </data>
+  <data name="VideoCheatText" xml:space="preserve">
+    <value>Video: cheat code tutorial</value>
+  </data>
+  <data name="VideoMogaText" xml:space="preserve">
+    <value>Video: MOGA controller instructions</value>
+  </data>
+  <data name="ChooseImageText" xml:space="preserve">
+    <value>Choose image...</value>
+  </data>
+  <data name="ChoosePortraitBackgroundColorText" xml:space="preserve">
+    <value>Choose portrait background color...</value>
+  </data>
+  <data name="ConnectText" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="CustomizeButtonMappingText" xml:space="preserve">
+    <value>Customize button mapping...</value>
+  </data>
+  <data name="CustomizeLandscapeControlText" xml:space="preserve">
+    <value>Customize Landscape Control Position</value>
+  </data>
+  <data name="CustomizePortraitControlText" xml:space="preserve">
+    <value>Customize Portrait Control Position</value>
+  </data>
+  <data name="EnterHostIPText" xml:space="preserve">
+    <value>enter host's IP address here</value>
+  </data>
+  <data name="ErrorNoConnectionText" xml:space="preserve">
+    <value>Error! No Internet connection or Microsoft server error. Please try again later.</value>
+  </data>
+  <data name="ErrorReadingSDCardText" xml:space="preserve">
+    <value>Error reading SD Card content</value>
+  </data>
+  <data name="HostIPAddressText" xml:space="preserve">
+    <value>Host's IP address: {0}. Waiting for client...</value>
+  </data>
+  <data name="LinkConnectedText" xml:space="preserve">
+    <value>Connected. You can now close this window and continue playing game.</value>
+  </data>
+  <data name="LinkErrorText" xml:space="preserve">
+    <value>Error occured. Please restart the app and try again.</value>
+  </data>
+  <data name="LoadingProductListText" xml:space="preserve">
+    <value>Loading production list. Please wait...</value>
+  </data>
+  <data name="MogaGDR3Note" xml:space="preserve">
+    <value>Note: MOGA controller may require GDR3.</value>
+  </data>
+  <data name="ProductNotAvailableText" xml:space="preserve">
+    <value>Product is not available at the moment.</value>
+  </data>
+  <data name="PurchaseButtonText" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+  <data name="PurchasedThankYouText" xml:space="preserve">
+    <value>Purchased, thank you!</value>
+  </data>
+  <data name="PurchaseSuccessNoAdsText" xml:space="preserve">
+    <value>Purchase successful, ads will not be shown the next time you start the app.</value>
+  </data>
+  <data name="PurchaseSuccessText" xml:space="preserve">
+    <value>Purchase successful.</value>
+  </data>
+  <data name="ResetImageText" xml:space="preserve">
+    <value>Reset image</value>
+  </data>
+  <data name="SDCardMissingText" xml:space="preserve">
+    <value>The SD card is missing. Insert an SD card try again.</value>
+  </data>
+  <data name="StartServerOtherText" xml:space="preserve">
+    <value>Start server on the other device to get server's IP address.</value>
+  </data>
+  <data name="StartServerText" xml:space="preserve">
+    <value>Start server</value>
+  </data>
+  <data name="TapDownloadSnes8xText" xml:space="preserve">
+    <value>Tap here to download Snes8x</value>
+  </data>
+  <data name="TapMogaInstructionText" xml:space="preserve">
+    <value>Tap here for MOGA controller instruction</value>
+  </data>
+  <data name="TapStartServerIPText" xml:space="preserve">
+    <value>Tap Start server to get the server IP address.</value>
+  </data>
+  <data name="UseRealisticButtonsText" xml:space="preserve">
+    <value>Use realistic color buttons</value>
   </data>
 </root>

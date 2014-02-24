@@ -43,9 +43,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.Init();
 
-#if GBC
-            descLabel.Text = AppResources.CheatsDescription2;
-#endif
+
         }
 
         private async void Init()

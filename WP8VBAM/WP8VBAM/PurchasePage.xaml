@@ -61,7 +61,7 @@
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                        />
-                    <TextBlock Text="Tap here to download Snes8x" 
+                    <TextBlock Text="{Binding Path=LocalizedResources.TapDownloadSnes8xText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                             TextDecorations="Underline" 
@@ -69,13 +69,13 @@
                            
                        />
 
-                    <TextBlock Text="Tap here for MOGA controller instructions" 
+                    <TextBlock Text="{Binding Path=LocalizedResources.TapMogaInstructionText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                             TextDecorations="Underline" Tap="TextBlock_Tap_1" 
                            
                        />
-                    <TextBlock Text="Loading product list. Please wait..." 
+                    <TextBlock Text="{Binding Path=LocalizedResources.LoadingProductListText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,48,0,12"
                            Visibility="Visible"
@@ -83,7 +83,7 @@
                            
                        />
 
-                    <TextBlock Text="Error! No Internet connection or Microsoft server error. Please try again later." 
+                    <TextBlock Text="{Binding Path=LocalizedResources.ErrorNoConnectionText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                            Foreground="Red"
@@ -111,7 +111,7 @@
                                                 <TextBlock FontWeight="Normal" 
                                                        Text="{Binding Status}"
                                                        TextWrapping="Wrap"/>
-                                                <Button Content="Purchase" 
+                                                <Button Content="{Binding Path=LocalizedResources.PurchaseButtonText, Source={StaticResource LocalizedStrings}}" 
                                                     Visibility="{Binding BuyNowButtonVisible}" 
                                                     Click="ButtonBuyNow_Clicked" 
                                                     Tag="{Binding key}"

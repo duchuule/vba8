@@ -286,12 +286,15 @@ namespace PhoneDirect3DXamlAppComponent
 			this->emulator->Pause();
 			SaveSRAMAsync().wait();
 
-			int oldstate = SavestateSlot;
-			SavestateSlot = AUTOSAVE_SLOT;
-			SaveStateAsync().wait();
-			this->SavestateCreated(SavestateSlot, ROMFile->Name);
+			if (EmulatorSettings::Current->AutoSaveLoad)
+			{
+				int oldstate = SavestateSlot;
+				SavestateSlot = AUTOSAVE_SLOT;
+				SaveStateAsync().wait();
+				this->SavestateCreated(SavestateSlot, ROMFile->Name);
 
-			SavestateSlot = oldstate;
+				SavestateSlot = oldstate;
+			}
 			this->emulator->Unpause();
 		}).then([this]()
 		{

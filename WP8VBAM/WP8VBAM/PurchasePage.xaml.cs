@@ -69,13 +69,13 @@ namespace PhoneDirect3DXamlAppInterop
                 imageLink = "/Assets/Icons/noad_plus_icon.png";
                 if (li.ProductListings.TryGetValue(key, out pListing))
                 {
-                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? "Purchased, thank you!" : pListing.FormattedPrice;
+                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
                     buyButtonVisibility = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? Visibility.Collapsed : Visibility.Visible;
                     pname = pListing.Name;
                 }
                 else
                 {
-                    status = "Product is in certification with MS. Please try again in tomorrow.";
+                    status = AppResources.ProductNotAvailableText;
                     buyButtonVisibility = Visibility.Collapsed;
                     pname = "No Ads + Premium Features";
                 }
@@ -97,7 +97,7 @@ namespace PhoneDirect3DXamlAppInterop
                 if (li.ProductListings.TryGetValue(key, out pListing))
                 {
                     ProductLicense license = Store.CurrentApp.LicenseInformation.ProductLicenses[key];
-                    status = license.IsActive ? "Purchased, thank you!" : pListing.FormattedPrice;
+                    status = license.IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
                     //string receipt = await Store.CurrentApp.GetProductReceiptAsync(license.ProductId);
 
                     buyButtonVisibility = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? Visibility.Collapsed : Visibility.Visible;
@@ -105,7 +105,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 else
                 {
-                    status = "Product is in certification with MS. Please try again in tomorrow.";
+                    status = AppResources.ProductNotAvailableText;
                     buyButtonVisibility = Visibility.Collapsed;
                     pname = "Remove ads";
                 }
@@ -127,13 +127,13 @@ namespace PhoneDirect3DXamlAppInterop
                 imageLink = "/Assets/Icons/plus_sign.png";
                 if (li.ProductListings.TryGetValue(key, out pListing))
                 {
-                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? "Purchased, thank you!" : pListing.FormattedPrice;
+                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
                     buyButtonVisibility = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? Visibility.Collapsed : Visibility.Visible;
                     pname = pListing.Name;
                 }
                 else
                 {
-                    status = "Product is in certification with MS. Please try again in tomorrow.";
+                    status = AppResources.ProductNotAvailableText;
                     buyButtonVisibility = Visibility.Collapsed;
                     pname = "Premium Features";
                 }
@@ -189,13 +189,13 @@ namespace PhoneDirect3DXamlAppInterop
                     if (key == "removeads" || key == "noads_premium")
                         System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            MessageBox.Show("Purchase successful, ads will not be shown the next time you start the app.");
+                            MessageBox.Show(AppResources.PurchaseSuccessNoAdsText);
                         });
 
                     if (key == "premiumfeatures")
                         System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            MessageBox.Show("Purchase successful.");
+                            MessageBox.Show(AppResources.PurchaseSuccessText);
                         });
 
                     //enable moga controller (in case user does not know that he has to enable it)

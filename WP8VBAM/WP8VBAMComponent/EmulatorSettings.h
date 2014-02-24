@@ -442,6 +442,19 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
+		property bool AutoSaveLoad
+		{
+			bool get(void) { return this->autoSaveLoad; }
+			void set(bool value) 
+			{ 
+				this->autoSaveLoad = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
 
 		EmulatorSettings(void);
 
@@ -519,6 +532,7 @@ namespace PhoneDirect3DXamlAppComponent
 		int bgcolorR;
 		int bgcolorG;
 		int bgcolorB;
+		bool autoSaveLoad;
 
 
 

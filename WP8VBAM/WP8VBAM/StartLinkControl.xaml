@@ -37,7 +37,7 @@
 
             <telerikPrimitives:RadTextBox x:Name="txtAddress"
                      Header="{Binding Path=LocalizedResources.IPAddressText, Source={StaticResource LocalizedStrings}}" 
-                    Watermark="enter host's IP address here"
+                    Watermark="{Binding Path=LocalizedResources.EnterHostIPText, Source={StaticResource LocalizedStrings}}" 
                         Visibility="Collapsed" InputScope="Number"/>
             
             <TextBlock Text="{Binding Path=LocalizedResources.LinkTimeoutText, Source={StaticResource LocalizedStrings}}" 
@@ -48,16 +48,16 @@
 
 
 
-            
 
-            <Button Content="Start server" 
+
+        <Button Content="{Binding Path=LocalizedResources.StartServerText, Source={StaticResource LocalizedStrings}}" 
                     x:Name="ConnectButton"
                     Click="ConnectButton_Click"/>
 
             <TextBlock x:Name="tblkStatus" Height="70" 
                        Margin="12, 0, 12, 0"
                        TextWrapping="Wrap"
-                       Text="Tap Start server to get the server IP address."/>
+                       Text="{Binding Path=LocalizedResources.TapStartServerIPText, Source={StaticResource LocalizedStrings}}" />
                 
                 
             <c4f:RoundButton ImageSource="Assets\ApplicationBar.Cancel.png"

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls.Primitives;
 using System.IO.IsolatedStorage;
 using System.Windows.Media;
+using System.Security.Cryptography;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -56,6 +57,7 @@ namespace PhoneDirect3DXamlAppInterop
         public const String BgcolorRKey = "BgcolorRKey";
         public const String BgcolorGKey = "BgcolorGKey";
         public const String BgcolorBKey = "BgcolorBKey";
+        public const String AutoSaveLoadKey = "AutSaveLoadKey";
         
 
         public const String PadCenterXPKey = "PadCenterXPKey";
@@ -120,6 +122,7 @@ namespace PhoneDirect3DXamlAppInterop
                 LayoutRoot.Children.Add(adControl);
                 adControl.SetValue(Grid.RowProperty, 1);
             }
+
 
 
 
@@ -204,7 +207,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.showThreeDotsSwitch.IsChecked = App.metroSettings.ShowThreeDots;
             this.showLastPlayedGameSwitch.IsChecked = App.metroSettings.ShowLastPlayedGame;
-            this.loadLastStateSwitch.IsChecked = App.metroSettings.LoadLastState;
+            this.loadLastStateSwitch.IsChecked = emuSettings.AutoSaveLoad;
 
             if (App.metroSettings.BackgroundUri != null)
             {
@@ -863,7 +866,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-                App.metroSettings.LoadLastState = loadLastStateSwitch.IsChecked.Value;
+                EmulatorSettings.Current.AutoSaveLoad = loadLastStateSwitch.IsChecked.Value;
             }
         }
 

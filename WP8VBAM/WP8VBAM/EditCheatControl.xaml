@@ -15,7 +15,7 @@
                 Loaded="LayoutRoot_Loaded"
                 Width="480"
                 >
-        <TextBlock  Text="Enter new cheat code:"
+        <TextBlock  Text="{Binding Path=LocalizedResources.EnterNewCheatText, Source={StaticResource LocalizedStrings}}"
                    Margin="24, 60, 24, 0"
                    />
         <TextBox x:Name="txtCheatCode" Margin="12, 12, 12, 0"/>
@@ -25,14 +25,14 @@
                 <ColumnDefinition Width="1*" />
 
             </Grid.ColumnDefinitions>
-            <Button Content="OK"
+            <Button Content="{Binding Path=LocalizedResources.OKText, Source={StaticResource LocalizedStrings}}"
                             HorizontalAlignment="Stretch" 
                             x:Name="OKbtn" Click="OKbtn_Click"
                             Grid.Column="0"
                         />
             <Button 
                             HorizontalAlignment="Stretch" 
-                            Content="Cancel"
+                            Content="{Binding Path=LocalizedResources.CancelText, Source={StaticResource LocalizedStrings}}"
                              x:Name="Cancelbtn" Click="Cancelbtn_Click"
                                     Grid.Column="1"
                     
