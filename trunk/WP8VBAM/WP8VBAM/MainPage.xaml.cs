@@ -456,6 +456,10 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     isoSettings[SettingsPage.BgcolorBKey] = 210;
                 }
+                if (!isoSettings.Contains(SettingsPage.AutoSaveLoadKey))
+                {
+                    isoSettings[SettingsPage.AutoSaveLoadKey] = false;
+                }
 
                 //get default controller position
                 int[] cpos = CustomizeControllerPage.GetDefaultControllerPosition();
@@ -648,6 +652,7 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.BgcolorR = (int)isoSettings[SettingsPage.BgcolorRKey];
                 settings.BgcolorG = (int)isoSettings[SettingsPage.BgcolorGKey];
                 settings.BgcolorB = (int)isoSettings[SettingsPage.BgcolorBKey];
+                settings.AutoSaveLoad = (bool)isoSettings[SettingsPage.AutoSaveLoadKey];
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
                 settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
@@ -730,6 +735,8 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.BgcolorRKey] = settings.BgcolorR;
             isoSettings[SettingsPage.BgcolorGKey] = settings.BgcolorG;
             isoSettings[SettingsPage.BgcolorBKey] = settings.BgcolorB;
+            isoSettings[SettingsPage.AutoSaveLoadKey] = settings.AutoSaveLoad;
+
             isoSettings.Save();
         }
 

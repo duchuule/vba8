@@ -134,7 +134,7 @@ namespace Emulator
 			emulator->Pause();
 		
 			Platform::String ^folderpath = folder->Path;
-			string folderPathStr(folderpath->Begin(), folderpath->End());
+			wstring folderPathStr(folderpath->Begin(), folderpath->End());
 
 			StorageFile ^romFile = ROMFile;
 
@@ -144,25 +144,25 @@ namespace Emulator
 			size_t diff = tmp->End() - end;
 
 			wstring wRomName(ROMFile->Name->Begin(), ROMFile->Name->Length() - diff);
-			string romName(wRomName.begin(), wRomName.end());
 
-			stringstream tmpFileNameStream;
+
+			wstringstream tmpFileNameStream;
 			tmpFileNameStream << folderPathStr << "\\";
-			tmpFileNameStream << romName << SavestateSlot << ".sgm";
-			string fileNameA = tmpFileNameStream.str();
+			tmpFileNameStream << wRomName << SavestateSlot << ".sgm";
+			wstring fileNameA = tmpFileNameStream.str();
 
 			FILE *file;
-			auto error = fopen_s(&file, fileNameA.c_str(), "wb");
+			auto error = _wfopen_s(&file, fileNameA.c_str(), L"wb");
 			if(!file)
 			{
 #if _DEBUG
-				stringstream ss;
+				wstringstream ss;
 				ss << "Unable to open file '";
 				ss << fileNameA;
 				ss << "' to store savestate (";
 				ss << error;
 				ss << ").";
-				OutputDebugStringA(ss.str().c_str());
+				OutputDebugStringW(ss.str().c_str());
 				return;
 #endif
 			}
@@ -172,11 +172,11 @@ namespace Emulator
 			if(!stream.is_open())
 			{
 #if _DEBUG
-				stringstream ss;
+				wstringstream ss;
 				ss << "Unable to open file '";
 				ss << fileNameA;
 				ss << "' to store savestate.";
-				OutputDebugStringA(ss.str().c_str());
+				OutputDebugStringW(ss.str().c_str());
 				return;
 #endif
 			}
@@ -369,29 +369,29 @@ namespace Emulator
 			emulator->Pause();
 		
 			Platform::String ^folderpath = folder->Path;
-			string folderPathStr(folderpath->Begin(), folderpath->End());
+			wstring folderPathStr(folderpath->Begin(), folderpath->End());
 
 			StorageFile ^romFile = ROMFile;
 			wstring wRomName(ROMFile->Name->Begin(), ROMFile->Name->Length() - 4);
-			string romName(wRomName.begin(), wRomName.end());
 
-			stringstream tmpFileNameStream;
+
+			wstringstream tmpFileNameStream;
 			tmpFileNameStream << folderPathStr << "\\";
-			tmpFileNameStream << romName << SavestateSlot << ".sgm";
-			string fileNameA = tmpFileNameStream.str();
+			tmpFileNameStream << wRomName << SavestateSlot << ".sgm";
+			wstring fileNameA = tmpFileNameStream.str();
 
 			FILE *file;
-			auto error = fopen_s(&file, fileNameA.c_str(), "wb");
+			auto error = _wfopen_s(&file, fileNameA.c_str(), L"wb");
 			if(!file)
 			{
 #if _DEBUG
-				stringstream ss;
+				wstringstream ss;
 				ss << "Unable to open file '";
 				ss << fileNameA;
 				ss << "' to store savestate (";
 				ss << error;
 				ss << ").";
-				OutputDebugStringA(ss.str().c_str());
+				OutputDebugStringW(ss.str().c_str());
 				return;
 #endif
 			}
@@ -401,11 +401,11 @@ namespace Emulator
 			if(!stream.is_open())
 			{
 #if _DEBUG
-				stringstream ss;
+				wstringstream ss;
 				ss << "Unable to open file '";
 				ss << fileNameA;
 				ss << "' to store savestate.";
-				OutputDebugStringA(ss.str().c_str());
+				OutputDebugStringW(ss.str().c_str());
 				return;
 #endif
 			}

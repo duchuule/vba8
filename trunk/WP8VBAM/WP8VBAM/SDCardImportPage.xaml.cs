@@ -110,7 +110,7 @@ namespace PhoneDirect3DXamlAppInterop
             else
             {
                 // No SD card is present.
-                MessageBox.Show("The SD card is missing. Insert an SD card try again.");
+                MessageBox.Show(AppResources.SDCardMissingText);
             }
 
             base.OnNavigatedTo(e);
@@ -173,7 +173,7 @@ namespace PhoneDirect3DXamlAppInterop
             }
             catch (Exception)
             {
-                MessageBox.Show("Error reading SD Card content");
+                MessageBox.Show(AppResources.ErrorReadingSDCardText);
             }
         }
 

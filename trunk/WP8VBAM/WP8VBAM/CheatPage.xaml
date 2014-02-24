@@ -73,7 +73,7 @@
                                FontSize="20" 
                                Foreground="Red"
                                Name="descLabel"
-                       Text="NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be *edited* with proper space to work again."
+                       Text="{Binding Path=LocalizedResources.CheatsDescription2, Source={StaticResource LocalizedStrings}}"
                                />
 
                     <Grid Grid.Row="2">
@@ -81,7 +81,8 @@
                             <ColumnDefinition Width="140" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Description" Grid.Column="0" VerticalAlignment="Center" FontSize="22" />
+                        <TextBlock Text="{Binding Path=LocalizedResources.DescriptionText, Source={StaticResource LocalizedStrings}}"
+                                   Grid.Column="0" VerticalAlignment="Center" FontSize="22" />
                         <TextBox Name="cheatDescBox" Grid.Column="1" />
                     </Grid>
                     <Grid Grid.Row="3" >
@@ -89,7 +90,8 @@
                             <ColumnDefinition Width="140" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Code" Grid.Column="0" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="22" />
+                        <TextBlock Text="{Binding Path=LocalizedResources.CodeText, Source={StaticResource LocalizedStrings}}"
+                                   Grid.Column="0" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="22" />
                         <TextBox Name="cheatCodeBox" AcceptsReturn="True" Height="auto" Grid.Column="1" />
                     </Grid>
                     <Button Grid.Row="4" Content="{Binding Path=LocalizedResources.AddCheatButtonText, Source={StaticResource LocalizedStrings}}" 

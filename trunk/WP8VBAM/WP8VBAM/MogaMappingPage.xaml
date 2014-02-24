@@ -75,7 +75,7 @@
 
             <!--TitlePanel contains the name of the application and page title-->
             <StackPanel Grid.Row="0" Margin="12,17,0,28">
-                <TextBlock Text="moga mapping" 
+                <TextBlock Text="{Binding Path=LocalizedResources.MogaMappingTitle, Source={StaticResource LocalizedStrings}}" 
                        Margin="9,-7,0,0" Style="{StaticResource MyTitle1Style}"/>
             </StackPanel>
 
@@ -263,7 +263,7 @@
 
                     </toolkit:ListPicker>
 
-                    <TextBlock Text="Note: Emulator Menu function will be implemented at a later date." 
+                    <TextBlock Text="{Binding Path=LocalizedResources.EmulatorMenuText, Source={StaticResource LocalizedStrings}}" 
                            Grid.Row="11"
                            FontSize="20"
                            TextWrapping="Wrap"

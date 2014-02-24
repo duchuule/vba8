@@ -352,7 +352,7 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 if (m_d3dBackground == null || m_d3dBackground.IsROMLoaded() == false)
                 {
-                    MessageBox.Show("Please wait until ROM finishes loading");
+                    MessageBox.Show(AppResources.PleaseWaitROMLoadingText);
                     e.Cancel = true;
                 }
                 else if (popupWindow != null && popupWindow.IsOpen)
@@ -671,7 +671,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             if (currentROMEntry.AutoLoadLastState)  //general this is true, except after importing saves
             {
-                if (App.metroSettings.LoadLastState)
+                if (EmulatorSettings.Current.AutoSaveLoad)
                 {
                     slot = db.GetLastSavestateSlotByFileNameIncludingAuto(filename);
                     m_d3dBackground.LoadState(slot);

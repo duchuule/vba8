@@ -130,7 +130,7 @@
                               VerticalAlignment="Stretch"
                               
                               >
-                            <TextBlock Text="RECENT"
+                            <TextBlock Text="{Binding Path=LocalizedResources.RecentHeader, Source={StaticResource LocalizedStrings}}"
                                  FontWeight="Bold"
                                 VerticalAlignment="Center"
                                        Margin="12,0,0,0"
@@ -305,7 +305,7 @@
                               Height="36"
                               VerticalAlignment="Stretch"
                               >
-                            <TextBlock Text="ALL"
+                            <TextBlock Text="{Binding Path=LocalizedResources.AllHeader, Source={StaticResource LocalizedStrings}}"
                                  FontWeight="Bold"
                                 VerticalAlignment="Center"
                                        Margin="12,0,0,0"
@@ -494,7 +494,7 @@
                               Height="36"
                               VerticalAlignment="Stretch"
                               >
-                            <TextBlock Text="SD CARD"
+                            <TextBlock Text="{Binding Path=LocalizedResources.SDCardHeader, Source={StaticResource LocalizedStrings}}"
                                  FontWeight="Bold"
                                 VerticalAlignment="Center"
                                        Margin="12,0,0,0"
@@ -517,7 +517,7 @@
                               Height="36"
                               VerticalAlignment="Stretch"
                               >
-                            <TextBlock Text="ONEDRIVE"
+                            <TextBlock Text="{Binding Path=LocalizedResources.OneDriveHeader, Source={StaticResource LocalizedStrings}}"
                                  FontWeight="Bold"
                                 VerticalAlignment="Center"
                                        Margin="12,0,0,0"
@@ -619,7 +619,7 @@
                               Height="36"
                               VerticalAlignment="Stretch"
                               >
-                            <TextBlock Text="GUIDES"
+                            <TextBlock Text="{Binding Path=LocalizedResources.GuidesHeader, Source={StaticResource LocalizedStrings}}"
                                  FontWeight="Bold"
                                 VerticalAlignment="Center"
                                        Margin="12,0,0,0"
@@ -627,31 +627,31 @@
                                   />
                         </Grid>
 
-                        <TextBlock Text="Video: MOGA controller instructions" 
+                        <TextBlock Text="{Binding Path=LocalizedResources.VideoMogaText, Source={StaticResource LocalizedStrings}}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_1" 
                            />
-                        <TextBlock Text="Video: cheat code tutorial" 
+                        <TextBlock Text="{Binding Path=LocalizedResources.VideoCheatText, Source={StaticResource LocalizedStrings}}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap" 
                            />
-                        <TextBlock Text="Guide: 4 ways to import ROMs" 
+                        <TextBlock Text="{Binding Path=LocalizedResources.GuideImportROMText, Source={StaticResource LocalizedStrings}}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_3"
                            />
-                        <TextBlock Text="Guide: how to improve performance" 
+                        <TextBlock Text="{Binding Path=LocalizedResources.GuidePerformanceText, Source={StaticResource LocalizedStrings}}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"
                                 TextDecorations="Underline" Tap="TextBlock_Tap_4" 
                            />
-                        <TextBlock Text="Guide: troubleshoot blank screen" 
+                        <TextBlock Text="{Binding Path=LocalizedResources.GuideBlankScreenText, Source={StaticResource LocalizedStrings}}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"
@@ -664,14 +664,14 @@
                               Height="36"
                               VerticalAlignment="Stretch"
                               >
-                            <TextBlock Text="CONTACT"
+                            <TextBlock Text="{Binding Path=LocalizedResources.ContactHeader, Source={StaticResource LocalizedStrings}}"
                                  FontWeight="Bold"
                                 VerticalAlignment="Center"
                                        Margin="12,0,0,0"
                                        Foreground="{StaticResource HeaderForegroundBrush}"
                                   />
                         </Grid>
-                        <TextBlock Text="FAQs, forum discussions &amp; PC app" 
+                        <TextBlock Text="{Binding Path=LocalizedResources.FAQsLinkText, Source={StaticResource LocalizedStrings}}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
                                    FontSize="22"
@@ -682,12 +682,12 @@
                                        TextDecorations="Underline" 
                                    FontSize="22"
                                    Margin="0,0,0,12"
-                                       Text="Email: store.support@outlook.com" />
+                                       Text="{Binding Path=LocalizedResources.EmailLinkText, Source={StaticResource LocalizedStrings}}" />
                         <TextBlock TextWrapping="Wrap" Tap="contactBlock_Tap_2" 
                                        TextDecorations="Underline" 
                                    FontSize="22"
                                    Margin="0,0,0,12"
-                                       Text="Twitter: @duchuule" />
+                                       Text="{Binding Path=LocalizedResources.TwitterLinkText, Source={StaticResource LocalizedStrings}}" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>

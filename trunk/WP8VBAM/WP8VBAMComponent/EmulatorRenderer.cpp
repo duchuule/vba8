@@ -242,11 +242,14 @@ void EmulatorRenderer::Update(float timeTotal, float timeDelta)
 			emulator->Pause();
 			SaveSRAMAsync().then([this]()
 			{
-				int oldSlot = SavestateSlot;
-				SavestateSlot = AUTOSAVE_SLOT;
-				SaveStateAsync().wait();
-				SavestateSlot = oldSlot;
-				//Settings.Mute = !EmulatorSettings::Current->SoundEnabled;
+				if (settings->AutoSaveLoad)
+				{
+					int oldSlot = SavestateSlot;
+					SavestateSlot = AUTOSAVE_SLOT;
+					SaveStateAsync().wait();
+					SavestateSlot = oldSlot;
+					//Settings.Mute = !EmulatorSettings::Current->SoundEnabled;
+				}
 				emulator->Unpause();
 				SetEvent(this->waitEvent);
 			});

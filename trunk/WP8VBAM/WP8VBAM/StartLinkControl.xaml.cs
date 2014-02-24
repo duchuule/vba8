@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.Windows.Controls.Primitives;
 using PhoneDirect3DXamlAppComponent;
 using System.Windows.Media;
+using PhoneDirect3DXamlAppInterop.Resources;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -58,7 +59,8 @@ namespace PhoneDirect3DXamlAppInterop
 
                 String ipaddress = m_d3dBackground.SetupSocket(true, 2, int.Parse(txtTimeout.Text), "");
                 tblkStatus.Foreground = (SolidColorBrush)App.Current.Resources["PhoneForegroundBrush"];
-                tblkStatus.Text = "Host's IP address: " + ipaddress + ". Waiting for client..." ;
+                tblkStatus.Text = String.Format(AppResources.HostIPAddressText, ipaddress);
+
 
                 var asyncAction = m_d3dBackground.ConnectSocket();
 
@@ -68,12 +70,12 @@ namespace PhoneDirect3DXamlAppInterop
                 if ((ConnectionState)asyncAction.GetResults() == ConnectionState.LINK_OK)
                 {
                     tblkStatus.Foreground = new SolidColorBrush(Colors.Green);
-                    tblkStatus.Text = "Connected. You can now close this window and continue playing game.";
+                    tblkStatus.Text = AppResources.LinkConnectedText;
                 }
                 else
                 {
                     new SolidColorBrush(Colors.Red);
-                    tblkStatus.Text = "Error occured. Please restart the app and try again.";
+                    tblkStatus.Text = AppResources.LinkErrorText;
                 }
 
                 ConnectButton.IsEnabled = true;
@@ -93,12 +95,12 @@ namespace PhoneDirect3DXamlAppInterop
                 if ((ConnectionState)asyncAction.GetResults() == ConnectionState.LINK_OK)
                 {
                     tblkStatus.Foreground = new SolidColorBrush(Colors.Green);
-                    tblkStatus.Text = "Connected. You can now close this window and continue playing game.";
+                    tblkStatus.Text = AppResources.LinkConnectedText;
                 }
                 else
                 {
                     new SolidColorBrush(Colors.Red);
-                    tblkStatus.Text = "Error occured. Please restart the app and try again.";
+                    tblkStatus.Text = AppResources.LinkErrorText;
                 }
 
                 ConnectButton.IsEnabled = true;
@@ -112,14 +114,14 @@ namespace PhoneDirect3DXamlAppInterop
             if (rolePicker.SelectedIndex == 0) //server
             {
                 txtAddress.Visibility = Visibility.Collapsed;
-                tblkStatus.Text = "Tap Start server to get the server IP address.";
-                ConnectButton.Content = "Start server";
+                tblkStatus.Text = AppResources.TapStartServerIPText;
+                ConnectButton.Content = AppResources.StartServerText;
             }
             else
             {
                 txtAddress.Visibility = Visibility.Visible;
-                tblkStatus.Text = "Start server on the other device to get server's IP address.";
-                ConnectButton.Content = "Connect";
+                tblkStatus.Text = AppResources.StartServerOtherText;
+                ConnectButton.Content = AppResources.ConnectText;
             }
 
         }
