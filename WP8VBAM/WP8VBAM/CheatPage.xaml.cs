@@ -317,18 +317,21 @@ namespace PhoneDirect3DXamlAppInterop
                     sb.Append('-');
                     sb.Append(tmp.Substring(6, 3));
                 }
-                else if (tmp.Length == 8)
+                else if (tmp.Length == 8)  // 12345678
                 {
                     sb.Append(tmp);
                 }
-                else
-                if (tmp.Length == 12)
+                else if (tmp.Length == 12) //123456781234
                 {
                     sb.Append(tmp.Substring(0, 8));
                     sb.Append(' ');
                     sb.Append(tmp.Substring(8, 4));
                 }
-                else if (tmp.Length == 16 || tmp.Length == 17)  //two version of gameshark codes for GBA
+                else  if (tmp.Length == 13) //12345678 1234
+                {
+                    sb.Append(tmp);
+                }
+                else if (tmp.Length == 16 || tmp.Length == 17)  //two version of gameshark codes for GBA, 1234567812345678 OR 12345678 12345678
                 {
                     //sb.Append(tmp.Substring(0, 8));
                     //sb.Append(' ');

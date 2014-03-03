@@ -43,7 +43,7 @@
             <!--TitlePanel contains the name of the application and page title-->
             <StackPanel Grid.Row="0" Margin="12,17,0,28">
                 <TextBlock Name="titleLabel" 
-                       Text="purchase"
+                       Text="{Binding Path=LocalizedResources.PurchaseText, Source={StaticResource LocalizedStrings}}" 
                        Margin="10,-7,0,0" 
                        Style="{StaticResource MyTitle1Style}"/>
 
@@ -123,8 +123,24 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+
+                    
+                    <Button x:Name="UseCodeButton" 
+                            Margin="-12, 0, -12, 0"
+                            Content="{Binding Path=LocalizedResources.EnterCodeText, Source={StaticResource LocalizedStrings}}" Click="UseCodeButton_Click"/>
+                    <TextBox Text="{Binding Path=LocalizedResources.DeviceIDText, Source={StaticResource LocalizedStrings}}"
+                             Template="{StaticResource PhoneDisabledTextBoxTemplate}"
+                             IsReadOnly="True"
+                             Foreground="{StaticResource PhoneForegroundBrush}"
+                             FontSize="20"
+                             Margin="0, 0, 0, 36"
+                             x:Name="tblkDeviceID"
+                              TextWrapping="Wrap"/>
                 </StackPanel>
             </ScrollViewer>
+            
+            
+            
         </Grid>
     </Grid>
 

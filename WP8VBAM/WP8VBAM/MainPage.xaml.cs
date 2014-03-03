@@ -373,7 +373,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 if (!isoSettings.Contains(SettingsPage.SkipFramesKey))
                 {
-                    isoSettings[SettingsPage.SkipFramesKey] = 0;
+                    isoSettings[SettingsPage.SkipFramesKey] = 3;
                 }
                 if (!isoSettings.Contains(SettingsPage.ImageScalingKey))
                 {
@@ -458,7 +458,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 if (!isoSettings.Contains(SettingsPage.AutoSaveLoadKey))
                 {
-                    isoSettings[SettingsPage.AutoSaveLoadKey] = false;
+                    isoSettings[SettingsPage.AutoSaveLoadKey] = App.metroSettings.LoadLastState;  //this is for compability with a faulty update (2.9.0)
                 }
 
                 //get default controller position
@@ -765,10 +765,11 @@ namespace PhoneDirect3DXamlAppInterop
             this.romList.ItemsSource = this.db.GetROMList();
 
             this.recentList.ItemsSource = this.db.GetRecentlyPlayed();
-
-
-          
+         
         }
+
+      
+
 
         private void romList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1010,7 +1011,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             emailcomposer.To = AppResources.AboutContact;
             emailcomposer.Subject = AppResources.EmailSubjectText;
-            emailcomposer.Body = AppResources.EmailBodyText;
+            emailcomposer.Body = String.Format( AppResources.EmailBodyText, Microsoft.Phone.Info.DeviceStatus.DeviceName);
             emailcomposer.Show();
         }
 

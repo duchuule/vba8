@@ -20,7 +20,10 @@ using Store = Windows.ApplicationModel.Store;
 using System.Collections;
 using System.IO.IsolatedStorage;
 using Windows.Networking.Sockets;
-
+using Microsoft.Phone.Info;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -38,10 +41,10 @@ namespace PhoneDirect3DXamlAppInterop
 
         public static void DetermineIsTrail()
         {
-#if TRIAL
-            IsTrial = true;
-#else
-            IsTrial = false;
+
+
+#if BETA
+            IsPremium = true;
 #endif
             try
             {
@@ -67,7 +70,47 @@ namespace PhoneDirect3DXamlAppInterop
             if (CurrentApp.LicenseInformation.ProductLicenses["premiumfeatures"].IsActive)
                 IsPremium = true;
 
-            
+            //check if a promotion code exists
+            if (metroSettings.PromotionCode != null && metroSettings.PromotionCode != "")
+            {
+                byte[] byteCode;
+                try
+                {
+                    byteCode = Convert.FromBase64String(metroSettings.PromotionCode);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+
+
+                string dataString = Convert.ToBase64String(DeviceExtendedProperties.GetValue("DeviceUniqueId") as byte[]) + "_noads_premium";
+
+                // Create byte arrays to hold original, encrypted, and decrypted data.
+
+                UTF8Encoding ByteConverter = new UTF8Encoding();
+                byte[] originalData = ByteConverter.GetBytes(dataString);
+
+
+
+                RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider(2048);
+
+                Stream src = Application.GetResourceStream(new Uri("Assets/VBA8publicKey.xml", UriKind.Relative)).Stream;
+                using (StreamReader sr = new StreamReader(src))
+                {
+                    string text = sr.ReadToEnd();
+                    RSAalg.FromXmlString(text);
+                }
+
+                RSAParameters Key = RSAalg.ExportParameters(false);
+
+                if (PurchasePage.VerifySignedHash(originalData, byteCode, Key))
+                {
+                    HasAds = false;
+                    IsPremium = true;
+                }
+
+            }
             
         }
 

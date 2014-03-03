@@ -29,10 +29,6 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 #if GBC
-            importSkydriveText.Text = AppResources.HelpImportSkyDriveText2;
-            importEmailText.Text = AppResources.HelpImportEmailText2;
-            importWebText.Text = AppResources.HelpImportWebText2;
-            contactBlock.Text = AppResources.AboutContact2;
             SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
         }
@@ -53,11 +49,9 @@ namespace PhoneDirect3DXamlAppInterop
         private void contactBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
             EmailComposeTask emailcomposer = new EmailComposeTask();
-#if !GBC
+
             emailcomposer.To = AppResources.AboutContact;
-#else
-            emailcomposer.To = AppResources.AboutContact2;
-#endif
+
             emailcomposer.Subject = AppResources.EmailSubjectText;
             emailcomposer.Body = AppResources.EmailBodyText;
             emailcomposer.Show();

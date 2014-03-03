@@ -188,14 +188,6 @@ namespace PhoneDirect3DXamlAppInterop
                         ShowBluetoothControlPanel();
                     }
                 }
-                else if ((uint)ex.HResult == ERR_MISSING_CAPS)
-                {
-                    MessageBox.Show(AppResources.Err_MissingCaps);
-                }
-                else if ((uint)ex.HResult == ERR_NOT_ADVERTISING)
-                {
-                    MessageBox.Show(AppResources.Err_NotAdvertising);
-                }
                 else
                 {
                     MessageBox.Show(ex.Message);

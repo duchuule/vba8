@@ -18,7 +18,11 @@ using Store = Windows.ApplicationModel.Store;
 using PhoneDirect3DXamlAppComponent;
 
 using PhoneDirect3DXamlAppInterop.Resources;
-
+using Microsoft.Phone.Info;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
+using Telerik.Windows.Controls;
 
 
 
@@ -43,6 +47,7 @@ namespace PhoneDirect3DXamlAppInterop
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             RenderStoreItems();
+            tblkDeviceID.Text = String.Format(AppResources.DeviceIDText, Convert.ToBase64String( DeviceExtendedProperties.GetValue("DeviceUniqueId") as byte[] ) );
             base.OnNavigatedTo(e);
         }
 
@@ -223,8 +228,85 @@ namespace PhoneDirect3DXamlAppInterop
             wbtask.Show();
         }
 
+        private async void UseCodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            string code = null;
+            InputPromptClosedEventArgs args = await RadInputPrompt.ShowAsync(AppResources.EnterCodeTitle, vibrate:false);
+            code = args.Text; 
+            if (code == null)
+                return;
+            byte[] byteCode;
+            try
+            {
+                 byteCode = Convert.FromBase64String(code);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(AppResources.InvalidCodeText);
+                return;
+            }
 
-    }
+            string dataString = Convert.ToBase64String(DeviceExtendedProperties.GetValue("DeviceUniqueId") as byte[]) + "_noads_premium";
+
+            // Create byte arrays to hold original, encrypted, and decrypted data.
+
+            UTF8Encoding ByteConverter = new UTF8Encoding();
+            byte[] originalData = ByteConverter.GetBytes(dataString);
+
+            
+
+            RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider(2048);
+
+            Stream src = Application.GetResourceStream(new Uri("Assets/VBA8publicKey.xml", UriKind.Relative)).Stream;
+            using (StreamReader sr = new StreamReader(src))
+            {
+                string text = sr.ReadToEnd();
+                RSAalg.FromXmlString(text);
+            }
+
+            RSAParameters Key = RSAalg.ExportParameters(false);
+
+            if (VerifySignedHash(originalData, byteCode, Key))
+            {
+                App.metroSettings.PromotionCode = code;
+                MessageBox.Show(AppResources.ValidCodeText);
+            }
+            else
+            {
+                MessageBox.Show(AppResources.InvalidCodeText);
+            }
+        }
+
+
+
+        public static bool VerifySignedHash(byte[] DataToVerify, byte[] SignedData, RSAParameters Key)
+        {
+            try
+            {
+                // Create a new instance of RSACryptoServiceProvider using the  
+                // key from RSAParameters.
+                RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider();
+
+
+                RSAalg.ImportParameters(Key);
+
+                // Verify the data using the signature.  Pass a new instance of SHA1CryptoServiceProvider 
+                // to specify the use of SHA1 for hashing. 
+                return RSAalg.VerifyData(DataToVerify, new SHA1Managed(), SignedData);
+
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(e.Message);
+
+                return false;
+            }
+        }
+
+    }  //endclass
+
+
+
 
 
     public class ProductItem

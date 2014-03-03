@@ -70,15 +70,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to store.support@outlook.com.
-        /// </summary>
-        public static string AboutContact2 {
-            get {
-                return ResourceManager.GetString("AboutContact2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Contact:.
         /// </summary>
         public static string AboutContactLabel {
@@ -94,7 +85,12 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         ///
         ///Credits:
         ///Eddi Bento for logo design.
-        ///MOGA company for the surprised gift..
+        ///MOGA company for the surprised gift.
+        ///Sergy Ortiz Puerto for Spanish translation.
+        ///André Queiroz for Portuguese translation.
+        ///Arda Ozkal for Turkish translation.
+        ///Alexandros Melissas for Greek translation.
+        ///Łukasz Deptuła for Polish translation..
         /// </summary>
         public static string AboutSnes9x {
             get {
@@ -917,6 +913,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Device ID: {0}.
+        /// </summary>
+        public static string DeviceIDText {
+            get {
+                return ResourceManager.GetString("DeviceIDText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Completed downloading file &apos;{0}&apos;.
         /// </summary>
         public static string DownloadCompleteText {
@@ -998,7 +1003,11 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert your bug report or feature request here..
+        ///   Looks up a localized string similar to 
+        ///
+        ///
+        ///
+        ///Device ID: {0}.
         /// </summary>
         public static string EmailBodyText {
             get {
@@ -1025,15 +1034,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hide bar.
-        /// </summary>
-        public static string EmulatorBackIcon {
-            get {
-                return ResourceManager.GetString("EmulatorBackIcon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Note: Emulator Menu function will be implemented at a later date..
         /// </summary>
         public static string EmulatorMenuText {
@@ -1048,6 +1048,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string EnableSoundSetting {
             get {
                 return ResourceManager.GetString("EnableSoundSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter promotion code.
+        /// </summary>
+        public static string EnterCodeText {
+            get {
+                return ResourceManager.GetString("EnterCodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter code.
+        /// </summary>
+        public static string EnterCodeTitle {
+            get {
+                return ResourceManager.GetString("EnterCodeTitle", resourceCulture);
             }
         }
         
@@ -1084,15 +1102,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string Err_BluetoothOffCaption {
             get {
                 return ResourceManager.GetString("Err_BluetoothOffCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To run this app, you must have ID_CAP_PROXIMITY enabled in WMAppManifest.xaml.
-        /// </summary>
-        public static string Err_MissingCaps {
-            get {
-                return ResourceManager.GetString("Err_MissingCaps", resourceCulture);
             }
         }
         
@@ -1156,15 +1165,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string Err_NoSendTitle {
             get {
                 return ResourceManager.GetString("Err_NoSendTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are currently not advertising yourself, i.e., a call to PeerFinder.Start() must proceed FindAllPeersAsync().
-        /// </summary>
-        public static string Err_NotAdvertising {
-            get {
-                return ResourceManager.GetString("Err_NotAdvertising", resourceCulture);
             }
         }
         
@@ -1385,16 +1385,25 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send an E-Mail to any E-Mail address that is accessible from your phone, containing one or more ROM(s) as file attachments. You can either attach the ROMs as *.gbc or *.gb files or contained within a *.zip archive. Open the E-Mail on your phone and tap on the attachment to download the file. If your attachment was a *.zip archive, the E-Mail client allows you to navigate through the archive. Locate the ROM inside the archive and tap on it to launch the emulator. The emulator will automatically import the RO [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Alternative 4: importing from SD card.
         /// </summary>
-        public static string HelpImportEmailText2 {
+        public static string HelpImportSDCardHeader {
             get {
-                return ResourceManager.GetString("HelpImportEmailText2", resourceCulture);
+                return ResourceManager.GetString("HelpImportSDCardHeader", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alternative 1: importing from SkyDrive.
+        ///   Looks up a localized string similar to In the data tab of the main page, click on Import from SD card and follow the instruction.
+        /// </summary>
+        public static string HelpImportSDCardText {
+            get {
+                return ResourceManager.GetString("HelpImportSDCardText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative 1: importing from OneDrive.
         /// </summary>
         public static string HelpImportSkyDriveHeader {
             get {
@@ -1403,20 +1412,11 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Store your ROMs in a folder on your SkyDrive. If your ROMs are in *.zip file format, don&apos;t forget to extract them first, because VBA8 only supports *.gba files. Afterwards navigate to the SkyDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on &quot;Sign in&quot; first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled &quot;import ROMs&quot; on the emulators main page. The following page allows you to navigate [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Store your ROMs in a folder on your OneDrive.  Afterwards navigate to the OneDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on &quot;Sign in&quot; first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled &quot;import ROMs&quot; on the emulators main page. The following page allows you to navigate through OneDrive to locate the folder where you put your ROMs into. In the folder containing the ROMs, tap on any [rest of string was truncated]&quot;;.
         /// </summary>
         public static string HelpImportSkyDriveText {
             get {
                 return ResourceManager.GetString("HelpImportSkyDriveText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Store your ROMs in a folder on your SkyDrive. If your ROMs are in *.zip file format, don&apos;t forget to extract them first, because VGBC8 only supports *.gbc and *.gb files. Afterwards navigate to the SkyDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on &quot;Sign in&quot; first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled &quot;import ROMs&quot; on the emulators main page. The following page allows you t [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string HelpImportSkyDriveText2 {
-            get {
-                return ResourceManager.GetString("HelpImportSkyDriveText2", resourceCulture);
             }
         }
         
@@ -1435,15 +1435,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string HelpImportWebText {
             get {
                 return ResourceManager.GetString("HelpImportWebText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gbc or *.gb file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gbc or *.gb file, just tap on it and the emulator will start and import the [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string HelpImportWebText2 {
-            get {
-                return ResourceManager.GetString("HelpImportWebText2", resourceCulture);
             }
         }
         
@@ -1729,6 +1720,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid code..
+        /// </summary>
+        public static string InvalidCodeText {
+            get {
+                return ResourceManager.GetString("InvalidCodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server IP address.
         /// </summary>
         public static string IPAddressText {
@@ -1788,15 +1788,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string LinkErrorText {
             get {
                 return ResourceManager.GetString("LinkErrorText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Emulated link medium.
-        /// </summary>
-        public static string LinkMediumText {
-            get {
-                return ResourceManager.GetString("LinkMediumText", resourceCulture);
             }
         }
         
@@ -2951,11 +2942,11 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to bottom.
+        ///   Looks up a localized string similar to Code accepted. Please restart the app for the code to take effect..
         /// </summary>
-        public static string VControllerBottomSetting {
+        public static string ValidCodeText {
             get {
-                return ResourceManager.GetString("VControllerBottomSetting", resourceCulture);
+                return ResourceManager.GetString("ValidCodeText", resourceCulture);
             }
         }
         
@@ -2969,38 +2960,11 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virtual Controller located on top.
-        /// </summary>
-        public static string VControllerPosSetting {
-            get {
-                return ResourceManager.GetString("VControllerPosSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Virtual Controller Buttons.
-        /// </summary>
-        public static string VControllerSizeSetting {
-            get {
-                return ResourceManager.GetString("VControllerSizeSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to dissecting.
         /// </summary>
         public static string VControllerSmallSetting {
             get {
                 return ResourceManager.GetString("VControllerSmallSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to top.
-        /// </summary>
-        public static string VControllerTopSetting {
-            get {
-                return ResourceManager.GetString("VControllerTopSetting", resourceCulture);
             }
         }
         

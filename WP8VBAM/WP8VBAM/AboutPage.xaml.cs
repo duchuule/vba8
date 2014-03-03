@@ -29,7 +29,6 @@ namespace PhoneDirect3DXamlAppInterop
                     .FullName.Split('=')[1].Split(',')[0]; 
 
 #if GBC
-            contactBlock.Text = AppResources.AboutContact2;
             tblkTitle.Text = AppResources.ApplicationTitle2;
             SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
 #endif
@@ -38,11 +37,9 @@ namespace PhoneDirect3DXamlAppInterop
         private void contactBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
             EmailComposeTask emailcomposer = new EmailComposeTask();
-#if !GBC
+
         	emailcomposer.To = AppResources.AboutContact;
-#else
-            emailcomposer.To = AppResources.AboutContact2;
-#endif
+
             emailcomposer.Subject = AppResources.EmailSubjectText;
         	emailcomposer.Body = AppResources.EmailBodyText;
         	emailcomposer.Show();
