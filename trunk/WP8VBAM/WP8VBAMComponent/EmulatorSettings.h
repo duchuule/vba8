@@ -8,7 +8,6 @@ using namespace Windows::Foundation::Collections;
 #define ORIENTATION_LANDSCAPE_RIGHT		1
 #define ORIENTATION_PORTRAIT			2
 
-extern bool synchronize;
 
 namespace PhoneDirect3DXamlAppComponent
 {
@@ -216,7 +215,7 @@ namespace PhoneDirect3DXamlAppComponent
 
 		property int PowerFrameSkip
 		{
-			int get() { return this->powerFrameSkip; }
+			int get() { return 0; } //set this to 0 because this value is useless
 			void set(int value) 
 			{
 				this->powerFrameSkip = value;
@@ -300,8 +299,16 @@ namespace PhoneDirect3DXamlAppComponent
 
 		property bool SynchronizeAudio
 		{
-			bool get(void) { return synchronize; }
-			void set(bool value) { synchronize = value; }
+			bool get(void) { return this->synchronizeAudio; }
+			void set(bool value) 
+			{ 
+				this->synchronizeAudio = value; 
+
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
 		}
 
 		property bool IsTrial
@@ -504,6 +511,7 @@ namespace PhoneDirect3DXamlAppComponent
 
 	private:
 		bool soundEnabled;
+		bool synchronizeAudio;
 		bool useMogaController;
 		bool vcontrollerOnTop;
 		bool lowFreqMode;

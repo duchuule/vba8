@@ -87,9 +87,9 @@
 
                     <ListBoxItem HorizontalContentAlignment="Stretch" IsHitTestVisible="False" Margin="0,20,0,0">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
-                            <TextBlock Text="Alternative 4: importing from SD card" 
+                            <TextBlock Text="{Binding Path=LocalizedResources.HelpImportSDCardHeader, Source={StaticResource LocalizedStrings}}" 
                                        TextWrapping="Wrap" Margin="0,0,0,10" FontSize="22" />
-                            <TextBlock Text="In the import&amp;export tab of the main page, click on Import ROMs from SD card and follow the instruction" 
+                            <TextBlock Text="{Binding Path=LocalizedResources.HelpImportSDCardText, Source={StaticResource LocalizedStrings}}" 
                                        TextWrapping="Wrap" Margin="0,0,0,10" />
                         </StackPanel>
                     </ListBoxItem>

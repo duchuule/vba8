@@ -23,7 +23,7 @@ namespace PhoneDirect3DXamlAppInterop
         const String LastIPAddressKey = "LastIPAddressKey";
         const String LastTimeoutKey = "LastTimeoutKey";
         const String LoadLastStateKey = "LoadLastStateKey";  //abandon
-        const String LoadLastState2Key = "LoadLastState2Key";
+        const String PromotionCodeKey = "PromotionCodeKey";
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -231,18 +231,20 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        public bool LoadLastState2
+        public string PromotionCode
         {
             get
             {
-                return GetValueOrDefault<bool>(LoadLastState2Key, false);
+                return GetValueOrDefault<string>(PromotionCodeKey, "");
             }
             set
             {
-                AddOrUpdateValue(LoadLastState2Key, value);
+                AddOrUpdateValue(PromotionCodeKey, value);
                 Save();
             }
         }
+
+       
 
 
         #region INotifyPropertyChanged Members

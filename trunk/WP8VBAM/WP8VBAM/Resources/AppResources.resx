@@ -141,9 +141,6 @@
   <data name="DownloadingProgressText" xml:space="preserve">
     <value>Downloading '{0}'</value>
   </data>
-  <data name="EmulatorBackIcon" xml:space="preserve">
-    <value>hide bar</value>
-  </data>
   <data name="EnableSoundSetting" xml:space="preserve">
     <value>Enable Sound</value>
   </data>
@@ -243,23 +240,11 @@
   <data name="StatusSignedIn" xml:space="preserve">
     <value>signed in.</value>
   </data>
-  <data name="VControllerBottomSetting" xml:space="preserve">
-    <value>bottom</value>
-  </data>
   <data name="VControllerLargeSetting" xml:space="preserve">
     <value>intersecting</value>
   </data>
-  <data name="VControllerPosSetting" xml:space="preserve">
-    <value>Virtual Controller located on top</value>
-  </data>
-  <data name="VControllerSizeSetting" xml:space="preserve">
-    <value>Virtual Controller Buttons</value>
-  </data>
   <data name="VControllerSmallSetting" xml:space="preserve">
     <value>dissecting</value>
-  </data>
-  <data name="VControllerTopSetting" xml:space="preserve">
-    <value>top</value>
   </data>
   <data name="VideoSettingsPageTitle" xml:space="preserve">
     <value>video</value>
@@ -271,7 +256,12 @@ The author is not responsible for any illegal use of this software. Furthermore,
 
 Credits:
 Eddi Bento for logo design.
-MOGA company for the surprised gift.</value>
+MOGA company for the surprised gift.
+Sergy Ortiz Puerto for Spanish translation.
+André Queiroz for Portuguese translation.
+Arda Ozkal for Turkish translation.
+Alexandros Melissas for Greek translation.
+Łukasz Deptuła for Polish translation.</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -484,11 +474,11 @@ MOGA company for the surprised gift.</value>
     <value>Send an E-Mail to any E-Mail address that is accessible from your phone, containing one or more ROM(s) as file attachments. You can either attach the ROMs as *.gba files or contained within a *.zip archive. Open the E-Mail on your phone and tap on the attachment to download the file. If your attachment was a *.zip archive, the E-Mail client allows you to navigate through the archive. Locate the ROM inside the archive and tap on it to launch the emulator. The emulator will automatically import the ROM from the E-Mail attachment and start the game. If the attachment was not a *.zip archive but a *.gba file, just tap on it to start the emulator and import the ROM.</value>
   </data>
   <data name="HelpImportSkyDriveHeader" xml:space="preserve">
-    <value>Alternative 1: importing from SkyDrive</value>
+    <value>Alternative 1: importing from OneDrive</value>
   </data>
   <data name="HelpImportSkyDriveText" xml:space="preserve">
-    <value>Store your ROMs in a folder on your SkyDrive. If your ROMs are in *.zip file format, don't forget to extract them first, because VBA8 only supports *.gba files. Afterwards navigate to the SkyDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on "Sign in" first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled "import ROMs" on the emulators main page. The following page allows you to navigate through SkyDrive to locate the folder where you put your ROMs into. In the folder containing the ROMs, tap on any *.gba file to start the download. Wait for the download to complete before you leave the page. A confirmation message will be shown when the download is completed.
-Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when started. If you experience this issue, please use alternative 2 or 3.</value>
+    <value>Store your ROMs in a folder on your OneDrive.  Afterwards navigate to the OneDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on "Sign in" first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled "import ROMs" on the emulators main page. The following page allows you to navigate through OneDrive to locate the folder where you put your ROMs into. In the folder containing the ROMs, tap on any *.gba or *.zip file to start the download. Wait for the download to complete before you leave the page. A confirmation message will be shown when the download is completed.
+Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when started. If you experience this issue, please use alternative 2 or 3.</value>
   </data>
   <data name="HelpImportWebHeader" xml:space="preserve">
     <value>Alternative 3: importing from Web Browser</value>
@@ -613,21 +603,8 @@ Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when
   <data name="RestoreLastStateSetting" xml:space="preserve">
     <value>Use 9th slot for auto save/load</value>
   </data>
-  <data name="AboutContact2" xml:space="preserve">
-    <value>store.support@outlook.com</value>
-  </data>
   <data name="ApplicationTitle2" xml:space="preserve">
     <value>VGBC8</value>
-  </data>
-  <data name="HelpImportEmailText2" xml:space="preserve">
-    <value>Send an E-Mail to any E-Mail address that is accessible from your phone, containing one or more ROM(s) as file attachments. You can either attach the ROMs as *.gbc or *.gb files or contained within a *.zip archive. Open the E-Mail on your phone and tap on the attachment to download the file. If your attachment was a *.zip archive, the E-Mail client allows you to navigate through the archive. Locate the ROM inside the archive and tap on it to launch the emulator. The emulator will automatically import the ROM from the E-Mail attachment and start the game. If the attachment was not a *.zip archive but a *.gbc or *.gb file, just tap on it to start the emulator and import the ROM.</value>
-  </data>
-  <data name="HelpImportSkyDriveText2" xml:space="preserve">
-    <value>Store your ROMs in a folder on your SkyDrive. If your ROMs are in *.zip file format, don't forget to extract them first, because VGBC8 only supports *.gbc and *.gb files. Afterwards navigate to the SkyDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on "Sign in" first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled "import ROMs" on the emulators main page. The following page allows you to navigate through SkyDrive to locate the folder where you put your ROMs into. In the folder containing the ROMs, tap on any *.gbc or *.gb file to start the download. Wait for the download to complete before you leave the page. A confirmation message will be shown when the download is completed.
-Note: In some cases, ROMs downloaded from SkyDrive only show a blank screen when started. If you experience this issue, please use alternative 2 or 3.</value>
-  </data>
-  <data name="HelpImportWebText2" xml:space="preserve">
-    <value>In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gbc or *.gb file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gbc or *.gb file, just tap on it and the emulator will start and import the ROM.</value>
   </data>
   <data name="CameraAssignLR" xml:space="preserve">
     <value>L-Button and R-Button</value>
@@ -803,7 +780,11 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
 ***PLEASE READ THIS***: MOGA controller support is free in Snes8x, before you purchase this feature, please download Snes8x and test if your controller works with your phone.</value>
   </data>
   <data name="EmailBodyText" xml:space="preserve">
-    <value>Insert your bug report or feature request here.</value>
+    <value>
+
+
+
+Device ID: {0}</value>
   </data>
   <data name="EmailSubjectText" xml:space="preserve">
     <value>VBA8/VGBC bug report or feature suggestion</value>
@@ -868,9 +849,6 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   <data name="FirstGameText" xml:space="preserve">
     <value>first game</value>
   </data>
-  <data name="LinkMediumText" xml:space="preserve">
-    <value>Emulated link medium</value>
-  </data>
   <data name="LinkTypeText" xml:space="preserve">
     <value>Link type</value>
   </data>
@@ -901,9 +879,6 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   <data name="Err_BluetoothOffCaption" xml:space="preserve">
     <value>Bluetooth Off</value>
   </data>
-  <data name="Err_MissingCaps" xml:space="preserve">
-    <value>To run this app, you must have ID_CAP_PROXIMITY enabled in WMAppManifest.xaml</value>
-  </data>
   <data name="Err_NoChatName" xml:space="preserve">
     <value>Please enter a name to join.</value>
   </data>
@@ -924,9 +899,6 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   </data>
   <data name="Err_NoSendTitle" xml:space="preserve">
     <value>Can't send</value>
-  </data>
-  <data name="Err_NotAdvertising" xml:space="preserve">
-    <value>You are currently not advertising yourself, i.e., a call to PeerFinder.Start() must proceed FindAllPeersAsync()</value>
   </data>
   <data name="FindButtonCaption" xml:space="preserve">
     <value>Refresh peers</value>
@@ -1140,5 +1112,26 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
   </data>
   <data name="UseRealisticButtonsText" xml:space="preserve">
     <value>Use realistic color buttons</value>
+  </data>
+  <data name="DeviceIDText" xml:space="preserve">
+    <value>Device ID: {0}</value>
+  </data>
+  <data name="EnterCodeText" xml:space="preserve">
+    <value>Enter promotion code</value>
+  </data>
+  <data name="EnterCodeTitle" xml:space="preserve">
+    <value>Enter code</value>
+  </data>
+  <data name="InvalidCodeText" xml:space="preserve">
+    <value>Invalid code.</value>
+  </data>
+  <data name="ValidCodeText" xml:space="preserve">
+    <value>Code accepted. Please restart the app for the code to take effect.</value>
+  </data>
+  <data name="HelpImportSDCardHeader" xml:space="preserve">
+    <value>Alternative 4: importing from SD card</value>
+  </data>
+  <data name="HelpImportSDCardText" xml:space="preserve">
+    <value>In the data tab of the main page, click on Import from SD card and follow the instruction</value>
   </data>
 </root>

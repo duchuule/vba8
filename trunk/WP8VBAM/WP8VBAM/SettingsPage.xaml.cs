@@ -123,13 +123,13 @@ namespace PhoneDirect3DXamlAppInterop
                 adControl.SetValue(Grid.RowProperty, 1);
             }
 
-
+            //RSACryptoServiceProvider newrsa = new RSACryptoServiceProvider(
 
 
 
             //set frameskip option
             frameSkipPicker.ItemsSource = frameskiplist;
-            powerFrameSkipPicker.ItemsSource = frameskiplist2;
+            //powerFrameSkipPicker.ItemsSource = frameskiplist2;
             turboFrameSkipPicker.ItemsSource = frameskiplist2;
             aspectRatioPicker.ItemsSource = aspectRatioList;
             orientationPicker.ItemsSource = orientationList;
@@ -239,7 +239,7 @@ namespace PhoneDirect3DXamlAppInterop
 
 
                 this.turboFrameSkipPicker.SelectedIndex = emuSettings.TurboFrameSkip;
-                this.powerFrameSkipPicker.SelectedIndex = emuSettings.PowerFrameSkip;
+                //this.powerFrameSkipPicker.SelectedIndex = emuSettings.PowerFrameSkip;
                 this.frameSkipPicker.SelectedIndex = Math.Min(emuSettings.FrameSkip + 1, this.frameSkipPicker.Items.Count - 1);
                 this.aspectRatioPicker.SelectedIndex = (int)emuSettings.AspectRatio;
                 this.orientationPicker.SelectedIndex = emuSettings.Orientation;
@@ -508,21 +508,18 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        private void powerFrameSkipPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.PowerFrameSkip = this.powerFrameSkipPicker.SelectedIndex;
-            }
-        }
+        //private void powerFrameSkipPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (this.initdone)
+        //    {
+        //        EmulatorSettings.Current.PowerFrameSkip = this.powerFrameSkipPicker.SelectedIndex;
+        //    }
+        //}
 
         private void toggleUseMogaController_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (this.initdone)
             {
-#if BETA
-                EmulatorSettings.Current.UseMogaController = toggleUseMogaController.IsChecked.Value;
-#else
                 if (App.IsPremium)
                 {
                     EmulatorSettings.Current.UseMogaController = toggleUseMogaController.IsChecked.Value;
@@ -539,7 +536,7 @@ namespace PhoneDirect3DXamlAppInterop
                         NavigationService.Navigate(new Uri("/PurchasePage.xaml", UriKind.Relative));
                     }
                 }
-#endif
+
                 if (EmulatorSettings.Current.UseMogaController)
                     MappingBtn.Visibility = Visibility.Visible;
                 else

@@ -6,6 +6,8 @@
 using namespace Emulator;
 using namespace PhoneDirect3DXamlAppComponent;
 
+extern bool synchronize;
+
 bool enableTurboMode = false;
 
 void log(const char *,...) { }
@@ -53,6 +55,8 @@ SoundDriver * systemSoundInit()
 {
 	SoundDriver * drv = 0;
 	soundShutdown();
+
+	synchronize = EmulatorSettings::Current->SynchronizeAudio;
 
 	if(EmulatorSettings::Current->SoundEnabled)
 	{	

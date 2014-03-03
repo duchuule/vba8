@@ -382,13 +382,13 @@
 
                             </telerikInput:RadListPicker>
 
-                            <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.PowerFrameSkipText, Source={StaticResource LocalizedStrings}}" 
+                            <!--<telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.PowerFrameSkipText, Source={StaticResource LocalizedStrings}}" 
                                             SelectionChanged="powerFrameSkipPicker_SelectionChanged_1" 
                                             Name="powerFrameSkipPicker"
                                             InlineModeThreshold="20"
                                             >
 
-                            </telerikInput:RadListPicker>
+                            </telerikInput:RadListPicker>-->
 
                             <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.TurboFrameSkipText, Source={StaticResource LocalizedStrings}}"
                                             SelectionChanged="turboFrameSkipPicker_SelectionChanged_1" 

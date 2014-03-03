@@ -158,7 +158,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             var linkButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/appbar.link.png", UriKind.Relative))
             {
-                Text = "start link",
+                Text = AppResources.StartLinkText,
             };
             linkButton.Click += linkButton_Click;
             ApplicationBar.Buttons.Add(linkButton);

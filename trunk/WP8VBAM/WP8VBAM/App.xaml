@@ -33,10 +33,19 @@
             <SolidColorBrush x:Key="HeaderBackgroundBrush"> </SolidColorBrush>
             <SolidColorBrush x:Key="HeaderForegroundBrush"></SolidColorBrush>
             <SolidColorBrush x:Key="ListboxBackgroundBrush"></SolidColorBrush>
-           
 
 
 
+
+            <ControlTemplate x:Key="PhoneDisabledTextBoxTemplate" TargetType="TextBox">
+                <ContentControl x:Name="ContentElement" 
+                                BorderThickness="0"
+                                HorizontalContentAlignment="Stretch" 
+                                Margin="0, 0, 0, 0"
+                                Padding="0, 0, 0, 0"
+                                VerticalContentAlignment="Stretch"/>
+            </ControlTemplate>
+            
 
             <DataTemplate x:Name="ListPickerTemplate">
                 <!--For short list of items-->
