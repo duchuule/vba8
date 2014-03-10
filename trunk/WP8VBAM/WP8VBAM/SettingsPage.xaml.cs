@@ -863,7 +863,17 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (this.initdone)
             {
-                EmulatorSettings.Current.AutoSaveLoad = loadLastStateSwitch.IsChecked.Value;
+                if (loadLastStateSwitch.IsChecked.Value == true)
+                {
+                    MessageBoxResult result = MessageBox.Show(AppResources.AutoSaveWarning, AppResources.WarningTitle, MessageBoxButton.OKCancel);
+                    if (result == MessageBoxResult.OK)
+                        EmulatorSettings.Current.AutoSaveLoad = loadLastStateSwitch.IsChecked.Value;
+                    else
+                        loadLastStateSwitch.IsChecked = false;
+                    
+                }
+                else
+                    EmulatorSettings.Current.AutoSaveLoad = loadLastStateSwitch.IsChecked.Value;
             }
         }
 

@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<data name="aboutText" xml:space="preserve"><value>σχετικά </value></data><data name="AlreadyDownloadingText" xml:space="preserve"><value>Το στοιχείο έχει ήδη κατεβεί.</value></data><data name="AudioSettingsPageTitle" xml:space="preserve"><value>ήχος</value></data><data name="DeleteMenuItemText" xml:space="preserve"><value>διαγραφή</value></data><data name="DownloadCompleteText" xml:space="preserve"><value>Ολοκληρώθηκε η λήψη του αρχείου '{0}'</value></data><data name="DownloadErrorText" xml:space="preserve"><value>Σφάλμα κατά τη λήψη του αρχείου'{0}': {1}</value></data><data name="DownloadingProgressText" xml:space="preserve"><value>Λήψη '{0}'</value></data><data name="EnableSoundSetting" xml:space="preserve"><value>Ενεργοποίηση ήχου</value></data><data name="ErrorCaption" xml:space="preserve"><value>Σφάλμα</value></data><data name="ImportButtonText" xml:space="preserve"><value>εισαγωγή</value></data><data name="ImportFromSkyDriveButtonText" xml:space="preserve"><value>Εισαγωγή</value></data><data name="ImportInstructionsText" xml:space="preserve"><value>Για να εισάγετε την κασέτα από το OneDrive: 
+1. Ανεβάστε τις κασέτες στον φάκελο του OneDrive σας. 
+2. Χτυπήστε πατήστε στο "Σύνδεσε με" για να συνδεθείτε στο OneDrive. 
+3. Χτυπήστε πατήστε στο "Εισαγωγή" και διαλέξτε την κασέτα. </value></data><data name="ImportTitle" xml:space="preserve"><value>δεδομένα</value></data><data name="InputSettingsPageTitle" xml:space="preserve"><value>εισαγωγή</value></data><data name="LoadStateButton" xml:space="preserve"><value>φόρτωση κατάστασης</value></data><data name="LowFreqModeSetting" xml:space="preserve"><value>30 Hz Ρυθμός Ανανέωσης Εικόνας</value></data><data name="NotSignedInError" xml:space="preserve"><value>Δεν είστε συνδεδεμένος. Συνδεθείτε πρώτα για να εισάγετε τις ROM από το OneDrive. </value><comment></comment></data><data name="RecentTitle" xml:space="preserve"><value>παίχτηκε πρόσφατα</value></data><data name="ResetROMButton" xml:space="preserve"><value>επανακκίνηση</value></data><data name="ResumeButtonText" xml:space="preserve"><value>συνέχεια</value></data><data name="RomListTitle" xml:space="preserve"><value>κασέτες</value></data><data name="SaveStateButton" xml:space="preserve"><value>αποθήκευση κατάστασης</value></data><data name="SelectState0" xml:space="preserve"><value>Επιλογή Κατάστασης 0</value></data><data name="SelectState1" xml:space="preserve"><value>Επιλογή Κατάστασης 1</value></data><data name="SelectState2" xml:space="preserve"><value>Επιλογή Κατάστασης 2</value></data><data name="SelectState3" xml:space="preserve"><value>Επιλογή Κατάστασης 3</value></data><data name="SelectState4" xml:space="preserve"><value>Επιλογή Κατάστασης 4</value></data><data name="SelectState5" xml:space="preserve"><value>Επιλογή Κατάστασης 5</value></data><data name="SelectState6" xml:space="preserve"><value>Επιλογή Κατάστασης 6</value></data><data name="SelectState7" xml:space="preserve"><value>Επιλογή Κατάστασης 7</value></data><data name="SelectState8" xml:space="preserve"><value>Επιλογή Κατάστασης 8</value></data><data name="SelectState9" xml:space="preserve"><value>Επιλογή Κατάστασης 9</value></data><data name="SelectStateAuto" xml:space="preserve"><value>Επιλογή Αυτόματης Κατάστασης</value></data><data name="SettingsButtonText" xml:space="preserve"><value>Ρυθμίσεις</value></data><data name="SkyDriveGeneralError" xml:space="preserve"><value>Σφάλμα κατά την είσοδο στο OneDrive: {0}</value></data><data name="StatusLabelContent" xml:space="preserve"><value>Κατάσταση:</value></data><data name="StatusNotSignedIn" xml:space="preserve"><value>δεν είστε συνδεδεμένος.</value></data><data name="StatusSignedIn" xml:space="preserve"><value>είστε συνδεδεμένος.</value></data><data name="VControllerLargeSetting" xml:space="preserve"><value>τεμνόμενο</value></data><data name="VControllerSmallSetting" xml:space="preserve"><value>ανατεμνόμενο</value></data><data name="VideoSettingsPageTitle" xml:space="preserve"><value>βίντεο</value></data><data name="AboutSnes9xLicense" xml:space="preserve"><value>Γενική Άδεια Δημόσιας Χρήσης:</value></data><data name="AboutTitle" xml:space="preserve"><value>σχετικά</value></data><data name="AboutVersion" xml:space="preserve"><value>Έκδοση</value></data><data name="VirtualControllerButtonColored" xml:space="preserve"><value>έγχρωμο</value></data><data name="VirtualControllerButtonGray" xml:space="preserve"><value>γκρι</value></data><data name="VirtualControllerButtonStyle" xml:space="preserve"><value>Στυλ εικονικού χειρηστηρίου με κουμπιά</value></data><data name="OrientationBoth" xml:space="preserve"><value>τοπίο ή πορτρέτο</value></data><data name="OrientationLandscape" xml:space="preserve"><value>κλειδωμένο τοπίο</value></data><data name="OrientationPortrait" xml:space="preserve"><value>κλειδωμένο πορτρέτο</value></data><data name="OrientationSettingText" xml:space="preserve"><value>Προσανατολισμός</value></data><data name="LastPlayedLabel" xml:space="preserve"><value>Παίχτηκε τελευταία:</value></data><data name="NeverPlayedText" xml:space="preserve"><value>ποτέ</value></data><data name="RenameMenuItemText" xml:space="preserve"><value>μετονομασία</value></data><data name="RenameEmptyString" xml:space="preserve"><value>Πρέπει να δώσετε ένα όνομα για την κασέτα.</value></data><data name="RenameNameAlreadyExisting" xml:space="preserve"><value>Μια κασέτα με αυτό το όνομα υπάρχει ήδη.</value></data><data name="RenamePromptMessage" xml:space="preserve"><value>Αλλάξτε το παρόν όνομα της κασέτας:</value></data><data name="RenamePromptTitle" xml:space="preserve"><value>Μετονομάστε την κασέτα</value></data><data name="ROMAlreadyExistingError" xml:space="preserve"><value>Αυτή η κασέτα έχει ξανακατεβεί: {0}</value></data><data name="BackupAndRestoreInstructions" xml:space="preserve"><value>Εξάγετε και εισάγετε αποθηκευμένα παιχνίδια:</value></data><data name="BackupButton" xml:space="preserve"><value>Εξαγωγή</value></data><data name="RestoreButton" xml:space="preserve"><value>εισαγωγή</value></data><data name="SkyDriveError" xml:space="preserve"><value>Σφάλμα του OneDrive: {0}</value></data><data name="BackupErrorUpload" xml:space="preserve"><value>Σφάλμα κατά τη διάρκεια μεταμόρφωσης του αρχείου: {0}. Προσπαθείστε να αποσυνδεθείτε από το OneDrive και να ξανασυνδεθείτε εάν αυτό το σφάλμα παραμείνει.</value></data><data name="BackupInstructions" xml:space="preserve"><value>Επιλέξτε το παιχνίδι για να εξάγετε τις αποθηκεύσεις.</value></data><data name="BackupPageTitle" xml:space="preserve"><value>εξαγωγή αποθηκεύσεων</value></data><data name="BackupUploadProgressText" xml:space="preserve"><value>Εξαγωγή '{0}' αποθηκεύσεων</value></data><data name="BackupUploadSuccessful" xml:space="preserve"><value>Η μεταμόρφωση ολοκληρώθηκε.</value></data><data name="BackupUploadUnsuccessful" xml:space="preserve"><value>Η μεταμόρφωση ολοκληρώθηκε με σφάλματα.</value></data><data name="BackupWaitForUpload" xml:space="preserve"><value>Παρακαλώ περιμένετε να ολοκληρωθεί η μεταμόρφωση.</value></data><data name="CreateBackupFolderError" xml:space="preserve"><value>Σφάλμα κατά τη διάρκεια της δημιουργίας του εφεδρικού φακέλου.</value></data><data name="RestorePageTitle" xml:space="preserve"><value>εισαγωγή αποθηκεύσεων</value></data><data name="FullscreenStretchOption" xml:space="preserve"><value>Έκταση σε πλήρη οθόνη</value></data><data name="OpacitySetting" xml:space="preserve"><value>Αδιαφάνεια εικονικού Χειριστηρίου</value></data><data name="ControllerScaleSettings" xml:space="preserve"><value>Κλίμακα εικονικού χειριστηρίου</value></data><data name="PinToStartText" xml:space="preserve"><value>καρφίτσωμα στην έναρξη</value></data><data name="MaximumTilesPinned" xml:space="preserve"><value>Η επιλεγμένη κασέτα είναι ήδη καρφιτσωμένη ή έχετε φτάσει στο μέγιστο αριθμό καρφιτσώματος των tiles.</value></data><data name="FileAssociationError" xml:space="preserve"><value>Σφάλμα εισαγωγής και ανοίγματος της κασέτας.</value></data><data name="ImportSavestateInvalidFormat" xml:space="preserve"><value>Η φόρμα του αρχείου αποθηκευμένης κατάστασης δεν είναι έγκυρη. Το όνομα του αρχείου πρέπει να τελειώνει με έναν αριθμό απο το 0 μέχρι το 9 (π.χ. demo0.sgm).</value></data><data name="TileOpenError" xml:space="preserve"><value>Σφάλμα κατά τη διάρκεια ανοίγματος της κασέτας που συνδέεται με το tile.</value></data><data name="AspectRatioOriginalSetting" xml:space="preserve"><value>κανονική</value></data><data name="AspectRatioSetting" xml:space="preserve"><value>Αναλογία Διαστάσεων</value></data><data name="AspectRatioStretchSetting" xml:space="preserve"><value>έκταση</value></data><data name="FrameSkipAutoSetting" xml:space="preserve"><value>αυτόματο</value></data><data name="FrameSkipSetting" xml:space="preserve"><value>Αναπήδηση Πλαισίων (αυξάνει τη ταχύτητα)</value></data><data name="ImageScaleSetting" xml:space="preserve"><value>Κλίμακα Εικόνας (τοπίο μόνο)</value></data><data name="TurboModeTip" xml:space="preserve"><value>Σημείωση: Η λειτουργία Turbo θα ενταχθεί στο L ή στο R αν το κουμπί της κάμερας είναι ενταγμένο στο L ή στο R.</value></data><data name="SkyDriveInternetLost" xml:space="preserve"><value>Η σύνδεση στο OneDrive δεν είναι εφικτή. Τσεκάρετε τη σύνδεση σας.</value></data><data name="BuyNowButtonText" xml:space="preserve"><value>Αγοράστε τώρα</value></data><data name="BuyNowCancelButtonText" xml:space="preserve"><value>Συνέχεια δοκιμής</value></data><data name="BuyNowText" xml:space="preserve"><value>Αυτό το χαρακτηριστικό είναι διαθέσιμο μόνο στην πλήρη έκδοση της εφαρμογής. Πατήστε στο κουμπί Οκ απο κάτω, αν θέλετε να αγοράσετε την εφαρμογή και να ξεκλειδώσετε το χαρακτηριστικό.</value></data><data name="BuyNowImportText" xml:space="preserve"><value>Στην δοκιμαστική έκδοση μπορείτε να έχετε μέχρι 2 κασέτες στο τηλέφωνό σας. Κάντε κλικ στο Οκ για να αγοράσετε την εφαρμογή και να αφαιρέσετε αυτόν τον περιορισμό.</value></data><data name="BuyWaitForDownloadText" xml:space="preserve"><value>Παρακαλώ περιμένετε να ολοκληρωθεί το ενεργό κατέβασμα.</value></data><data name="TurboFrameSkipText" xml:space="preserve"><value>Αναπήδηση πλαισίων σε λειτουργία Turbo</value></data><data name="SyncSoundSetting" xml:space="preserve"><value>Συγχρονισμός ήχου (+ποιότητα)</value></data><data name="SyncSoundSetting2" xml:space="preserve"><value>(καλύτερη ποιότητα, αλλα μπορεί να ειναι πιο αργό)</value></data><data name="PowerFrameSkipText" xml:space="preserve"><value>Αναπήδηση πλαισίων(ίδια ταχύτητα)</value></data><data name="AboutContactLabel" xml:space="preserve"><value>Επικοινωνήστε:</value></data><data name="HelpTitle" xml:space="preserve"><value>ΒΟΉΘΕΙΑ</value></data><data name="HelpDownloadROMsHeader" xml:space="preserve"><value>Πως να εισάγετε τις κασέτες</value></data><data name="HelpHowToHeader" xml:space="preserve"><value>πως να</value></data><data name="HelpImportEmailHeader" xml:space="preserve"><value>Εναλλακτική 2: εισάγοντας απο E-Mails</value></data><data name="HelpImportEmailText" xml:space="preserve"><value>Στείλτε ένα E-Mail σε οποιαδήποτε E-Mail διεύθυνση είναι προσβάσιμη από το κινητό σας, περιέχοντας μία ή περισσότερες κασέτα(ες) ως αρχεία συνδετήρες. Μπορείτε να συνδέσετε τις κασέτες ως αρχεία *.gba ή συμπεριλαμβάνοντας τα σε έναν φάκελο *.zip. Ανοίξτε το E-Mail στο τηλέφωνο σας και χτυπήστε στη σύνδεση για να κατεβάσετε το αρχείο. Αν ο συνδετήρας σας ήταν φάκελος *.zip, το E-Mail σας αφήνει να πάτε μέσα στο φάκελο. Βρείτε την κασέτα μεσα στο φάκελο και χτυπήστε σ'αυτήν για να τρέξει το πρόγραμμα. Το πρόγραμμα θα εισάγει αυτόματα την κασέτα από το συνδετήρα του E-Mail και θα ξεκινήσει το παιχνίδι. Αν ο συνδετήρας δεν ήταν φάκελος *.zip αλλά ένα αρχείο *.gba, απλά πατήστε πάνω του για να αρχίσει το πρόγραμμα και να εισαχθεί η κασέτα.   </value></data><data name="HelpImportWebHeader" xml:space="preserve"><value>Εναλλακτική 3: εισάγοντας από το πρόγραμμα περιήγησης</value></data><data name="HelpImportWebText" xml:space="preserve"><value>Στο πρόγραμμα περιήγησής σας, ανοίξτε οποιαδήποτε ιστοσελίδα που προσφέρει λήψεις για κασέτες και ξεκινήστε τη λήψη του παιχνιδιού της επιλογής σας. Εάν η λήψη ήταν ένα αρχείο *.zip, το πρόγραμμα περιήγησης σας επιτρέπει να περιηγηθείτε μέσα από το αρχείο, όταν γίνεται η λήψη. Εντοπίστε το αρχείο *.gba που περιέχεται στο αρχείο και πατήστε στο για να ξεκινήσετε τον εξομοιωτή. Ο εξομοιωτής θα εισάγει αυτόματα την κασέτα που έχετε κατεβάσει, χρησιμοποιώντας το πρόγραμμα περιήγησής σας. Εάν το αρχείο ήταν ένα *.gba αρχείο, απλά πατήστε πάνω του και ο εξομοιωτής θα ξεκινήσει και θα εισάγει την κασέτα.</value></data><data name="HelpIssuesHeader" xml:space="preserve"><value>προβλήματα</value></data><data name="HelpIssuesWhiteScreenHeader" xml:space="preserve"><value>Λευκή οθόνη μετά τη φόρτωση της κασέτας</value></data><data name="HelpIssuesWhiteScreenText" xml:space="preserve"><value>-Βεβαιωθείτε πως οι λήψεις έχουν ολοκληρωθεί πριν φύγετε από τη σελίδα εισαγωγής OneDrive (αναμένετε για μήνυμα επιβεβαίωσης). Εάν φύγετε πολύ νωρίς, οι κασέτες μπορεί να παραμείνουν σε κακή κατάσταση και μπορεί να μην μπορούν φορτώσουν σωστά. Εάν αυτό συμβεί, διαγράψτε τις κασέτες (πατήστε παρατεταμένα στη λίστα κασετών) και κατεβάστε τες ξανά.
+-Αν η εισαγωγή με OneDrive δεν λειτουργεί ή οι κασέτες που εισάγονται από το OneDrive δεν λειτουργούν σε γενικές γραμμές, δοκιμάστε άλλες μεθόδους εισαγωγής κασετών. Υπάρχουν 3 μέθοδοι εισαγωγής κασετών (OneDrive, E-Mail, Web Browser) που περιγράφονται στην "Πώς να" ενότητα αυτής της σελίδας.
+-Μην ξεχάσετε να διαγράψετε τις κασέτες που δεν λειτουργούν πριν από την εκ νέου εισαγωγή τους χρησιμοποιώντας διαφορετική μέθοδο.</value><comment></comment></data><data name="HelpIssuesWhiteScreenTextContact" xml:space="preserve"><value>- Αν τίποτα από τα παραπάνω δεν βοηθάει, επικοινωνήστε με τον εκδότη:</value></data><data name="HelpTipsHeader" xml:space="preserve"><value>συμβουλές</value></data><data name="HelpTipsPerformanceHeader" xml:space="preserve"><value>Τα παιχνίδια τρέχουν αργά</value></data><data name="HelpTIpsPerformanceText" xml:space="preserve"><value>-Ανοίξτε τις ρυθμίσεις βίντεο και αυξήστε την τιμή της επιλογής "Αναπήδηση πλαισίων (ίδια ταχύτητα)". Αυτή η επιλογή μειώνει τον αριθμό των πλαισίων που χρειάζεται ο εξομοιωτής για να τις εμφανίσει και, ως εκ τούτου, αφήνει περισσότερους πόρους για να κρατήσει την ταχύτητα της εξομοίωση σταθερή . Τα παιχνίδια μπορεί να φαίνονται λιγότερο ομαλά, όταν αυξήσετε την αξία αναπήδησης πλαισίων.
+-Ανοίξτε τις ρυθμίσεις ήχου και  απενεργοποιήστε το συγχρονισμό ήχου. Αυτό μπορεί να αυξήσει την απόδοση, αλλά η ποιότητα ήχου μπορεί να υποφέρει.
+-Ανοίξτε τις ρυθμίσεις ήχου και κλείστε εντελώς τον ήχο.</value></data><data name="HelpTipsSoundHeader" xml:space="preserve"><value>Περίεργος ήχος</value></data><data name="HelpTipsSoundText" xml:space="preserve"><value>-Ανοίξτε τις ρυθμίσεις ήχου και ενεργοποιείστε το συγχρονισμό ήχου. Αυτό μπορεί να αυξήσει την ποιότητα ήχου, αλλά η απόδοση μπορεί να υποφέρει.
+-Αν ταχύτητα του εξομοιωτή είναι πολύ χαμηλή, η ποιότητα του ήχου μπορεί επίσης να υποφέρει. Ακολουθήστε τις παραπάνω συμβουλές για παιχνίδια που εκτελούνται αργά.</value></data><data name="HelpTipsTurboHeader" xml:space="preserve"><value>Ενεργοποίηση λειτουργίας turbo</value></data><data name="HelpTipsTurboText" xml:space="preserve"><value>-Πατήστε το κουμπί της κάμερας για εναλλαγή λειτουργίας turbo .
+-Μισο-πατήστε το κουμπί της κάμερας για να ενεργοποιήσετε την turbo λειτουργία ενώ κρατάτε το κουμπί της κάμερας μισοπατημένο.</value></data><data name="HelpButtonText" xml:space="preserve"><value>βοήθεια</value></data><data name="ImportWaitComplete" xml:space="preserve"><value>Παρακαλώ περιμένετε να ολοκληρωθεί η λήψη.</value></data><data name="RomListTroubleshootNote" xml:space="preserve"><value>Σημείωση: Αν δεν ξεκινούν οι κασέτες σας, δείτε την ενότητα "θέματα" της σελίδας βοήθεια.</value></data><data name="SkyDriveFileFormatHint" xml:space="preserve"><value>Υποστηριζόμενα αρχεία: .gb, .gbc, .gba, .sgm, .sav, .zip</value></data><data name="DPadAnalogueDynamic" xml:space="preserve"><value>δυναμικό αναλογικό χειριστήριο</value></data><data name="DPadAnalogueFixed" xml:space="preserve"><value>φτιαγμένο αναλογικό χειριστήριο</value></data><data name="DPadStyleHeader" xml:space="preserve"><value>Στυλ D-Pad</value></data><data name="DeadzoneHeader" xml:space="preserve"><value>Νεκρή ζώνη(αναλογικό χειριστήριο μόνο)</value></data><data name="CameraAssignL" xml:space="preserve"><value>Κουμπί-L</value></data><data name="CameraAssignR" xml:space="preserve"><value>Κουμπί-R</value></data><data name="CameraAssignTurbo" xml:space="preserve"><value>Λειτουργία Turbo</value></data><data name="CameraButtonAssignment" xml:space="preserve"><value>Αντιστοιχίσετε στο κουμπί κάμερας</value></data><data name="ActiveSavestateText" xml:space="preserve"><value> (ενεργό)</value></data><data name="AutoIncSavestateSetting" xml:space="preserve"><value>Αυτ. προσαύξηση αποθ. κατάστ.</value></data><data name="CancelButtonText" xml:space="preserve"><value>ακύρωση</value></data><data name="ConfirmationCheckBoxText" xml:space="preserve"><value>Μην το ξαναδείξεις</value></data><data name="ConfirmButtonText" xml:space="preserve"><value>Επιβεβαίωση</value></data><data name="ConfirmLoadText" xml:space="preserve"><value>Είστε σίγουροι ότι θέλετε να φορτώσετε την πιο πρόσφατη αποθηκευμένη κατάσταση;</value></data><data name="ConfirmSaveText" xml:space="preserve"><value>Είστε σίγουροι ότι θέλετε να αποθηκεύσετε; Αυτό θα αντικαταστήσει την επιλεγμένη αποθηκευμένη κατάσταση.</value></data><data name="GeneralSettingsTitle" xml:space="preserve"><value>γενικές</value></data><data name="HideConfirmationLoadSetting" xml:space="preserve"><value>Απ. επιβεβ. όταν φορτ. η κατάσταση</value></data><data name="HideConfirmationSetting" xml:space="preserve"><value>Απ. επιβεβ. αποθ. κατάστασης</value></data><data name="RestoreLastStateSetting" xml:space="preserve"><value>Χρήση της 9ης θέσης για αυτόματη αποθήκευση/φόρτωση</value></data><data name="CameraAssignLR" xml:space="preserve"><value>Κουμπί-L και Κουμπί-R</value></data><data name="DeleteSavesEntry" xml:space="preserve"><value>διαγράφη αποθήκευσης μεσ'το παιχνίδι</value></data><data name="AddCheatButtonText" xml:space="preserve"><value>προσθήκη</value></data><data name="AddCheatsTitle" xml:space="preserve"><value>Προσθήκη Κωδικού</value></data><data name="CheatMenuItemText" xml:space="preserve"><value>κωδικοί</value></data><data name="CheatPageTitle" xml:space="preserve"><value>ΚΩΔΙΚΟΊ</value></data><data name="CheatsDescription" xml:space="preserve"><value>Μπορείτε να εισαγάγετε κωδικούς GameShark και CodeBreaker για GBA παιχνίδια και GameShark και GameGenie κωδικούς για GB/GBC παιχνίδια.</value></data><data name="CheatCodesAddPivotTitle" xml:space="preserve"><value>προσθήκη</value></data><data name="CheatCodesListPivotTitle" xml:space="preserve"><value>λίστα</value></data><data name="CheatInvalidFormat" xml:space="preserve"><value>Μη έγκυρη μορφή κωδικού. Οι κωδικοί πρέπει να είναι 6, 8, 9, 12 ή 16 δεκαεξαδικές τιμές ανά γραμμή.</value></data><data name="CheatListGameLabel" xml:space="preserve"><value>Κωδικοί για:</value></data><data name="CheatListUnknownGame" xml:space="preserve"><value>άγνωστο</value></data><data name="CheatNoCodeEntered" xml:space="preserve"><value>Πρέπει να εισάγετε έναν κωδικό πρώτα.</value></data><data name="DeleteCheatButtonText" xml:space="preserve"><value>αφαίρεση</value></data><data name="CheatNoSelection" xml:space="preserve"><value>Πρέπει να επιλέξετε έναν κωδικό πρώτα.</value></data><data name="ManageSavestateMenuItem" xml:space="preserve"><value>διαχείρηση αποθηκευμένων καταστάσεων</value></data><data name="SettingsPageTitle" xml:space="preserve"><value>ΡΥΘΜΊΣΕΙΣ</value></data><data name="CheatInvalidFormat2" xml:space="preserve"><value>Μη έγκυρη μορφή κωδικού. Οι κωδικοί πρέπει να έιναι σε μορφή XXX-XXX-XXX, XXX-XXX ή ένας οκταψήφιος δεκαεξαδικός αριθμός ανά γραμμή. </value></data><data name="CheatRestoreValuesOption" xml:space="preserve"><value>Αποκ. αξιών μετά τους κωδ. (GBA)</value></data><data name="ManageAutoSlotLabel" xml:space="preserve"><value>αυτόματο</value></data><data name="ManageRemoveState" xml:space="preserve"><value>αφαίρεση</value></data><data name="ManageSavestatesTitle" xml:space="preserve"><value>αποθήκευση καταστάσεων</value></data><data name="ManageSaveTimeLabel" xml:space="preserve"><value>Δημιουργήθηκε:</value></data><data name="ManageSlotLabel" xml:space="preserve"><value>Θέση</value></data><data name="RemoveStateNoSelection" xml:space="preserve"><value>Πρέπει να επιλέξετε μια αποθηκευμένη κατάσταση πρώτα.</value></data><data name="ManageDeleteUnknownError" xml:space="preserve"><value>Παρουσιάστηκε ένα άγνωστο σφάλμα κατά την κατάργηση αποθήκευσης κατάστασης.</value></data><data name="CreateSnapshotMenuItem" xml:space="preserve"><value>δημιουργία στιγμιότυπου για tiles</value></data><data name="ManualSnapshotSetting" xml:space="preserve"><value>Μη αυτόματη δημιουργία tile εικόνων</value></data><data name="InfoCaption" xml:space="preserve"><value>Πληροφορίες</value></data><data name="RenameCancelButton" xml:space="preserve"><value>Ακύρωση</value></data><data name="RenameLabel" xml:space="preserve"><value>Εισαγάγετε ένα νέο εμφανιζόμενο όνομα:</value></data><data name="RenameOkButton" xml:space="preserve"><value>Μετονομασία</value></data><data name="RenamePageTitle" xml:space="preserve"><value>Μετονομασία</value></data><data name="ContextTitle" xml:space="preserve"><value>επιλογές</value></data><data name="CopyRightText" xml:space="preserve"><value>Αυτό το πρόγραμμα είναι ένα δωρεάν λογισμικό: μπορείτε να αναδιανείμετε και/ή να τροποποιήσετε κάτω από τους όρους της γενικής άδειας δημόσιας χρήσης όπως έχει δημοσιευθεί από το Ίδρυμα Ελεύθερου λογισμικού: είτε την έκδοση 3, είτε (κατ ' επιλογή σας) οποιαδήποτε μεταγενέστερη έκδοση.
+
+Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΊΣ οποιαδήποτε εγγύηση: χωρίς ακόμη την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ.  Δείτε την γενική άδεια δημόσιας χρήσης για περισσότερες λεπτομέρειες.
+
+Πρέπει να έχετε λάβει ένα αντίγραφο της γενικής άδειας δημόσιας χρήσης μαζί με αυτό το πρόγραμμα: Αν όχι, γράψτε στην εταιρεία δωρεάν λογισμκού, Inc., 51 πέμπτο όροφο στην οδό Franklin, Βοστώνη, MA 02110-1301, ΗΠΑ.</value></data><data name="LicenseCopyRightTitle" xml:space="preserve"><value>πνευματικά δικαιώματα</value></data><data name="MoreLicenseButton" xml:space="preserve"><value>Πληροφορίες άδειας</value></data><data name="SourceButtonText" xml:space="preserve"><value>Κωδ. Προέλευσης</value></data><data name="SourceHeader" xml:space="preserve"><value>προέλευση</value></data><data name="SRAMDeletedSuccessfully" xml:space="preserve"><value>Το αρχείο αποθήκευσης έχει αφαιρεθεί με επιτυχία.</value></data><data name="GPLButtonText" xml:space="preserve"><value>Πήγαινε στη Γ.Α.Δ.Χ v3</value></data><data name="ReviewText" xml:space="preserve"><value>Ανασκόπηση</value></data><data name="ImportCompleteText" xml:space="preserve"><value>Εισαγωγή αρχείου ολοκληρώθηκε '{0}'</value></data><data name="ImportingProgressText" xml:space="preserve"><value>Εισαγωγή '{0}'</value></data><data name="UseMogaControllerText" xml:space="preserve"><value>Χρήση χειριστηρίου Moga</value></data><data name="PurchaseText" xml:space="preserve"><value>αγορά</value></data><data name="ButtonScaleSettings" xml:space="preserve"><value>Εικονική Κλίμακα Κουμπιού</value></data><data name="UploadProgressText" xml:space="preserve"><value>Εξαγωγή '{0}'</value></data><data name="PremiumText" xml:space="preserve"><value>Πρόσθετα χαρακτηριστικά περιλαμβάνουν: 
+-υποστήριξη για χειριστήριο MOGA . 
+-Προσαρμογή χρώματος του φόντου στο παιχνίδι.
+-Επιλογή εικόνας του φόντου σας.
+
+Το VBA8 και το VGBC8 τώρα έχουν πανομοιότυπο σύνολο δυνατοτήτων. Πρέπει μόνο να αγοράσετε χαρακτηριστικά μόνο σε μια εφαρμογή.
+
+*** Παρακαλώ διαβάστε αυτό ***: η υποστήριξη χειριστηρίου MOGA  είναι δωρεάν σε Snes8x, πριν αγοράσετε αυτό το χαρακτηριστικό γνώρισμα, παρακαλώ κατεβάστε το Snes8x και δοκιμάστε αν το χειριστήριό σας λειτουργεί με το τηλέφωνό σας.</value></data><data name="EmailBodyText" xml:space="preserve"><value>
+
+
+
+ID συσκευής: {0}
+</value></data><data name="EmailSubjectText" xml:space="preserve"><value>Αναφορά σφάλματος ή πρόταση χαρακτηριστικού για VBA8/VGBC</value></data><data name="PremiumFeaturePromptText" xml:space="preserve"><value>Αυτό είναι ένα στοιχείο του premium. Θέλετε να μεταβείτε στη σελίδα αγοράς;</value></data><data name="UnlockFeatureText" xml:space="preserve"><value>Ξεκλειδώσετε το χαρακτηριστικό</value></data><data name="GuidesTitle" xml:space="preserve"><value>οδηγοί</value></data><data name="ImportSaveInstructionsText" xml:space="preserve"><value>Για να επαναφέρετε αποθηκεύσεις:
+1. Σιγουρευτείτε πως τα ονόματα της κασέτας και του αρχείου αποθήκευσης είναι ακριβώς τα ίδια.
+2. Πατήστε "Εισαγωγή" και επιλέξτε το αρχείο αποθήκευσης.
+3. Ξεκινήστε το παιχνίδι.</value></data><data name="DarkText" xml:space="preserve"><value>σκούρο</value></data><data name="LightText" xml:space="preserve"><value>ανοιχτό</value></data><data name="ThemeText" xml:space="preserve"><value>Θέμα</value></data><data name="LicenseTitle" xml:space="preserve"><value>ΆΔΕΙΑ</value></data><data name="RestartPromptText" xml:space="preserve"><value>Παρακαλώ, κάντε επανεκκίνηση την εφαρμογή (χτυπήστε το  πίσω κουμπί αρκετές φορές) για να λειτουργήσει η καινούργια ρύθμιση.</value></data><data name="RestartPromptTitle" xml:space="preserve"><value>Παρακαλώ κάντε επανεκκίνηση</value></data><data name="DeleteConfirmText" xml:space="preserve"><value>Αυτό δεν μπορεί να αναιρεθεί, συνέχεια;</value></data><data name="DeleteConfirmTitle" xml:space="preserve"><value>Επιβεβαίωση διαγραφής</value></data><data name="ShowThreeDotsSetting" xml:space="preserve"><value>Εμφάνιση υπόδειξης πλαίσιου μενού</value></data><data name="UseBackgroundImageSetting" xml:space="preserve"><value>Χρήση εικόνας φόντου:</value></data><data name="BackgroundOpacitySetting" xml:space="preserve"><value>Εικόνα φόντο αδιαφάνεια</value></data><data name="ImageEditorTitle" xml:space="preserve"><value>πρόγραμμα επεξεργασίας εικόνας</value></data><data name="ShowLastPlayedGameText" xml:space="preserve"><value>Εμφ. στιγμ. από τελευτ. παιχνίδι</value></data><data name="CableLinkText" xml:space="preserve"><value>Καλώδιο Gameboy</value></data><data name="FirstGameText" xml:space="preserve"><value>πρώτο παιχνίδι</value></data><data name="LinkTypeText" xml:space="preserve"><value>Τύπος σύνδεσης</value></data><data name="OverNetworkText" xml:space="preserve"><value>Πέρα από το bluetooth/wifi (δεν είναι διαθέσιμη)</value></data><data name="PreLinkTitle" xml:space="preserve"><value>δημιουργήστε σύνδεση</value></data><data name="SameDeviceText" xml:space="preserve"><value>Ίδια συσκευή</value></data><data name="SecondGameText" xml:space="preserve"><value>δεύτερο παιχνίδι (μπορεί να είναι το ίδιο με το πρώτο παιχνίδι)</value></data><data name="StartLinkText" xml:space="preserve"><value>ξεκινήσετε τη σύνδεση</value></data><data name="WirelessLinkText" xml:space="preserve"><value>Ασύρματος προσαρμογέας (δεν είναι διαθέσιμος)</value></data><data name="ConnectButtonCaption" xml:space="preserve"><value>Σύνδεση με τα επιλεγμένα</value></data><data name="Err_BluetoothOff" xml:space="preserve"><value>Το Bluetooth είναι απενεργοποιημένο. Για να δείτε τις τρέχουσες ρυθμίσεις Bluetooth πατήστε 'ok'.</value></data><data name="Err_BluetoothOffCaption" xml:space="preserve"><value>Bluetooth απενεργοποιημένο</value></data><data name="Err_NoChatName" xml:space="preserve"><value>Πληκτρολογήστε ένα όνομα για να ενταχθείτε.</value></data><data name="Err_NoChatNameCaption" xml:space="preserve"><value>Το όνομα είναι κενό</value></data><data name="Err_NoConnectTitle" xml:space="preserve"><value>Δεν είναι δυνατή η σύνδεση</value></data><data name="Err_NoMessageToSend" xml:space="preserve"><value>Παρακαλούμε εισάγετε ένα μήνυμα για την αποστολή.</value></data><data name="Err_NoPeer" xml:space="preserve"><value>Πρέπει να επιλέξετε έναν ομότιμο από τη λίστα.</value></data><data name="Err_NoPeerConnected" xml:space="preserve"><value>Δεν είστε συνδεδεμένοι σε έναν ομότιμο.</value></data><data name="Err_NoSendTitle" xml:space="preserve"><value>Δεν είναι δυνατή η αποστολή</value></data><data name="FindButtonCaption" xml:space="preserve"><value>Ανανέωση ομότιμων</value></data><data name="Msg_ChatPrompt" xml:space="preserve"><value>Θέλετε να συνδεθείτε με {0};</value></data><data name="Msg_ChatPromptTitle" xml:space="preserve"><value>Εισερχόμενη αίτηση σύνδεσης</value></data><data name="Msg_FoundPeers" xml:space="preserve"><value>Ομότιμοι που βρέθηκαν: {0}. Πατήστε 'ανανέωση ομοτίμων' για ενημέρωση.</value></data><data name="Msg_NoPeers" xml:space="preserve"><value>Δεν βρέθηκαν ομότιμοι. Πατήστε 'ανανέωση ομοτίμων' για ενημέρωση.</value></data><data name="StartLinkTitle" xml:space="preserve"><value>ξεκινήσετε τη σύνδεση</value></data><data name="CablePeerText" xml:space="preserve"><value>Καλώδιο - Bluetooth</value></data><data name="ClientText" xml:space="preserve"><value>Πρόγραμμα</value></data><data name="HostText" xml:space="preserve"><value>κεντρικός υπολογιστής</value></data><data name="IPAddressText" xml:space="preserve"><value>Διεύθυνση IP διακομιστή</value></data><data name="LinkTimeoutText" xml:space="preserve"><value>Χρονικό όριο σύνδεσης (ms)</value></data><data name="RoleText" xml:space="preserve"><value>Ρόλος</value></data><data name="ImportSDCardText" xml:space="preserve"><value>Εισαγωγή από κάρτα SD</value></data><data name="NoMatchingNameText" xml:space="preserve"><value>Παρακαλώ βεβαιωθείτε ότι το όνομα του αρχείου αποθήκευσης ταιριάζει με το όνομα της κασέτας</value></data><data name="SDCardHintText" xml:space="preserve"><value>Υποστηριζόμενα αρχεία: .gb, .gbc, .gba, .sgm, .sav. .ZIB</value></data><data name="SDCardImportTitle" xml:space="preserve"><value>Κάρτα SD</value></data><data name="SDCardReadOnlyText" xml:space="preserve"><value>Σημείωση: Η κάρτα SD είναι μόνο για ανάγνωση από τους προγραμματιστές. Αν ο χειρισμός της επέκτασης .zip είναι κλειστός, παρακαλώ χρησιμοποιήστε .zib για τα αρχεία zip σας.</value></data><data name="EditText" xml:space="preserve"><value>επεξεργασία</value></data><data name="AutoLoadLastStateText" xml:space="preserve"><value>Αυτόματη αποθήκευση και φόρτωση</value></data><data name="AllHeader" xml:space="preserve"><value>Όλα</value></data><data name="CancelText" xml:space="preserve"><value>Ακύρωση</value></data><data name="CheatsDescription2" xml:space="preserve"><value>Σημείωση: Λόγω μια πρόσφατης επιδιόρθωσης ενός σφάλματος, όλοι οι υπάρχοντες δεκαεξαψήφιοι κωδικοί πρέπει να επεξεργαστούν με κατάλληλο κενό έτσι ώστε να μπορούν να λειτουργούν ξανά.</value></data><data name="CodeText" xml:space="preserve"><value>Κωδικός</value></data><data name="ContactHeader" xml:space="preserve"><value>ΕΠΙΚΟΙΝΩΝΊΑ</value></data><data name="DescriptionText" xml:space="preserve"><value>Περιγραφή</value></data><data name="EmulatorMenuText" xml:space="preserve"><value>Σημείωση: Η λειτουργία μενού εξομοιωτή θα μπει σε μεταγενέστερη ημερομηνία.</value></data><data name="EnterNewCheatText" xml:space="preserve"><value>Εισαγωγή νέου κωδικού:</value></data><data name="FAQsLinkText" xml:space="preserve"><value>Συχνές ερωτήσεις, φόρουμ συζητήσεων &amp;PC app</value></data><data name="GuideBlankScreenText" xml:space="preserve"><value>Οδηγός: αντιμετώπιση προβλημάτων για κενή οθόνη</value></data><data name="GuideImportROMText" xml:space="preserve"><value>Οδηγός: 4 τρόποι για να εισαγάγετε κασέτες</value></data><data name="GuidePerformanceText" xml:space="preserve"><value>Οδηγός: πώς να βελτιώσετε την απόδοση</value></data><data name="GuidesHeader" xml:space="preserve"><value>ΟΔΗΓΟΊ</value></data><data name="MogaMappingTitle" xml:space="preserve"><value>χαρτογράφηση moga</value></data><data name="PleaseWaitROMLoadingText" xml:space="preserve"><value>Παρακαλώ περιμένετε μέχρι την ολοκλήρωση της φόρτωσης της κασέτας</value></data><data name="RecentHeader" xml:space="preserve"><value>ΠΡΌΣΦΑΤΑ</value></data><data name="SDCardHeader" xml:space="preserve"><value>ΚΆΡΤΑ SD</value></data><data name="VideoCheatText" xml:space="preserve"><value>Βίντεο: μάθημα για κωδικούς</value></data><data name="VideoMogaText" xml:space="preserve"><value>Βίντεο: οδηγίες για χειριστήριο MOGA</value></data><data name="ChooseImageText" xml:space="preserve"><value>Επιλέξτε εικόνα...</value></data><data name="ChoosePortraitBackgroundColorText" xml:space="preserve"><value>Επιλογή χρώματος φόντου πορτρέτου...</value></data><data name="ConnectText" xml:space="preserve"><value>Σύνδεση</value></data><data name="CustomizeButtonMappingText" xml:space="preserve"><value>Προσαρμογή κουμπιών...</value></data><data name="CustomizeLandscapeControlText" xml:space="preserve"><value>Προσαρμογή Θέσης Τοπίου</value></data><data name="CustomizePortraitControlText" xml:space="preserve"><value>Προσαρμογή Θέσης Πορτρέτου</value></data><data name="EnterHostIPText" xml:space="preserve"><value>Εισάγετε τη διεύθυνση IP του μηχανήματος</value></data><data name="ErrorNoConnectionText" xml:space="preserve"><value>Λάθος! Δεν υπάρχει σύνδεση στο Internet ή σφάλμα διακομιστή της Microsoft. Παρακαλώ προσπαθήστε ξανά αργότερα.</value></data><data name="ErrorReadingSDCardText" xml:space="preserve"><value>Σφάλμα κατά την ανάγνωση του περιεχομένου της κάρτας SD</value></data><data name="HostIPAddressText" xml:space="preserve"><value>Διεύθυνση IP του κεντρικού υπολογιστή: {0}. αναμονή για το πρόγραμμα...</value></data><data name="LinkConnectedText" xml:space="preserve"><value>Συνδέθηκε. Τώρα μπορείτε να κλείσετε αυτό το παράθυρο και να συνεχίσετε να παίζετε το παιχνίδι.</value></data><data name="LinkErrorText" xml:space="preserve"><value>Παρουσιάστηκε σφάλμα. Παρακαλώ, κάντε επανεκκίνηση την εφαρμογή και προσπαθήστε ξανά.</value></data><data name="LoadingProductListText" xml:space="preserve"><value>Φόρτωση λίστας παραγωγής. Παρακαλώ περιμένετε...</value></data><data name="MogaGDR3Note" xml:space="preserve"><value>Σημείωση: το χειριστήριο MOGA μπορεί να απαιτήσει GDR3.</value></data><data name="ProductNotAvailableText" xml:space="preserve"><value>Το προϊόν δεν είναι διαθέσιμο αυτή τη στιγμή.</value></data><data name="PurchaseButtonText" xml:space="preserve"><value>Αγορά</value></data><data name="PurchasedThankYouText" xml:space="preserve"><value>Αγοράστηκε, ευχαριστούμε!</value></data><data name="PurchaseSuccessNoAdsText" xml:space="preserve"><value>Επιτυχής αγορά, οι διαφημίσεις δεν θα εμφανιστούν την επόμενη φορά που θα ξεκινήσετε την εφαρμογή</value></data><data name="PurchaseSuccessText" xml:space="preserve"><value>Επιτυχής αγορά.</value></data><data name="ResetImageText" xml:space="preserve"><value>Επαναφορά </value></data><data name="SDCardMissingText" xml:space="preserve"><value>Λείπει η κάρτα SD. Εισαγάγετε μια SD κάρτα και δοκιμάστε πάλι.</value></data><data name="StartServerOtherText" xml:space="preserve"><value>Ξεκινήστε το διακομιστή στην άλλη συσκευή για να πάρει τη διεύθυνση IP του διακομιστή.</value></data><data name="StartServerText" xml:space="preserve"><value>Έναρξη διακοσμιτή</value></data><data name="TapDownloadSnes8xText" xml:space="preserve"><value>Πατήστε εδώ για να κατεβάσετε το Snes8x</value></data><data name="TapMogaInstructionText" xml:space="preserve"><value>Πατήστε εδώ για οδηγίες του χειριστηρίου MOGA</value></data><data name="TapStartServerIPText" xml:space="preserve"><value>Πατήστε Έναρξη διακομιστή για να πάρετε τη IP διεύθυνση του διακοσμιτή.</value></data><data name="UseRealisticButtonsText" xml:space="preserve"><value>Χρήση ρεαλ. χρωμ. για κουμπιά</value></data><data name="DeviceIDText" xml:space="preserve"><value>ID συσκευής: {0}</value></data><data name="EnterCodeText" xml:space="preserve"><value>Εισάγετε κωδικό προώθησης</value></data><data name="EnterCodeTitle" xml:space="preserve"><value>εισαγωγή κωδικού</value></data><data name="InvalidCodeText" xml:space="preserve"><value>Μη έγκυρος κώδικος.</value></data><data name="ValidCodeText" xml:space="preserve"><value>Κώδικας αποδεκτός. Παρακαλώ, κάντε επανεκκίνηση την εφαρμογή για να εφαρμοστεί ο κωδικός.</value></data><data name="HelpImportSDCardHeader" xml:space="preserve"><value>Εναλλακτική 4: εισάγοντας από κάρτα SD</value></data><data name="HelpImportSDCardText" xml:space="preserve"><value>Στην καρτέλα δεδομένων της κύριας σελίδας, κάντε κλικ στην εισαγωγή από κάρτα SD και ακολουθήστε τις οδηγίες</value></data><data name="SkyDriveImportTitle" xml:space="preserve"><value>OneDrive</value></data><data name="AboutSnes9xLicenseText" xml:space="preserve"><value>http://www.gnu.org/licenses/gpl.html</value></data><data name="AboutSnes9xLink" xml:space="preserve"><value></value></data><data name="AboutSnes9xLinkLabel" xml:space="preserve"><value></value></data><data name="AboutContact" xml:space="preserve"><value>store.support@outlook.com</value></data><data name="AspectRatio4to3Setting" xml:space="preserve"><value>4:3</value></data><data name="AspectRatio5to4Setting" xml:space="preserve"><value>5:4</value></data><data name="AspectRatioOneSetting" xml:space="preserve"><value>1:1</value></data><data name="ApplicationTitle2" xml:space="preserve"><value>VGBC8</value></data><data name="GPLv3" xml:space="preserve"><value>http://www.gnu.org/licenses/gpl-3.0.txt</value></data><data name="GPLv3Title" xml:space="preserve"><value>GPLv3</value></data><data name="SourceLink" xml:space="preserve"><value>http://sourceforge.net/projects/vba8/</value></data><data name="OneDriveHeader" xml:space="preserve"><value>ONEDRIVE</value></data><data name="AboutSnes9x" xml:space="preserve"><value>Μην διστάσετε να αναφέρετε σφάλματα ή χαλασμένα παιχνίδια. 
+
+Ο εκδότης δεν είναι υπεύθυνος για καμιά παράνομη χρήση αυτού του λογισμικού. Επιπλέον, δεν υπάρχει καμία εγγύηση για αυτό το λογισμικό και ο εκδότης δεν είναι υπεύθυνος για καμία ζημιά. 
+
+Έπαινοι: 
+- Στον Eddi Bento για το σχεδιασμό του λογότυπου. 
+- Στην εταιρεία MOGA για το απροσδόκητο δώρο. 
+- Στον Sergy Ortiz Puerto για την Ισπανική μετάφραση. 
+- Στον André Queiroz για την Πορτογαλική μετάφραση.            
+- Arda Ozkal for Turkish translation.
+- Alexandros Melissas for Greek translation.
+- Łukasz Deptuła for Polish translation.
+- Junfan Yao for Simplifed Chinese translation.
+- wphone08 for French translation.
+- Jesper Svensson for Swedish translation.</value><comment></comment></data><data name="ApplicationTitle" xml:space="preserve"><value>VBA8</value></data><data name="HelpImportSkyDriveHeader" xml:space="preserve"><value>Εναλλακτική 1: εισάγοντας από το OneDrive</value></data><data name="HelpImportSkyDriveText" xml:space="preserve"><value>Αποθηκεύστε τις κασέτες σας σε ένα φάκελο στο OneDrive σας.  Στη συνέχεια, περιηγηθείτε στην ενότητα OneDrive στην κεντρική σελίδα του εξομοιωτή (σουφρώστε αριστερά από τη λίστα της κασέτας). Αν δεν έχετε εισέλθει ακόμα, κάντε κλικ στο "Σύνδεση" και καταχωρήστε τα διαπιστευτήριά σας εάν σας ζητηθεί. Όταν εισέλθετε, κάντε κλικ στο κουμπί με την ένδειξη "εισαγωγή κασετών" στην κύρια σελίδα εξομοιωτών. Η ακόλουθη σελίδα σας επιτρέπει να περιηγηθείτε μέσα από το OneDrive για να εντοπίσετε το φάκελο όπου μπορείτε να βάλετε τις κασέτες σας. Στο φάκελο που περιέχει τις κασέτες, πατήστε οποιοδήποτε *.gba ή η *.zip αρχείο για να ξεκινήσει η λήψη. Περιμένετε μέχρι να ολοκληρωθεί η λήψη πριν φύγετε από τη σελίδα. Θα εμφανιστεί ένα μήνυμα επιβεβαίωσης όταν ολοκληρωθεί η λήψη.
+Σημείωση: Σε ορισμένες περιπτώσεις, κασέτες που έχουν κατεβεί από OneDrive δείχνουν μόνο μια κενή οθόνη όταν ξεκίνησουν. Εάν αντιμετωπίσετε αυτό το πρόβλημα, χρησιμοποιήστε την εναλλακτική 2 ή 3.</value></data></root>

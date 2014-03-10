@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<data name="aboutText" xml:space="preserve"><value>Om</value></data><data name="AlreadyDownloadingText" xml:space="preserve"><value>Denne gjenstandanden er allereie i nedlastingskøen.</value></data><data name="ApplicationTitle" xml:space="preserve"><value>VBA8</value></data><data name="AudioSettingsPageTitle" xml:space="preserve"><value>Lyd</value></data><data name="DeleteMenuItemText" xml:space="preserve"><value>Slett</value></data><data name="DownloadCompleteText" xml:space="preserve"><value>Fil '{0}' er ferdig nedlasta.</value></data><data name="DownloadErrorText" xml:space="preserve"><value>Feil under nedlasting av fila '{0}': {1}</value></data><data name="DownloadingProgressText" xml:space="preserve"><value>Lastar ned...\0</value></data><data name="EnableSoundSetting" xml:space="preserve"><value>Aktiver lyd</value></data><data name="ErrorCaption" xml:space="preserve"><value>feil</value></data><data name="ImportButtonText" xml:space="preserve"><value>Importer</value></data><data name="ImportFromSkyDriveButtonText" xml:space="preserve"><value>Importer</value></data><data name="ImportInstructionsText" xml:space="preserve"><value>For å importere filar frå OneDrive:
+1. Last opp ROMs til din OneDrive mappe. 
+2. Trykk "Sign in" for å logge inn til OneDrive
+3. Trykk "Import" og velg ROM fila.</value></data><data name="ImportTitle" xml:space="preserve"><value>data</value></data><data name="InputSettingsPageTitle" xml:space="preserve"><value>Inndata</value></data><data name="LoadStateButton" xml:space="preserve"><value>Laste status</value></data><data name="LowFreqModeSetting" xml:space="preserve"><value>30 Hz Skjerm Oppdateringsfrekvens</value></data><data name="RecentTitle" xml:space="preserve"><value>Nyleg spelte</value></data><data name="ResetROMButton" xml:space="preserve"><value>Still tilbake</value></data><data name="ResumeButtonText" xml:space="preserve"><value>Fortsett</value></data><data name="RomListTitle" xml:space="preserve"><value>roms</value></data><data name="SaveStateButton" xml:space="preserve"><value>Lagringstatus</value></data><data name="SelectState0" xml:space="preserve"><value>Velg tilstand 0</value></data><data name="SelectState1" xml:space="preserve"><value>Velg tilstand 1</value></data><data name="SelectState2" xml:space="preserve"><value>Velg tilstand 2</value></data><data name="SelectState3" xml:space="preserve"><value>Velg tilstand 3</value></data><data name="SelectState4" xml:space="preserve"><value>Velg tilstand 4</value></data><data name="SelectState5" xml:space="preserve"><value>Velg tilstand 5</value></data><data name="SelectState6" xml:space="preserve"><value>Velg tilstand 6</value></data><data name="SelectState7" xml:space="preserve"><value>Velg tilstand 7</value></data><data name="SelectState8" xml:space="preserve"><value>Velg tilstand 8</value></data><data name="SelectState9" xml:space="preserve"><value>Velg tilstand 9</value></data><data name="SelectStateAuto" xml:space="preserve"><value>Velg auto tilstand</value></data><data name="SettingsButtonText" xml:space="preserve"><value>Innstillingar</value></data><data name="SkyDriveGeneralError" xml:space="preserve"><value>Feil ved tilkobling til OneDrive: {0}</value></data><data name="SkyDriveImportTitle" xml:space="preserve"><value>OneDrive</value></data><data name="StatusLabelContent" xml:space="preserve"><value>Status</value></data><data name="StatusNotSignedIn" xml:space="preserve"><value>Ikkje pålogga</value></data><data name="StatusSignedIn" xml:space="preserve"><value>Pålogga</value></data><data name="VControllerLargeSetting" xml:space="preserve"><value>overlapper</value><comment></comment></data><data name="VControllerSmallSetting" xml:space="preserve"><value>dissecting</value><comment></comment></data><data name="VideoSettingsPageTitle" xml:space="preserve"><value>Video</value></data><data name="AboutSnes9x" xml:space="preserve"><value>Ta gjerne kontakt for å rapportere bugs eller spel som ikkje virkar.
+
+Utvikleren av denne appen er ikke ansvarleg for ulovleg bruk av denne programvaren. Dessuten er det ingen garanti for denne programvaren og utvikleren er ikkje ansvarleg for noko øydeleggingar.
+
+Credits:
+- Eddi Bento for logo design.
+- MOGA company for den overraskande gaven
+- Sergy Ortiz Puerto for Spansk omsetjing.
+- André Queiroz for Portugisisk omsetjing.
+- Arda Ozkal for Tyrkisk omsetjing.
+- Alexandros Melissas for Gresk omsetjing.
+- Łukasz Deptuła for Polsk omsetjing.
+- Junfan Yao for Simplifed Chinese translation.
+- wphone08 for French translation.
+- Jesper Svensson for Swedish translation.
+- Alexander Kolosov for Russian translation.
+- Usama Jawad for Urdu translation.
+- Mathias Haugsbø for Norwegian (Nynorsk) translation.
+</value><comment></comment></data><data name="AboutSnes9xLicense" xml:space="preserve"><value>GNU Public License:</value></data><data name="AboutSnes9xLicenseText" xml:space="preserve"><value>http://www.gnu.org/licenses/gpl.html</value></data><data name="AboutSnes9xLink" xml:space="preserve"><value></value></data><data name="AboutTitle" xml:space="preserve"><value>Om</value></data><data name="AboutSnes9xLinkLabel" xml:space="preserve"><value></value></data><data name="AboutContact" xml:space="preserve"><value>store.support@outlook.com</value></data><data name="AboutVersion" xml:space="preserve"><value>versjon</value></data><data name="VirtualControllerButtonColored" xml:space="preserve"><value>Farga</value></data><data name="VirtualControllerButtonGray" xml:space="preserve"><value>Grå</value></data><data name="VirtualControllerButtonStyle" xml:space="preserve"><value>Virtual Controller Button Style</value></data><data name="OrientationBoth" xml:space="preserve"><value>lanskap eller portrett</value></data><data name="OrientationLandscape" xml:space="preserve"><value>landskap låst</value></data><data name="OrientationPortrait" xml:space="preserve"><value>portrett låst</value></data><data name="OrientationSettingText" xml:space="preserve"><value>Retning</value></data><data name="LastPlayedLabel" xml:space="preserve"><value>Sist spelt:</value></data><data name="NeverPlayedText" xml:space="preserve"><value>Aldri</value></data><data name="RenameMenuItemText" xml:space="preserve"><value>Gi nytt namn</value></data><data name="RenameEmptyString" xml:space="preserve"><value>Du må gi eit namn til ROM fila.</value></data><data name="RenameNameAlreadyExisting" xml:space="preserve"><value>En ROM med det namnet eksisterer allereie.</value></data><data name="RenamePromptMessage" xml:space="preserve"><value>Endre visningsnamnet til ROM fila:</value></data><data name="RenamePromptTitle" xml:space="preserve"><value>Gi nytt namn til ROM fila</value></data><data name="ROMAlreadyExistingError" xml:space="preserve"><value>Den ROM fila har blitt lasta ned allereie: {0}</value></data><data name="BackupAndRestoreInstructions" xml:space="preserve"><value>Eksporterte og importerte savegames:</value></data><data name="BackupButton" xml:space="preserve"><value>Eksporter</value></data><data name="RestoreButton" xml:space="preserve"><value>Importer</value></data><data name="SkyDriveError" xml:space="preserve"><value>OneDrive Feil: {0}</value></data><data name="BackupErrorUpload" xml:space="preserve"><value>Feil ved opplasting av fila: {0}. Prøv å logg ut av OneDrive og logg inn igjen hvis denne feilen kommer på nytt.</value></data><data name="BackupInstructions" xml:space="preserve"><value>Velg spel til å eksportere saves.</value></data><data name="BackupPageTitle" xml:space="preserve"><value>eksporter saves</value></data><data name="BackupUploadProgressText" xml:space="preserve"><value>Eksporterer '{0}' saves</value></data><data name="BackupUploadSuccessful" xml:space="preserve"><value>Opplasting ferdig.</value></data><data name="BackupUploadUnsuccessful" xml:space="preserve"><value>Opplasting ble ferdig med feil.</value></data><data name="BackupWaitForUpload" xml:space="preserve"><value>Vær snill å vent til opplastingen er ferdig.</value></data><data name="CreateBackupFolderError" xml:space="preserve"><value>Feil ved skapelse av backup mappe.</value></data><data name="RestorePageTitle" xml:space="preserve"><value>importer saves</value></data><data name="FullscreenStretchOption" xml:space="preserve"><value>Endre til fullskjerm.</value></data><data name="OpacitySetting" xml:space="preserve"><value>Virtual Controller Gjennomsiktighet</value></data><data name="ControllerScaleSettings" xml:space="preserve"><value>Virtual Joystick Størrelse</value></data><data name="PinToStartText" xml:space="preserve"><value>Fest til start skjerm</value></data><data name="MaximumTilesPinned" xml:space="preserve"><value>Den valgte ROM fila er allereie festet eller så har du overskredet maksimalt antall fliser på starskjermen.</value></data><data name="FileAssociationError" xml:space="preserve"><value>Feil ved importering og åpning av ROM fila.</value></data><data name="ImportSavestateInvalidFormat" xml:space="preserve"><value>Fil format på lagringa er ugyldig. Fila må ende med eit nummer frå 0 til 9 (for eksempel demo0.sgm).</value></data><data name="TileOpenError" xml:space="preserve"><value>Feil ved åpning av ROM tilknytte til flisen.</value></data><data name="AspectRatio4to3Setting" xml:space="preserve"><value>4:3</value></data><data name="AspectRatio5to4Setting" xml:space="preserve"><value>5:4</value></data><data name="AspectRatioOneSetting" xml:space="preserve"><value>1:1</value></data><data name="AspectRatioOriginalSetting" xml:space="preserve"><value>opprineleg</value></data><data name="AspectRatioSetting" xml:space="preserve"><value>storleiksforhold</value></data><data name="AspectRatioStretchSetting" xml:space="preserve"><value>Strekk</value></data><data name="FrameSkipAutoSetting" xml:space="preserve"><value>Automatisk</value></data><data name="FrameSkipSetting" xml:space="preserve"><value>Hopp over Bilder (hever emulation fart)</value></data><data name="ImageScaleSetting" xml:space="preserve"><value>Endre størrelse på bilete (kun landskap)</value></data><data name="SkyDriveInternetLost" xml:space="preserve"><value>Kan ikkje kobles til OneDrive. Sjekk internett tilknytningen.</value></data><data name="BuyNowButtonText" xml:space="preserve"><value>Kjøp no</value></data><data name="BuyNowCancelButtonText" xml:space="preserve"><value>Fortsett prøveversjon</value></data><data name="TurboFrameSkipText" xml:space="preserve"><value>Turbo Modus Hopp over Bileter</value></data><data name="SyncSoundSetting2" xml:space="preserve"><value>(beitre kvalitet, men kan være tregere)</value></data><data name="PowerFrameSkipText2" xml:space="preserve"><value></value></data><data name="AboutContactLabel" xml:space="preserve"><value>kontakt</value></data><data name="HelpTitle" xml:space="preserve"><value>hjelp</value></data><data name="HelpDownloadROMsHeader" xml:space="preserve"><value>Hvordan importere ROM filar</value></data><data name="HelpHowToHeader" xml:space="preserve"><value>hvordan å</value></data><data name="HelpIssuesHeader" xml:space="preserve"><value>Problem</value></data><data name="HelpIssuesWhiteScreenTextContact" xml:space="preserve"><value>- Hvis ingenting hjelper, kotakt utviklaren</value></data><data name="HelpTipsHeader" xml:space="preserve"><value>Tips!</value></data><data name="HelpTipsPerformanceHeader" xml:space="preserve"><value>Spel køyrer sakte</value></data><data name="HelpTipsTurboHeader" xml:space="preserve"><value>Aktiver turbo modus</value></data><data name="HelpButtonText" xml:space="preserve"><value>hjelp</value></data><data name="ImportWaitComplete" xml:space="preserve"><value>Vær snill å vent til nedlastingen er ferdig.</value></data><data name="SkyDriveFileFormatHint" xml:space="preserve"><value>Støttede filar: .gb, .gbc, .gba, .sgm, .sav, .zip</value></data><data name="DPadStandard" xml:space="preserve"><value>4-veis</value></data><data name="CameraAssignL" xml:space="preserve"><value>L-Knapp</value></data><data name="CameraAssignR" xml:space="preserve"><value>R-Knapp</value></data><data name="CameraAssignTurbo" xml:space="preserve"><value>Turbo Modus</value></data><data name="RefreshRate30" xml:space="preserve"><value>30Hz</value></data><data name="RefreshRate60" xml:space="preserve"><value>60Hz</value></data><data name="ActiveSavestateText" xml:space="preserve"><value>aktiv</value></data><data name="CancelButtonText" xml:space="preserve"><value>Avbryt</value></data><data name="ConfirmationCheckBoxText" xml:space="preserve"><value>Ikkje vis dette igjen</value></data><data name="ConfirmButtonText" xml:space="preserve"><value>Stadfest</value></data><data name="GeneralSettingsTitle" xml:space="preserve"><value>Generelt</value></data><data name="ApplicationTitle2" xml:space="preserve"><value>VGBC8</value></data><data name="CameraAssignLR" xml:space="preserve"><value>L-Knapp oh R-Knapp</value></data><data name="DeleteSavesEntry" xml:space="preserve"><value>slett in-game save</value></data><data name="AddCheatButtonText" xml:space="preserve"><value>Legg til</value></data><data name="AddCheatsTitle" xml:space="preserve"><value>Legg til Juksekode</value></data><data name="CheatMenuItemText" xml:space="preserve"><value>juksekoder</value></data><data name="CheatPageTitle" xml:space="preserve"><value>JUKSEKODER</value></data><data name="CheatCodesAddPivotTitle" xml:space="preserve"><value>Legg til</value></data><data name="CheatCodesListPivotTitle" xml:space="preserve"><value>Liste</value></data><data name="CheatDefaultDescription" xml:space="preserve"><value></value></data><data name="CheatListGameLabel" xml:space="preserve"><value>Koder for:</value></data><data name="CheatListUnknownGame" xml:space="preserve"><value>Ukjend)</value></data><data name="CheatNoCodeEntered" xml:space="preserve"><value>Du må leggje inn ei kode først.</value><comment></comment></data><data name="DeleteCheatButtonText" xml:space="preserve"><value>Fjern</value></data><data name="CheatNoSelection" xml:space="preserve"><value>Du må velge en juksekode først.</value></data><data name="SettingsPageTitle" xml:space="preserve"><value>Innstillingar:</value></data><data name="ManageAutoSlotLabel" xml:space="preserve"><value>automatisk</value></data><data name="ManageRemoveState" xml:space="preserve"><value>Fjern</value></data><data name="ManageSavestatesTitle" xml:space="preserve"><value>lagringstatus</value></data><data name="ManageSaveTimeLabel" xml:space="preserve"><value>Oppretta:</value></data><data name="ManageSlotLabel" xml:space="preserve"><value>felt</value></data><data name="CreateSnapshotMenuItem" xml:space="preserve"><value>lag skjermbilete for flis</value></data><data name="InfoCaption" xml:space="preserve"><value>Informasjon</value></data><data name="RenameCancelButton" xml:space="preserve"><value>Avbryt</value></data><data name="RenameOkButton" xml:space="preserve"><value>Gi nytt namn</value></data><data name="RenamePageTitle" xml:space="preserve"><value>Gi nytt namn</value></data><data name="ContextTitle" xml:space="preserve"><value>Alternativ</value></data><data name="GPLv3" xml:space="preserve"><value>http://www.gnu.org/licenses/gpl-3.0.txt</value></data><data name="GPLv3Title" xml:space="preserve"><value>GPLv3</value></data><data name="LicenseCopyRightTitle" xml:space="preserve"><value>opphavsrett</value></data><data name="MoreLicenseButton" xml:space="preserve"><value>Lisensinformasjon</value></data><data name="SourceButtonText" xml:space="preserve"><value>Kildekode</value></data><data name="SourceHeader" xml:space="preserve"><value>kjelde</value></data><data name="SourceLink" xml:space="preserve"><value>http://sourceforge.net/projects/vba8/</value></data><data name="GPLButtonText" xml:space="preserve"><value>Gå til GNU Public Lisens v3</value></data><data name="ReviewText" xml:space="preserve"><value>Sjå gjennom</value></data><data name="ImportCompleteText" xml:space="preserve"><value>Ferdig med å importere fila '{0}'</value></data><data name="ImportingProgressText" xml:space="preserve"><value>Importerer '{0}'</value></data><data name="UseMogaControllerText" xml:space="preserve"><value>Bruk Moga kontroller</value></data><data name="PurchaseText" xml:space="preserve"><value>Kjøp</value></data><data name="DPad8way" xml:space="preserve"><value>8-veis</value></data><data name="UploadProgressText" xml:space="preserve"><value>Eksporterer '{0}'</value></data><data name="EmailBodyText" xml:space="preserve"><value>
+
+
+
+Device ID: {0}</value></data><data name="EmailSubjectText" xml:space="preserve"><value>VBA8/VGBC feil rapportering eller forslag til funksjoner</value></data><data name="UnlockFeatureText" xml:space="preserve"><value>Unlock feature</value></data><data name="GuidesTitle" xml:space="preserve"><value>Guidar</value></data><data name="DarkText" xml:space="preserve"><value>Mørk</value></data><data name="LightText" xml:space="preserve"><value>Lys</value></data><data name="ThemeText" xml:space="preserve"><value>tema</value></data><data name="LicenseTitle" xml:space="preserve"><value>Lisens</value></data><data name="RestartPromptTitle" xml:space="preserve"><value>Vær snill å restart</value></data><data name="DeleteConfirmTitle" xml:space="preserve"><value>Stadfest sletting</value></data><data name="FirstGameText" xml:space="preserve"><value>første spel</value></data><data name="LinkTypeText" xml:space="preserve"><value>Koplingstype:</value></data><data name="SameDeviceText" xml:space="preserve"><value>Same device</value></data><data name="StartLinkText" xml:space="preserve"><value>start link</value></data><data name="Err_BluetoothOffCaption" xml:space="preserve"><value>Blåtann av</value></data><data name="Err_NoChatName" xml:space="preserve"><value>Skriv inn et namn for å bli med.</value></data><data name="Err_NoChatNameCaption" xml:space="preserve"><value>namn er tomt</value></data><data name="Err_NoConnectTitle" xml:space="preserve"><value>Kan ikkje kople til</value></data><data name="Err_NoSendTitle" xml:space="preserve"><value>Kan ikkje sende</value></data><data name="StartLinkTitle" xml:space="preserve"><value>start link</value></data><data name="CableSocketText" xml:space="preserve"><value>Wifi TCP/IP</value></data><data name="ClientText" xml:space="preserve"><value>klient</value></data><data name="HostText" xml:space="preserve"><value>vert</value></data><data name="IPAddressText" xml:space="preserve"><value>Server IP addresse</value></data><data name="RoleText" xml:space="preserve"><value>rolle</value></data><data name="ImportSDCardText" xml:space="preserve"><value>Import frå SD kort</value></data><data name="SDCardImportTitle" xml:space="preserve"><value>SD-kort</value></data><data name="OKButtonText" xml:space="preserve"><value>OK</value></data><data name="EditText" xml:space="preserve"><value>Rediger</value></data><data name="AllHeader" xml:space="preserve"><value>Alle</value></data><data name="CancelText" xml:space="preserve"><value>Avbryt</value></data><data name="CodeText" xml:space="preserve"><value>Kode:</value></data><data name="ContactHeader" xml:space="preserve"><value>kontakt</value></data><data name="DescriptionText" xml:space="preserve"><value>Forklaring:</value></data><data name="GuidePerformanceText" xml:space="preserve"><value>Guide: korleis forbedre ytelse</value></data><data name="GuidesHeader" xml:space="preserve"><value>Guidar</value></data><data name="OKText" xml:space="preserve"><value>OK</value></data><data name="OneDriveHeader" xml:space="preserve"><value>ONEDRIVE</value></data><data name="PleaseWaitROMLoadingText" xml:space="preserve"><value>Vær snill å vent til lasting av ROM er ferdig</value></data><data name="RecentHeader" xml:space="preserve"><value>Siste</value></data><data name="SDCardHeader" xml:space="preserve"><value>SD-kort</value></data><data name="VideoCheatText" xml:space="preserve"><value>Video: juksekode instrukser</value></data><data name="VideoMogaText" xml:space="preserve"><value>Video: MOGA kontroller instruksjoner</value></data><data name="ChooseImageText" xml:space="preserve"><value>Vel bilete</value></data><data name="ConnectText" xml:space="preserve"><value>kople til</value></data><data name="EnterHostIPText" xml:space="preserve"><value>skriv inn hosten sin IP adresse her</value></data><data name="ErrorReadingSDCardText" xml:space="preserve"><value>Feil ved lesing av SD Kort innhold</value></data><data name="MogaGDR3Note" xml:space="preserve"><value>Obs: MOGA kontroller kan trenge GDR3 oppdatering.</value></data><data name="ProductNotAvailableText" xml:space="preserve"><value>Produkt er ikkje tilgjengeleg for augeblikket.</value></data><data name="PurchaseButtonText" xml:space="preserve"><value>Kjøp</value></data><data name="PurchasedThankYouText" xml:space="preserve"><value>Kjøpt, tusen takk!</value></data><data name="PurchaseSuccessText" xml:space="preserve"><value>Kjøp vellyket.</value></data><data name="ResetImageText" xml:space="preserve"><value>Restart image</value></data><data name="StartServerText" xml:space="preserve"><value>Start server</value></data><data name="TapDownloadSnes8xText" xml:space="preserve"><value>Tryk her for å laste ned Snes8x</value></data><data name="TapMogaInstructionText" xml:space="preserve"><value>Tryk her for MOGA kontroller instruksjoner</value></data><data name="DeviceIDText" xml:space="preserve"><value>Device ID: {0}</value></data><data name="EnterCodeTitle" xml:space="preserve"><value>Skriv inn kode</value></data><data name="InvalidCodeText" xml:space="preserve"><value>Ugyldig kode.</value></data></root>

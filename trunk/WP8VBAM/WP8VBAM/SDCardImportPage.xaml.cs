@@ -29,9 +29,8 @@ using PhoneDirect3DXamlAppInterop.Database;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-
 using Ionic.Zip;
-
+using SharpCompress.Reader;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -324,6 +323,10 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 Stream s = new NativeFileStreamFixed(item.Stream);  //need to remove when MS fix the bug in NativeFileStream
 
+                //var reader = ReaderFactory.Open(s);
+                //SharpCompress.Common.EntryStream data1 = reader.OpenEntryStream();
+                
+
                 //get list of file
                 using (ZipFile zip = ZipFile.Read(s))
                 {
@@ -601,8 +604,7 @@ namespace PhoneDirect3DXamlAppInterop
 
     } //end class
 
-
-    public class SDCardListItem:FileListItem
+    public class SDCardListItem : ImportFileItem
     {
 
         public bool isFolder { get; set; } //true if folder, false if file
@@ -610,7 +612,8 @@ namespace PhoneDirect3DXamlAppInterop
         public ExternalStorageFolder ThisFolder { get; set; }
         public string ParentPath { get; set; }
         public int FolderChildrenCount { get; set; }
-        
+
 
     }
+
 }

@@ -84,13 +84,13 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         ///The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages.
         ///
         ///Credits:
-        ///Eddi Bento for logo design.
-        ///MOGA company for the surprised gift.
-        ///Sergy Ortiz Puerto for Spanish translation.
-        ///André Queiroz for Portuguese translation.
-        ///Arda Ozkal for Turkish translation.
-        ///Alexandros Melissas for Greek translation.
-        ///Łukasz Deptuła for Polish translation..
+        ///- Eddi Bento for logo design.
+        ///- MOGA company for the surprised gift.
+        ///- Sergy Ortiz Puerto for Spanish translation.
+        ///- André Queiroz for Portuguese translation.
+        ///- Arda Ozkal for Turkish translation.
+        ///- Alexandros Melissas for Greek translation.
+        ///- Łukasz Deptuła for Polish translat [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AboutSnes9x {
             get {
@@ -185,6 +185,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string AddCheatsTitle {
             get {
                 return ResourceManager.GetString("AddCheatsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string AllButtonText {
+            get {
+                return ResourceManager.GetString("AllButtonText", resourceCulture);
             }
         }
         
@@ -302,6 +311,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string AutoLoadLastStateText {
             get {
                 return ResourceManager.GetString("AutoLoadLastStateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?.
+        /// </summary>
+        public static string AutoSaveWarning {
+            get {
+                return ResourceManager.GetString("AutoSaveWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available save files.
+        /// </summary>
+        public static string AvailableSaveFilesText {
+            get {
+                return ResourceManager.GetString("AvailableSaveFilesText", resourceCulture);
             }
         }
         
@@ -689,6 +716,51 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string ClientText {
             get {
                 return ResourceManager.GetString("ClientText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .gb, .gbc, .gba, .sgm, .sav, .zip.
+        /// </summary>
+        public static string CloudSixFormatHint {
+            get {
+                return ResourceManager.GetString("CloudSixFormatHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CLOUDSIX.
+        /// </summary>
+        public static string CloudSixHeader {
+            get {
+                return ResourceManager.GetString("CloudSixHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CloudSix.
+        /// </summary>
+        public static string CloudSixImportTitle {
+            get {
+                return ResourceManager.GetString("CloudSixImportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install one of Rudy Huyn&apos;s CloudSix apps to use this function..
+        /// </summary>
+        public static string CloudSixInstructionText {
+            get {
+                return ResourceManager.GetString("CloudSixInstructionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CloudSix only supports exporting one file at a time unless you choose &quot;Export as zip&quot;..
+        /// </summary>
+        public static string CloudSixOneFileLimitText {
+            get {
+                return ResourceManager.GetString("CloudSixOneFileLimitText", resourceCulture);
             }
         }
         
@@ -1196,6 +1268,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export as zip.
+        /// </summary>
+        public static string ExportAsZipText {
+            get {
+                return ResourceManager.GetString("ExportAsZipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select at least one file..
+        /// </summary>
+        public static string ExportNoSelection {
+            get {
+                return ResourceManager.GetString("ExportNoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAQs, forum discussion &amp; PC app.
         /// </summary>
         public static string FAQsLinkText {
@@ -1457,8 +1547,8 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Make sure the downloads are completed before you leave the SkyDrive import page (wait for confirmation message). If you leave too early, the ROMs may remain in a corrupted state and cannot load correctly. If this happens, delete them (tap and hold in the ROM list) and re-download.
-        ///- If SkyDrive import does not work or ROMs imported from SkyDrive don&apos;t work in general, try other methods to import ROMs. There are 3 methods of importing ROMs (SkyDrive, E-Mail, Web Browser) described in the &quot;how to&quot; section  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to - Make sure the downloads are completed before you leave the OneDrive import page (wait for confirmation message). If you leave too early, the ROMs may remain in a corrupted state and cannot load correctly. If this happens, delete them (tap and hold in the ROM list) and re-download.
+        ///- If OneDrive import does not work or ROMs imported from OneDrive don&apos;t work in general, try other methods to import ROMs. There are 3 methods of importing ROMs (OneDrive, E-Mail, Web Browser) described in the &quot;how to&quot; section  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string HelpIssuesWhiteScreenText {
             get {
@@ -1999,7 +2089,16 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are not signed in. Sign in first to import ROMs from SkyDrive..
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string NoneButtonText {
+            get {
+                return ResourceManager.GetString("NoneButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not signed in. Sign in first to import ROMs from OneDrive..
         /// </summary>
         public static string NotSignedInError {
             get {
@@ -2411,6 +2510,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please spend a few seconds rating the app. Good reviews keep new features coming..
+        /// </summary>
+        public static string ReviewPromptText {
+            get {
+                return ResourceManager.GetString("ReviewPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Like this app?.
+        /// </summary>
+        public static string ReviewPromptTitle {
+            get {
+                return ResourceManager.GetString("ReviewPromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to review.
         /// </summary>
         public static string ReviewText {
@@ -2524,6 +2641,33 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string SecondGameText {
             get {
                 return ResourceManager.GetString("SecondGameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select all.
+        /// </summary>
+        public static string SelectAllText {
+            get {
+                return ResourceManager.GetString("SelectAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select files.
+        /// </summary>
+        public static string SelectFileTitle {
+            get {
+                return ResourceManager.GetString("SelectFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select none.
+        /// </summary>
+        public static string SelectNoneText {
+            get {
+                return ResourceManager.GetString("SelectNoneText", resourceCulture);
             }
         }
         
@@ -2888,15 +3032,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Twitter: @duchuule.
-        /// </summary>
-        public static string TwitterLinkText {
-            get {
-                return ResourceManager.GetString("TwitterLinkText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unlock feature.
         /// </summary>
         public static string UnlockFeatureText {
@@ -3019,6 +3154,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string VirtualControllerButtonStyle {
             get {
                 return ResourceManager.GetString("VirtualControllerButtonStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        public static string WarningTitle {
+            get {
+                return ResourceManager.GetString("WarningTitle", resourceCulture);
             }
         }
         

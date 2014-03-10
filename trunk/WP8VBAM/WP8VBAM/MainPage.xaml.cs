@@ -23,6 +23,11 @@ using System.Collections.ObjectModel;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 using System.Windows.Media.Imaging;
+using CloudSixConnector.FilePicker;
+using CloudSixConnector.FileSaver;
+using Coding4Fun.Toolkit.Controls;
+
+
 
 //"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts deviceindex:7 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
 
@@ -56,8 +61,9 @@ namespace PhoneDirect3DXamlAppInterop
 
 
             //add tilt effect to tiltablegrid
-            TiltEffect.TiltableItems.Add(typeof(TiltableGrid));
-            TiltEffect.TiltableItems.Add(typeof(TiltableCanvas));
+            Microsoft.Phone.Controls.TiltEffect.TiltableItems.Add(typeof(TiltableGrid));
+            Microsoft.Phone.Controls.TiltEffect.TiltableItems.Add(typeof(TiltableCanvas));
+
 
 
             //create ad control
@@ -67,6 +73,9 @@ namespace PhoneDirect3DXamlAppInterop
                 LayoutRoot.Children.Add(adControl);
                 adControl.SetValue(Grid.RowProperty, 1);
             }
+
+            //increase app launch counter
+            App.metroSettings.NAppLaunch += 1;
 
             this.InitAppBar();
 
@@ -86,14 +95,17 @@ namespace PhoneDirect3DXamlAppInterop
 
             try
             {
-                String romFileName = NavigationContext.QueryString[FileHandler.ROM_URI_STRING];
-                NavigationContext.QueryString.Remove(FileHandler.ROM_URI_STRING);
+                
+                if (NavigationContext.QueryString.ContainsKey(FileHandler.ROM_URI_STRING))
+                {
+                    String romFileName = NavigationContext.QueryString[FileHandler.ROM_URI_STRING];
+                    NavigationContext.QueryString.Remove(FileHandler.ROM_URI_STRING);
 
-                ROMDBEntry entry = this.db.GetROM(romFileName);
-                await this.StartROM(entry);
+                    ROMDBEntry entry = this.db.GetROM(romFileName);
+                    await this.StartROM(entry);
+                }
             }
-            catch (KeyNotFoundException)
-            { }
+            
             catch (Exception)
             {
                 MessageBox.Show(AppResources.TileOpenError, AppResources.ErrorCaption, MessageBoxButton.OK);
@@ -101,30 +113,57 @@ namespace PhoneDirect3DXamlAppInterop
 
             try
             {
-                String importRomID = NavigationContext.QueryString["fileToken"];
-                NavigationContext.QueryString.Remove("fileToken");
-
-                int romCount = this.db.GetNumberOfROMs();
-                if (!App.IsTrial || romCount < 2)
+                if (NavigationContext.QueryString.ContainsKey("fileToken"))
                 {
+                    String fileID = NavigationContext.QueryString["fileToken"];
+                    NavigationContext.QueryString.Remove("fileToken");
+
+                    string incomingFileName = HttpUtility.HtmlDecode(SharedStorageAccessManager.GetSharedFileName(fileID).Replace("[1]", ""));
+                    string incomingFileType = Path.GetExtension(incomingFileName).ToLower();
+
+                    if (incomingFileType.Contains("cloudsix")) //this is from cloudsix, need to get the true file name and file type
+                    {
+                        CloudSixFileSelected fileinfo = CloudSixPicker.GetAnswer(fileID);
+                        incomingFileName = fileinfo.Filename;
+                        incomingFileType = Path.GetExtension(incomingFileName).ToLower();
+                    }
+
 
                     //import file
-                    ROMDBEntry entry = await FileHandler.ImportRomBySharedID(importRomID, this);
-                    //await this.StartROM(entry);
+                    if (incomingFileType == ".gb" || incomingFileType == ".gbc" || incomingFileType == ".gba")
+                        await FileHandler.ImportRomBySharedID(fileID, incomingFileName, this);
+                    else if (incomingFileType == ".sgm" || incomingFileType == ".sav")
+                        await FileHandler.ImportSaveBySharedID(fileID, incomingFileName, this);
 
-                    
+                    else if (incomingFileType == ".zip") //need to open cloudsix import page to show the content of zip file
+                    {
+                        this.NavigationService.Navigate(new Uri("/CloudSixImportPage.xaml?fileToken=" + fileID, UriKind.Relative));
+                        App.metroSettings.NAppLaunch--; //so that we don't miss asking for review
+                    }
 
-                }
-                else
-                {
-                    this.ShowBuyImportDialog();
+
                 }
             }
-            catch (KeyNotFoundException)
-            { }
             catch (Exception)
             {
                 MessageBox.Show(AppResources.FileAssociationError, AppResources.ErrorCaption, MessageBoxButton.OK);
+            }
+
+
+            //ask to rate
+            if (App.metroSettings.NAppLaunch % 200 == 14 && App.metroSettings.CanAskReview)
+            {
+                //ask to rate
+                MessageBoxResult ret = MessageBox.Show(AppResources.ReviewPromptText, AppResources.ReviewPromptTitle, MessageBoxButton.OKCancel);
+
+                if (ret == MessageBoxResult.OK)
+                {
+                    App.metroSettings.CanAskReview = false;
+                    MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+                    marketplaceReviewTask.Show();
+                }
+
+                App.metroSettings.NAppLaunch++;
             }
         }
 
@@ -904,22 +943,18 @@ namespace PhoneDirect3DXamlAppInterop
 
         private void gotoBackupButton_Click_1(object sender, RoutedEventArgs e)
         {
-            if (!App.IsTrial)
+
+            if (session != null)
             {
-                if (session != null)
-                {
-                    PhoneApplicationService.Current.State["parameter"] = this.session;
-                    this.NavigationService.Navigate(new Uri("/BackupPage.xaml", UriKind.Relative));
-                }
-                else
-                {
-                    MessageBox.Show(AppResources.NotSignedInError, AppResources.ErrorCaption, MessageBoxButton.OK);
-                }
+                PhoneApplicationService.Current.State["parameter"] = this.session;
+                BackupPage.backupMedium = "onedrive";
+                this.NavigationService.Navigate(new Uri("/BackupPage.xaml", UriKind.Relative));
             }
             else
             {
-                ShowBuyDialog();
+                MessageBox.Show(AppResources.NotSignedInError, AppResources.ErrorCaption, MessageBoxButton.OK);
             }
+
         }
 
         private void gotoRestoreButton_Click_1(object sender, RoutedEventArgs e)
@@ -1159,9 +1194,38 @@ namespace PhoneDirect3DXamlAppInterop
         private void contactBlock_Tap_2(object sender, System.Windows.Input.GestureEventArgs e)
         {
             WebBrowserTask wbtask = new WebBrowserTask();
-            wbtask.Uri = new Uri("https://twitter.com/duchuule");
+            wbtask.Uri = new Uri("https://twitter.com/wp8emu");
             wbtask.Show();
 
+        }
+
+        private void CloudSixImportButton_Click(object sender, RoutedEventArgs e)
+        {
+#if GBC
+            var launcher = new CloudSixConnector.FilePicker.CloudSixPicker("cloudsix2vgbc8");
+#elif BETA
+            var launcher = new CloudSixConnector.FilePicker.CloudSixPicker("cloudsix2vba8beta");
+#else
+            var launcher = new CloudSixConnector.FilePicker.CloudSixPicker("cloudsix2vba8");
+#endif
+            launcher.Token = "FromCloudSix";
+            launcher.Caption = AppResources.CloudSixFormatHint;
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "gb" });
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "gbc" });
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "gba"});
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "sgm" });
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "sav" });
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "zip" });
+            launcher.Show();
+
+        }
+
+        private void CloudSixExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackupPage.backupMedium = "cloudsix";
+            this.NavigationService.Navigate(new Uri("/BackupPage.xaml", UriKind.Relative));
+
+            //var saver = new CloudSixSaver("df.dd", )
         }
 
 

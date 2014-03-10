@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
 using Windows.Phone.Storage.SharedAccess;
+using CloudSixConnector.FilePicker;
+using System.Net;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -25,17 +27,19 @@ namespace PhoneDirect3DXamlAppInterop
                 string incomingFileName = SharedStorageAccessManager.GetSharedFileName(fileID);
                 string incomingFileType = Path.GetExtension(incomingFileName).ToLower();
 
-                switch (incomingFileType)
+                if (incomingFileType.Contains("cloudsix")) //this is from cloudsix, need to get the true file name and file type
                 {
-                    case ".gba":
-                        return new Uri("/MainPage.xaml?fileToken=" + fileID, UriKind.Relative);
-                    case ".gb":
-                        return new Uri("/MainPage.xaml?fileToken=" + fileID, UriKind.Relative);
-                    case ".gbc":
-                        return new Uri("/MainPage.xaml?fileToken=" + fileID, UriKind.Relative);
-                    default:
-                        return new Uri("/MainPage.xaml", UriKind.Relative);
+                    CloudSixFileSelected fileinfo = CloudSixPicker.GetAnswer(fileID);
+                    incomingFileName = fileinfo.Filename;
+                    incomingFileType = Path.GetExtension(incomingFileName).ToLower();
                 }
+
+
+                if (incomingFileType == ".gb" || incomingFileType == ".gbc" || incomingFileType == ".gba" || incomingFileType == ".sav" || incomingFileType == ".sgm" || incomingFileType == ".zip")
+                        return new Uri("/MainPage.xaml?fileToken=" + fileID, UriKind.Relative);
+                else
+                        return new Uri("/MainPage.xaml", UriKind.Relative);
+
             }
 
             return uri;

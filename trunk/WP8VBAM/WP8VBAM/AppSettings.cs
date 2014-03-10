@@ -24,6 +24,8 @@ namespace PhoneDirect3DXamlAppInterop
         const String LastTimeoutKey = "LastTimeoutKey";
         const String LoadLastStateKey = "LoadLastStateKey";  //abandon
         const String PromotionCodeKey = "PromotionCodeKey";
+        const String NAppLaunchKey = "NAppLaunchKey";
+        const String CanAskReviewKey = "CanAskReviewKey";
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -244,7 +246,33 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-       
+
+        public int NAppLaunch
+        {
+            get
+            {
+                return GetValueOrDefault<int>(NAppLaunchKey, 0);
+            }
+            set
+            {
+                AddOrUpdateValue(NAppLaunchKey, value);
+                Save();
+            }
+        }
+
+
+        public bool CanAskReview
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(CanAskReviewKey, true);
+            }
+            set
+            {
+                AddOrUpdateValue(CanAskReviewKey, value);
+                Save();
+            }
+        }
 
 
         #region INotifyPropertyChanged Members
