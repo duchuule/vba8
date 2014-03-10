@@ -106,7 +106,7 @@ namespace PhoneDirect3DXamlAppInterop
                         this.downloadsInProgress++;
 
                         await this.DownloadFile(item, client);
-
+                        
                         List<SkyDriveListItem> listItems =  this.GetFilesInZip(item);
                         
                         this.skydriveStack.Add(listItems);
@@ -288,7 +288,7 @@ namespace PhoneDirect3DXamlAppInterop
             return listItems;
         }
 
-        public static async Task ImportSave(FileListItem item, DependencyObject page)
+        public static async Task ImportSave(ImportFileItem item, DependencyObject page)
         {
             var indicator = SystemTray.GetProgressIndicator(page);
             indicator.IsIndeterminate = true;
@@ -301,8 +301,6 @@ namespace PhoneDirect3DXamlAppInterop
                 StorageFolder romFolder = await folder.CreateFolderAsync(FileHandler.ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
                 StorageFolder saveFolder = await romFolder.CreateFolderAsync(FileHandler.SAVE_DIRECTORY, CreationCollisionOption.OpenIfExists);
 
-                String path = romFolder.Path;
-                String savePath = saveFolder.Path;
 
                 ROMDatabase db = ROMDatabase.Current;
 
@@ -411,7 +409,7 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
-        public static async Task ImportROM(FileListItem item, DependencyObject page)
+        public static async Task ImportROM(ImportFileItem item, DependencyObject page)
         {
             var indicator = SystemTray.GetProgressIndicator(page);
             indicator.IsIndeterminate = true;
@@ -422,7 +420,6 @@ namespace PhoneDirect3DXamlAppInterop
                 StorageFolder folder = ApplicationData.Current.LocalFolder;
                 StorageFolder romFolder = await folder.CreateFolderAsync("roms", CreationCollisionOption.OpenIfExists);
 
-                String path = romFolder.Path;
 
                 ROMDatabase db = ROMDatabase.Current;
                 var romEntry = db.GetROM(item.Name);
@@ -672,7 +669,7 @@ namespace PhoneDirect3DXamlAppInterop
         Zip
     }
 
-    public class FileListItem
+    public class ImportFileItem
     {
         public String Name { get; set; }
         public SkyDriveItemType Type { get; set; }
@@ -681,7 +678,7 @@ namespace PhoneDirect3DXamlAppInterop
     }
 
 
-    public class SkyDriveListItem:FileListItem
+    public class SkyDriveListItem:ImportFileItem
     {
         public String SkyDriveID { get; set; }
         public String ParentID { get; set; }

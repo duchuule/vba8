@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<data name="aboutText" xml:space="preserve"><value>à propos</value></data><data name="AlreadyDownloadingText" xml:space="preserve"><value>L'item a déjà été téléchargée.</value></data><data name="ApplicationTitle" xml:space="preserve"><value>VBA8</value></data><data name="AudioSettingsPageTitle" xml:space="preserve"><value>son</value></data><data name="DeleteMenuItemText" xml:space="preserve"><value>effacer</value></data><data name="DownloadCompleteText" xml:space="preserve"><value>Téléchargement du fichier '{0}' réussi</value></data><data name="DownloadErrorText" xml:space="preserve"><value>Erreur lors du téléchargement du fichier '{0}': {1}</value></data><data name="DownloadingProgressText" xml:space="preserve"><value>Téléchargement '{0}'</value></data><data name="EnableSoundSetting" xml:space="preserve"><value>Activer son</value></data><data name="ErrorCaption" xml:space="preserve"><value>Erreur</value></data><data name="ImportButtonText" xml:space="preserve"><value>importer</value></data><data name="ImportFromSkyDriveButtonText" xml:space="preserve"><value>Importer</value></data><data name="ImportInstructionsText" xml:space="preserve"><value>Pour importer des ROMS depuis OneDrive:
+1. Uploader des ROMs vers votre dossier OneDrive . 
+2. Appuyer sur "Connexion" pour vous connecter à OneDrive.
+3. Appuyer sur "Importer" et choisissez la ROM.</value></data><data name="ImportTitle" xml:space="preserve"><value>données</value></data><data name="InputSettingsPageTitle" xml:space="preserve"><value>gameplay</value></data><data name="LoadStateButton" xml:space="preserve"><value>chargement rapide</value></data><data name="LowFreqModeSetting" xml:space="preserve"><value>30 Hz Display Refresh Rate</value></data><data name="NotSignedInError" xml:space="preserve"><value>Vous n'êtes pas connecté. Connectez vous d'abord pour importer des ROMs de OneDrive.</value><comment></comment></data><data name="RecentTitle" xml:space="preserve"><value>récemment jouées</value></data><data name="ResetROMButton" xml:space="preserve"><value>réinitialiser</value></data><data name="ResumeButtonText" xml:space="preserve"><value>reprendre</value></data><data name="RomListTitle" xml:space="preserve"><value>roms</value></data><data name="SaveStateButton" xml:space="preserve"><value>sauvegarde rapide</value></data><data name="SelectState0" xml:space="preserve"><value>Selectionner Slot 0</value></data><data name="SelectState1" xml:space="preserve"><value>Selectionner Slot 1</value></data><data name="SelectState2" xml:space="preserve"><value>Selectionner Slot 2</value></data><data name="SelectState3" xml:space="preserve"><value>Selectionner Slot 3</value></data><data name="SelectState4" xml:space="preserve"><value>Selectionner Slot 4</value></data><data name="SelectState5" xml:space="preserve"><value>Selectionner Slot 5</value></data><data name="SelectState6" xml:space="preserve"><value>Selectionner Slot 6</value></data><data name="SelectState7" xml:space="preserve"><value>Selectionner Slot 7</value></data><data name="SelectState8" xml:space="preserve"><value>Selectionner Slot 8</value></data><data name="SelectState9" xml:space="preserve"><value>Selectionner Slot 9</value></data><data name="SelectStateAuto" xml:space="preserve"><value>Selectionner Slot Auto</value></data><data name="SettingsButtonText" xml:space="preserve"><value>réglages</value></data><data name="SkyDriveGeneralError" xml:space="preserve"><value>Erreur lors de l'accès à OneDrive: {0}</value></data><data name="SkyDriveImportTitle" xml:space="preserve"><value>OneDrive</value></data><data name="StatusLabelContent" xml:space="preserve"><value>Statut: </value></data><data name="StatusNotSignedIn" xml:space="preserve"><value>non connecté.</value></data><data name="StatusSignedIn" xml:space="preserve"><value>connecté.</value></data><data name="VideoSettingsPageTitle" xml:space="preserve"><value>video</value></data><data name="AboutSnes9xLicense" xml:space="preserve"><value>GNU Public Licence:</value></data><data name="AboutSnes9xLicenseText" xml:space="preserve"><value>http://www.gnu.org/licenses/gpl.html</value></data><data name="AboutSnes9xLink" xml:space="preserve"><value></value></data><data name="AboutTitle" xml:space="preserve"><value>à propos</value></data><data name="AboutSnes9xLinkLabel" xml:space="preserve"><value></value></data><data name="AboutContact" xml:space="preserve"><value>store.support@outlook.com</value></data><data name="AboutVersion" xml:space="preserve"><value>Version</value></data><data name="VirtualControllerButtonColored" xml:space="preserve"><value>coloré</value></data><data name="VirtualControllerButtonGray" xml:space="preserve"><value>gris</value></data><data name="VirtualControllerButtonStyle" xml:space="preserve"><value>Style de boutons Manette Virtuel</value></data><data name="OrientationBoth" xml:space="preserve"><value>paysage ou portrait</value></data><data name="OrientationLandscape" xml:space="preserve"><value>paysage verrouillé</value></data><data name="OrientationPortrait" xml:space="preserve"><value>portrait verrouillé</value></data><data name="OrientationSettingText" xml:space="preserve"><value>Orientation</value></data><data name="LastPlayedLabel" xml:space="preserve"><value>Dernier jeu joué: </value></data><data name="NeverPlayedText" xml:space="preserve"><value>jamais</value></data><data name="RenameMenuItemText" xml:space="preserve"><value>renommer</value></data><data name="RenameEmptyString" xml:space="preserve"><value>Vous devez entrez un nom pour la ROM.</value></data><data name="RenameNameAlreadyExisting" xml:space="preserve"><value>Une ROM avec ce nom existe déja.</value></data><data name="RenamePromptMessage" xml:space="preserve"><value>Changer le nom de la ROM affiché:</value></data><data name="RenamePromptTitle" xml:space="preserve"><value>Renommer ROM</value></data><data name="ROMAlreadyExistingError" xml:space="preserve"><value>Cette ROM a déja été téléchargé: {0}</value></data><data name="BackupAndRestoreInstructions" xml:space="preserve"><value>Exporter et importer des sauvegardes:</value></data><data name="BackupButton" xml:space="preserve"><value>Exporter</value></data><data name="RestoreButton" xml:space="preserve"><value>importer</value></data><data name="SkyDriveError" xml:space="preserve"><value>Erreur OneDrive: {0}</value></data><data name="BackupErrorUpload" xml:space="preserve"><value>Erreur pendant l'upload d'un fichier: {0}. Essayez de vous déconnectez puis reconnectez de OneDrive si l'erreur persiste.</value></data><data name="BackupInstructions" xml:space="preserve"><value>Choisissez le jeu pour exporter des sauvegardes.</value></data><data name="BackupPageTitle" xml:space="preserve"><value>exporter sauvegardes</value></data><data name="BackupUploadProgressText" xml:space="preserve"><value>Exportation '{0}' sauvegardes</value></data><data name="BackupUploadSuccessful" xml:space="preserve"><value>Upload complété.</value></data><data name="BackupUploadUnsuccessful" xml:space="preserve"><value>Upload complété avec des erreurs.</value></data><data name="BackupWaitForUpload" xml:space="preserve"><value>Veuillez attendre la fin du chargement.</value></data><data name="CreateBackupFolderError" xml:space="preserve"><value>Erreur lors de la création du dossier de sauvegarde.</value></data><data name="RestorePageTitle" xml:space="preserve"><value>importer sauvegardes</value></data><data name="FullscreenStretchOption" xml:space="preserve"><value>Etirer en mode plein écran</value></data><data name="OpacitySetting" xml:space="preserve"><value>Transparence Manette Virtuelle</value></data><data name="ControllerScaleSettings" xml:space="preserve"><value>Taille Joystick Virtuel</value></data><data name="PinToStartText" xml:space="preserve"><value>épingler sur l'écran d'accueil</value></data><data name="MaximumTilesPinned" xml:space="preserve"><value>La ROM sélectionné est déjà épinglé ou vous avez atteint le nombre maximal de tuiles à épingler.</value></data><data name="FileAssociationError" xml:space="preserve"><value>Erreur lors de l'importation et de l'ouverture de la ROM.</value></data><data name="ImportSavestateInvalidFormat" xml:space="preserve"><value>Format de sauvegarde invalide. Le nom doit finir avec un nombre compris entre 0 et 9 (e.g. demo0.sgm).</value></data><data name="TileOpenError" xml:space="preserve"><value>Erreur lors de l'ouverture de la ROM associé à la tuile.</value></data><data name="AspectRatio4to3Setting" xml:space="preserve"><value>4:3</value></data><data name="AspectRatio5to4Setting" xml:space="preserve"><value>5:4</value></data><data name="AspectRatioOneSetting" xml:space="preserve"><value>1:1</value></data><data name="AspectRatioOriginalSetting" xml:space="preserve"><value>natif</value></data><data name="AspectRatioSetting" xml:space="preserve"><value>Aspect Ratio</value></data><data name="AspectRatioStretchSetting" xml:space="preserve"><value>étiré</value></data><data name="FrameSkipAutoSetting" xml:space="preserve"><value>auto</value></data><data name="FrameSkipSetting" xml:space="preserve"><value>Skip Frames (augmente la vitesse d'émulation)</value></data><data name="ImageScaleSetting" xml:space="preserve"><value>Taille de l'image (paysage uniquement)</value></data><data name="TurboModeTip" xml:space="preserve"><value>Note: Mode Turbo sera assigné à L ou R si le bouton caméra est assigné à L ou R.</value></data><data name="SkyDriveInternetLost" xml:space="preserve"><value>Impossible de se connecter à OneDrive. Vérifiez votre connection internet.</value></data><data name="BuyNowButtonText" xml:space="preserve"><value>Acheter maintenant</value></data><data name="BuyNowCancelButtonText" xml:space="preserve"><value>Continuer l'essai</value></data><data name="BuyNowText" xml:space="preserve"><value>Cette fonctionnalité n'est présente que dans la version complète de l'application.Cliquez sur le bouton Ok ci-dessous, si vous voulez acheter l'application et débloquez la fonctionnalité.</value></data><data name="BuyNowImportText" xml:space="preserve"><value>Dans la version d'essai vous ne pouvez stocker que jusqu'à 2 ROMs sur votre téléphone. Cliquez sur Ok pour acheter l'application et supprimer cette limite.</value></data><data name="BuyWaitForDownloadText" xml:space="preserve"><value>Veuillez attendre la fin du téléchargement.</value></data><data name="TurboFrameSkipText" xml:space="preserve"><value>Mode Turbo Frame Skip</value></data><data name="SyncSoundSetting" xml:space="preserve"><value>Synchroniser Audio (meilleur qualité)</value></data><data name="SyncSoundSetting2" xml:space="preserve"><value>(meilleure qualité, mais peut être plus lent)</value></data><data name="PowerFrameSkipText" xml:space="preserve"><value>Skip Frames (même vitesse d'émulation)</value></data><data name="PowerFrameSkipText2" xml:space="preserve"><value></value></data><data name="AboutContactLabel" xml:space="preserve"><value>Contact:</value></data><data name="HelpTitle" xml:space="preserve"><value>AIDE</value></data><data name="HelpDownloadROMsHeader" xml:space="preserve"><value>Comment importer des ROMs</value></data><data name="HelpHowToHeader" xml:space="preserve"><value>Explication</value></data><data name="HelpImportEmailHeader" xml:space="preserve"><value>2ème alternative: importer à partir des E-Mails</value></data><data name="HelpImportEmailText" xml:space="preserve"><value>Envoyer un E-Mail à une autre adresse E-Mail qui contient une ou plusieurs ROMs en pièce jointe qui est accessible depuis votre téléphone. Vous pouvez joindre la ROM au format *.gba ou contenue dans une archive *.zip. Ouvrez l'E-Mail sur votre téléphone et appuyez sur la pièce jointe pour télécharger le fichier. Si la pièce jointe est une archive *.zip, votre client de messagerie vous permettra de naviguer dans l'archive . Localiser la ROM dans l'archive et appuyez dessus pour lancer l'émulateur. L'émulateur importera automatiquement la ROM de la pièce jointe et lancera le jeu. Si la pièce jointe n'est pas une archive *.zip mais un format *.gba, appuyez juste dessus pour lancer l'émulateur et importer la ROM.</value></data><data name="HelpImportWebHeader" xml:space="preserve"><value>3ème alternative: importer à partir d'un navigateur web</value></data><data name="HelpImportWebText" xml:space="preserve"><value>Dans votre navigateur internet, ouvrez n'importe quel site qui vous permet de télécharger des ROMs et débutez le téléchargement. Si le fichier téléchargé est une archivé *.zip, le navigateur vous permettra de naviguez dans l'archive une fois le téléchargement achevé. Localiser le fichier *.gba contenu dans l'archive et appuyez dessus pour lancer l'émulateur. L'émulateur importera automatiquement les ROMs téléchargées. Si le fichier téléchargé est au format *.gba, appuyez simplement dessus pour lancer l'émulateur et importer la ROM.</value></data><data name="HelpIssuesHeader" xml:space="preserve"><value>résolution problèmes</value></data><data name="HelpIssuesWhiteScreenHeader" xml:space="preserve"><value>Ecran blanc après chargement ROM</value></data><data name="HelpIssuesWhiteScreenText" xml:space="preserve"><value>- Vérifiez que les téléchargements se soient completement achevés avant de quitter la page d'importation de OneDrive (attendez le message de confirmation). Si vous quittez trop rapidement la page, les ROMs peuvent être corrompues et ne pas charger correctement. Si cela arrive, effacez les (restez appuyez sur la ROM dans la liste) et retéléchargez les.
+- Si l'importation à partir de OneDrive échoue ou si les ROMs importées à partir de OneDrive ne fonctionnent pas en général, essayez une autre méthode d'importation des ROMs. Il existe 3 façons d'importer des ROMs (OneDrive, E-Mail, Navigateur internet) décrites dans la section "Explication" de cette page.
+- N'oubliez pas d'effacer les ROMs qui ne fonctionnent pas avant de les mporter à nouveau en utilisant une autre méthode.</value><comment></comment></data><data name="HelpIssuesWhiteScreenTextContact" xml:space="preserve"><value>- Si rien ne vous aide, contactez le développeur:</value></data><data name="HelpTipsHeader" xml:space="preserve"><value>conseils</value></data><data name="HelpTipsPerformanceHeader" xml:space="preserve"><value>Les jeux tournent au ralenti</value></data><data name="HelpTIpsPerformanceText" xml:space="preserve"><value>- Ouvrez les réglages vidéo et augmenter la valeur de l'option "Skip Frames (même vitesse d'émulation)". Cette option réduit le nombre d'images que l'émulateur a besoin d'afficher et par conséquent il reste plus de ressources pour garder l'accélération de l'émulation. Les jeux peuvent devenir moins bon lorsque vous augmentez la valeur du frame skip.
+- Ouvrez les réglages son et désactivez la synchronisation audio. Cela devrait améliorer les performances, mais la qualité du son peut en souffrir.
+- Ouvrez les réglages son et désactivez le son.</value></data><data name="HelpTipsSoundHeader" xml:space="preserve"><value>Son grésillant</value></data><data name="HelpTipsSoundText" xml:space="preserve"><value>- Ouvrez les réglages son et activez la synchronisation audio. Cela devrait améliorer la qualité audio, mais les performances de l'émulateur peuvent en souffrir.
+- Si la vitesse d'émulation est trop lente, la qualité du son peut aussi en pâtir . Suivez les conseils au-dessus pour les jeux qui tournent au ralenti.</value></data><data name="HelpTipsTurboHeader" xml:space="preserve"><value>Activer Mode Turbo</value></data><data name="HelpTipsTurboText" xml:space="preserve"><value>- Appuyez sur le bouton caméra pour basculer dans le Mode Turbo.
+- Appuyez à moitié sur le bouton caméra pour activer le mode turbo lorsqu'il est déjà à moitié pressé.</value></data><data name="HelpButtonText" xml:space="preserve"><value>aide</value></data><data name="ImportWaitComplete" xml:space="preserve"><value>Veuillez attendre la fin du téléchargement.</value></data><data name="RomListTroubleshootNote" xml:space="preserve"><value>Note: Si vos ROMs ne démarrent pas, consultez la section "résolutions problèmes" de la page d'aide.</value></data><data name="SkyDriveFileFormatHint" xml:space="preserve"><value>Formats supportés: .gb, .gbc, .gba, .sgm, .sav, .zip</value></data><data name="DPadAnalogueDynamic" xml:space="preserve"><value>stick analogique dynamique</value></data><data name="DPadAnalogueFixed" xml:space="preserve"><value>stick analogique statique</value></data><data name="DPadStandard" xml:space="preserve"><value>4-way</value></data><data name="DPadStyleHeader" xml:space="preserve"><value>Style de Pad</value></data><data name="DeadzoneHeader" xml:space="preserve"><value>Deadzone (stick analogique uniquement)</value></data><data name="CameraAssignL" xml:space="preserve"><value>Bouton-L</value></data><data name="CameraAssignR" xml:space="preserve"><value>Bouton-R</value></data><data name="CameraAssignTurbo" xml:space="preserve"><value>Mode Turbo</value></data><data name="CameraButtonAssignment" xml:space="preserve"><value>Attribuer au bouton caméra</value></data><data name="RefreshRate30" xml:space="preserve"><value>30Hz</value></data><data name="RefreshRate60" xml:space="preserve"><value>60Hz</value></data><data name="ActiveSavestateText" xml:space="preserve"><value> (active)</value></data><data name="AutoIncSavestateSetting" xml:space="preserve"><value>Système de sauvegarde auto</value></data><data name="CancelButtonText" xml:space="preserve"><value>annuler</value></data><data name="ConfirmationCheckBoxText" xml:space="preserve"><value>Ne plus montrer à nouveau</value></data><data name="ConfirmButtonText" xml:space="preserve"><value>Confirmer</value></data><data name="ConfirmLoadText" xml:space="preserve"><value>Etes vous sur de vouloir charger la dernière sauvegarde rapide ?</value></data><data name="ConfirmSaveText" xml:space="preserve"><value>Etes vous sur de vouloir sauvegarder? Cela écrasera la sauvegarde déja existante.</value></data><data name="GeneralSettingsTitle" xml:space="preserve"><value>général</value></data><data name="HideConfirmationLoadSetting" xml:space="preserve"><value>Désactiver confirmation chargement rapide</value></data><data name="HideConfirmationSetting" xml:space="preserve"><value>Désactiver confirmation sauvegarde rapide</value></data><data name="RestoreLastStateSetting" xml:space="preserve"><value>Utiliser slot 9 pour la sauvegarde/chargement auto</value></data><data name="ApplicationTitle2" xml:space="preserve"><value>VGBC8</value></data><data name="CameraAssignLR" xml:space="preserve"><value>Bouton-L et Bouton-R</value></data><data name="DeleteSavesEntry" xml:space="preserve"><value>effacer sauvegarde du jeu</value></data><data name="AddCheatButtonText" xml:space="preserve"><value>ajouter</value></data><data name="AddCheatsTitle" xml:space="preserve"><value>Ajouter Cheat</value></data><data name="CheatMenuItemText" xml:space="preserve"><value>cheat codes</value></data><data name="CheatPageTitle" xml:space="preserve"><value>CHEATS</value></data><data name="CheatsDescription" xml:space="preserve"><value>Vous pouvez entrer des codes GameShark et CodeBreaker pour les jeux GBA et des codes GameShark and GameGenie pour les jeux GB/GBC.</value></data><data name="CheatCodesAddPivotTitle" xml:space="preserve"><value>ajouter</value></data><data name="CheatCodesListPivotTitle" xml:space="preserve"><value>liste</value></data><data name="CheatDefaultDescription" xml:space="preserve"><value></value></data><data name="CheatInvalidFormat" xml:space="preserve"><value>Format de code invalide. Les codes doivent avoir des valeurs hexadécimales de 6, 8, 9, 12 ou 16 par ligne.</value></data><data name="CheatListGameLabel" xml:space="preserve"><value>Cheats pour:</value></data><data name="CheatListUnknownGame" xml:space="preserve"><value>inconnu</value></data><data name="CheatNoCodeEntered" xml:space="preserve"><value>Vous devez d'abord entrer un code.</value></data><data name="DeleteCheatButtonText" xml:space="preserve"><value>supprimer</value></data><data name="CheatNoSelection" xml:space="preserve"><value>Vous devez d'abord sélectionner un cheat code.</value></data><data name="ManageSavestateMenuItem" xml:space="preserve"><value>gérer les slots de sauvegarde</value></data><data name="SettingsPageTitle" xml:space="preserve"><value>REGLAGES</value></data><data name="CheatInvalidFormat2" xml:space="preserve"><value>Format de code invalide. Les codes doivent être au format XXX-XXX-XXX, XXX-XXX or un nombre hexadécimal à 8 chiffres par ligne.</value></data><data name="CheatRestoreValuesOption" xml:space="preserve"><value>Restorer les valeurs après cheats(GBA)</value></data><data name="ManageAutoSlotLabel" xml:space="preserve"><value>Automatique</value></data><data name="ManageRemoveState" xml:space="preserve"><value>suppression</value></data><data name="ManageSavestatesTitle" xml:space="preserve"><value>slots de sauvegarde</value></data><data name="ManageSaveTimeLabel" xml:space="preserve"><value>Crée:</value></data><data name="ManageSlotLabel" xml:space="preserve"><value>Slot</value></data><data name="RemoveStateNoSelection" xml:space="preserve"><value>Vous devez d'abord sélectionner un slot de sauvegarde.</value></data><data name="ManageDeleteUnknownError" xml:space="preserve"><value>Une erreur est survenue lors de la suppression de la sauvegarde dans le slot.</value></data><data name="CreateSnapshotMenuItem" xml:space="preserve"><value>créer un aperçu pour tuiles</value></data><data name="ManualSnapshotSetting" xml:space="preserve"><value>Créer manuellement images tuile</value></data><data name="InfoCaption" xml:space="preserve"><value>Info</value></data><data name="RenameCancelButton" xml:space="preserve"><value>Annuler</value></data><data name="RenameLabel" xml:space="preserve"><value>Entrer un nouveau nom d'affichage:</value></data><data name="RenameOkButton" xml:space="preserve"><value>Renommer</value></data><data name="RenamePageTitle" xml:space="preserve"><value>renommer</value></data><data name="ContextTitle" xml:space="preserve"><value>options</value></data><data name="CopyRightText" xml:space="preserve"><value>Ce programme est un logiciel libre; vous pouvez le redistribuer et/ou le modifier conformément  aux termes de la GNU General Public Licence comme publié par la Free Software Foundation; la version 3, ou (selon votre option) n'importe quelle version postérieure.                                                                                                                   Ce programme est distribué dans l'espoir qu'il vous sera utile, mais SANS AUCUNE GARANTIE; sans même la garantie implicite de VALEUR COMMERCIALE ou d'ADAPTATION À UN BESOIN PARTICULIER. Voir la  GNU General Public Licence pour plus de détails.                                                                                                         Vous devriez avoir reçu une copie de la GNU General Public Licence avec ce programme; sinon, écrivez à Free Software Foundation, Inc., 51 Franklin Street, Cinquième étage, Boston, MA 02110-1301, les USA.                                                                                                                                                                                                                                         </value></data><data name="GPLv3" xml:space="preserve"><value>http://www.gnu.org/licenses/gpl-3.0.txt</value></data><data name="GPLv3Title" xml:space="preserve"><value>GPLv3</value></data><data name="LicenseCopyRightTitle" xml:space="preserve"><value>copyright</value></data><data name="MoreLicenseButton" xml:space="preserve"><value>Information licence</value></data><data name="SourceButtonText" xml:space="preserve"><value>Code source</value></data><data name="SourceHeader" xml:space="preserve"><value>source</value></data><data name="SourceLink" xml:space="preserve"><value>http://sourceforge.net/projects/vba8/</value></data><data name="SRAMDeletedSuccessfully" xml:space="preserve"><value>Le fichier de sauvegarde a été supprimé avec succès.</value></data><data name="GPLButtonText" xml:space="preserve"><value>Aller à GNU Public Licence v3</value></data><data name="ReviewText" xml:space="preserve"><value>noter</value></data><data name="ImportCompleteText" xml:space="preserve"><value>Importation du fichier '{0}' réussie</value></data><data name="ImportingProgressText" xml:space="preserve"><value>Importation '{0}'</value></data><data name="UseMogaControllerText" xml:space="preserve"><value>Utiliser manette MOGA</value></data><data name="PurchaseText" xml:space="preserve"><value>acheter</value></data><data name="ButtonScaleSettings" xml:space="preserve"><value>Taille Boutons Virtuels</value></data><data name="DPad8way" xml:space="preserve"><value>8-way</value></data><data name="UploadProgressText" xml:space="preserve"><value>Exportation '{0}'</value></data><data name="PremiumText" xml:space="preserve"><value>Les fonctionnalités premium incluent: 
+- la compatibilité manette MOGA. 
+- la personnalisation de la couleur d'arrière-plan dans un jeu.
+- le choix de votre propre image d'arrière-plan.
+
+VBA8 et VGBC8 ont maintenant les mêmes fonctionnalités. Vous devrez acheter les fonctions premium pour une application seulement.
+
+***A LIRE ATTENTIVEMENT***: le support de la manette MOGA est gratuit dans Snes8x, donc avant d'acheter cette fonctionnalité, veuillez télécharger Snes8x et testez si votre manette marche avec votre smartphone.</value></data><data name="EmailBodyText" xml:space="preserve"><value>
+
+
+
+ID Appareil: {0}</value></data><data name="EmailSubjectText" xml:space="preserve"><value>Reporter un bug VBA8/VGBC ou faire une suggestion</value></data><data name="PremiumFeaturePromptText" xml:space="preserve"><value>Ceci est une fonctionnalité premium. Voulez-vous allez à la page d'achat?</value></data><data name="UnlockFeatureText" xml:space="preserve"><value>Débloquer fonctionnalités</value></data><data name="GuidesTitle" xml:space="preserve"><value>guides</value></data><data name="ImportSaveInstructionsText" xml:space="preserve"><value>Pour restorer des sauvegardes:
+1. Vérifiez que les noms de la rom et de la sauvegarde correspondent.
+2. Appuyez sur "Importer" et choisissez le fichier de sauvegarde.
+3. Lancer le jeu.</value></data><data name="DarkText" xml:space="preserve"><value>Sombre</value></data><data name="LightText" xml:space="preserve"><value>Clair</value></data><data name="ThemeText" xml:space="preserve"><value>Thème</value></data><data name="LicenseTitle" xml:space="preserve"><value>LICENCE</value></data><data name="RestartPromptText" xml:space="preserve"><value>Redémarrez l'application (appuyez sur le bouton retour plusieurs fois) pour que les nouveaux réglages prennent effet.</value></data><data name="RestartPromptTitle" xml:space="preserve"><value>Veuillez relancer</value></data><data name="DeleteConfirmText" xml:space="preserve"><value>Ceci ne peut pas être annulé, continuer?</value></data><data name="DeleteConfirmTitle" xml:space="preserve"><value>Confirmer la suppression</value></data><data name="UseBackgroundImageSetting" xml:space="preserve"><value>Utiliser une image d'arrière-plan</value></data><data name="BackgroundOpacitySetting" xml:space="preserve"><value>Transparence de l'image d'arrière-plan</value></data><data name="ImageEditorTitle" xml:space="preserve"><value>Editeur d'image</value></data><data name="ShowLastPlayedGameText" xml:space="preserve"><value>Montrer un aperçu du dernier jeu joué</value></data><data name="CableLinkText" xml:space="preserve"><value>Câble Gameboy</value></data><data name="FirstGameText" xml:space="preserve"><value>premier jeu</value></data><data name="LinkTypeText" xml:space="preserve"><value>Type de connexion</value></data><data name="OverNetworkText" xml:space="preserve"><value>Over bluetooth/wifi (non disponible)</value></data><data name="PreLinkTitle" xml:space="preserve"><value>établissement de la connexion</value></data><data name="SameDeviceText" xml:space="preserve"><value>Même appareil</value></data><data name="SecondGameText" xml:space="preserve"><value>second jeu (peut être le même que le premier jeu)</value></data><data name="StartLinkText" xml:space="preserve"><value>démarrer connection</value></data><data name="WirelessLinkText" xml:space="preserve"><value>Adaptateur sans fil (non disponible)</value></data><data name="ConnectButtonCaption" xml:space="preserve"><value>Connecter à la sélection</value></data><data name="Err_BluetoothOff" xml:space="preserve"><value>Le Bluetooth est désactivé. Pour voir les réglages Bluetooth appuyez sur 'ok' .</value></data><data name="Err_BluetoothOffCaption" xml:space="preserve"><value>Bluetooth Désactivé</value></data><data name="Err_NoChatName" xml:space="preserve"><value>Veuillez entrer un nom pour rejoindre.</value></data><data name="Err_NoChatNameCaption" xml:space="preserve"><value>Le nom est vide</value></data><data name="Err_NoConnectTitle" xml:space="preserve"><value>Impossible de se connecter</value></data><data name="Err_NoMessageToSend" xml:space="preserve"><value>Veuillez entrer un message à envoyer.</value></data><data name="Err_NoPeer" xml:space="preserve"><value>Vous devez sélectionner un pair dans la liste.</value></data><data name="Err_NoPeerConnected" xml:space="preserve"><value>Vous n'êtes pas connecté à un pair.</value></data><data name="Err_NoSendTitle" xml:space="preserve"><value>Impossible d'envoyer</value></data><data name="FindButtonCaption" xml:space="preserve"><value>Rafraîchir pairs</value></data><data name="Msg_ChatPrompt" xml:space="preserve"><value>Voulez-vous vous connecter avec {0}?</value></data><data name="Msg_ChatPromptTitle" xml:space="preserve"><value>Demande de connection</value></data><data name="Msg_FoundPeers" xml:space="preserve"><value>Pairs trouvés: {0}. Appuyez sur 'rafraîchir pairs' pour mettre à jour.
+</value></data><data name="Msg_NoPeers" xml:space="preserve"><value>Pas de pairs trouvés. Appuyez sur 'rafraîchir pairs' pour mettre à jour.</value></data><data name="StartLinkTitle" xml:space="preserve"><value>démarrer connection</value></data><data name="CablePeerText" xml:space="preserve"><value>Câble - Bluetooth</value></data><data name="CableSocketText" xml:space="preserve"><value>Wifi TCP/IP</value></data><data name="ClientText" xml:space="preserve"><value>Client</value></data><data name="HostText" xml:space="preserve"><value>Hôte</value></data><data name="IPAddressText" xml:space="preserve"><value>Adresse IP du serveur</value></data><data name="LinkTimeoutText" xml:space="preserve"><value>Timeout connexion (ms)</value></data><data name="RoleText" xml:space="preserve"><value>Role</value></data><data name="ImportSDCardText" xml:space="preserve"><value>Importer à partir de la carte SD</value></data><data name="NoMatchingNameText" xml:space="preserve"><value>Vérifiez que le nom du fichier de sauvegarde correspond au nom de la ROM</value></data><data name="SDCardHintText" xml:space="preserve"><value>Formats supportés : .gb, .gbc, .gba, .sgm, .sav. .zib</value></data><data name="SDCardImportTitle" xml:space="preserve"><value>Carte SD</value></data><data name="SDCardReadOnlyText" xml:space="preserve"><value>Note: La carte SD est en lecture seule pour les développeurs. L'extension .zip étant réservéé par l'OS, veuillez utiliser .zib pour vous fichiers zip.</value></data><data name="OKButtonText" xml:space="preserve"><value>ok</value></data><data name="EditText" xml:space="preserve"><value>editer</value></data><data name="AutoLoadLastStateText" xml:space="preserve"><value>Sauvegarde et chargement auto</value></data><data name="AllHeader" xml:space="preserve"><value>TOUTES</value></data><data name="CancelText" xml:space="preserve"><value>Annuler</value></data><data name="CheatsDescription2" xml:space="preserve"><value>NOTE: Suite à la récente correction d'un bug, tous les cheat codes de 16 caractères existants doivent être édités avec l'espace approprié pour fonctionner de nouveau.</value></data><data name="CodeText" xml:space="preserve"><value>Code</value></data><data name="ContactHeader" xml:space="preserve"><value>CONTACT</value></data><data name="DescriptionText" xml:space="preserve"><value>Description</value></data><data name="EmailLinkText" xml:space="preserve"><value>Email: store.support@outlook.com</value></data><data name="EmulatorMenuText" xml:space="preserve"><value>Note: La fonction du Menu de l'émulateur sera implantée à une date postérieure.</value></data><data name="EnterNewCheatText" xml:space="preserve"><value>Entrez un nouveau cheat code:</value></data><data name="FAQsLinkText" xml:space="preserve"><value>FAQs, forum de discussion &amp; appli PC </value></data><data name="GuideBlankScreenText" xml:space="preserve"><value>Guide: résolution problème d'écran blanc</value></data><data name="GuideImportROMText" xml:space="preserve"><value>Guide: 4 façons d'importer des ROMS</value></data><data name="GuidePerformanceText" xml:space="preserve"><value>Guide: comment améliorer les performances</value></data><data name="GuidesHeader" xml:space="preserve"><value>GUIDES</value></data><data name="MogaMappingTitle" xml:space="preserve"><value>affectation moga</value></data><data name="OKText" xml:space="preserve"><value>OK</value></data><data name="OneDriveHeader" xml:space="preserve"><value>ONEDRIVE</value></data><data name="PleaseWaitROMLoadingText" xml:space="preserve"><value>Veuillez attendre la fin du chargement de la ROM</value></data><data name="RecentHeader" xml:space="preserve"><value>RECENTES</value></data><data name="SDCardHeader" xml:space="preserve"><value>CARTE SD</value></data><data name="VideoCheatText" xml:space="preserve"><value>Video: Tutoriel cheat codes</value></data><data name="VideoMogaText" xml:space="preserve"><value>Video: Instructions manette MOGA</value></data><data name="ChooseImageText" xml:space="preserve"><value>Choisir image...</value></data><data name="ChoosePortraitBackgroundColorText" xml:space="preserve"><value>Choisir la couleur de fond...</value></data><data name="ConnectText" xml:space="preserve"><value>Connecter</value></data><data name="CustomizeButtonMappingText" xml:space="preserve"><value>Personnaliser affectation boutons...</value></data><data name="CustomizeLandscapeControlText" xml:space="preserve"><value>Personnaliser Contrôles Mode Paysage</value></data><data name="CustomizePortraitControlText" xml:space="preserve"><value>Personnaliser Contrôles Mode Portrait</value></data><data name="EnterHostIPText" xml:space="preserve"><value>entrer l'adresse IP de l'hôte ici</value></data><data name="ErrorNoConnectionText" xml:space="preserve"><value>Erreur! Pas de connection Internet ou erreur du serveur Microsoft. Veuillez réessayer plus tard.</value></data><data name="ErrorReadingSDCardText" xml:space="preserve"><value>Erreur lors de la lecture de la carte SD</value></data><data name="HostIPAddressText" xml:space="preserve"><value>Adresse IP de l'hôte: {0}. En attente de joueur ...</value></data><data name="LinkConnectedText" xml:space="preserve"><value>Connecté. Vous pouvez maintenant fermez cette fenêtre et continuez à jouer.</value></data><data name="LinkErrorText" xml:space="preserve"><value>Une erreur s'est produite. Redémmarez l'application et essayez à nouveau.</value></data><data name="LoadingProductListText" xml:space="preserve"><value>Chargement de la liste de production. Veuillez patienter...</value></data><data name="MogaGDR3Note" xml:space="preserve"><value>Note: La manette MOGA requiert la GDR3.</value></data><data name="ProductNotAvailableText" xml:space="preserve"><value>Le produit n'est pas disponible pour le moment.</value></data><data name="PurchaseButtonText" xml:space="preserve"><value>Acheter</value></data><data name="PurchasedThankYouText" xml:space="preserve"><value>Acheté, merci!</value></data><data name="PurchaseSuccessNoAdsText" xml:space="preserve"><value>Achat réussi, les publicités n'apparaîtront plus la prochaine fois que vous démarrez l'application.</value></data><data name="PurchaseSuccessText" xml:space="preserve"><value>Achat réussi.</value></data><data name="ResetImageText" xml:space="preserve"><value>Réinitialiser l'image</value></data><data name="SDCardMissingText" xml:space="preserve"><value>La carte SD est manquante. Insérer une carte SD et essayez à nouveau.</value></data><data name="StartServerOtherText" xml:space="preserve"><value>Lancer le serveur sur l'autre appareil pour obtenir l'adresse IP du serveur.</value></data><data name="StartServerText" xml:space="preserve"><value>Lancer serveur</value></data><data name="TapDownloadSnes8xText" xml:space="preserve"><value>Appuyez ici pour télécharger Snes8x</value></data><data name="TapMogaInstructionText" xml:space="preserve"><value>Appuyez ici pour les instructions de la manette MOGA</value></data><data name="TapStartServerIPText" xml:space="preserve"><value>Appuyez sur Lancer serveur pour obtenir l'adresse IP du serveur.</value></data><data name="UseRealisticButtonsText" xml:space="preserve"><value>Utiliser les vrai boutons de couleur</value></data><data name="DeviceIDText" xml:space="preserve"><value>ID Appareil: {0}</value></data><data name="EnterCodeText" xml:space="preserve"><value>Entrer le code de promotion.</value></data><data name="EnterCodeTitle" xml:space="preserve"><value>Entrer code.</value></data><data name="ValidCodeText" xml:space="preserve"><value>Code accepté. Merci de redémarrer l'application pour que code puisse faire effet.</value></data><data name="HelpImportSDCardText" xml:space="preserve"><value>Dans l'onglet "données" de la page principale, cliquez sur "Importer à partir de la carte SD" et suivez les instructions</value></data><data name="HelpImportSDCardHeader" xml:space="preserve"><value>4ème alternative : importer à partir de la carte SD</value></data><data name="InvalidCodeText" xml:space="preserve"><value>Code invalide.</value></data><data name="AboutSnes9x" xml:space="preserve"><value>N'hésitez pas à me faire part des bugs rencontrés et des jeux défectueux.
+
+L'auteur n'est pas responsable dans le cas d'une utilisation illégale de ce programme. En outre, il n'existe pas de garantie pour ce programme et l'auteur n'est pas responsable en cas de dégâts.
+
+Credits:
+- Eddi Bento pour la conception du logo.
+- MOGA company pour le cadeau .
+- Sergy Ortiz Puerto pour la traduction espagnole.
+- André Queiroz for Portuguese translation.
+- Arda Ozkal for Turkish translation.
+- Alexandros Melissas for Greek translation.
+- Łukasz Deptuła for Polish translation.
+- Junfan Yao for Simplifed Chinese translation.
+- wphone08 pour la traduction française. 
+- Jesper Svensson for Swedish translation.</value><comment></comment></data><data name="HelpImportSkyDriveHeader" xml:space="preserve"><value>1ère alternative: importer à partir de OneDrive</value></data><data name="HelpImportSkyDriveText" xml:space="preserve"><value>Stocker vos ROMs dans un dossier sur OneDrive. Allez ensuite dans la section OneDrive de la page principale de l'émulateur (à partir de la liste des ROMs, faites un swipe vers la gauche). Si vous n'êtes pas encore connecté, cliquez sur "Se connecter" et entrez vos idenfiants si cela vous est demandé. Une fois connecté, cliquez sur le bouton "importer ROMs" dans la page principale de l'émulateur. Les pages suivantes vous permettent de naviguez dans votre OneDrive pour localiser le dossier où vous avez stocké vos ROMs. Dans le dossier qui contient les ROMs, appuyez sur n'importe quel fichier *.gba pour commencer le téléchargement. Attendez la fin du téléchargement avant de quitter la page. Un message de confirmation apparaîtra lorsque le téléchargement sera achevé.
+Note: Dans certains cas, les ROMs téléchargées à partir de OneDrive montrent seulement un écran vierge lors du chargement de ces dernières. Si vous rencontrez ce problème, veuillez utiliser l'alternative 2 ou 3.</value></data><data name="VControllerLargeSetting" xml:space="preserve"><value>chevauchement possible</value><comment></comment></data><data name="VControllerSmallSetting" xml:space="preserve"><value>chevauchement impossible</value><comment></comment></data><data name="ShowThreeDotsSetting" xml:space="preserve"><value>Indiquer suggestion menu pour roms</value><comment></comment></data></root>

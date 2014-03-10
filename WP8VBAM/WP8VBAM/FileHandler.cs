@@ -462,28 +462,25 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
-        internal static async Task<ROMDBEntry> ImportRomBySharedID(string importRomID, DependencyObject page)
+        internal static async Task<ROMDBEntry> ImportRomBySharedID(string fileID, string desiredName, DependencyObject page)
         {
+            //note: desiredName can be different from the file name obtained from fileID
             ROMDatabase db = ROMDatabase.Current;
-            string filename = SharedStorageAccessManager.GetSharedFileName(importRomID).Replace("[1]", "").Replace("%20"," ");
 
 
             //set status bar
-            var indicator = new ProgressIndicator()
-            {
-                IsIndeterminate = true,
-                IsVisible = true,
-                Text = String.Format(AppResources.ImportingProgressText, filename)
-            };
+            var indicator = SystemTray.GetProgressIndicator(page);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.ImportingProgressText, desiredName);
 
-            SystemTray.SetProgressIndicator(page, indicator);
             
 
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             StorageFolder romFolder = await localFolder.CreateFolderAsync(ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
             
-            IStorageFile file = await SharedStorageAccessManager.CopySharedFileAsync(romFolder, filename, NameCollisionOption.ReplaceExisting, importRomID);
+            IStorageFile file = await SharedStorageAccessManager.CopySharedFileAsync(romFolder, desiredName, NameCollisionOption.ReplaceExisting, fileID);
 
+            
             ROMDBEntry entry = db.GetROM(file.Name);
 
             if (entry == null)
@@ -493,24 +490,121 @@ namespace PhoneDirect3DXamlAppInterop
                 db.CommitChanges();
             }
 
-            indicator = new ProgressIndicator()
-            {
-                IsIndeterminate = false,
-                IsVisible = true,
 #if GBC
-                Text = AppResources.ApplicationTitle2
+            indicator.Text = AppResources.ApplicationTitle2;
 #else
-            Text = AppResources.ApplicationTitle
+            indicator.Text = AppResources.ApplicationTitle;
 #endif
+            indicator.IsIndeterminate = false;
 
-            };
-
-            SystemTray.SetProgressIndicator(page, indicator);
             MessageBox.Show(String.Format(AppResources.ImportCompleteText, entry.DisplayName));
 
 
             return entry;
         }
+
+
+        internal static async Task ImportSaveBySharedID(string fileID, string actualName, DependencyObject page)
+        {
+            //note:  the file name obtained from fileID can be different from actualName if the file is obtained through cloudsix
+            ROMDatabase db = ROMDatabase.Current;
+
+
+            //check to make sure there is a rom with matching name
+            ROMDBEntry entry = null;
+            string extension = Path.GetExtension(actualName).ToLower();
+
+            if (extension == ".sgm") 
+                entry = db.GetROMFromSavestateName(actualName);
+            else if (extension == ".sav")
+                entry = db.GetROMFromSRAMName(actualName);
+
+            if (entry == null) //no matching file name
+            {
+                MessageBox.Show(AppResources.NoMatchingNameText, AppResources.ErrorCaption, MessageBoxButton.OK);
+                return;
+            }
+
+            //check to make sure format is right
+            if (extension == ".sgm")
+            {
+                string slot = actualName.Substring(actualName.Length - 5, 1);
+                int parsedSlot = 0;
+                if (!int.TryParse(slot, out parsedSlot))
+                {
+                    MessageBox.Show(AppResources.ImportSavestateInvalidFormat, AppResources.ErrorCaption, MessageBoxButton.OK);
+                    return;
+                }
+            }
+
+
+
+            //set status bar
+            var indicator = SystemTray.GetProgressIndicator(page);
+            indicator.IsIndeterminate = true;
+            indicator.Text = String.Format(AppResources.ImportingProgressText, actualName);
+
+
+
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            StorageFolder romFolder = await localFolder.CreateFolderAsync(ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
+            StorageFolder saveFolder = await romFolder.CreateFolderAsync(FileHandler.SAVE_DIRECTORY, CreationCollisionOption.OpenIfExists);
+
+
+            //if arrive here, entry cannot be null, we can copy the file
+            IStorageFile file = null;
+            if (extension == ".sgm") 
+                file = await SharedStorageAccessManager.CopySharedFileAsync(saveFolder, Path.GetFileNameWithoutExtension(entry.FileName) + actualName.Substring(actualName.Length - 5), NameCollisionOption.ReplaceExisting, fileID);
+            else if (extension == ".sav")
+            {
+                file = await SharedStorageAccessManager.CopySharedFileAsync(saveFolder, Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", NameCollisionOption.ReplaceExisting, fileID);
+                entry.AutoLoadLastState = false;
+            }
+
+            //update database
+            if (extension == ".sgm")
+            {
+                String number = actualName.Substring(actualName.Length - 5, 1);
+                int slot = int.Parse(number);
+
+                if (entry != null) //NULL = do nothing
+                {
+                    SavestateEntry saveentry = db.SavestateEntryExisting(entry.FileName, slot);
+                    if (saveentry != null)
+                    {
+                        //delete entry
+                        db.RemoveSavestateFromDB(saveentry);
+
+                    }
+                    SavestateEntry ssEntry = new SavestateEntry()
+                    {
+                        ROM = entry,
+                        Savetime = DateTime.Now,
+                        Slot = slot,
+                        FileName = actualName
+                    };
+                    db.Add(ssEntry);
+                    db.CommitChanges();
+
+                }
+            }
+
+
+
+
+#if GBC
+            indicator.Text = AppResources.ApplicationTitle2;
+#else
+            indicator.Text = AppResources.ApplicationTitle;
+#endif
+            indicator.IsIndeterminate = false;
+
+            MessageBox.Show(String.Format(AppResources.ImportCompleteText, entry.DisplayName));
+
+
+            return;
+        }
+
 
         internal static async Task DeleteSRAMFile(ROMDBEntry re)
         {

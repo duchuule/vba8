@@ -2,30 +2,36 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
   <Languages xmlns="">
-
+    <!--<Language code="cs-CZ" />
+    <Language code="de" />
+    <Language code="dv-MV" />-->
     <Language code="el-GR" />
-    <Language code="pt" />
-    <Language code="qps-ploc" />
-    <Language code="pl-PL" />
+    <!--<Language code="en-GB" />
+    <Language code="es-AR" />-->
     <Language code="es" />
-    <Language code="tr-TR" />
-    <Language code="fr" />
-    
     <!--<Language code="fi-FI" />
+    <Language code="fil-PH" />-->
+    <Language code="fr" />
+    <!--<Language code="hi-IN" />
     <Language code="hr" />
     <Language code="id-ID" />
     <Language code="it" />
+    <Language code="ko-KR" />
     <Language code="nb-NO" />
-    <Language code="nl" />
+    <Language code="nl" />-->
     <Language code="nn-NO" />
-    <Language code="de" />
+    <Language code="pl-PL" />
+    <Language code="pt" />
+    <Language code="qps-ploc" />
     <Language code="ru-RU" />
     <Language code="sv" />
-
+    <Language code="tr-TR" />
+    <!--<Language code="uk-UA" />
+    <Language code="ur" />-->
     <Language code="zh-Hans" />
-    <Language code="zh-Hant" />-->
+    <!--<Language code="zh-Hant" />-->
   </Languages>
-  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" Title="VBA8 Beta" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Duc Le" Description="" Publisher="Duc Le" PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
+  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" Title="VGBC8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Duc Le" Description="" Publisher="Duc Le" PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIconFilledGBC.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -49,17 +55,26 @@
           <Title>VGBC8</Title>
           <!--<Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\tileIconLarge.png</Photo01ImageURI>-->
           <Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\tileIconLargeGBC.png</Photo01ImageURI>
-          <Photo02ImageURI IsRelative="true" IsResource="false"></Photo02ImageURI>
-          <Photo03ImageURI IsRelative="true" IsResource="false"></Photo03ImageURI>
-          <Photo04ImageURI IsRelative="true" IsResource="false"></Photo04ImageURI>
-          <Photo05ImageURI IsRelative="true" IsResource="false"></Photo05ImageURI>
-          <Photo06ImageURI IsRelative="true" IsResource="false"></Photo06ImageURI>
-          <Photo07ImageURI IsRelative="true" IsResource="false"></Photo07ImageURI>
-          <Photo08ImageURI IsRelative="true" IsResource="false"></Photo08ImageURI>
-          <Photo09ImageURI IsRelative="true" IsResource="false"></Photo09ImageURI>
+          <Photo02ImageURI IsRelative="true" IsResource="false">
+          </Photo02ImageURI>
+          <Photo03ImageURI IsRelative="true" IsResource="false">
+          </Photo03ImageURI>
+          <Photo04ImageURI IsRelative="true" IsResource="false">
+          </Photo04ImageURI>
+          <Photo05ImageURI IsRelative="true" IsResource="false">
+          </Photo05ImageURI>
+          <Photo06ImageURI IsRelative="true" IsResource="false">
+          </Photo06ImageURI>
+          <Photo07ImageURI IsRelative="true" IsResource="false">
+          </Photo07ImageURI>
+          <Photo08ImageURI IsRelative="true" IsResource="false">
+          </Photo08ImageURI>
+          <Photo09ImageURI IsRelative="true" IsResource="false">
+          </Photo09ImageURI>
           <Count>0</Count>
           <HasLarge>True</HasLarge>
-          <DeviceLockImageURI IsRelative="true" IsResource="false"></DeviceLockImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
+          </DeviceLockImageURI>
         </TemplateCycle>
       </PrimaryToken>
     </Tokens>
@@ -74,6 +89,9 @@
           <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176GBC.png</Logo>
         </Logos>
         <SupportedFileTypes>
+          <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8</FileType>-->
+          <FileType ContentType="application/cloudsix2vba8">.cloudsix2vgbc8</FileType>
+          <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8beta</FileType>-->
           <FileType ContentType="application/gba">.gba</FileType>
           <FileType ContentType="application/gbc">.gbc</FileType>
           <FileType ContentType="application/gbc">.gb</FileType>

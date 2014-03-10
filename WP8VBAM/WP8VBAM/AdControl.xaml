@@ -40,8 +40,8 @@
                           VerticalAlignment="Bottom"
                           Visibility="Collapsed"/>
 
-        <UI:AdControl ApplicationId="b3b2e30a-8d50-4aac-8017-27c365684be7" 
-                      AdUnitId="10327842" 
+        <UI:AdControl ApplicationId="d7be2291-a01f-477c-8287-19156cbb47ee" 
+                      AdUnitId="10720404" 
                       HorizontalAlignment="Left" 
                       Height="80" 
                       VerticalAlignment="Bottom" 

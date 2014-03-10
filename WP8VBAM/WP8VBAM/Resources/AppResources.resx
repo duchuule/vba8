@@ -172,7 +172,7 @@
     <value>30 Hz Display Refresh Rate</value>
   </data>
   <data name="NotSignedInError" xml:space="preserve">
-    <value>You are not signed in. Sign in first to import ROMs from SkyDrive.</value>
+    <value>You are not signed in. Sign in first to import ROMs from OneDrive.</value>
   </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>recently played</value>
@@ -255,13 +255,19 @@
 The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages.
 
 Credits:
-Eddi Bento for logo design.
-MOGA company for the surprised gift.
-Sergy Ortiz Puerto for Spanish translation.
-André Queiroz for Portuguese translation.
-Arda Ozkal for Turkish translation.
-Alexandros Melissas for Greek translation.
-Łukasz Deptuła for Polish translation.</value>
+- Eddi Bento for logo design.
+- MOGA company for the surprised gift.
+- Sergy Ortiz Puerto for Spanish translation.
+- André Queiroz for Portuguese translation.
+- Arda Ozkal for Turkish translation.
+- Alexandros Melissas for Greek translation.
+- Łukasz Deptuła for Polish translation.
+- Junfan Yao for Simplifed Chinese translation.
+- wphone08 for French translation.
+- Jesper Svensson for Swedish translation.
+- Alexander Kolosov for Russian translation.
+- Usama Jawad for Urdu translation.
+- Mathias Haugsbø for Norwegian (Nynorsk) translation.</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -493,8 +499,8 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
     <value>Blank screen after loading ROM</value>
   </data>
   <data name="HelpIssuesWhiteScreenText" xml:space="preserve">
-    <value>- Make sure the downloads are completed before you leave the SkyDrive import page (wait for confirmation message). If you leave too early, the ROMs may remain in a corrupted state and cannot load correctly. If this happens, delete them (tap and hold in the ROM list) and re-download.
-- If SkyDrive import does not work or ROMs imported from SkyDrive don't work in general, try other methods to import ROMs. There are 3 methods of importing ROMs (SkyDrive, E-Mail, Web Browser) described in the "how to" section of this page.
+    <value>- Make sure the downloads are completed before you leave the OneDrive import page (wait for confirmation message). If you leave too early, the ROMs may remain in a corrupted state and cannot load correctly. If this happens, delete them (tap and hold in the ROM list) and re-download.
+- If OneDrive import does not work or ROMs imported from OneDrive don't work in general, try other methods to import ROMs. There are 3 methods of importing ROMs (OneDrive, E-Mail, Web Browser) described in the "how to" section of this page.
 - Don't forget to delete the ROMs that don't work before you re-import them using another method.</value>
   </data>
   <data name="HelpIssuesWhiteScreenTextContact" xml:space="preserve">
@@ -1023,9 +1029,6 @@ Device ID: {0}</value>
   <data name="SDCardHeader" xml:space="preserve">
     <value>SD CARD</value>
   </data>
-  <data name="TwitterLinkText" xml:space="preserve">
-    <value>Twitter: @duchuule</value>
-  </data>
   <data name="VideoCheatText" xml:space="preserve">
     <value>Video: cheat code tutorial</value>
   </data>
@@ -1133,5 +1136,56 @@ Device ID: {0}</value>
   </data>
   <data name="HelpImportSDCardText" xml:space="preserve">
     <value>In the data tab of the main page, click on Import from SD card and follow the instruction</value>
+  </data>
+  <data name="CloudSixFormatHint" xml:space="preserve">
+    <value>.gb, .gbc, .gba, .sgm, .sav, .zip</value>
+  </data>
+  <data name="CloudSixHeader" xml:space="preserve">
+    <value>CLOUDSIX</value>
+  </data>
+  <data name="CloudSixImportTitle" xml:space="preserve">
+    <value>CloudSix</value>
+  </data>
+  <data name="CloudSixInstructionText" xml:space="preserve">
+    <value>Install one of Rudy Huyn's CloudSix apps to use this function.</value>
+  </data>
+  <data name="ReviewPromptText" xml:space="preserve">
+    <value>Please spend a few seconds rating the app. Good reviews keep new features coming.</value>
+  </data>
+  <data name="ReviewPromptTitle" xml:space="preserve">
+    <value>Like this app?</value>
+  </data>
+  <data name="SelectFileTitle" xml:space="preserve">
+    <value>select files</value>
+  </data>
+  <data name="AllButtonText" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AvailableSaveFilesText" xml:space="preserve">
+    <value>Available save files</value>
+  </data>
+  <data name="NoneButtonText" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="SelectAllText" xml:space="preserve">
+    <value>select all</value>
+  </data>
+  <data name="SelectNoneText" xml:space="preserve">
+    <value>select none</value>
+  </data>
+  <data name="AutoSaveWarning" xml:space="preserve">
+    <value>Only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?</value>
+  </data>
+  <data name="CloudSixOneFileLimitText" xml:space="preserve">
+    <value>CloudSix only supports exporting one file at a time unless you choose "Export as zip".</value>
+  </data>
+  <data name="ExportAsZipText" xml:space="preserve">
+    <value>Export as zip</value>
+  </data>
+  <data name="ExportNoSelection" xml:space="preserve">
+    <value>You must select at least one file.</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warning!</value>
   </data>
 </root>
