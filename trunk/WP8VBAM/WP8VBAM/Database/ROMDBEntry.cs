@@ -23,6 +23,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
         private String displayName;
         private String fileName;
         private DateTime lastPlayed;
+        private int? autoSaveIndex = 0;
         private readonly EntitySet<SavestateEntry> savestateRefs = new EntitySet<SavestateEntry>();
         private string snapshotUri;
 
@@ -101,6 +102,25 @@ namespace PhoneDirect3DXamlAppInterop.Database
                 }
             }
         }
+
+
+        [Column]
+        public int? AutoSaveIndex
+        {
+            get
+            {
+                return this.autoSaveIndex;
+            }
+            set
+            {
+
+                this.NotifyPropertyChanging("AutoSaveIndex");
+                this.autoSaveIndex = value;
+                this.NotifyPropertyChanged("AutoSaveIndex");
+
+            }
+        }
+
 
         [Association(Name = "FK_ROM_SAVESTATES", Storage = "savestateRefs", ThisKey = "FileName", OtherKey = "ROMFileName")]
         public EntitySet<SavestateEntry> Savestates

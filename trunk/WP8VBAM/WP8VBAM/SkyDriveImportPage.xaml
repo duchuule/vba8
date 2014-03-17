@@ -58,7 +58,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Name="currentFolderBox" FontSize="34" Margin="0,0,0,0" Height="50" VerticalAlignment="Top"/>
                 <TextBlock Grid.Row="1" Foreground="#FF0000" Margin="0,0,0,0" Name="fileFormatLabel" 
-                    Text="{Binding LocalizedResources.SkyDriveFileFormatHint, Source={StaticResource LocalizedStrings}}" 
+                    Text="{Binding LocalizedResources.SkyDriveFileFormatHint, Source={StaticResource LocalizedStrings}, StringFormat='\{0\} .gb, .gbc, .gba, .sgm, .sav, .zip, .rar, .7z'}"  
                     TextWrapping="Wrap" FontSize="18"/>
                 <Line Grid.Row="2" Margin="0,5,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="4" />
                 <TextBlock Grid.Row="3" Name="statusLabel" TextWrapping="Wrap" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="de" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="WP8VBAM" product-version="2.10.0.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="de" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="WP8VBAM" product-version="2.11.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.2.1212.0" tool-company="Microsoft" />
     </header>
@@ -8,181 +8,181 @@
       <group id="Resx">
         <trans-unit id="Resx/aboutText" translate="yes" xml:space="preserve">
           <source>about</source>
-          <target state="new">about</target>
+          <target state="signed-off">Über</target>
         </trans-unit>
         <trans-unit id="Resx/AlreadyDownloadingText" translate="yes" xml:space="preserve">
           <source>Item is already being downloaded.</source>
-          <target state="new">Item is already being downloaded.</target>
+          <target state="signed-off">Wird bereits runtergeladen.</target>
         </trans-unit>
         <trans-unit id="Resx/ApplicationTitle" translate="yes" xml:space="preserve">
           <source>VBA8</source>
-          <target state="new">VBA8</target>
+          <target state="signed-off">VBA8</target>
         </trans-unit>
         <trans-unit id="Resx/AudioSettingsPageTitle" translate="yes" xml:space="preserve">
           <source>sound</source>
-          <target state="new">sound</target>
+          <target state="signed-off">Ton</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteMenuItemText" translate="yes" xml:space="preserve">
           <source>delete</source>
-          <target state="new">delete</target>
+          <target state="signed-off">Löschen</target>
         </trans-unit>
         <trans-unit id="Resx/DownloadCompleteText" translate="yes" xml:space="preserve">
           <source>Completed downloading file '{0}'</source>
-          <target state="new">Completed downloading file '{0}'</target>
+          <target state="signed-off">Heruntergeladen '{0}'</target>
         </trans-unit>
         <trans-unit id="Resx/DownloadErrorText" translate="yes" xml:space="preserve">
           <source>Error while downloading file '{0}': {1}</source>
-          <target state="new">Error while downloading file '{0}': {1}</target>
+          <target state="signed-off">Runterladen fehlgeschlagen '{0}': {1}</target>
         </trans-unit>
         <trans-unit id="Resx/DownloadingProgressText" translate="yes" xml:space="preserve">
           <source>Downloading '{0}'</source>
-          <target state="new">Downloading '{0}'</target>
+          <target state="signed-off">Wird runtergeladen... '{0}'</target>
         </trans-unit>
         <trans-unit id="Resx/EnableSoundSetting" translate="yes" xml:space="preserve">
           <source>Enable Sound</source>
-          <target state="new">Enable Sound</target>
+          <target state="signed-off">Ton aktivieren</target>
         </trans-unit>
         <trans-unit id="Resx/ErrorCaption" translate="yes" xml:space="preserve">
           <source>Error</source>
-          <target state="new">Error</target>
+          <target state="signed-off">Fehler</target>
         </trans-unit>
         <trans-unit id="Resx/ImportButtonText" translate="yes" xml:space="preserve">
           <source>import</source>
-          <target state="new">import</target>
+          <target state="signed-off">Importieren</target>
         </trans-unit>
         <trans-unit id="Resx/ImportFromSkyDriveButtonText" translate="yes" xml:space="preserve">
           <source>Import</source>
-          <target state="new">Import</target>
+          <target state="signed-off">Importieren</target>
         </trans-unit>
         <trans-unit id="Resx/ImportInstructionsText" translate="yes" xml:space="preserve">
           <source>To import ROM from OneDrive:
 1. Upload ROMs to your OneDrive folder. 
 2. Tap "Sign in" to sign in into OneDrive
 3. Tap "Import" and choose the ROM.</source>
-          <target state="new">To import ROM from OneDrive:
-1. Upload ROMs to your OneDrive folder. 
-2. Tap "Sign in" to sign in into OneDrive
-3. Tap "Import" and choose the ROM.</target>
+          <target state="signed-off">Roms von Onedrive importieren:
+1. Roms auf Onedrive hochladen.
+2. Melde dich auf Onedrive an.
+3. Tippe "Importieren" und suche deine Spiele aus.</target>
         </trans-unit>
         <trans-unit id="Resx/ImportTitle" translate="yes" xml:space="preserve">
           <source>data</source>
-          <target state="new">data</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Daten</target>
         </trans-unit>
         <trans-unit id="Resx/InputSettingsPageTitle" translate="yes" xml:space="preserve">
           <source>input</source>
-          <target state="new">input</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Eingang</target>
         </trans-unit>
         <trans-unit id="Resx/LoadStateButton" translate="yes" xml:space="preserve">
           <source>load state</source>
-          <target state="new">load state</target>
+          <target state="signed-off">Lade dein Speicherstatus</target>
         </trans-unit>
         <trans-unit id="Resx/LowFreqModeSetting" translate="yes" xml:space="preserve">
           <source>30 Hz Display Refresh Rate</source>
-          <target state="new">30 Hz Display Refresh Rate</target>
+          <target state="signed-off">30 Hz Bildwiederholfrequenz</target>
         </trans-unit>
         <trans-unit id="Resx/NotSignedInError" translate="yes" xml:space="preserve">
           <source>You are not signed in. Sign in first to import ROMs from OneDrive.</source>
-          <target state="new">You are not signed in. Sign in first to import ROMs from OneDrive.</target>
+          <target state="signed-off">Du bist nicht angemeldet. Melde dich zuerst an, um Roms zu Importieren.</target>
         </trans-unit>
         <trans-unit id="Resx/RecentTitle" translate="yes" xml:space="preserve">
           <source>recently played</source>
-          <target state="new">recently played</target>
+          <target state="signed-off">Kürzlich gespielt</target>
         </trans-unit>
         <trans-unit id="Resx/ResetROMButton" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target state="new">reset</target>
+          <target state="signed-off">Zurücksetzen</target>
         </trans-unit>
         <trans-unit id="Resx/ResumeButtonText" translate="yes" xml:space="preserve">
           <source>resume</source>
-          <target state="new">resume</target>
+          <target state="signed-off">Fortsetzen</target>
         </trans-unit>
         <trans-unit id="Resx/RomListTitle" translate="yes" xml:space="preserve">
           <source>roms</source>
-          <target state="new">roms</target>
+          <target state="signed-off">Roms</target>
         </trans-unit>
         <trans-unit id="Resx/SaveStateButton" translate="yes" xml:space="preserve">
           <source>save state</source>
-          <target state="new">save state</target>
+          <target state="signed-off">Speicherstatus</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState0" translate="yes" xml:space="preserve">
           <source>Select State 0</source>
-          <target state="new">Select State 0</target>
+          <target state="signed-off">Wähle Speicherplatz 0</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState1" translate="yes" xml:space="preserve">
           <source>Select State 1</source>
-          <target state="new">Select State 1</target>
+          <target state="signed-off">Wähle Speicherplatz 1</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState2" translate="yes" xml:space="preserve">
           <source>Select State 2</source>
-          <target state="new">Select State 2</target>
+          <target state="signed-off">Wähle Speicherplatz 2</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState3" translate="yes" xml:space="preserve">
           <source>Select State 3</source>
-          <target state="new">Select State 3</target>
+          <target state="signed-off">Wähle Speicherplatz 3</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState4" translate="yes" xml:space="preserve">
           <source>Select State 4</source>
-          <target state="new">Select State 4</target>
+          <target state="signed-off">Wähle Speicherplatz 4</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState5" translate="yes" xml:space="preserve">
           <source>Select State 5</source>
-          <target state="new">Select State 5</target>
+          <target state="signed-off">Wähle Speicherplatz 5</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState6" translate="yes" xml:space="preserve">
           <source>Select State 6</source>
-          <target state="new">Select State 6</target>
+          <target state="signed-off">Wähle Speicherplatz 6</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState7" translate="yes" xml:space="preserve">
           <source>Select State 7</source>
-          <target state="new">Select State 7</target>
+          <target state="signed-off">Wähle Speicherplatz 7</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState8" translate="yes" xml:space="preserve">
           <source>Select State 8</source>
-          <target state="new">Select State 8</target>
+          <target state="signed-off">Wähle Speicherplatz 8</target>
         </trans-unit>
         <trans-unit id="Resx/SelectState9" translate="yes" xml:space="preserve">
           <source>Select State 9</source>
-          <target state="new">Select State 9</target>
+          <target state="signed-off">Wähle Speicherplatz 9</target>
         </trans-unit>
         <trans-unit id="Resx/SelectStateAuto" translate="yes" xml:space="preserve">
           <source>Select Auto State</source>
-          <target state="new">Select Auto State</target>
+          <target state="signed-off">Wähle den automatischen Speichermodus</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsButtonText" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="new">settings</target>
+          <target state="signed-off">Einstellungen</target>
         </trans-unit>
         <trans-unit id="Resx/SkyDriveGeneralError" translate="yes" xml:space="preserve">
           <source>Error while accessing OneDrive: {0}</source>
-          <target state="new">Error while accessing OneDrive: {0}</target>
+          <target state="signed-off">Anmeldung Fehlgeschlagen: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/SkyDriveImportTitle" translate="yes" xml:space="preserve">
           <source>OneDrive</source>
-          <target state="new">OneDrive</target>
+          <target state="signed-off">OneDrive</target>
         </trans-unit>
         <trans-unit id="Resx/StatusLabelContent" translate="yes" xml:space="preserve">
           <source>Status: </source>
-          <target state="new">Status: </target>
+          <target state="signed-off">Status: </target>
         </trans-unit>
         <trans-unit id="Resx/StatusNotSignedIn" translate="yes" xml:space="preserve">
           <source>not signed in.</source>
-          <target state="new">not signed in.</target>
+          <target state="signed-off">Abgemeldet.</target>
         </trans-unit>
         <trans-unit id="Resx/StatusSignedIn" translate="yes" xml:space="preserve">
           <source>signed in.</source>
-          <target state="new">signed in.</target>
+          <target state="signed-off">Angemeldet.</target>
         </trans-unit>
         <trans-unit id="Resx/VControllerLargeSetting" translate="yes" xml:space="preserve">
           <source>intersecting</source>
-          <target state="new">intersecting</target>
+          <target state="signed-off">Überschneiden</target>
         </trans-unit>
         <trans-unit id="Resx/VControllerSmallSetting" translate="yes" xml:space="preserve">
           <source>dissecting</source>
-          <target state="new">dissecting</target>
+          <target state="signed-off">gliedernd</target>
         </trans-unit>
         <trans-unit id="Resx/VideoSettingsPageTitle" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target state="new">video</target>
+          <target state="signed-off">Video</target>
         </trans-unit>
         <trans-unit id="Resx/AboutSnes9x" translate="yes" xml:space="preserve">
           <source>Feel free to report any bugs or broken games.
@@ -202,623 +202,625 @@ Credits:
 - Jesper Svensson for Swedish translation.
 - Alexander Kolosov for Russian translation.
 - Usama Jawad for Urdu translation.
-- Mathias Haugsbø for Norwegian (Nynorsk) translation.</source>
-          <target state="new">Feel free to report any bugs or broken games.
+- Mathias Haugsbø for Norwegian (Nynorsk) translation.
+- Leutrim Shabani for German translation.</source>
+          <target state="needs-review-translation">Berichte mir über etwaige Bugs oder beschädigte Spieleinheiten.
 
-The author is not responsible for any illegal use of this software. Furthermore, there is no warranty for this software and the author is not liable for any damages.
+Der Autor ist nicht verantwortlich für jeglichen illegalen Nutzen dieser Software. Desweiteren, gibt es keine Garantie für diese Software und der Autor ist nicht haftbar für eventuell auftretenden Schäden.
 
 Credits:
-- Eddi Bento for logo design.
-- MOGA company for the surprised gift.
-- Sergy Ortiz Puerto for Spanish translation.
-- André Queiroz for Portuguese translation.
-- Arda Ozkal for Turkish translation.
-- Alexandros Melissas for Greek translation.
-- Łukasz Deptuła for Polish translation.
-- Junfan Yao for Simplifed Chinese translation.
-- wphone08 for French translation.
-- Jesper Svensson for Swedish translation.
-- Alexander Kolosov for Russian translation.
-- Usama Jawad for Urdu translation.
-- Mathias Haugsbø for Norwegian (Nynorsk) translation.</target>
+- Eddi Bento Für das Logo-Design.
+- MOGA company für das überraschende Geschenk.
+- Sergy Ortiz Puerto für die Spanisch Übersetzung.
+- André Queiroz für die Portugiesisch Übersetzung.
+- Arda Ozkal für die Türkische Übersetzung.
+- Alexandros Melissas für die Griechische Übersetzung.
+- Łukasz Deptuła für die Polnische Übersetzung.
+- Junfan Yao für die Vereinfachte Chinesische Übersetzung.
+- wphone08 für die Französische Übersetzung.
+- Jesper Svensson für die Schwedische Übersetzung.
+- Alexander Kolosov für die Russische Übersetzung.
+- Usama Jawad für die Übersetzung in Urdu.
+- Mathias Haugsbø für die Norwegische (Nynorsk) Übersetzung.
+- Leutrim Shabani for German translation.</target>
         </trans-unit>
         <trans-unit id="Resx/AboutSnes9xLicense" translate="yes" xml:space="preserve">
           <source>GNU Public License:</source>
-          <target state="new">GNU Public License:</target>
+          <target state="signed-off">GNU Public License:</target>
         </trans-unit>
         <trans-unit id="Resx/AboutSnes9xLicenseText" translate="yes" xml:space="preserve">
           <source>http://www.gnu.org/licenses/gpl.html</source>
-          <target state="new">http://www.gnu.org/licenses/gpl.html</target>
+          <target state="signed-off">http://www.gnu.org/licenses/gpl.html</target>
         </trans-unit>
         <trans-unit id="Resx/AboutSnes9xLink" translate="yes" xml:space="preserve">
           <source />
-          <target state="new" />
+          <target state="signed-off" />
         </trans-unit><trans-unit id="Resx/AboutTitle" translate="yes" xml:space="preserve">
           <source>about</source>
-          <target state="new">about</target>
+          <target state="signed-off">Über</target>
         </trans-unit>
         <trans-unit id="Resx/AboutSnes9xLinkLabel" translate="yes" xml:space="preserve">
           <source />
-          <target state="new" />
+          <target state="signed-off" />
         </trans-unit><trans-unit id="Resx/AboutContact" translate="yes" xml:space="preserve">
           <source>store.support@outlook.com</source>
-          <target state="new">store.support@outlook.com</target>
+          <target state="signed-off">store.support@outlook.com</target>
         </trans-unit>
         <trans-unit id="Resx/AboutVersion" translate="yes" xml:space="preserve">
           <source>Version</source>
-          <target state="new">Version</target>
+          <target state="signed-off">Version</target>
         </trans-unit>
         <trans-unit id="Resx/VirtualControllerButtonColored" translate="yes" xml:space="preserve">
           <source>colored</source>
-          <target state="new">colored</target>
+          <target state="signed-off">farbig</target>
         </trans-unit>
         <trans-unit id="Resx/VirtualControllerButtonGray" translate="yes" xml:space="preserve">
           <source>gray</source>
-          <target state="new">gray</target>
+          <target state="signed-off">grau</target>
         </trans-unit>
         <trans-unit id="Resx/VirtualControllerButtonStyle" translate="yes" xml:space="preserve">
           <source>Virtual Controller Button Style</source>
-          <target state="new">Virtual Controller Button Style</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Virtuelle Controller Schaltflächenstil</target>
         </trans-unit>
         <trans-unit id="Resx/OrientationBoth" translate="yes" xml:space="preserve">
           <source>landscape or portrait</source>
-          <target state="new">landscape or portrait</target>
+          <target state="signed-off">Quer- oder Hochformat</target>
         </trans-unit>
         <trans-unit id="Resx/OrientationLandscape" translate="yes" xml:space="preserve">
           <source>landscape locked</source>
-          <target state="new">landscape locked</target>
+          <target state="signed-off">Querformat gesperrt</target>
         </trans-unit>
         <trans-unit id="Resx/OrientationPortrait" translate="yes" xml:space="preserve">
           <source>portrait locked</source>
-          <target state="new">portrait locked</target>
+          <target state="signed-off">Hochformat gesperrt</target>
         </trans-unit>
         <trans-unit id="Resx/OrientationSettingText" translate="yes" xml:space="preserve">
           <source>Orientation</source>
-          <target state="new">Orientation</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Orientierung</target>
         </trans-unit>
         <trans-unit id="Resx/LastPlayedLabel" translate="yes" xml:space="preserve">
           <source>Last played: </source>
-          <target state="new">Last played: </target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Zuletzt gespielt: </target>
         </trans-unit>
         <trans-unit id="Resx/NeverPlayedText" translate="yes" xml:space="preserve">
           <source>never</source>
-          <target state="new">never</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">nie</target>
         </trans-unit>
         <trans-unit id="Resx/RenameMenuItemText" translate="yes" xml:space="preserve">
           <source>rename</source>
-          <target state="new">rename</target>
+          <target state="signed-off">Umbenennen</target>
         </trans-unit>
         <trans-unit id="Resx/RenameEmptyString" translate="yes" xml:space="preserve">
           <source>You must enter a name for the ROM.</source>
-          <target state="new">You must enter a name for the ROM.</target>
+          <target state="signed-off">Benenne die ROM.</target>
         </trans-unit>
         <trans-unit id="Resx/RenameNameAlreadyExisting" translate="yes" xml:space="preserve">
           <source>A ROM with that name already exists.</source>
-          <target state="new">A ROM with that name already exists.</target>
+          <target state="signed-off">Dieser Name existiert bereits.</target>
         </trans-unit>
         <trans-unit id="Resx/RenamePromptMessage" translate="yes" xml:space="preserve">
           <source>Change the displayed name of the ROM:</source>
-          <target state="new">Change the displayed name of the ROM:</target>
+          <target state="signed-off">Ändere den Anzeigenamen der ROM:</target>
         </trans-unit>
         <trans-unit id="Resx/RenamePromptTitle" translate="yes" xml:space="preserve">
           <source>Rename ROM</source>
-          <target state="new">Rename ROM</target>
+          <target state="signed-off">ROM umbenennen</target>
         </trans-unit>
         <trans-unit id="Resx/ROMAlreadyExistingError" translate="yes" xml:space="preserve">
           <source>That ROM has been downloaded before: {0}</source>
-          <target state="new">That ROM has been downloaded before: {0}</target>
+          <target state="signed-off">Diese ROM wurde bereits runtergeladen: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreInstructions" translate="yes" xml:space="preserve">
           <source>Export and import savegames:</source>
-          <target state="new">Export and import savegames:</target>
+          <target state="signed-off">Importiere und Exportiere Speicherstände:</target>
         </trans-unit>
         <trans-unit id="Resx/BackupButton" translate="yes" xml:space="preserve">
           <source>Export</source>
-          <target state="new">Export</target>
+          <target state="signed-off">Exportieren</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreButton" translate="yes" xml:space="preserve">
           <source>import</source>
-          <target state="new">import</target>
+          <target state="signed-off">Importieren</target>
         </trans-unit>
         <trans-unit id="Resx/SkyDriveError" translate="yes" xml:space="preserve">
           <source>OneDrive Error: {0}</source>
-          <target state="new">OneDrive Error: {0}</target>
+          <target state="signed-off">OneDrive Fehler: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/BackupErrorUpload" translate="yes" xml:space="preserve">
           <source>Error while uploading a file: {0}. Try to sign out from OneDrive and sign back in if this error persists.</source>
-          <target state="new">Error while uploading a file: {0}. Try to sign out from OneDrive and sign back in if this error persists.</target>
+          <target state="signed-off">Fehler beim hochladen: {0}. Melde dich von Onedrive ab und wieder an, wenn dieser Fehler andauert.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupInstructions" translate="yes" xml:space="preserve">
           <source>Choose the game to export saves.</source>
-          <target state="new">Choose the game to export saves.</target>
+          <target state="signed-off">Wählen Sie Ihr Spiel aus, um die Speicherstände zu Exportieren.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupPageTitle" translate="yes" xml:space="preserve">
           <source>export saves</source>
-          <target state="new">export saves</target>
+          <target state="signed-off">Exportiere Speicherstände</target>
         </trans-unit>
         <trans-unit id="Resx/BackupUploadProgressText" translate="yes" xml:space="preserve">
           <source>Exporting '{0}' saves</source>
-          <target state="new">Exporting '{0}' saves</target>
+          <target state="signed-off">Exportiere '{0}' Speicherstand</target>
         </trans-unit>
         <trans-unit id="Resx/BackupUploadSuccessful" translate="yes" xml:space="preserve">
           <source>Upload completed.</source>
-          <target state="new">Upload completed.</target>
+          <target state="signed-off">Hochgeladen.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupUploadUnsuccessful" translate="yes" xml:space="preserve">
           <source>Upload completed with errors.</source>
-          <target state="new">Upload completed with errors.</target>
+          <target state="signed-off">Datei wurde nicht richtig hochgeladen.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupWaitForUpload" translate="yes" xml:space="preserve">
           <source>Please wait for the upload to complete.</source>
-          <target state="new">Please wait for the upload to complete.</target>
+          <target state="signed-off">Bitte warten Sie, bis die Datei hochgeladen ist.</target>
         </trans-unit>
         <trans-unit id="Resx/CreateBackupFolderError" translate="yes" xml:space="preserve">
           <source>Error while creating the backup folder.</source>
-          <target state="new">Error while creating the backup folder.</target>
+          <target state="signed-off">Fehler beim Erstellen des Backup-Ordners.</target>
         </trans-unit>
         <trans-unit id="Resx/RestorePageTitle" translate="yes" xml:space="preserve">
           <source>import saves</source>
-          <target state="new">import saves</target>
+          <target state="signed-off">Importiere Speicherstände</target>
         </trans-unit>
         <trans-unit id="Resx/FullscreenStretchOption" translate="yes" xml:space="preserve">
           <source>Stretch to fullscreen</source>
-          <target state="new">Stretch to fullscreen</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Auf Vollbild Strecken</target>
         </trans-unit>
         <trans-unit id="Resx/OpacitySetting" translate="yes" xml:space="preserve">
           <source>Virtual Controller Opacity</source>
-          <target state="new">Virtual Controller Opacity</target>
+          <target state="signed-off">Virtuelle Controller Deckkraft</target>
         </trans-unit>
         <trans-unit id="Resx/ControllerScaleSettings" translate="yes" xml:space="preserve">
           <source>Virtual Joystick Scale</source>
-          <target state="new">Virtual Joystick Scale</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Virtuelle Joystick-Skala</target>
         </trans-unit>
         <trans-unit id="Resx/PinToStartText" translate="yes" xml:space="preserve">
           <source>pin to start screen</source>
-          <target state="new">pin to start screen</target>
+          <target state="signed-off">An Startseite anheften</target>
         </trans-unit>
         <trans-unit id="Resx/MaximumTilesPinned" translate="yes" xml:space="preserve">
           <source>The selected ROM is pinned already or you have reached the maximum number of tiles to pin.</source>
-          <target state="new">The selected ROM is pinned already or you have reached the maximum number of tiles to pin.</target>
+          <target state="signed-off">Die ausgewählte ROM ist bereits angeheftet oder Sie haben das Maximum an Tiles erreicht.</target>
         </trans-unit>
         <trans-unit id="Resx/FileAssociationError" translate="yes" xml:space="preserve">
           <source>Error importing and opening ROM file.</source>
-          <target state="new">Error importing and opening ROM file.</target>
+          <target state="signed-off">Fehler beim Importieren und öffnen der ROM.</target>
         </trans-unit>
         <trans-unit id="Resx/ImportSavestateInvalidFormat" translate="yes" xml:space="preserve">
           <source>Savestate file format is invalid. The file name must end with a number from 0 to 9 (e.g. demo0.sgm).</source>
-          <target state="new">Savestate file format is invalid. The file name must end with a number from 0 to 9 (e.g. demo0.sgm).</target>
+          <target state="signed-off">Speicherstand-Dateiformat ist ungültig. Der Dateiname muss mit einer Zahl von 0 bis 9 enden (z.B. demo0.sgm).</target>
         </trans-unit>
         <trans-unit id="Resx/TileOpenError" translate="yes" xml:space="preserve">
           <source>Error opening the ROM associated with the tile.</source>
-          <target state="new">Error opening the ROM associated with the tile.</target>
+          <target state="signed-off">Fehler beim Öffnen der ROM, die mit diesem Tile verbunden ist.</target>
         </trans-unit>
         <trans-unit id="Resx/AspectRatio4to3Setting" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target state="new">4:3</target>
+          <target state="signed-off">4:3</target>
         </trans-unit>
         <trans-unit id="Resx/AspectRatio5to4Setting" translate="yes" xml:space="preserve">
           <source>5:4</source>
-          <target state="new">5:4</target>
+          <target state="signed-off">5:4</target>
         </trans-unit>
         <trans-unit id="Resx/AspectRatioOneSetting" translate="yes" xml:space="preserve">
           <source>1:1</source>
-          <target state="new">1:1</target>
+          <target state="signed-off">1:1</target>
         </trans-unit>
         <trans-unit id="Resx/AspectRatioOriginalSetting" translate="yes" xml:space="preserve">
           <source>native</source>
-          <target state="new">native</target>
+          <target state="signed-off">Nativ</target>
         </trans-unit>
         <trans-unit id="Resx/AspectRatioSetting" translate="yes" xml:space="preserve">
           <source>Aspect Ratio</source>
-          <target state="new">Aspect Ratio</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Seitenverhältnis</target>
         </trans-unit>
         <trans-unit id="Resx/AspectRatioStretchSetting" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target state="new">stretch</target>
+          <target state="signed-off">Strecken</target>
         </trans-unit>
         <trans-unit id="Resx/FrameSkipAutoSetting" translate="yes" xml:space="preserve">
           <source>auto</source>
-          <target state="new">auto</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Auto</target>
         </trans-unit>
         <trans-unit id="Resx/FrameSkipSetting" translate="yes" xml:space="preserve">
           <source>Skip Frames (increase emulation speed)</source>
-          <target state="new">Skip Frames (increase emulation speed)</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Überspringen von Frames (Emulation beschleunigen)</target>
         </trans-unit>
         <trans-unit id="Resx/ImageScaleSetting" translate="yes" xml:space="preserve">
           <source>Scale Image (landscape only)</source>
-          <target state="new">Scale Image (landscape only)</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bild skalieren (nur Querformat)</target>
         </trans-unit>
         <trans-unit id="Resx/TurboModeTip" translate="yes" xml:space="preserve">
           <source>Note: Turbo Mode will be assigned to L or R if the camera button is assigned to L or R.</source>
-          <target state="new">Note: Turbo Mode will be assigned to L or R if the camera button is assigned to L or R.</target>
+          <target state="signed-off">Hinweis: Turbo-Modus wird L oder R zugewiesen,  wenn der Kamera-Taste L oder R zugewiesen ist</target>
         </trans-unit>
         <trans-unit id="Resx/SkyDriveInternetLost" translate="yes" xml:space="preserve">
           <source>Cannot connect to OneDrive. Check your internet connection.</source>
-          <target state="new">Cannot connect to OneDrive. Check your internet connection.</target>
+          <target state="signed-off">Verbindung zu Onedrive nicht möglich. Überprüfe deine Internetverbindung.</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowButtonText" translate="yes" xml:space="preserve">
           <source>Buy now</source>
-          <target state="new">Buy now</target>
+          <target state="signed-off">Jetzt kaufen</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowCancelButtonText" translate="yes" xml:space="preserve">
           <source>Continue trial</source>
-          <target state="new">Continue trial</target>
+          <target state="signed-off">Setze Sie Ihre Testversion fort</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowText" translate="yes" xml:space="preserve">
           <source>This feature is only available in the full version of the app. Click on the Ok button below, if you want to buy the app and unlock the feature.</source>
-          <target state="new">This feature is only available in the full version of the app. Click on the Ok button below, if you want to buy the app and unlock the feature.</target>
+          <target state="signed-off">Diese Funktion steht nur Nutzer der Vollversion, dieser App zur verfügung. Klicke auf "Ok", wenn du die App kaufen und alle Funktionen freischaltet willst.</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowImportText" translate="yes" xml:space="preserve">
           <source>In the trial version you can store up to 2 ROMs on your phone. Click on Ok to buy the app and remove this limit.</source>
-          <target state="new">In the trial version you can store up to 2 ROMs on your phone. Click on Ok to buy the app and remove this limit.</target>
+          <target state="signed-off">In der Testversion können Sie bis zu 2 ROMs auf dem Handy speichern. Klicke auf "Ok", um diese App zu kaufen und das Limit aufzuheben.</target>
         </trans-unit>
         <trans-unit id="Resx/BuyWaitForDownloadText" translate="yes" xml:space="preserve">
           <source>Please wait for the active download to complete.</source>
-          <target state="new">Please wait for the active download to complete.</target>
+          <target state="signed-off">Bitte warten Sie bis die Datei runtergeladen wurde.</target>
         </trans-unit>
         <trans-unit id="Resx/TurboFrameSkipText" translate="yes" xml:space="preserve">
           <source>Turbo Mode Frame Skip</source>
-          <target state="new">Turbo Mode Frame Skip</target>
+          <target state="signed-off">Turbo-Modus Frames überspringen</target>
         </trans-unit>
         <trans-unit id="Resx/SyncSoundSetting" translate="yes" xml:space="preserve">
           <source>Synchronize Audio (better quality)</source>
-          <target state="new">Synchronize Audio (better quality)</target>
+          <target state="signed-off">Audio Synchronisation (bessere Qualität)</target>
         </trans-unit>
         <trans-unit id="Resx/SyncSoundSetting2" translate="yes" xml:space="preserve">
           <source>(better quality, but may be slower)</source>
-          <target state="new">(better quality, but may be slower)</target>
+          <target state="signed-off">(bessere Qualität, aber möglicherweise langsamer)</target>
         </trans-unit>
         <trans-unit id="Resx/PowerFrameSkipText" translate="yes" xml:space="preserve">
           <source>Skip Frames (same emulation speed)</source>
-          <target state="new">Skip Frames (same emulation speed)</target>
+          <target state="signed-off">Überspringe Frames (gleiche Emulations-Geschwindigkeit)</target>
         </trans-unit>
         <trans-unit id="Resx/PowerFrameSkipText2" translate="yes" xml:space="preserve">
           <source />
-          <target state="new" />
+          <target state="signed-off" />
         </trans-unit><trans-unit id="Resx/AboutContactLabel" translate="yes" xml:space="preserve">
           <source>Contact:</source>
-          <target state="new">Contact:</target>
+          <target state="signed-off">Kontakt:</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTitle" translate="yes" xml:space="preserve">
           <source>HELP</source>
-          <target state="new">HELP</target>
+          <target state="signed-off">Hilfe</target>
         </trans-unit>
         <trans-unit id="Resx/HelpDownloadROMsHeader" translate="yes" xml:space="preserve">
           <source>How to import ROMs</source>
-          <target state="new">How to import ROMs</target>
+          <target state="signed-off">Wie ROMs importieren...</target>
         </trans-unit>
         <trans-unit id="Resx/HelpHowToHeader" translate="yes" xml:space="preserve">
           <source>how to</source>
-          <target state="new">how to</target>
+          <target state="signed-off">So wird es gemacht...</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportEmailHeader" translate="yes" xml:space="preserve">
           <source>Alternative 2: importing from E-Mails</source>
-          <target state="new">Alternative 2: importing from E-Mails</target>
+          <target state="signed-off">2. Alternative: Importieren von der E-Mail</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportEmailText" translate="yes" xml:space="preserve">
           <source>Send an E-Mail to any E-Mail address that is accessible from your phone, containing one or more ROM(s) as file attachments. You can either attach the ROMs as *.gba files or contained within a *.zip archive. Open the E-Mail on your phone and tap on the attachment to download the file. If your attachment was a *.zip archive, the E-Mail client allows you to navigate through the archive. Locate the ROM inside the archive and tap on it to launch the emulator. The emulator will automatically import the ROM from the E-Mail attachment and start the game. If the attachment was not a *.zip archive but a *.gba file, just tap on it to start the emulator and import the ROM.</source>
-          <target state="new">Send an E-Mail to any E-Mail address that is accessible from your phone, containing one or more ROM(s) as file attachments. You can either attach the ROMs as *.gba files or contained within a *.zip archive. Open the E-Mail on your phone and tap on the attachment to download the file. If your attachment was a *.zip archive, the E-Mail client allows you to navigate through the archive. Locate the ROM inside the archive and tap on it to launch the emulator. The emulator will automatically import the ROM from the E-Mail attachment and start the game. If the attachment was not a *.zip archive but a *.gba file, just tap on it to start the emulator and import the ROM.</target>
+          <target state="signed-off">Sende eine Mail an eine beliebige E-Mail Adresse auf der Sie, mit Ihrem Smartphone Zugriff haben, die Ihre ROM(s) als Anhang beinhalten. Sie können die ROMs auch als *.gba Datei, die in einem*.zip Archiv gepackt sind anhängen. Öffnen Sie die E-Mail auf Ihrem Smartphone und laden den Anhang runter. Wenn Ihr Anhang ein *.zip Archiv ist, dann können Sie ganz normal durch das Archiv navigieren. Navigieren Sie zu der ROM und öffnen Sie sie, um den Emulator zu starten. Der Emulator wird die ROM automatisch von Ihrer E-Mail Adresse importieren und starten. Wenn der Anhang kein *.zip Archiv ist, sondern eine *.gba Datei, dann öffnen Sie die Datei, der Emulator wird automatisch starten und die ROM(s) aus dem Anhang Ihrer E-Mail Adresse importieren.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSkyDriveHeader" translate="yes" xml:space="preserve">
           <source>Alternative 1: importing from OneDrive</source>
-          <target state="new">Alternative 1: importing from OneDrive</target>
+          <target state="signed-off">1. Alternative: Importieren von Onedrive</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSkyDriveText" translate="yes" xml:space="preserve">
           <source>Store your ROMs in a folder on your OneDrive.  Afterwards navigate to the OneDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on "Sign in" first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled "import ROMs" on the emulators main page. The following page allows you to navigate through OneDrive to locate the folder where you put your ROMs into. In the folder containing the ROMs, tap on any *.gba or *.zip file to start the download. Wait for the download to complete before you leave the page. A confirmation message will be shown when the download is completed.
 Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when started. If you experience this issue, please use alternative 2 or 3.</source>
-          <target state="new">Store your ROMs in a folder on your OneDrive.  Afterwards navigate to the OneDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on "Sign in" first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled "import ROMs" on the emulators main page. The following page allows you to navigate through OneDrive to locate the folder where you put your ROMs into. In the folder containing the ROMs, tap on any *.gba or *.zip file to start the download. Wait for the download to complete before you leave the page. A confirmation message will be shown when the download is completed.
-Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when started. If you experience this issue, please use alternative 2 or 3.</target>
+          <target state="signed-off">Speichern Sie Ihre ROMs auf Ihrem Onedrive Account. Danach navigieren Sie zum Onedrive Reiter (Wischen Sie nach rechts von der ROM Liste aus). Wenn Sie noch nicht angemeldet sind, tippen Sie auf "Anmelden" und geben Sie Ihre Anmeldedaten ein. Nachdem Sie sich angemeldet haben, tippen Sie auf die Fläche "Importieren". Die folgende Seite ermöglicht es Ihnen, durch Onedrive zu navigieren, um Ihre ROM zu finden. In dem Ordner, der die gewünschten ROMs beinhaltet, tippen Sie auf irgendeine *.gba Datei  um die Datei runterzuladen. Warten Sie bis die Datei runtergeladen wurde, bevor Sie die Seite verlassen. Eine Bestätigungsmeldung wird angezeigt, sobald die Datei runtergeladen wurde.
+Hinweis: In manchen Fällen, zeigen ROMs die von Onedrive runtergeladen wurden, ein leeres Bild. Wenn Ihnen so etwas widerfährt, bitte benutzen Sie die 2 und 3 Alternative.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportWebHeader" translate="yes" xml:space="preserve">
           <source>Alternative 3: importing from Web Browser</source>
-          <target state="new">Alternative 3: importing from Web Browser</target>
+          <target state="signed-off">3. Alternative: Importieren vom Web Browser</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportWebText" translate="yes" xml:space="preserve">
           <source>In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gba file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gba file, just tap on it and the emulator will start and import the ROM.</source>
-          <target state="new">In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gba file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gba file, just tap on it and the emulator will start and import the ROM.</target>
+          <target state="signed-off">Öffnen Sie in Ihrem Web Browser, jede Webseite die ROMs anbietet und suchen Sie sich ein Spiel aus, welches Sie runterladen möchten. Der Web Browser lässt Sie, wenn die runtergeladene Datei ein *.zip Archiv ist, durch dieses Navigieren, sobald die Datei runtergeladen worden ist. Tippen Sie auf die *.gba Datei, die in dem Archiv ist, um den Emulator zu starten. Der Emulator wird die ROM automatisch importieren, die Sie zuvor mit dem Web Browser runtergeladen haben. Wenn die runtergeladene Datei eine *.gba Datei ist, dann tippen Sie auf die *.gba Datei und der Emulator wird die ROM importieren und starten.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpIssuesHeader" translate="yes" xml:space="preserve">
           <source>issues</source>
-          <target state="new">issues</target>
+          <target state="signed-off">Probleme</target>
         </trans-unit>
         <trans-unit id="Resx/HelpIssuesWhiteScreenHeader" translate="yes" xml:space="preserve">
           <source>Blank screen after loading ROM</source>
-          <target state="new">Blank screen after loading ROM</target>
+          <target state="signed-off">Leeres Bild nach dem Laden von ROM</target>
         </trans-unit>
         <trans-unit id="Resx/HelpIssuesWhiteScreenText" translate="yes" xml:space="preserve">
           <source>- Make sure the downloads are completed before you leave the OneDrive import page (wait for confirmation message). If you leave too early, the ROMs may remain in a corrupted state and cannot load correctly. If this happens, delete them (tap and hold in the ROM list) and re-download.
 - If OneDrive import does not work or ROMs imported from OneDrive don't work in general, try other methods to import ROMs. There are 3 methods of importing ROMs (OneDrive, E-Mail, Web Browser) described in the "how to" section of this page.
 - Don't forget to delete the ROMs that don't work before you re-import them using another method.</source>
-          <target state="new">- Make sure the downloads are completed before you leave the OneDrive import page (wait for confirmation message). If you leave too early, the ROMs may remain in a corrupted state and cannot load correctly. If this happens, delete them (tap and hold in the ROM list) and re-download.
-- If OneDrive import does not work or ROMs imported from OneDrive don't work in general, try other methods to import ROMs. There are 3 methods of importing ROMs (OneDrive, E-Mail, Web Browser) described in the "how to" section of this page.
-- Don't forget to delete the ROMs that don't work before you re-import them using another method.</target>
+          <target state="signed-off">- Verlasse die Seite zum Importieren, nur wenn alle Dateien runtergeladen wurden (Warten Sie auf die Bestätigungsmeldung). Wenn Sie die Seite zu früh verlasssen, können die herruntergeladenen ROMs bschädigt und nicht mehr geladen werden. Wenn das passiert, löschen Sie die ROMs (Tippe und halte in der ROM-Liste) und laden Sie sie wieder runter.
+- Wenn das Importieren von ROMs nicht geht oder importierte ROMs nicht gestartet werden, versuchen Sie andere Alternativen, um die ROMs zu importieren. Es gibt drei Methoden, um ROMs zu importieren (Onedrive, E-Mail, Web Browser) beschrieben in dem "So wirds gemacht..." bereich dieser Seite.
+- Vergessen Sie nicht die ROMs zu löschen, bevor Sie die Dateien mit einer anderen Methode importieren.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpIssuesWhiteScreenTextContact" translate="yes" xml:space="preserve">
           <source>- If nothing helps, contact the developer:</source>
-          <target state="new">- If nothing helps, contact the developer:</target>
+          <target state="signed-off">- Wenn nichts hilft, kontaktieren Sie den Entwickler:</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTipsHeader" translate="yes" xml:space="preserve">
           <source>tips</source>
-          <target state="new">tips</target>
+          <target state="signed-off">Tipps</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTipsPerformanceHeader" translate="yes" xml:space="preserve">
           <source>Games are running slowly</source>
-          <target state="new">Games are running slowly</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Spiele laufen langsam</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTIpsPerformanceText" translate="yes" xml:space="preserve">
           <source>- Open the video settings and increase the value of the option "Skip Frames (same emulation speed)". This option reduces the number of frames the emulator needs to display and therefore leaves more resources to keep the emulation speed up. The games might appear less smooth when increasing the frame skip value.
 - Open the sound settings and switch off audio synchronization. This might increase the performance, but the sound quality may suffer.
 - Open the sound settings and switch the sound completely off.</source>
-          <target state="new">- Open the video settings and increase the value of the option "Skip Frames (same emulation speed)". This option reduces the number of frames the emulator needs to display and therefore leaves more resources to keep the emulation speed up. The games might appear less smooth when increasing the frame skip value.
-- Open the sound settings and switch off audio synchronization. This might increase the performance, but the sound quality may suffer.
-- Open the sound settings and switch the sound completely off.</target>
+          <target state="signed-off">- Öffnen Sie die Video-Einstellungen und erhöhen Sie den Wert des "Überspringe Frames (gleiche Emulations-Geschwindigkeit)". Diese Option reduziert die Anzahl von Frames die der Emulator anzeigt, dies hat den Effekt das mehr Ressourcen zur verfügung stehen, um die Emulation zu beschleunigen. Die Spiele können weniger "geschmeidig" erscheinen, wenn Sie den Wert zum Frames überspringen erhöhen.
+- Öffnen Sie die Audio-Einstellungen und deaktivieren Sie die Audio Synchronisation. Dies kann die Leistung erhöhen, aber die Tonqualität könnte darunter leiden.
+- Öffnen Sie die Audio-Einstellungen und deaktivieren Sie den Ton.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTipsSoundHeader" translate="yes" xml:space="preserve">
           <source>Scratchy sound</source>
-          <target state="new">Scratchy sound</target>
+          <target state="signed-off">Kratziger Ton</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTipsSoundText" translate="yes" xml:space="preserve">
           <source>- Open the sound settings and switch on audio synchronization. This might increase the audio quality, but the performance may suffer.
 - If the emulation speed is too low, the sound quality can also suffer. Follow the above tips for games that are running slowly.</source>
-          <target state="new">- Open the sound settings and switch on audio synchronization. This might increase the audio quality, but the performance may suffer.
-- If the emulation speed is too low, the sound quality can also suffer. Follow the above tips for games that are running slowly.</target>
+          <target state="signed-off">- Öffnen Sie die Audio-Einstellungen und aktivieren Sie die Audio Synchronisation. Dies erhöht die Audioqualität, aber veringert die Leistung.
+- Wenn die Emulation langsam ist, dann kann die Tonqualität darunter auch leiden. Befolge die obigen Hilfestellungen, für Spiele die langsam laufen.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTipsTurboHeader" translate="yes" xml:space="preserve">
           <source>Activate turbo mode</source>
-          <target state="new">Activate turbo mode</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Turbo-Modus aktivieren</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTipsTurboText" translate="yes" xml:space="preserve">
           <source>- Press the camera button to toggle turbo mode.
 - Half-press the camera button to activate turbo mode while holding the camera button half-pressed.</source>
-          <target state="new">- Press the camera button to toggle turbo mode.
-- Half-press the camera button to activate turbo mode while holding the camera button half-pressed.</target>
+          <target state="signed-off">- Drücke die Kamerataste um den Turbo-Modus zu aktivieren.
+- Aktivieren Sie den Turbo-Modus, solange Sie die Kamerataste halb gedrückt halten.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpButtonText" translate="yes" xml:space="preserve">
           <source>help</source>
-          <target state="new">help</target>
+          <target state="signed-off">Hilfe</target>
         </trans-unit>
         <trans-unit id="Resx/ImportWaitComplete" translate="yes" xml:space="preserve">
           <source>Please wait for the download to complete.</source>
-          <target state="new">Please wait for the download to complete.</target>
+          <target state="signed-off">Bitte warten Sie bis die Datei runtergeladen wurde.</target>
         </trans-unit>
         <trans-unit id="Resx/RomListTroubleshootNote" translate="yes" xml:space="preserve">
           <source>Note: If your ROMs do not start, see the "issues" section of the help page.</source>
-          <target state="new">Note: If your ROMs do not start, see the "issues" section of the help page.</target>
+          <target state="signed-off">Hinweis: Wenn Ihre ROMs nicht starten, schauen Sie im "Probleme" Sektor auf der Hilfe Seite.</target>
         </trans-unit>
         <trans-unit id="Resx/SkyDriveFileFormatHint" translate="yes" xml:space="preserve">
-          <source>Supported files: .gb, .gbc, .gba, .sgm, .sav, .zip</source>
-          <target state="new">Supported files: .gb, .gbc, .gba, .sgm, .sav, .zip</target>
+          <source>Supported files:</source>
+          <target state="signed-off">Unterstützte Dateiformate:</target>
         </trans-unit>
         <trans-unit id="Resx/DPadAnalogueDynamic" translate="yes" xml:space="preserve">
           <source>dynamic analogue stick</source>
-          <target state="new">dynamic analogue stick</target>
+          <target state="signed-off">Dynamischer Analogstick</target>
         </trans-unit>
         <trans-unit id="Resx/DPadAnalogueFixed" translate="yes" xml:space="preserve">
           <source>fixed analogue stick</source>
-          <target state="new">fixed analogue stick</target>
+          <target state="signed-off">Fester Analogstick</target>
         </trans-unit>
         <trans-unit id="Resx/DPadStandard" translate="yes" xml:space="preserve">
           <source>4-way</source>
-          <target state="new">4-way</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">4-Wege</target>
         </trans-unit>
         <trans-unit id="Resx/DPadStyleHeader" translate="yes" xml:space="preserve">
           <source>D-Pad Style</source>
-          <target state="new">D-Pad Style</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">D-Pad-Stil</target>
         </trans-unit>
         <trans-unit id="Resx/DeadzoneHeader" translate="yes" xml:space="preserve">
           <source>Deadzone (analogue stick only)</source>
-          <target state="new">Deadzone (analogue stick only)</target>
+          <target state="signed-off">Tote Zone (Nur Analogstick)</target>
         </trans-unit>
         <trans-unit id="Resx/CameraAssignL" translate="yes" xml:space="preserve">
           <source>L-Button</source>
-          <target state="new">L-Button</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">L-Taste</target>
         </trans-unit>
         <trans-unit id="Resx/CameraAssignR" translate="yes" xml:space="preserve">
           <source>R-Button</source>
-          <target state="new">R-Button</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">R-Taste</target>
         </trans-unit>
         <trans-unit id="Resx/CameraAssignTurbo" translate="yes" xml:space="preserve">
           <source>Turbo Mode</source>
-          <target state="new">Turbo Mode</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Turbo-Modus</target>
         </trans-unit>
         <trans-unit id="Resx/CameraButtonAssignment" translate="yes" xml:space="preserve">
           <source>Assign to camera button</source>
-          <target state="new">Assign to camera button</target>
+          <target state="signed-off">Kamerataste zuweisen</target>
         </trans-unit>
         <trans-unit id="Resx/RefreshRate30" translate="yes" xml:space="preserve">
           <source>30Hz</source>
-          <target state="new">30Hz</target>
+          <target state="signed-off">30Hz</target>
         </trans-unit>
         <trans-unit id="Resx/RefreshRate60" translate="yes" xml:space="preserve">
           <source>60Hz</source>
-          <target state="new">60Hz</target>
+          <target state="signed-off">60Hz</target>
         </trans-unit>
         <trans-unit id="Resx/ActiveSavestateText" translate="yes" xml:space="preserve">
           <source> (active)</source>
-          <target state="new"> (active)</target>
+          <target state="signed-off">(aktiv)</target>
         </trans-unit>
         <trans-unit id="Resx/AutoIncSavestateSetting" translate="yes" xml:space="preserve">
           <source>Automatically increment save state</source>
-          <target state="new">Automatically increment save state</target>
+          <target state="signed-off">Erhöhe automatisch den Speicherslot</target>
         </trans-unit>
         <trans-unit id="Resx/CancelButtonText" translate="yes" xml:space="preserve">
           <source>cancel</source>
-          <target state="new">cancel</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Abbrechen</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmationCheckBoxText" translate="yes" xml:space="preserve">
           <source>Do not show this again</source>
-          <target state="new">Do not show this again</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Nicht wieder anzeigen</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmButtonText" translate="yes" xml:space="preserve">
           <source>Confirm</source>
-          <target state="new">Confirm</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bestätigen</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmLoadText" translate="yes" xml:space="preserve">
           <source>Are you sure you want to load the last saved state?</source>
-          <target state="new">Are you sure you want to load the last saved state?</target>
+          <target state="signed-off">Sind Sie sicher, dass Sie den letzten gespeicherten Speicherstand laden möchten?</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmSaveText" translate="yes" xml:space="preserve">
           <source>Are you sure you want to save? This will overwrite the selected save state.</source>
-          <target state="new">Are you sure you want to save? This will overwrite the selected save state.</target>
+          <target state="signed-off">Sind Sie sicher, dass Sie speichern möchten? Damit werden die ausgewählten Speicherstände überschrieben.</target>
         </trans-unit>
         <trans-unit id="Resx/GeneralSettingsTitle" translate="yes" xml:space="preserve">
           <source>general</source>
-          <target state="new">general</target>
+          <target state="signed-off">Allgemein</target>
         </trans-unit>
         <trans-unit id="Resx/HideConfirmationLoadSetting" translate="yes" xml:space="preserve">
           <source>Disable confirmation on load state</source>
-          <target state="new">Disable confirmation on load state</target>
+          <target state="signed-off">Deaktivieren der Bestätigung beim laden des Speicherstandes</target>
         </trans-unit>
         <trans-unit id="Resx/HideConfirmationSetting" translate="yes" xml:space="preserve">
           <source>Disable confirmation on save state</source>
-          <target state="new">Disable confirmation on save state</target>
+          <target state="signed-off">Deaktivieren der Bestätigung beim speichern des Speicherstandes</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreLastStateSetting" translate="yes" xml:space="preserve">
           <source>Use 9th slot for auto save/load</source>
-          <target state="new">Use 9th slot for auto save/load</target>
+          <target state="signed-off">Verwende den 9. Steckplatz für die automatisierte Speicher-/ Ladefunktion</target>
         </trans-unit>
         <trans-unit id="Resx/ApplicationTitle2" translate="yes" xml:space="preserve">
           <source>VGBC8</source>
-          <target state="new">VGBC8</target>
+          <target state="signed-off">VGBC8</target>
         </trans-unit>
         <trans-unit id="Resx/CameraAssignLR" translate="yes" xml:space="preserve">
           <source>L-Button and R-Button</source>
-          <target state="new">L-Button and R-Button</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">L- und R-Taste</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteSavesEntry" translate="yes" xml:space="preserve">
           <source>delete in-game save</source>
-          <target state="new">delete in-game save</target>
+          <target state="signed-off">Lösche In-Game Speicherstand</target>
         </trans-unit>
         <trans-unit id="Resx/AddCheatButtonText" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="new">add</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Hinzufügen</target>
         </trans-unit>
         <trans-unit id="Resx/AddCheatsTitle" translate="yes" xml:space="preserve">
           <source>Add Cheat</source>
-          <target state="new">Add Cheat</target>
+          <target state="signed-off">Cheats hinzufügen</target>
         </trans-unit>
         <trans-unit id="Resx/CheatMenuItemText" translate="yes" xml:space="preserve">
           <source>cheat codes</source>
-          <target state="new">cheat codes</target>
+          <target state="signed-off">Cheat-Codes</target>
         </trans-unit>
         <trans-unit id="Resx/CheatPageTitle" translate="yes" xml:space="preserve">
           <source>CHEATS</source>
-          <target state="new">CHEATS</target>
+          <target state="signed-off">CHEATS</target>
         </trans-unit>
         <trans-unit id="Resx/CheatsDescription" translate="yes" xml:space="preserve">
           <source>You can enter GameShark and CodeBreaker codes for GBA games and GameShark and GameGenie codes for GB/GBC games.</source>
-          <target state="new">You can enter GameShark and CodeBreaker codes for GBA games and GameShark and GameGenie codes for GB/GBC games.</target>
+          <target state="signed-off">Sie können GameShark bzw. CodeBreaker Codes für GBA Spiele und GameShark bzw. GameGenie Codes für GB/GBC Spiele hinzufügen.</target>
         </trans-unit>
         <trans-unit id="Resx/CheatCodesAddPivotTitle" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="new">add</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Hinzufügen</target>
         </trans-unit>
         <trans-unit id="Resx/CheatCodesListPivotTitle" translate="yes" xml:space="preserve">
           <source>list</source>
-          <target state="new">list</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Liste</target>
         </trans-unit>
         <trans-unit id="Resx/CheatDefaultDescription" translate="yes" xml:space="preserve">
           <source />
-          <target state="new" />
+          <target state="signed-off" />
         </trans-unit><trans-unit id="Resx/CheatInvalidFormat" translate="yes" xml:space="preserve">
           <source>Invalid code format. The codes must be 6, 8, 9, 12 or 16 hexadecimal values per line.</source>
-          <target state="new">Invalid code format. The codes must be 6, 8, 9, 12 or 16 hexadecimal values per line.</target>
+          <target state="signed-off">Falscher Code Format. Die Codes müssen pro Reihe 6, 8, 9, 12 oder 16 Hexadezimal-Werte haben.</target>
         </trans-unit>
         <trans-unit id="Resx/CheatListGameLabel" translate="yes" xml:space="preserve">
           <source>Cheats for:</source>
-          <target state="new">Cheats for:</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Cheats für:</target>
         </trans-unit>
         <trans-unit id="Resx/CheatListUnknownGame" translate="yes" xml:space="preserve">
           <source>unknown</source>
-          <target state="new">unknown</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">unbekannt</target>
         </trans-unit>
         <trans-unit id="Resx/CheatNoCodeEntered" translate="yes" xml:space="preserve">
           <source>You must enter a code first.</source>
-          <target state="new">You must enter a code first.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Sie müssen zuerst einen Code eingeben.</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteCheatButtonText" translate="yes" xml:space="preserve">
           <source>remove</source>
-          <target state="new">remove</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Entfernen</target>
         </trans-unit>
         <trans-unit id="Resx/CheatNoSelection" translate="yes" xml:space="preserve">
           <source>You must select a cheat code first.</source>
-          <target state="new">You must select a cheat code first.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Sie müssen zuerst einen Cheat-Code auswählen.</target>
         </trans-unit>
         <trans-unit id="Resx/ManageSavestateMenuItem" translate="yes" xml:space="preserve">
           <source>manage save states</source>
-          <target state="new">manage save states</target>
+          <target state="signed-off">Verwalte Speicherstände</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsPageTitle" translate="yes" xml:space="preserve">
           <source>SETTINGS</source>
-          <target state="new">SETTINGS</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Einstellungen</target>
         </trans-unit>
         <trans-unit id="Resx/CheatInvalidFormat2" translate="yes" xml:space="preserve">
           <source>Invalid code format. The codes must be in the format XXX-XXX-XXX, XXX-XXX or an 8 digit hexadecimal number per line.</source>
-          <target state="new">Invalid code format. The codes must be in the format XXX-XXX-XXX, XXX-XXX or an 8 digit hexadecimal number per line.</target>
+          <target state="signed-off">Falscher Code Format. Die Codes müssen in dem Format sein: XXX-XXX-XXX, XXX-XXX oder eine 8 Zeichen lange Hexadezimal Nummer je Reihe.</target>
         </trans-unit>
         <trans-unit id="Resx/CheatRestoreValuesOption" translate="yes" xml:space="preserve">
           <source>Restore old values after cheats (GBA)</source>
-          <target state="new">Restore old values after cheats (GBA)</target>
+          <target state="signed-off">Wiederherstellen der alten Werte nach Cheats (GBA)</target>
         </trans-unit>
         <trans-unit id="Resx/ManageAutoSlotLabel" translate="yes" xml:space="preserve">
           <source>Automatic </source>
-          <target state="new">Automatic </target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Automatisch </target>
         </trans-unit>
         <trans-unit id="Resx/ManageRemoveState" translate="yes" xml:space="preserve">
           <source>remove</source>
-          <target state="new">remove</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Entfernen</target>
         </trans-unit>
         <trans-unit id="Resx/ManageSavestatesTitle" translate="yes" xml:space="preserve">
           <source>save states</source>
-          <target state="new">save states</target>
+          <target state="signed-off">Speicherstände</target>
         </trans-unit>
         <trans-unit id="Resx/ManageSaveTimeLabel" translate="yes" xml:space="preserve">
           <source>Created:</source>
-          <target state="new">Created:</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Erstellt:</target>
         </trans-unit>
         <trans-unit id="Resx/ManageSlotLabel" translate="yes" xml:space="preserve">
           <source>Slot </source>
-          <target state="new">Slot </target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Steckplatz </target>
         </trans-unit>
         <trans-unit id="Resx/RemoveStateNoSelection" translate="yes" xml:space="preserve">
           <source>You must select a save state first.</source>
-          <target state="new">You must select a save state first.</target>
+          <target state="signed-off">Sie müssen zuerst einen Speicherstand wählen.</target>
         </trans-unit>
         <trans-unit id="Resx/ManageDeleteUnknownError" translate="yes" xml:space="preserve">
           <source>There was an unknown error while removing the save state.</source>
-          <target state="new">There was an unknown error while removing the save state.</target>
+          <target state="signed-off">Es gab einen unbekannten Fehler, während dem entfernen der Speicherstände.</target>
         </trans-unit>
         <trans-unit id="Resx/CreateSnapshotMenuItem" translate="yes" xml:space="preserve">
           <source>create snapshot for tiles</source>
-          <target state="new">create snapshot for tiles</target>
+          <target state="signed-off">Erstellen von Snapshot für Tiles</target>
         </trans-unit>
         <trans-unit id="Resx/ManualSnapshotSetting" translate="yes" xml:space="preserve">
           <source>Create tile pictures manually</source>
-          <target state="new">Create tile pictures manually</target>
+          <target state="signed-off">Tile Bilder manuell erstellen</target>
         </trans-unit>
         <trans-unit id="Resx/InfoCaption" translate="yes" xml:space="preserve">
           <source>Info</source>
-          <target state="new">Info</target>
+          <target state="signed-off">Info</target>
         </trans-unit>
         <trans-unit id="Resx/RenameCancelButton" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="new">Cancel</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Abbrechen</target>
         </trans-unit>
         <trans-unit id="Resx/RenameLabel" translate="yes" xml:space="preserve">
           <source>Enter new display name:</source>
-          <target state="new">Enter new display name:</target>
+          <target state="signed-off">Neuen Anzeigenamen eingeben:</target>
         </trans-unit>
         <trans-unit id="Resx/RenameOkButton" translate="yes" xml:space="preserve">
           <source>Rename</source>
-          <target state="new">Rename</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Umbenennen</target>
         </trans-unit>
         <trans-unit id="Resx/RenamePageTitle" translate="yes" xml:space="preserve">
           <source>rename</source>
-          <target state="new">rename</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Umbenennen</target>
         </trans-unit>
         <trans-unit id="Resx/ContextTitle" translate="yes" xml:space="preserve">
           <source>options</source>
-          <target state="new">options</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Optionen</target>
         </trans-unit>
         <trans-unit id="Resx/CopyRightText" translate="yes" xml:space="preserve">
           <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3, or(at your option) any later version.
@@ -826,79 +828,79 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</source>
-          <target state="new">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3, or(at your option) any later version.
+          <target state="signed-off">Dieses Programm ist freie Software; Sie können sie weiterverteilen und/oder modifizieren, unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht; entweder gemäß Version 3, oder (nach Ihrer Wahl) jeder späteren Version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+Dieses Programm wird verbreitet, in der Hoffnung, dass es von Nutzen sein wird, aber ohne jede Garantie; auch die stillschweigende Garantien der Marktgängigkeit oder Eignung für einen bestimmten Zweck. Finden Sie unter der GNU General Public License weitere Details.
 
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</target>
+Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben; Falls nicht, schreiben Sie die Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA, an.</target>
         </trans-unit>
         <trans-unit id="Resx/GPLv3" translate="yes" xml:space="preserve">
           <source>http://www.gnu.org/licenses/gpl-3.0.txt</source>
-          <target state="new">http://www.gnu.org/licenses/gpl-3.0.txt</target>
+          <target state="signed-off">http://www.gnu.org/licenses/gpl-3.0.txt</target>
         </trans-unit>
         <trans-unit id="Resx/GPLv3Title" translate="yes" xml:space="preserve">
           <source>GPLv3</source>
-          <target state="new">GPLv3</target>
+          <target state="signed-off">GPLv3</target>
         </trans-unit>
         <trans-unit id="Resx/LicenseCopyRightTitle" translate="yes" xml:space="preserve">
           <source>copyright</source>
-          <target state="new">copyright</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Copyright</target>
         </trans-unit>
         <trans-unit id="Resx/MoreLicenseButton" translate="yes" xml:space="preserve">
           <source>License information</source>
-          <target state="new">License information</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Lizenzinformationen</target>
         </trans-unit>
         <trans-unit id="Resx/SourceButtonText" translate="yes" xml:space="preserve">
           <source>Source code</source>
-          <target state="new">Source code</target>
+          <target state="signed-off">Quellcode</target>
         </trans-unit>
         <trans-unit id="Resx/SourceHeader" translate="yes" xml:space="preserve">
           <source>source</source>
-          <target state="new">source</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Quelle</target>
         </trans-unit>
         <trans-unit id="Resx/SourceLink" translate="yes" xml:space="preserve">
           <source>http://sourceforge.net/projects/vba8/</source>
-          <target state="new">http://sourceforge.net/projects/vba8/</target>
+          <target state="signed-off">http://sourceforge.net/projects/vba8/</target>
         </trans-unit>
         <trans-unit id="Resx/SRAMDeletedSuccessfully" translate="yes" xml:space="preserve">
           <source>Save file has been removed successfully.</source>
-          <target state="new">Save file has been removed successfully.</target>
+          <target state="signed-off">Speicherstand wurde erfolgreich entfernt.</target>
         </trans-unit>
         <trans-unit id="Resx/GPLButtonText" translate="yes" xml:space="preserve">
           <source>Go to GNU Public License v3</source>
-          <target state="new">Go to GNU Public License v3</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Gehen Sie zu GNU Public License v3</target>
         </trans-unit>
         <trans-unit id="Resx/ReviewText" translate="yes" xml:space="preserve">
           <source>review</source>
-          <target state="new">review</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bewertung</target>
         </trans-unit>
         <trans-unit id="Resx/ImportCompleteText" translate="yes" xml:space="preserve">
           <source>Completed importing file '{0}'</source>
-          <target state="new">Completed importing file '{0}'</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Importieren der Datei "{0}" abgeschlossen</target>
         </trans-unit>
         <trans-unit id="Resx/ImportingProgressText" translate="yes" xml:space="preserve">
           <source>Importing '{0}'</source>
-          <target state="new">Importing '{0}'</target>
+          <target state="signed-off">Importiere "{0}" ...</target>
         </trans-unit>
         <trans-unit id="Resx/UseMogaControllerText" translate="yes" xml:space="preserve">
           <source>Use Moga controller</source>
-          <target state="new">Use Moga controller</target>
+          <target state="signed-off">Moga controller verwenden</target>
         </trans-unit>
         <trans-unit id="Resx/PurchaseText" translate="yes" xml:space="preserve">
           <source>purchase</source>
-          <target state="new">purchase</target>
+          <target state="signed-off">Kaufen</target>
         </trans-unit>
         <trans-unit id="Resx/ButtonScaleSettings" translate="yes" xml:space="preserve">
           <source>Virtual Button Scale</source>
-          <target state="new">Virtual Button Scale</target>
+          <target state="signed-off">Virtuelle Schaltflächen Skala</target>
         </trans-unit>
         <trans-unit id="Resx/DPad8way" translate="yes" xml:space="preserve">
           <source>8-way</source>
-          <target state="new">8-way</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">8-Wege</target>
         </trans-unit>
         <trans-unit id="Resx/UploadProgressText" translate="yes" xml:space="preserve">
           <source>Exporting '{0}'</source>
-          <target state="new">Exporting '{0}'</target>
+          <target state="signed-off">Exportiere "{0}" ...</target>
         </trans-unit>
         <trans-unit id="Resx/PremiumText" translate="yes" xml:space="preserve">
           <source>Premium features include: 
@@ -909,14 +911,14 @@ You should have received a copy of the GNU General Public License along with thi
 VBA8 and VGBC8 now have identical feature set. You should only purchase features on one app only.
 
 ***PLEASE READ THIS***: MOGA controller support is free in Snes8x, before you purchase this feature, please download Snes8x and test if your controller works with your phone.</source>
-          <target state="new">Premium features include: 
-- support for MOGA controller. 
-- customize in-game background color.
-- choose your own background image.
+          <target state="signed-off">Premiumfunktionen: 
+- Unterstützung des MOGA Controller. 
+- verändere die In-Game Hintergund Farbe.
+- wähle dein eigenes Hintergrundbild.
 
-VBA8 and VGBC8 now have identical feature set. You should only purchase features on one app only.
+VBA8 und VGBC8 haben nun identische Funktionen. Sie sollten die Premiumfunktionen, nur auf einer App, kaufen.
 
-***PLEASE READ THIS***: MOGA controller support is free in Snes8x, before you purchase this feature, please download Snes8x and test if your controller works with your phone.</target>
+***BITTE LIES DAS HIER***: MOGA Controller Unterstützung, ist in Snes8x gratis, bevor Sie die Premiumfunktionen kaufen, laden Sie Snes8x herunter und testen Sie, ob der Controller auf Ihrem Smartphone funktioniert.</target>
         </trans-unit>
         <trans-unit id="Resx/EmailBodyText" translate="yes" xml:space="preserve">
           <source>
@@ -924,541 +926,595 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
 
 
 Device ID: {0}</source>
-          <target state="new">
+          <target state="signed-off" state-qualifier="mt-suggestion">
 
 
 
-Device ID: {0}</target>
+Geräte-ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/EmailSubjectText" translate="yes" xml:space="preserve">
           <source>VBA8/VGBC bug report or feature suggestion</source>
-          <target state="new">VBA8/VGBC bug report or feature suggestion</target>
+          <target state="signed-off">VBA8/VGBC Bugs berichten oder Funktionen vorschlagen</target>
         </trans-unit>
         <trans-unit id="Resx/PremiumFeaturePromptText" translate="yes" xml:space="preserve">
           <source>This is a premium feature. Do you want to go to the purchase page?</source>
-          <target state="new">This is a premium feature. Do you want to go to the purchase page?</target>
+          <target state="signed-off">Dies ist eine Premiumfunktion. Wollen Sie auf die Kauf-Ansicht?</target>
         </trans-unit>
         <trans-unit id="Resx/UnlockFeatureText" translate="yes" xml:space="preserve">
           <source>Unlock feature</source>
-          <target state="new">Unlock feature</target>
+          <target state="signed-off">Funktionen freischalten</target>
         </trans-unit>
         <trans-unit id="Resx/GuidesTitle" translate="yes" xml:space="preserve">
           <source>guides</source>
-          <target state="new">guides</target>
+          <target state="signed-off">Anleitungen</target>
         </trans-unit>
         <trans-unit id="Resx/ImportSaveInstructionsText" translate="yes" xml:space="preserve">
           <source>To restore saves:
 1. Make sure the names of the rom and the save file match exactly.
 2. Tap "Import" and choose the save file.
 3. Start the game.</source>
-          <target state="new">To restore saves:
-1. Make sure the names of the rom and the save file match exactly.
-2. Tap "Import" and choose the save file.
-3. Start the game.</target>
+          <target state="signed-off">Speicherstände wiederherrstellen:
+1. Vergewissern Sie sich, das die Namen der ROM und des Speicherstandes gleich sind .
+2. Tippen Sie auf "Importieren" und wählen den Speicherstand.
+3. Starten Sie das Spiel.</target>
         </trans-unit>
         <trans-unit id="Resx/DarkText" translate="yes" xml:space="preserve">
           <source>Dark</source>
-          <target state="new">Dark</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Dunkel</target>
         </trans-unit>
         <trans-unit id="Resx/LightText" translate="yes" xml:space="preserve">
           <source>Light</source>
-          <target state="new">Light</target>
+          <target state="signed-off">Hell</target>
         </trans-unit>
         <trans-unit id="Resx/ThemeText" translate="yes" xml:space="preserve">
           <source>Theme</source>
-          <target state="new">Theme</target>
+          <target state="signed-off">Theme</target>
         </trans-unit>
         <trans-unit id="Resx/LicenseTitle" translate="yes" xml:space="preserve">
           <source>LICENSE</source>
-          <target state="new">LICENSE</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">LIZENZ</target>
         </trans-unit>
         <trans-unit id="Resx/RestartPromptText" translate="yes" xml:space="preserve">
           <source>Please restart the app (hit back button several times) for the new setting to take effect.</source>
-          <target state="new">Please restart the app (hit back button several times) for the new setting to take effect.</target>
+          <target state="signed-off">Bitte starten Sie die App neu (drücken Sie dazu mehrmals die Zurücktaste), damit die neuen einstellungen in übernohmen werden.</target>
         </trans-unit>
         <trans-unit id="Resx/RestartPromptTitle" translate="yes" xml:space="preserve">
           <source>Please restart</source>
-          <target state="new">Please restart</target>
+          <target state="signed-off">Bitte neustarten</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteConfirmText" translate="yes" xml:space="preserve">
           <source>This cannot be undone, continue?</source>
-          <target state="new">This cannot be undone, continue?</target>
+          <target state="signed-off">Dies kann nicht rückgängig gemacht werden, fortfahren?</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteConfirmTitle" translate="yes" xml:space="preserve">
           <source>Confirm deletion</source>
-          <target state="new">Confirm deletion</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bestätigen Sie den Löschvorgang</target>
         </trans-unit>
         <trans-unit id="Resx/ShowThreeDotsSetting" translate="yes" xml:space="preserve">
           <source>Show context menu hint</source>
-          <target state="new">Show context menu hint</target>
+          <target state="signed-off">Zeige Kontextmenü Tipp</target>
         </trans-unit>
         <trans-unit id="Resx/UseBackgroundImageSetting" translate="yes" xml:space="preserve">
           <source>Use background image</source>
-          <target state="new">Use background image</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Hintergrund-Bild verwenden</target>
         </trans-unit>
         <trans-unit id="Resx/BackgroundOpacitySetting" translate="yes" xml:space="preserve">
           <source>Background image opacity</source>
-          <target state="new">Background image opacity</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Hintergrund Bild Deckkraft</target>
         </trans-unit>
         <trans-unit id="Resx/ImageEditorTitle" translate="yes" xml:space="preserve">
           <source>image editor</source>
-          <target state="new">image editor</target>
+          <target state="signed-off">Bild-Editor</target>
         </trans-unit>
         <trans-unit id="Resx/ShowLastPlayedGameText" translate="yes" xml:space="preserve">
           <source>Show snapshot of last played game</source>
-          <target state="new">Show snapshot of last played game</target>
+          <target state="signed-off">Zeige Snapshot des zuletzt gespielten Spiels an</target>
         </trans-unit>
         <trans-unit id="Resx/CableLinkText" translate="yes" xml:space="preserve">
           <source>Gameboy cable</source>
-          <target state="new">Gameboy cable</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Gameboy-Kabel</target>
         </trans-unit>
         <trans-unit id="Resx/FirstGameText" translate="yes" xml:space="preserve">
           <source>first game</source>
-          <target state="new">first game</target>
+          <target state="signed-off">Erstes Spiel</target>
         </trans-unit>
         <trans-unit id="Resx/LinkTypeText" translate="yes" xml:space="preserve">
           <source>Link type</source>
-          <target state="new">Link type</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Link-Typ</target>
         </trans-unit>
         <trans-unit id="Resx/OverNetworkText" translate="yes" xml:space="preserve">
           <source>Over bluetooth/wifi (not available)</source>
-          <target state="new">Over bluetooth/wifi (not available)</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Über Bluetooth/Wifi (nicht verfügbar)</target>
         </trans-unit>
         <trans-unit id="Resx/PreLinkTitle" translate="yes" xml:space="preserve">
           <source>set up link</source>
-          <target state="new">set up link</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Link einrichten</target>
         </trans-unit>
         <trans-unit id="Resx/SameDeviceText" translate="yes" xml:space="preserve">
           <source>Same device</source>
-          <target state="new">Same device</target>
+          <target state="signed-off">Gleiches Gerät</target>
         </trans-unit>
         <trans-unit id="Resx/SecondGameText" translate="yes" xml:space="preserve">
           <source>second game (can be the same as first game)</source>
-          <target state="new">second game (can be the same as first game)</target>
+          <target state="signed-off">zweites Spiel (kann das selbe Spiel, wie das erste sein)</target>
         </trans-unit>
         <trans-unit id="Resx/StartLinkText" translate="yes" xml:space="preserve">
           <source>start link</source>
-          <target state="new">start link</target>
+          <target state="signed-off">Link starten</target>
         </trans-unit>
         <trans-unit id="Resx/WirelessLinkText" translate="yes" xml:space="preserve">
           <source>Wireless adapter (not available)</source>
-          <target state="new">Wireless adapter (not available)</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Wireless-Adapter (nicht verfügbar)</target>
         </trans-unit>
         <trans-unit id="Resx/ConnectButtonCaption" translate="yes" xml:space="preserve">
           <source>Connect to selected</source>
-          <target state="new">Connect to selected</target>
+          <target state="signed-off">Verbinde mit ausgewähltem</target>
         </trans-unit>
         <trans-unit id="Resx/Err_BluetoothOff" translate="yes" xml:space="preserve">
           <source>Bluetooth is turned off. To see the current Bluetooth settings tap 'ok'.</source>
-          <target state="new">Bluetooth is turned off. To see the current Bluetooth settings tap 'ok'.</target>
+          <target state="signed-off">Bluetooth ist deaktiviert. Um zu den gegenwärtigen Bluetooth einstellungen zu gelangen, tippe "ok".</target>
         </trans-unit>
         <trans-unit id="Resx/Err_BluetoothOffCaption" translate="yes" xml:space="preserve">
           <source>Bluetooth Off</source>
-          <target state="new">Bluetooth Off</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bluetooth deaktivieren</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoChatName" translate="yes" xml:space="preserve">
           <source>Please enter a name to join.</source>
-          <target state="new">Please enter a name to join.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bitte geben Sie einen Namen an.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoChatNameCaption" translate="yes" xml:space="preserve">
           <source>Name is empty</source>
-          <target state="new">Name is empty</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Name ist leer</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoConnectTitle" translate="yes" xml:space="preserve">
           <source>Can't connect</source>
-          <target state="new">Can't connect</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Kann keine Verbindung herstellen</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoMessageToSend" translate="yes" xml:space="preserve">
           <source>Please enter a message to send.</source>
-          <target state="new">Please enter a message to send.</target>
+          <target state="signed-off">Bitte geben Sie eine Nachricht ein.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoPeer" translate="yes" xml:space="preserve">
           <source>You must select a peer from the list.</source>
-          <target state="new">You must select a peer from the list.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Sie müssen einen Peer aus der Liste auswählen.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoPeerConnected" translate="yes" xml:space="preserve">
           <source>You are not connected to a Peer.</source>
-          <target state="new">You are not connected to a Peer.</target>
+          <target state="signed-off">Sie sind mit keinem Peer verbunden.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoSendTitle" translate="yes" xml:space="preserve">
           <source>Can't send</source>
-          <target state="new">Can't send</target>
+          <target state="signed-off">Kann nicht gesendet werden</target>
         </trans-unit>
         <trans-unit id="Resx/FindButtonCaption" translate="yes" xml:space="preserve">
           <source>Refresh peers</source>
-          <target state="new">Refresh peers</target>
+          <target state="signed-off">Peers aktualisieren</target>
         </trans-unit>
         <trans-unit id="Resx/Msg_ChatPrompt" translate="yes" xml:space="preserve">
           <source>Do you want to link with {0}?</source>
-          <target state="new">Do you want to link with {0}?</target>
+          <target state="signed-off">Möchten Sie sich mit {0} verbinden?</target>
         </trans-unit>
         <trans-unit id="Resx/Msg_ChatPromptTitle" translate="yes" xml:space="preserve">
           <source>Incoming Link Request</source>
-          <target state="new">Incoming Link Request</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Eingehende Link Anfrage</target>
         </trans-unit>
         <trans-unit id="Resx/Msg_FoundPeers" translate="yes" xml:space="preserve">
           <source>Peers found: {0}. Tap 'refresh peers' to update.</source>
-          <target state="new">Peers found: {0}. Tap 'refresh peers' to update.</target>
+          <target state="signed-off">Peers gefunden: {0}. Tippen Sie auf 'Peers aktualisieren' um zu aktualisieren.</target>
         </trans-unit>
         <trans-unit id="Resx/Msg_NoPeers" translate="yes" xml:space="preserve">
           <source>No peers found. Tap 'refresh peers' to update.</source>
-          <target state="new">No peers found. Tap 'refresh peers' to update.</target>
+          <target state="signed-off">Keine Peers gefunden. Tippen Sie auf 'Peers aktualisieren' um zu aktualisieren.</target>
         </trans-unit>
         <trans-unit id="Resx/StartLinkTitle" translate="yes" xml:space="preserve">
           <source>start link</source>
-          <target state="new">start link</target>
+          <target state="signed-off">Link starten</target>
         </trans-unit>
         <trans-unit id="Resx/CablePeerText" translate="yes" xml:space="preserve">
           <source>Cable - Bluetooth</source>
-          <target state="new">Cable - Bluetooth</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Kabel - Bluetooth</target>
         </trans-unit>
         <trans-unit id="Resx/CableSocketText" translate="yes" xml:space="preserve">
           <source>Wifi TCP/IP</source>
-          <target state="new">Wifi TCP/IP</target>
+          <target state="signed-off">Wi-Fi TCP/IP</target>
         </trans-unit>
         <trans-unit id="Resx/ClientText" translate="yes" xml:space="preserve">
           <source>Client</source>
-          <target state="new">Client</target>
+          <target state="signed-off">Client</target>
         </trans-unit>
         <trans-unit id="Resx/HostText" translate="yes" xml:space="preserve">
           <source>Host</source>
-          <target state="new">Host</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Host</target>
         </trans-unit>
         <trans-unit id="Resx/IPAddressText" translate="yes" xml:space="preserve">
           <source>Server IP address</source>
-          <target state="new">Server IP address</target>
+          <target state="signed-off">Server IP Adresse</target>
         </trans-unit>
         <trans-unit id="Resx/LinkTimeoutText" translate="yes" xml:space="preserve">
           <source>Link timeout (ms)</source>
-          <target state="new">Link timeout (ms)</target>
+          <target state="signed-off">Zeitüberscheitung (ms)</target>
         </trans-unit>
         <trans-unit id="Resx/RoleText" translate="yes" xml:space="preserve">
           <source>Role</source>
-          <target state="new">Role</target>
+          <target state="signed-off">Funktion</target>
         </trans-unit>
         <trans-unit id="Resx/ImportSDCardText" translate="yes" xml:space="preserve">
           <source>Import from SD Card</source>
-          <target state="new">Import from SD Card</target>
+          <target state="signed-off">Importieren von der SD-Karte</target>
         </trans-unit>
         <trans-unit id="Resx/NoMatchingNameText" translate="yes" xml:space="preserve">
           <source>Please make sure the name of the save file matches the name of the ROM</source>
-          <target state="new">Please make sure the name of the save file matches the name of the ROM</target>
-        </trans-unit>
-        <trans-unit id="Resx/SDCardHintText" translate="yes" xml:space="preserve">
-          <source>Supported files: .gb, .gbc, .gba, .sgm, .sav. .zib</source>
-          <target state="new">Supported files: .gb, .gbc, .gba, .sgm, .sav. .zib</target>
+          <target state="signed-off">Bitte vergewissern Sie sich, dass die Namen der Speicherstände und der ROMs überinstimmen</target>
         </trans-unit>
         <trans-unit id="Resx/SDCardImportTitle" translate="yes" xml:space="preserve">
           <source>SD Card</source>
-          <target state="new">SD Card</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">SD-Karte</target>
         </trans-unit>
         <trans-unit id="Resx/SDCardReadOnlyText" translate="yes" xml:space="preserve">
           <source>Note: SD card is read-only to developers. Handling of .zip extension is reserved by the OS, please use .zib for your zip files.</source>
-          <target state="new">Note: SD card is read-only to developers. Handling of .zip extension is reserved by the OS, please use .zib for your zip files.</target>
+          <target state="signed-off">Hinweis: Die SD-Karte kann nur von den Entwicklern eingelesen werden. Die Verarbeitung von .zip Erweiterungen ist dem Betriebssystem vorbehalten, bitte verwenden Sie .zib für Ihre .zip Dateien.</target>
         </trans-unit>
         <trans-unit id="Resx/OKButtonText" translate="yes" xml:space="preserve">
           <source>ok</source>
-          <target state="new">ok</target>
+          <target state="signed-off">Ok</target>
         </trans-unit>
         <trans-unit id="Resx/EditText" translate="yes" xml:space="preserve">
           <source>edit</source>
-          <target state="new">edit</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bearbeiten</target>
         </trans-unit>
         <trans-unit id="Resx/AutoLoadLastStateText" translate="yes" xml:space="preserve">
           <source>Automatically save and load game</source>
-          <target state="new">Automatically save and load game</target>
+          <target state="signed-off">Automatisches Speichern und Laden</target>
         </trans-unit>
         <trans-unit id="Resx/AllHeader" translate="yes" xml:space="preserve">
           <source>ALL</source>
-          <target state="new">ALL</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">ALLE</target>
         </trans-unit>
         <trans-unit id="Resx/CancelText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="new">Cancel</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Abbrechen</target>
         </trans-unit>
         <trans-unit id="Resx/CheatsDescription2" translate="yes" xml:space="preserve">
           <source>NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be *edited* with proper space to work again.</source>
-          <target state="new">NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be *edited* with proper space to work again.</target>
+          <target state="signed-off">Hinweis: Wegen dem neuen Bug Fix, müssen alle 16 Cheat-Code Zeichen auf den richtigen Platz verschoben werden, um wieder Ordnungsgemäß zu funktionieren.</target>
         </trans-unit>
         <trans-unit id="Resx/CodeText" translate="yes" xml:space="preserve">
           <source>Code</source>
-          <target state="new">Code</target>
+          <target state="signed-off">Code</target>
         </trans-unit>
         <trans-unit id="Resx/ContactHeader" translate="yes" xml:space="preserve">
           <source>CONTACT</source>
-          <target state="new">CONTACT</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">KONTAKT</target>
         </trans-unit>
         <trans-unit id="Resx/DescriptionText" translate="yes" xml:space="preserve">
           <source>Description</source>
-          <target state="new">Description</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Beschreibung</target>
         </trans-unit>
         <trans-unit id="Resx/EmailLinkText" translate="yes" xml:space="preserve">
           <source>Email: store.support@outlook.com</source>
-          <target state="new">Email: store.support@outlook.com</target>
+          <target state="signed-off">E-Mail: store.support@outlook.com</target>
         </trans-unit>
         <trans-unit id="Resx/EmulatorMenuText" translate="yes" xml:space="preserve">
           <source>Note: Emulator Menu function will be implemented at a later date.</source>
-          <target state="new">Note: Emulator Menu function will be implemented at a later date.</target>
+          <target state="signed-off">Hinweis: Emulator Menüfunktion wird zu einem späteren Zeitpunkt implementiert werden.</target>
         </trans-unit>
         <trans-unit id="Resx/EnterNewCheatText" translate="yes" xml:space="preserve">
           <source>Enter new cheat code:</source>
-          <target state="new">Enter new cheat code:</target>
+          <target state="signed-off">Neuen Cheat-Code eingeben:</target>
         </trans-unit>
         <trans-unit id="Resx/FAQsLinkText" translate="yes" xml:space="preserve">
           <source>FAQs, forum discussion %%amp; PC app</source>
-          <target state="new">FAQs, forum discussion %%amp; PC app</target>
+          <target state="signed-off">FAQs, Forum Diskussion %%amp; PC App</target>
         </trans-unit>
         <trans-unit id="Resx/GuideBlankScreenText" translate="yes" xml:space="preserve">
           <source>Guide: troubleshoot blank screen</source>
-          <target state="new">Guide: troubleshoot blank screen</target>
+          <target state="signed-off">Anleitung: Problembehandlung bei leerem Bild</target>
         </trans-unit>
         <trans-unit id="Resx/GuideImportROMText" translate="yes" xml:space="preserve">
           <source>Guide: 4 ways to import ROMS</source>
-          <target state="new">Guide: 4 ways to import ROMS</target>
+          <target state="signed-off">Anleitung: 4 Möglichkeiten, um ROMS zu importieren</target>
         </trans-unit>
         <trans-unit id="Resx/GuidePerformanceText" translate="yes" xml:space="preserve">
           <source>Guide: how to improve performance</source>
-          <target state="new">Guide: how to improve performance</target>
+          <target state="signed-off">Anleitung: wie die Leistung verbessern</target>
         </trans-unit>
         <trans-unit id="Resx/GuidesHeader" translate="yes" xml:space="preserve">
           <source>GUIDES</source>
-          <target state="new">GUIDES</target>
+          <target state="signed-off">ANLEITUNGEN</target>
         </trans-unit>
         <trans-unit id="Resx/MogaMappingTitle" translate="yes" xml:space="preserve">
           <source>moga mapping</source>
-          <target state="new">moga mapping</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Moga-Zuordnung</target>
         </trans-unit>
         <trans-unit id="Resx/OKText" translate="yes" xml:space="preserve">
           <source>OK</source>
-          <target state="new">OK</target>
+          <target state="signed-off">OK</target>
         </trans-unit>
         <trans-unit id="Resx/OneDriveHeader" translate="yes" xml:space="preserve">
           <source>ONEDRIVE</source>
-          <target state="new">ONEDRIVE</target>
+          <target state="signed-off">ONEDRIVE</target>
         </trans-unit>
         <trans-unit id="Resx/PleaseWaitROMLoadingText" translate="yes" xml:space="preserve">
           <source>Please wait until ROM finishes loading</source>
-          <target state="new">Please wait until ROM finishes loading</target>
+          <target state="signed-off">Bitte warten Sie, bis die ROM vollständig geladen wurde</target>
         </trans-unit>
         <trans-unit id="Resx/RecentHeader" translate="yes" xml:space="preserve">
           <source>RECENT</source>
-          <target state="new">RECENT</target>
+          <target state="signed-off">NEUESTE</target>
         </trans-unit>
         <trans-unit id="Resx/SDCardHeader" translate="yes" xml:space="preserve">
           <source>SD CARD</source>
-          <target state="new">SD CARD</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">SD-KARTE</target>
         </trans-unit>
         <trans-unit id="Resx/VideoCheatText" translate="yes" xml:space="preserve">
           <source>Video: cheat code tutorial</source>
-          <target state="new">Video: cheat code tutorial</target>
+          <target state="signed-off">Video: Cheat-Code Anleitung</target>
         </trans-unit>
         <trans-unit id="Resx/VideoMogaText" translate="yes" xml:space="preserve">
           <source>Video: MOGA controller instructions</source>
-          <target state="new">Video: MOGA controller instructions</target>
+          <target state="signed-off">Video: MOGA Controller Anweisungen</target>
         </trans-unit>
         <trans-unit id="Resx/ChooseImageText" translate="yes" xml:space="preserve">
           <source>Choose image...</source>
-          <target state="new">Choose image...</target>
+          <target state="signed-off">Wählen Sie ein Bild...</target>
         </trans-unit>
         <trans-unit id="Resx/ChoosePortraitBackgroundColorText" translate="yes" xml:space="preserve">
           <source>Choose portrait background color...</source>
-          <target state="new">Choose portrait background color...</target>
+          <target state="signed-off">Wählen Sie eine Hintergrundfarbe...</target>
         </trans-unit>
         <trans-unit id="Resx/ConnectText" translate="yes" xml:space="preserve">
           <source>Connect</source>
-          <target state="new">Connect</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Verbinden</target>
         </trans-unit>
         <trans-unit id="Resx/CustomizeButtonMappingText" translate="yes" xml:space="preserve">
           <source>Customize button mapping...</source>
-          <target state="new">Customize button mapping...</target>
+          <target state="signed-off">Anpassen der Schaltfläche...</target>
         </trans-unit>
         <trans-unit id="Resx/CustomizeLandscapeControlText" translate="yes" xml:space="preserve">
           <source>Customize Landscape Control Position</source>
-          <target state="new">Customize Landscape Control Position</target>
+          <target state="signed-off">Passen Sie die Position der Horizontalen-Steuerelemente an</target>
         </trans-unit>
         <trans-unit id="Resx/CustomizePortraitControlText" translate="yes" xml:space="preserve">
           <source>Customize Portrait Control Position</source>
-          <target state="new">Customize Portrait Control Position</target>
+          <target state="signed-off">Passen Sie die Position der Vertikalen-Steuerelemente an</target>
         </trans-unit>
         <trans-unit id="Resx/EnterHostIPText" translate="yes" xml:space="preserve">
           <source>enter host's IP address here</source>
-          <target state="new">enter host's IP address here</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Host IP-Adresse hier eingeben</target>
         </trans-unit>
         <trans-unit id="Resx/ErrorNoConnectionText" translate="yes" xml:space="preserve">
           <source>Error! No Internet connection or Microsoft server error. Please try again later.</source>
-          <target state="new">Error! No Internet connection or Microsoft server error. Please try again later.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Fehler! Keine Internetverbindung oder Microsoft-Server-Fehler. Bitte versuchen Sie es später erneut.</target>
         </trans-unit>
         <trans-unit id="Resx/ErrorReadingSDCardText" translate="yes" xml:space="preserve">
           <source>Error reading SD Card content</source>
-          <target state="new">Error reading SD Card content</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Fehler beim Lesen der Inhalte der SD-Karte</target>
         </trans-unit>
         <trans-unit id="Resx/HostIPAddressText" translate="yes" xml:space="preserve">
           <source>Host's IP address: {0}. Waiting for client...</source>
-          <target state="new">Host's IP address: {0}. Waiting for client...</target>
+          <target state="signed-off">IP-Adresse des Hosts: {0}. Warten auf Client...</target>
         </trans-unit>
         <trans-unit id="Resx/LinkConnectedText" translate="yes" xml:space="preserve">
           <source>Connected. You can now close this window and continue playing game.</source>
-          <target state="new">Connected. You can now close this window and continue playing game.</target>
+          <target state="signed-off">Verbunden. Sie können jetzt dieses Fenster schließen und weiter spielen.</target>
         </trans-unit>
         <trans-unit id="Resx/LinkErrorText" translate="yes" xml:space="preserve">
           <source>Error occured. Please restart the app and try again.</source>
-          <target state="new">Error occured. Please restart the app and try again.</target>
+          <target state="signed-off">Fehler ist aufgetreten. Bitte starten Sie die App neu und versuchen Sie es erneut.</target>
         </trans-unit>
         <trans-unit id="Resx/LoadingProductListText" translate="yes" xml:space="preserve">
           <source>Loading production list. Please wait...</source>
-          <target state="new">Loading production list. Please wait...</target>
+          <target state="signed-off">Lädt Produktionsliste. Bitte warten...</target>
         </trans-unit>
         <trans-unit id="Resx/MogaGDR3Note" translate="yes" xml:space="preserve">
           <source>Note: MOGA controller may require GDR3.</source>
-          <target state="new">Note: MOGA controller may require GDR3.</target>
+          <target state="signed-off">Hinweis: MOGA-Controller erfordert GDR3 Update.</target>
         </trans-unit>
         <trans-unit id="Resx/ProductNotAvailableText" translate="yes" xml:space="preserve">
           <source>Product is not available at the moment.</source>
-          <target state="new">Product is not available at the moment.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Produkt ist momentan nicht verfügbar.</target>
         </trans-unit>
         <trans-unit id="Resx/PurchaseButtonText" translate="yes" xml:space="preserve">
           <source>Purchase</source>
-          <target state="new">Purchase</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Kaufen</target>
         </trans-unit>
         <trans-unit id="Resx/PurchasedThankYouText" translate="yes" xml:space="preserve">
           <source>Purchased, thank you!</source>
-          <target state="new">Purchased, thank you!</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Gekauft, vielen Dank!</target>
         </trans-unit>
         <trans-unit id="Resx/PurchaseSuccessNoAdsText" translate="yes" xml:space="preserve">
           <source>Purchase successful, ads will not be shown the next time you start the app.</source>
-          <target state="new">Purchase successful, ads will not be shown the next time you start the app.</target>
+          <target state="signed-off">Kauf erfolgreich, Werbung wird nicht mehr angezeigt, wenn Sie die App neustarten.</target>
         </trans-unit>
         <trans-unit id="Resx/PurchaseSuccessText" translate="yes" xml:space="preserve">
           <source>Purchase successful.</source>
-          <target state="new">Purchase successful.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Kauf erfolgreich.</target>
         </trans-unit>
         <trans-unit id="Resx/ResetImageText" translate="yes" xml:space="preserve">
           <source>Reset image</source>
-          <target state="new">Reset image</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Bild Zurücksetzen</target>
         </trans-unit>
         <trans-unit id="Resx/SDCardMissingText" translate="yes" xml:space="preserve">
           <source>The SD card is missing. Insert an SD card try again.</source>
-          <target state="new">The SD card is missing. Insert an SD card try again.</target>
+          <target state="signed-off">Die SD-Karte fehlt. Legen Sie eine SD-Karte ein und versuchen Sie es wieder.</target>
         </trans-unit>
         <trans-unit id="Resx/StartServerOtherText" translate="yes" xml:space="preserve">
           <source>Start server on the other device to get server's IP address.</source>
-          <target state="new">Start server on the other device to get server's IP address.</target>
+          <target state="signed-off">Starten Sie den Server, auf einem anderen Gerät um die IP-Adresse des Servers zu erhalten.</target>
         </trans-unit>
         <trans-unit id="Resx/StartServerText" translate="yes" xml:space="preserve">
           <source>Start server</source>
-          <target state="new">Start server</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Server starten</target>
         </trans-unit>
         <trans-unit id="Resx/TapDownloadSnes8xText" translate="yes" xml:space="preserve">
           <source>Tap here to download Snes8x</source>
-          <target state="new">Tap here to download Snes8x</target>
+          <target state="signed-off">Tippen Sie hier, um Snes8x herunterzuladen</target>
         </trans-unit>
         <trans-unit id="Resx/TapMogaInstructionText" translate="yes" xml:space="preserve">
           <source>Tap here for MOGA controller instruction</source>
-          <target state="new">Tap here for MOGA controller instruction</target>
+          <target state="signed-off">Tippen Sie hier, für die MOGA Controller Anleitung</target>
         </trans-unit>
         <trans-unit id="Resx/TapStartServerIPText" translate="yes" xml:space="preserve">
           <source>Tap Start server to get the server IP address.</source>
-          <target state="new">Tap Start server to get the server IP address.</target>
+          <target state="signed-off">Tippen Sie auf "Server starten", um die Server IP-Adresse erhalten.</target>
         </trans-unit>
         <trans-unit id="Resx/UseRealisticButtonsText" translate="yes" xml:space="preserve">
           <source>Use realistic color buttons</source>
-          <target state="new">Use realistic color buttons</target>
+          <target state="signed-off">Verwenden Sie die realistischen Farb-Tasten</target>
         </trans-unit>
         <trans-unit id="Resx/DeviceIDText" translate="yes" xml:space="preserve">
           <source>Device ID: {0}</source>
-          <target state="new">Device ID: {0}</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Geräte-ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/EnterCodeText" translate="yes" xml:space="preserve">
           <source>Enter promotion code</source>
-          <target state="new">Enter promotion code</target>
+          <target state="signed-off">Geben Sie einen Promotions-Code ein</target>
         </trans-unit>
         <trans-unit id="Resx/EnterCodeTitle" translate="yes" xml:space="preserve">
           <source>Enter code</source>
-          <target state="new">Enter code</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Code eingeben</target>
         </trans-unit>
         <trans-unit id="Resx/InvalidCodeText" translate="yes" xml:space="preserve">
           <source>Invalid code.</source>
-          <target state="new">Invalid code.</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Ungültiger Code.</target>
         </trans-unit>
         <trans-unit id="Resx/ValidCodeText" translate="yes" xml:space="preserve">
           <source>Code accepted. Please restart the app for the code to take effect.</source>
-          <target state="new">Code accepted. Please restart the app for the code to take effect.</target>
+          <target state="signed-off">Code angenommen. Starten Sie die app neu, damit der Code wirksam wird.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSDCardHeader" translate="yes" xml:space="preserve">
           <source>Alternative 4: importing from SD card</source>
-          <target state="new">Alternative 4: importing from SD card</target>
+          <target state="signed-off">4. Alternative: Importieren von der SD-Karte</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSDCardText" translate="yes" xml:space="preserve">
           <source>In the data tab of the main page, click on Import from SD card and follow the instruction</source>
-          <target state="new">In the data tab of the main page, click on Import from SD card and follow the instruction</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/CloudSixFormatHint" xml:space="preserve">
-          <source>.gb, .gbc, .gba, .sgm, .sav, .zip</source>
-          <target state="new">.gb, .gbc, .gba, .sgm, .sav, .zip</target>
+          <target state="signed-off">In der Registerkarte Daten, auf der Hauptseite, tippen Sie auf "Importieren von der SD-Karte" und folgen Sie den Anweisungen</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/CloudSixInstructionText" xml:space="preserve">
           <source>Install one of Rudy Huyn's CloudSix apps to use this function.</source>
-          <target state="new">Install one of Rudy Huyn's CloudSix apps to use this function.</target>
+          <target state="signed-off">Installieren Sie eine von Rudy Huyn's CloudSix Apps, um diese Funktion nutzen zu können.</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ReviewPromptText" xml:space="preserve">
           <source>Please spend a few seconds rating the app. Good reviews keep new features coming.</source>
-          <target state="new">Please spend a few seconds rating the app. Good reviews keep new features coming.</target>
+          <target state="final">Bitte bewerte diese App. Gute Bewertungen, bringen neue Funktionen.</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ReviewPromptTitle" xml:space="preserve">
           <source>Like this app?</source>
-          <target state="new">Like this app?</target>
+          <target state="signed-off">Gefällt Ihnen diese App?</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SelectFileTitle" xml:space="preserve">
           <source>select files</source>
-          <target state="new">select files</target>
+          <target state="signed-off">Wählen Sie die Dateien</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AllButtonText" xml:space="preserve">
           <source>All</source>
-          <target state="new">All</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Alle</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AvailableSaveFilesText" xml:space="preserve">
           <source>Available save files</source>
-          <target state="new">Available save files</target>
+          <target state="signed-off">Verfügbare Speicherstände</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/NoneButtonText" xml:space="preserve">
           <source>None</source>
-          <target state="new">None</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Keine</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SelectNoneText" xml:space="preserve">
           <source>select none</source>
-          <target state="new">select none</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Wählen Sie keine</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AutoSaveWarning" xml:space="preserve">
           <source>Only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?</source>
-          <target state="new">Only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?</target>
+          <target state="signed-off">Markieren Sie dieses Kontrollkästchen, nur wenn Sie die Schnellspeicher Funktion verwenden. Ihre Speicherstände können beschädigt werden, wenn Sie die In-Game Speicherfunktion verwenden. Möchten Sie fortfahren?</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/CloudSixOneFileLimitText" xml:space="preserve">
           <source>CloudSix only supports exporting one file at a time unless you choose "Export as zip".</source>
-          <target state="new">CloudSix only supports exporting one file at a time unless you choose "Export as zip".</target>
+          <target state="signed-off">CloudSix erlaubt es nur eine Datei auf einmal zu exportieren, es sei denn Sie wählen "Exportieren als zip".</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ExportNoSelection" xml:space="preserve">
           <source>You must select at least one file.</source>
-          <target state="new">You must select at least one file.</target>
+          <target state="signed-off">Sie müssen mindestens eine Datei wählen.</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/WarningTitle" xml:space="preserve">
           <source>Warning!</source>
-          <target state="new">Warning!</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Warnung!</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupText" xml:space="preserve">
+          <source>Automatically back up save data</source>
+          <target state="signed-off">Speicherstände automatisch sichern</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SetupAutoBackupText" xml:space="preserve">
+          <source>Set up auto backup...</source>
+          <target state="signed-off">Automatische Sicherung einrichten...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupTypeText" xml:space="preserve">
+          <source>Auto backup mode</source>
+          <target state="signed-off">Automatischer Sicherungs Modus</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/NeverShowAgainText" xml:space="preserve">
+          <source>Don't show this again</source>
+          <target state="signed-off" state-qualifier="mt-suggestion">Diese Nachricht nicht mehr anzeigen</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupModeHelp" xml:space="preserve">
+          <source>- Simple mode: save slots are backed up "as is" with no compression; ideal for syncing data with tablet/PC but does not protect from accidental overwriting of data.
+- Rotating mode: save slots are compressed, multiple save files are kept to prevent accidental overwritting of data; ideal for safe guard of data.</source>
+          <target state="signed-off">-Einfacher Modus: Speicherplätze sind gesichert "Wie sie sind" ohne Kompression; ideal für die Synchronisierung von Daten mit Tablet/PC, aber schützt nicht vor versehentliches Überschreiben von Daten.
+-Rotierender Modus: Speicherplätze sind komprimiert, mehrere Kopien der Daten werden gesichert, schützt vor versehentliches Überschreiben von Daten; ideal für den sicheren Schutz von Daten.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupTitle" xml:space="preserve">
+          <source>auto backup</source>
+          <target state="signed-off">automatische Sicherung</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupLastManualSlotText" xml:space="preserve">
+          <source>Back up most recent manual save slot</source>
+          <target state="signed-off">Sichern Sie die zuletzt, manuell gespeicherten Speicherstände</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupIngameSaveText" xml:space="preserve">
+          <source>Back up ingame save</source>
+          <target state="signed-off">Sichern Sie die In-Game Speicherstände</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupAutoSlotText" xml:space="preserve">
+          <source>Back up auto save slot</source>
+          <target state="signed-off">Sichern Sie den sich automatisch speichernden Speicherstand</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupFailOnedriveText" xml:space="preserve">
+          <source>Auto backup fail, please sign in to OneDrive.</source>
+          <target state="signed-off">Automatische Sicherung fehlgeschlagen, bitte melden Sie sich in OneDrive an.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/NumberRotatingFilesText" xml:space="preserve">
+          <source>Number of rotating backups</source>
+          <target state="signed-off">Anzahl der rotierenden Sicherungen</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SimpleModeText" xml:space="preserve">
+          <source>Simple mode</source>
+          <target state="signed-off">Einfacher Modus</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupNote" xml:space="preserve">
+          <source>Note: Auto backup is triggered when users return to the main page after playing a game.</source>
+          <target state="signed-off">Hinweis: Die automatische Sicherung wird aktiviert, wenn der Benutzer, nach einem Spiel, zur Hauptseite zurückkehrt.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupOnlyWifiText" xml:space="preserve">
+          <source>Only backup when Wifi is available (checking for this may be slow)</source>
+          <target state="new">Only backup when Wifi is available (checking for this may be slow)</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/RotatingModeText" xml:space="preserve">
+          <source>Rotating mode</source>
+          <target state="signed-off">Rotierender Modus</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ExportAsZipText" xml:space="preserve">
           <source>Export as zip</source>
-          <target state="new">Export as zip</target>
+          <target state="signed-off">Exportieren als zip</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SelectAllText" xml:space="preserve">
           <source>select all</source>
-          <target state="new">select all</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">Wählen Sie alle</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/CloudSixHeader" xml:space="preserve">
           <source>CLOUDSIX</source>
-          <target state="new">CLOUDSIX</target>
+          <target state="signed-off">CLOUDSIX</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/CloudSixImportTitle" xml:space="preserve">
           <source>CloudSix</source>
-          <target state="new">CloudSix</target>
+          <target state="signed-off">CloudSix</target>
         </trans-unit>
       </group>
     </body>

@@ -35,7 +35,9 @@ namespace PhoneDirect3DXamlAppInterop
                 }
 
 
-                if (incomingFileType == ".gb" || incomingFileType == ".gbc" || incomingFileType == ".gba" || incomingFileType == ".sav" || incomingFileType == ".sgm" || incomingFileType == ".zip")
+                if (incomingFileType == ".gb" || incomingFileType == ".gbc" || incomingFileType == ".gba" || incomingFileType == ".sav" 
+                    || incomingFileType == ".sgm" || incomingFileType == ".zip" || incomingFileType == ".zib" || incomingFileType == ".rar"
+                    || incomingFileType == ".7z")
                         return new Uri("/MainPage.xaml?fileToken=" + fileID, UriKind.Relative);
                 else
                         return new Uri("/MainPage.xaml", UriKind.Relative);

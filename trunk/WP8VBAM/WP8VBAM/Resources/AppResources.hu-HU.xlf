@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="fil-PH" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="WP8VBAM" product-version="2.11.0.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="hu-HU" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="WP8VBAM" product-version="2.11.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.2.1212.0" tool-company="Microsoft" />
     </header>
@@ -8,39 +8,39 @@
       <group id="Resx">
         <trans-unit id="Resx/aboutText" translate="yes" xml:space="preserve">
           <source>about</source>
-          <target state="signed-off">tungkol sa</target>
+          <target state="new">about</target>
         </trans-unit>
         <trans-unit id="Resx/AlreadyDownloadingText" translate="yes" xml:space="preserve">
           <source>Item is already being downloaded.</source>
-          <target state="signed-off">Idinadownload na bagay.</target>
+          <target state="new">Item is already being downloaded.</target>
         </trans-unit>
         <trans-unit id="Resx/ApplicationTitle" translate="yes" xml:space="preserve">
           <source>VBA8</source>
-          <target state="signed-off">VBA8</target>
+          <target state="new">VBA8</target>
         </trans-unit>
         <trans-unit id="Resx/AudioSettingsPageTitle" translate="yes" xml:space="preserve">
           <source>sound</source>
-          <target state="signed-off">tunog</target>
+          <target state="new">sound</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteMenuItemText" translate="yes" xml:space="preserve">
           <source>delete</source>
-          <target state="signed-off">burahin</target>
+          <target state="new">delete</target>
         </trans-unit>
         <trans-unit id="Resx/DownloadCompleteText" translate="yes" xml:space="preserve">
           <source>Completed downloading file '{0}'</source>
-          <target state="signed-off">Natapos na ang file na idinadownload'{0}'</target>
+          <target state="new">Completed downloading file '{0}'</target>
         </trans-unit>
         <trans-unit id="Resx/DownloadErrorText" translate="yes" xml:space="preserve">
           <source>Error while downloading file '{0}': {1}</source>
-          <target state="signed-off">May pagkakamali habang idinadownload '{0}': {1}</target>
+          <target state="new">Error while downloading file '{0}': {1}</target>
         </trans-unit>
         <trans-unit id="Resx/DownloadingProgressText" translate="yes" xml:space="preserve">
           <source>Downloading '{0}'</source>
-          <target state="signed-off">Nagdodownload '{0}'</target>
+          <target state="new">Downloading '{0}'</target>
         </trans-unit>
         <trans-unit id="Resx/EnableSoundSetting" translate="yes" xml:space="preserve">
           <source>Enable Sound</source>
-          <target state="signed-off">Paganahin ang tunog</target>
+          <target state="new">Enable Sound</target>
         </trans-unit>
         <trans-unit id="Resx/ErrorCaption" translate="yes" xml:space="preserve">
           <source>Error</source>
@@ -48,25 +48,25 @@
         </trans-unit>
         <trans-unit id="Resx/ImportButtonText" translate="yes" xml:space="preserve">
           <source>import</source>
-          <target state="signed-off">angkatin</target>
+          <target state="new">import</target>
         </trans-unit>
         <trans-unit id="Resx/ImportFromSkyDriveButtonText" translate="yes" xml:space="preserve">
           <source>Import</source>
-          <target state="signed-off">Angkatin</target>
+          <target state="new">Import</target>
         </trans-unit>
         <trans-unit id="Resx/ImportInstructionsText" translate="yes" xml:space="preserve">
           <source>To import ROM from OneDrive:
 1. Upload ROMs to your OneDrive folder. 
 2. Tap "Sign in" to sign in into OneDrive
 3. Tap "Import" and choose the ROM.</source>
-          <target state="signed-off">Upang mag-import ROM mula OneDrive: 
-1. Mag-upload ng ROMs sa iyong OneDrive folder. 
-2. Tapikin ang "Mag-sign in" upang mag-sign in sa OneDrive 
-3. Tapikin ang "I-import" at piliin ang ROM.</target>
+          <target state="new">To import ROM from OneDrive:
+1. Upload ROMs to your OneDrive folder. 
+2. Tap "Sign in" to sign in into OneDrive
+3. Tap "Import" and choose the ROM.</target>
         </trans-unit>
         <trans-unit id="Resx/ImportTitle" translate="yes" xml:space="preserve">
           <source>data</source>
-          <target state="signed-off">datos</target>
+          <target state="new">data</target>
         </trans-unit>
         <trans-unit id="Resx/InputSettingsPageTitle" translate="yes" xml:space="preserve">
           <source>input</source>
@@ -82,7 +82,7 @@
         </trans-unit>
         <trans-unit id="Resx/NotSignedInError" translate="yes" xml:space="preserve">
           <source>You are not signed in. Sign in first to import ROMs from OneDrive.</source>
-          <target state="signed-off">Indi ka naka-sign in. Mag-sign in muna para makapag-import ng ROMs mula sa OneDrive.</target>
+          <target state="new">You are not signed in. Sign in first to import ROMs from OneDrive.</target>
         </trans-unit>
         <trans-unit id="Resx/RecentTitle" translate="yes" xml:space="preserve">
           <source>recently played</source>
@@ -90,11 +90,11 @@
         </trans-unit>
         <trans-unit id="Resx/ResetROMButton" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target state="signed-off">i-reset</target>
+          <target state="new">reset</target>
         </trans-unit>
         <trans-unit id="Resx/ResumeButtonText" translate="yes" xml:space="preserve">
           <source>resume</source>
-          <target state="signed-off">ipagpatuloy</target>
+          <target state="new">resume</target>
         </trans-unit>
         <trans-unit id="Resx/RomListTitle" translate="yes" xml:space="preserve">
           <source>roms</source>
@@ -150,11 +150,11 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsButtonText" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="signed-off">mga settings</target>
+          <target state="new">settings</target>
         </trans-unit>
         <trans-unit id="Resx/SkyDriveGeneralError" translate="yes" xml:space="preserve">
           <source>Error while accessing OneDrive: {0}</source>
-          <target state="signed-off">Error habang ina-access ang OneDrive: {0}</target>
+          <target state="new">Error while accessing OneDrive: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/SkyDriveImportTitle" translate="yes" xml:space="preserve">
           <source>OneDrive</source>
@@ -162,15 +162,15 @@
         </trans-unit>
         <trans-unit id="Resx/StatusLabelContent" translate="yes" xml:space="preserve">
           <source>Status: </source>
-          <target state="signed-off">Istado:</target>
+          <target state="new">Status: </target>
         </trans-unit>
         <trans-unit id="Resx/StatusNotSignedIn" translate="yes" xml:space="preserve">
           <source>not signed in.</source>
-          <target state="signed-off">hindi naka-sign in.</target>
+          <target state="new">not signed in.</target>
         </trans-unit>
         <trans-unit id="Resx/StatusSignedIn" translate="yes" xml:space="preserve">
           <source>signed in.</source>
-          <target state="signed-off">naka-sign in.</target>
+          <target state="new">signed in.</target>
         </trans-unit>
         <trans-unit id="Resx/VControllerLargeSetting" translate="yes" xml:space="preserve">
           <source>intersecting</source>
@@ -288,23 +288,23 @@ Credits:
         </trans-unit>
         <trans-unit id="Resx/RenameMenuItemText" translate="yes" xml:space="preserve">
           <source>rename</source>
-          <target state="signed-off">bigyan ng ibang pangalan</target>
+          <target state="new">rename</target>
         </trans-unit>
         <trans-unit id="Resx/RenameEmptyString" translate="yes" xml:space="preserve">
           <source>You must enter a name for the ROM.</source>
-          <target state="signed-off">Kailangan mong magpasok ng isang pangalan para sa ROM.</target>
+          <target state="new">You must enter a name for the ROM.</target>
         </trans-unit>
         <trans-unit id="Resx/RenameNameAlreadyExisting" translate="yes" xml:space="preserve">
           <source>A ROM with that name already exists.</source>
-          <target state="signed-off">Ang isang ROM na may pangalan na iyon ay umiiral na.</target>
+          <target state="new">A ROM with that name already exists.</target>
         </trans-unit>
         <trans-unit id="Resx/RenamePromptMessage" translate="yes" xml:space="preserve">
           <source>Change the displayed name of the ROM:</source>
-          <target state="signed-off">Baguhin ang pangalan na ipinapakita ng ROM:</target>
+          <target state="new">Change the displayed name of the ROM:</target>
         </trans-unit>
         <trans-unit id="Resx/RenamePromptTitle" translate="yes" xml:space="preserve">
           <source>Rename ROM</source>
-          <target state="signed-off">Palitan ang pangalan ng ROM</target>
+          <target state="new">Rename ROM</target>
         </trans-unit>
         <trans-unit id="Resx/ROMAlreadyExistingError" translate="yes" xml:space="preserve">
           <source>That ROM has been downloaded before: {0}</source>
@@ -344,15 +344,15 @@ Credits:
         </trans-unit>
         <trans-unit id="Resx/BackupUploadSuccessful" translate="yes" xml:space="preserve">
           <source>Upload completed.</source>
-          <target state="signed-off">Nakumpleto na-upload.</target>
+          <target state="new">Upload completed.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupUploadUnsuccessful" translate="yes" xml:space="preserve">
           <source>Upload completed with errors.</source>
-          <target state="signed-off">Nakumpleto na-upload na may mga error.</target>
+          <target state="new">Upload completed with errors.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupWaitForUpload" translate="yes" xml:space="preserve">
           <source>Please wait for the upload to complete.</source>
-          <target state="signed-off">Mangyaring maghintay para sa pag-upload upang makumpleto.</target>
+          <target state="new">Please wait for the upload to complete.</target>
         </trans-unit>
         <trans-unit id="Resx/CreateBackupFolderError" translate="yes" xml:space="preserve">
           <source>Error while creating the backup folder.</source>
@@ -380,19 +380,19 @@ Credits:
         </trans-unit>
         <trans-unit id="Resx/MaximumTilesPinned" translate="yes" xml:space="preserve">
           <source>The selected ROM is pinned already or you have reached the maximum number of tiles to pin.</source>
-          <target state="signed-off">Ang napiling ROM naka-pin na o naabot mo na ang maximum na bilang ng mga tiles to pin.</target>
+          <target state="new">The selected ROM is pinned already or you have reached the maximum number of tiles to pin.</target>
         </trans-unit>
         <trans-unit id="Resx/FileAssociationError" translate="yes" xml:space="preserve">
           <source>Error importing and opening ROM file.</source>
-          <target state="signed-off">Error sa pag-import at pagbukas ng ROM file.</target>
+          <target state="new">Error importing and opening ROM file.</target>
         </trans-unit>
         <trans-unit id="Resx/ImportSavestateInvalidFormat" translate="yes" xml:space="preserve">
           <source>Savestate file format is invalid. The file name must end with a number from 0 to 9 (e.g. demo0.sgm).</source>
-          <target state="signed-off">Savestate format ng file ay hindi wasto. Ang pangalan ng file ay dapat magtapos sa isang numero 0-9(e.g. demo0.sgm).</target>
+          <target state="new">Savestate file format is invalid. The file name must end with a number from 0 to 9 (e.g. demo0.sgm).</target>
         </trans-unit>
         <trans-unit id="Resx/TileOpenError" translate="yes" xml:space="preserve">
           <source>Error opening the ROM associated with the tile.</source>
-          <target state="signed-off">Error sa pagbukas ng ROM na nauugnay sa tile.</target>
+          <target state="new">Error opening the ROM associated with the tile.</target>
         </trans-unit>
         <trans-unit id="Resx/AspectRatio4to3Setting" translate="yes" xml:space="preserve">
           <source>4:3</source>
@@ -436,27 +436,27 @@ Credits:
         </trans-unit>
         <trans-unit id="Resx/SkyDriveInternetLost" translate="yes" xml:space="preserve">
           <source>Cannot connect to OneDrive. Check your internet connection.</source>
-          <target state="signed-off">Hindi makakonekta sa OneDrive. Suriin ang iyong koneksyon sa internet.</target>
+          <target state="new">Cannot connect to OneDrive. Check your internet connection.</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowButtonText" translate="yes" xml:space="preserve">
           <source>Buy now</source>
-          <target state="signed-off">bumili na ngayon</target>
+          <target state="new">Buy now</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowCancelButtonText" translate="yes" xml:space="preserve">
           <source>Continue trial</source>
-          <target state="signed-off">Magpatuloy sa pagsubok</target>
+          <target state="new">Continue trial</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowText" translate="yes" xml:space="preserve">
           <source>This feature is only available in the full version of the app. Click on the Ok button below, if you want to buy the app and unlock the feature.</source>
-          <target state="signed-off">Ang tampok na ito ay magagamit lamang sa buong bersyon ng app. I-click ang Ok sa ibaba, kung nais mong bilin ang app at i-unlock ang tampok na ito.</target>
+          <target state="new">This feature is only available in the full version of the app. Click on the Ok button below, if you want to buy the app and unlock the feature.</target>
         </trans-unit>
         <trans-unit id="Resx/BuyNowImportText" translate="yes" xml:space="preserve">
           <source>In the trial version you can store up to 2 ROMs on your phone. Click on Ok to buy the app and remove this limit.</source>
-          <target state="signed-off">Sa trial na bersyon maaari kang mag-imbak ng hanggang sa 2 ROMs sa iyong telepono. I-click ang Ok upang bilin ang app at alisin ang limitasyong ito.</target>
+          <target state="new">In the trial version you can store up to 2 ROMs on your phone. Click on Ok to buy the app and remove this limit.</target>
         </trans-unit>
         <trans-unit id="Resx/BuyWaitForDownloadText" translate="yes" xml:space="preserve">
           <source>Please wait for the active download to complete.</source>
-          <target state="signed-off">Mangyaring maghintay para sa mga aktibong pag-download upang makumpleto.</target>
+          <target state="new">Please wait for the active download to complete.</target>
         </trans-unit>
         <trans-unit id="Resx/TurboFrameSkipText" translate="yes" xml:space="preserve">
           <source>Turbo Mode Frame Skip</source>
@@ -487,23 +487,23 @@ Credits:
         </trans-unit>
         <trans-unit id="Resx/HelpDownloadROMsHeader" translate="yes" xml:space="preserve">
           <source>How to import ROMs</source>
-          <target state="signed-off">Paano mag-import ng ROMs</target>
+          <target state="new">How to import ROMs</target>
         </trans-unit>
         <trans-unit id="Resx/HelpHowToHeader" translate="yes" xml:space="preserve">
           <source>how to</source>
-          <target state="signed-off">paana mag</target>
+          <target state="new">how to</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportEmailHeader" translate="yes" xml:space="preserve">
           <source>Alternative 2: importing from E-Mails</source>
-          <target state="signed-off">Alternatibong 2: pag-import mula sa E-mail</target>
+          <target state="new">Alternative 2: importing from E-Mails</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportEmailText" translate="yes" xml:space="preserve">
           <source>Send an E-Mail to any E-Mail address that is accessible from your phone, containing one or more ROM(s) as file attachments. You can either attach the ROMs as *.gba files or contained within a *.zip archive. Open the E-Mail on your phone and tap on the attachment to download the file. If your attachment was a *.zip archive, the E-Mail client allows you to navigate through the archive. Locate the ROM inside the archive and tap on it to launch the emulator. The emulator will automatically import the ROM from the E-Mail attachment and start the game. If the attachment was not a *.zip archive but a *.gba file, just tap on it to start the emulator and import the ROM.</source>
-          <target state="signed-off">Magpadala ng isang E-Mail sa anumang E-Mail address na naa-access mula sa iyong telepono, na naglalaman ng isa o higit pang (mga) ROM bilang mga attachment ng file. Maaari mong alinman sa i-attach ang ROMs bilang *. Gba file o nilalaman sa loob ng isang *. Zip archive. Buksan ang E-Mail sa iyong telepono at tapikin ang attachment upang i-download ang file. Kung ang iyong attachment ay isang *. Zip archive, pinapayagan ka ng E-Mail client mo upang mag-navigate sa pamamagitan ng mga archive. Hanapin ang ROM sa loob ng archive at mag-tap dito upang ilunsad ang emulator. Emulator ay awtomatikong i-import ang ROM mula sa E-Mail attachment at simulan ang laro. Kung ang mga attachment ay hindi isang *. Zip archive ngunit isang *. Gba file, tapikin lamang ito upang simulan ang emulator at i-import ang ROM.</target>
+          <target state="new">Send an E-Mail to any E-Mail address that is accessible from your phone, containing one or more ROM(s) as file attachments. You can either attach the ROMs as *.gba files or contained within a *.zip archive. Open the E-Mail on your phone and tap on the attachment to download the file. If your attachment was a *.zip archive, the E-Mail client allows you to navigate through the archive. Locate the ROM inside the archive and tap on it to launch the emulator. The emulator will automatically import the ROM from the E-Mail attachment and start the game. If the attachment was not a *.zip archive but a *.gba file, just tap on it to start the emulator and import the ROM.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSkyDriveHeader" translate="yes" xml:space="preserve">
           <source>Alternative 1: importing from OneDrive</source>
-          <target state="signed-off">Alternatibong 1: pag-import mula sa OneDrive</target>
+          <target state="new">Alternative 1: importing from OneDrive</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSkyDriveText" translate="yes" xml:space="preserve">
           <source>Store your ROMs in a folder on your OneDrive.  Afterwards navigate to the OneDrive section on the main page of the emulator (swipe left from the ROM list). If you are not signed in yet, click on "Sign in" first and enter your credentials if you are asked for it. When you are signed in, click on the button labeled "import ROMs" on the emulators main page. The following page allows you to navigate through OneDrive to locate the folder where you put your ROMs into. In the folder containing the ROMs, tap on any *.gba or *.zip file to start the download. Wait for the download to complete before you leave the page. A confirmation message will be shown when the download is completed.
@@ -513,7 +513,7 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/HelpImportWebHeader" translate="yes" xml:space="preserve">
           <source>Alternative 3: importing from Web Browser</source>
-          <target state="signed-off">Alternatibong 3: pag-import mula sa Web Browser</target>
+          <target state="new">Alternative 3: importing from Web Browser</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportWebText" translate="yes" xml:space="preserve">
           <source>In your web browser, open any web site that offers ROM downloads and start the download of the desired game. If the download was a *.zip archive, the browser allows you to navigate through the archive when the download is done. Locate the *.gba file contained in the archive and tap on it to start the emulator. The emulator will automatically import the ROM you downloaded using your web browser. If the downloaded file was a *.gba file, just tap on it and the emulator will start and import the ROM.</source>
@@ -545,7 +545,7 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/HelpTipsPerformanceHeader" translate="yes" xml:space="preserve">
           <source>Games are running slowly</source>
-          <target state="signed-off">Mga Larong ay tumatakbo ng mabagal</target>
+          <target state="new">Games are running slowly</target>
         </trans-unit>
         <trans-unit id="Resx/HelpTIpsPerformanceText" translate="yes" xml:space="preserve">
           <source>- Open the video settings and increase the value of the option "Skip Frames (same emulation speed)". This option reduces the number of frames the emulator needs to display and therefore leaves more resources to keep the emulation speed up. The games might appear less smooth when increasing the frame skip value.
@@ -581,7 +581,7 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/ImportWaitComplete" translate="yes" xml:space="preserve">
           <source>Please wait for the download to complete.</source>
-          <target state="signed-off">Mangyaring maghintay para sa pag-download upang makumpleto.</target>
+          <target state="new">Please wait for the download to complete.</target>
         </trans-unit>
         <trans-unit id="Resx/RomListTroubleshootNote" translate="yes" xml:space="preserve">
           <source>Note: If your ROMs do not start, see the "issues" section of the help page.</source>
@@ -637,31 +637,31 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/ActiveSavestateText" translate="yes" xml:space="preserve">
           <source> (active)</source>
-          <target state="signed-off"> (aktibo)</target>
+          <target state="new"> (active)</target>
         </trans-unit>
         <trans-unit id="Resx/AutoIncSavestateSetting" translate="yes" xml:space="preserve">
           <source>Automatically increment save state</source>
-          <target state="signed-off">Awtomatikong i-save dinagdagan ng estado</target>
+          <target state="new">Automatically increment save state</target>
         </trans-unit>
         <trans-unit id="Resx/CancelButtonText" translate="yes" xml:space="preserve">
           <source>cancel</source>
-          <target state="signed-off">kanselahin</target>
+          <target state="new">cancel</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmationCheckBoxText" translate="yes" xml:space="preserve">
           <source>Do not show this again</source>
-          <target state="signed-off">Huwag ipakita ito muli</target>
+          <target state="new">Do not show this again</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmButtonText" translate="yes" xml:space="preserve">
           <source>Confirm</source>
-          <target state="signed-off">Kumpirma</target>
+          <target state="new">Confirm</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmLoadText" translate="yes" xml:space="preserve">
           <source>Are you sure you want to load the last saved state?</source>
-          <target state="signed-off">Sigurado ka bang gusto mong i-load ang huling na-save na estado?</target>
+          <target state="new">Are you sure you want to load the last saved state?</target>
         </trans-unit>
         <trans-unit id="Resx/ConfirmSaveText" translate="yes" xml:space="preserve">
           <source>Are you sure you want to save? This will overwrite the selected save state.</source>
-          <target state="signed-off">Sigurado ka bang gusto mong i-save? Ito ay io-overwrite ang mga piling estado save.</target>
+          <target state="new">Are you sure you want to save? This will overwrite the selected save state.</target>
         </trans-unit>
         <trans-unit id="Resx/GeneralSettingsTitle" translate="yes" xml:space="preserve">
           <source>general</source>
@@ -736,11 +736,11 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/CheatNoCodeEntered" translate="yes" xml:space="preserve">
           <source>You must enter a code first.</source>
-          <target state="signed-off">Kailangan mong magpasok muna ng code.</target>
+          <target state="new">You must enter a code first.</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteCheatButtonText" translate="yes" xml:space="preserve">
           <source>remove</source>
-          <target state="signed-off">alisin</target>
+          <target state="new">remove</target>
         </trans-unit>
         <trans-unit id="Resx/CheatNoSelection" translate="yes" xml:space="preserve">
           <source>You must select a cheat code first.</source>
@@ -764,11 +764,11 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/ManageAutoSlotLabel" translate="yes" xml:space="preserve">
           <source>Automatic </source>
-          <target state="signed-off">awtomatik</target>
+          <target state="new">Automatic </target>
         </trans-unit>
         <trans-unit id="Resx/ManageRemoveState" translate="yes" xml:space="preserve">
           <source>remove</source>
-          <target state="signed-off">alisin</target>
+          <target state="new">remove</target>
         </trans-unit>
         <trans-unit id="Resx/ManageSavestatesTitle" translate="yes" xml:space="preserve">
           <source>save states</source>
@@ -784,7 +784,7 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/RemoveStateNoSelection" translate="yes" xml:space="preserve">
           <source>You must select a save state first.</source>
-          <target state="signed-off">Kailangan mong pumili muna ng isang estado-save.</target>
+          <target state="new">You must select a save state first.</target>
         </trans-unit>
         <trans-unit id="Resx/ManageDeleteUnknownError" translate="yes" xml:space="preserve">
           <source>There was an unknown error while removing the save state.</source>
@@ -800,11 +800,11 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/InfoCaption" translate="yes" xml:space="preserve">
           <source>Info</source>
-          <target state="signed-off">Impormasyon</target>
+          <target state="new">Info</target>
         </trans-unit>
         <trans-unit id="Resx/RenameCancelButton" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="signed-off">Kanselahin</target>
+          <target state="new">Cancel</target>
         </trans-unit>
         <trans-unit id="Resx/RenameLabel" translate="yes" xml:space="preserve">
           <source>Enter new display name:</source>
@@ -812,11 +812,11 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
         </trans-unit>
         <trans-unit id="Resx/RenameOkButton" translate="yes" xml:space="preserve">
           <source>Rename</source>
-          <target state="signed-off">Bigyan ng ibang pangalan</target>
+          <target state="new">Rename</target>
         </trans-unit>
         <trans-unit id="Resx/RenamePageTitle" translate="yes" xml:space="preserve">
           <source>rename</source>
-          <target state="signed-off">bigyan ng ibang pangalan</target>
+          <target state="new">rename</target>
         </trans-unit>
         <trans-unit id="Resx/ContextTitle" translate="yes" xml:space="preserve">
           <source>options</source>
@@ -953,10 +953,10 @@ Device ID: {0}</target>
 1. Make sure the names of the rom and the save file match exactly.
 2. Tap "Import" and choose the save file.
 3. Start the game.</source>
-          <target state="signed-off">Upang ipanumbalik ang sine-save ng:
-1. Tiyakin na ang pangalan ng mga ROM at ang i-save ang file na tugma eksakto. 
-2. Tapikin ang "I-import" at piliin ang i-save ang file. 
-3. Simulan ang laro.</target>
+          <target state="new">To restore saves:
+1. Make sure the names of the rom and the save file match exactly.
+2. Tap "Import" and choose the save file.
+3. Start the game.</target>
         </trans-unit>
         <trans-unit id="Resx/DarkText" translate="yes" xml:space="preserve">
           <source>Dark</source>
@@ -976,19 +976,19 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/RestartPromptText" translate="yes" xml:space="preserve">
           <source>Please restart the app (hit back button several times) for the new setting to take effect.</source>
-          <target state="signed-off">Mangyaring i-restart ang app (pindutin ang back button ng ilang beses) para sa mga bagong setting upang magkabisa.</target>
+          <target state="new">Please restart the app (hit back button several times) for the new setting to take effect.</target>
         </trans-unit>
         <trans-unit id="Resx/RestartPromptTitle" translate="yes" xml:space="preserve">
           <source>Please restart</source>
-          <target state="signed-off">Mangyaring i-restart</target>
+          <target state="new">Please restart</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteConfirmText" translate="yes" xml:space="preserve">
           <source>This cannot be undone, continue?</source>
-          <target state="signed-off">Hindi na ito maaaring bawiin, ipagpatuloy?</target>
+          <target state="new">This cannot be undone, continue?</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteConfirmTitle" translate="yes" xml:space="preserve">
           <source>Confirm deletion</source>
-          <target state="signed-off">Kumpirmahin ang pagtanggal</target>
+          <target state="new">Confirm deletion</target>
         </trans-unit>
         <trans-unit id="Resx/ShowThreeDotsSetting" translate="yes" xml:space="preserve">
           <source>Show context menu hint</source>
@@ -1008,7 +1008,7 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/ShowLastPlayedGameText" translate="yes" xml:space="preserve">
           <source>Show snapshot of last played game</source>
-          <target state="signed-off">Ipakita ang mga snapshot ng huling nalaro</target>
+          <target state="new">Show snapshot of last played game</target>
         </trans-unit>
         <trans-unit id="Resx/CableLinkText" translate="yes" xml:space="preserve">
           <source>Gameboy cable</source>
@@ -1060,27 +1060,27 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoChatName" translate="yes" xml:space="preserve">
           <source>Please enter a name to join.</source>
-          <target state="signed-off">Mangyaring magpasok ng isang pangalan upang sumali.</target>
+          <target state="new">Please enter a name to join.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoChatNameCaption" translate="yes" xml:space="preserve">
           <source>Name is empty</source>
-          <target state="signed-off">Pangalan ay walang laman</target>
+          <target state="new">Name is empty</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoConnectTitle" translate="yes" xml:space="preserve">
           <source>Can't connect</source>
-          <target state="signed-off">Hindi makakonekta</target>
+          <target state="new">Can't connect</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoMessageToSend" translate="yes" xml:space="preserve">
           <source>Please enter a message to send.</source>
-          <target state="signed-off">Mangyaring magpasok ng isang mensahe upang maipadala.</target>
+          <target state="new">Please enter a message to send.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoPeer" translate="yes" xml:space="preserve">
           <source>You must select a peer from the list.</source>
-          <target state="signed-off">Dapat kang pumili ng peer mula sa listahan.</target>
+          <target state="new">You must select a peer from the list.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoPeerConnected" translate="yes" xml:space="preserve">
           <source>You are not connected to a Peer.</source>
-          <target state="signed-off">Hindi ka nakakonekta sa isang Peer.</target>
+          <target state="new">You are not connected to a Peer.</target>
         </trans-unit>
         <trans-unit id="Resx/Err_NoSendTitle" translate="yes" xml:space="preserve">
           <source>Can't send</source>
@@ -1140,11 +1140,11 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/ImportSDCardText" translate="yes" xml:space="preserve">
           <source>Import from SD Card</source>
-          <target state="signed-off">I-import mula sa SD Card</target>
+          <target state="new">Import from SD Card</target>
         </trans-unit>
         <trans-unit id="Resx/NoMatchingNameText" translate="yes" xml:space="preserve">
           <source>Please make sure the name of the save file matches the name of the ROM</source>
-          <target state="signed-off">Pakitiyak na ang pangalan ng save file ay tumutugma sa pangalan ng ROM</target>
+          <target state="new">Please make sure the name of the save file matches the name of the ROM</target>
         </trans-unit>
         <trans-unit id="Resx/SDCardImportTitle" translate="yes" xml:space="preserve">
           <source>SD Card</source>
@@ -1160,7 +1160,7 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/EditText" translate="yes" xml:space="preserve">
           <source>edit</source>
-          <target state="signed-off">I-edit</target>
+          <target state="new">edit</target>
         </trans-unit>
         <trans-unit id="Resx/AutoLoadLastStateText" translate="yes" xml:space="preserve">
           <source>Automatically save and load game</source>
@@ -1168,11 +1168,11 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/AllHeader" translate="yes" xml:space="preserve">
           <source>ALL</source>
-          <target state="signed-off">LAHAT</target>
+          <target state="new">ALL</target>
         </trans-unit>
         <trans-unit id="Resx/CancelText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="signed-off">Kanselahin</target>
+          <target state="new">Cancel</target>
         </trans-unit>
         <trans-unit id="Resx/CheatsDescription2" translate="yes" xml:space="preserve">
           <source>NOTE: Due to a recent bug fix, all existing 16-character cheat codes have to be *edited* with proper space to work again.</source>
@@ -1188,7 +1188,7 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/DescriptionText" translate="yes" xml:space="preserve">
           <source>Description</source>
-          <target state="signed-off">Deskripsyon</target>
+          <target state="new">Description</target>
         </trans-unit>
         <trans-unit id="Resx/EmailLinkText" translate="yes" xml:space="preserve">
           <source>Email: store.support@outlook.com</source>
@@ -1196,7 +1196,7 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/EmulatorMenuText" translate="yes" xml:space="preserve">
           <source>Note: Emulator Menu function will be implemented at a later date.</source>
-          <target state="signed-off">Tandaan: Ang function ng emulator Menu ay ipinatupad sa isang mas huling petsa.</target>
+          <target state="new">Note: Emulator Menu function will be implemented at a later date.</target>
         </trans-unit>
         <trans-unit id="Resx/EnterNewCheatText" translate="yes" xml:space="preserve">
           <source>Enter new cheat code:</source>
@@ -1212,15 +1212,15 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/GuideImportROMText" translate="yes" xml:space="preserve">
           <source>Guide: 4 ways to import ROMS</source>
-          <target state="signed-off">Patnubay: 4 mga paraan upang i-import ang ROMS</target>
+          <target state="new">Guide: 4 ways to import ROMS</target>
         </trans-unit>
         <trans-unit id="Resx/GuidePerformanceText" translate="yes" xml:space="preserve">
           <source>Guide: how to improve performance</source>
-          <target state="signed-off">Gabay: paano pagbutihin ang performance</target>
+          <target state="new">Guide: how to improve performance</target>
         </trans-unit>
         <trans-unit id="Resx/GuidesHeader" translate="yes" xml:space="preserve">
           <source>GUIDES</source>
-          <target state="signed-off">MGA GABAY</target>
+          <target state="new">GUIDES</target>
         </trans-unit>
         <trans-unit id="Resx/MogaMappingTitle" translate="yes" xml:space="preserve">
           <source>moga mapping</source>
@@ -1236,7 +1236,7 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/PleaseWaitROMLoadingText" translate="yes" xml:space="preserve">
           <source>Please wait until ROM finishes loading</source>
-          <target state="signed-off">Mangyaring maghintay hanggang matapos ang ROM sa paglo-load</target>
+          <target state="new">Please wait until ROM finishes loading</target>
         </trans-unit>
         <trans-unit id="Resx/RecentHeader" translate="yes" xml:space="preserve">
           <source>RECENT</source>
@@ -1256,11 +1256,11 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/ChooseImageText" translate="yes" xml:space="preserve">
           <source>Choose image...</source>
-          <target state="signed-off">Pumili ng imahe ...</target>
+          <target state="new">Choose image...</target>
         </trans-unit>
         <trans-unit id="Resx/ChoosePortraitBackgroundColorText" translate="yes" xml:space="preserve">
           <source>Choose portrait background color...</source>
-          <target state="signed-off">Piliin ang kulay ng background ng portrait ...</target>
+          <target state="new">Choose portrait background color...</target>
         </trans-unit>
         <trans-unit id="Resx/ConnectText" translate="yes" xml:space="preserve">
           <source>Connect</source>
@@ -1284,11 +1284,11 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/ErrorNoConnectionText" translate="yes" xml:space="preserve">
           <source>Error! No Internet connection or Microsoft server error. Please try again later.</source>
-          <target state="signed-off">Error! Walang koneksyon sa Internet o Microsoft server error. Mangyaring subukan muli mamaya.</target>
+          <target state="new">Error! No Internet connection or Microsoft server error. Please try again later.</target>
         </trans-unit>
         <trans-unit id="Resx/ErrorReadingSDCardText" translate="yes" xml:space="preserve">
           <source>Error reading SD Card content</source>
-          <target state="signed-off">Error sa pagbabasa ng nilalaman SD Card</target>
+          <target state="new">Error reading SD Card content</target>
         </trans-unit>
         <trans-unit id="Resx/HostIPAddressText" translate="yes" xml:space="preserve">
           <source>Host's IP address: {0}. Waiting for client...</source>
@@ -1296,15 +1296,15 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/LinkConnectedText" translate="yes" xml:space="preserve">
           <source>Connected. You can now close this window and continue playing game.</source>
-          <target state="signed-off">Nakakonekta. Maaari mo na ngayong isara ang window na ito at magpatuloy maglaro.</target>
+          <target state="new">Connected. You can now close this window and continue playing game.</target>
         </trans-unit>
         <trans-unit id="Resx/LinkErrorText" translate="yes" xml:space="preserve">
           <source>Error occured. Please restart the app and try again.</source>
-          <target state="signed-off">May naganap na error. Mangyaring i-restart ang app at subukang muli.</target>
+          <target state="new">Error occured. Please restart the app and try again.</target>
         </trans-unit>
         <trans-unit id="Resx/LoadingProductListText" translate="yes" xml:space="preserve">
           <source>Loading production list. Please wait...</source>
-          <target state="signed-off">Nilo-load ang listahan ng produksyon. Mangyaring maghintay ...</target>
+          <target state="new">Loading production list. Please wait...</target>
         </trans-unit>
         <trans-unit id="Resx/MogaGDR3Note" translate="yes" xml:space="preserve">
           <source>Note: MOGA controller may require GDR3.</source>
@@ -1312,27 +1312,27 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/ProductNotAvailableText" translate="yes" xml:space="preserve">
           <source>Product is not available at the moment.</source>
-          <target state="signed-off">Ang produkto ay hindi magagamit sa sandaling ito.</target>
+          <target state="new">Product is not available at the moment.</target>
         </trans-unit>
         <trans-unit id="Resx/PurchaseButtonText" translate="yes" xml:space="preserve">
           <source>Purchase</source>
-          <target state="signed-off">Ibili</target>
+          <target state="new">Purchase</target>
         </trans-unit>
         <trans-unit id="Resx/PurchasedThankYouText" translate="yes" xml:space="preserve">
           <source>Purchased, thank you!</source>
-          <target state="signed-off">Nabili, Salamat!</target>
+          <target state="new">Purchased, thank you!</target>
         </trans-unit>
         <trans-unit id="Resx/PurchaseSuccessNoAdsText" translate="yes" xml:space="preserve">
           <source>Purchase successful, ads will not be shown the next time you start the app.</source>
-          <target state="signed-off">Matagumpay ang pagbili, ang mga ad ay hindi ipapakita sa susunod na oras na masimulan mo ang app.</target>
+          <target state="new">Purchase successful, ads will not be shown the next time you start the app.</target>
         </trans-unit>
         <trans-unit id="Resx/PurchaseSuccessText" translate="yes" xml:space="preserve">
           <source>Purchase successful.</source>
-          <target state="signed-off">Matagumpay ang pagbili.</target>
+          <target state="new">Purchase successful.</target>
         </trans-unit>
         <trans-unit id="Resx/ResetImageText" translate="yes" xml:space="preserve">
           <source>Reset image</source>
-          <target state="signed-off">I-reset ang imahe</target>
+          <target state="new">Reset image</target>
         </trans-unit>
         <trans-unit id="Resx/SDCardMissingText" translate="yes" xml:space="preserve">
           <source>The SD card is missing. Insert an SD card try again.</source>
@@ -1380,61 +1380,77 @@ Device ID: {0}</target>
         </trans-unit>
         <trans-unit id="Resx/ValidCodeText" translate="yes" xml:space="preserve">
           <source>Code accepted. Please restart the app for the code to take effect.</source>
-          <target state="signed-off">Tinanggap ang code. Mangyaring i-restart ang app para sa code upang magkaroon ng bisa.</target>
+          <target state="new">Code accepted. Please restart the app for the code to take effect.</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSDCardHeader" translate="yes" xml:space="preserve">
           <source>Alternative 4: importing from SD card</source>
-          <target state="signed-off">Alternatibong 4: pag-import mula sa SD card</target>
+          <target state="new">Alternative 4: importing from SD card</target>
         </trans-unit>
         <trans-unit id="Resx/HelpImportSDCardText" translate="yes" xml:space="preserve">
           <source>In the data tab of the main page, click on Import from SD card and follow the instruction</source>
-          <target state="signed-off">Sa tab ng data ng pangunahing pahina, i-click ang I-import mula sa SD card at sundin ang mga tagubilin</target>
+          <target state="new">In the data tab of the main page, click on Import from SD card and follow the instruction</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/CloudSixInstructionText" xml:space="preserve">
+        <trans-unit id="Resx/CloudSixHeader" translate="yes" xml:space="preserve">
+          <source>CLOUDSIX</source>
+          <target state="new">CLOUDSIX</target>
+        </trans-unit>
+        <trans-unit id="Resx/CloudSixImportTitle" translate="yes" xml:space="preserve">
+          <source>CloudSix</source>
+          <target state="new">CloudSix</target>
+        </trans-unit>
+        <trans-unit id="Resx/CloudSixInstructionText" translate="yes" xml:space="preserve">
           <source>Install one of Rudy Huyn's CloudSix apps to use this function.</source>
           <target state="new">Install one of Rudy Huyn's CloudSix apps to use this function.</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/ReviewPromptText" xml:space="preserve">
+        <trans-unit id="Resx/ReviewPromptText" translate="yes" xml:space="preserve">
           <source>Please spend a few seconds rating the app. Good reviews keep new features coming.</source>
           <target state="new">Please spend a few seconds rating the app. Good reviews keep new features coming.</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/ReviewPromptTitle" xml:space="preserve">
+        <trans-unit id="Resx/ReviewPromptTitle" translate="yes" xml:space="preserve">
           <source>Like this app?</source>
           <target state="new">Like this app?</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/SelectFileTitle" xml:space="preserve">
+        <trans-unit id="Resx/SelectFileTitle" translate="yes" xml:space="preserve">
           <source>select files</source>
           <target state="new">select files</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/AllButtonText" xml:space="preserve">
+        <trans-unit id="Resx/AllButtonText" translate="yes" xml:space="preserve">
           <source>All</source>
           <target state="new">All</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/AvailableSaveFilesText" xml:space="preserve">
+        <trans-unit id="Resx/AvailableSaveFilesText" translate="yes" xml:space="preserve">
           <source>Available save files</source>
           <target state="new">Available save files</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/NoneButtonText" xml:space="preserve">
+        <trans-unit id="Resx/NoneButtonText" translate="yes" xml:space="preserve">
           <source>None</source>
           <target state="new">None</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/SelectNoneText" xml:space="preserve">
+        <trans-unit id="Resx/SelectAllText" translate="yes" xml:space="preserve">
+          <source>select all</source>
+          <target state="new">select all</target>
+        </trans-unit>
+        <trans-unit id="Resx/SelectNoneText" translate="yes" xml:space="preserve">
           <source>select none</source>
           <target state="new">select none</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/AutoSaveWarning" xml:space="preserve">
+        <trans-unit id="Resx/AutoSaveWarning" translate="yes" xml:space="preserve">
           <source>Only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?</source>
           <target state="new">Only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/CloudSixOneFileLimitText" xml:space="preserve">
+        <trans-unit id="Resx/CloudSixOneFileLimitText" translate="yes" xml:space="preserve">
           <source>CloudSix only supports exporting one file at a time unless you choose "Export as zip".</source>
           <target state="new">CloudSix only supports exporting one file at a time unless you choose "Export as zip".</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/ExportNoSelection" xml:space="preserve">
+        <trans-unit id="Resx/ExportAsZipText" translate="yes" xml:space="preserve">
+          <source>Export as zip</source>
+          <target state="new">Export as zip</target>
+        </trans-unit>
+        <trans-unit id="Resx/ExportNoSelection" translate="yes" xml:space="preserve">
           <source>You must select at least one file.</source>
           <target state="new">You must select at least one file.</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/WarningTitle" xml:space="preserve">
+        <trans-unit id="Resx/WarningTitle" translate="yes" xml:space="preserve">
           <source>Warning!</source>
           <target state="new">Warning!</target>
         </trans-unit>
@@ -1499,22 +1515,6 @@ Device ID: {0}</target>
         <trans-unit translate="yes" id="Resx/RotatingModeText" xml:space="preserve">
           <source>Rotating mode</source>
           <target state="new">Rotating mode</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/ExportAsZipText" xml:space="preserve">
-          <source>Export as zip</source>
-          <target state="new">Export as zip</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SelectAllText" xml:space="preserve">
-          <source>select all</source>
-          <target state="new">select all</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/CloudSixHeader" xml:space="preserve">
-          <source>CLOUDSIX</source>
-          <target state="new">CLOUDSIX</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/CloudSixImportTitle" xml:space="preserve">
-          <source>CloudSix</source>
-          <target state="new">CloudSix</target>
         </trans-unit>
       </group>
     </body>

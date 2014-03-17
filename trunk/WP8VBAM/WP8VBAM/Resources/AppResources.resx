@@ -267,7 +267,8 @@ Credits:
 - Jesper Svensson for Swedish translation.
 - Alexander Kolosov for Russian translation.
 - Usama Jawad for Urdu translation.
-- Mathias Haugsbø for Norwegian (Nynorsk) translation.</value>
+- Mathias Haugsbø for Norwegian (Nynorsk) translation.
+- Leutrim Shabani for German translation.</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -541,7 +542,7 @@ Note: In some cases, ROMs downloaded from OneDrive only show a blank screen when
     <value>Note: If your ROMs do not start, see the "issues" section of the help page.</value>
   </data>
   <data name="SkyDriveFileFormatHint" xml:space="preserve">
-    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav, .zip</value>
+    <value>Supported files:</value>
   </data>
   <data name="DPadAnalogueDynamic" xml:space="preserve">
     <value>dynamic analogue stick</value>
@@ -951,9 +952,6 @@ Device ID: {0}</value>
   <data name="NoMatchingNameText" xml:space="preserve">
     <value>Please make sure the name of the save file matches the name of the ROM</value>
   </data>
-  <data name="SDCardHintText" xml:space="preserve">
-    <value>Supported files: .gb, .gbc, .gba, .sgm, .sav. .zib</value>
-  </data>
   <data name="SDCardImportTitle" xml:space="preserve">
     <value>SD Card</value>
   </data>
@@ -1137,9 +1135,6 @@ Device ID: {0}</value>
   <data name="HelpImportSDCardText" xml:space="preserve">
     <value>In the data tab of the main page, click on Import from SD card and follow the instruction</value>
   </data>
-  <data name="CloudSixFormatHint" xml:space="preserve">
-    <value>.gb, .gbc, .gba, .sgm, .sav, .zip</value>
-  </data>
   <data name="CloudSixHeader" xml:space="preserve">
     <value>CLOUDSIX</value>
   </data>
@@ -1187,5 +1182,51 @@ Device ID: {0}</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Warning!</value>
+  </data>
+  <data name="AutoBackupText" xml:space="preserve">
+    <value>Automatically back up save data</value>
+  </data>
+  <data name="SetupAutoBackupText" xml:space="preserve">
+    <value>Set up auto backup...</value>
+  </data>
+  <data name="AutoBackupTypeText" xml:space="preserve">
+    <value>Auto backup mode</value>
+  </data>
+  <data name="NeverShowAgainText" xml:space="preserve">
+    <value>Don't show this again</value>
+  </data>
+  <data name="AutoBackupModeHelp" xml:space="preserve">
+    <value>- Simple mode: save slots are backed up "as is" with no compression; ideal for syncing data with tablet/PC but does not protect from accidental overwriting of data.
+- Rotating mode: save slots are compressed, multiple save files are kept to prevent accidental overwritting of data; ideal for safe guard of data.</value>
+  </data>
+  <data name="AutoBackupTitle" xml:space="preserve">
+    <value>auto backup</value>
+  </data>
+  <data name="BackupAutoSlotText" xml:space="preserve">
+    <value>Back up auto save slot</value>
+  </data>
+  <data name="BackupFailOnedriveText" xml:space="preserve">
+    <value>Auto backup fail, please sign in to OneDrive.</value>
+  </data>
+  <data name="BackupIngameSaveText" xml:space="preserve">
+    <value>Back up ingame save</value>
+  </data>
+  <data name="BackupLastManualSlotText" xml:space="preserve">
+    <value>Back up most recent manual save slot</value>
+  </data>
+  <data name="NumberRotatingFilesText" xml:space="preserve">
+    <value>Number of rotating backups</value>
+  </data>
+  <data name="RotatingModeText" xml:space="preserve">
+    <value>Rotating mode</value>
+  </data>
+  <data name="SimpleModeText" xml:space="preserve">
+    <value>Simple mode</value>
+  </data>
+  <data name="AutoBackupNote" xml:space="preserve">
+    <value>Note: Auto backup is triggered when users return to the main page after playing a game.</value>
+  </data>
+  <data name="BackupOnlyWifiText" xml:space="preserve">
+    <value>Only backup when Wifi is available (checking for this may be slow)</value>
   </data>
 </root>

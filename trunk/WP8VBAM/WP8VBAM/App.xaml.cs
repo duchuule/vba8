@@ -24,6 +24,9 @@ using Microsoft.Phone.Info;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
+using Microsoft.Live;
+using Microsoft.Live.Controls;
+using System.Threading;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -32,15 +35,26 @@ namespace PhoneDirect3DXamlAppInterop
         public static bool IsTrial
         { get; private set; }
 
+        public static int APP_VERSION = 2;
+
         public static bool HasAds { get; private set; }
         public static bool IsPremium { get; private set; }
+        public static LiveConnectSession session;
 
         public static AppSettings metroSettings = new AppSettings();
 
         public static StreamSocket linkSocket;           // The socket object used to communicate with a peer
 
+        public static DateTime LastAutoBackupTime;
+
+        public static string exportFolderID;
+
+
+
         public static void DetermineIsTrail()
         {
+
+            App.LastAutoBackupTime = DateTime.Now;
 
 
 #if BETA

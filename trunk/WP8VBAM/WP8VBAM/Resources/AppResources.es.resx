@@ -264,7 +264,10 @@ Créditos:
 - Łukasz Deptuła for Polish translation.
 - Junfan Yao for Simplifed Chinese translation.
 - wphone08 for French translation.
-- Jesper Svensson for Swedish translation.</value>
+- Jesper Svensson for Swedish translation.
+- Alexander Kolosov for Russian translation.
+- Usama Jawad for Urdu translation.
+- Mathias Haugsbø for Norwegian (Nynorsk) translation.</value>
   <comment></comment></data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>Licencia Pública General de GNU:</value>
@@ -538,8 +541,8 @@ Nota: En algunos casos, las ROMs descargadas desde OneDrive sólo muestran una p
     <value>Nota: Si tus ROMs no inician, busca en la sección "problemas" de la página de ayuda.</value>
   </data>
   <data name="SkyDriveFileFormatHint" xml:space="preserve">
-    <value>Formatos admitidos: .gb, .gbc, .gba, .sgm, .sav, .zip</value>
-  </data>
+    <value>Formatos admitidos:</value>
+  <comment></comment></data>
   <data name="DPadAnalogueDynamic" xml:space="preserve">
     <value>Stick analógico dinámico</value>
   </data>
@@ -953,9 +956,7 @@ Device ID: {0}
   <data name="NoMatchingNameText" xml:space="preserve">
     <value>Por favor asegúrate de que los nombres del archivo de partida guardada y la ROM coincidan.</value>
   </data>
-  <data name="SDCardHintText" xml:space="preserve">
-    <value>Formatos admitidos: .gb, .gbc, .gba, .sgm, .sav, .zib</value>
-  </data>
+  
   <data name="SDCardImportTitle" xml:space="preserve">
     <value>Tarjeta SD</value>
   </data>

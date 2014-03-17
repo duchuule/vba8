@@ -297,6 +297,52 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - Simple mode: save slots are backed up &quot;as is&quot; with no compression; ideal for syncing data with tablet/PC but does not protect from accidental overwriting of data.
+        ///- Rotating mode: save slots are compressed, multiple save files are kept to prevent accidental overwritting of data; ideal for safe guard of data..
+        /// </summary>
+        public static string AutoBackupModeHelp {
+            get {
+                return ResourceManager.GetString("AutoBackupModeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: Auto backup is triggered when users return to the main page after playing a game..
+        /// </summary>
+        public static string AutoBackupNote {
+            get {
+                return ResourceManager.GetString("AutoBackupNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically back up save data.
+        /// </summary>
+        public static string AutoBackupText {
+            get {
+                return ResourceManager.GetString("AutoBackupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to auto backup.
+        /// </summary>
+        public static string AutoBackupTitle {
+            get {
+                return ResourceManager.GetString("AutoBackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto backup mode.
+        /// </summary>
+        public static string AutoBackupTypeText {
+            get {
+                return ResourceManager.GetString("AutoBackupTypeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically increment save state.
         /// </summary>
         public static string AutoIncSavestateSetting {
@@ -351,6 +397,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back up auto save slot.
+        /// </summary>
+        public static string BackupAutoSlotText {
+            get {
+                return ResourceManager.GetString("BackupAutoSlotText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string BackupButton {
@@ -369,11 +424,47 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto backup fail, please sign in to OneDrive..
+        /// </summary>
+        public static string BackupFailOnedriveText {
+            get {
+                return ResourceManager.GetString("BackupFailOnedriveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back up ingame save.
+        /// </summary>
+        public static string BackupIngameSaveText {
+            get {
+                return ResourceManager.GetString("BackupIngameSaveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose the game to export saves..
         /// </summary>
         public static string BackupInstructions {
             get {
                 return ResourceManager.GetString("BackupInstructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back up most recent manual save slot.
+        /// </summary>
+        public static string BackupLastManualSlotText {
+            get {
+                return ResourceManager.GetString("BackupLastManualSlotText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only backup when Wifi is available (checking for this may be slow).
+        /// </summary>
+        public static string BackupOnlyWifiText {
+            get {
+                return ResourceManager.GetString("BackupOnlyWifiText", resourceCulture);
             }
         }
         
@@ -716,15 +807,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string ClientText {
             get {
                 return ResourceManager.GetString("ClientText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .gb, .gbc, .gba, .sgm, .sav, .zip.
-        /// </summary>
-        public static string CloudSixFormatHint {
-            get {
-                return ResourceManager.GetString("CloudSixFormatHint", resourceCulture);
             }
         }
         
@@ -2080,6 +2162,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t show this again.
+        /// </summary>
+        public static string NeverShowAgainText {
+            get {
+                return ResourceManager.GetString("NeverShowAgainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please make sure the name of the save file matches the name of the ROM.
         /// </summary>
         public static string NoMatchingNameText {
@@ -2103,6 +2194,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string NotSignedInError {
             get {
                 return ResourceManager.GetString("NotSignedInError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of rotating backups.
+        /// </summary>
+        public static string NumberRotatingFilesText {
+            get {
+                return ResourceManager.GetString("NumberRotatingFilesText", resourceCulture);
             }
         }
         
@@ -2573,6 +2673,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rotating mode.
+        /// </summary>
+        public static string RotatingModeText {
+            get {
+                return ResourceManager.GetString("RotatingModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Same device.
         /// </summary>
         public static string SameDeviceText {
@@ -2596,15 +2705,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string SDCardHeader {
             get {
                 return ResourceManager.GetString("SDCardHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav. .zib.
-        /// </summary>
-        public static string SDCardHintText {
-            get {
-                return ResourceManager.GetString("SDCardHintText", resourceCulture);
             }
         }
         
@@ -2789,6 +2889,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set up auto backup....
+        /// </summary>
+        public static string SetupAutoBackupText {
+            get {
+                return ResourceManager.GetString("SetupAutoBackupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show snapshot of last played game.
         /// </summary>
         public static string ShowLastPlayedGameText {
@@ -2807,6 +2916,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Simple mode.
+        /// </summary>
+        public static string SimpleModeText {
+            get {
+                return ResourceManager.GetString("SimpleModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneDrive Error: {0}.
         /// </summary>
         public static string SkyDriveError {
@@ -2816,7 +2934,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supported files: .gb, .gbc, .gba, .sgm, .sav, .zip.
+        ///   Looks up a localized string similar to Supported files:.
         /// </summary>
         public static string SkyDriveFileFormatHint {
             get {

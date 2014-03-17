@@ -397,12 +397,11 @@
 
                             </telerikInput:RadListPicker>
 
-                            <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.AspectRatioSetting, Source={StaticResource LocalizedStrings}}"
+                        <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.AspectRatioSetting, Source={StaticResource LocalizedStrings}}"
                                                     SelectionChanged="aspectRatioPicker_SelectionChanged_1" 
-                                                    Name="aspectRatioPicker" 
-                                                    InlineModeThreshold="20">
+                                                    Name="aspectRatioPicker" >
 
-                            </telerikInput:RadListPicker>
+                        </telerikInput:RadListPicker>
 
 
                             <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.OrientationSettingText, Source={StaticResource LocalizedStrings}}"
@@ -438,20 +437,36 @@
                                Style="{StaticResource MyTitle1Style}" />
                     </phone:PivotItem.Header>
                     <ListBox>
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.AutoLoadLastStateText, Source={StaticResource LocalizedStrings}}"
-                                            IsChecked="true" 
-                                        Name="loadLastStateSwitch" Click="loaLastStateSwitch_Click"
-                                            />
 
-                    </ListBoxItem>
+                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                            <CheckBox Content="{Binding Path=LocalizedResources.AutoBackupText, Source={StaticResource LocalizedStrings}}"
+                                      IsChecked="false" 
+                                      Name="autoBackupSwitch"
+                                      Click="autoBackupSwitch_Click"
+                                                />
+                        </ListBoxItem>
                         
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                            <Button x:Name="SetupAutoBackupBtn"
+                                    Content="{Binding Path=LocalizedResources.SetupAutoBackupText, Source={StaticResource LocalizedStrings}}"
+                                    Click="SetupAutoBackupBtn_Click"
+                                    />
+                        </ListBoxItem>
 
-                            <CheckBox Content="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}"
-                                          Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
-                                          IsChecked="true" Name="enableSoundSwitch"
-                                           />
+                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                                <CheckBox Content="{Binding Path=LocalizedResources.AutoLoadLastStateText, Source={StaticResource LocalizedStrings}}"
+                                                    IsChecked="true" 
+                                                Name="loadLastStateSwitch" Click="loaLastStateSwitch_Click"
+                                                    />
+
+                        </ListBoxItem>
+                        
+                        <ListBoxItem HorizontalContentAlignment="Stretch">
+
+                                <CheckBox Content="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}"
+                                              Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
+                                              IsChecked="true" Name="enableSoundSwitch"
+                                               />
                         </ListBoxItem>
                         <ListBoxItem HorizontalContentAlignment="Stretch">
                             <CheckBox Content="{Binding Path=LocalizedResources.SyncSoundSetting, Source={StaticResource LocalizedStrings}}"

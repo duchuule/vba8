@@ -7,6 +7,7 @@ using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Microsoft.Phone.Data.Linq;
 
 namespace PhoneDirect3DXamlAppInterop.Database
 {
@@ -53,6 +54,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
             this.context = new ROMDataContext(ConnectionString);
         }
 
+        //this function return true the first time data base is created
         public bool Initialize()
         {
             bool dbCreated = false;
@@ -61,13 +63,54 @@ namespace PhoneDirect3DXamlAppInterop.Database
             if (!context.DatabaseExists())
             {
                 context.CreateDatabase();
+
+                DatabaseSchemaUpdater dbUpdater = context.CreateDatabaseSchemaUpdater();
+                dbUpdater.DatabaseSchemaVersion = App.APP_VERSION;
+                dbUpdater.Execute();
+
                 context.SubmitChanges();
                 dbCreated = true;
+
+                
             }
+            else
+            {
+                UpdateDatabase();
+            }
+
+
             context.SubmitChanges();
+
             return dbCreated;
         }
 
+
+        private void UpdateDatabase()
+        {
+            // Check whether a database update is needed.
+            DatabaseSchemaUpdater dbUpdater = context.CreateDatabaseSchemaUpdater();
+
+            if (dbUpdater.DatabaseSchemaVersion < App.APP_VERSION)
+            {
+                try
+                {
+                    if (dbUpdater.DatabaseSchemaVersion < 2)
+                    {
+                        dbUpdater.AddColumn<ROMDBEntry>("AutoSaveIndex");
+                    }
+
+                    // Update the new database version.
+                    dbUpdater.DatabaseSchemaVersion = App.APP_VERSION;
+
+                    // Perform the database update in a single transaction.
+                    dbUpdater.Execute();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
         public void Add(ROMDBEntry entry)
         {
             if (!context.DatabaseExists())
@@ -127,6 +170,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
             {
                 throw new InvalidOperationException("Database does not exist.");
             }
+
             romFilename = romFilename.ToLower();
             return this.context.SavestateTable
                 .Where(s => (s.ROMFileName.ToLower().Equals(romFilename)) && (s.Slot == slot))
@@ -217,6 +261,11 @@ namespace PhoneDirect3DXamlAppInterop.Database
                 .FirstOrDefault();
             }
         }
+
+        
+
+
+      
 
         public int GetLastSavestateSlotByFileNameExceptAuto(string filename)
         {

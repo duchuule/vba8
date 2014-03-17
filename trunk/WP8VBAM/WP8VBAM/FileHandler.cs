@@ -403,11 +403,15 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 createSavestate(slot, romFileName);
             }));
+
+            
         }
 
         private static void createSavestate(int slot, string romFileName)
         {
             ROMDatabase db = ROMDatabase.Current;
+
+
 
             int index = romFileName.LastIndexOf('.');
             int diff = romFileName.Length - index;
@@ -435,6 +439,8 @@ namespace PhoneDirect3DXamlAppInterop
                 entry.Savetime = DateTime.Now;
             }
             db.CommitChanges();
+
+            
         }
 
 
