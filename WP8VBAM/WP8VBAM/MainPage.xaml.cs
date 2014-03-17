@@ -26,7 +26,8 @@ using System.Windows.Media.Imaging;
 using CloudSixConnector.FilePicker;
 using CloudSixConnector.FileSaver;
 using Coding4Fun.Toolkit.Controls;
-
+using Microsoft.Phone.Net.NetworkInformation;
+using Ionic.Zip;
 
 
 //"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts deviceindex:7 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
@@ -38,12 +39,15 @@ namespace PhoneDirect3DXamlAppInterop
     public partial class MainPage : PhoneApplicationPage
     {
         private ApplicationBarIconButton resumeButton;
-        private LiveConnectSession session;
+        
         private ROMDatabase db;
         private Task createFolderTask, copyDemoTask, initTask;
 
         public static bool shouldUpdateBackgroud = false;
 
+        private bool checkAutoUpload = false; //to notify when we should check for auto upload
+
+        
         
         public MainPage()
         {
@@ -135,7 +139,7 @@ namespace PhoneDirect3DXamlAppInterop
                     else if (incomingFileType == ".sgm" || incomingFileType == ".sav")
                         await FileHandler.ImportSaveBySharedID(fileID, incomingFileName, this);
 
-                    else if (incomingFileType == ".zip") //need to open cloudsix import page to show the content of zip file
+                    else //need to open cloudsix import page to show the content of zip file
                     {
                         this.NavigationService.Navigate(new Uri("/CloudSixImportPage.xaml?fileToken=" + fileID, UriKind.Relative));
                         App.metroSettings.NAppLaunch--; //so that we don't miss asking for review
@@ -151,21 +155,323 @@ namespace PhoneDirect3DXamlAppInterop
 
 
             //ask to rate
-            if (App.metroSettings.NAppLaunch % 200 == 14 && App.metroSettings.CanAskReview)
+            if (App.metroSettings.NAppLaunch % 50 == 14 && App.metroSettings.CanAskReview)
             {
                 //ask to rate
-                MessageBoxResult ret = MessageBox.Show(AppResources.ReviewPromptText, AppResources.ReviewPromptTitle, MessageBoxButton.OKCancel);
+                RadMessageBox.Show(AppResources.ReviewPromptTitle, MessageBoxButtons.OKCancel, AppResources.ReviewPromptText,
+                    AppResources.NeverShowAgainText, closedHandler: (args) =>
+                        {
+                            DialogResult result = args.Result;
+                            if (result == DialogResult.OK)
+                            {
+                                App.metroSettings.CanAskReview = false;
+                                MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+                                marketplaceReviewTask.Show();
+                            }
 
-                if (ret == MessageBoxResult.OK)
-                {
-                    App.metroSettings.CanAskReview = false;
-                    MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
-                    marketplaceReviewTask.Show();
-                }
-
+                            if (args.IsCheckBoxChecked) //user don't want to see remind box again
+                            {
+                                App.metroSettings.CanAskReview = false;
+                            }
+                        });
+                
                 App.metroSettings.NAppLaunch++;
             }
+
+
+            //== auto back up
+            AutoBackup();
+
+
+            return;
         }
+
+
+        private async void AutoBackup()
+        {
+            if (this.checkAutoUpload && App.metroSettings.AutoBackup)
+            {
+                this.checkAutoUpload = false; //set it to false until the next time we launch a game
+
+                if (!DeviceNetworkInformation.IsNetworkAvailable)
+                    return;
+
+                if (App.metroSettings.BackupOnlyWifi)  //check for wifi
+                {
+                    if (!IsWifiConnected())
+                        return;
+                }
+
+                if (App.session == null)
+                {
+                    MessageBox.Show(AppResources.BackupFailOnedriveText);
+                    return;
+                }
+
+
+                LiveConnectClient client = new LiveConnectClient(App.session);
+                if (App.exportFolderID == null || App.exportFolderID == "")
+                    App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
+
+
+                ROMDBEntry entry = EmulatorPage.currentROMEntry;
+
+                if (DateTime.Compare(entry.LastPlayed, App.LastAutoBackupTime) > 0)
+                {
+
+                    if (App.metroSettings.AutoBackupMode == 0) //simple mode
+                    {
+                        //manual save state
+                        if (App.metroSettings.BackupManualSave)
+                        {
+                            SavestateEntry state = entry.Savestates.Where(s => s.Slot != 9 && s.Savetime != FileHandler.DEFAULT_DATETIME)
+                                .OrderByDescending(s => s.Savetime)
+                                .FirstOrDefault();
+
+                            if (state != null && DateTime.Compare(state.Savetime, App.LastAutoBackupTime) > 0)
+                            {
+
+                                var indicator = SystemTray.GetProgressIndicator(this);
+                                indicator.IsIndeterminate = true;
+                                indicator.Text = String.Format(AppResources.UploadProgressText, state.FileName);
+
+                                try
+                                {
+                                    using (var iso = IsolatedStorageFile.GetUserStoreForApplication())
+                                    {
+                                        String path = FileHandler.ROM_DIRECTORY + "/" + FileHandler.SAVE_DIRECTORY + "/" + state.FileName;
+
+                                        using (IsolatedStorageFileStream fs = iso.OpenFile(path, System.IO.FileMode.Open))
+                                        {
+                                            await client.UploadAsync(App.exportFolderID, state.FileName, fs, OverwriteOption.Overwrite);
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                { }
+
+#if GBC
+                        indicator.Text = AppResources.ApplicationTitle2;
+#else
+                                indicator.Text = AppResources.ApplicationTitle;
+#endif
+                                indicator.IsIndeterminate = false;
+
+                            }
+
+                        }
+
+                        //auto save state
+                        if (App.metroSettings.BackupAutoSave)
+                        {
+                            SavestateEntry state = entry.Savestates.Where(s => s.Slot == 9).FirstOrDefault();
+                            if (EmulatorSettings.Current.AutoSaveLoad && state != null)
+                            {
+                                //at this point, probably the auto save file is being created, so need to wait for it to complete
+                                //if (!App.autoSaveCompleteEvent.WaitOne(3000))
+                                //    return;
+
+                                var indicator = SystemTray.GetProgressIndicator(this);
+                                indicator.IsIndeterminate = true;
+                                indicator.Text = String.Format(AppResources.UploadProgressText, state.FileName);
+
+                                try
+                                {
+                                    using (var iso = IsolatedStorageFile.GetUserStoreForApplication())
+                                    {
+                                        String path = FileHandler.ROM_DIRECTORY + "/" + FileHandler.SAVE_DIRECTORY + "/" + state.FileName;
+
+                                        using (IsolatedStorageFileStream fs = iso.OpenFile(path, System.IO.FileMode.Open))
+                                        {
+                                            await client.UploadAsync(App.exportFolderID, state.FileName, fs, OverwriteOption.Overwrite);
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                { }
+
+#if GBC
+                                indicator.Text = AppResources.ApplicationTitle2;
+#else
+                                indicator.Text = AppResources.ApplicationTitle;
+#endif
+                                indicator.IsIndeterminate = false;
+
+                            }
+
+                        }
+
+
+
+                        //ingame state
+                        if (App.metroSettings.BackupIngameSave)
+                        {
+                            int index = entry.FileName.LastIndexOf('.');
+                            int diff = entry.FileName.Length - 1 - index;
+
+                            String sramName = entry.FileName.Substring(0, entry.FileName.Length - diff) + "sav";
+                            String sramPath = FileHandler.ROM_DIRECTORY + "/" + FileHandler.SAVE_DIRECTORY + "/" + sramName;
+
+
+
+
+                            var indicator = SystemTray.GetProgressIndicator(this);
+
+                            try
+                            {
+                                using (var iso = IsolatedStorageFile.GetUserStoreForApplication())
+                                {
+                                    if (iso.FileExists(sramPath))
+                                    {
+
+                                        indicator.IsIndeterminate = true;
+                                        indicator.Text = String.Format(AppResources.UploadProgressText, sramName);
+
+
+                                        using (IsolatedStorageFileStream fs = iso.OpenFile(sramPath, System.IO.FileMode.Open))
+                                        {
+                                            await client.UploadAsync(App.exportFolderID, sramName, fs, OverwriteOption.Overwrite);
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            { }
+
+#if GBC
+                                indicator.Text = AppResources.ApplicationTitle2;
+#else
+                            indicator.Text = AppResources.ApplicationTitle;
+#endif
+                            indicator.IsIndeterminate = false;
+                        }
+                    } //end simple mode
+
+                    else if (App.metroSettings.AutoBackupMode == 1) //rotating mode
+                    {
+                        
+
+                        int nfile = 0;
+
+                        using (ZipFile zip = new ZipFile())
+                        {
+                            using (var iso = IsolatedStorageFile.GetUserStoreForApplication())
+                            {
+                                //manual save
+                                if (App.metroSettings.BackupManualSave)
+                                {
+                                    SavestateEntry state = entry.Savestates.Where(s => s.Slot != 9 && s.Savetime != FileHandler.DEFAULT_DATETIME)
+                                        .OrderByDescending(s => s.Savetime)
+                                        .FirstOrDefault();
+
+                                    if (state != null && DateTime.Compare(state.Savetime, App.LastAutoBackupTime) > 0)
+                                    {
+                                        String path = FileHandler.ROM_DIRECTORY + "/" + FileHandler.SAVE_DIRECTORY + "/" + state.FileName;
+
+                                        IsolatedStorageFileStream fs = iso.OpenFile(path, System.IO.FileMode.Open);
+                                        zip.AddEntry(state.FileName, fs);
+                                        nfile++;
+                                    }
+
+                                }
+
+                                //auto save state
+                                if (App.metroSettings.BackupAutoSave)
+                                {
+                                    SavestateEntry state = entry.Savestates.Where(s => s.Slot == 9).FirstOrDefault();
+                                    if (EmulatorSettings.Current.AutoSaveLoad && state != null)
+                                    {
+                                        String path = FileHandler.ROM_DIRECTORY + "/" + FileHandler.SAVE_DIRECTORY + "/" + state.FileName;
+                                        IsolatedStorageFileStream fs = iso.OpenFile(path, System.IO.FileMode.Open);
+                                        zip.AddEntry(state.FileName, fs);
+                                        nfile++;
+                                    }
+                                }
+
+
+                                //ingame state
+                                if (App.metroSettings.BackupIngameSave)
+                                {
+                                    int index = entry.FileName.LastIndexOf('.');
+                                    int diff = entry.FileName.Length - 1 - index;
+
+                                    String sramName = entry.FileName.Substring(0, entry.FileName.Length - diff) + "sav";
+                                    String sramPath = FileHandler.ROM_DIRECTORY + "/" + FileHandler.SAVE_DIRECTORY + "/" + sramName;
+
+
+                                    if (iso.FileExists(sramPath))
+                                    {
+                                        IsolatedStorageFileStream fs = iso.OpenFile(sramPath, System.IO.FileMode.Open);
+                                        zip.AddEntry(sramName, fs);
+                                        nfile++;
+
+                                    }
+                                }
+
+                                if (nfile > 0) //we perform upload now
+                                {
+                                    if (entry.AutoSaveIndex == null)
+                                        entry.AutoSaveIndex = 1;
+                                    else
+                                        entry.AutoSaveIndex++;
+
+
+                                    if (entry.AutoSaveIndex > App.metroSettings.NRotatingBackup)
+                                        entry.AutoSaveIndex = 1;
+
+                                    this.db.CommitChanges();
+
+                                    string exportFileName = entry.DisplayName +  entry.AutoSaveIndex.ToString() + ".zip";
+                                    
+
+                                    var indicator = SystemTray.GetProgressIndicator(this);
+                                    indicator.IsIndeterminate = true;
+
+                                    indicator.Text = String.Format(AppResources.UploadProgressText, exportFileName);
+
+                                    try
+                                    {
+
+                                        MemoryStream stream = new MemoryStream();
+                                        zip.Save(stream);
+
+                                    
+                                        stream.Seek(0, SeekOrigin.Begin);
+                                        await client.UploadAsync(App.exportFolderID, exportFileName, stream, OverwriteOption.Overwrite);
+
+                                    }
+                                    catch (Exception ex) { }
+
+#if GBC
+                                    indicator.Text = AppResources.ApplicationTitle2;
+#else
+                                    indicator.Text = AppResources.ApplicationTitle;
+#endif
+                                    indicator.IsIndeterminate = false;
+                                }
+
+
+                            } //end using iso
+                        } //end using ZipFile
+                    } //end rotating mode
+                    
+                    App.LastAutoBackupTime = DateTime.Now;
+
+                }
+            }
+        }
+        private bool IsWifiConnected()
+        {
+            if (DeviceNetworkInformation.IsNetworkAvailable && DeviceNetworkInformation.IsWiFiEnabled)
+            {
+                return NetworkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211;
+            }
+
+            return false;
+        }
+
+
+
 
 #if BETA
         void ResponseCallback(IAsyncResult result)
@@ -223,7 +529,7 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 this.RefreshROMList();
             };
-            this.RefreshROMList();
+            
 
             await this.ParseIniFile();
         }
@@ -279,14 +585,19 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        void btnSignin_SessionChanged(object sender, Microsoft.Live.Controls.LiveConnectSessionChangedEventArgs e)
+        async void btnSignin_SessionChanged(object sender, Microsoft.Live.Controls.LiveConnectSessionChangedEventArgs e)
         {
             if (e.Status == LiveConnectSessionStatus.Connected)
             {
-                this.session = e.Session;
+                App.session = e.Session;
                 //this.statusLabel.Text = AppResources.StatusSignedIn;
                 this.gotoImportButton.IsEnabled = true;
                 this.gotoBackupButton.IsEnabled = true;
+
+                LiveConnectClient client = new LiveConnectClient(App.session);
+                if (App.exportFolderID == null || App.exportFolderID == "")
+                    App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
+
                 //this.gotoRestoreButton.IsEnabled = true;
             }
             else
@@ -295,7 +606,7 @@ namespace PhoneDirect3DXamlAppInterop
                 this.gotoBackupButton.IsEnabled = false;
                 //this.gotoRestoreButton.IsEnabled = false;
                 //this.statusLabel.Text = AppResources.StatusNotSignedIn;
-                session = null;
+                App.session = null;
 
                 //if (e.Error != null)
                 //{
@@ -310,9 +621,9 @@ namespace PhoneDirect3DXamlAppInterop
             int romCount = this.db.GetNumberOfROMs();
             if (!App.IsTrial || romCount < 2)
             {
-                if (session != null)
+                if (App.session != null)
                 {
-                    PhoneApplicationService.Current.State["parameter"] = this.session;
+                    PhoneApplicationService.Current.State["parameter"] = App.session;
                     this.NavigationService.Navigate(new Uri("/SkyDriveImportPage.xaml", UriKind.Relative));
                 }
                 else
@@ -842,6 +1153,9 @@ namespace PhoneDirect3DXamlAppInterop
             //entry.LastPlayed = DateTime.Now;
             //this.db.CommitChanges();
 
+            this.checkAutoUpload = true;
+
+
             PhoneApplicationService.Current.State["parameter"] = param;
             this.NavigationService.Navigate(new Uri("/EmulatorPage.xaml", UriKind.Relative));
         }
@@ -944,9 +1258,9 @@ namespace PhoneDirect3DXamlAppInterop
         private void gotoBackupButton_Click_1(object sender, RoutedEventArgs e)
         {
 
-            if (session != null)
+            if (App.session != null)
             {
-                PhoneApplicationService.Current.State["parameter"] = this.session;
+                PhoneApplicationService.Current.State["parameter"] = App.session;
                 BackupPage.backupMedium = "onedrive";
                 this.NavigationService.Navigate(new Uri("/BackupPage.xaml", UriKind.Relative));
             }
@@ -961,9 +1275,9 @@ namespace PhoneDirect3DXamlAppInterop
         {
             if (!App.IsTrial)
             {
-                if (session != null)
+                if (App.session != null)
                 {
-                    PhoneApplicationService.Current.State["parameter"] = this.session;
+                    PhoneApplicationService.Current.State["parameter"] = App.session;
                     this.NavigationService.Navigate(new Uri("/RestorePage.xaml", UriKind.Relative));
                 }
                 else
@@ -1209,13 +1523,16 @@ namespace PhoneDirect3DXamlAppInterop
             var launcher = new CloudSixConnector.FilePicker.CloudSixPicker("cloudsix2vba8");
 #endif
             launcher.Token = "FromCloudSix";
-            launcher.Caption = AppResources.CloudSixFormatHint;
+            launcher.Caption = ".gb, .gbc, .gba, .sgm, .sav, .zip, .rar, .7z";
             launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "gb" });
             launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "gbc" });
             launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "gba"});
             launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "sgm" });
             launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "sav" });
             launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "zip" });
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "zib" });
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "rar" });
+            launcher.FileExtensions.Add(new CloudSixFileExtension() { Extension = "7z" });
             launcher.Show();
 
         }

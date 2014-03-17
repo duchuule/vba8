@@ -18,7 +18,8 @@ using System.Windows.Media;
 using Microsoft.Phone.Tasks;
 using System.IO;
 using Ionic.Zip;
-
+using SharpCompress.Reader;
+using SharpCompress.Archive;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -97,7 +98,7 @@ namespace PhoneDirect3DXamlAppInterop
                     }
                 }
 
-                else if (item.Type == SkyDriveItemType.Zip)
+                else if (item.Type == SkyDriveItemType.Zip || item.Type == SkyDriveItemType.Rar || item.Type == SkyDriveItemType.SevenZip)
                 {
                     if (this.session != null)
                     {
@@ -106,11 +107,21 @@ namespace PhoneDirect3DXamlAppInterop
                         this.downloadsInProgress++;
 
                         await this.DownloadFile(item, client);
+
+                        try
+                        {
+                            List<SkyDriveListItem> listItems;
+
+                            listItems = this.GetFilesInArchive(item);
+
+                            this.skydriveStack.Add(listItems);
+                            this.skydriveList.ItemsSource = listItems;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, AppResources.ErrorCaption, MessageBoxButton.OK);
+                        }
                         
-                        List<SkyDriveListItem> listItems =  this.GetFilesInZip(item);
-                        
-                        this.skydriveStack.Add(listItems);
-                        this.skydriveList.ItemsSource = listItems;
                         this.downloadsInProgress--;
                             
                     }
@@ -224,22 +235,33 @@ namespace PhoneDirect3DXamlAppInterop
             item.Downloading = false;
         }
 
-        private List<SkyDriveListItem> GetFilesInZip(SkyDriveListItem item)
+ 
+
+
+        private List<SkyDriveListItem> GetFilesInArchive(SkyDriveListItem item)
         {
             List<SkyDriveListItem> listItems = new List<SkyDriveListItem>();
 
             if (item.Stream != null)
             {
-
                 //get list of file
-                using (ZipFile zip = ZipFile.Read(item.Stream))
+                IArchive archive = null;
+
+                if (item.Type == SkyDriveItemType.Rar)
+                    archive = SharpCompress.Archive.Rar.RarArchive.Open(item.Stream);
+                else if (item.Type == SkyDriveItemType.Zip)
+                    archive = SharpCompress.Archive.Zip.ZipArchive.Open(item.Stream);
+                else if (item.Type == SkyDriveItemType.SevenZip)
+                    archive = SharpCompress.Archive.SevenZip.SevenZipArchive.Open(item.Stream);
+
+                foreach (var entry in archive.Entries)
                 {
-                    foreach (ZipEntry entry in zip)
+                    if (!entry.IsDirectory)
                     {
-                        MemoryStream data = new MemoryStream();
-                        entry.Extract(data);
-                        data.Seek(0, SeekOrigin.Begin);
-                        String name = entry.FileName;
+                        Stream data = new MemoryStream();
+                        entry.WriteTo(data);
+                        data.Position = 0;
+                        String name = entry.FilePath;
 
                         SkyDriveItemType type = SkyDriveItemType.File;
                         int dotIndex = -1;
@@ -288,6 +310,7 @@ namespace PhoneDirect3DXamlAppInterop
             return listItems;
         }
 
+
         public static async Task ImportSave(ImportFileItem item, DependencyObject page)
         {
             var indicator = SystemTray.GetProgressIndicator(page);
@@ -307,7 +330,7 @@ namespace PhoneDirect3DXamlAppInterop
 
                 if (item.Stream != null)
                 {
-                    byte[] tmpBuf = new byte[item.Stream.Length];
+                    byte[] tmpBuf = new byte[32];
                     StorageFile destinationFile = null;
 
                     ROMDBEntry entry = null;
@@ -338,13 +361,15 @@ namespace PhoneDirect3DXamlAppInterop
 
                     }
 
-                   
-                        
+
+
 
                     using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
                     using (DataWriter writer = new DataWriter(destStream))
                     {
-                        item.Stream.Seek(0, SeekOrigin.Begin);
+                        if (item.Stream.CanSeek)
+                            item.Stream.Seek(0, SeekOrigin.Begin);
+
                         while (item.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
                         {
                             writer.WriteBytes(tmpBuf);
@@ -434,12 +459,13 @@ namespace PhoneDirect3DXamlAppInterop
 
                 if (item.Stream != null)
                 {
-                    byte[] tmpBuf = new byte[item.Stream.Length];
+                    byte[] tmpBuf = new byte[32];
                     StorageFile destinationFile = await romFolder.CreateFileAsync(item.Name, CreationCollisionOption.ReplaceExisting);
                     using (IRandomAccessStream destStream = await destinationFile.OpenAsync(FileAccessMode.ReadWrite))
                     using (DataWriter writer = new DataWriter(destStream))
                     {
-                        item.Stream.Seek(0, SeekOrigin.Begin);
+                        if (item.Stream.CanSeek)
+                            item.Stream.Seek(0, SeekOrigin.Begin);
                         while (item.Stream.Read(tmpBuf, 0, tmpBuf.Length) != 0)
                         {
                             writer.WriteBytes(tmpBuf);
@@ -502,7 +528,9 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     if (item.Stream != null)
                     {
-                        item.Stream.Close();
+                        if (item.Stream.CanSeek) //this is random access stream of zip file
+                            item.Stream.Close();
+
                         item.Stream = null;
                     }
                 }
@@ -520,7 +548,10 @@ namespace PhoneDirect3DXamlAppInterop
 
                 e.Cancel = true;
             }
-            catch (Exception) { }
+            catch (Exception ex) 
+            {
+                string test = ex.Message;
+            }
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -598,9 +629,17 @@ namespace PhoneDirect3DXamlAppInterop
                             {
                                 type = SkyDriveItemType.SRAM;
                             }
-                            else if (substrName.Equals(".zip") || substrName.Equals(".zib"))
+                            else if (substrName.Equals(".zip") || substrName.Equals(".zib") )
                             {
                                 type = SkyDriveItemType.Zip;
+                            }
+                            else if (substrName.Equals(".rar"))
+                            {
+                                type = SkyDriveItemType.Rar;
+                            }
+                            else if (substrName.Equals(".7z"))
+                            {
+                                type = SkyDriveItemType.SevenZip;
                             }
                         }
                     }
@@ -666,7 +705,9 @@ namespace PhoneDirect3DXamlAppInterop
         ROM,
         SRAM,
         Savestate,
-        Zip
+        Zip,
+        Rar,
+        SevenZip
     }
 
     public class ImportFileItem

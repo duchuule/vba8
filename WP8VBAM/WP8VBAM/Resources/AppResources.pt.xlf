@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="pt" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="WP8VBAM" product-version="2.10.0.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="pt" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="WP8VBAM" product-version="2.11.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.2.1212.0" tool-company="Microsoft" />
     </header>
@@ -202,7 +202,8 @@ Credits:
 - Jesper Svensson for Swedish translation.
 - Alexander Kolosov for Russian translation.
 - Usama Jawad for Urdu translation.
-- Mathias Haugsbø for Norwegian (Nynorsk) translation.</source>
+- Mathias Haugsbø for Norwegian (Nynorsk) translation.
+- Leutrim Shabani for German translation.</source>
           <target state="needs-review-translation">Sinta-se livre para repostar erros ou mal funcionamento em jogos.
 
 O autor não se responsabiliza por uso ilegal deste programa. Além disso, não há nenhuma garantia para este programa e o autor não é responsável por quaisquer danos.
@@ -217,7 +218,10 @@ Créditos:
 - Łukasz Deptuła for Polish translation.
 - Junfan Yao for Simplifed Chinese translation.
 - wphone08 for French translation.
-- Jesper Svensson for Swedish translation.</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+- Jesper Svensson for Swedish translation.
+- Alexander Kolosov for Russian translation.
+- Usama Jawad for Urdu translation.
+- Mathias Haugsbø for Norwegian (Nynorsk) translation.</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutSnes9xLicense" xml:space="preserve">
           <source>GNU Public License:</source>
@@ -584,8 +588,8 @@ Nota: Em alguns casos, as ROMs baixadas no OneDrive podem mostrar apenas uma tel
           <target state="signed-off">Nota: Se suas ROMs não funcionarem, veja a seção "problemas" da página de ajuda.</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SkyDriveFileFormatHint" xml:space="preserve">
-          <source>Supported files: .gb, .gbc, .gba, .sgm, .sav, .zip</source>
-          <target state="signed-off">Arquivos suportados: .gb, .gbc, .gba, .sgm, .sav, .zip</target>
+          <source>Supported files:</source>
+          <target state="translated">Arquivos suportados:</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DPadAnalogueDynamic" xml:space="preserve">
           <source>dynamic analogue stick</source>
@@ -1143,10 +1147,6 @@ Device ID: {0}</target>
           <source>Please make sure the name of the save file matches the name of the ROM</source>
           <target state="signed-off">Por favor, tenha certeza de que o nome do progresso salvo seja igual ao nome da ROM</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/SDCardHintText" xml:space="preserve">
-          <source>Supported files: .gb, .gbc, .gba, .sgm, .sav. .zib</source>
-          <target state="signed-off">Arquivos suportados: .gb, .gbc, .gba, .sgm, .sav, .zib</target>
-        </trans-unit>
         <trans-unit translate="yes" id="Resx/SDCardImportTitle" xml:space="preserve">
           <source>SD Card</source>
           <target state="signed-off">Cartão SD</target>
@@ -1391,10 +1391,6 @@ Device ID: {0}</target>
           <source>In the data tab of the main page, click on Import from SD card and follow the instruction</source>
           <target state="signed-off">Na aba de dados da página inicial, clique em "Importar do cartão SD" e siga as instruções.</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/CloudSixFormatHint" xml:space="preserve">
-          <source>.gb, .gbc, .gba, .sgm, .sav, .zip</source>
-          <target state="new">.gb, .gbc, .gba, .sgm, .sav, .zip</target>
-        </trans-unit>
         <trans-unit translate="yes" id="Resx/CloudSixInstructionText" xml:space="preserve">
           <source>Install one of Rudy Huyn's CloudSix apps to use this function.</source>
           <target state="new">Install one of Rudy Huyn's CloudSix apps to use this function.</target>
@@ -1442,6 +1438,68 @@ Device ID: {0}</target>
         <trans-unit translate="yes" id="Resx/WarningTitle" xml:space="preserve">
           <source>Warning!</source>
           <target state="new">Warning!</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupText" xml:space="preserve">
+          <source>Automatically back up save data</source>
+          <target state="new">Automatically back up save data</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SetupAutoBackupText" xml:space="preserve">
+          <source>Set up auto backup...</source>
+          <target state="new">Set up auto backup...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupTypeText" xml:space="preserve">
+          <source>Auto backup mode</source>
+          <target state="new">Auto backup mode</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/NeverShowAgainText" xml:space="preserve">
+          <source>Don't show this again</source>
+          <target state="new">Don't show this again</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupModeHelp" xml:space="preserve">
+          <source>- Simple mode: save slots are backed up "as is" with no compression; ideal for syncing data with tablet/PC but does not protect from accidental overwriting of data.
+- Rotating mode: save slots are compressed, multiple save files are kept to prevent accidental overwritting of data; ideal for safe guard of data.</source>
+          <target state="new">- Simple mode: save slots are backed up "as is" with no compression; ideal for syncing data with tablet/PC but does not protect from accidental overwriting of data.
+- Rotating mode: save slots are compressed, multiple save files are kept to prevent accidental overwritting of data; ideal for safe guard of data.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupTitle" xml:space="preserve">
+          <source>auto backup</source>
+          <target state="new">auto backup</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupLastManualSlotText" xml:space="preserve">
+          <source>Back up most recent manual save slot</source>
+          <target state="new">Back up most recent manual save slot</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupIngameSaveText" xml:space="preserve">
+          <source>Back up ingame save</source>
+          <target state="new">Back up ingame save</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupAutoSlotText" xml:space="preserve">
+          <source>Back up auto save slot</source>
+          <target state="new">Back up auto save slot</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupFailOnedriveText" xml:space="preserve">
+          <source>Auto backup fail, please sign in to OneDrive.</source>
+          <target state="new">Auto backup fail, please sign in to OneDrive.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/NumberRotatingFilesText" xml:space="preserve">
+          <source>Number of rotating backups</source>
+          <target state="new">Number of rotating backups</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SimpleModeText" xml:space="preserve">
+          <source>Simple mode</source>
+          <target state="new">Simple mode</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AutoBackupNote" xml:space="preserve">
+          <source>Note: Auto backup is triggered when users return to the main page after playing a game.</source>
+          <target state="new">Note: Auto backup is triggered when users return to the main page after playing a game.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BackupOnlyWifiText" xml:space="preserve">
+          <source>Only backup when Wifi is available (checking for this may be slow)</source>
+          <target state="new">Only backup when Wifi is available (checking for this may be slow)</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/RotatingModeText" xml:space="preserve">
+          <source>Rotating mode</source>
+          <target state="new">Rotating mode</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ExportAsZipText" xml:space="preserve">
           <source>Export as zip</source>

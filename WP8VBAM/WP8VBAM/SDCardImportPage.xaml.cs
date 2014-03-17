@@ -31,6 +31,7 @@ using Windows.Storage.Streams;
 
 using Ionic.Zip;
 using SharpCompress.Reader;
+using SharpCompress.Archive;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -158,6 +159,10 @@ namespace PhoneDirect3DXamlAppInterop
                         item.Type = SkyDriveItemType.Savestate;
                     else if (item.ThisFile.Path.ToLower().EndsWith(".zib") || item.ThisFile.Path.ToLower().EndsWith(".zip"))
                         item.Type = SkyDriveItemType.Zip;
+                    else if (item.ThisFile.Path.ToLower().EndsWith(".rar"))
+                        item.Type = SkyDriveItemType.Rar;
+                    else if (item.ThisFile.Path.ToLower().EndsWith(".7z"))
+                        item.Type = SkyDriveItemType.SevenZip;
                     else
                         item.Type = SkyDriveItemType.File;
 
@@ -195,7 +200,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             else  //file
             {
-                if (item.Type == SkyDriveItemType.Zip)
+                if (item.Type == SkyDriveItemType.Zip || item.Type == SkyDriveItemType.Rar || item.Type == SkyDriveItemType.SevenZip)
                 {
                     this.skydriveList.ItemsSource = null;
                     this.currentFolderBox.Text = item.Name;
@@ -203,10 +208,20 @@ namespace PhoneDirect3DXamlAppInterop
 
                     await this.DownloadFile(item);
 
-                    List<SDCardListItem> listItems = this.GetFilesInZip(item);
+                    try
+                    {
+                        List<SDCardListItem> listItems;
 
-                    this.skydriveStack.Add(listItems);
-                    this.skydriveList.ItemsSource = listItems;
+                        listItems = this.GetFilesInArchive(item);
+
+                        this.skydriveStack.Add(listItems);
+                        this.skydriveList.ItemsSource = listItems;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, AppResources.ErrorCaption, MessageBoxButton.OK);
+                    }
+                    
                     this.downloadsInProgress--;
                 }
 
@@ -314,28 +329,40 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
 
-        private List<SDCardListItem> GetFilesInZip(SDCardListItem item)
+
+        private List<SDCardListItem> GetFilesInArchive(SDCardListItem item)
         {
             List<SDCardListItem> listItems = new List<SDCardListItem>();
 
 
             if (item.Stream != null)
             {
-                Stream s = new NativeFileStreamFixed(item.Stream);  //need to remove when MS fix the bug in NativeFileStream
-
-                //var reader = ReaderFactory.Open(s);
-                //SharpCompress.Common.EntryStream data1 = reader.OpenEntryStream();
-                
+                //fix SD card stream bug
+                Stream s = new MemoryStream();
+                item.Stream.CopyTo(s);
+                s.Position = 0;
+                item.Stream.Close();// close because we copy it to s already
+                item.Stream = null;
 
                 //get list of file
-                using (ZipFile zip = ZipFile.Read(s))
+                IArchive archive = null;
+
+                if (item.Type == SkyDriveItemType.Rar)
+                    archive = SharpCompress.Archive.Rar.RarArchive.Open(s);
+                else if (item.Type == SkyDriveItemType.Zip)
+                    archive = SharpCompress.Archive.Zip.ZipArchive.Open(s);
+                else if (item.Type == SkyDriveItemType.SevenZip)
+                    archive = SharpCompress.Archive.SevenZip.SevenZipArchive.Open(s);
+
+
+                foreach (var entry in archive.Entries)
                 {
-                    foreach (ZipEntry entry in zip)
+                    if (!entry.IsDirectory)
                     {
-                        MemoryStream data = new MemoryStream();
-                        entry.Extract(data);
-                        data.Seek(0, SeekOrigin.Begin);
-                        String name = entry.FileName;
+                        Stream data = new MemoryStream();
+                        entry.WriteTo(data);
+                        data.Position = 0;
+                        String name = entry.FilePath;
 
                         SkyDriveItemType type = SkyDriveItemType.File;
                         int dotIndex = -1;
@@ -377,14 +404,12 @@ namespace PhoneDirect3DXamlAppInterop
                 }
 
                 //close the zip stream since we have the stream of each item inside it already
-                item.Stream.Close();
-                item.Stream = null;
+                s.Close();
+
             }
 
             return listItems;
         }
-
-
 
 //        private async Task ImportSave(SDCardListItem item)
 //        {

@@ -32,7 +32,7 @@ using Windows.Phone.Storage.SharedAccess;
 
 using CloudSixConnector.FilePicker;
 using Ionic.Zip;
-
+using SharpCompress.Archive;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -93,10 +93,31 @@ namespace PhoneDirect3DXamlAppInterop
                 //set the title
                 CloudSixFileSelected fileinfo = CloudSixPicker.GetAnswer(fileID);
                 currentFolderBox.Text = fileinfo.Filename;
+                string ext = Path.GetExtension(fileinfo.Filename).ToLower();
 
-                //open zip file
-                skydriveStack = await GetFilesInZip(tempZipFile);
-                this.skydriveList.ItemsSource = skydriveStack;
+                //open zip file or rar file
+                try
+                {
+                    SkyDriveItemType type = SkyDriveItemType.File;
+                    if (ext == ".zip" || ext == ".zib")
+                        type = SkyDriveItemType.Zip;
+                    else if (ext == ".rar")
+                        type = SkyDriveItemType.Rar;
+                    else if (ext == ".7z")
+                        type = SkyDriveItemType.SevenZip;
+
+                    skydriveStack = await GetFilesInArchive(type, tempZipFile);
+
+                    this.skydriveList.ItemsSource = skydriveStack;
+
+                    var indicator = SystemTray.GetProgressIndicator(this);
+                    indicator.IsIndeterminate = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, AppResources.ErrorCaption, MessageBoxButton.OK);
+                }
+                
                 
 
             }
@@ -178,6 +199,80 @@ namespace PhoneDirect3DXamlAppInterop
             return listItems;
         }
 
+
+
+        private async Task<List<ImportFileItem>> GetFilesInArchive(SkyDriveItemType parentType, IStorageFile file)
+        {
+            List<ImportFileItem> listItems = new List<ImportFileItem>();
+
+            if (file != null)
+            {
+                IRandomAccessStream accessStream = await file.OpenReadAsync();
+                Stream s = accessStream.AsStreamForRead((int)accessStream.Size);
+
+                //get list of file
+                IArchive archive = null;
+
+                if (parentType == SkyDriveItemType.Rar)
+                    archive = SharpCompress.Archive.Rar.RarArchive.Open(s);
+                else if (parentType == SkyDriveItemType.Zip)
+                    archive = SharpCompress.Archive.Zip.ZipArchive.Open(s);
+                else if (parentType == SkyDriveItemType.SevenZip)
+                    archive = SharpCompress.Archive.SevenZip.SevenZipArchive.Open(s);
+
+                foreach (var entry in archive.Entries)
+                {
+                    if (!entry.IsDirectory)
+                    {
+                        Stream data = new MemoryStream();
+                        entry.WriteTo(data);
+                        data.Position = 0;
+                        String name = entry.FilePath;
+
+                        SkyDriveItemType type = SkyDriveItemType.File;
+                        int dotIndex = -1;
+                        if ((dotIndex = name.LastIndexOf('.')) != -1)
+                        {
+                            String substrName = name.Substring(dotIndex).ToLower();
+                            if (substrName.Equals(".gb") || substrName.Equals(".gbc") || substrName.Equals(".gba"))
+                            {
+                                type = SkyDriveItemType.ROM;
+                            }
+                            else if (substrName.Equals(".sgm"))
+                            {
+                                type = SkyDriveItemType.Savestate;
+                            }
+                            else if (substrName.Equals(".sav"))
+                            {
+                                type = SkyDriveItemType.SRAM;
+                            }
+                        }
+
+                        if (type == SkyDriveItemType.File)
+                        {
+                            data.Close();
+                            continue;
+                        }
+
+                        ImportFileItem listItem = new ImportFileItem()
+                        {
+                            Name = name,
+                            Type = type,
+                            Stream = data
+                        };
+
+                        listItems.Add(listItem);
+
+                    }
+                }
+
+                //close the zip stream since we have the stream of each item inside it already
+                s.Close();
+                s = null;
+            }
+
+            return listItems;
+        }
 
 
         protected override async void OnNavigatedFrom(NavigationEventArgs e)

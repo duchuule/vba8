@@ -214,7 +214,7 @@ namespace PhoneDirect3DXamlAppInterop
                             try
                             {
                                 LiveConnectClient client = new LiveConnectClient(this.session);
-                                String folderID = await this.CreateExportFolder(client);
+                                String folderID = await CreateExportFolder(client);
 
                                 indicator.Text = String.Format(AppResources.UploadProgressText, currentEntry.DisplayName + ".zip");
                                 stream.Seek(0, SeekOrigin.Begin);
@@ -276,7 +276,7 @@ namespace PhoneDirect3DXamlAppInterop
                         try
                         {
                             LiveConnectClient client = new LiveConnectClient(this.session);
-                            String folderID = await this.CreateExportFolder(client);
+                            String folderID = await CreateExportFolder(client);
 
                             foreach (ExportFileItem file in this.fileList.CheckedItems)
                             {
@@ -321,7 +321,7 @@ namespace PhoneDirect3DXamlAppInterop
         
 
 
-        private async Task<String> CreateExportFolder(LiveConnectClient client)
+        public static async Task<String> CreateExportFolder(LiveConnectClient client)
         {
             LiveOperationResult opResult = await client.GetAsync("me/skydrive/files");
             var result = opResult.Result;

@@ -15,7 +15,7 @@
     shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
 
     <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="False" 
+        <shell:ProgressIndicator IsIndeterminate="True" 
                                  IsVisible="True" 
                                  Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
                                   />

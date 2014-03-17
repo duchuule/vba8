@@ -26,6 +26,15 @@ namespace PhoneDirect3DXamlAppInterop
         const String PromotionCodeKey = "PromotionCodeKey";
         const String NAppLaunchKey = "NAppLaunchKey";
         const String CanAskReviewKey = "CanAskReviewKey";
+        const String AutoBackupKey = "AutoBackupKey";
+        const string AutoBackupModeKey = "AutoBackupModeKey";
+        const string NRotatingBackupKey = "NRotatingBackupKey";
+        const string BackupIngameSaveKey = "BackupIngameSaveKey";
+        const string BackupManualSaveKey = "BackupManualSaveKey";
+        const string BackupAutoSaveKey = "BackupAutoSaveKey";
+        const string WhenToBackupKey = "WhenToBackupKey";
+        const string BackupOnlyWifiKey = "BackupOnlyWifiKey";
+        const string AutoBackupIndexKey = "AutoBackupIndexKey";
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -273,6 +282,118 @@ namespace PhoneDirect3DXamlAppInterop
                 Save();
             }
         }
+
+
+        public bool AutoBackup
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(AutoBackupKey, false);
+            }
+            set
+            {
+                AddOrUpdateValue(AutoBackupKey, value);
+                Save();
+            }
+        }
+
+
+        //0: simple, 1: rotating
+        public int AutoBackupMode
+        {
+            get
+            {
+                return GetValueOrDefault<int>(AutoBackupModeKey, 1);
+            }
+            set
+            {
+                AddOrUpdateValue(AutoBackupModeKey, value);
+                Save();
+            }
+        }
+
+        public int NRotatingBackup
+        {
+            get
+            {
+                return GetValueOrDefault<int>(NRotatingBackupKey, 5);
+            }
+            set
+            {
+                AddOrUpdateValue(NRotatingBackupKey, value);
+                Save();
+            }
+        }
+
+        public bool BackupIngameSave
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(BackupIngameSaveKey, true);
+            }
+            set
+            {
+                AddOrUpdateValue(BackupIngameSaveKey, value);
+                Save();
+            }
+        }
+
+
+        public bool BackupManualSave
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(BackupManualSaveKey, true);
+            }
+            set
+            {
+                AddOrUpdateValue(BackupManualSaveKey, value);
+                Save();
+            }
+        }
+
+
+        public bool BackupAutoSave
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(BackupAutoSaveKey, true);
+            }
+            set
+            {
+                AddOrUpdateValue(BackupAutoSaveKey, value);
+                Save();
+            }
+        }
+
+        public int WhenToBackup
+        {
+            get
+            {
+                return GetValueOrDefault<int>(WhenToBackupKey, 0);
+            }
+            set
+            {
+                AddOrUpdateValue(WhenToBackupKey, value);
+                Save();
+            }
+        }
+
+
+        public bool BackupOnlyWifi
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(BackupOnlyWifiKey, false);
+            }
+            set
+            {
+                AddOrUpdateValue(BackupOnlyWifiKey, value);
+                Save();
+            }
+        }
+
+
 
 
         #region INotifyPropertyChanged Members

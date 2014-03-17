@@ -19,6 +19,7 @@ using PhoneDirect3DXamlAppInterop.Database;
 using Microsoft.Devices;
 using Microsoft.Phone.Tasks;
 using System.Windows.Controls.Primitives;
+using Coding4Fun.Toolkit.Controls;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -539,6 +540,9 @@ namespace PhoneDirect3DXamlAppInterop
                 CameraButtons.ShutterKeyReleased -= CameraButtons_ShutterKeyReleased;
             }
             catch (Exception) { }
+
+
+
             //if (initialized && this.m_d3dBackground.IsROMLoaded())
             if ( this.m_d3dBackground.IsROMLoaded())
             {
