@@ -707,7 +707,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 if (!isoSettings.Contains(SettingsPage.ControllerScaleKey))
                 {
-                    isoSettings[SettingsPage.ControllerScaleKey] = 100;
+                    isoSettings[SettingsPage.ControllerScaleKey] = 120;
                 }
                 if (!isoSettings.Contains(SettingsPage.ButtonScaleKey))
                 {

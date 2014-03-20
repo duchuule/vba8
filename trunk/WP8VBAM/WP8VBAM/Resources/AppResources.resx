@@ -268,7 +268,9 @@ Credits:
 - Alexander Kolosov for Russian translation.
 - Usama Jawad for Urdu translation.
 - Mathias Haugsbø for Norwegian (Nynorsk) translation.
-- Leutrim Shabani for German translation.</value>
+- Leutrim Shabani for German translation.
+- Giordano Piacentini for Italian translation.
+- Sami Piispanen for Finnish translation.</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -1228,5 +1230,8 @@ Device ID: {0}</value>
   </data>
   <data name="BackupOnlyWifiText" xml:space="preserve">
     <value>Only backup when Wifi is available (checking for this may be slow)</value>
+  </data>
+  <data name="LinkingNote" xml:space="preserve">
+    <value>Note: Turn off frameskip and turbo mode to prevent communication error.</value>
   </data>
 </root>

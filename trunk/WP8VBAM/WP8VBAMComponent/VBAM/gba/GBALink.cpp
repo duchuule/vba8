@@ -357,9 +357,13 @@ static u32 rfu_masterdata[32];
 // time to end of single GBA's transfer, in 16.78 MHz clock ticks
 // first index is GBA #
 static const int trtimedata[4][4] = {
-      // 9600 38400 57600 115200
-	{34080, 8520, 5680, 2840}, //time to finish transfering data from master (#0)
-	{65536, 16384, 10923, 5461}, //time to finish transfer data from master and slave #1
+      //baudrate: 9600 38400 57600 115200
+	//{34080, 8520, 5680, 2840}, //time to finish transfering data from master (#0)
+	//{65536, 16384, 10923, 5461}, //time to finish transfer data from master and slave #1
+	//{31440, 7860, 5240, 2620}, //time to finish transfering data from master (#0) (new calculation)
+	//{62880, 15720, 10480, 5240}, //time to finish transfer data from master and slave #1 (new calculation)
+	{17040, 4260, 2840, 1420}, //time to finish transfering data from master (#0)
+	{32768, 8192, 5462, 2730}, //time to finish transfer data from master and slave #1
 	{99609, 24903, 16602, 8301},
 	{133692, 33423, 22282, 11141}
 };
@@ -370,8 +374,10 @@ static const int trtimedata[4][4] = {
 // of start bit from next slave
 // first index is (# of slaves) - 1
 static const int trtimeend[3][4] = {
-      // 9600 38400 57600 115200
-	{72527, 18132, 12088, 6044}, //if 2 slaves, the all transfer should be done after this
+      //baudrate: 9600 38400 57600 115200
+	//{72527, 18132, 12088, 6044}, //if 2 slaves, the all transfer should be done after this
+	//{34584, 8646, 11528, 5764}, //if 2 slaves, the all transfer should be done after this (new calculation)
+	{36263, 9066, 6044, 3022},
 	{106608, 26652, 17768, 8884},
 	{133692, 33423, 22282, 11141} 
 };

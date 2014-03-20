@@ -237,25 +237,25 @@ namespace PhoneDirect3DXamlAppInterop
             else
                 SetupAutoBackupBtn.Visibility = System.Windows.Visibility.Collapsed;
 
-            
-               
 
 
 
-            this.turboFrameSkipPicker.SelectedIndex = emuSettings.TurboFrameSkip;
-            //this.powerFrameSkipPicker.SelectedIndex = emuSettings.PowerFrameSkip;
-            this.frameSkipPicker.SelectedIndex = Math.Min(emuSettings.FrameSkip + 1, this.frameSkipPicker.Items.Count - 1);
-            this.aspectRatioPicker.SelectedIndex = (int)emuSettings.AspectRatio;
-            this.orientationPicker.SelectedIndex = emuSettings.Orientation;
-
-            this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad
-            this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
-            this.themePicker.SelectedIndex = App.metroSettings.ThemeSelection;
-
-            this.backgroundOpacitySlider.Value = App.metroSettings.BackgroundOpacity * 100;
 
             this.Loaded += (o, e) =>
             {
+                this.turboFrameSkipPicker.SelectedIndex = emuSettings.TurboFrameSkip;
+                //this.powerFrameSkipPicker.SelectedIndex = emuSettings.PowerFrameSkip;
+                this.frameSkipPicker.SelectedIndex = Math.Min(emuSettings.FrameSkip + 1, this.frameSkipPicker.Items.Count - 1);
+                this.aspectRatioPicker.SelectedIndex = (int)emuSettings.AspectRatio;
+                this.orientationPicker.SelectedIndex = emuSettings.Orientation;
+
+                this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad, this need to be set after loaded because we set the items in xaml
+                this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
+                this.themePicker.SelectedIndex = App.metroSettings.ThemeSelection;
+
+                this.backgroundOpacitySlider.Value = App.metroSettings.BackgroundOpacity * 100;
+
+            
                 initdone = true;
             };
 

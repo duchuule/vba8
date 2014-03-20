@@ -1964,6 +1964,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note: Turn off frameskip and turbo mode to prevent communication error..
+        /// </summary>
+        public static string LinkingNote {
+            get {
+                return ResourceManager.GetString("LinkingNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Link timeout (ms).
         /// </summary>
         public static string LinkTimeoutText {

@@ -402,7 +402,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Content Include="Assets\crop_pointer.png" />
     <Content Include="Assets\GameboyAdvance.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -418,6 +417,7 @@
     <Content Include="Assets\VBA8publicKey.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\crop_pointer.png" />
     <Content Include="CustomTheme\LightTheme.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
