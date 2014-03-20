@@ -34,7 +34,7 @@ namespace PhoneDirect3DXamlAppInterop
         private void sourceButton_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserTask wbt = new WebBrowserTask();
-            wbt.URL = AppResources.SourceLink;
+            wbt.URL = "https://skydrive.live.com/?cid=631eb30445b47731&id=631EB30445B47731%21107&ithint=folder,.zip&authkey=!AMcy8hX76lpiQaw";
             wbt.Show();
         }
 
