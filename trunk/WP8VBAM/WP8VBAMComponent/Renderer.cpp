@@ -105,7 +105,76 @@ void Renderer::CreateDeviceResources()
 			this->resumeTextSRV.GetAddressOf()
 			);
 
-	if (this->settings->UseColorButtons)
+	LoadTextureFromFile(
+		this->m_d3dDevice.Get(), 
+		STICK_CENTER_TEXTURE_FILE_NAME,
+		this->stickCenterResource.GetAddressOf(), 
+		this->stickCenterSRV.GetAddressOf()
+		);
+
+	if (this->settings->VirtualControllerStyle == 0)
+	{
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			STICK_GBASP_TEXTURE_FILE_NAME,
+			this->stickResource.GetAddressOf(), 
+			this->stickSRV.GetAddressOf()
+			);
+
+
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			CROSS_GBASP_TEXTURE_FILE_NAME,
+			this->crossResource.GetAddressOf(), 
+			this->crossSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			A_GBASP_TEXTURE_FILE_NAME,
+			this->aResource.GetAddressOf(), 
+			this->aSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			B_GBASP_TEXTURE_FILE_NAME,
+			this->bResource.GetAddressOf(), 
+			this->bSRV.GetAddressOf()
+			);
+
+
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			START_GBASP_TEXTURE_FILE_NAME,
+			this->startResource.GetAddressOf(), 
+			this->startSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			SELECT_GBASP_TEXTURE_FILE_NAME,
+			this->selectResource.GetAddressOf(), 
+			this->selectSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			L_GBASP_TEXTURE_FILE_NAME,
+			this->lButtonResource.GetAddressOf(), 
+			this->lButtonSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(), 
+			R_GBASP_TEXTURE_FILE_NAME,
+			this->rButtonResource.GetAddressOf(), 
+			this->rButtonSRV.GetAddressOf()
+			);
+	}
+	else if (this->settings->VirtualControllerStyle == 1)
 	{
 		LoadTextureFromFile(
 			this->m_d3dDevice.Get(), 
@@ -114,12 +183,6 @@ void Renderer::CreateDeviceResources()
 			this->stickSRV.GetAddressOf()
 			);
 
-		LoadTextureFromFile(
-			this->m_d3dDevice.Get(), 
-			STICK_CENTER_TEXTURE_FILE_NAME,
-			this->stickCenterResource.GetAddressOf(), 
-			this->stickCenterSRV.GetAddressOf()
-			);
 
 		LoadTextureFromFile(
 			this->m_d3dDevice.Get(), 
@@ -179,13 +242,6 @@ void Renderer::CreateDeviceResources()
 			STICK_TEXTURE_FILE_NAME,
 			this->stickResource.GetAddressOf(), 
 			this->stickSRV.GetAddressOf()
-			);
-
-		LoadTextureFromFile(
-			this->m_d3dDevice.Get(), 
-			STICK_CENTER_TEXTURE_FILE_NAME,
-			this->stickCenterResource.GetAddressOf(), 
-			this->stickCenterSRV.GetAddressOf()
 			);
 
 		LoadTextureFromFile(

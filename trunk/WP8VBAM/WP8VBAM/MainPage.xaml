@@ -83,6 +83,7 @@
                                     Stretch="UniformToFill"  
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
+                                       x:Name="lastRomImage"
                                    d:DataContext="{Binding DesignROMDBEntry[0]}"
 
                                        
@@ -139,11 +140,12 @@
                         </Grid>
 
                         <ListBox Name="recentList" 
-                                 SelectionChanged="recentList_SelectionChanged_1"
+                                 Tap="recentList_Tap" 
                                  toolkit:TiltEffect.IsTiltEnabled="True"
                                  Margin="12,0,0,0"
-                                  ItemsSource="{Binding}"
-                                 DataContext="{Binding DesignROMDBEntry}"
+                                 ItemsSource="{Binding}"
+                                 DataContext="{Binding AllROMDBEntries}"
+                                 d:DataContext="{Binding DesignROMDBEntry}"
                                  ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                                  >
                             <ListBox.ItemContainerStyle>
@@ -315,11 +317,12 @@
 
 
                         <ListBox x:Name="romList" 
-                                 SelectionChanged="romList_SelectionChanged"
+                                Tap="romList_Tap" 
                                  toolkit:TiltEffect.IsTiltEnabled="True"
                                  Margin="12, 0, 0, 0"  
                                  ItemsSource="{Binding}"
-                                 DataContext="{Binding DesignROMDBEntry}"
+                                 DataContext="{Binding AllROMDBEntries}"
+                                 d:DataContext="{Binding DesignROMDBEntry}"
                                  ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                                  >
                             <ListBox.ItemContainerStyle>

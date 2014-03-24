@@ -66,7 +66,6 @@ namespace PhoneDirect3DXamlAppInterop
 
         public static ROMDBEntry InsertNewDBEntry(string fileName)
         {
-            ROMDatabase db = ROMDatabase.Current;
 
             int index = fileName.LastIndexOf('.');
             int diff = fileName.Length - index;
@@ -79,7 +78,7 @@ namespace PhoneDirect3DXamlAppInterop
                 LastPlayed = DEFAULT_DATETIME,
                 SnapshotURI = DEFAULT_SNAPSHOT
             };
-            db.Add(entry);
+            ROMDatabase.Current.Add(entry);
             return entry;
         }
 
@@ -238,9 +237,9 @@ namespace PhoneDirect3DXamlAppInterop
                 for (int i = 0; i < 9; i++)
                 {
 #if !GBC
-                    uris.Add(new Uri("Assets/Tiles/tileIconLarge.png", UriKind.Relative));
+                    uris.Add(new Uri("Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative));
 #else
-                    uris.Add(new Uri("Assets/Tiles/tileIconLargeGBC.png", UriKind.Relative));
+                    uris.Add(new Uri("Assets/Tiles/FlipCycleTileLargeGBC.png", UriKind.Relative));
 #endif
                 }
             }
@@ -333,12 +332,12 @@ namespace PhoneDirect3DXamlAppInterop
             {
 #if !GBC
                 data.SmallBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative);
-                data.BackgroundImage = new Uri("Assets/Tiles/tileIcon.png", UriKind.Relative);
-                data.WideBackgroundImage = new Uri("Assets/Tiles/tileIconLarge.png", UriKind.Relative);
+                data.BackgroundImage = new Uri("Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative);
+                data.WideBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative);
 #else
                 data.SmallBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileSmallGBC.png", UriKind.Relative);
-                data.BackgroundImage = new Uri("Assets/Tiles/tileIconGBC.png", UriKind.Relative);
-                data.WideBackgroundImage = new Uri("Assets/Tiles/tileIconLargeGBC.png", UriKind.Relative);
+                data.BackgroundImage = new Uri("Assets/Tiles/FlipCycleTileMediumGBC.png", UriKind.Relative);
+                data.WideBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileLargeGBC.png", UriKind.Relative);
 #endif
             }
             else
@@ -352,14 +351,18 @@ namespace PhoneDirect3DXamlAppInterop
 
         public static async Task DeleteROMAsync(ROMDBEntry rom)
         {
-            ROMDatabase db = ROMDatabase.Current;
+
             String fileName = rom.FileName;
             StorageFolder folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ROM_DIRECTORY);
             StorageFile file = await folder.GetFileAsync(fileName);
             DeleteROMTile(file.Name);
             await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
-            db.RemoveROM(file.Name);
-            db.CommitChanges();
+
+            
+
+            ROMDatabase.Current.RemoveROM(file.Name);
+            ROMDatabase.Current.CommitChanges();
+            
         }
 
         public static async Task<LoadROMParameter> GetROMFileToPlayAsync(string fileName)

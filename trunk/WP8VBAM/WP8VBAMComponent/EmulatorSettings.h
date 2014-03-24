@@ -395,18 +395,7 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
-		property bool UseColorButtons
-		{
-			bool get(void) { return this->useColorButtons; }
-			void set(bool value) 
-			{ 
-				this->useColorButtons = value; 
-				if(this->SettingsChanged)
-				{
-					this->SettingsChanged();
-				}
-			}
-		}
+
 
 
 		property int BgcolorR
@@ -455,6 +444,20 @@ namespace PhoneDirect3DXamlAppComponent
 			void set(bool value) 
 			{ 
 				this->autoSaveLoad = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+
+		property int VirtualControllerStyle
+		{
+			int get(void) { return this->virtualControllerStyle; }
+			void set(int value) 
+			{ 
+				this->virtualControllerStyle = value; 
 				if(this->SettingsChanged)
 				{
 					this->SettingsChanged();
@@ -536,12 +539,11 @@ namespace PhoneDirect3DXamlAppComponent
 		bool selectLastState;
 		bool restoreOldCheatValues;
 		bool manualSnapshots;
-		bool useColorButtons;
 		int bgcolorR;
 		int bgcolorG;
 		int bgcolorB;
 		bool autoSaveLoad;
-
+		int virtualControllerStyle;
 
 
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;

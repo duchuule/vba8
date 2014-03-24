@@ -261,7 +261,7 @@ void EmulatorRenderer::Update(float timeTotal, float timeDelta)
 
 	float opacity = 1.0f;
 	
-	if(this->orientation != ORIENTATION_PORTRAIT || !this->settings->UseColorButtons) //only opacity in landscape or when using simple button
+	if(this->orientation != ORIENTATION_PORTRAIT || this->settings->VirtualControllerStyle == 2) //only opacity in landscape or when using simple button
 		opacity = this->settings->ControllerOpacity / 100.0f;
 
 	Color color(1.0f, 1.0f, 1.0f, opacity);
@@ -307,13 +307,14 @@ void EmulatorRenderer::Render()
 		);
 
 	float bgcolor[] = { 0.0f, 0.0f, 0.0f, 1.000f }; //black
-	if (this->settings->UseColorButtons && this->orientation == ORIENTATION_PORTRAIT)
+	if (this->settings->VirtualControllerStyle != 2 && this->orientation == ORIENTATION_PORTRAIT)
 	{
 		bgcolor[0] = (float)this->settings->BgcolorR / 255;
 		bgcolor[1] = (float)this->settings->BgcolorG / 255;
 		bgcolor[2] = (float)this->settings->BgcolorB / 255;
 	}
-	
+
+
 	m_d3dContext->ClearRenderTargetView(
 		m_renderTargetView.Get(),
 		bgcolor
@@ -490,7 +491,7 @@ void EmulatorRenderer::Render()
 	}
 
 	//draw divider 
-	if(this->orientation == ORIENTATION_PORTRAIT && this->settings->UseColorButtons)
+	if(this->orientation == ORIENTATION_PORTRAIT && this->settings->VirtualControllerStyle != 2)
 	{
 		ComPtr<ID3D11Texture2D> tex;
 		this->dividerResource.As(&tex);

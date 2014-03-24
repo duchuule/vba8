@@ -13,7 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="80" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot" FlowDirection="LeftToRight" >
 
 
         <adduplex:AdControl x:Name="AdDuplexAdControl" 

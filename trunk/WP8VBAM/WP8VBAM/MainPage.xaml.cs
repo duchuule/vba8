@@ -28,6 +28,7 @@ using CloudSixConnector.FileSaver;
 using Coding4Fun.Toolkit.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 using Ionic.Zip;
+using System.Windows.Data;
 
 
 //"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts deviceindex:7 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
@@ -40,13 +41,16 @@ namespace PhoneDirect3DXamlAppInterop
     {
         private ApplicationBarIconButton resumeButton;
         
-        private ROMDatabase db;
-        private Task createFolderTask, copyDemoTask, initTask;
 
         public static bool shouldUpdateBackgroud = false;
 
         private bool checkAutoUpload = false; //to notify when we should check for auto upload
 
+        public static bool shouldRefreshRecentROMList = false;
+        public static bool shouldRefreshAllROMList = false;
+        private bool shouldInitialize = true;
+
+        private bool firstLaunch = true;
         
         
         public MainPage()
@@ -78,14 +82,36 @@ namespace PhoneDirect3DXamlAppInterop
                 adControl.SetValue(Grid.RowProperty, 1);
             }
 
+
+            //set data context
+            this.DataContext = ROMDatabase.Current;
+
+
+            //create data context to display rom list
+            SortRomList();
+            
+
             //increase app launch counter
             App.metroSettings.NAppLaunch += 1;
 
+
             this.InitAppBar();
 
-            this.initTask = this.Initialize();
+            //create recent rom list
+            this.RefreshRecentROMList();
+
+
+            //refresh rom list
+            //this.db.Commit += () =>
+            //{
+            //    this.RefreshROMList();
+            //};
+
+            
 
             this.Loaded += MainPage_Loaded;
+
+            
 
 #if GBC
             SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
@@ -93,9 +119,27 @@ namespace PhoneDirect3DXamlAppInterop
 #endif
         }
 
+        private void SortRomList()
+        {
+            //sort list of all roms by names
+            CollectionViewSource SortedAllROMEntries = new CollectionViewSource();
+
+            SortedAllROMEntries.SortDescriptions.Add(new System.ComponentModel.SortDescription("DisplayName",
+                    System.ComponentModel.ListSortDirection.Ascending));
+
+
+            SortedAllROMEntries.Source = ROMDatabase.Current.AllROMDBEntries;
+            this.romList.DataContext = SortedAllROMEntries;
+            this.romList.SelectedItem = null;
+
+
+
+        }
+
         async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            await this.initTask;
+            //var indicator = SystemTray.GetProgressIndicator(this);
+            //indicator.IsIndeterminate = true;
 
             try
             {
@@ -105,7 +149,7 @@ namespace PhoneDirect3DXamlAppInterop
                     String romFileName = NavigationContext.QueryString[FileHandler.ROM_URI_STRING];
                     NavigationContext.QueryString.Remove(FileHandler.ROM_URI_STRING);
 
-                    ROMDBEntry entry = this.db.GetROM(romFileName);
+                    ROMDBEntry entry = ROMDatabase.Current.GetROM(romFileName);
                     await this.StartROM(entry);
                 }
             }
@@ -135,7 +179,10 @@ namespace PhoneDirect3DXamlAppInterop
 
                     //import file
                     if (incomingFileType == ".gb" || incomingFileType == ".gbc" || incomingFileType == ".gba")
+                    {
                         await FileHandler.ImportRomBySharedID(fileID, incomingFileName, this);
+                        this.RefreshRecentROMList();
+                    }
                     else if (incomingFileType == ".sgm" || incomingFileType == ".sav")
                         await FileHandler.ImportSaveBySharedID(fileID, incomingFileName, this);
 
@@ -177,12 +224,25 @@ namespace PhoneDirect3DXamlAppInterop
                 
                 App.metroSettings.NAppLaunch++;
             }
+            //else if (firstLaunch) //show toast notifications
+            //{
+            //    firstLaunch = false;
+
+            //    ToastPrompt toast = new ToastPrompt();
+
+            //    toast.Title = "Tips: ";
+            //    toast.Message = "Some message";
+
+            //    toast.Show();
+
+            //}
 
 
             //== auto back up
             AutoBackup();
 
-
+            //set indicator after everything is done
+            //indicator.IsIndeterminate = false;
             return;
         }
 
@@ -419,7 +479,7 @@ namespace PhoneDirect3DXamlAppInterop
                                     if (entry.AutoSaveIndex > App.metroSettings.NRotatingBackup)
                                         entry.AutoSaveIndex = 1;
 
-                                    this.db.CommitChanges();
+                                    ROMDatabase.Current.CommitChanges();
 
                                     string exportFileName = entry.DisplayName +  entry.AutoSaveIndex.ToString() + ".zip";
                                     
@@ -514,21 +574,17 @@ namespace PhoneDirect3DXamlAppInterop
 #endif
         private async Task Initialize()
         {
-            createFolderTask = FileHandler.CreateInitialFolderStructure();
-            copyDemoTask = this.CopyDemoROM();
+            await FileHandler.CreateInitialFolderStructure();
+            await this.CopyDemoROM();
 
-            await createFolderTask;
-            await copyDemoTask;
 
-            this.db = ROMDatabase.Current;
-            if (db.Initialize())
-            {
-                await FileHandler.FillDatabaseAsync();
-            }
-            this.db.Commit += () =>
-            {
-                this.RefreshROMList();
-            };
+
+            //if (db.Initialize())
+            //{
+            //    await FileHandler.FillDatabaseAsync();
+            //    this.RefreshROMList();
+            //}
+            
             
 
             await this.ParseIniFile();
@@ -536,6 +592,10 @@ namespace PhoneDirect3DXamlAppInterop
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            //set indicator to let the user know we are working on something
+            //var indicator = SystemTray.GetProgressIndicator(this);
+            //indicator.IsIndeterminate = true;
+
             //set app bar color in case the user return from setting page
             if (ApplicationBar != null)
             {
@@ -545,7 +605,11 @@ namespace PhoneDirect3DXamlAppInterop
 
             //await this.createFolderTask;
             //await this.copyDemoTask;
-            await this.initTask;
+            if (shouldInitialize)
+            {
+                await this.Initialize();
+                shouldInitialize = false;
+            }
 
             this.LoadInitialSettings();
 
@@ -556,10 +620,28 @@ namespace PhoneDirect3DXamlAppInterop
 
             }
 
-            this.RefreshROMList();
+            if (shouldRefreshRecentROMList)
+            {
+                this.RefreshRecentROMList();
+                shouldRefreshRecentROMList = false;
 
-            
+            }
 
+            if (shouldRefreshAllROMList)
+            {
+                this.SortRomList();
+                shouldRefreshAllROMList = false;
+            }
+
+
+            //enable/disable resume button
+            if (this.lastRomImage.DataContext != null)
+                this.resumeButton.IsEnabled = true;
+            else
+                this.resumeButton.IsEnabled = false;
+
+            //set indicator to signal everything is done
+            //indicator.IsIndeterminate = false;
 
             base.OnNavigatedTo(e);
         }
@@ -595,7 +677,7 @@ namespace PhoneDirect3DXamlAppInterop
                 this.gotoBackupButton.IsEnabled = true;
 
                 LiveConnectClient client = new LiveConnectClient(App.session);
-                if (App.exportFolderID == null || App.exportFolderID == "")
+                if (App.metroSettings.AutoBackup && (App.exportFolderID == null || App.exportFolderID == ""))
                     App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
 
                 //this.gotoRestoreButton.IsEnabled = true;
@@ -618,7 +700,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private void gotoImportButton_Click_1(object sender, RoutedEventArgs e)
         {
-            int romCount = this.db.GetNumberOfROMs();
+            int romCount = ROMDatabase.Current.GetNumberOfROMs();
             if (!App.IsTrial || romCount < 2)
             {
                 if (App.session != null)
@@ -674,7 +756,13 @@ namespace PhoneDirect3DXamlAppInterop
 
                 isoSettings["DEMOCOPIED"] = true;
                 isoSettings.Save();
+
+                await FileHandler.FillDatabaseAsync();
+
+                this.RefreshRecentROMList();
             }
+
+            
         }
 
         private void LoadInitialSettings()
@@ -809,6 +897,10 @@ namespace PhoneDirect3DXamlAppInterop
                 if (!isoSettings.Contains(SettingsPage.AutoSaveLoadKey))
                 {
                     isoSettings[SettingsPage.AutoSaveLoadKey] = App.metroSettings.LoadLastState;  //this is for compability with a faulty update (2.9.0)
+                }
+                if (!isoSettings.Contains(SettingsPage.VirtualControllerStyleKey))
+                {
+                    isoSettings[SettingsPage.VirtualControllerStyleKey] = 0;
                 }
 
                 //get default controller position
@@ -998,11 +1090,11 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.RestoreOldCheatValues = (bool)isoSettings[SettingsPage.RestoreCheatKey];
                 settings.ManualSnapshots = (bool)isoSettings[SettingsPage.CreateManualSnapshotKey];
                 settings.UseMogaController = (bool)isoSettings[SettingsPage.UseMogaControllerKey];
-                settings.UseColorButtons = (bool)isoSettings[SettingsPage.UseColorButtonKey];
                 settings.BgcolorR = (int)isoSettings[SettingsPage.BgcolorRKey];
                 settings.BgcolorG = (int)isoSettings[SettingsPage.BgcolorGKey];
                 settings.BgcolorB = (int)isoSettings[SettingsPage.BgcolorBKey];
                 settings.AutoSaveLoad = (bool)isoSettings[SettingsPage.AutoSaveLoadKey];
+                settings.VirtualControllerStyle = (int)isoSettings[SettingsPage.VirtualControllerStyleKey];
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
                 settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
@@ -1081,17 +1173,19 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.RestoreCheatKey] = settings.RestoreOldCheatValues;
             isoSettings[SettingsPage.CreateManualSnapshotKey] = settings.ManualSnapshots;
             isoSettings[SettingsPage.UseMogaControllerKey] = settings.UseMogaController;
-            isoSettings[SettingsPage.UseColorButtonKey] = settings.UseColorButtons;
             isoSettings[SettingsPage.BgcolorRKey] = settings.BgcolorR;
             isoSettings[SettingsPage.BgcolorGKey] = settings.BgcolorG;
             isoSettings[SettingsPage.BgcolorBKey] = settings.BgcolorB;
             isoSettings[SettingsPage.AutoSaveLoadKey] = settings.AutoSaveLoad;
+            isoSettings[SettingsPage.VirtualControllerStyleKey] = settings.VirtualControllerStyle;
 
             isoSettings.Save();
         }
 
-        private void RefreshROMList()
+        private void RefreshRecentROMList()
         {
+            
+
             //StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             //StorageFolder romFolder = await localFolder.CreateFolderAsync(ROM_DIRECTORY, CreationCollisionOption.OpenIfExists);
             //IReadOnlyList<StorageFile> roms = await romFolder.GetFilesAsync();
@@ -1100,33 +1194,37 @@ namespace PhoneDirect3DXamlAppInterop
             //{
             //    romNames.Add(new ROMEntry() { Name = file.Name } );
             //}
-            DataContext = this.db.GetLastPlayed();
+            this.lastRomImage.DataContext = ROMDatabase.Current.GetLastPlayed();
 
-            if (DataContext != null)
+            if (this.lastRomImage.DataContext != null)
                 this.resumeButton.IsEnabled = true;
             else
                 this.resumeButton.IsEnabled = false;
 
-            if (DataContext != null && App.metroSettings.ShowLastPlayedGame == true)
+            if (this.lastRomImage.DataContext != null && App.metroSettings.ShowLastPlayedGame == true)
                 lastRomGrid.Visibility = Visibility.Visible;
             else
                 lastRomGrid.Visibility = Visibility.Collapsed;
 
-            this.romList.ItemsSource = this.db.GetROMList();
+            //this.romList.ItemsSource = ROMDatabase.Current.GetROMList();
 
-            this.recentList.ItemsSource = this.db.GetRecentlyPlayed();
+            this.recentList.ItemsSource = ROMDatabase.Current.GetRecentlyPlayed();
          
         }
 
-      
 
 
-        private void romList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+
+
+        private void romList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+
             this.StartROMFromList(this.romList);
         }
 
-        private void recentList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void recentList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             this.StartROMFromList(this.recentList);
         }
@@ -1237,7 +1335,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         async void resumeButton_Click(object sender, EventArgs e)
         {
-            var entry = this.db.GetLastPlayed();
+            var entry = ROMDatabase.Current.GetLastPlayed();
 
             await StartROM(entry);
             this.romList.SelectedItem = null;
@@ -1381,7 +1479,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            ROMDBEntry entry = (ROMDBEntry)this.DataContext;
+            ROMDBEntry entry = (ROMDBEntry)this.lastRomImage.DataContext;
             await StartROM(entry);
         }
 
@@ -1491,6 +1589,8 @@ namespace PhoneDirect3DXamlAppInterop
                 ROMDBEntry entry = fe.DataContext as ROMDBEntry;
                 await FileHandler.DeleteROMAsync(entry);
 
+                this.RefreshRecentROMList();
+
             }
             catch (System.IO.FileNotFoundException)
             { }
@@ -1544,6 +1644,8 @@ namespace PhoneDirect3DXamlAppInterop
 
             //var saver = new CloudSixSaver("df.dd", )
         }
+
+
 
 
 

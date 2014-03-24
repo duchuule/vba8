@@ -404,6 +404,7 @@ namespace PhoneDirect3DXamlAppInterop
                             };
                             db.Add(ssEntry);
                             db.CommitChanges();
+                            
 
                         }
                     }

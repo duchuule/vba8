@@ -270,7 +270,8 @@ Credits:
 - Mathias Haugsbø for Norwegian (Nynorsk) translation.
 - Leutrim Shabani for German translation.
 - Giordano Piacentini for Italian translation.
-- Sami Piispanen for Finnish translation.</value>
+- Sami Piispanen for Finnish translation.
+- Shay Livyatan for Hebrew translation.</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -1233,5 +1234,20 @@ Device ID: {0}</value>
   </data>
   <data name="LinkingNote" xml:space="preserve">
     <value>Note: Turn off frameskip and turbo mode to prevent communication error.</value>
+  </data>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>en-US</value>
+  </data>
+  <data name="GameboyAdvanceText" xml:space="preserve">
+    <value>Gameboy Advance</value>
+  </data>
+  <data name="GameboyText" xml:space="preserve">
+    <value>Gameboy</value>
+  </data>
+  <data name="SimpleText" xml:space="preserve">
+    <value>Simple</value>
   </data>
 </root>

@@ -58,7 +58,7 @@ namespace PhoneDirect3DXamlAppInterop
         public const String BgcolorGKey = "BgcolorGKey";
         public const String BgcolorBKey = "BgcolorBKey";
         public const String AutoSaveLoadKey = "AutSaveLoadKey";
-        
+        public const String VirtualControllerStyleKey = "VirtualControllerStyleKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -203,7 +203,7 @@ namespace PhoneDirect3DXamlAppInterop
             //this.restoreLastStateSwitch.IsChecked = emuSettings.SelectLastState;
             this.cheatRestoreSwitch.IsChecked = emuSettings.RestoreOldCheatValues;
             this.manualSnapshotSwitch.IsChecked = emuSettings.ManualSnapshots;
-            this.useColorButtonSwitch.IsChecked = emuSettings.UseColorButtons;
+            //this.useColorButtonSwitch.IsChecked = emuSettings.UseColorButtons;
 
             this.showThreeDotsSwitch.IsChecked = App.metroSettings.ShowThreeDots;
             this.showLastPlayedGameSwitch.IsChecked = App.metroSettings.ShowLastPlayedGame;
@@ -224,9 +224,9 @@ namespace PhoneDirect3DXamlAppInterop
                 this.ChooseBackgroundImageGrid.Visibility = Visibility.Collapsed;
             }
 
-            
 
-            if (this.useColorButtonSwitch.IsChecked.Value)
+
+            if (emuSettings.VirtualControllerStyle != 2)
                 CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
             else
                 CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
@@ -252,6 +252,8 @@ namespace PhoneDirect3DXamlAppInterop
                 this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad, this need to be set after loaded because we set the items in xaml
                 this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
                 this.themePicker.SelectedIndex = App.metroSettings.ThemeSelection;
+
+                this.virtualControlStyleBox.SelectedIndex = emuSettings.VirtualControllerStyle;
 
                 this.backgroundOpacitySlider.Value = App.metroSettings.BackgroundOpacity * 100;
 
@@ -646,18 +648,18 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        private void useColorButtonSwitch_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.useColorButtonSwitch.IsChecked.Value)
-                CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
-            else
-                CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
+        //private void useColorButtonSwitch_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.useColorButtonSwitch.IsChecked.Value)
+        //        CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
+        //    else
+        //        CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
 
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.UseColorButtons = this.useColorButtonSwitch.IsChecked.Value;
-            }
-        }
+        //    if (this.initdone)
+        //    {
+        //        EmulatorSettings.Current.UseColorButtons = this.useColorButtonSwitch.IsChecked.Value;
+        //    }
+        //}
 
         private void CustomizeBgcolorBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -900,6 +902,20 @@ namespace PhoneDirect3DXamlAppInterop
         private void SetupAutoBackupBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/AutoBackupPage.xaml", UriKind.Relative));
+        }
+
+        private void virtualControlStyleBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (initdone)
+            {
+                EmulatorSettings.Current.VirtualControllerStyle = virtualControlStyleBox.SelectedIndex;
+
+                if (EmulatorSettings.Current.VirtualControllerStyle != 2)
+                    CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
+                else
+                    CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
+
+            }
         }
 
 

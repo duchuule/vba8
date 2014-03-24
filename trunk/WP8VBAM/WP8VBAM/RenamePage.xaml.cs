@@ -52,6 +52,8 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     this.entry.DisplayName = this.nameBox.Text;
                     this.db.CommitChanges();
+                    MainPage.shouldRefreshAllROMList = true; //only need to manually referesh the rom list because colectionviewsource does not update sorting
+
                     FileHandler.UpdateROMTile(this.entry.FileName);
                     this.NavigationService.GoBack();
                 }

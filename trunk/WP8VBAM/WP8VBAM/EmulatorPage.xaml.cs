@@ -560,6 +560,7 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     entry.LastPlayed = DateTime.Now;
                     db.CommitChanges();
+                    MainPage.shouldRefreshRecentROMList = true; //signal main page to update rom list
                 }
                 base.OnNavigatingFrom(e);
             }
