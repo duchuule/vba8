@@ -53,7 +53,7 @@ namespace PhoneDirect3DXamlAppInterop
             emailcomposer.To = AppResources.AboutContact;
 
             emailcomposer.Subject = AppResources.EmailSubjectText;
-            emailcomposer.Body = AppResources.EmailBodyText;
+            emailcomposer.Body = String.Format(AppResources.EmailBodyText, Microsoft.Phone.Info.DeviceStatus.DeviceName);
             emailcomposer.Show();
         }
     }

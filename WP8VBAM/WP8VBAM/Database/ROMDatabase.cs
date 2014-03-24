@@ -13,7 +13,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
 {
     public delegate void CommitDelegate();
 
-    class ROMDatabase : IDisposable
+    class ROMDatabase : IDisposable, INotifyPropertyChanged
     {
         private static ROMDatabase singleton;
 
@@ -31,6 +31,19 @@ namespace PhoneDirect3DXamlAppInterop.Database
 
         private const string ConnectionString = "isostore:/roms.sdf";
 
+        // All loan items.
+        private TrulyObservableCollection<ROMDBEntry> _allROMDBEntries;
+        public TrulyObservableCollection<ROMDBEntry> AllROMDBEntries
+        {
+            get { return _allROMDBEntries; }
+            set
+            {
+                _allROMDBEntries = value;
+                NotifyPropertyChanged("AllROMDBEntries");
+            }
+        }
+
+
         private class ROMDataContext : DataContext
         {
             public Table<ROMDBEntry> ROMTable { get; set; }
@@ -44,7 +57,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
             }
         }
 
-        public event CommitDelegate Commit = delegate { };
+        //public event CommitDelegate Commit = delegate { };
 
         private ROMDataContext context;
         private bool disposed = false;
@@ -111,6 +124,18 @@ namespace PhoneDirect3DXamlAppInterop.Database
                 }
             }
         }
+
+         // Query database and load the collections and list used by the pivot pages.
+        public void LoadCollectionsFromDatabase()
+        {
+            // Specify the query for all to-do items in the database.
+            var ROMEntriesInDB = from ROMDBEntry entry in this.context.ROMTable
+                                select entry;
+
+            // Query the database and load all to-do items.
+            AllROMDBEntries = new TrulyObservableCollection<ROMDBEntry>(ROMEntriesInDB);
+
+        }
         public void Add(ROMDBEntry entry)
         {
             if (!context.DatabaseExists())
@@ -119,6 +144,9 @@ namespace PhoneDirect3DXamlAppInterop.Database
             }
             context.ROMTable.InsertOnSubmit(entry);
             context.SubmitChanges();
+
+            //add to list
+            AllROMDBEntries.Add(entry);
         }
 
         public int GetNumberOfROMs()
@@ -313,6 +341,10 @@ namespace PhoneDirect3DXamlAppInterop.Database
                     .Where(s => (s.ROM == entry))
                     .ToArray()
                     );
+
+                //remove from list
+                AllROMDBEntries.Remove(entry);
+
                 this.context.ROMTable.DeleteOnSubmit(entry);
             }
         }
@@ -320,7 +352,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
         public void CommitChanges()
         {
             this.context.SubmitChanges();
-            this.Commit();
+            //this.Commit();
         }
 
         public IEnumerable<ROMDBEntry> GetRecentlyPlayed()
@@ -387,5 +419,20 @@ namespace PhoneDirect3DXamlAppInterop.Database
         {
             this.context.Dispose();
         }
-    }
+
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // Used to notify the app that a property has changed.
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+    } //end class
 }

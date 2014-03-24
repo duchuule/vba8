@@ -120,7 +120,9 @@
                         <ListBoxItem HorizontalContentAlignment="Stretch">
                             <toolkit:ListPicker Header="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 
                                             FullModeHeader="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 
-                                            SelectionChanged="dpadStyleBox_SelectionChanged_1" Name="dpadStyleBox" SelectedIndex="0">
+                                            SelectionChanged="dpadStyleBox_SelectionChanged_1"
+                                                Name="dpadStyleBox" 
+                                                SelectedIndex="0">
                                 <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadStandard, Source={StaticResource LocalizedStrings}}" />
                                 <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPad8way, Source={StaticResource LocalizedStrings}}" />
                                 <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadAnalogueFixed, Source={StaticResource LocalizedStrings}}" />
@@ -128,16 +130,29 @@
                             </toolkit:ListPicker>
                         </ListBoxItem>
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Content="{Binding Path=LocalizedResources.UseRealisticButtonsText, Source={StaticResource LocalizedStrings}}"
-                                            IsChecked="true" 
+                        <!--<ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="true" 
                                   Name="useColorButtonSwitch" 
                                   Click="useColorButtonSwitch_Click"
-                                  
-                                            />
-                        </ListBoxItem>
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.UseRealisticButtonsText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                        </ListBoxItem>-->
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <toolkit:ListPicker Header="{Binding Path=LocalizedResources.VirtualControllerButtonStyle, Source={StaticResource LocalizedStrings}}" 
+                                            FullModeHeader="{Binding Path=LocalizedResources.VirtualControllerButtonStyle, Source={StaticResource LocalizedStrings}}" 
+                                            SelectionChanged="virtualControlStyleBox_SelectionChanged_1" 
+                                            Name="virtualControlStyleBox"
+                                            SelectedIndex="0">
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.GameboyAdvanceText, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.GameboyText, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SimpleText, Source={StaticResource LocalizedStrings}}" />
+                        </toolkit:ListPicker>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
                             <Button x:Name="CustomizeBgcolorBtn"
                                 Content="{Binding Path=LocalizedResources.ChoosePortraitBackgroundColorText, Source={StaticResource LocalizedStrings}}"
                                 Click="CustomizeBgcolorBtn_Click"
@@ -414,9 +429,11 @@
 
 
 
-                            <CheckBox Content="{Binding Path=LocalizedResources.LowFreqModeSetting, Source={StaticResource LocalizedStrings}}" 
-                                          Checked="lowFreqSwitch_Checked_1" Unchecked="lowFreqSwitch_Unchecked_1"
-                                          Name="lowFreqSwitch"/>
+                        <CheckBox Checked="lowFreqSwitch_Checked_1" Unchecked="lowFreqSwitch_Unchecked_1"
+                                          Name="lowFreqSwitch">
+                            <TextBlock Text="{Binding Path=LocalizedResources.LowFreqModeSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
 
                             <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
                                 <TextBlock Text="{Binding Path=LocalizedResources.ImageScaleSetting, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Foreground="{StaticResource PhoneSubtleBrush}" />
@@ -439,12 +456,14 @@
                     <ListBox>
 
                         <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Content="{Binding Path=LocalizedResources.AutoBackupText, Source={StaticResource LocalizedStrings}}"
-                                      IsChecked="false" 
+                        <CheckBox IsChecked="false" 
                                       Name="autoBackupSwitch"
                                       Click="autoBackupSwitch_Click"
-                                                />
-                        </ListBoxItem>
+                                                >
+                            <TextBlock Text="{Binding Path=LocalizedResources.AutoBackupText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
                         
                         <ListBoxItem HorizontalContentAlignment="Stretch">
                             <Button x:Name="SetupAutoBackupBtn"
@@ -453,27 +472,34 @@
                                     />
                         </ListBoxItem>
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                                <CheckBox Content="{Binding Path=LocalizedResources.AutoLoadLastStateText, Source={StaticResource LocalizedStrings}}"
-                                                    IsChecked="true" 
-                                                Name="loadLastStateSwitch" Click="loaLastStateSwitch_Click"
-                                                    />
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="true" 
+                                            Name="loadLastStateSwitch" Click="loaLastStateSwitch_Click"
+                                                >
+                            <TextBlock Text="{Binding Path=LocalizedResources.AutoLoadLastStateText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
 
-                        </ListBoxItem>
+                    </ListBoxItem>
                         
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
 
-                                <CheckBox Content="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}"
-                                              Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
-                                              IsChecked="true" Name="enableSoundSwitch"
-                                               />
-                        </ListBoxItem>
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Content="{Binding Path=LocalizedResources.SyncSoundSetting, Source={StaticResource LocalizedStrings}}"
-                                            Checked="syncSoundSwitch_Checked_1" Unchecked="syncSoundSwitch_Unchecked_1"
+                        <CheckBox Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
+                                            IsChecked="true" Name="enableSoundSwitch"
+                                            >
+                            <TextBlock Text="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+                        
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="syncSoundSwitch_Checked_1" Unchecked="syncSoundSwitch_Unchecked_1"
                                             IsChecked="true" Name="syncSoundSwitch"
-                                            />
-                        </ListBoxItem>
+                                            >
+                            <TextBlock Text="{Binding Path=LocalizedResources.SyncSoundSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
                         <ListBoxItem HorizontalContentAlignment="Stretch">
                             <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.ThemeText, Source={StaticResource LocalizedStrings}}" 
                                             SelectionChanged="themePicker_SelectionChanged_1" 
@@ -484,12 +510,14 @@
                         </ListBoxItem>
 
                         <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox 
-                                  Content="{Binding Path=LocalizedResources.UseBackgroundImageSetting, Source={StaticResource LocalizedStrings}}" 
+                        <CheckBox 
                                   Name="useBackgroundImageSwitch"
                                 Click="useBackgroundImageSwitch_Click"
-                                  />
-                        </ListBoxItem>
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.UseBackgroundImageSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
 
                         <ListBoxItem HorizontalContentAlignment="Stretch">
                             <Grid x:Name="ChooseBackgroundImageGrid">
@@ -565,46 +593,60 @@
 
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox 
-                                  Content="{Binding Path=LocalizedResources.ShowLastPlayedGameText, Source={StaticResource LocalizedStrings}}" 
-                                  Name="showLastPlayedGameSwitch"
+                        <CheckBox Name="showLastPlayedGameSwitch"
                             Click="showLastPlayedGameSwitch_Click"
-                                  />
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.ShowLastPlayedGameText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
                     </ListBoxItem>
                         
                         
                     <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox 
-                                  Content="{Binding Path=LocalizedResources.ShowThreeDotsSetting, Source={StaticResource LocalizedStrings}}" 
+                        <CheckBox 
                                   Name="showThreeDotsSwitch"
-                            Click="showThreeDotsSwitch_Click"
-                                  />
-                        </ListBoxItem>
+                                    Click="showThreeDotsSwitch_Click"
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.ShowThreeDotsSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Checked="manualSnapshotSwitch_Checked" Unchecked="manualSnapshotSwitch_Unchecked"
-                                  Content="{Binding Path=LocalizedResources.ManualSnapshotSetting, Source={StaticResource LocalizedStrings}}" 
-                                  Name="manualSnapshotSwitch" IsChecked="false"
-                                  />
-                        </ListBoxItem>
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Content="{Binding Path=LocalizedResources.HideConfirmationSetting, Source={StaticResource LocalizedStrings}}"
-                                    Checked="confirmationSwitch_Checked_1" Unchecked="confirmationSwitch_Unchecked_1"
-                                    IsChecked="false" Name="confirmationSwitch"
-                                           />
-                        </ListBoxItem>
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Content="{Binding Path=LocalizedResources.HideConfirmationLoadSetting, Source={StaticResource LocalizedStrings}}"
-                                          Checked="confirmationLoadSwitch_Checked_1" Unchecked="confirmationLoadSwitch_Unchecked_1"
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="manualSnapshotSwitch_Checked" Unchecked="manualSnapshotSwitch_Unchecked"
+                                Name="manualSnapshotSwitch" IsChecked="false"
+                                >
+                            <TextBlock Text="{Binding Path=LocalizedResources.ManualSnapshotSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+                        
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="confirmationSwitch_Checked_1" Unchecked="confirmationSwitch_Unchecked_1"
+                                IsChecked="false" Name="confirmationSwitch"
+                                        >
+                            <TextBlock Text="{Binding Path=LocalizedResources.HideConfirmationSetting, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+                        
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="confirmationLoadSwitch_Checked_1" Unchecked="confirmationLoadSwitch_Unchecked_1"
                                           IsChecked="false" Name="confirmationLoadSwitch"
-                                           />
-                        </ListBoxItem>
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Content="{Binding Path=LocalizedResources.AutoIncSavestateSetting, Source={StaticResource LocalizedStrings}}"
-                                            Checked="autoIncSwitch_Checked_1" Unchecked="autoIncSwitch_Unchecked_1"
+                                          >
+                            <TextBlock Text="{Binding Path=LocalizedResources.HideConfirmationLoadSetting, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+                        
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="autoIncSwitch_Checked_1" Unchecked="autoIncSwitch_Unchecked_1"
                                             IsChecked="false" Name="autoIncSwitch"
-                                            />
-                        </ListBoxItem>
+                                            >
+                            <TextBlock Text="{Binding Path=LocalizedResources.AutoIncSavestateSetting, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
                         <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                             <CheckBox Content="{Binding Path=LocalizedResources.RestoreLastStateSetting, Source={StaticResource LocalizedStrings}}"
                                             Checked="restoreLastStateSwitch_Checked_1" Unchecked="restoreLastStateSwitch_Unchecked_1"
@@ -615,12 +657,15 @@
 
                     
                     <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Content="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
-                                          Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
+                        <CheckBox Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
                                           IsChecked="false" Name="cheatRestoreSwitch"
-                                           />
+                                           >
+                            <TextBlock Text="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+                            
+                        </CheckBox>
 
-                        </ListBoxItem>
+                    </ListBoxItem>
                     </ListBox>
 
                 </phone:PivotItem>

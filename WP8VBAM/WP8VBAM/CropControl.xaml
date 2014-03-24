@@ -14,7 +14,7 @@ d:DesignHeight="480" d:DesignWidth="480" x:Name="MainControl" >
         <h:ClipRect x:Key="ClipRect" />
     </UserControl.Resources>
 
-    <Grid >
+    <Grid FlowDirection="LeftToRight">
         <Canvas  x:Name="MainCanvas" Background="{Binding ElementName=MainControl, Path=Background}" Loaded="MainCanvas_Loaded"  >
 
 
