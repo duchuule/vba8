@@ -1250,4 +1250,13 @@ Device ID: {0}</value>
   <data name="SimpleText" xml:space="preserve">
     <value>Simple</value>
   </data>
+  <data name="FailDownloadCheatDataText" xml:space="preserve">
+    <value>Failed to obtain data from supercheats.com.</value>
+  </data>
+  <data name="SearchTitle" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="SearchForCheatsText" xml:space="preserve">
+    <value>Search for cheats</value>
+  </data>
 </root>

@@ -1368,6 +1368,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to obtain data from supercheats.com..
+        /// </summary>
+        public static string FailDownloadCheatDataText {
+            get {
+                return ResourceManager.GetString("FailDownloadCheatDataText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAQs, forum discussion &amp; PC app.
         /// </summary>
         public static string FAQsLinkText {
@@ -2777,6 +2786,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string SDCardReadOnlyText {
             get {
                 return ResourceManager.GetString("SDCardReadOnlyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search for cheats.
+        /// </summary>
+        public static string SearchForCheatsText {
+            get {
+                return ResourceManager.GetString("SearchForCheatsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to search.
+        /// </summary>
+        public static string SearchTitle {
+            get {
+                return ResourceManager.GetString("SearchTitle", resourceCulture);
             }
         }
         
