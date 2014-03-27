@@ -62,6 +62,7 @@ namespace PhoneDirect3DXamlAppInterop
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://personal.utulsa.edu/~duc-le/VBA8betalicense.dat");
             request.Method = "POST";
             request.ContentType = "text/plain";
+
             request.BeginGetResponse(ResponseCallback, request);
 
 

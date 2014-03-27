@@ -10,11 +10,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>311C6FD4-73A9-40CB-81A6-BD7EE898ADD4</CurrentDeployID>
+    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>311C6FD4-73A9-40CB-81A6-BD7EE898ADD4</CurrentDeployID>
+    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
@@ -41,7 +41,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugGBC|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>311C6FD4-73A9-40CB-81A6-BD7EE898ADD4</CurrentDeployID>
+    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugTrialGBC|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
@@ -49,7 +49,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseGBC|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>311C6FD4-73A9-40CB-81A6-BD7EE898ADD4</CurrentDeployID>
+    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugDevice|ARM'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
@@ -61,11 +61,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugDevice|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>311C6FD4-73A9-40CB-81A6-BD7EE898ADD4</CurrentDeployID>
+    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseBeta|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>311C6FD4-73A9-40CB-81A6-BD7EE898ADD4</CurrentDeployID>
+    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>

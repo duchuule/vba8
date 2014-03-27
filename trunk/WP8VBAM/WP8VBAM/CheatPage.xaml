@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -60,21 +61,22 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <!--<TextBlock Grid.Row="0" HorizontalAlignment="Left"
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left"
                                TextWrapping="Wrap" 
                                FontSize="20" 
                                Name="descLabel"
                        Text="{Binding Path=LocalizedResources.CheatsDescription, Source={StaticResource LocalizedStrings}}"
-                               />-->
+                               />
 
-                    <TextBlock Grid.Row="0" HorizontalAlignment="Left"
+                    <!--<TextBlock Grid.Row="0" HorizontalAlignment="Left"
                                TextWrapping="Wrap" 
                                FontSize="20" 
                                Foreground="Red"
                                Name="descLabel"
                        Text="{Binding Path=LocalizedResources.CheatsDescription2, Source={StaticResource LocalizedStrings}}"
-                               />
+                               />-->
 
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
@@ -97,8 +99,14 @@
                     <Button Grid.Row="4" Content="{Binding Path=LocalizedResources.AddCheatButtonText, Source={StaticResource LocalizedStrings}}" 
                             Click="addButton_Click"
                             Margin="-12,0,-12,0"/>
+                    <!--<Button Grid.Row="5" Content="{Binding Path=LocalizedResources.SearchForCheatsText, Source={StaticResource LocalizedStrings}}" 
+                            Click="searchCheatButton_Click"
+                            Margin="-12,0,-12,0"/>-->
                 </Grid>
             </phone:PivotItem>
+            
+            
+            
             <phone:PivotItem Name="listPivot"
                            Margin="12,18, 12, 0">
                 <phone:PivotItem.Header>
@@ -138,23 +146,54 @@
                     </ListBox>
                 </Grid>
             </phone:PivotItem>
+
+
+
+            <phone:PivotItem Name="searchPivot"
+                               Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.SearchTitle, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
+
+                <StackPanel Margin="12,0,12,0">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBox x:Name="txtSearchString"
+                                 Grid.Column="0"
+                                 Margin="-12,0,0,0"/>
+                        <c4f:RoundButton ImageSource="Assets\Icons\search.png"
+                                x:Name="searchButton" 
+                                Click="searchButton_Click"
+                                        Margin="0,0,-10,0"
+                                         Height="50"
+                                         Grid.Column="1"
+                        />
+                    </Grid>
+                    
+                    <!--<Line Margin="0,10,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" Grid.Row="1" StrokeThickness="4" />-->
+                
+                    <ListBox x:Name="gameList" Margin="0,10,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBox Text="{Binding Title}" />
+                                    <Line Margin="0,3,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="1" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </phone:PivotItem>
         </phone:Pivot>
     </Grid>
     
     
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <!--<Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Name="titleLabel" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.CheatPageTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-
-        
-    </Grid>-->
 
 </phone:PhoneApplicationPage>

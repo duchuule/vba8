@@ -323,6 +323,7 @@
     <Compile Include="Helpers\AspectRatioConverter.cs" />
     <Compile Include="Helpers\ClipRect.cs" />
     <Compile Include="Helpers\NegativeValueConverter.cs" />
+    <Compile Include="Helpers\WebClientExtension.cs" />
     <Compile Include="HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
@@ -417,6 +418,7 @@
     <Content Include="Assets\Icons\appbar.question.png" />
     <Content Include="Assets\Icons\information.circle.png" />
     <Content Include="Assets\Icons\play.png" />
+    <Content Include="Assets\Icons\search.png" />
     <Content Include="Assets\Icons\selectall.png" />
     <Content Include="Assets\Icons\selectnone.png" />
     <Content Include="Assets\no_snapshot_gbc.png">
@@ -909,6 +911,9 @@
     </Reference>
     <Reference Include="SharpCompress">
       <HintPath>..\..\packages\sharpcompress.0.10.3\lib\portable-net4+sl5+wp8+win8\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGIS.GZipWebClient">
+      <HintPath>..\..\packages\SharpGIS.GZipWebClient.1.4.0.0\lib\wp71\SharpGIS.GZipWebClient.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Data, Version=2013.3.1317.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2013.3.1317.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
