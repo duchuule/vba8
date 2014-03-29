@@ -29,6 +29,8 @@ namespace PhoneDirect3DXamlAppInterop.ViewModels
     public class MainViewModel
     {
         public ObservableCollection<ROMDBEntry> DesignROMDBEntry {get; set;}  //for design purpose only
+        public ObservableCollection<CheatInfo> DesignCheatInfoList { get; set; }
+        public ObservableCollection<CheatText> DesignCheatTextList { get; set; }
 
         public string FirstName { get; set; }
         //no-argument constructor, used for design only
