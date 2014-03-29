@@ -7,6 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    xmlns:local="clr-namespace:PhoneDirect3DXamlAppInterop"
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -22,6 +24,10 @@
                                   />
     </shell:SystemTray.ProgressIndicator>
 
+    <phone:PhoneApplicationPage.Resources>
+        <local:EnableConverter x:Key="EnableConverter" />
+    </phone:PhoneApplicationPage.Resources>
+    
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -156,9 +162,13 @@
                                    Style="{StaticResource MyTitle1Style}" />
                 </phone:PivotItem.Header>
 
-                <StackPanel Margin="12,0,12,0">
-
-                    <Grid>
+                <Grid Margin="12,0,12,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -166,7 +176,8 @@
                         
                         <TextBox x:Name="txtSearchString"
                                  Grid.Column="0"
-                                 Margin="-12,0,0,0"/>
+                                 Grid.Row="0"
+                                 Margin="-12,0,-12,0" KeyUp="txtSearchString_KeyUp"/>
                         <c4f:RoundButton ImageSource="Assets\Icons\search.png"
                                 x:Name="searchButton" 
                                 Click="searchButton_Click"
@@ -178,17 +189,119 @@
                     
                     <!--<Line Margin="0,10,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" Grid.Row="1" StrokeThickness="4" />-->
                 
-                    <ListBox x:Name="gameList" Margin="0,10,0,0">
+                    <ListBox x:Name="gameList" 
+                             Margin="0,10,0,0"
+                             Grid.Row="1"
+                             ItemsSource="{Binding}"
+                                d:DataContext="{Binding DesignCheatInfoList}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBox Text="{Binding Title}" />
-                                    <Line Margin="0,3,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="1" />
+                                <StackPanel Orientation="Vertical" Margin="0,0,0,12">
+                                    <TextBlock Text="{Binding Title}" FontSize="28"
+                                               TextWrapping="Wrap"
+                                               FontWeight="Bold"/>
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Content="Game Shark" Grid.Column="0" 
+                                                Margin="-12,0,0,0"
+                                                Style="{StaticResource RoundedButtonStyle}"
+                                                IsEnabled="{Binding HasGS, Converter={StaticResource EnableConverter}}"
+                                                x:Name="GSButton" Tap="GSButton_Tap"/>
+                                        <Button Content="Action Replay" Grid.Column="1"
+                                                Margin="0,0,-12,0"
+                                                Style="{StaticResource RoundedButtonStyle}"
+                                                IsEnabled="{Binding HasAR, Converter={StaticResource EnableConverter}}"
+                                                x:Name="ARButton"
+                                                Tap="ARButton_Tap"/>
+                                    </Grid>
+                                    <!--<Line Margin="0,3,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="1" />-->
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </StackPanel>
+
+                    
+
+                    <ListBox x:Name="codeList" 
+                             Margin="0,10,0,0"
+                             Grid.Row="1"
+                             Visibility="Visible"
+                             ItemsSource="{Binding}"
+                              d:DataContext="{Binding DesignCheatTextList}" Tap="codeList_Tap">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" Margin="0,0,0,12">
+                                    <TextBlock Text="{Binding Title}"
+                                               TextWrapping="Wrap"
+                                               FontSize="28"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Text}"
+                                               FontSize="22"
+                                               TextWrapping="Wrap"
+                                               />
+                                    <!--<TextBox Template="{StaticResource PhoneDisabledTextBoxTemplate}"
+                                            Foreground="{StaticResource PhoneForegroundBrush}"
+                                        Background="Blue"
+                                            FontSize="20"
+                                            Margin="0, 0, 0, 0"
+                                            x:Name="tblkCheatText"
+                                              IsReadOnly="True"
+                                            TextWrapping="Wrap"
+                                             Text="{Binding Text}"
+                                            />-->
+                                    <!--<phone:WebBrowser local:WebBrowserHelper.Html="{Binding Text}" 
+                                                      Height="200"/>-->
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Grid x:Name="cheatTextStackpanel"
+                                Margin="0,10,0,0"
+                                    Grid.Row="1"
+                                   Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Text="{Binding Title}"
+                                    TextWrapping="NoWrap"
+                                    FontSize="28"
+                                    FontWeight="Bold"
+                                   Grid.Row="0" Tap="TextBlock_Tap"
+                                   
+                                   />
+
+                        <TextBlock Text="{Binding Path=LocalizedResources.TapToReturnText, Source={StaticResource LocalizedStrings}}"
+                              FontStyle="Italic"
+                                   Grid.Row="1"
+                                   Margin="0,0,0,12"
+                                   Tap="TextBlock_Tap"
+                           />
+
+                        <phone:WebBrowser x:Name="cheatTextBox"
+                                          Grid.Row="2"
+                                    />
+                    </Grid>
+                </Grid>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>

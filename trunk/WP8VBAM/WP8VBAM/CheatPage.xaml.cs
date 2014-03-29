@@ -415,6 +415,7 @@ namespace PhoneDirect3DXamlAppInterop
             GZipWebClient webClient = new GZipWebClient();
             string response = null;
 
+            SystemTray.GetProgressIndicator(this).IsIndeterminate = true;
             try
             {
                 //==WINDOWS PHONE DOES NOT SUPPORT GZIP STREAM DECOMPRESSION, SO CANNOT USE HTTPWEBREQUEST
@@ -454,12 +455,16 @@ namespace PhoneDirect3DXamlAppInterop
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
             }
 
             if (response == null)
             {
+                SystemTray.GetProgressIndicator(this).IsIndeterminate = false;
                 return;
             }
+
+            
 
             List<CheatInfo> CheatInfoList = new List<CheatInfo>();
 
@@ -467,8 +472,6 @@ namespace PhoneDirect3DXamlAppInterop
             response = response.Replace("<b>", "");
             response = response.Replace("</b>", "");
 
-            int index = response.IndexOf("Exact Matches");
-            response = response.Substring(index);
 
             //string test = "hhh\n        <tr class=\"table_head_01\">\n\t<td align=\"left\" valign=\"middle\">Cheats</td><td align=\"left\" valign=\"middle\">Hints</td><td align=\"left\" valign=\"middle\">Q&A</td><td align=\"left\" valign=\"middle\">Walkthroughs</td><td align=\"left\" valign=\"middle\">Screens</td><td align=\"left\" valign=\"middle\">Walls</td><td align=\"left\" valign=\"middle\">Videos</td></tr>";
             //MatchCollection tests = Regex.Matches(test, "(?<=<tr class=\"table_head_01\">).*?(?=</tr>)", RegexOptions.Singleline);
@@ -506,13 +509,13 @@ namespace PhoneDirect3DXamlAppInterop
                         {
                             cheatInfo.HasGS = true;
                             Match matchhref = Regex.Match(matchtd.Value, "(?<=<a href=\").*?(?=\")", RegexOptions.Singleline);
-                            cheatInfo.GSLink = matchhref.Value;
+                            cheatInfo.GSLink = "http://www.supercheats.com" + matchhref.Value;
                         }
                         else if (matchtd.Value.Contains("codes2.htm")) //AR
                         {
                             cheatInfo.HasAR = true;
                             Match matchhref = Regex.Match(matchtd.Value, "(?<=<a href=\").*?(?=\")", RegexOptions.Singleline);
-                            cheatInfo.ARLink = matchhref.Value;
+                            cheatInfo.ARLink = "http://www.supercheats.com" + matchhref.Value;
                         }
                     }
                 }
@@ -541,6 +544,11 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.gameList.DataContext = CheatInfoList;
 
+            gameList.Visibility = Visibility.Visible;
+            codeList.Visibility = Visibility.Collapsed;
+            cheatTextStackpanel.Visibility = Visibility.Collapsed;
+
+            SystemTray.GetProgressIndicator(this).IsIndeterminate = false;
 
             //try
             //{
@@ -576,6 +584,194 @@ namespace PhoneDirect3DXamlAppInterop
             //}
         }
 
+
+
+        private void searchCheatButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void txtSearchString_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                searchButton_Click(null, null);
+            }
+        }
+
+        private void GSButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            CheatInfo cheatInfo = (sender as Button).DataContext as CheatInfo;
+            DisplayCheats(cheatInfo.GSLink, 0);
+
+        }
+
+        private void ARButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            CheatInfo cheatInfo = (sender as Button).DataContext as CheatInfo;
+            DisplayCheats(cheatInfo.ARLink, 1);
+
+        }
+
+        private async void DisplayCheats(string url, int cheatType)
+        {
+            //cheatType: 0 for GS, 1 for AR
+
+            //navigate to the cheat link and download cheat text
+            GZipWebClient webClient = new GZipWebClient();
+            string response = null;
+
+            SystemTray.GetProgressIndicator(this).IsIndeterminate = true;
+
+            try
+            {
+                //USE THIRD-PARTY GZIPWEBCLIENT                
+                webClient.Headers[HttpRequestHeader.Accept] = "text/html, application/xhtml+xml, */*";
+                webClient.Headers[HttpRequestHeader.Referer] = "http://www.supercheats.com/search.php";
+                webClient.Headers[HttpRequestHeader.AcceptLanguage] = "en-US";
+                webClient.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko";
+                webClient.Headers[HttpRequestHeader.AcceptEncoding] = "gzip, deflate";
+                webClient.Headers[HttpRequestHeader.Connection] = "Keep-Alive";
+                webClient.Headers[HttpRequestHeader.Host] = "www.supercheats.com";
+
+                response = await webClient.DownloadStringTaskAsync(new Uri(url, UriKind.Absolute));
+
+
+                if (response == null)
+                {
+                    SystemTray.GetProgressIndicator(this).IsIndeterminate = false;
+                    return;
+                }
+
+
+                MatchCollection headers = Regex.Matches(response, "(?<=<h5 class=\"fleft\">).*?(?=</h5>)", RegexOptions.Singleline);
+
+
+                List<CheatText> CheatTextList = new List<CheatText>();
+
+
+                for (int i = 0; i < headers.Count; i++)
+                {
+                    string htmlstring = "<html><head><meta name='viewport' content='width=456, user-scalable=yes' /></head><body>";
+
+                    CheatText cheatText = new CheatText();
+
+                    //get the title
+                    if (headers[i].Value == "")
+                        cheatText.Title = "No description";
+                    else
+                        cheatText.Title = headers[i].Value;
+
+                    //get the text content
+                    string content = "";
+                    if (cheatType == 0) //GS cheats
+                    {
+                        Match contentMatch = Regex.Match(response, "(?<=<div class=\"body\").*?(?=</div>)", RegexOptions.Singleline);
+                        content = contentMatch.Value;
+                    }
+                    else if (cheatType == 1)
+                    {
+                        Match contentMatch = Regex.Match(response, "(?<=<div class=\"body\").*?(?=</span></div>)", RegexOptions.Singleline);
+                        content = contentMatch.Value;
+                    }
+
+
+
+                    int index = content.IndexOf(">"); //get the position of the closing bracket
+                    content = content.Substring(index + 1); //get rid of the closing bracket
+
+                    //get the text in html format
+                    if (cheatType == 0)
+                    {
+                        htmlstring += "<p style=\"font-size:22px\">" + content + "</p>" + "</body></html>"; //html string does not need to replace <br/> by \n
+                        cheatText.TextHtml = htmlstring;
+                    }
+                    else if (cheatType == 1)
+                    {
+                        int index2 = content.IndexOf("<div"); //find the end of the title
+
+                        htmlstring += "<p style=\"font-size:22px\">" + content.Substring(0, index2) + "</p>"; //html string does not need to replace <br/> by \n
+                        cheatText.TextHtml = htmlstring;
+                    }
+
+                    index = response.IndexOf("<div class=\"body\"");
+                    response = response.Substring(index + 10); //just any number to make it go pass the <div
+
+
+                    //get the text in plain text format
+                    content = content.Replace("<br/>", "\n");
+                    content = content.Replace("<br />", "\n");
+                    content = content.Replace("<BR>", "\n");
+                    content.Replace("\n\n\n", "\n\n");
+                    content = content.Trim();
+
+
+                    if (cheatType == 1)
+                    {
+                        //get the link to the full cheat text
+                        Match linkMatch = Regex.Match(content, "(?<=<a href=\").*?(?=\")", RegexOptions.Singleline);
+                        cheatText.Url = linkMatch.Value;
+
+                        //get the text part
+                        int index2 = content.IndexOf("<div"); //find the end of the text
+                        content = content.Substring(0, index2 - 1); //there is a \t at the end so get rid of it.
+                    }
+
+                    //get only the first few lines
+                    int count = 0;
+                    index = 0;
+                    cheatText.Text = "";
+                    while (count <= 4 && index != -1)
+                    {
+                        index = content.IndexOf("\n");
+
+                        if (index != -1)
+                        {
+                            count++;
+                            cheatText.Text += content.Substring(0, index + 1);  //copy the first line to cheatText
+
+                            content = content.Substring(index + 1); //remove the first line
+                            content = content.Trim();
+                        }
+                        else
+                        {
+                            cheatText.Text += content;
+                        }
+                    }
+
+                    if (cheatText.Text[cheatText.Text.Length - 1] != '\n')
+                        cheatText.Text += "\n";
+
+                    cheatText.Text += "..............";
+
+                    //add to list
+                    CheatTextList.Add(cheatText);
+
+                }
+
+                //htmlstring += "</body></html>";
+
+                codeList.DataContext = CheatTextList;
+                //codeList.NavigateToString(htmlstring);
+
+                gameList.Visibility = Visibility.Collapsed;
+                codeList.Visibility = Visibility.Visible;
+                cheatTextStackpanel.Visibility = Visibility.Collapsed;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            SystemTray.GetProgressIndicator(this).IsIndeterminate = false;
+        }
+
+
+
+
+
+
         private static void GetRequestStreamCallback(IAsyncResult asynchronousResult)
         {
             HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
@@ -603,7 +799,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             // End the operation
             HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
-            
+
             //check to see if we need to deflate/gzip response
             //windows phone does not support System.IO.Compression !!!!!!!!!!
             //if (response.Headers["Content-Encoding"].ToLower().Contains("gzip"))
@@ -624,11 +820,68 @@ namespace PhoneDirect3DXamlAppInterop
 
         }
 
-        private void searchCheatButton_Click(object sender, RoutedEventArgs e)
+        private async void codeList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            CheatText cheatText = (CheatText)codeList.SelectedItem;
+            codeList.SelectedItem = null;
 
+
+           if (cheatText.Url != null && cheatText.Url != "") //need to go to the link to obtain the code
+            {
+                GZipWebClient webClient = new GZipWebClient();
+                string response = null;
+                SystemTray.GetProgressIndicator(this).IsIndeterminate = true;
+
+                try
+                {
+                    //USE THIRD-PARTY GZIPWEBCLIENT                
+                    webClient.Headers[HttpRequestHeader.Accept] = "text/html, application/xhtml+xml, */*";
+                    webClient.Headers[HttpRequestHeader.Referer] = "http://www.supercheats.com/search.php";
+                    webClient.Headers[HttpRequestHeader.AcceptLanguage] = "en-US";
+                    webClient.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko";
+                    webClient.Headers[HttpRequestHeader.AcceptEncoding] = "gzip, deflate";
+                    webClient.Headers[HttpRequestHeader.Connection] = "Keep-Alive";
+                    webClient.Headers[HttpRequestHeader.Host] = "www.supercheats.com";
+
+                    response = await webClient.DownloadStringTaskAsync(new Uri(cheatText.Url, UriKind.Absolute));
+
+
+                    if (response == null)
+                    {
+                        SystemTray.GetProgressIndicator(this).IsIndeterminate = false;
+                        return;
+                    }
+
+                    Match contentMatch = Regex.Match(response, "(?<=<div id='sub).*?(?=</div>)", RegexOptions.Singleline);
+                    string content = contentMatch.Value;
+                    int index = content.IndexOf(">"); //get the position of the closing bracket
+                    content = content.Substring(index + 1); //get rid of the closing bracket
+
+                    cheatText.TextHtml += "<p style=\"font-size:22px\">" + content + "</p></body></html>";
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                SystemTray.GetProgressIndicator(this).IsIndeterminate = false;
+
+            }
+
+           cheatTextStackpanel.DataContext = cheatText;
+            cheatTextBox.NavigateToString(cheatText.TextHtml);
+
+            gameList.Visibility = Visibility.Collapsed;
+            codeList.Visibility = Visibility.Collapsed;
+            cheatTextStackpanel.Visibility = Visibility.Visible;
         }
 
+        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            codeList.Visibility = Visibility.Visible;
+            cheatTextStackpanel.Visibility = Visibility.Collapsed;
+        }
 
         
     }  //end class
@@ -641,5 +894,13 @@ namespace PhoneDirect3DXamlAppInterop
         public bool HasGS { get; set; }
         public string ARLink { get; set; }
         public string GSLink { get; set; }
+    }
+
+    public class CheatText
+    {
+        public string Title { get; set; }
+        public string Text { get; set; }
+        public string TextHtml { get; set; }
+        public string Url { get; set; } //for AR code we cannot get the link right away, so need this one
     }
 }

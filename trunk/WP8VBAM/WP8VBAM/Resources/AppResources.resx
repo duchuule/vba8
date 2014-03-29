@@ -271,7 +271,8 @@ Credits:
 - Leutrim Shabani for German translation.
 - Giordano Piacentini for Italian translation.
 - Sami Piispanen for Finnish translation.
-- Shay Livyatan for Hebrew translation.</value>
+- Shay Livyatan for Hebrew translation.
+- Adam Yowanda for Indonesian translation.</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -1258,5 +1259,8 @@ Device ID: {0}</value>
   </data>
   <data name="SearchForCheatsText" xml:space="preserve">
     <value>Search for cheats</value>
+  </data>
+  <data name="TapToReturnText" xml:space="preserve">
+    <value>Tap here to return to cheat list.</value>
   </data>
 </root>

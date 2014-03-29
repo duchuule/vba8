@@ -17,8 +17,8 @@
     <Language code="he-IL" />
     <!--<Language code="hi-IN" />
     <Language code="hr" />
-    <Language code="hu-HU" />
-    <Language code="id-ID" />-->
+    <Language code="hu-HU" />-->
+    <Language code="id-ID" />
     <Language code="it" />
     <!--<Language code="ja-JP" />
     <Language code="ko-KR" />
@@ -38,7 +38,7 @@
     <Language code="zh-Hans" />
     <!--<Language code="zh-Hant" />-->
   </Languages>
-  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" Title="VGBC8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Duc Le" Description="" Publisher="Duc Le" PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
+  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" Title="VBA8 Beta" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Duc Le" Description="" Publisher="Duc Le" PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIconFilledGBC.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -97,8 +97,8 @@
         </Logos>
         <SupportedFileTypes>
           <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8</FileType>-->
-          <FileType ContentType="application/cloudsix2vba8">.cloudsix2vgbc8</FileType>
-          <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8beta</FileType>-->
+          <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vgbc8</FileType>-->
+          <FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8beta</FileType>
           <FileType ContentType="application/gba">.gba</FileType>
           <FileType ContentType="application/gbc">.gbc</FileType>
           <FileType ContentType="application/gbc">.gb</FileType>
