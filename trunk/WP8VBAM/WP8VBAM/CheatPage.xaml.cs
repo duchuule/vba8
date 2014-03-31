@@ -15,8 +15,6 @@ using PhoneDirect3DXamlAppComponent;
 using System.Windows.Media;
 using Telerik.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Net;
-using System.Text.RegularExpressions;
 using DucLe.Extensions;
 using System.IO;
 using SharpGIS;
@@ -28,7 +26,6 @@ namespace PhoneDirect3DXamlAppInterop
         private string game;
         private ROMDBEntry romEntry;
         private List<CheatData> cheatCodes = new List<CheatData>();
-        private bool initdone = false;
 
         public Popup popupWindow = null;
 
@@ -300,15 +297,34 @@ namespace PhoneDirect3DXamlAppInterop
 
         private string[] GetCodes(string code)
         {
+            //more information about cheat code format
+            //https://answers.yahoo.com/question/index?qid=20060928025359AAQkTkf
+
+            //determine if gameboy or gameboy advance
+            bool isGBA = false; //false if gameboy, true if gameboy advance
+            string extension = Path.GetExtension(romEntry.FileName).ToLower();
+
+            if (extension == ".gba")
+                isGBA = true;
+
             string[] codeParts = code.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] codes = new string[codeParts.Length];
+            List<string> codes = new List<string>();
+
+            //string[] codes = new string[codeParts.Length];
+
+            StringBuilder sb = new StringBuilder();
+            bool continuedFromLast = false;
+
             for (int i = 0; i < codeParts.Length; i++)
             {
 
                 string codePart = codeParts[i].ToUpper().Trim().Replace("\t", "");
                 string tmp = Regex.Replace(codePart, "[\t\r]", "");
                 tmp = Regex.Replace(tmp, "[-]", "");
-                StringBuilder sb = new StringBuilder();
+
+                if (continuedFromLast == false) //reset the string builder if not continued from last time
+                    sb = new StringBuilder();
+
                 if (tmp.Length == 6)
                 {
                     sb.Append(tmp.Substring(0, 3));
@@ -323,9 +339,23 @@ namespace PhoneDirect3DXamlAppInterop
                     sb.Append('-');
                     sb.Append(tmp.Substring(6, 3));
                 }
-                else if (tmp.Length == 8)  // 12345678
+                else if (tmp.Length == 8)  // 12345678, 
                 {
-                    sb.Append(tmp);
+                    if (isGBA)  //convert to 12345678 12345678 format for gameboy advance game
+                    {
+                        if (continuedFromLast) //this is the second part
+                        {
+                            sb.Append(" " + tmp);
+                            continuedFromLast = false;
+                        }
+                        else
+                        {
+                            sb.Append(tmp);
+                            continuedFromLast = true;
+                        }
+                    }
+                    else
+                        sb.Append(tmp);
                 }
                 else if (tmp.Length == 12) //123456781234
                 {
@@ -344,10 +374,12 @@ namespace PhoneDirect3DXamlAppInterop
                     //sb.Append(tmp.Substring(8, 8));
                     sb.Append(tmp);
                 }
-                codes[i] = sb.ToString();
+
+                if (continuedFromLast == false)
+                    codes.Add(sb.ToString());
             }
 
-            return codes;
+            return codes.ToArray() ;
         }
 
         private bool CheckCodeFormat(string code, Action<String> messageCallback)
@@ -749,11 +781,11 @@ namespace PhoneDirect3DXamlAppInterop
 
                 }
 
-                //htmlstring += "</body></html>";
 
                 codeList.DataContext = CheatTextList;
-                //codeList.NavigateToString(htmlstring);
 
+
+                
                 gameList.Visibility = Visibility.Collapsed;
                 codeList.Visibility = Visibility.Visible;
                 cheatTextStackpanel.Visibility = Visibility.Collapsed;
@@ -869,7 +901,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             }
 
-           cheatTextStackpanel.DataContext = cheatText;
+            cheatTextStackpanel.DataContext = cheatText;
             cheatTextBox.NavigateToString(cheatText.TextHtml);
 
             gameList.Visibility = Visibility.Collapsed;
