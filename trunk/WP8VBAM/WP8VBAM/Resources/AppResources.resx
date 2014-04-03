@@ -1263,4 +1263,10 @@ Device ID: {0}</value>
   <data name="TapToReturnText" xml:space="preserve">
     <value>Tap here to return to cheat list.</value>
   </data>
+  <data name="UseAccentBackgroundText" xml:space="preserve">
+    <value>Use system accent color for live tile</value>
+  </data>
+  <data name="UnpinTilePromptText" xml:space="preserve">
+    <value>Please unpin/repin the tile for the change to take effect.</value>
+  </data>
 </root>

@@ -333,6 +333,10 @@
       <DependentUpon>ImageCroppingPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Imaging\ControlToPng.cs" />
+    <Compile Include="Imaging\EditableImage.cs" />
+    <Compile Include="Imaging\PngEncoder.cs" />
+    <Compile Include="Imaging\WriteableBitmapEx.cs" />
     <Compile Include="LastPlayedConverter.cs" />
     <Compile Include="LicensePage.xaml.cs">
       <DependentUpon>LicensePage.xaml</DependentUpon>

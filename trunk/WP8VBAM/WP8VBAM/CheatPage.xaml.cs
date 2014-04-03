@@ -87,9 +87,26 @@ namespace PhoneDirect3DXamlAppInterop
                 //Keep the back button from navigating away from the current page
                 e.Cancel = true;
             }
+            else if (mainPivot.SelectedItem == this.searchPivot
+                && (cheatTextStackpanel.Visibility == Visibility.Visible || codeList.Visibility == Visibility.Visible)) //in cheat page and browser windows open
+            {
+                if (cheatTextStackpanel.Visibility == Visibility.Visible)
+                {
+                    gameList.Visibility = Visibility.Collapsed;
+                    codeList.Visibility = Visibility.Visible;
+                    cheatTextStackpanel.Visibility = Visibility.Collapsed;
+                }
+                else if (codeList.Visibility == Visibility.Visible)
+                {
+                    gameList.Visibility = Visibility.Visible;
+                    codeList.Visibility = Visibility.Collapsed;
+                    cheatTextStackpanel.Visibility = Visibility.Collapsed;
+                }
+                e.Cancel = true;
+            }
             else
             {
-                //There is no PopUp open, save then go back
+                //There is no PopUp open and no browser windows open, save then go back
                 e.Cancel = true;
 
 
@@ -240,7 +257,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (this.pivot.SelectedItem == this.listPivot)
+            if (this.mainPivot.SelectedItem == this.listPivot)
             {
                 this.ShowAppBar();
             }
@@ -854,6 +871,9 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async void codeList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            if (codeList.SelectedItem == null)
+                return;
+
             CheatText cheatText = (CheatText)codeList.SelectedItem;
             codeList.SelectedItem = null;
 
@@ -914,6 +934,8 @@ namespace PhoneDirect3DXamlAppInterop
             codeList.Visibility = Visibility.Visible;
             cheatTextStackpanel.Visibility = Visibility.Collapsed;
         }
+
+
 
         
     }  //end class

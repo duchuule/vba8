@@ -238,6 +238,7 @@ namespace PhoneDirect3DXamlAppInterop
                 SetupAutoBackupBtn.Visibility = System.Windows.Visibility.Collapsed;
 
 
+            this.chkUseAccentColor.IsChecked = App.metroSettings.UseAccentColor;
 
 
 
@@ -917,6 +918,24 @@ namespace PhoneDirect3DXamlAppInterop
 
             }
         }
+
+        private void chkUseAccentColor_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (initdone)
+            {
+
+                App.metroSettings.UseAccentColor = chkUseAccentColor.IsChecked.Value;
+
+                MessageBox.Show(AppResources.UnpinTilePromptText);
+
+                FileHandler.UpdateLiveTile(true);
+
+                
+
+            }
+        }
+
+
 
 
         

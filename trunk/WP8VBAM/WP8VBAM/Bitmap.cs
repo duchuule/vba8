@@ -5,7 +5,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI;
+using System.Windows.Media;
 
 
 namespace PhoneDirect3DXamlAppInterop
