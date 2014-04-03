@@ -214,7 +214,7 @@ namespace PhoneDirect3DXamlAppInterop.Database
             return this.context.ROMTable
                 .Where(r => !r.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT) && !r.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT_ALT))
                 .OrderByDescending(r => r.LastPlayed)
-                .Take(3)
+                .Take(9)
                 .Select(r => r.SnapshotURI)
                 .ToArray();
         }

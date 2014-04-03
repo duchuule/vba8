@@ -3249,11 +3249,29 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please unpin/repin the tile for the change to take effect..
+        /// </summary>
+        public static string UnpinTilePromptText {
+            get {
+                return ResourceManager.GetString("UnpinTilePromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exporting &apos;{0}&apos;.
         /// </summary>
         public static string UploadProgressText {
             get {
                 return ResourceManager.GetString("UploadProgressText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use system accent color for live tile.
+        /// </summary>
+        public static string UseAccentBackgroundText {
+            get {
+                return ResourceManager.GetString("UseAccentBackgroundText", resourceCulture);
             }
         }
         

@@ -13,8 +13,10 @@ using Microsoft.Phone.Shell;
 using PhoneDirect3DXamlAppInterop.Resources;
 using Windows.Phone.Storage.SharedAccess;
 using PhoneDirect3DXamlAppComponent;
-using Windows.UI;
+using System.Windows.Media;
 using System.IO;
+using System.Windows.Resources;
+using DucLe.Imaging;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -34,6 +36,7 @@ namespace PhoneDirect3DXamlAppInterop
         public static DateTime DEFAULT_DATETIME = new DateTime(1989, 02, 22);
 
         public static String DEFAULT_BACKGROUND_IMAGE = "Assets/GameboyAdvance.jpg";
+        public static String CUSTOM_TILE_FILENAME = "myCustomTile1.png";
 
 
         public static BitmapImage getBitmapImage(String path, String default_path)
@@ -220,7 +223,7 @@ namespace PhoneDirect3DXamlAppInterop
             //}
         }
 
-        public static void UpdateLiveTile()
+        public static void UpdateLiveTile(bool shouldUpdateTileColor = false)
         {
             ROMDatabase db = ROMDatabase.Current;
             ShellTile tile = ShellTile.ActiveTiles.FirstOrDefault();
@@ -231,42 +234,111 @@ namespace PhoneDirect3DXamlAppInterop
             data.Title = AppResources.ApplicationTitle2;
 #endif
             IEnumerable<String> snapshots = db.GetRecentSnapshotList();
-            List<Uri> uris = new List<Uri>(snapshots.Count());
+            List<Uri> uris = new List<Uri>();
             if (snapshots.Count() == 0)
             {
-                for (int i = 0; i < 9; i++)
-                {
 #if !GBC
                     uris.Add(new Uri("Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative));
 #else
                     uris.Add(new Uri("Assets/Tiles/FlipCycleTileLargeGBC.png", UriKind.Relative));
 #endif
-                }
             }
             else
             {
-                int x = 0;
-                for (int j = 0; j <= (3 - snapshots.Count()); j++)
+                foreach (var snapshot in snapshots)
                 {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        foreach (var snapshot in snapshots)
-                        {
-                            uris.Add(new Uri("isostore:/" + snapshot, UriKind.Absolute));
-                            x++;
-                            if (x >= 9)
-                            {
-                                i = j = 3;
-                                break;
-                            }
-                        }
-                    }
+                    uris.Add(new Uri("isostore:/" + snapshot, UriKind.Absolute));
                 }
 
             }
             data.CycleImages = uris;
 
+            //this is safeguard, check to see if the background image exists (may not exist after last run due to error)
+            bool imageExists = false;
+
+            using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                imageExists = store.FileExists("/Shared/ShellContent/" + CUSTOM_TILE_FILENAME);
+            }
+
+            if (shouldUpdateTileColor || !imageExists) //then update the tile color
+            {
+#if GBC
+                Uri logo = new Uri("Assets/Tiles/FlipCycleTileSmallGBC.png", UriKind.Relative);
+#else
+                Uri logo = new Uri("Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative);
+#endif
+                if (App.metroSettings.UseAccentColor)
+                    data.SmallBackgroundImage = CreateAndSavePNGToIsolatedStorage(logo, Color.FromArgb(0,0,0,0)); //completely transparent
+                else
+                    data.SmallBackgroundImage = CreateAndSavePNGToIsolatedStorage(logo, (Color)App.Current.Resources["SystemTrayColor"]);
+            }
+
             tile.Update(data);
+        }
+
+        private static Uri CreateAndSavePNGToIsolatedStorage(Uri logo, Color tileColor)
+        {
+            // Obtain the virtual store for the application.
+            using (IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream("Shared/ShellContent/" + CUSTOM_TILE_FILENAME, FileMode.Create, myStore))
+                {
+                    using (Stream pngStream = RenderAsPNGStream(logo, tileColor))
+                    {
+                        pngStream.CopyTo(fileStream);
+                    }
+                }
+            }
+
+            return new Uri("isostore:/" + "Shared/ShellContent/" + CUSTOM_TILE_FILENAME, UriKind.Absolute);
+        }
+
+        private static Stream RenderAsPNGStream(Uri logo, Color tileColor)
+        {
+            try
+            {
+                StreamResourceInfo info;
+
+                info = Application.GetResourceStream(logo);
+
+                // create source bitmap for Image control (image is assumed to be alread 173x173)
+                WriteableBitmap wbmp3 = new WriteableBitmap(1, 1);
+                try
+                {
+                    wbmp3.SetSource(info.Stream);
+                }
+                catch
+                {
+                }
+
+                WriteableBitmap wb = WriteableBitmapEx.CreateTile(wbmp3, tileColor);
+
+
+
+                EditableImage edit = new EditableImage(wb.PixelWidth, wb.PixelHeight);
+
+                for (int y = 0; y < wb.PixelHeight; ++y)
+                {
+                    for (int x = 0; x < wb.PixelWidth; ++x)
+                    {
+                        try
+                        {
+                            byte[] rgba = ControlToPng.ExtractRGBAfromPremultipliedARGB(wb.Pixels[wb.PixelWidth * y + x]);
+                            edit.SetPixel(x, y, rgba[0], rgba[1], rgba[2], rgba[3]);
+                        }
+                        catch (Exception ex)
+                        { }
+                    }
+                }
+
+                return edit.GetStream();
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public static void DeleteROMTile(string romFileName)

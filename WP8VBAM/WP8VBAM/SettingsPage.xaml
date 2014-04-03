@@ -454,8 +454,16 @@
                                Style="{StaticResource MyTitle1Style}" />
                     </phone:PivotItem.Header>
                     <ListBox>
-
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox x:Name="chkUseAccentColor" 
+                                          Tap="chkUseAccentColor_Tap" >
+                            <TextBlock Text="{Binding Path=LocalizedResources.UseAccentBackgroundText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+                        
+                       
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox IsChecked="false" 
                                       Name="autoBackupSwitch"
                                       Click="autoBackupSwitch_Click"
