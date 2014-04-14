@@ -7,6 +7,7 @@
 
 using namespace Platform;
 using namespace Windows::UI::Input;
+using namespace Windows::Phone::Devices::Notification;
 
 
 namespace Emulator
@@ -122,5 +123,8 @@ namespace Emulator
 		int rTop;
 	private:
 		static VirtualController *singleton;
+		VibrationDevice ^vibrationDevice;
+		bool CheckTouchableArea(Windows::Foundation::Point p);
+
 	};
 }

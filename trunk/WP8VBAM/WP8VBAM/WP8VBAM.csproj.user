@@ -10,11 +10,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
+    <CurrentDeployID>30E884A8-265A-4089-B226-AD2326862248</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
+    <CurrentDeployID>30E884A8-265A-4089-B226-AD2326862248</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
@@ -41,7 +41,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugGBC|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
+    <CurrentDeployID>30E884A8-265A-4089-B226-AD2326862248</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugTrialGBC|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
@@ -49,7 +49,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseGBC|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
+    <CurrentDeployID>30E884A8-265A-4089-B226-AD2326862248</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugDevice|ARM'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
@@ -61,11 +61,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugDevice|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
+    <CurrentDeployID>30E884A8-265A-4089-B226-AD2326862248</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseBeta|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>5E7661DF-D928-40ff-B747-A4B1957194F9</CurrentDeployID>
+    <CurrentDeployID>30E884A8-265A-4089-B226-AD2326862248</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
@@ -96,7 +96,7 @@
       <FlavorProperties GUID="{C089C8C0-30E0-4E22-80C0-CE093F111A43}">
         <SilverlightMobileCSProjectFlavor>
           <FullDeploy>False</FullDeploy>
-          <DebuggerType>Managed</DebuggerType>
+          <DebuggerType>Native</DebuggerType>
           <DebuggerAgentType>Managed</DebuggerAgentType>
           <Tombstone>False</Tombstone>
         </SilverlightMobileCSProjectFlavor>

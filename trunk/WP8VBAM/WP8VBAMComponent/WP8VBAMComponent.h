@@ -54,6 +54,8 @@ public:
 	property SavestateSelectedCallback ^SavestateSelected;
 	property SnapshotCallback ^SnapshotAvailable;
 	property SavestateCreatedCallback ^SavestateCreated;
+	property static WrongCheatVersionCallback ^WrongCheatVersion;
+
 	property Windows::Foundation::Size WindowBounds;
 	property Windows::Foundation::Size NativeResolution;
 	property Windows::Foundation::Size RenderResolution;

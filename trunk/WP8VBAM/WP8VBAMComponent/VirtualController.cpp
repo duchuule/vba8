@@ -33,6 +33,8 @@ namespace Emulator
 		InitializeCriticalSectionEx(&this->cs, 0, 0);
 		this->pointers = ref new Platform::Collections::Map<unsigned int, PointerPoint ^>();
 		this->pointerDescriptions = ref new Platform::Collections::Map<unsigned int, String^>();
+		vibrationDevice = VibrationDevice::GetDefault();
+
 		singleton = this;
 	}
 
@@ -366,12 +368,22 @@ namespace Emulator
 		this->UpdateFormat(this->format);
 	}
 
+	bool VirtualController::CheckTouchableArea(Windows::Foundation::Point p)
+	{
+		if (this->stickBoundaries.Contains(p) || this->aRect.Contains(p) || this->bRect.Contains(p) || this->lRect.Contains(p)
+			|| this->rRect.Contains(p) || this->startRect.Contains(p) || this->selectRect.Contains(p))
+			return true;
+
+		else
+			return false;
+
+	}
+
 	void VirtualController::PointerPressed(PointerPoint ^point)
 	{
 		EnterCriticalSection(&this->cs);
 		this->pointers->Insert(point->PointerId, point);
 		this->pointerDescriptions->Insert(point->PointerId, "");
-		
 
 		Windows::Foundation::Point p;
 
@@ -387,6 +399,16 @@ namespace Emulator
 				p.Y = this->touchHeight - p.Y;
 			}
 		}
+
+		if (EmulatorSettings::Current->VibrationEnabled && CheckTouchableArea(p))
+		{
+			Windows::Foundation::TimeSpan time;
+			time.Duration = 10000000 * EmulatorSettings::Current->VibrationDuration;
+
+			vibrationDevice->Vibrate( time);
+		}
+
+		
 
 
 		int dpad = EmulatorSettings::Current->DPadStyle;

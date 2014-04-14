@@ -257,22 +257,7 @@ The author is not responsible for any illegal use of this software. Furthermore,
 Credits:
 - Eddi Bento for logo design.
 - MOGA company for the surprised gift.
-- Sergy Ortiz Puerto for Spanish translation.
-- André Queiroz for Portuguese translation.
-- Arda Ozkal for Turkish translation.
-- Alexandros Melissas for Greek translation.
-- Łukasz Deptuła for Polish translation.
-- Junfan Yao for Simplifed Chinese translation.
-- wphone08 for French translation.
-- Jesper Svensson for Swedish translation.
-- Alexander Kolosov for Russian translation.
-- Usama Jawad for Urdu translation.
-- Mathias Haugsbø for Norwegian (Nynorsk) translation.
-- Leutrim Shabani for German translation.
-- Giordano Piacentini for Italian translation.
-- Sami Piispanen for Finnish translation.
-- Shay Livyatan for Hebrew translation.
-- Adam Yowanda for Indonesian translation.</value>
+- Translation: Sergy Ortiz Puerto (Spanish), André Queiroz (Portuguese), Arda Ozkal (Turkish), Alexandros Melissas (Greek), Łukasz Deptuła (Polish), Junfan Yao (Simplifed Chinese), wphone08 (French), Jesper Svensson (Swedish), Alexander Kolosov (Russian), Usama Jawad (Urdu), Mathias Haugsbø (Norwegian Nynorsk), Leutrim Shabani (German), Giordano Piacentini (Italian),  Sami Piispanen (Finnish), Shay Livyatan (Hebrew), Adam Yowanda (Indonesian), Krit Visitstump (Thai).</value>
   </data>
   <data name="AboutSnes9xLicense" xml:space="preserve">
     <value>GNU Public License:</value>
@@ -430,8 +415,8 @@ Credits:
   <data name="ImageScaleSetting" xml:space="preserve">
     <value>Scale Image (landscape only)</value>
   </data>
-  <data name="TurboModeTip" xml:space="preserve">
-    <value>Note: Turbo Mode will be assigned to L or R if the camera button is assigned to L or R.</value>
+  <data name="TurboModeTip2" xml:space="preserve">
+    <value>Note: A half press will activate the function until the camera button is released. A full press will toggle auto fire mode.</value>
   </data>
   <data name="SkyDriveInternetLost" xml:space="preserve">
     <value>Cannot connect to OneDrive. Check your internet connection.</value>
@@ -1173,7 +1158,7 @@ Device ID: {0}</value>
     <value>select none</value>
   </data>
   <data name="AutoSaveWarning" xml:space="preserve">
-    <value>Only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?</value>
+    <value>WARNING: only check this box if you use quick save function. Your game saves may be wiped if you relies on in-game save function. Do you want to continue?</value>
   </data>
   <data name="CloudSixOneFileLimitText" xml:space="preserve">
     <value>CloudSix only supports exporting one file at a time unless you choose "Export as zip".</value>
@@ -1268,5 +1253,26 @@ Device ID: {0}</value>
   </data>
   <data name="UnpinTilePromptText" xml:space="preserve">
     <value>Please unpin/repin the tile for the change to take effect.</value>
+  </data>
+  <data name="CheatWrongVersionText" xml:space="preserve">
+    <value>Cheat code {0} is for rom {1} while the current rom is {2}. It will not work and may cause problems. This happens mostly because you are using a EU cheat code with a US rom or vice versa.</value>
+  </data>
+  <data name="CheatWrongVersionTitle" xml:space="preserve">
+    <value>Incompatible cheat code!</value>
+  </data>
+  <data name="VibrationDurationErrorText" xml:space="preserve">
+    <value>Vibration duration has to be between 0 and 5 seconds</value>
+  </data>
+  <data name="VibrationDurationText" xml:space="preserve">
+    <value>Vibration duration (seconds)</value>
+  </data>
+  <data name="VibrationSettingText" xml:space="preserve">
+    <value>Vibrate when keys are pressed</value>
+  </data>
+  <data name="CameraAssignA" xml:space="preserve">
+    <value>A-Button</value>
+  </data>
+  <data name="CameraAssignB" xml:space="preserve">
+    <value>B-Button</value>
   </data>
 </root>

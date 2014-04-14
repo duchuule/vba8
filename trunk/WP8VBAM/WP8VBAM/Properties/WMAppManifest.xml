@@ -29,8 +29,9 @@
     <Language code="pt" />
     <Language code="qps-ploc" />
     <Language code="ru-RU" />
+    <!--<Language code="sr-Latn" />-->
     <Language code="sv" />
-    <!--<Language code="th-TH" />-->
+    <Language code="th-TH" />
     <Language code="tr-TR" />
     <!--<Language code="uk-UA" />
     <Language code="ur" />
