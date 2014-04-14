@@ -9,6 +9,8 @@ using namespace PhoneDirect3DXamlAppComponent;
 extern bool synchronize;
 
 bool enableTurboMode = false;
+bool autoFireToggle = false;
+int autoFire = 0;
 
 void log(const char *,...) { }
 
@@ -258,6 +260,10 @@ u32 systemReadJoypad(int gamepad)
 			res |= 64;
 		if(state->DownPressed || down)
 			res |= 128;
+		if(state->RPressed || r)
+			res |= 256;
+		if(state->LPressed || l)
+			res |= 512;
 
 		// disallow left + right or up + down of being pressed at the same time
 		if((res & 48) == 48)
@@ -266,55 +272,35 @@ u32 systemReadJoypad(int gamepad)
 			res &= ~128;
 
 
+		//set the value for autoFire key depending on the setting
+		if(settings->CameraButtonAssignment == 1) //R button
+			autoFire = 256;
+		else if (settings->CameraButtonAssignment == 2) //L button
+			autoFire = 512;
+		else if (settings->CameraButtonAssignment == 3) //A button
+			autoFire = 1;
+		else if (settings->CameraButtonAssignment == 4) //B button
+			autoFire = 2;
+		else
+			autoFire = 0;
 
 
-
-
-		
-	
-		if(settings->CameraButtonAssignment == 0)
+		if (enableTurboMode) //this is true when camera button is pressed
 		{
-			if(enableTurboMode && !settings->IsTrial)
-			{ 
+			if(settings->CameraButtonAssignment == 0)
+			{
 				// Speed
 				res |= 1024;
+
 			}
-			if(state->RPressed | r)
-				res |= 256;
-			if(state->LPressed | l)
-				res |= 512;
-		}else if(settings->CameraButtonAssignment == 1)
-		{
-			if(enableTurboMode)
-			{ 
-				// R Button
-				res |= 256;
+			else if (autoFire)
+			{
+				res &= (~autoFire);
+				if (autoFireToggle)
+					res |= autoFire;
+				autoFireToggle = !autoFireToggle;
 			}
-			if((state->RPressed | r) && !settings->IsTrial)
-				res |= 1024;
-			if(state->LPressed | l)
-				res |= 512;
-		}else if(settings->CameraButtonAssignment == 2)
-		{
-			if(enableTurboMode)
-			{ 
-				// L Button
-				res |= 512;
-			}
-			if(state->RPressed | r)
-				res |= 256;
-			if((state->LPressed | l) && !settings->IsTrial)
-				res |= 1024;
-		}else if(settings->CameraButtonAssignment == 3)
-		{
-			if(enableTurboMode)
-			{ 
-				// L + R Button
-				res |= 512;
-				res |= 256;
-			}
-			if((state->LPressed || state->RPressed || l || r) && !settings->IsTrial)
-				res |= 1024;
+			
 		}
 	}
 	catch (exception ex) 

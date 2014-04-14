@@ -829,7 +829,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 if (!isoSettings.Contains(SettingsPage.SyncAudioKey))
                 {
-                    isoSettings[SettingsPage.SyncAudioKey] = true;
+                    isoSettings[SettingsPage.SyncAudioKey] = false;
                 }
                 if (!isoSettings.Contains(SettingsPage.PowerSaverKey))
                 {
@@ -902,6 +902,14 @@ namespace PhoneDirect3DXamlAppInterop
                 if (!isoSettings.Contains(SettingsPage.VirtualControllerStyleKey))
                 {
                     isoSettings[SettingsPage.VirtualControllerStyleKey] = 0;
+                }
+                if (!isoSettings.Contains(SettingsPage.VibrationEnabledKey))
+                {
+                    isoSettings[SettingsPage.VibrationEnabledKey] = false;
+                }
+                if (!isoSettings.Contains(SettingsPage.VibrationDurationKey))
+                {
+                    isoSettings[SettingsPage.VibrationDurationKey] = 0.02; //in seconds
                 }
 
                 //get default controller position
@@ -1096,6 +1104,8 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.BgcolorB = (int)isoSettings[SettingsPage.BgcolorBKey];
                 settings.AutoSaveLoad = (bool)isoSettings[SettingsPage.AutoSaveLoadKey];
                 settings.VirtualControllerStyle = (int)isoSettings[SettingsPage.VirtualControllerStyleKey];
+                settings.VibrationEnabled = (bool)isoSettings[SettingsPage.VibrationEnabledKey];
+                settings.VibrationDuration = (double)isoSettings[SettingsPage.VibrationDurationKey];
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
                 settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
@@ -1179,7 +1189,8 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.BgcolorBKey] = settings.BgcolorB;
             isoSettings[SettingsPage.AutoSaveLoadKey] = settings.AutoSaveLoad;
             isoSettings[SettingsPage.VirtualControllerStyleKey] = settings.VirtualControllerStyle;
-
+            isoSettings[SettingsPage.VibrationEnabledKey] = settings.VibrationEnabled;
+            isoSettings[SettingsPage.VibrationDurationKey] = settings.VibrationDuration;
             isoSettings.Save();
         }
 

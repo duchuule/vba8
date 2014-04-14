@@ -465,6 +465,31 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
+		property bool VibrationEnabled
+		{
+			bool get(void) { return this->vibrationEnabled; }
+			void set(bool value) 
+			{ 
+				this->vibrationEnabled = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+		property double VibrationDuration
+		{
+			double get(void) { return this->vibrationDuration; }
+			void set(double value) 
+			{ 
+				this->vibrationDuration = value; 
+				if(this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
 
 		EmulatorSettings(void);
 
@@ -544,6 +569,8 @@ namespace PhoneDirect3DXamlAppComponent
 		int bgcolorB;
 		bool autoSaveLoad;
 		int virtualControllerStyle;
+		bool vibrationEnabled;
+		double vibrationDuration; //in second
 
 
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;

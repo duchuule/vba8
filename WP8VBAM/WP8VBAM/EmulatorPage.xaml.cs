@@ -258,6 +258,14 @@ namespace PhoneDirect3DXamlAppInterop
             }));
         }
 
+        private void wrongCheatVersion(string code, string cheatRomID, string currentRomID)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                MessageBox.Show(String.Format(AppResources.CheatWrongVersionText, code, cheatRomID, currentRomID), AppResources.CheatWrongVersionTitle, MessageBoxButton.OK);
+            }));
+        }
+
         void ContinueEmulation()
         {
             if (this.ApplicationBar != null)
@@ -473,7 +481,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         void CameraButtons_ShutterKeyReleased(object sender, EventArgs e)
         {
-            if (this.m_d3dBackground != null && (wasHalfPressed || EmulatorSettings.Current.CameraButtonAssignment != 0))
+            if (this.m_d3dBackground != null && (wasHalfPressed))
             {
                 this.m_d3dBackground.StopTurboMode();
                 wasHalfPressed = false;
@@ -482,50 +490,29 @@ namespace PhoneDirect3DXamlAppInterop
 
         void CameraButtons_ShutterKeyHalfPressed(object sender, EventArgs e)
         {
-            if (EmulatorSettings.Current.CameraButtonAssignment == 0)
-            {   // Turbo button
-                if (!App.IsTrial)
-                {
-                    if (this.m_d3dBackground != null)
-                    {
-                        wasHalfPressed = true;
-                        this.m_d3dBackground.StartTurboMode();
-                    }
-                }
+            //start turbo mode but note that the key was half-pressed, so turbo mode will be stopped as soon as the key is released
+            if (this.m_d3dBackground != null)
+            {
+                wasHalfPressed = true;
+                this.m_d3dBackground.StartTurboMode();
             }
-            else
-            {   // L or R button
-                if (this.m_d3dBackground != null)
-                {
-                    wasHalfPressed = true;
-                    this.m_d3dBackground.StartTurboMode();
-                }
-            }
+
         }
 
         void CameraButtons_ShutterKeyPressed(object sender, EventArgs e)
         {
-            if (EmulatorSettings.Current.CameraButtonAssignment == 0)
-            {   // Turbo button
+            //toggle turbo mode
 
-                if (this.m_d3dBackground != null)
+            if (this.m_d3dBackground != null)
+            {
+                if (!wasHalfPressed)
                 {
-                    if (!wasHalfPressed)
-                    {
-                        this.m_d3dBackground.ToggleTurboMode();
-                    }
-                    wasHalfPressed = false;
+                    this.m_d3dBackground.ToggleTurboMode();
                 }
+                wasHalfPressed = false;
+            }
 
-            }
-            else
-            {   // L or R button
-                if (this.m_d3dBackground != null)
-                {
-                    this.m_d3dBackground.StartTurboMode();
-                    wasHalfPressed = false;
-                }
-            }
+           
         }
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
@@ -576,6 +563,7 @@ namespace PhoneDirect3DXamlAppInterop
                 this.m_d3dBackground.SnapshotAvailable = FileHandler.CaptureSnapshot;
                 this.m_d3dBackground.SavestateCreated = FileHandler.CreateSavestate;
                 this.m_d3dBackground.SavestateSelected = this.savestateSelected;
+                Direct3DBackground.WrongCheatVersion = this.wrongCheatVersion;
                 this.InitAppBar();
 
                 // Set window bounds in dips

@@ -59,6 +59,8 @@ namespace PhoneDirect3DXamlAppInterop
         public const String BgcolorBKey = "BgcolorBKey";
         public const String AutoSaveLoadKey = "AutSaveLoadKey";
         public const String VirtualControllerStyleKey = "VirtualControllerStyleKey";
+        public const String VibrationEnabledKey = "VibrationEnabledKey";
+        public const String VibrationDurationKey = "VibrationDurationKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -241,6 +243,12 @@ namespace PhoneDirect3DXamlAppInterop
             this.chkUseAccentColor.IsChecked = App.metroSettings.UseAccentColor;
 
 
+            this.toggleVibration.IsChecked = emuSettings.VibrationEnabled;
+
+            if (emuSettings.VibrationEnabled)
+                this.txtVibrationDuration.Visibility = Visibility.Visible;
+            else
+                this.txtVibrationDuration.Visibility = Visibility.Collapsed;
 
             this.Loaded += (o, e) =>
             {
@@ -257,6 +265,8 @@ namespace PhoneDirect3DXamlAppInterop
                 this.virtualControlStyleBox.SelectedIndex = emuSettings.VirtualControllerStyle;
 
                 this.backgroundOpacitySlider.Value = App.metroSettings.BackgroundOpacity * 100;
+
+                this.txtVibrationDuration.Text = emuSettings.VibrationDuration.ToString();
 
             
                 initdone = true;
@@ -933,6 +943,36 @@ namespace PhoneDirect3DXamlAppInterop
                 
 
             }
+        }
+
+        private void toggleVibration_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (initdone)
+            {
+                EmulatorSettings.Current.VibrationEnabled = this.toggleVibration.IsChecked.Value;
+
+                if (EmulatorSettings.Current.VibrationEnabled)
+                    txtVibrationDuration.Visibility = Visibility.Visible;
+                else
+                    txtVibrationDuration.Visibility = Visibility.Collapsed;
+            }
+        }
+
+
+        private void txtVibrationDuration_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            double duration = 0;
+
+            if (txtVibrationDuration.Text != "")
+                double.TryParse(txtVibrationDuration.Text, out duration); //duration = 0 if failed
+
+
+            if (duration < 0 || duration > 5)
+            {
+                MessageBox.Show(AppResources.VibrationDurationErrorText);
+                return;
+            }
+            EmulatorSettings.Current.VibrationDuration = duration;
         }
 
 

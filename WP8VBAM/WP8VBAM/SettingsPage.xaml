@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input" 
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:local="clr-namespace:PhoneDirect3DXamlAppInterop"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -59,8 +60,27 @@
                         <TextBlock Text="{Binding Path=LocalizedResources.InputSettingsPageTitle, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource MyTitle1Style}" />
                     </phone:PivotItem.Header>
+                    
+                    
                     <ListBox>
+
                         <ListBoxItem HorizontalContentAlignment="Stretch">
+                            <toolkit:ToggleSwitch Header="{Binding Path=LocalizedResources.VibrationSettingText, Source={StaticResource LocalizedStrings}}"
+                                                x:Name="toggleVibration" 
+                                                  Tap="toggleVibration_Tap"
+                                                  Margin="0,0,0,-24"/>
+                        </ListBoxItem>
+
+                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                            <telerikPrimitives:RadTextBox x:Name="txtVibrationDuration"
+                                 Header="{Binding Path=LocalizedResources.VibrationDurationText, Source={StaticResource LocalizedStrings}}" 
+                                Visibility="Collapsed" 
+                                 TextChanged="txtVibrationDuration_TextChanged" 
+                                  Margin="0,-12,0,12"/>
+                        </ListBoxItem>
+                        
+                        
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
                             <toolkit:ToggleSwitch Header="{Binding Path=LocalizedResources.UseMogaControllerText, Source={StaticResource LocalizedStrings}}"
                                             Name="toggleUseMogaController" 
                                               Tap="toggleUseMogaController_Tap"
@@ -86,59 +106,42 @@
                        />
 
 
-                        <!--<ListBoxItem HorizontalContentAlignment="Stretch" Margin="12,0,0,0">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Path=LocalizedResources.CameraButtonAssignment, Source={StaticResource LocalizedStrings}}" 
-                                       FontSize="26"/>
-                            <RadioButton GroupName="cameraGroup" IsChecked="true" Name="cameraTurboRadio" Checked="cameraTurboRadio_Checked"
-                                         Content="{Binding Path=LocalizedResources.CameraAssignTurbo, Source={StaticResource LocalizedStrings}}" />
-                            <RadioButton GroupName="cameraGroup" Name="cameraRRadio" Checked="cameraRRadio_Checked"
-                                         Content="{Binding Path=LocalizedResources.CameraAssignR, Source={StaticResource LocalizedStrings}}" />
-                            <RadioButton GroupName="cameraGroup" Name="cameraLRadio" Checked="cameraLRadio_Checked"
-                                         Content="{Binding Path=LocalizedResources.CameraAssignL, Source={StaticResource LocalizedStrings}}" />
-                        </StackPanel>
-                    </ListBoxItem>-->
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <toolkit:ListPicker Header="{Binding Path=LocalizedResources.CameraButtonAssignment, Source={StaticResource LocalizedStrings}}" 
-                                            FullModeHeader="{Binding Path=LocalizedResources.CameraButtonAssignment, Source={StaticResource LocalizedStrings}}" 
-                                            SelectionChanged="assignPicker_SelectionChanged_1" 
-                                            Name="assignPicker" 
+                    
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <toolkit:ListPicker Header="{Binding Path=LocalizedResources.CameraButtonAssignment, Source={StaticResource LocalizedStrings}}" 
+                                        FullModeHeader="{Binding Path=LocalizedResources.CameraButtonAssignment, Source={StaticResource LocalizedStrings}}" 
+                                        SelectionChanged="assignPicker_SelectionChanged_1" 
+                                        Name="assignPicker" 
+                                        SelectedIndex="0">
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignTurbo, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignR, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignL, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignA, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignB, Source={StaticResource LocalizedStrings}}" />
+                            <!--<toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignLR, Source={StaticResource LocalizedStrings}}" />-->
+                        </toolkit:ListPicker>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <TextBlock TextWrapping="Wrap" Margin="12,0,12,20"
+                                Text="{Binding Path=LocalizedResources.TurboModeTip2, Source={StaticResource LocalizedStrings}}" />
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <toolkit:ListPicker Header="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 
+                                        FullModeHeader="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 
+                                        SelectionChanged="dpadStyleBox_SelectionChanged_1"
+                                            Name="dpadStyleBox" 
                                             SelectedIndex="0">
-                                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignTurbo, Source={StaticResource LocalizedStrings}}" />
-                                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignR, Source={StaticResource LocalizedStrings}}" />
-                                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignL, Source={StaticResource LocalizedStrings}}" />
-                                <!--<toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CameraAssignLR, Source={StaticResource LocalizedStrings}}" />-->
-                            </toolkit:ListPicker>
-                        </ListBoxItem>
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadStandard, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPad8way, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadAnalogueFixed, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadAnalogueDynamic, Source={StaticResource LocalizedStrings}}" />
+                        </toolkit:ListPicker>
+                    </ListBoxItem>
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <TextBlock TextWrapping="Wrap" Margin="12,0,12,20"
-                                   Text="{Binding Path=LocalizedResources.TurboModeTip, Source={StaticResource LocalizedStrings}}" />
-                        </ListBoxItem>
-
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <toolkit:ListPicker Header="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 
-                                            FullModeHeader="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 
-                                            SelectionChanged="dpadStyleBox_SelectionChanged_1"
-                                                Name="dpadStyleBox" 
-                                                SelectedIndex="0">
-                                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadStandard, Source={StaticResource LocalizedStrings}}" />
-                                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPad8way, Source={StaticResource LocalizedStrings}}" />
-                                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadAnalogueFixed, Source={StaticResource LocalizedStrings}}" />
-                                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.DPadAnalogueDynamic, Source={StaticResource LocalizedStrings}}" />
-                            </toolkit:ListPicker>
-                        </ListBoxItem>
-
-                        <!--<ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox IsChecked="true" 
-                                  Name="useColorButtonSwitch" 
-                                  Click="useColorButtonSwitch_Click"
-                                  >
-                            <TextBlock Text="{Binding Path=LocalizedResources.UseRealisticButtonsText, Source={StaticResource LocalizedStrings}}" 
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                        </ListBoxItem>-->
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <toolkit:ListPicker Header="{Binding Path=LocalizedResources.VirtualControllerButtonStyle, Source={StaticResource LocalizedStrings}}" 

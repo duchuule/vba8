@@ -9,6 +9,7 @@
 #include "Globals.h"
 #include "../NLS.h"
 #include "../Util.h"
+#include "WP8VBAMComponent.h"
 
 /**
  * Gameshark code types: (based on AR v1.0)
@@ -1616,10 +1617,27 @@ void cheatsAddGSACode(const char *code, const char *desc, bool v3)
     if(gamecode != address) {
       char buffer[5];
       *((u32 *)buffer) = address;
-      buffer[4] = 0;
+      buffer[4] = 0; 
+
+	  wchar_t wbuffer[5 ];
+	  mbstowcs( wbuffer, buffer, 5 );
+
+
       char buffer2[5];
       *((u32 *)buffer2) = READ32LE(((u32 *)&rom[0xac]));
       buffer2[4] = 0;
+
+	  wchar_t wbuffer2[5 ];
+	  mbstowcs( wbuffer2, buffer2, 5 );
+
+	  wchar_t wcode[17 ];
+	  mbstowcs( wcode, code, 16 );
+	  wcode[16] = 0;
+
+	  if(Direct3DBackground::WrongCheatVersion)
+	 {
+		Direct3DBackground::WrongCheatVersion(ref new Platform::String(wcode), ref new Platform::String(wbuffer), ref new Platform::String(wbuffer2));
+	 }
       /*systemMessage(MSG_GBA_CODE_WARNING, N_("Warning: cheats are for game %s. Current game is %s.\nCodes may not work correctly."),
                     buffer, buffer2);*/
     }
