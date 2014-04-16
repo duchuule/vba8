@@ -1275,4 +1275,10 @@ Device ID: {0}</value>
   <data name="CameraAssignB" xml:space="preserve">
     <value>B-Button</value>
   </data>
+  <data name="RestorePurchaseNotice" xml:space="preserve">
+    <value>ATTENTION - WP8.1 USERS: If your purchased features got deactivated, just tap on Purchase and enter your Wallet code if necessary, you will be able to restore your purchase without having to pay again.</value>
+  </data>
+  <data name="ManualSnapshotHelp" xml:space="preserve">
+    <value>If you store the app on SD Card, check this option to improve performance when exiting game. Also check this option if you want to create your own cover art.</value>
+  </data>
 </root>

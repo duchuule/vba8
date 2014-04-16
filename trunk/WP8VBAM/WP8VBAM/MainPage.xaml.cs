@@ -114,10 +114,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             
 
-#if GBC
-            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
-            //this.mainPanorama.Title = AppResources.ApplicationTitle2;
-#endif
+
         }
 
         private void SortRomList()
@@ -139,7 +136,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //var indicator = SystemTray.GetProgressIndicator(this);
+            var indicator = SystemTray.GetProgressIndicator(this);
             //indicator.IsIndeterminate = true;
 
             try
@@ -244,6 +241,12 @@ namespace PhoneDirect3DXamlAppInterop
 
             //set indicator after everything is done
             //indicator.IsIndeterminate = false;
+
+#if GBC
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle2;
+#else
+            SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle;
+#endif
             return;
         }
 
