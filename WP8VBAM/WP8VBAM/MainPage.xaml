@@ -23,7 +23,6 @@
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="False" 
                                  IsVisible="True" 
-                                 Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
                                   />
     </shell:SystemTray.ProgressIndicator>
 

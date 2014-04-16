@@ -2140,6 +2140,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you store the app on SD Card, check this option to improve performance when exiting game. Also check this option if you want to create your own cover art..
+        /// </summary>
+        public static string ManualSnapshotHelp {
+            get {
+                return ResourceManager.GetString("ManualSnapshotHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create tile pictures manually.
         /// </summary>
         public static string ManualSnapshotSetting {
@@ -2683,6 +2692,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string RestorePageTitle {
             get {
                 return ResourceManager.GetString("RestorePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ATTENTION - WP8.1 USERS: If your purchased features got deactivated, just tap on Purchase and enter your Wallet code if necessary, you will be able to restore your purchase without having to pay again..
+        /// </summary>
+        public static string RestorePurchaseNotice {
+            get {
+                return ResourceManager.GetString("RestorePurchaseNotice", resourceCulture);
             }
         }
         

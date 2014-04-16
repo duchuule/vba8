@@ -57,6 +57,11 @@
                       Grid.Row="1">
                 <StackPanel x:Name="ContentPanel" Grid.Row="1" 
                         Margin="24,0,24,0">
+                    <TextBlock Text="{Binding Path=LocalizedResources.RestorePurchaseNotice, Source={StaticResource LocalizedStrings}}" 
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,24"
+                       />
+                    
                     <TextBlock Text="{Binding Path=LocalizedResources.PremiumText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
@@ -69,12 +74,12 @@
                            
                        />
 
-                    <TextBlock Text="{Binding Path=LocalizedResources.TapMogaInstructionText, Source={StaticResource LocalizedStrings}}" 
+                    <!--<TextBlock Text="{Binding Path=LocalizedResources.TapMogaInstructionText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,0,0,12"
                             TextDecorations="Underline" Tap="TextBlock_Tap_1" 
                            
-                       />
+                       />-->
                     <TextBlock Text="{Binding Path=LocalizedResources.LoadingProductListText, Source={StaticResource LocalizedStrings}}" 
                        TextWrapping="Wrap"
                        Margin="0,48,0,12"

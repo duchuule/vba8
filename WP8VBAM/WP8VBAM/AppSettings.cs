@@ -86,6 +86,27 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
 
+        // Helper method for removing a key/value pair from isolated storage
+        public void RemoveValue(string Key)
+        {
+            // If the key exists
+            if (isolatedStore.Contains(Key))
+            {
+                isolatedStore.Remove(Key);
+            }
+        }
+
+
+        public bool Contains(string Key)
+        {
+            // If the key exists
+            if (isolatedStore.Contains(Key))
+                return true;
+            else
+                return false;
+        }
+
+
         /// <summary>
         /// Get the current value of the setting, or if it is not found, set the 
         /// setting to the default setting.
@@ -398,7 +419,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             get
             {
-                return GetValueOrDefault<bool>(UseAccentColorKey, false);
+                return GetValueOrDefault<bool>(UseAccentColorKey, true);
             }
             set
             {

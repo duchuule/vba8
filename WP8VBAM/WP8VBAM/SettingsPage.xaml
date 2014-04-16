@@ -511,16 +511,53 @@
                                        TextWrapping="Wrap"/>
                         </CheckBox>
                     </ListBoxItem>
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.ThemeText, Source={StaticResource LocalizedStrings}}" 
-                                            SelectionChanged="themePicker_SelectionChanged_1" 
-                                                    Name="themePicker" >
-                                <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.LightText, Source={StaticResource LocalizedStrings}}" />
-                                <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.DarkText, Source={StaticResource LocalizedStrings}}" />
-                            </telerikInput:RadListPicker>
-                        </ListBoxItem>
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Grid Margin="0,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="48" />
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Checked="manualSnapshotSwitch_Checked" Unchecked="manualSnapshotSwitch_Unchecked"
+                                Name="manualSnapshotSwitch" IsChecked="false"
+                                >
+                                <TextBlock Text="{Binding Path=LocalizedResources.ManualSnapshotSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                            </CheckBox>
+                            <Rectangle  Width="48" 
+                                Height="48"
+                                Grid.Column="1"
+                                Fill="{StaticResource PhoneContrastBackgroundBrush}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0,0,0,0"
+                            
+                                telerikPrimitives:RadToolTipService.ShowGesture="Tap"
+                                >
+                                <telerikPrimitives:RadToolTipService.ToolTip>
+                                    <TextBlock Text="{Binding Path=LocalizedResources.ManualSnapshotHelp, Source={StaticResource LocalizedStrings}}"
+                                        TextWrapping="Wrap"
+                                        Width="460"/>
+
+                                </telerikPrimitives:RadToolTipService.ToolTip>
+
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/Icons/information.circle.png"/>
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.ThemeText, Source={StaticResource LocalizedStrings}}" 
+                                        SelectionChanged="themePicker_SelectionChanged_1" 
+                                                Name="themePicker" >
+                            <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.LightText, Source={StaticResource LocalizedStrings}}" />
+                            <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.DarkText, Source={StaticResource LocalizedStrings}}" />
+                        </telerikInput:RadListPicker>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox 
                                   Name="useBackgroundImageSwitch"
                                 Click="useBackgroundImageSwitch_Click"
@@ -623,14 +660,7 @@
                         </CheckBox>
                     </ListBoxItem>
 
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Checked="manualSnapshotSwitch_Checked" Unchecked="manualSnapshotSwitch_Unchecked"
-                                Name="manualSnapshotSwitch" IsChecked="false"
-                                >
-                            <TextBlock Text="{Binding Path=LocalizedResources.ManualSnapshotSetting, Source={StaticResource LocalizedStrings}}" 
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                    </ListBoxItem>
+                    
                         
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox Checked="confirmationSwitch_Checked_1" Unchecked="confirmationSwitch_Unchecked_1"

@@ -136,7 +136,83 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
 
+        public static void MergeCustomColors()
+        {
+            var dictionaries = new ResourceDictionary();
+            string source;
+            Color systemTrayColor;
+            SolidColorBrush brush;
 
+
+
+
+            //remove then add, stupid silverlight does not allow to change value
+            App.Current.Resources.Remove("CustomForegroundColor");
+            App.Current.Resources.Remove("CustomChromeColor");
+
+            if (metroSettings.ThemeSelection == 0)
+            {
+                source = String.Format("/CustomTheme/LightTheme.xaml");
+
+                App.Current.Resources.Add("CustomChromeColor", Color.FromArgb(255, 221, 221, 221)); //same as PhoneChromeColor
+                App.Current.Resources.Add("CustomForegroundColor", Color.FromArgb(0xDE, 0, 0, 0)); //same as PhoneForegroundColor
+
+            }
+            else
+            {
+                source = String.Format("/CustomTheme/DarkTheme.xaml");
+
+                App.Current.Resources.Add("CustomChromeColor", Color.FromArgb(255, 0x1f, 0x1f, 0x1f));
+                App.Current.Resources.Add("CustomForegroundColor", Color.FromArgb(255, 255, 255, 255));
+
+
+            }
+
+            //system color
+            systemTrayColor = Color.FromArgb(255, 0x4d, 0x3a, 0x89);
+#if GBC
+            systemTrayColor = Color.FromArgb(255, 0xb6, 0x1e, 0x45);
+#endif
+            App.Current.Resources.Remove("SystemTrayColor");
+            App.Current.Resources.Add("SystemTrayColor", systemTrayColor);
+
+            //brushes
+
+            SolidColorBrush brush1 = App.Current.Resources["HeaderBackgroundBrush"] as SolidColorBrush;
+            brush1.Color = systemTrayColor;
+            brush1.Opacity = 0.7;
+
+
+            SolidColorBrush brush3 = App.Current.Resources["HeaderForegroundBrush"] as SolidColorBrush;
+            brush3.Color = Colors.White;
+            brush3.Opacity = 1.0;
+
+
+            SolidColorBrush brush2 = App.Current.Resources["ListboxBackgroundBrush"] as SolidColorBrush;
+            brush2.Color = systemTrayColor;
+#if GBC
+            brush2.Opacity = 0.05;
+#else
+            brush2.Opacity = 0.1;
+#endif
+
+
+            var themeStyles = new ResourceDictionary { Source = new Uri(source, UriKind.Relative) };
+            dictionaries.MergedDictionaries.Add(themeStyles);
+
+
+            ResourceDictionary appResources = App.Current.Resources;
+            foreach (DictionaryEntry entry in dictionaries.MergedDictionaries[0])
+            {
+                SolidColorBrush colorBrush = entry.Value as SolidColorBrush;
+                SolidColorBrush existingBrush = appResources[entry.Key] as SolidColorBrush;
+                if (existingBrush != null && colorBrush != null)
+                {
+                    existingBrush.Color = colorBrush.Color;
+                }
+            }
+
+        }
         
 
 
@@ -145,6 +221,16 @@ namespace PhoneDirect3DXamlAppInterop
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
+
+
+
+        // Set to true when the page navigation is being reset 
+        bool wasRelaunched = false;
+
+        // set to true when current rom is different from previous rom
+        bool mustClearPagestack = false;
+
+        IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
 
         /// <summary>
         /// Constructor for the Application object.
@@ -193,83 +279,7 @@ namespace PhoneDirect3DXamlAppInterop
             ROMDatabase.Current.LoadCollectionsFromDatabase();
         }
 
-        public static void MergeCustomColors()
-        {
-            var dictionaries = new ResourceDictionary();
-            string source;
-            Color systemTrayColor;
-            SolidColorBrush brush;
 
-           
-
-
-            //remove then add, stupid silverlight does not allow to change value
-            App.Current.Resources.Remove("CustomForegroundColor");
-            App.Current.Resources.Remove("CustomChromeColor");
-
-            if (metroSettings.ThemeSelection == 0)
-            {
-                source = String.Format("/CustomTheme/LightTheme.xaml");
-
-                App.Current.Resources.Add("CustomChromeColor", Color.FromArgb(255, 221, 221, 221)); //same as PhoneChromeColor
-                App.Current.Resources.Add("CustomForegroundColor", Color.FromArgb(0xDE, 0, 0, 0)); //same as PhoneForegroundColor
-                 
-            }
-            else
-            {
-                source = String.Format("/CustomTheme/DarkTheme.xaml");
-
-                App.Current.Resources.Add("CustomChromeColor", Color.FromArgb(255, 0x1f, 0x1f, 0x1f)); 
-                App.Current.Resources.Add("CustomForegroundColor", Color.FromArgb(255, 255, 255, 255));
-
-                
-            }
-
-            //system color
-            systemTrayColor = Color.FromArgb(255, 0x4d, 0x3a, 0x89);
-#if GBC
-            systemTrayColor = Color.FromArgb(255, 0xb6, 0x1e, 0x45);
-#endif      
-            App.Current.Resources.Remove("SystemTrayColor"); 
-            App.Current.Resources.Add("SystemTrayColor", systemTrayColor);
-
-            //brushes
-
-            SolidColorBrush brush1 = App.Current.Resources["HeaderBackgroundBrush"] as SolidColorBrush;
-            brush1.Color = systemTrayColor;
-            brush1.Opacity = 0.7;
-
-
-            SolidColorBrush brush3 = App.Current.Resources["HeaderForegroundBrush"] as SolidColorBrush;
-            brush3.Color = Colors.White;
-            brush3.Opacity = 1.0;
-
-
-            SolidColorBrush brush2 = App.Current.Resources["ListboxBackgroundBrush"] as SolidColorBrush;
-            brush2.Color = systemTrayColor;
-#if GBC
-            brush2.Opacity = 0.05;
-#else
-            brush2.Opacity = 0.1;
-#endif
-
-
-            var themeStyles = new ResourceDictionary { Source = new Uri(source, UriKind.Relative) };
-            dictionaries.MergedDictionaries.Add(themeStyles);
-
-
-            ResourceDictionary appResources = App.Current.Resources;
-            foreach (DictionaryEntry entry in dictionaries.MergedDictionaries[0])
-            {
-                SolidColorBrush colorBrush = entry.Value as SolidColorBrush;
-                SolidColorBrush existingBrush = appResources[entry.Key] as SolidColorBrush;
-                if (existingBrush != null && colorBrush != null)
-                {
-                    existingBrush.Color = colorBrush.Color;
-                }
-            }
-
-        }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
@@ -289,13 +299,17 @@ namespace PhoneDirect3DXamlAppInterop
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            // When the applicaiton is deactivated, save the current deactivation settings to isolated storage
+            SaveCurrentDeactivationSettings();
+
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-
+            // When the application closes, delete any deactivation settings from isolated storage
+            RemoveCurrentDeactivationSettings();
         }
 
         // Code to execute if a navigation fails
@@ -342,8 +356,61 @@ namespace PhoneDirect3DXamlAppInterop
             // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
+            // Monitor deep link launching 
+            RootFrame.Navigating += RootFrame_Navigating;
+
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
+        }
+
+
+        // Event handler for the Navigating event of the root frame. Use this handler to modify
+        // the default navigation behavior.
+        void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+
+
+
+            if (e.NavigationMode == NavigationMode.Reset)
+            {
+                // This block will execute if the current navigation is a relaunch.
+                // If so, another navigation will be coming, so this records that a relaunch just happened
+                // so that the next navigation can use this info.
+                wasRelaunched = true;
+            }
+            else if (e.NavigationMode == NavigationMode.New && wasRelaunched)
+            {
+                // This block will run if the previous navigation was a relaunch
+                wasRelaunched = false;
+                mustClearPagestack = true;
+
+                if (e.Uri.ToString().Contains(FileHandler.ROM_URI_STRING + "="))
+                {
+                    // This block will run if the launch Uri contains "rom=" which
+                    // was specified when the secondary tile was created in FileHandler.cs
+
+                    
+                    //check to see if the rom to be launched is the same as the rom currently being played
+                    if (CheckLastRomPlayed(HttpUtility.UrlDecode(e.Uri.ToString()) ))
+                        mustClearPagestack = false;
+                    else
+                        mustClearPagestack = true;
+                }
+                else if (e.Uri.ToString().Contains("/MainPage.xaml"))
+                {
+                    
+                    // This block will run if the navigation Uri is the main page
+                    mustClearPagestack = false;
+
+                }
+
+                if (mustClearPagestack == false)
+                {
+                    //The app was previously launched via Main Tile and relaunched via Main Tile. Cancel the navigation to resume.
+                    e.Cancel = true;
+                    RootFrame.Navigated -= ClearBackStackAfterReset;
+                }
+            }
         }
 
         // Do not add any additional code to this method
@@ -440,6 +507,57 @@ namespace PhoneDirect3DXamlAppInterop
 
                 throw;
             }
+        }
+
+
+        // Called when the app is deactivating. Saves the time of the deactivation and the 
+        // session type of the app instance to isolated storage.
+        public void SaveCurrentDeactivationSettings()
+        {
+            //get current page before deactivated
+            Uri currentUri = RootFrame.CurrentSource;
+
+            if (currentUri.ToString().Contains("EmulatorPage.xaml"))
+            {
+                if (metroSettings.AddOrUpdateValue("LastRomPlayed", EmulatorPage.currentROMEntry.FileName))
+                {
+                    metroSettings.Save();
+                }
+            }
+            else
+            {
+                if (metroSettings.AddOrUpdateValue("LastRomPlayed", "no_rom_is_being_played"))
+                {
+                    metroSettings.Save();
+                }
+            }
+
+
+
+        }
+
+
+        // Called when the app is launched or closed. Removes all deactivation settings from
+        // isolated storage
+        public void RemoveCurrentDeactivationSettings()
+        {
+            metroSettings.RemoveValue("LastRomPlayed");
+            metroSettings.Save();
+        }
+
+        // Helper method to determine if the rom being launched from deep link is the same as the rom currently being played (if any)
+        //true if the same, false if different
+        bool CheckLastRomPlayed(string currentUri)
+        {
+
+            if (metroSettings.Contains("LastRomPlayed"))
+            {
+                string lastRomPlayed = settings["LastRomPlayed"] as string;
+
+                return currentUri.Contains(lastRomPlayed);
+            }
+            else
+                return false;
         }
     }
 }
