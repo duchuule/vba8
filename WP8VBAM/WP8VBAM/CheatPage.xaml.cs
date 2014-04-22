@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 using DucLe.Extensions;
 using System.IO;
 using SharpGIS;
+using System.Threading.Tasks;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -43,15 +44,30 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.CreateAppBar();
 
-            this.Init();
+            
 
 
         }
 
-        private async void Init()
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await Init();
+            base.OnNavigatedTo(e);
+        }
+
+        private async Task Init()
         {
             object tmp;
             PhoneApplicationService.Current.State.TryGetValue("parameter", out tmp);
+
+            if (tmp == null)
+            {
+                //go back because there is no information about the rom entry
+                if (this.NavigationService.CanGoBack)
+                    this.NavigationService.GoBack();
+                return;
+            }
+
             this.romEntry = tmp as ROMDBEntry;
             this.game = romEntry.DisplayName;
             PhoneApplicationService.Current.State.Remove("parameter");
@@ -111,7 +127,8 @@ namespace PhoneDirect3DXamlAppInterop
 
 
                 //save the cheat code
-                await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
+                if (this.romEntry != null)
+                    await FileHandler.SaveCheatCodes(this.romEntry, this.cheatCodes);
 
                 if (this.NavigationService.CanGoBack)
                     this.NavigationService.GoBack();
@@ -763,7 +780,11 @@ namespace PhoneDirect3DXamlAppInterop
 
                         //get the text part
                         int index2 = content.IndexOf("<div"); //find the end of the text
-                        content = content.Substring(0, index2 - 1); //there is a \t at the end so get rid of it.
+
+                        if (index2 > 0)
+                            content = content.Substring(0, index2 - 1); //there is a \t at the end so get rid of it.
+                        else
+                            content = "";
                     }
 
                     //get only the first few lines
@@ -788,7 +809,7 @@ namespace PhoneDirect3DXamlAppInterop
                         }
                     }
 
-                    if (cheatText.Text[cheatText.Text.Length - 1] != '\n')
+                    if (cheatText.Text.Length > 0 && cheatText.Text[cheatText.Text.Length - 1] != '\n')
                         cheatText.Text += "\n";
 
                     cheatText.Text += "..............";

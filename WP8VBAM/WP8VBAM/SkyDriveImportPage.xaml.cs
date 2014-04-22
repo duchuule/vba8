@@ -340,7 +340,7 @@ namespace PhoneDirect3DXamlAppInterop
                         entry = db.GetROMFromSRAMName(item.Name);
                         if (entry != null)
                         {
-                            entry.AutoLoadLastState = false;
+                            entry.SuspendAutoLoadLastState = true;
                             destinationFile = await saveFolder.CreateFileAsync(Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", CreationCollisionOption.ReplaceExisting);
 
                         }

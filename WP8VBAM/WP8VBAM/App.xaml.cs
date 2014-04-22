@@ -56,6 +56,7 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
+
         public static void DetermineIsTrail()
         {
 
@@ -293,6 +294,9 @@ namespace PhoneDirect3DXamlAppInterop
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             DetermineIsTrail();
+            if (!e.IsApplicationInstancePreserved)
+                EmulatorPage.IsTombstoned = true;
+
         }
 
         // Code to execute when the application is deactivated (sent to background)

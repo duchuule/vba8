@@ -125,9 +125,45 @@
                     </ListBoxItem>
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="true" 
+                                            Name="mapABLRTurboSwitch" 
+                                    Click="mapABLRTurboSwitch_Click"
+                                            Visibility="Collapsed" 
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.MapABLRTurboText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="true" 
+                                            Name="fullPressStickABRLSwitch" 
+                                    Click="fullPressStickABRLSwitch_Click"
+                                            Visibility="Collapsed" 
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.FullPressButtonStickText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="false" 
+                                            Name="autoFireSwitch" 
+                                  Click="autoFireSwitch_Click"
+                                            Visibility="Collapsed" 
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.EnableAutoFireText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+
+                    </ListBoxItem>
+
+                    <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                         <TextBlock TextWrapping="Wrap" Margin="12,0,12,20"
                                 Text="{Binding Path=LocalizedResources.TurboModeTip2, Source={StaticResource LocalizedStrings}}" />
-                    </ListBoxItem>
+                    </ListBoxItem>-->
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <toolkit:ListPicker Header="{Binding Path=LocalizedResources.DPadStyleHeader, Source={StaticResource LocalizedStrings}}" 

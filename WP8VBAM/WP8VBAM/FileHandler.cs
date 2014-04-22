@@ -223,58 +223,50 @@ namespace PhoneDirect3DXamlAppInterop
             //}
         }
 
-        public static void UpdateLiveTile(bool shouldUpdateTileColor = false)
+        public static void UpdateLiveTile()
         {
             ROMDatabase db = ROMDatabase.Current;
             ShellTile tile = ShellTile.ActiveTiles.FirstOrDefault();
-            CycleTileData data = new CycleTileData();
+
+
+            FlipTileData data = new FlipTileData();
 #if !GBC
             data.Title = AppResources.ApplicationTitle;
 #else
             data.Title = AppResources.ApplicationTitle2;
 #endif
-            IEnumerable<String> snapshots = db.GetRecentSnapshotList();
-            List<Uri> uris = new List<Uri>();
-            if (snapshots.Count() == 0)
+
+            //get last snapshot
+            String lastSnapshot = db.GetLastSnapshot();
+
+            if (App.metroSettings.UseAccentColor || lastSnapshot == null)  //create see through tile
             {
 #if !GBC
-                    uris.Add(new Uri("Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative));
+                data.SmallBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative);
+                data.BackgroundImage = new Uri("Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative);
+                data.WideBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative);
 #else
-                    uris.Add(new Uri("Assets/Tiles/FlipCycleTileLargeGBC.png", UriKind.Relative));
+                data.SmallBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileSmallGBC.png", UriKind.Relative);
+                data.BackgroundImage = new Uri("Assets/Tiles/FlipCycleTileMediumGBC.png", UriKind.Relative);
+                data.WideBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileLargeGBC.png", UriKind.Relative);
 #endif
+                tile.Update(data);
             }
-            else
+            else  //create opaque tile
             {
-                foreach (var snapshot in snapshots)
-                {
-                    uris.Add(new Uri("isostore:/" + snapshot, UriKind.Absolute));
-                }
-
-            }
-            data.CycleImages = uris;
-
-            //this is safeguard, check to see if the background image exists (may not exist after last run due to error)
-            bool imageExists = false;
-
-            using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                imageExists = store.FileExists("/Shared/ShellContent/" + CUSTOM_TILE_FILENAME);
-            }
-
-            if (shouldUpdateTileColor || !imageExists) //then update the tile color
-            {
-#if GBC
-                Uri logo = new Uri("Assets/Tiles/FlipCycleTileSmallGBC.png", UriKind.Relative);
+#if !GBC
+                data.SmallBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileSmallFilled.png", UriKind.Relative);
 #else
-                Uri logo = new Uri("Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative);
+                data.SmallBackgroundImage = new Uri("Assets/Tiles/FlipCycleTileSmallFilledGBC.png", UriKind.Relative);
 #endif
-                if (App.metroSettings.UseAccentColor)
-                    data.SmallBackgroundImage = CreateAndSavePNGToIsolatedStorage(logo, Color.FromArgb(0,0,0,0)); //completely transparent
-                else
-                    data.SmallBackgroundImage = CreateAndSavePNGToIsolatedStorage(logo, (Color)App.Current.Resources["SystemTrayColor"]);
+
+
+                data.BackgroundImage = new Uri("isostore:/" + lastSnapshot, UriKind.Absolute);
+                data.WideBackgroundImage = new Uri("isostore:/" + lastSnapshot, UriKind.Absolute);
+
+                tile.Update(data);
             }
 
-            tile.Update(data);
         }
 
         private static Uri CreateAndSavePNGToIsolatedStorage(Uri logo, Color tileColor)
@@ -445,7 +437,8 @@ namespace PhoneDirect3DXamlAppInterop
             LoadROMParameter param = new LoadROMParameter()
             {
                 file = romFile,
-                folder = romFolder
+                folder = romFolder,
+                RomFileName = fileName
             };
             return param;
         }
@@ -484,6 +477,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private static void createSavestate(int slot, string romFileName)
         {
+
             ROMDatabase db = ROMDatabase.Current;
 
 
@@ -639,7 +633,7 @@ namespace PhoneDirect3DXamlAppInterop
             else if (extension == ".sav")
             {
                 file = await SharedStorageAccessManager.CopySharedFileAsync(saveFolder, Path.GetFileNameWithoutExtension(entry.FileName) + ".sav", NameCollisionOption.ReplaceExisting, fileID);
-                entry.AutoLoadLastState = false;
+                entry.SuspendAutoLoadLastState = true;
             }
 
             //update database

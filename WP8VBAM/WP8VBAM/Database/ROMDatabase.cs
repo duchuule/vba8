@@ -219,6 +219,19 @@ namespace PhoneDirect3DXamlAppInterop.Database
                 .ToArray();
         }
 
+        public String GetLastSnapshot()
+        {
+            if (!context.DatabaseExists())
+            {
+                throw new InvalidOperationException("Database does not exist.");
+            }
+            return this.context.ROMTable
+                .Where(r => !r.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT) && !r.SnapshotURI.Equals(FileHandler.DEFAULT_SNAPSHOT_ALT))
+                .OrderByDescending(r => r.LastPlayed)
+                .Select(r => r.SnapshotURI)
+                .FirstOrDefault();
+        }
+
         public void Add(SavestateEntry entry)
         {
             if (!context.DatabaseExists())

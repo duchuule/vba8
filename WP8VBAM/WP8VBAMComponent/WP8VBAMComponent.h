@@ -71,6 +71,7 @@ public:
 	void LoadCheats(Windows::Foundation::Collections::IVector<CheatData ^> ^cheats);
 	void SelectSaveState(int slot);
 	void SaveState(void);
+	int GetCurrentSaveSlot(void);
 	//void LoadState(void);
 	void LoadState(int slot);
 	void Reset(void);

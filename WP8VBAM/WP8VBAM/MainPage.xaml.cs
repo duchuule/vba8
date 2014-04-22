@@ -29,6 +29,8 @@ using Coding4Fun.Toolkit.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 using Ionic.Zip;
 using System.Windows.Data;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 
 //"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts xd 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
@@ -237,7 +239,7 @@ namespace PhoneDirect3DXamlAppInterop
 
 
             //== auto back up
-            AutoBackup();
+            await AutoBackup();
 
             //set indicator after everything is done
             //indicator.IsIndeterminate = false;
@@ -251,7 +253,7 @@ namespace PhoneDirect3DXamlAppInterop
         }
 
 
-        private async void AutoBackup()
+        private async Task AutoBackup()
         {
             if (this.checkAutoUpload && App.metroSettings.AutoBackup)
             {
@@ -609,13 +611,13 @@ namespace PhoneDirect3DXamlAppInterop
 
             //await this.createFolderTask;
             //await this.copyDemoTask;
-            if (shouldInitialize)
+            if (shouldInitialize)  //create folder structure and copy demon rom
             {
                 await this.Initialize();
                 shouldInitialize = false;
             }
 
-            this.LoadInitialSettings();
+            MainPage.LoadInitialSettings();
 
             if (shouldUpdateBackgroud)
             {
@@ -769,7 +771,7 @@ namespace PhoneDirect3DXamlAppInterop
             
         }
 
-        private void LoadInitialSettings()
+        public static void LoadInitialSettings()
         {
             EmulatorSettings settings = EmulatorSettings.Current;
             if (!settings.Initialized)
@@ -913,6 +915,18 @@ namespace PhoneDirect3DXamlAppInterop
                 if (!isoSettings.Contains(SettingsPage.VibrationDurationKey))
                 {
                     isoSettings[SettingsPage.VibrationDurationKey] = 0.02; //in seconds
+                }
+                if (!isoSettings.Contains(SettingsPage.EnableAutoFireKey))
+                {
+                    isoSettings[SettingsPage.EnableAutoFireKey] = false; 
+                }
+                if (!isoSettings.Contains(SettingsPage.MapABLRTurboKey))
+                {
+                    isoSettings[SettingsPage.MapABLRTurboKey] = true; 
+                }
+                if (!isoSettings.Contains(SettingsPage.FullPressStickABLRKey))
+                {
+                    isoSettings[SettingsPage.FullPressStickABLRKey] = true;
                 }
 
                 //get default controller position
@@ -1109,6 +1123,9 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.VirtualControllerStyle = (int)isoSettings[SettingsPage.VirtualControllerStyleKey];
                 settings.VibrationEnabled = (bool)isoSettings[SettingsPage.VibrationEnabledKey];
                 settings.VibrationDuration = (double)isoSettings[SettingsPage.VibrationDurationKey];
+                settings.EnableAutoFire = (bool)isoSettings[SettingsPage.EnableAutoFireKey];
+                settings.MapABLRTurbo = (bool)isoSettings[SettingsPage.MapABLRTurboKey];
+                settings.FullPressStickABLR = (bool)isoSettings[SettingsPage.FullPressStickABLRKey];
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
                 settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
@@ -1152,13 +1169,13 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.MogaLeftJoystick = (int)isoSettings[SettingsPage.MogaLeftJoystickKey];
                 settings.MogaRightJoystick = (int)isoSettings[SettingsPage.MogaRightJoystickKey];
 
-                settings.SettingsChanged = this.SettingsChangedDelegate;
+                settings.SettingsChanged = MainPage.SettingsChangedDelegate;
             }
         }
 
         
 
-        private void SettingsChangedDelegate()
+        public static void SettingsChangedDelegate()
         {
             EmulatorSettings settings = EmulatorSettings.Current;
             IsolatedStorageSettings isoSettings = IsolatedStorageSettings.ApplicationSettings;
@@ -1194,6 +1211,9 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.VirtualControllerStyleKey] = settings.VirtualControllerStyle;
             isoSettings[SettingsPage.VibrationEnabledKey] = settings.VibrationEnabled;
             isoSettings[SettingsPage.VibrationDurationKey] = settings.VibrationDuration;
+            isoSettings[SettingsPage.EnableAutoFireKey] = settings.EnableAutoFire;
+            isoSettings[SettingsPage.MapABLRTurboKey] = settings.MapABLRTurbo;
+            isoSettings[SettingsPage.FullPressStickABLRKey] = settings.FullPressStickABLR;
             isoSettings.Save();
         }
 
@@ -1257,7 +1277,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async Task StartROM(ROMDBEntry entry)
         {
-            if (entry.AutoLoadLastState == false)
+            if (entry.SuspendAutoLoadLastState)
                 EmulatorPage.ROMLoaded = false;  //force reloading of ROM after reimport save file
 
             EmulatorPage.currentROMEntry = entry;
@@ -1672,10 +1692,13 @@ namespace PhoneDirect3DXamlAppInterop
         public String Name { get; set; }
     }
 
+    [DataContract]
     class LoadROMParameter
     {
-        public StorageFile file;
-        public StorageFolder folder;
+        public StorageFile file {get; set;}
+        public StorageFolder folder {get; set;}
+        [DataMember]
+        public string RomFileName { get; set; } //store this information so that we can store in State in case the app is tombstoned
     }
 
     // add these 3 lines  
