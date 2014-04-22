@@ -10,7 +10,7 @@ extern bool synchronize;
 
 bool enableTurboMode = false;
 bool autoFireToggle = false;
-int autoFire = 0;
+int mappedButton = 0;
 
 void log(const char *,...) { }
 
@@ -274,31 +274,45 @@ u32 systemReadJoypad(int gamepad)
 
 		//set the value for autoFire key depending on the setting
 		if(settings->CameraButtonAssignment == 1) //R button
-			autoFire = 256;
+			mappedButton = 256;
 		else if (settings->CameraButtonAssignment == 2) //L button
-			autoFire = 512;
+			mappedButton = 512;
 		else if (settings->CameraButtonAssignment == 3) //A button
-			autoFire = 1;
+			mappedButton = 1;
 		else if (settings->CameraButtonAssignment == 4) //B button
-			autoFire = 2;
+			mappedButton = 2;
 		else
-			autoFire = 0;
+			mappedButton = 0;
 
+
+		if (settings->CameraButtonAssignment != 0 && settings->MapABLRTurbo && (res & mappedButton) == mappedButton) //if this is true, the onscreen A/B/L/R need to be replace with turbo function
+		{
+			//first get rid of all previous value for the mapped button
+			res &= (~mappedButton);
+
+			//turbo speed
+			res |= 1024;
+		}
 
 		if (enableTurboMode) //this is true when camera button is pressed
 		{
-			if(settings->CameraButtonAssignment == 0)
+			if (settings->CameraButtonAssignment == 0)
 			{
 				// Speed
 				res |= 1024;
 
 			}
-			else if (autoFire)
+			else if (settings->EnableAutoFire)
 			{
-				res &= (~autoFire);
+				res &= (~mappedButton);
 				if (autoFireToggle)
-					res |= autoFire;
+					res |= mappedButton;
 				autoFireToggle = !autoFireToggle;
+				
+			}
+			else //no autofire, just keep pressing the button
+			{
+				res |= mappedButton;
 			}
 			
 		}

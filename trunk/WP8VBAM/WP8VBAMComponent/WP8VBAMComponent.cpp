@@ -146,8 +146,14 @@ namespace PhoneDirect3DXamlAppComponent
 		LoadstateSlot = SavestateSlot;
 		if(this->SavestateSelected)
 		{
-			this->SavestateSelected(SavestateSlot, oldSlot);
+			this->SavestateSelected(SavestateSlot, oldSlot);  //call the c# code to change the UI about selected save state
 		}
+	}
+
+	int Direct3DBackground::GetCurrentSaveSlot(void)
+	{
+		return SavestateSlot;
+
 	}
 
 	void Direct3DBackground::SaveState(void)
@@ -158,18 +164,19 @@ namespace PhoneDirect3DXamlAppComponent
 		{
 			this->emulator->Unpause();
 			this->SavestateCreated(SavestateSlot, ROMFile->Name);
-			if(EmulatorSettings::Current->AutoIncrementSavestates)
+			if (EmulatorSettings::Current->AutoIncrementSavestates)
 			{
 				int oldSlot = SavestateSlot;
 				int tmp = (oldSlot == AUTOSAVE_SLOT) ? -1 : 0;
 				SavestateSlot = (oldSlot + 1 + tmp) % (MAX_SAVESTATE_SLOTS - 1); // -1 because last one is auto save
 				LoadstateSlot = oldSlot;
-				if(this->SavestateSelected)
+				if (this->SavestateSelected)
 				{
 					this->SavestateSelected(SavestateSlot, oldSlot);
 				}
 			}
 		});
+		
 		this->ContinueEmulationNotifier();
 	}
 
@@ -286,7 +293,7 @@ namespace PhoneDirect3DXamlAppComponent
 			this->emulator->Pause();
 			SaveSRAMAsync().wait();
 
-			if (EmulatorSettings::Current->AutoSaveLoad)
+			//if (EmulatorSettings::Current->AutoSaveLoad)
 			{
 				int oldstate = SavestateSlot;
 				SavestateSlot = AUTOSAVE_SLOT;

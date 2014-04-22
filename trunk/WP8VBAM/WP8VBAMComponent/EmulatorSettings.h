@@ -491,6 +491,45 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
+		property bool EnableAutoFire
+		{
+			bool get(void) { return this->enableAutoFire; }
+			void set(bool value)
+			{
+				this->enableAutoFire = value;
+				if (this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+		property bool MapABLRTurbo
+		{
+			bool get(void) { return this->mapABLRTurbo; }
+			void set(bool value)
+			{
+				this->mapABLRTurbo = value;
+				if (this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+		property bool FullPressStickABLR
+		{
+			bool get(void) { return this->fullPressStickABLR; }
+			void set(bool value)
+			{
+				this->fullPressStickABLR = value;
+				if (this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
 		EmulatorSettings(void);
 
 		property int PadCenterXP;
@@ -571,6 +610,9 @@ namespace PhoneDirect3DXamlAppComponent
 		int virtualControllerStyle;
 		bool vibrationEnabled;
 		double vibrationDuration; //in second
+		bool enableAutoFire;
+		bool mapABLRTurbo;
+		bool fullPressStickABLR;
 
 
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;

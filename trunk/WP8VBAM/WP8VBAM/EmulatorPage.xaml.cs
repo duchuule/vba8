@@ -37,6 +37,8 @@ namespace PhoneDirect3DXamlAppInterop
         private ApplicationBarMenuItem[] menuItems;
         private String[] menuItemLabels;
         public static ROMDBEntry currentROMEntry;
+        public static bool IsTombstoned = false;
+        private bool RestoreSaveStateAfterTombstoned = false;
 
         // Constructor
         public EmulatorPage()
@@ -310,6 +312,12 @@ namespace PhoneDirect3DXamlAppInterop
 
         void savestateButton_Click(object sender, EventArgs e)
         {
+            if (m_d3dBackground.GetCurrentSaveSlot() == 9) //auto save slot
+            {
+                MessageBox.Show(AppResources.SaveSlotReservedText);
+            }
+            else
+            {
                 if (EmulatorSettings.Current.HideConfirmationDialogs)
                 {
                     this.m_d3dBackground.SaveState();
@@ -318,6 +326,7 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     ShowSaveDialog();
                 }
+            }
         }
 
         void ShowSaveDialog()
@@ -425,11 +434,32 @@ namespace PhoneDirect3DXamlAppInterop
             LoadROMParameter romInfo = param as LoadROMParameter;
 
             PhoneApplicationService.Current.State.Remove("parameter");
+            
 
             ROMDatabase db = ROMDatabase.Current;
 
             if (romInfo != null)
+            {
                 EmulatorPage.cache = romInfo;
+                
+            }
+            else if (IsTombstoned) //return after tombstone, need to restore state
+            {
+                romInfo = (LoadROMParameter)State["LoadROMParameter"];
+                romInfo = await FileHandler.GetROMFileToPlayAsync(romInfo.RomFileName);
+
+                //load all information again
+                EmulatorPage.cache = romInfo;
+                EmulatorPage.currentROMEntry = ROMDatabase.Current.GetROM(romInfo.RomFileName);
+                MainPage.LoadInitialSettings();
+
+                //set IsTombstoned to false
+                IsTombstoned = false;
+                RestoreSaveStateAfterTombstoned = true;
+            }
+
+            
+
 
 
             //if (initialized && this.m_d3dBackground.IsROMLoaded() && romInfo == null)
@@ -481,38 +511,49 @@ namespace PhoneDirect3DXamlAppInterop
 
         void CameraButtons_ShutterKeyReleased(object sender, EventArgs e)
         {
-            if (this.m_d3dBackground != null && (wasHalfPressed))
-            {
-                this.m_d3dBackground.StopTurboMode();
-                wasHalfPressed = false;
+            if (this.m_d3dBackground != null )
+            {   //if the camera button was half pressed, we stop the toggle for all cases
+                //if the camera button was full pressed, we stop the toggle only when the assignment is not turbo mode and it is not sticky
+                if (wasHalfPressed || (EmulatorSettings.Current.CameraButtonAssignment != 0 && EmulatorSettings.Current.FullPressStickABLR == false))
+                {
+                    this.m_d3dBackground.StopTurboMode();
+                    wasHalfPressed = false;
+                }
             }
         }
 
         void CameraButtons_ShutterKeyHalfPressed(object sender, EventArgs e)
         {
-            //start turbo mode but note that the key was half-pressed, so turbo mode will be stopped as soon as the key is released
-            if (this.m_d3dBackground != null)
-            {
-                wasHalfPressed = true;
-                this.m_d3dBackground.StartTurboMode();
-            }
-
+                if (this.m_d3dBackground != null)
+                {
+                    wasHalfPressed = true;
+                    this.m_d3dBackground.StartTurboMode();
+                }
         }
 
         void CameraButtons_ShutterKeyPressed(object sender, EventArgs e)
         {
-            //toggle turbo mode
+            if (EmulatorSettings.Current.CameraButtonAssignment == 0 || EmulatorSettings.Current.FullPressStickABLR == true)
+            {   // Turbo button or button stick is on
 
-            if (this.m_d3dBackground != null)
-            {
-                if (!wasHalfPressed)
+                if (this.m_d3dBackground != null)
                 {
-                    this.m_d3dBackground.ToggleTurboMode();
+                    if (!wasHalfPressed)
+                    {
+                        this.m_d3dBackground.ToggleTurboMode();
+                    }
+                    wasHalfPressed = false;
                 }
-                wasHalfPressed = false;
-            }
 
-           
+            }
+            else
+            {   // A/B/L/R button and not stick
+                if (this.m_d3dBackground != null)
+                {
+                    this.m_d3dBackground.StartTurboMode();
+                    wasHalfPressed = false;
+                }
+            }
         }
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
@@ -535,6 +576,13 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 //this.m_d3dBackground.PauseEmulation();
             }
+
+            if (e.NavigationMode != System.Windows.Navigation.NavigationMode.Back)
+            {
+                // Save the ViewModel variable in the page's State dictionary.
+                State["LoadROMParameter"] = EmulatorPage.cache;
+            }
+
             if (this.m_d3dBackground.LoadadROMFile == null)
             {
                 base.OnNavigatingFrom(e);
@@ -600,7 +648,8 @@ namespace PhoneDirect3DXamlAppInterop
             //}
 
 
-            if (EmulatorPage.cache != null && EmulatorPage.cache.file != null && EmulatorPage.cache.folder != null) //just a safeguard to make sure we have enough info to load ROM
+            if (EmulatorPage.cache != null && EmulatorPage.cache.file != null && EmulatorPage.cache.folder != null) // a safeguard to make sure we have enough info to load ROM
+                                                                                                                    //this is all null if returned from tombstone
             {
                 if (ROMLoaded && this.m_d3dBackground.LoadadROMFile.Name.Equals(EmulatorPage.cache.file.Name))  //name match, we are resuming to current game
                 {
@@ -662,7 +711,12 @@ namespace PhoneDirect3DXamlAppInterop
             int slot = db.GetLastSavestateSlotByFileNameExceptAuto(filename);
             m_d3dBackground.SelectSaveState(slot);
 
-            if (currentROMEntry.AutoLoadLastState)  //general this is true, except after importing saves
+            if (RestoreSaveStateAfterTombstoned) //restore auto save state no matter what
+            {
+                m_d3dBackground.LoadState(9); //load from auto save slot
+                RestoreSaveStateAfterTombstoned = false;
+            }
+            else if (currentROMEntry.SuspendAutoLoadLastState == false)  //general this is true, except after importing saves
             {
                 if (EmulatorSettings.Current.AutoSaveLoad)
                 {
@@ -671,7 +725,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
             }
             else
-                currentROMEntry.AutoLoadLastState = true; //so that next time it autoload
+                currentROMEntry.SuspendAutoLoadLastState = false; //so that next time it autoload
 
         }
     }

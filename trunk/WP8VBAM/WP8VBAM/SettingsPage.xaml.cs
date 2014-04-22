@@ -61,6 +61,9 @@ namespace PhoneDirect3DXamlAppInterop
         public const String VirtualControllerStyleKey = "VirtualControllerStyleKey";
         public const String VibrationEnabledKey = "VibrationEnabledKey";
         public const String VibrationDurationKey = "VibrationDurationKey";
+        public const String EnableAutoFireKey = "EnableAutoFireKey";
+        public const String MapABLRTurboKey = "MapABLRTurboKey";
+        public const String FullPressStickABLRKey = "FullPressStickABLRKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -213,6 +216,10 @@ namespace PhoneDirect3DXamlAppInterop
 
             this.autoBackupSwitch.IsChecked = App.metroSettings.AutoBackup;
 
+            this.autoFireSwitch.IsChecked = emuSettings.EnableAutoFire;
+            this.mapABLRTurboSwitch.IsChecked = emuSettings.MapABLRTurbo;
+            this.fullPressStickABRLSwitch.IsChecked = emuSettings.FullPressStickABLR;
+
             if (App.metroSettings.BackgroundUri != null)
             {
                 this.useBackgroundImageSwitch.IsChecked = true;
@@ -260,6 +267,20 @@ namespace PhoneDirect3DXamlAppInterop
 
                 this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad, this need to be set after loaded because we set the items in xaml
                 this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
+
+                if (emuSettings.CameraButtonAssignment == 0) //hide auto fire setting
+                {
+                    this.autoFireSwitch.Visibility = Visibility.Collapsed;
+                    this.mapABLRTurboSwitch.Visibility = Visibility.Collapsed;
+                    this.fullPressStickABRLSwitch.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.autoFireSwitch.Visibility = Visibility.Visible;
+                    this.mapABLRTurboSwitch.Visibility = Visibility.Visible;
+                    this.fullPressStickABRLSwitch.Visibility = Visibility.Visible;
+                }
+
                 this.themePicker.SelectedIndex = App.metroSettings.ThemeSelection;
 
                 this.virtualControlStyleBox.SelectedIndex = emuSettings.VirtualControllerStyle;
@@ -507,6 +528,19 @@ namespace PhoneDirect3DXamlAppInterop
             if (this.initdone)
             {
                 EmulatorSettings.Current.CameraButtonAssignment = this.assignPicker.SelectedIndex;
+
+                if (EmulatorSettings.Current.CameraButtonAssignment == 0) //hide the auto fire setting
+                {
+                    this.autoFireSwitch.Visibility = Visibility.Collapsed;
+                    this.mapABLRTurboSwitch.Visibility = Visibility.Collapsed;
+                    this.fullPressStickABRLSwitch.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.autoFireSwitch.Visibility = Visibility.Visible;
+                    this.mapABLRTurboSwitch.Visibility = Visibility.Visible;
+                    this.fullPressStickABRLSwitch.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -936,9 +970,10 @@ namespace PhoneDirect3DXamlAppInterop
 
                 App.metroSettings.UseAccentColor = chkUseAccentColor.IsChecked.Value;
 
-                MessageBox.Show(AppResources.UnpinTilePromptText);
+                //MessageBox.Show(AppResources.UnpinTilePromptText);
 
-                FileHandler.UpdateLiveTile(true);
+
+                FileHandler.UpdateLiveTile();
 
                 
 
@@ -973,6 +1008,30 @@ namespace PhoneDirect3DXamlAppInterop
                 return;
             }
             EmulatorSettings.Current.VibrationDuration = duration;
+        }
+
+        private void autoFireSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (initdone)
+            {
+                EmulatorSettings.Current.EnableAutoFire = this.autoFireSwitch.IsChecked.Value;
+            }
+        }
+
+        private void mapABLRTurboSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (initdone)
+            {
+                EmulatorSettings.Current.MapABLRTurbo = this.mapABLRTurboSwitch.IsChecked.Value;
+            }
+        }
+
+        private void fullPressStickABRLSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (initdone)
+            {
+                EmulatorSettings.Current.FullPressStickABLR = this.fullPressStickABRLSwitch.IsChecked.Value;
+            }
         }
 
 

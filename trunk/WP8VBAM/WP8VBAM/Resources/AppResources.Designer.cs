@@ -1229,6 +1229,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Camera button auto fires A/B/L/R.
+        /// </summary>
+        public static string EnableAutoFireText {
+            get {
+                return ResourceManager.GetString("EnableAutoFireText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Sound.
         /// </summary>
         public static string EnableSoundSetting {
@@ -1459,6 +1468,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string FrameSkipSetting {
             get {
                 return ResourceManager.GetString("FrameSkipSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera full press makes A/B/L/R stick.
+        /// </summary>
+        public static string FullPressButtonStickText {
+            get {
+                return ResourceManager.GetString("FullPressButtonStickText", resourceCulture);
             }
         }
         
@@ -2158,6 +2176,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use A/B/L/R for turbo.
+        /// </summary>
+        public static string MapABLRTurboText {
+            get {
+                return ResourceManager.GetString("MapABLRTurboText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The selected ROM is pinned already or you have reached the maximum number of tiles to pin..
         /// </summary>
         public static string MaximumTilesPinned {
@@ -2795,6 +2822,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This save slot is reserved for internal use. You can only load from but cannot save to this slot..
+        /// </summary>
+        public static string SaveSlotReservedText {
+            get {
+                return ResourceManager.GetString("SaveSlotReservedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to save state.
         /// </summary>
         public static string SaveStateButton {
@@ -3277,15 +3313,6 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string TurboFrameSkipText {
             get {
                 return ResourceManager.GetString("TurboFrameSkipText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Note: A half press will activate the function until the camera button is released. A full press will toggle auto fire mode..
-        /// </summary>
-        public static string TurboModeTip2 {
-            get {
-                return ResourceManager.GetString("TurboModeTip2", resourceCulture);
             }
         }
         
