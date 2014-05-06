@@ -69,27 +69,27 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>AB40D38F-515E-421D-9AFA-B01BE9E3D6F2</CurrentDeployID>
+    <CurrentDeployID>A6BAF594-9315-40C3-AD16-F5B8A425A7AB</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugDevice|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>AB40D38F-515E-421D-9AFA-B01BE9E3D6F2</CurrentDeployID>
+    <CurrentDeployID>A6BAF594-9315-40C3-AD16-F5B8A425A7AB</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugGBC|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>AB40D38F-515E-421D-9AFA-B01BE9E3D6F2</CurrentDeployID>
+    <CurrentDeployID>A6BAF594-9315-40C3-AD16-F5B8A425A7AB</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>AB40D38F-515E-421D-9AFA-B01BE9E3D6F2</CurrentDeployID>
+    <CurrentDeployID>A6BAF594-9315-40C3-AD16-F5B8A425A7AB</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseBeta|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>AB40D38F-515E-421D-9AFA-B01BE9E3D6F2</CurrentDeployID>
+    <CurrentDeployID>A6BAF594-9315-40C3-AD16-F5B8A425A7AB</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseGBC|AnyCPU'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
-    <CurrentDeployID>AB40D38F-515E-421D-9AFA-B01BE9E3D6F2</CurrentDeployID>
+    <CurrentDeployID>A6BAF594-9315-40C3-AD16-F5B8A425A7AB</CurrentDeployID>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -98,7 +98,7 @@
           <FullDeploy>False</FullDeploy>
           <DebuggerType>Managed</DebuggerType>
           <DebuggerAgentType>Managed</DebuggerAgentType>
-          <Tombstone>True</Tombstone>
+          <Tombstone>False</Tombstone>
         </SilverlightMobileCSProjectFlavor>
       </FlavorProperties>
     </VisualStudio>
