@@ -572,10 +572,10 @@ namespace PhoneDirect3DXamlAppInterop
 
 
             //if (initialized && this.m_d3dBackground.IsROMLoaded())
-            if ( this.m_d3dBackground.IsROMLoaded())
-            {
-                //this.m_d3dBackground.PauseEmulation();
-            }
+            //if ( this.m_d3dBackground.IsROMLoaded())
+            //{
+            //    this.m_d3dBackground.PauseEmulation();
+            //}
 
             if (e.NavigationMode != System.Windows.Navigation.NavigationMode.Back)
             {
@@ -583,7 +583,7 @@ namespace PhoneDirect3DXamlAppInterop
                 State["LoadROMParameter"] = EmulatorPage.cache;
             }
 
-            if (this.m_d3dBackground.LoadadROMFile == null)
+            if (this.m_d3dBackground == null || this.m_d3dBackground.LoadadROMFile == null)
             {
                 base.OnNavigatingFrom(e);
             }
@@ -711,7 +711,7 @@ namespace PhoneDirect3DXamlAppInterop
             int slot = db.GetLastSavestateSlotByFileNameExceptAuto(filename);
             m_d3dBackground.SelectSaveState(slot);
 
-            if (RestoreSaveStateAfterTombstoned) //restore auto save state no matter what
+            if (RestoreSaveStateAfterTombstoned ) //restore auto save state no matter what
             {
                 m_d3dBackground.LoadState(9); //load from auto save slot
                 RestoreSaveStateAfterTombstoned = false;

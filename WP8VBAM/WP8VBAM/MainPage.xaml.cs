@@ -1693,7 +1693,7 @@ namespace PhoneDirect3DXamlAppInterop
     }
 
     [DataContract]
-    class LoadROMParameter
+    public class LoadROMParameter
     {
         public StorageFile file {get; set;}
         public StorageFolder folder {get; set;}

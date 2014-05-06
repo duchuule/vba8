@@ -49,18 +49,18 @@
                       Opacity="1.0" Margin="0,0,0,0" 
                       VerticalContentAlignment="Bottom"
                       x:Name="MSAdControl" 
-                      IsAutoRefreshEnabled="False"
-                      Visibility="Collapsed"
+                      IsAutoRefreshEnabled="True"
+                      Visibility="Visible"
                       />
 
         
         
-        <mobfox:AdControl 
+        <!--<mobfox:AdControl 
                 x:Name="mobFoxadControl"                
                 PublisherID="ef7c4443a6e496524057a0bffeb409b4"
                 TestMode="False"
                 VerticalAlignment="Bottom" 
-            />
+            />-->
 
      
 
