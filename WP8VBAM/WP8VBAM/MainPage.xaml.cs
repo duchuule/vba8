@@ -31,10 +31,18 @@ using Ionic.Zip;
 using System.Windows.Data;
 using System.Runtime.Serialization;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
+using Windows.Foundation;
+using DucLe.Extensions;
+using Windows.Phone.Speech.VoiceCommands;
+using Windows.Storage.Streams;
+using Windows.Storage;
+using System.Text;
 
 
-//"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts xd 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
-//"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts deviceindex:7 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
+
+//"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.1\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts xd 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
+//"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.1\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts deviceindex:7 0a409e81-ab14-47f3-bd4e-2f57bb5bae9a "D:\Duc\Documents\Visual Studio 2012\Projects\WP8VBA8\trunk"
 namespace PhoneDirect3DXamlAppInterop
 {
 
@@ -53,6 +61,8 @@ namespace PhoneDirect3DXamlAppInterop
         private bool shouldInitialize = true;
 
         private bool firstLaunch = true;
+
+        
         
         
         public MainPage()
@@ -136,29 +146,148 @@ namespace PhoneDirect3DXamlAppInterop
 
         }
 
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //set indicator to let the user know we are working on something
+            //var indicator = SystemTray.GetProgressIndicator(this);
+            //indicator.IsIndeterminate = true;
+
+            //set app bar color in case the user return from setting page
+            if (ApplicationBar != null)
+            {
+                ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
+                ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
+            }
+
+            //await this.createFolderTask;
+            //await this.copyDemoTask;
+            if (shouldInitialize)  //create folder structure and copy demon rom
+            {
+                await this.Initialize();
+                shouldInitialize = false;
+            }
+
+            MainPage.LoadInitialSettings();
+
+            if (shouldUpdateBackgroud)
+            {
+                UpdateBackgroundImage();
+                shouldUpdateBackgroud = false;
+
+            }
+
+            if (shouldRefreshRecentROMList)
+            {
+                this.RefreshRecentROMList();
+                shouldRefreshRecentROMList = false;
+
+            }
+
+            if (shouldRefreshAllROMList)
+            {
+                this.SortRomList();
+                shouldRefreshAllROMList = false;
+            }
+
+
+            //enable/disable resume button
+            if (this.lastRomImage.DataContext != null)
+                this.resumeButton.IsEnabled = true;
+            else
+                this.resumeButton.IsEnabled = false;
+
+            //set indicator to signal everything is done
+            //indicator.IsIndeterminate = false;
+
+            if (e.NavigationMode == NavigationMode.Refresh)
+            {
+                QueryString query = new QueryString(e.Uri.ToString());
+
+
+                if (query.ContainsKey(FileHandler.ROM_URI_STRING)) //check if we are launching from rom tile
+                {
+                    String romFileName = query[FileHandler.ROM_URI_STRING];
+
+                    ROMDBEntry entry = ROMDatabase.Current.GetROM(romFileName);
+                    if (entry != null)
+                        await this.StartROM(entry);
+                }
+                else if (query.ContainsKey("voiceCommandName")) //check if we are launching from voice command
+                {
+                    String voiceCommandName = query["voiceCommandName"];
+
+                    if (voiceCommandName == "PlayGame")
+                    {
+                        //get the game name
+                        string spokenRomName = query["RomName"];
+
+                        //try to find a match
+                        ROMDBEntry entry = ROMDatabase.Current.GetROM(spokenRomName);
+                        if (entry != null)
+                            await this.StartROM(entry);
+
+                    }
+
+                }
+
+            }
+
+            
+
+            base.OnNavigatedTo(e);
+        }
+
         async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+        //NOTE: this method does not run if the app is fast resumed.
+
             var indicator = SystemTray.GetProgressIndicator(this);
             //indicator.IsIndeterminate = true;
 
-            try
+            try //launch rom as specified by uri
             {
-                
-                if (NavigationContext.QueryString.ContainsKey(FileHandler.ROM_URI_STRING))
+
+                if (NavigationContext.QueryString.ContainsKey(FileHandler.ROM_URI_STRING)) //check if we are launching from rom tile
                 {
                     String romFileName = NavigationContext.QueryString[FileHandler.ROM_URI_STRING];
                     NavigationContext.QueryString.Remove(FileHandler.ROM_URI_STRING);
 
                     ROMDBEntry entry = ROMDatabase.Current.GetROM(romFileName);
-                    await this.StartROM(entry);
+                    if (entry != null)
+                        await this.StartROM(entry);
+                }
+                else if (NavigationContext.QueryString.ContainsKey("voiceCommandName")) //check if we are launching from voice command
+                {
+                    String voiceCommandName = NavigationContext.QueryString["voiceCommandName"];
+                    NavigationContext.QueryString.Remove("voiceCommandName");
+
+                    if (voiceCommandName == "PlayGame")
+                    {
+                        //get the game name
+                        string spokenRomName = NavigationContext.QueryString["RomName"];
+                        NavigationContext.QueryString.Remove("RomName");
+
+                        
+
+
+                        //try to find a match
+                        ROMDBEntry entry = ROMDatabase.Current.GetROM(spokenRomName);
+                        if (entry != null)
+                            await this.StartROM(entry);
+
+                    }
+
                 }
             }
-            
+
             catch (Exception)
             {
                 MessageBox.Show(AppResources.TileOpenError, AppResources.ErrorCaption, MessageBoxButton.OK);
             }
 
+
+            //rom returned from cloudsix
             try
             {
                 if (NavigationContext.QueryString.ContainsKey("fileToken"))
@@ -166,7 +295,7 @@ namespace PhoneDirect3DXamlAppInterop
                     String fileID = NavigationContext.QueryString["fileToken"];
                     NavigationContext.QueryString.Remove("fileToken");
 
-                    string incomingFileName = HttpUtility.HtmlDecode(SharedStorageAccessManager.GetSharedFileName(fileID).Replace("[1]", ""));
+                    string incomingFileName = HttpUtility.UrlDecode(SharedStorageAccessManager.GetSharedFileName(fileID).Replace("[1]", ""));
                     string incomingFileType = Path.GetExtension(incomingFileName).ToLower();
 
                     if (incomingFileType.Contains("cloudsix")) //this is from cloudsix, need to get the true file name and file type
@@ -241,6 +370,28 @@ namespace PhoneDirect3DXamlAppInterop
             //== auto back up
             await AutoBackup();
 
+
+            //register voice command
+            if (App.metroSettings.VoiceCommandVersion < App.VOICE_COMMAND_VERSION ||VoiceCommandService.InstalledCommandSets.Count == 0)
+            {
+                try
+                {
+                    await RegisterVoiceCommand("");
+
+
+
+                    await UpdateGameListForVoiceCommand();
+
+                    App.metroSettings.VoiceCommandVersion = App.VOICE_COMMAND_VERSION;
+
+
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message + "\r\nVoice Commands failed to initialize.");
+                }
+            }
+
             //set indicator after everything is done
             //indicator.IsIndeterminate = false;
 
@@ -250,6 +401,97 @@ namespace PhoneDirect3DXamlAppInterop
             SystemTray.GetProgressIndicator(this).Text = AppResources.ApplicationTitle;
 #endif
             return;
+        }
+
+        public static async Task RegisterVoiceCommand(string prefix)
+        {
+            
+
+            //if user specified a command prefix, copy the original definition file to isolated storage and modified it
+            if (prefix != null && prefix.Trim() != "")
+            {
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+
+                StorageFile originalFile = await StorageFile.GetFileFromPathAsync("VoiceCommandDefinitions.xml");
+
+                IRandomAccessStream accessStream = await originalFile.OpenReadAsync();
+
+                string originalText;
+                using (Stream stream = accessStream.AsStreamForRead((int)accessStream.Size))
+                {
+                    byte[] content = new byte[stream.Length];
+                    await stream.ReadAsync(content, 0, (int)stream.Length);
+
+                    originalText = Encoding.UTF8.GetString(content, 0, content.Length);
+                }
+
+                int idx = originalText.IndexOf("    <Example>");
+
+                if (idx < 0)
+                {
+                    MessageBox.Show("Error! Cannot find <Example>");
+                    return;
+                }
+
+
+                string modifiedText = originalText.Substring(0, idx);
+                modifiedText += "    <CommandPrefix> " + prefix + "</CommandPrefix>\r\n";
+                modifiedText += originalText.Substring(idx);
+
+
+                IStorageFile storageFile = await localFolder.CreateFileAsync("VoiceCommandDefinitions.xml", CreationCollisionOption.ReplaceExisting);
+
+                using (Stream stream = await storageFile.OpenStreamForWriteAsync())
+                {
+                    byte[] content = Encoding.UTF8.GetBytes(modifiedText);
+                    await stream.WriteAsync(content, 0, content.Length);
+                }
+
+                Uri uri = new Uri("ms-appdata:///local/VoiceCommandDefinitions.xml", UriKind.Absolute);
+                await Windows.Phone.Speech.VoiceCommands.VoiceCommandService.InstallCommandSetsFromFileAsync(uri);
+            }
+
+            else  //default prefix
+            {
+                Uri uri = new Uri("ms-appx:///VoiceCommandDefinitions.xml", UriKind.Absolute);
+                await Windows.Phone.Speech.VoiceCommands.VoiceCommandService.InstallCommandSetsFromFileAsync(uri);
+            }
+        }
+
+
+        public static async Task UpdateGameListForVoiceCommand()
+        {
+            try
+            {
+                //get list of gammes
+                IEnumerable<ROMDBEntry> romList = ROMDatabase.Current.GetROMList();
+                List<String> nameList = new List<String>();
+                foreach (ROMDBEntry entry in romList)
+                {
+                    nameList.Add(Regex.Replace(entry.DisplayName, @"[^\w\s]+", "").ToLower());
+                }
+
+                //safeguard incase the commandsets failed to install
+                if (VoiceCommandService.InstalledCommandSets.ContainsKey("en-US") == false)
+                {
+                    Uri uri = new Uri("ms-appx:///VoiceCommandDefinitions.xml", UriKind.Absolute);
+                    await Windows.Phone.Speech.VoiceCommands.VoiceCommandService.InstallCommandSetsFromFileAsync(uri);
+                }
+
+                //populate list of games for voice command
+                if (VoiceCommandService.InstalledCommandSets.ContainsKey("en-US"))
+                {
+                    VoiceCommandSet widgetVcs = VoiceCommandService.InstalledCommandSets["en-US"];
+                    await widgetVcs.UpdatePhraseListAsync("RomName", nameList.ToArray());
+                }
+
+                
+
+            }
+            catch (Exception) 
+            {
+
+            }
         }
 
 
@@ -596,61 +838,7 @@ namespace PhoneDirect3DXamlAppInterop
             await this.ParseIniFile();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            //set indicator to let the user know we are working on something
-            //var indicator = SystemTray.GetProgressIndicator(this);
-            //indicator.IsIndeterminate = true;
 
-            //set app bar color in case the user return from setting page
-            if (ApplicationBar != null)
-            {
-                ApplicationBar.BackgroundColor = (Color)App.Current.Resources["CustomChromeColor"];
-                ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
-            }
-
-            //await this.createFolderTask;
-            //await this.copyDemoTask;
-            if (shouldInitialize)  //create folder structure and copy demon rom
-            {
-                await this.Initialize();
-                shouldInitialize = false;
-            }
-
-            MainPage.LoadInitialSettings();
-
-            if (shouldUpdateBackgroud)
-            {
-                UpdateBackgroundImage();
-                shouldUpdateBackgroud = false;
-
-            }
-
-            if (shouldRefreshRecentROMList)
-            {
-                this.RefreshRecentROMList();
-                shouldRefreshRecentROMList = false;
-
-            }
-
-            if (shouldRefreshAllROMList)
-            {
-                this.SortRomList();
-                shouldRefreshAllROMList = false;
-            }
-
-
-            //enable/disable resume button
-            if (this.lastRomImage.DataContext != null)
-                this.resumeButton.IsEnabled = true;
-            else
-                this.resumeButton.IsEnabled = false;
-
-            //set indicator to signal everything is done
-            //indicator.IsIndeterminate = false;
-
-            base.OnNavigatedTo(e);
-        }
 
 
         private void UpdateBackgroundImage()
@@ -760,6 +948,7 @@ namespace PhoneDirect3DXamlAppInterop
 #endif
                 await file.CopyAsync(romFolder);
 
+                
                 isoSettings["DEMOCOPIED"] = true;
                 isoSettings.Save();
 
@@ -1281,6 +1470,8 @@ namespace PhoneDirect3DXamlAppInterop
                 EmulatorPage.ROMLoaded = false;  //force reloading of ROM after reimport save file
 
             EmulatorPage.currentROMEntry = entry;
+            //EmulatorPage.launchMethod = launchMethod;
+
             LoadROMParameter param = await FileHandler.GetROMFileToPlayAsync(entry.FileName);
 
             //entry.LastPlayed = DateTime.Now;
@@ -1623,6 +1814,9 @@ namespace PhoneDirect3DXamlAppInterop
 
                 ROMDBEntry entry = fe.DataContext as ROMDBEntry;
                 await FileHandler.DeleteROMAsync(entry);
+
+                //update voice command list
+                await MainPage.UpdateGameListForVoiceCommand();
 
                 this.RefreshRecentROMList();
 

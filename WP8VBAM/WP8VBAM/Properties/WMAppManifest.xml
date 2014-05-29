@@ -3,8 +3,8 @@
   <DefaultLanguage xmlns="" code="en-US" />
   <Languages xmlns="">
     <!--<Language code="ar" />
-    <Language code="cs-CZ" />
-    <Language code="da-DK" />-->
+    <Language code="cs-CZ" />-->
+    <Language code="da-DK" />
     <Language code="de" />
     <!--<Language code="dv-MV" />-->
     <Language code="el-GR" />
@@ -52,6 +52,9 @@
       <Capability Name="ID_CAP_PHONEDIALER" />
       <Capability Name="ID_CAP_REMOVABLE_STORAGE" />
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_MICROPHONE" />
+      <Capability Name="ID_CAP_SPEECH_RECOGNITION" />
+      <Capability Name="ID_CAP_SENSORS" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume" />

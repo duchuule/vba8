@@ -17,6 +17,7 @@
                 >
         <TextBlock  Text="{Binding Path=LocalizedResources.EnterNewCheatText, Source={StaticResource LocalizedStrings}}"
                    Margin="24, 60, 24, 0"
+                    x:Name="TblkPromptText"
                    />
         <TextBox x:Name="txtCheatCode" Margin="12, 12, 12, 0"/>
         <Grid Margin="12,12,12,12">

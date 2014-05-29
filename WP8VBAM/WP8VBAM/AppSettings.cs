@@ -36,6 +36,7 @@ namespace PhoneDirect3DXamlAppInterop
         const string BackupOnlyWifiKey = "BackupOnlyWifiKey";
         const string AutoBackupIndexKey = "AutoBackupIndexKey";
         const string UseAccentColorKey = "UseAccentColorKey";
+        const string VoiceCommandVersionKey = "VoiceCommandVersionKey";
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -424,6 +425,20 @@ namespace PhoneDirect3DXamlAppInterop
             set
             {
                 AddOrUpdateValue(UseAccentColorKey, value);
+                Save();
+            }
+        }
+
+
+        public int VoiceCommandVersion
+        {
+            get
+            {
+                return GetValueOrDefault<int>(VoiceCommandVersionKey, 0);
+            }
+            set
+            {
+                AddOrUpdateValue(VoiceCommandVersionKey, value);
                 Save();
             }
         }

@@ -40,6 +40,7 @@ namespace PhoneDirect3DXamlAppInterop
         public static bool IsTombstoned = false;
         private bool RestoreSaveStateAfterTombstoned = false;
 
+
         // Constructor
         public EmulatorPage()
         {

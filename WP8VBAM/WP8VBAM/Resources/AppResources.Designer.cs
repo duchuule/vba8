@@ -672,6 +672,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change voice command prefix....
+        /// </summary>
+        public static string ChangeVoicePrefixText {
+            get {
+                return ResourceManager.GetString("ChangeVoicePrefixText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string CheatCodesAddPivotTitle {
@@ -1279,6 +1288,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string EnterNewCheatText {
             get {
                 return ResourceManager.GetString("EnterNewCheatText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter voice command prefix:.
+        /// </summary>
+        public static string EnterVoicePrefixText {
+            get {
+                return ResourceManager.GetString("EnterVoicePrefixText", resourceCulture);
             }
         }
         
@@ -1960,6 +1978,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text input cannot be empty..
+        /// </summary>
+        public static string InputEmptyError {
+            get {
+                return ResourceManager.GetString("InputEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to input.
         /// </summary>
         public static string InputSettingsPageTitle {
@@ -2388,6 +2415,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string OverNetworkText {
             get {
                 return ResourceManager.GetString("OverNetworkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin alternate style tile.
+        /// </summary>
+        public static string PinSecondaryTileText {
+            get {
+                return ResourceManager.GetString("PinSecondaryTileText", resourceCulture);
             }
         }
         
@@ -3299,6 +3335,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This tile is already pinned..
+        /// </summary>
+        public static string TileAlreadyPinnedText {
+            get {
+                return ResourceManager.GetString("TileAlreadyPinnedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error opening the ROM associated with the tile..
         /// </summary>
         public static string TileOpenError {
@@ -3344,7 +3389,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use system accent color for live tile.
+        ///   Looks up a localized string similar to Use system accent color for main tile.
         /// </summary>
         public static string UseAccentBackgroundText {
             get {
