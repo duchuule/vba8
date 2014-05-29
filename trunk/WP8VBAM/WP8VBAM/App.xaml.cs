@@ -41,6 +41,7 @@ namespace PhoneDirect3DXamlAppInterop
         { get; private set; }
 
         public static int APP_VERSION = 2;
+        public static int VOICE_COMMAND_VERSION = 11;
 
         public static bool HasAds { get; private set; }
         public static bool IsPremium { get; private set; }
@@ -372,7 +373,7 @@ namespace PhoneDirect3DXamlAppInterop
         // the default navigation behavior.
         void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
         {
-
+            
 
 
             if (e.NavigationMode == NavigationMode.Reset)
@@ -388,10 +389,11 @@ namespace PhoneDirect3DXamlAppInterop
                 wasRelaunched = false;
                 mustClearPagestack = true;
 
-                if (e.Uri.ToString().Contains(FileHandler.ROM_URI_STRING + "="))
+                if (e.Uri.ToString().Contains(FileHandler.ROM_URI_STRING + "=")  || e.Uri.ToString().Contains("RomName=") )
                 {
-                    // This block will run if the launch Uri contains "rom=" which
+                    // This block will run if the launch Uri contains "rom=" or "RomName=" which
                     // was specified when the secondary tile was created in FileHandler.cs
+                    //or from voiceCommmand
 
                     
                     //check to see if the rom to be launched is the same as the rom currently being played
@@ -523,14 +525,16 @@ namespace PhoneDirect3DXamlAppInterop
 
             if (currentUri.ToString().Contains("EmulatorPage.xaml"))
             {
-                if (metroSettings.AddOrUpdateValue("LastRomPlayed", EmulatorPage.currentROMEntry.FileName))
+                if (metroSettings.AddOrUpdateValue("LastFilePlayed", EmulatorPage.currentROMEntry.FileName)
+                    && metroSettings.AddOrUpdateValue("LastRomPlayed", EmulatorPage.currentROMEntry.DisplayName) )
                 {
                     metroSettings.Save();
                 }
             }
             else
             {
-                if (metroSettings.AddOrUpdateValue("LastRomPlayed", "no_rom_is_being_played"))
+                if (metroSettings.AddOrUpdateValue("LastFilePlayed", "no_rom_is_being_played")
+                    && metroSettings.AddOrUpdateValue("LastRomPlayed", "no_rom_is_being_played"))
                 {
                     metroSettings.Save();
                 }
@@ -545,7 +549,12 @@ namespace PhoneDirect3DXamlAppInterop
         // isolated storage
         public void RemoveCurrentDeactivationSettings()
         {
-            metroSettings.RemoveValue("LastRomPlayed");
+            if (metroSettings.Contains("LastFilePlayed"))
+                metroSettings.RemoveValue("LastFilePlayed");
+
+            if (metroSettings.Contains("LastRomPlayed"))
+                metroSettings.RemoveValue("LastRomPlayed");
+
             metroSettings.Save();
         }
 
@@ -553,15 +562,23 @@ namespace PhoneDirect3DXamlAppInterop
         //true if the same, false if different
         bool CheckLastRomPlayed(string currentUri)
         {
+            bool ret = false;
 
-            if (metroSettings.Contains("LastRomPlayed"))
+            if (metroSettings.Contains("LastFilePlayed"))
+            {
+                string lastFilePlayed = settings["LastFilePlayed"] as string;
+
+                ret =  currentUri.Contains(lastFilePlayed);
+            }
+
+            if (ret == false && metroSettings.Contains("LastRomPlayed")) //try to match the display name
             {
                 string lastRomPlayed = settings["LastRomPlayed"] as string;
 
-                return currentUri.Contains(lastRomPlayed);
+                ret = currentUri.ToLower().Contains(lastRomPlayed.ToLower());
             }
-            else
-                return false;
+            
+            return ret;
         }
     }
 }

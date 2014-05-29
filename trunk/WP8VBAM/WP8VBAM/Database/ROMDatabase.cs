@@ -8,6 +8,7 @@ using System.Data.Linq.Mapping;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Microsoft.Phone.Data.Linq;
+using System.Text.RegularExpressions;
 
 namespace PhoneDirect3DXamlAppInterop.Database
 {
@@ -232,6 +233,8 @@ namespace PhoneDirect3DXamlAppInterop.Database
                 .FirstOrDefault();
         }
 
+
+       
         public void Add(SavestateEntry entry)
         {
             if (!context.DatabaseExists())
@@ -248,12 +251,35 @@ namespace PhoneDirect3DXamlAppInterop.Database
             {
                 throw new InvalidOperationException("Database does not exist.");
             }
+
+            
             fileName = fileName.ToLower();
+
+            //first try file name
             ROMDBEntry entry = this.context.ROMTable
                 .Where(f => f.FileName.ToLower().Equals(fileName))
                 .FirstOrDefault();
+
+            //then try display name
+            
+
+
+            if (entry == null)
+            {
+                ROMDBEntry[] entries = this.context.ROMTable.ToArray();
+                foreach (ROMDBEntry anentry in entries)
+                {
+                    if (Regex.Replace(anentry.DisplayName, @"[^\w\s]+", "").ToLower().Equals(fileName))
+                        entry = anentry;
+                }
+            }
+
+
+
             return entry;
         }
+
+
 
         public ROMDBEntry GetROMFromSavestateName(string savestateName)
         {

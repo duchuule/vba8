@@ -15,12 +15,16 @@ namespace PhoneDirect3DXamlAppInterop
     public partial class EditCheatControl : UserControl
     {
         public static String TextToEdit;
+        public static String PromptText;
         public static bool IsOKClicked;
+
         public EditCheatControl()
         {
             InitializeComponent();
 
             IsOKClicked = false;
+            if (PromptText != null)
+                TblkPromptText.Text = PromptText;
         }
 
 

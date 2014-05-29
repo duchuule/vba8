@@ -493,6 +493,14 @@
                                Style="{StaticResource MyTitle1Style}" />
                     </phone:PivotItem.Header>
                     <ListBox>
+                        
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Button x:Name="ChangeVoiceCommandPrefixBtn"
+                                Content="{Binding Path=LocalizedResources.ChangeVoicePrefixText, Source={StaticResource LocalizedStrings}}"
+                                Click="ChangeVoiceCommandPrefixBtn_Click"
+                                />
+                    </ListBoxItem>
+                        
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox x:Name="chkUseAccentColor" 
                                           Tap="chkUseAccentColor_Tap" >
@@ -500,8 +508,15 @@
                                        TextWrapping="Wrap"/>
                         </CheckBox>
                     </ListBoxItem>
-                        
-                       
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Button x:Name="PinSecondaryTileBtn"
+                                Content="{Binding Path=LocalizedResources.PinSecondaryTileText, Source={StaticResource LocalizedStrings}}"
+                                Click="PinSecondaryTileBtn_Click"
+                                />
+                    </ListBoxItem>
+
+
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox IsChecked="false" 
                                       Name="autoBackupSwitch"
@@ -512,12 +527,12 @@
                         </CheckBox>
                     </ListBoxItem>
                         
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <Button x:Name="SetupAutoBackupBtn"
-                                    Content="{Binding Path=LocalizedResources.SetupAutoBackupText, Source={StaticResource LocalizedStrings}}"
-                                    Click="SetupAutoBackupBtn_Click"
-                                    />
-                        </ListBoxItem>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Button x:Name="SetupAutoBackupBtn"
+                                Content="{Binding Path=LocalizedResources.SetupAutoBackupText, Source={StaticResource LocalizedStrings}}"
+                                Click="SetupAutoBackupBtn_Click"
+                                />
+                    </ListBoxItem>
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox IsChecked="true" 

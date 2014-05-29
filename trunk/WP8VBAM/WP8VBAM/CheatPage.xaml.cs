@@ -207,7 +207,7 @@ namespace PhoneDirect3DXamlAppInterop
 
             popupWindow = new Popup();
             EditCheatControl.TextToEdit = cheatdata.CheatCode;
-
+            EditCheatControl.PromptText = AppResources.EnterNewCheatText;
             popupWindow.Child = new EditCheatControl();
 
 

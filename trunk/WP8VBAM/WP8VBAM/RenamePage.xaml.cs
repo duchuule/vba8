@@ -36,7 +36,7 @@ namespace PhoneDirect3DXamlAppInterop
 #endif
         }
 
-        private void renameButton_Click(object sender, RoutedEventArgs e)
+        private async void renameButton_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(this.nameBox.Text))
             {
@@ -55,6 +55,10 @@ namespace PhoneDirect3DXamlAppInterop
                     MainPage.shouldRefreshAllROMList = true; //only need to manually referesh the rom list because colectionviewsource does not update sorting
 
                     FileHandler.UpdateROMTile(this.entry.FileName);
+
+                    //update voice command list
+                    await MainPage.UpdateGameListForVoiceCommand();
+
                     this.NavigationService.GoBack();
                 }
                 else

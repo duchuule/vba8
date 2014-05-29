@@ -1034,6 +1034,54 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+        private void PinSecondaryTileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FileHandler.CreateOrUpdateSecondaryTile(true);
+        }
+
+        private void ChangeVoiceCommandPrefixBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //disable current page
+            this.IsHitTestVisible = false;
+
+            //create new popup instance
+
+
+            popupWindow = new Popup();
+            EditCheatControl.TextToEdit = "";
+            EditCheatControl.PromptText = AppResources.EnterVoicePrefixText;
+            popupWindow.Child = new EditCheatControl();
+
+
+            popupWindow.VerticalOffset = 0;
+            popupWindow.HorizontalOffset = 0;
+            popupWindow.IsOpen = true;
+
+            popupWindow.Closed += async (s1, e1) =>
+            {
+                this.IsHitTestVisible = true;
+
+                if (EditCheatControl.IsOKClicked )
+                {
+                    if (EditCheatControl.TextToEdit != null && EditCheatControl.TextToEdit.Trim() != "")
+                    {
+                        await MainPage.RegisterVoiceCommand(EditCheatControl.TextToEdit);
+
+                        await MainPage.UpdateGameListForVoiceCommand();
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppResources.InputEmptyError);
+                    }
+                }
+
+            };
+
+
+
+            
+        }
+
 
 
 

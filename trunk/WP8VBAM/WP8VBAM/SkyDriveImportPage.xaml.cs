@@ -485,6 +485,10 @@ namespace PhoneDirect3DXamlAppInterop
                         await FileHandler.FindExistingSavestatesForNewROM(entry);
                         db.CommitChanges();
                     }
+
+                    //update voice command list
+                    await MainPage.UpdateGameListForVoiceCommand();
+
                     MessageBox.Show(String.Format(AppResources.DownloadCompleteText, item.Name));
                 }
                 else

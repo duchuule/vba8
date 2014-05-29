@@ -323,6 +323,7 @@
     <Compile Include="Helpers\AspectRatioConverter.cs" />
     <Compile Include="Helpers\ClipRect.cs" />
     <Compile Include="Helpers\NegativeValueConverter.cs" />
+    <Compile Include="Helpers\QueryString.cs" />
     <Compile Include="Helpers\WebBrowserHelper.cs" />
     <Compile Include="Helpers\WebClientExtension.cs" />
     <Compile Include="HelpPage.xaml.cs">
@@ -385,6 +386,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Content Include="VoiceCommandDefinitions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <Page Include="AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
