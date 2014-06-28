@@ -410,7 +410,7 @@ Credits:
     <value>auto</value>
   </data>
   <data name="FrameSkipSetting" xml:space="preserve">
-    <value>Skip Frames (increase emulation speed)</value>
+    <value>Normal Mode Frame Skip</value>
   </data>
   <data name="ImageScaleSetting" xml:space="preserve">
     <value>Scale Image (landscape only)</value>
@@ -1304,5 +1304,80 @@ Device ID: {0}</value>
   </data>
   <data name="InputEmptyError" xml:space="preserve">
     <value>Text input cannot be empty.</value>
+  </data>
+  <data name="AccelerometerText" xml:space="preserve">
+    <value>Accelerometer</value>
+  </data>
+  <data name="InclinometerText" xml:space="preserve">
+    <value>Inclinometer</value>
+  </data>
+  <data name="MotionControlHeader" xml:space="preserve">
+    <value>Motion control</value>
+  </data>
+  <data name="AppFunctionText" xml:space="preserve">
+    <value>APP FUNCTION</value>
+  </data>
+  <data name="CalibrateInstruction" xml:space="preserve">
+    <value>Instruction: hold the phone at the desired rest postion and press the "Calibrate" button.</value>
+  </data>
+  <data name="CalibrateText" xml:space="preserve">
+    <value>Calibrate</value>
+  </data>
+  <data name="CalibrationSuccessText" xml:space="preserve">
+    <value>Calibration successful.</value>
+  </data>
+  <data name="FailedToCalibrateText" xml:space="preserve">
+    <value>Failed to calibrate. Please try hitting the button again.</value>
+  </data>
+  <data name="HorizontalTiltDeadZoneText" xml:space="preserve">
+    <value>Horizontal tilt deadzone (in degrees)</value>
+  </data>
+  <data name="MogaButtonText" xml:space="preserve">
+    <value>MOGA BUTTON</value>
+  </data>
+  <data name="MotionControlSettingsText" xml:space="preserve">
+    <value>Motion control settings...</value>
+  </data>
+  <data name="MotionMappingTitle" xml:space="preserve">
+    <value>motion settings</value>
+  </data>
+  <data name="MotionText" xml:space="preserve">
+    <value>MOTION</value>
+  </data>
+  <data name="CompassMissingText" xml:space="preserve">
+    <value>Your device does have a compass or an accelerometer (most likely a compass).</value>
+  </data>
+  <data name="TiltDownText" xml:space="preserve">
+    <value>Tilt down</value>
+  </data>
+  <data name="TiltLeftText" xml:space="preserve">
+    <value>Tilt left</value>
+  </data>
+  <data name="TiltRightText" xml:space="preserve">
+    <value>Tilt right</value>
+  </data>
+  <data name="TiltUpText" xml:space="preserve">
+    <value>Tilt up</value>
+  </data>
+  <data name="TurboModeText" xml:space="preserve">
+    <value>Turbo mode</value>
+  </data>
+  <data name="VerticalTiltDeadZoneText" xml:space="preserve">
+    <value>Vertical tilt deadzone (in degrees)</value>
+  </data>
+  <data name="EnableTurboPromptText" xml:space="preserve">
+    <value>Do you want to enable TURBO mode for faster game play? You can  later change the setting by going to Settings -&gt; Video or press the camera button.</value>
+  </data>
+  <data name="EnableTurboPromptTitle" xml:space="preserve">
+    <value>Enable turbo mode?</value>
+  </data>
+  <data name="AccelerometerMissingText" xml:space="preserve">
+    <value>Your device does not have an accelerometer.</value>
+  </data>
+  <data name="adaptOrientationText" xml:space="preserve">
+    <value>Auto adapt to orientation change</value>
+  </data>
+  <data name="GyroMissingText" xml:space="preserve">
+    <value>Your device does not have a gyroscope.</value>
   </data>
 </root>

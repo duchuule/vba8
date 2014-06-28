@@ -349,6 +349,9 @@
     <Compile Include="ManageSavestatePage.xaml.cs">
       <DependentUpon>ManageSavestatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MotionMappingPage.xaml.cs">
+      <DependentUpon>MotionMappingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MogaMappingPage.xaml.cs">
       <DependentUpon>MogaMappingPage.xaml</DependentUpon>
     </Compile>
@@ -496,6 +499,10 @@
     <Page Include="ManageSavestatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MotionMappingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MogaMappingPage.xaml">
       <SubType>Designer</SubType>

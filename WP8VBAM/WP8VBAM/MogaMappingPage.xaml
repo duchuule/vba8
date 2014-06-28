@@ -104,11 +104,11 @@
 
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="MOGA BUTTON" 
+                    <TextBlock Text="{Binding Path=LocalizedResources.MogaButtonText, Source={StaticResource LocalizedStrings}}" 
                        Margin="0,0,0,12"
                        FontSize="26"/>
 
-                    <TextBlock Text="APP FUNCTION"
+                    <TextBlock Text="{Binding Path=LocalizedResources.AppFunctionText, Source={StaticResource LocalizedStrings}}" 
                         Grid.Column="1"
                         Margin="0,0,0,12"
                        FontSize="26"/>

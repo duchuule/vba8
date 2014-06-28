@@ -64,22 +64,29 @@
                     
                     <ListBox>
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <toolkit:ToggleSwitch Header="{Binding Path=LocalizedResources.VibrationSettingText, Source={StaticResource LocalizedStrings}}"
-                                                x:Name="toggleVibration" 
-                                                  Tap="toggleVibration_Tap"
-                                                  Margin="0,0,0,-24"/>
-                        </ListBoxItem>
 
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <telerikPrimitives:RadTextBox x:Name="txtVibrationDuration"
-                                 Header="{Binding Path=LocalizedResources.VibrationDurationText, Source={StaticResource LocalizedStrings}}" 
-                                Visibility="Collapsed" 
-                                 TextChanged="txtVibrationDuration_TextChanged" 
-                                  Margin="0,-12,0,12"/>
-                        </ListBoxItem>
-                        
-                        
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <toolkit:ListPicker Header="{Binding Path=LocalizedResources.MotionControlHeader, Source={StaticResource LocalizedStrings}}" 
+                                        FullModeHeader="{Binding Path=LocalizedResources.MotionControlHeader, Source={StaticResource LocalizedStrings}}" 
+                                        SelectionChanged="motionControlBox_SelectionChanged"
+                                            x:Name="motionControlBox" 
+                                            SelectedIndex="0">
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.NoneButtonText, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.AccelerometerText, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.InclinometerText, Source={StaticResource LocalizedStrings}}" />
+                        </toolkit:ListPicker>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Button x:Name="MotionSettingBtn"
+                                Content="{Binding Path=LocalizedResources.MotionControlSettingsText, Source={StaticResource LocalizedStrings}}"
+                                    Click="MotionSettingBtn_Click"
+                                Visibility="Collapsed"
+                                />
+                    </ListBoxItem>
+
+
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                             <toolkit:ToggleSwitch Header="{Binding Path=LocalizedResources.UseMogaControllerText, Source={StaticResource LocalizedStrings}}"
                                             Name="toggleUseMogaController" 
@@ -106,8 +113,23 @@
                        />
 
 
+                        
 
-                    
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <toolkit:ToggleSwitch Header="{Binding Path=LocalizedResources.VibrationSettingText, Source={StaticResource LocalizedStrings}}"
+                                                x:Name="toggleVibration" 
+                                                  Tap="toggleVibration_Tap"
+                                                  Margin="0,0,0,-24"/>
+                    </ListBoxItem>
+
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <telerikPrimitives:RadTextBox x:Name="txtVibrationDuration"
+                                 Header="{Binding Path=LocalizedResources.VibrationDurationText, Source={StaticResource LocalizedStrings}}" 
+                                Visibility="Collapsed" 
+                                 TextChanged="txtVibrationDuration_TextChanged" 
+                                  Margin="0,-12,0,12"/>
+                    </ListBoxItem>
 
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <toolkit:ListPicker Header="{Binding Path=LocalizedResources.CameraButtonAssignment, Source={StaticResource LocalizedStrings}}" 
@@ -427,8 +449,15 @@
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled">
                         <StackPanel>
 
+                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                            <toolkit:ToggleSwitch Header="{Binding Path=LocalizedResources.TurboModeText, Source={StaticResource LocalizedStrings}}"
+                                            Name="toggleTurbo" 
+                                              Tap="toggleTurbo_Tap"
+                                              Margin="0,0,0,-24"/>
+                        </ListBoxItem>
+                            
 
-                            <telerikInput:RadListPicker  Header="{Binding Path=LocalizedResources.FrameSkipSetting, Source={StaticResource LocalizedStrings}}" 
+                        <telerikInput:RadListPicker  Header="{Binding Path=LocalizedResources.FrameSkipSetting, Source={StaticResource LocalizedStrings}}" 
                                                SelectionChanged="frameSkipPicker_SelectionChanged_1" 
                                              Name="frameSkipPicker" 
                                                      InlineModeThreshold="20"

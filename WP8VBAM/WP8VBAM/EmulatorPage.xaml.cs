@@ -20,6 +20,7 @@ using Microsoft.Devices;
 using Microsoft.Phone.Tasks;
 using System.Windows.Controls.Primitives;
 using Coding4Fun.Toolkit.Controls;
+using System.IO.IsolatedStorage;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -513,13 +514,26 @@ namespace PhoneDirect3DXamlAppInterop
         void CameraButtons_ShutterKeyReleased(object sender, EventArgs e)
         {
             if (this.m_d3dBackground != null )
-            {   //if the camera button was half pressed, we stop the toggle for all cases
+            {   //if the camera button was half pressed, we stop the toggle for both cases
                 //if the camera button was full pressed, we stop the toggle only when the assignment is not turbo mode and it is not sticky
-                if (wasHalfPressed || (EmulatorSettings.Current.CameraButtonAssignment != 0 && EmulatorSettings.Current.FullPressStickABLR == false))
+                if (EmulatorSettings.Current.CameraButtonAssignment == 0)
                 {
-                    this.m_d3dBackground.StopTurboMode();
-                    wasHalfPressed = false;
+                    if (wasHalfPressed)
+                    {
+                        EmulatorSettings.Current.UseTurbo = false;
+                    }
                 }
+                else
+                {
+                    if (wasHalfPressed ||  EmulatorSettings.Current.FullPressStickABLR == false)
+                    {
+                        this.m_d3dBackground.StopCameraPress();
+                        
+                    }
+                }
+
+                wasHalfPressed = false;
+
             }
         }
 
@@ -528,31 +542,49 @@ namespace PhoneDirect3DXamlAppInterop
                 if (this.m_d3dBackground != null)
                 {
                     wasHalfPressed = true;
-                    this.m_d3dBackground.StartTurboMode();
+
+                    if (EmulatorSettings.Current.CameraButtonAssignment == 0)
+                        EmulatorSettings.Current.UseTurbo = true;
+                    else
+                        this.m_d3dBackground.StartCameraPress();
                 }
         }
 
         void CameraButtons_ShutterKeyPressed(object sender, EventArgs e)
         {
-            if (EmulatorSettings.Current.CameraButtonAssignment == 0 || EmulatorSettings.Current.FullPressStickABLR == true)
-            {   // Turbo button or button stick is on
+            if (EmulatorSettings.Current.CameraButtonAssignment == 0 )
+            {   // Turbo button 
 
                 if (this.m_d3dBackground != null)
                 {
-                    if (!wasHalfPressed)
-                    {
-                        this.m_d3dBackground.ToggleTurboMode();
-                    }
+                    //change turbo mode and save
+                    EmulatorSettings.Current.UseTurbo = !(bool)IsolatedStorageSettings.ApplicationSettings[SettingsPage.UseTurboKey];
+                    IsolatedStorageSettings.ApplicationSettings[SettingsPage.UseTurboKey] = EmulatorSettings.Current.UseTurbo;
+
                     wasHalfPressed = false;
                 }
 
             }
             else
-            {   // A/B/L/R button and not stick
-                if (this.m_d3dBackground != null)
+            {
+                if (EmulatorSettings.Current.FullPressStickABLR == true) //button stick is on
                 {
-                    this.m_d3dBackground.StartTurboMode();
-                    wasHalfPressed = false;
+                    if (this.m_d3dBackground != null)
+                    {
+                        if (!wasHalfPressed)
+                        {
+                            this.m_d3dBackground.ToggleCameraPress();
+                        }
+                        wasHalfPressed = false;
+                    }
+                }
+                else
+                {   // A/B/L/R button and not stick
+                    if (this.m_d3dBackground != null)
+                    {
+                        this.m_d3dBackground.StartCameraPress();
+                        wasHalfPressed = false;
+                    }
                 }
             }
         }

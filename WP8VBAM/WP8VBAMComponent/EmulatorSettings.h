@@ -530,6 +530,32 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
+		property int UseMotionControl
+		{
+			int get(void) { return this->useMotionControl; }
+			void set(int value)
+			{
+				this->useMotionControl = value;
+				if (this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
+		property bool UseTurbo
+		{
+			bool get(void) { return this->useTurbo; }
+			void set(bool value)
+			{
+				this->useTurbo = value;
+				if (this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
 		EmulatorSettings(void);
 
 		property int PadCenterXP;
@@ -575,6 +601,18 @@ namespace PhoneDirect3DXamlAppComponent
 		property int MogaLeftJoystick;
 		property int MogaRightJoystick;
 
+		property int MotionLeft;
+		property int MotionRight;
+		property int MotionUp;
+		property int MotionDown;
+		property double RestAngleX;
+		property double RestAngleY;
+		property double RestAngleZ;
+
+		property double MotionDeadzoneH;
+		property double MotionDeadzoneV;
+		property bool MotionAdaptOrientation;
+
 
 	private:
 		bool soundEnabled;
@@ -613,6 +651,8 @@ namespace PhoneDirect3DXamlAppComponent
 		bool enableAutoFire;
 		bool mapABLRTurbo;
 		bool fullPressStickABLR;
+		int useMotionControl;
+		bool useTurbo;
 
 
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;

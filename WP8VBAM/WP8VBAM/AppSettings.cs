@@ -37,6 +37,8 @@ namespace PhoneDirect3DXamlAppInterop
         const string AutoBackupIndexKey = "AutoBackupIndexKey";
         const string UseAccentColorKey = "UseAccentColorKey";
         const string VoiceCommandVersionKey = "VoiceCommandVersionKey";
+        const string FirstTurboPromptKey = "FirstTurboPromptKey";
+
 
         /// <summary>
         /// Constructor that gets the application settings.
@@ -443,7 +445,18 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-
+        public bool FirstTurboPrompt
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(FirstTurboPromptKey, false);
+            }
+            set
+            {
+                AddOrUpdateValue(FirstTurboPromptKey, value);
+                Save();
+            }
+        }
 
 
         #region INotifyPropertyChanged Members

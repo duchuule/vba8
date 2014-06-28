@@ -368,6 +368,11 @@ namespace Emulator
 		this->UpdateFormat(this->format);
 	}
 
+	int VirtualController::GetOrientation()
+	{
+		return this->orientation;
+	}
+
 	bool VirtualController::CheckTouchableArea(Windows::Foundation::Point p)
 	{
 		if (this->stickBoundaries.Contains(p) || this->aRect.Contains(p) || this->bRect.Contains(p) || this->lRect.Contains(p)

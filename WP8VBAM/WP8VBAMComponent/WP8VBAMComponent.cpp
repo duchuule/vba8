@@ -21,11 +21,13 @@ using namespace Windows::Phone::Input::Interop;
 using namespace Windows::ApplicationModel::Core;
 
 Moga::Windows::Phone::ControllerManager^ Direct3DBackground::mogacontroller;
+Windows::Devices::Sensors::Accelerometer^ Direct3DBackground::m_accelerometer;
+Windows::Devices::Sensors::Inclinometer^ Direct3DBackground::m_inclinometer;
 
 ConnectionState gba_conect_state;
 bool user_abort_connection = false;
 
-extern bool enableTurboMode;
+extern bool cameraPressed;
 
 
 
@@ -97,19 +99,19 @@ namespace PhoneDirect3DXamlAppComponent
 		}
 	}
 
-	void Direct3DBackground::ToggleTurboMode(void)
+	void Direct3DBackground::ToggleCameraPress(void)
 	{
-		enableTurboMode = !enableTurboMode;
+		cameraPressed = !cameraPressed;
 	}
 
-	void Direct3DBackground::StartTurboMode(void)
+	void Direct3DBackground::StartCameraPress(void)
 	{
-		enableTurboMode = true;
+		cameraPressed = true;
 	}
 
-	void Direct3DBackground::StopTurboMode(void)
+	void Direct3DBackground::StopCameraPress(void)
 	{
-		enableTurboMode = false;
+		cameraPressed = false;
 	}
 
 	bool Direct3DBackground::IsROMLoaded(void)
@@ -249,6 +251,34 @@ namespace PhoneDirect3DXamlAppComponent
 					mogacontroller->Connect() ;
 				}
 				catch(Platform::Exception^ ex)
+				{
+				}
+			}
+		}
+
+		//motion control
+		if (EmulatorSettings::Current->UseMotionControl == 1)
+		{
+			if (m_accelerometer == nullptr)
+			{
+				try
+				{
+					m_accelerometer = Windows::Devices::Sensors::Accelerometer::GetDefault();
+				}
+				catch (Platform::Exception^ ex)
+				{
+				}
+			}
+		}
+		else if (EmulatorSettings::Current->UseMotionControl == 2)
+		{
+			if (m_inclinometer == nullptr)
+			{
+				try
+				{
+					m_inclinometer = Windows::Devices::Sensors::Inclinometer::GetDefault();
+				}
+				catch (Platform::Exception^ ex)
 				{
 				}
 			}
