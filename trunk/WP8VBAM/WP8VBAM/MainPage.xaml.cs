@@ -170,6 +170,23 @@ namespace PhoneDirect3DXamlAppInterop
 
             MainPage.LoadInitialSettings();
 
+            //ask to enable turbo mode
+            if (!App.metroSettings.FirstTurboPrompt)
+            {
+                RadMessageBox.Show(AppResources.EnableTurboPromptTitle, MessageBoxButtons.YesNo, AppResources.EnableTurboPromptText,
+                    closedHandler: (args) =>
+                    {
+                        DialogResult result = args.Result;
+                        if (result == DialogResult.OK)
+                        {
+                            EmulatorSettings.Current.UseTurbo = true;
+                        }
+
+
+                    });
+                App.metroSettings.FirstTurboPrompt = true;
+            }
+
             if (shouldUpdateBackgroud)
             {
                 UpdateBackgroundImage();
@@ -329,6 +346,26 @@ namespace PhoneDirect3DXamlAppInterop
                 MessageBox.Show(AppResources.FileAssociationError, AppResources.ErrorCaption, MessageBoxButton.OK);
             }
 
+            //register voice command
+            if (App.metroSettings.VoiceCommandVersion < App.VOICE_COMMAND_VERSION || VoiceCommandService.InstalledCommandSets.Count == 0)
+            {
+                try
+                {
+                    await RegisterVoiceCommand("");
+
+
+
+                    await UpdateGameListForVoiceCommand();
+
+                    App.metroSettings.VoiceCommandVersion = App.VOICE_COMMAND_VERSION;
+
+
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message + "\r\nVoice Commands failed to initialize.");
+                }
+            }
 
             //ask to rate
             if (App.metroSettings.NAppLaunch % 50 == 14 && App.metroSettings.CanAskReview)
@@ -367,30 +404,13 @@ namespace PhoneDirect3DXamlAppInterop
             //}
 
 
+
+
             //== auto back up
             await AutoBackup();
 
 
-            //register voice command
-            if (App.metroSettings.VoiceCommandVersion < App.VOICE_COMMAND_VERSION ||VoiceCommandService.InstalledCommandSets.Count == 0)
-            {
-                try
-                {
-                    await RegisterVoiceCommand("");
 
-
-
-                    await UpdateGameListForVoiceCommand();
-
-                    App.metroSettings.VoiceCommandVersion = App.VOICE_COMMAND_VERSION;
-
-
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show(error.Message + "\r\nVoice Commands failed to initialize.");
-                }
-            }
 
             //set indicator after everything is done
             //indicator.IsIndeterminate = false;
@@ -1006,7 +1026,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 if (!isoSettings.Contains(SettingsPage.SkipFramesKey))
                 {
-                    isoSettings[SettingsPage.SkipFramesKey] = 3;
+                    isoSettings[SettingsPage.SkipFramesKey] = 0;
                 }
                 if (!isoSettings.Contains(SettingsPage.ImageScalingKey))
                 {
@@ -1117,6 +1137,13 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     isoSettings[SettingsPage.FullPressStickABLRKey] = true;
                 }
+                if (!isoSettings.Contains(SettingsPage.UseMotionControlKey))
+                {
+                    isoSettings[SettingsPage.UseMotionControlKey] = 0;
+                }
+
+                if (!isoSettings.Contains(SettingsPage.UseTurboKey))
+                    isoSettings[SettingsPage.UseTurboKey] = false;
 
                 //get default controller position
                 int[] cpos = CustomizeControllerPage.GetDefaultControllerPosition();
@@ -1278,6 +1305,28 @@ namespace PhoneDirect3DXamlAppInterop
                     isoSettings[SettingsPage.MogaRightJoystickKey] = 16;
                 }
 
+                //motion mapping
+                if (!isoSettings.Contains(SettingsPage.MotionLeftKey))
+                    isoSettings[SettingsPage.MotionLeftKey] = 1;
+                if (!isoSettings.Contains(SettingsPage.MotionRightKey))
+                    isoSettings[SettingsPage.MotionRightKey] = 2;
+                if (!isoSettings.Contains(SettingsPage.MotionUpKey))
+                    isoSettings[SettingsPage.MotionUpKey] = 4;
+                if (!isoSettings.Contains(SettingsPage.MotionDownKey))
+                    isoSettings[SettingsPage.MotionDownKey] = 8;
+
+                if (!isoSettings.Contains(SettingsPage.RestAngleXKey))
+                    isoSettings[SettingsPage.RestAngleXKey] = 0.0;
+                if (!isoSettings.Contains(SettingsPage.RestAngleYKey))
+                    isoSettings[SettingsPage.RestAngleYKey] =  -0.70711;
+                if (!isoSettings.Contains(SettingsPage.RestAngleZKey))
+                    isoSettings[SettingsPage.RestAngleZKey] = -0.70711;
+                if (!isoSettings.Contains(SettingsPage.MotionDeadzoneHKey))
+                    isoSettings[SettingsPage.MotionDeadzoneHKey] = 10.0;
+                if (!isoSettings.Contains(SettingsPage.MotionDeadzoneVKey))
+                    isoSettings[SettingsPage.MotionDeadzoneVKey] = 10.0;
+                if (!isoSettings.Contains(SettingsPage.MotionAdaptOrientationKey))
+                    isoSettings[SettingsPage.MotionAdaptOrientationKey] = true;
 
                 isoSettings.Save();
 
@@ -1315,6 +1364,9 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.EnableAutoFire = (bool)isoSettings[SettingsPage.EnableAutoFireKey];
                 settings.MapABLRTurbo = (bool)isoSettings[SettingsPage.MapABLRTurboKey];
                 settings.FullPressStickABLR = (bool)isoSettings[SettingsPage.FullPressStickABLRKey];
+                settings.UseMotionControl = (int)isoSettings[SettingsPage.UseMotionControlKey];
+                settings.UseTurbo = (bool)isoSettings[SettingsPage.UseTurboKey];
+                
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
                 settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
@@ -1357,6 +1409,19 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.MogaR2 = (int)isoSettings[SettingsPage.MogaR2Key];
                 settings.MogaLeftJoystick = (int)isoSettings[SettingsPage.MogaLeftJoystickKey];
                 settings.MogaRightJoystick = (int)isoSettings[SettingsPage.MogaRightJoystickKey];
+
+                settings.MotionLeft = (int)isoSettings[SettingsPage.MotionLeftKey];
+                settings.MotionRight = (int)isoSettings[SettingsPage.MotionRightKey];
+                settings.MotionUp = (int)isoSettings[SettingsPage.MotionUpKey];
+                settings.MotionDown = (int)isoSettings[SettingsPage.MotionDownKey];
+                settings.RestAngleX = (double)isoSettings[SettingsPage.RestAngleXKey];
+                settings.RestAngleY = (double)isoSettings[SettingsPage.RestAngleYKey];
+                settings.RestAngleZ = (double)isoSettings[SettingsPage.RestAngleZKey];
+
+                settings.MotionDeadzoneH = (double)isoSettings[SettingsPage.MotionDeadzoneHKey];
+                settings.MotionDeadzoneV = (double)isoSettings[SettingsPage.MotionDeadzoneVKey];
+                settings.MotionAdaptOrientation = (bool)isoSettings[SettingsPage.MotionAdaptOrientationKey];
+
 
                 settings.SettingsChanged = MainPage.SettingsChangedDelegate;
             }
@@ -1403,6 +1468,8 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.EnableAutoFireKey] = settings.EnableAutoFire;
             isoSettings[SettingsPage.MapABLRTurboKey] = settings.MapABLRTurbo;
             isoSettings[SettingsPage.FullPressStickABLRKey] = settings.FullPressStickABLR;
+            isoSettings[SettingsPage.UseMotionControlKey] = settings.UseMotionControl;
+            
             isoSettings.Save();
         }
 

@@ -2,13 +2,14 @@
 #include "EmulatorSettings.h"
 #include "VirtualController.h"
 #include "WP8VBAMComponent.h"
+#include <math.h>  
 
 using namespace Emulator;
 using namespace PhoneDirect3DXamlAppComponent;
 
 extern bool synchronize;
 
-bool enableTurboMode = false;
+bool cameraPressed = false;
 bool autoFireToggle = false;
 int mappedButton = 0;
 
@@ -52,6 +53,7 @@ extern void soundShutdown();
 void systemGbPrint(unsigned char *, int, int, int, int, int) { }
 Moga::Windows::Phone::ControllerManager^ GetMogaController(void);
 void GetMogaMapping(int pressedButton, bool* a, bool* b, bool* l, bool* r );
+void GetMotionMapping(int tiltDirection, bool* left, bool* right, bool* up, bool* down, bool* a, bool* b, bool* l, bool* r);
 
 SoundDriver * systemSoundInit()
 {
@@ -66,6 +68,49 @@ SoundDriver * systemSoundInit()
 	}
 
 	return drv;
+}
+
+double SolveForAngle(double a, double b, double c)
+{
+	const double epsilon = 0.0000000000000001;
+	double x = -1001.0, x2 = -1001.0;
+	//solve the function A cos(x) + B sin(x) = C
+	if (abs(a + c) < epsilon) //when a + c = 0
+	{
+		x = (-2 * atan(a / b)) / 3.14159265 * 180;
+	}
+	else
+	{
+		double check = a*a + b*b + a*c - b*sqrt(a*a + b*b - c*c);
+		if (abs(check) > epsilon)
+		{
+			//2 ArcTan[(b - Sqrt[a ^ 2 + b ^ 2 - c ^ 2]) / (a + c)]
+			x = (2 * atan((b - sqrt(a*a + b*b - c*c)) / (a + c) ) ) / 3.14159265 * 180;
+		}
+
+		check = a*a + b*b + a*c + b*sqrt(a*a + b*b - c*c);
+		if (abs(check > epsilon))
+		{
+			//x == 2 ArcTan[(b + Sqrt[a^2 + b^2 - c^2])/(a + c)]
+			x2 = (2 * atan((b + sqrt(a*a + b*b - c*c)) / (a + c))) / 3.14159265 * 180;
+		}
+	}
+
+	if (x < -1000 && x2 > -1000)
+		x = x2;
+
+	if (x > -1000 && x2 > -1000) //2 solutions, choose the most likely one
+	{
+		if (abs(x2) < abs(x))
+			x = x2;
+	}
+
+	return x;
+}
+
+double deg2rad(double deg)
+{
+	return deg / 180.0 * 3.14159265;
 }
 
 u32 systemReadJoypad(int gamepad) 
@@ -88,6 +133,166 @@ u32 systemReadJoypad(int gamepad)
 	bool r = false;
 
 	EmulatorSettings ^settings = EmulatorSettings::Current;
+
+	Windows::Devices::Sensors::Accelerometer^ accl = Direct3DBackground::getAccelormeter();
+	Windows::Devices::Sensors::Inclinometer^ incl = Direct3DBackground::getInclinometer();
+
+	//Motion Control
+	//see Tilt Sensing Using a Three-Axis Accelerometer for complete equations
+	//[Gx, Gy, Gz]^T = Rx(phi) Ry(theta) [Gx0, Gy0, Gz0]^T
+	// Combined rotation matrix: [Gx0*cos(theta) - Gz0*sin(theta), Gx0*sin(theta)*sin(phi)+Gy0*cos(phi) + cos(theta)*sin(phi)*Gz0,
+	//							Gx0*cos(phi)*sin(theta) + Gy0*(-sin(phi)) + cos(theta)*cos(phi)*Gz0 ]
+	
+	double rotationDeadZone = 10;
+	double g0[3] = { settings->RestAngleX, settings->RestAngleY, settings->RestAngleZ };
+	//correct for orientation if needed
+	if (settings->MotionAdaptOrientation)
+	{
+		if (controller->GetOrientation() == ORIENTATION_PORTRAIT) 
+		{
+			if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
+			{
+				g0[0] = settings->RestAngleX;
+				g0[1] = settings->RestAngleY;
+			}
+			else //phone is calibrated in landscape left
+			{
+				if (settings->RestAngleX < 0 )  //calibrated in landscape left
+				{
+					g0[0] = settings->RestAngleY;
+					g0[1] = settings->RestAngleX;
+				}
+				else  //calibrated in landscape right
+				{
+					g0[0] = -settings->RestAngleY;
+					g0[1] = settings->RestAngleX;
+				}
+			}
+		}
+		else if (controller->GetOrientation() == ORIENTATION_LANDSCAPE) //current orientation is landscape left
+		{
+			if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
+			{
+				g0[0] = settings->RestAngleY;
+				g0[1] = -settings->RestAngleX;
+			}
+			else //phone is calibrated in landscape left
+			{
+				if (settings->RestAngleX < 0)  //calibrated in landscape left
+				{
+					g0[0] = settings->RestAngleX;
+					g0[1] = settings->RestAngleY;
+				}
+				else  //calibrated in landscape right
+				{
+					g0[0] = -settings->RestAngleX;
+					g0[1] = -settings->RestAngleY;
+				}
+			}
+		}
+		else //current orientation is landscape right
+		{
+			if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
+			{
+				g0[0] = -settings->RestAngleY;
+				g0[1] = settings->RestAngleX;
+			}
+			else //phone is calibrated in landscape left
+			{
+				if (settings->RestAngleX < 0)  //calibrated in landscape left
+				{
+					g0[0] = -settings->RestAngleX;
+					g0[1] = -settings->RestAngleY;
+				}
+				else  //calibrated in landscape right
+				{
+					g0[0] = settings->RestAngleX;
+					g0[1] = settings->RestAngleY;
+				}
+			}
+		}
+
+	}
+
+
+
+	double g[3];
+	
+	//NOTE: x is phone's short edge, y is phone's long endge, z is phone's thickness
+	if (settings->UseMotionControl == 1 && accl != nullptr)
+	{
+		Windows::Devices::Sensors::AccelerometerReading^ reading = accl->GetCurrentReading();
+
+		g[0] = reading->AccelerationX;
+		g[1] = reading->AccelerationY;
+		g[2] = reading->AccelerationZ;
+
+		double theta = SolveForAngle(g0[0], -g0[2], g[0]);
+
+
+
+		double phi = SolveForAngle(g0[1], g0[0] * sin(deg2rad(theta)) + g0[2] * cos(deg2rad(theta)), g[1]);
+
+		//account for different orientation
+
+		if (controller->GetOrientation() == ORIENTATION_PORTRAIT)
+		{
+
+			if (theta < -settings->MotionDeadzoneH)
+				GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+			else if (theta > settings->MotionDeadzoneH)
+				GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+
+
+			if (phi < -settings->MotionDeadzoneV)
+				GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+			else if (phi > settings->MotionDeadzoneV)
+				GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+		}
+		else if (controller->GetOrientation() == ORIENTATION_LANDSCAPE)
+		{
+			if (theta < -settings->MotionDeadzoneH)
+				GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+			else if (theta > settings->MotionDeadzoneH)
+				GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+
+
+			if (phi < -settings->MotionDeadzoneV)
+				GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+			else if (phi > settings->MotionDeadzoneV)
+				GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+
+		}
+		else
+		{
+			if (theta < -settings->MotionDeadzoneH)
+				GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+			else if (theta > settings->MotionDeadzoneH)
+				GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+
+
+			if (phi < -settings->MotionDeadzoneV)
+				GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+			else if (phi > settings->MotionDeadzoneV)
+				GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+		}
+	}
+	else if (settings->UseMotionControl == 2 && incl != nullptr)
+	{
+		Windows::Devices::Sensors::InclinometerReading^ reading = incl->GetCurrentReading();
+
+
+
+		if (reading->RollDegrees - settings->RestAngleX  < -settings->MotionDeadzoneH)
+			GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+		else if (reading->RollDegrees - settings->RestAngleX> settings->MotionDeadzoneH)
+			GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+
+		if (reading->PitchDegrees - settings->RestAngleY < -settings->MotionDeadzoneV)
+			GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+		else if (reading->PitchDegrees - settings->RestAngleY > settings->MotionDeadzoneV)
+			GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+	}
 
 	//Moga
 	using namespace Moga::Windows::Phone;
@@ -294,15 +499,17 @@ u32 systemReadJoypad(int gamepad)
 			res |= 1024;
 		}
 
-		if (enableTurboMode) //this is true when camera button is pressed
+		if (settings->UseTurbo)
 		{
-			if (settings->CameraButtonAssignment == 0)
-			{
-				// Speed
-				res |= 1024;
+			// Speed
+			res |= 1024;
 
-			}
-			else if (settings->EnableAutoFire)
+		}
+
+
+		if (cameraPressed) //this is true when camera button is pressed
+		{
+			if (settings->EnableAutoFire)
 			{
 				res &= (~mappedButton);
 				if (autoFireToggle)
@@ -333,6 +540,28 @@ void GetMogaMapping(int pressedButton, bool* a, bool* b, bool* l, bool* r )
 	if (pressedButton & 8)
 		*r = true;
 	
+}
+
+
+void GetMotionMapping(int tiltDirection, bool* left, bool* right, bool* up, bool* down, bool* a, bool* b, bool* l, bool* r)
+{
+	if (tiltDirection & 1)
+		*left = true;
+	if (tiltDirection & 2)
+		*right = true;
+	if (tiltDirection & 4)
+		*up = true;
+	if (tiltDirection & 8)
+		*down = true;
+	if (tiltDirection & 16)
+		*a = true;
+	if (tiltDirection & 32)
+		*b = true;
+	if (tiltDirection & 64)
+		*l = true;
+	if (tiltDirection & 128)
+		*r = true;
+
 }
 
 

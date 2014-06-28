@@ -158,11 +158,38 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your device does not have an accelerometer..
+        /// </summary>
+        public static string AccelerometerMissingText {
+            get {
+                return ResourceManager.GetString("AccelerometerMissingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accelerometer.
+        /// </summary>
+        public static string AccelerometerText {
+            get {
+                return ResourceManager.GetString("AccelerometerText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  (active).
         /// </summary>
         public static string ActiveSavestateText {
             get {
                 return ResourceManager.GetString("ActiveSavestateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto adapt to orientation change.
+        /// </summary>
+        public static string adaptOrientationText {
+            get {
+                return ResourceManager.GetString("adaptOrientationText", resourceCulture);
             }
         }
         
@@ -208,6 +235,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string AlreadyDownloadingText {
             get {
                 return ResourceManager.GetString("AlreadyDownloadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to APP FUNCTION.
+        /// </summary>
+        public static string AppFunctionText {
+            get {
+                return ResourceManager.GetString("AppFunctionText", resourceCulture);
             }
         }
         
@@ -591,6 +627,33 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instruction: hold the phone at the desired rest postion and press the &quot;Calibrate&quot; button..
+        /// </summary>
+        public static string CalibrateInstruction {
+            get {
+                return ResourceManager.GetString("CalibrateInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibrate.
+        /// </summary>
+        public static string CalibrateText {
+            get {
+                return ResourceManager.GetString("CalibrateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibration successful..
+        /// </summary>
+        public static string CalibrationSuccessText {
+            get {
+                return ResourceManager.GetString("CalibrationSuccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A-Button.
         /// </summary>
         public static string CameraAssignA {
@@ -893,6 +956,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string CodeText {
             get {
                 return ResourceManager.GetString("CodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your device does have a compass or an accelerometer (most likely a compass)..
+        /// </summary>
+        public static string CompassMissingText {
+            get {
+                return ResourceManager.GetString("CompassMissingText", resourceCulture);
             }
         }
         
@@ -1256,6 +1328,24 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to enable TURBO mode for faster game play? You can  later change the setting by going to Settings -&gt; Video or press the camera button..
+        /// </summary>
+        public static string EnableTurboPromptText {
+            get {
+                return ResourceManager.GetString("EnableTurboPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable turbo mode?.
+        /// </summary>
+        public static string EnableTurboPromptTitle {
+            get {
+                return ResourceManager.GetString("EnableTurboPromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter promotion code.
         /// </summary>
         public static string EnterCodeText {
@@ -1436,6 +1526,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to calibrate. Please try hitting the button again..
+        /// </summary>
+        public static string FailedToCalibrateText {
+            get {
+                return ResourceManager.GetString("FailedToCalibrateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAQs, forum discussion &amp; PC app.
         /// </summary>
         public static string FAQsLinkText {
@@ -1481,7 +1580,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skip Frames (increase emulation speed).
+        ///   Looks up a localized string similar to Normal Mode Frame Skip.
         /// </summary>
         public static string FrameSkipSetting {
             get {
@@ -1603,6 +1702,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string GuidesTitle {
             get {
                 return ResourceManager.GetString("GuidesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your device does not have a gyroscope..
+        /// </summary>
+        public static string GyroMissingText {
+            get {
+                return ResourceManager.GetString("GyroMissingText", resourceCulture);
             }
         }
         
@@ -1837,6 +1945,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Horizontal tilt deadzone (in degrees).
+        /// </summary>
+        public static string HorizontalTiltDeadZoneText {
+            get {
+                return ResourceManager.GetString("HorizontalTiltDeadZoneText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Host&apos;s IP address: {0}. Waiting for client....
         /// </summary>
         public static string HostIPAddressText {
@@ -1965,6 +2082,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string ImportWaitComplete {
             get {
                 return ResourceManager.GetString("ImportWaitComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inclinometer.
+        /// </summary>
+        public static string InclinometerText {
+            get {
+                return ResourceManager.GetString("InclinometerText", resourceCulture);
             }
         }
         
@@ -2221,6 +2347,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MOGA BUTTON.
+        /// </summary>
+        public static string MogaButtonText {
+            get {
+                return ResourceManager.GetString("MogaButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note: MOGA controller may require GDR3..
         /// </summary>
         public static string MogaGDR3Note {
@@ -2244,6 +2379,42 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string MoreLicenseButton {
             get {
                 return ResourceManager.GetString("MoreLicenseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Motion control.
+        /// </summary>
+        public static string MotionControlHeader {
+            get {
+                return ResourceManager.GetString("MotionControlHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Motion control settings....
+        /// </summary>
+        public static string MotionControlSettingsText {
+            get {
+                return ResourceManager.GetString("MotionControlSettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to motion settings.
+        /// </summary>
+        public static string MotionMappingTitle {
+            get {
+                return ResourceManager.GetString("MotionMappingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MOTION.
+        /// </summary>
+        public static string MotionText {
+            get {
+                return ResourceManager.GetString("MotionText", resourceCulture);
             }
         }
         
@@ -3353,11 +3524,56 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tilt down.
+        /// </summary>
+        public static string TiltDownText {
+            get {
+                return ResourceManager.GetString("TiltDownText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt left.
+        /// </summary>
+        public static string TiltLeftText {
+            get {
+                return ResourceManager.GetString("TiltLeftText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt right.
+        /// </summary>
+        public static string TiltRightText {
+            get {
+                return ResourceManager.GetString("TiltRightText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt up.
+        /// </summary>
+        public static string TiltUpText {
+            get {
+                return ResourceManager.GetString("TiltUpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Turbo Mode Frame Skip.
         /// </summary>
         public static string TurboFrameSkipText {
             get {
                 return ResourceManager.GetString("TurboFrameSkipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turbo mode.
+        /// </summary>
+        public static string TurboModeText {
+            get {
+                return ResourceManager.GetString("TurboModeText", resourceCulture);
             }
         }
         
@@ -3448,6 +3664,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string VControllerSmallSetting {
             get {
                 return ResourceManager.GetString("VControllerSmallSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical tilt deadzone (in degrees).
+        /// </summary>
+        public static string VerticalTiltDeadZoneText {
+            get {
+                return ResourceManager.GetString("VerticalTiltDeadZoneText", resourceCulture);
             }
         }
         

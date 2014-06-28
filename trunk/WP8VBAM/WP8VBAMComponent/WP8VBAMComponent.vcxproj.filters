@@ -201,12 +201,6 @@
     <ClCompile Include="VBAM\SFML\src\SFML\Network\Win32\SocketHelper.cpp">
       <Filter>vbam\smfl</Filter>
     </ClCompile>
-    <ClCompile Include="LinkComponent.cpp">
-      <Filter>link</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkContentProvider.cpp">
-      <Filter>link</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicTimer.h" />
@@ -428,12 +422,6 @@
     <ClInclude Include="VBAM\SFML\include\SFML\Network\SocketUDP.hpp">
       <Filter>vbam\smfl</Filter>
     </ClInclude>
-    <ClInclude Include="LinkComponent.h">
-      <Filter>link</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkContentProvider.h">
-      <Filter>link</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vbam">
@@ -462,9 +450,6 @@
     </Filter>
     <Filter Include="vbam\smfl">
       <UniqueIdentifier>{e0dab4ae-292b-428b-9d87-248c3c3379f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="link">
-      <UniqueIdentifier>{4be64948-afb1-47bf-b295-2661ed64fcc7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

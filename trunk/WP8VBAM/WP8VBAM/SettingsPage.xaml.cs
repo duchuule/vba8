@@ -15,6 +15,7 @@ using System.Windows.Controls.Primitives;
 using System.IO.IsolatedStorage;
 using System.Windows.Media;
 using System.Security.Cryptography;
+using Microsoft.Devices.Sensors;
 
 namespace PhoneDirect3DXamlAppInterop
 {
@@ -38,7 +39,7 @@ namespace PhoneDirect3DXamlAppInterop
         public const String StretchKey = "FullscreenStretch";
         public const String OpacityKey = "ControllerOpacity";
         public const String AspectKey = "AspectRatioModeKey";
-        public const String SkipFramesKey = "SkipFramesKey";
+        public const String SkipFramesKey = "SkipFramesKey2";
         public const String ImageScalingKey = "ImageScalingKey";
         public const String TurboFrameSkipKey = "TurboSkipFramesKey";
         public const String SyncAudioKey = "SynchronizeAudioKey";
@@ -64,6 +65,8 @@ namespace PhoneDirect3DXamlAppInterop
         public const String EnableAutoFireKey = "EnableAutoFireKey";
         public const String MapABLRTurboKey = "MapABLRTurboKey";
         public const String FullPressStickABLRKey = "FullPressStickABLRKey";
+        public const String UseMotionControlKey = "UseMotionControlKey";
+        public const String UseTurboKey = "UseTurboKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -106,6 +109,19 @@ namespace PhoneDirect3DXamlAppInterop
         public const String MogaR2Key = "MogaR2Key";
         public const String MogaLeftJoystickKey = "MogaLeftJoystickKey";
         public const String MogaRightJoystickKey = "MogaRightJoystickKey";
+
+        public const String MotionLeftKey = "MotionLeftKey";
+        public const String MotionRightKey = "MotionRightKey";
+        public const String MotionUpKey = "MotionUpKey";
+        public const String MotionDownKey = "MotionDownKey";
+        public const String RestAngleXKey = "RestAngleXKey";
+        public const String RestAngleYKey = "RestAngleYKey";
+        public const String RestAngleZKey = "RestAngleZKey";
+
+        public const String MotionDeadzoneHKey = "MotionDeadzoneHKey";
+        public const String MotionDeadzoneVKey = "MotionDeadzoneVKey";
+        public const String MotionAdaptOrientationKey = "MotionAdaptOrientationKey";
+        
 
         bool initdone = false;
 
@@ -257,6 +273,8 @@ namespace PhoneDirect3DXamlAppInterop
             else
                 this.txtVibrationDuration.Visibility = Visibility.Collapsed;
 
+            this.toggleTurbo.IsChecked = emuSettings.UseTurbo;
+
             this.Loaded += (o, e) =>
             {
                 this.turboFrameSkipPicker.SelectedIndex = emuSettings.TurboFrameSkip;
@@ -267,6 +285,8 @@ namespace PhoneDirect3DXamlAppInterop
 
                 this.dpadStyleBox.SelectedIndex = emuSettings.DPadStyle; //dpad, this need to be set after loaded because we set the items in xaml
                 this.assignPicker.SelectedIndex = emuSettings.CameraButtonAssignment; //camera assignment
+
+                
 
                 if (emuSettings.CameraButtonAssignment == 0) //hide auto fire setting
                 {
@@ -289,6 +309,13 @@ namespace PhoneDirect3DXamlAppInterop
 
                 this.txtVibrationDuration.Text = emuSettings.VibrationDuration.ToString();
 
+
+                this.motionControlBox.SelectedIndex = emuSettings.UseMotionControl;
+
+                if (EmulatorSettings.Current.UseMotionControl == 0)
+                    MotionSettingBtn.Visibility = Visibility.Collapsed;
+                else
+                    MotionSettingBtn.Visibility = Visibility.Visible;
             
                 initdone = true;
             };
@@ -1080,6 +1107,89 @@ namespace PhoneDirect3DXamlAppInterop
 
 
             
+        }
+
+        private void motionControlBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (initdone)
+            {
+                if (this.motionControlBox.SelectedIndex == 1 && !Accelerometer.IsSupported)
+                {
+                    MessageBox.Show(AppResources.AccelerometerMissingText);
+                    this.motionControlBox.SelectedIndex = 0;
+                }
+                else if (this.motionControlBox.SelectedIndex == 2 )
+                {
+                    if (!Gyroscope.IsSupported)
+                    {
+                        MessageBox.Show(AppResources.GyroMissingText);
+                        this.motionControlBox.SelectedIndex = 0;
+                    }
+                    else if (!Motion.IsSupported)
+                    {
+                        MessageBox.Show(AppResources.CompassMissingText);
+                        this.motionControlBox.SelectedIndex = 0;
+                    }
+                }
+
+                EmulatorSettings.Current.UseMotionControl = this.motionControlBox.SelectedIndex;
+
+                if (EmulatorSettings.Current.UseMotionControl == 0)
+                    MotionSettingBtn.Visibility = Visibility.Collapsed;
+                else 
+                {
+                    MotionSettingBtn.Visibility = Visibility.Visible;
+
+                    if (EmulatorSettings.Current.UseMotionControl == 1) //default settings
+                    {
+                        //change setting in memory
+                        EmulatorSettings.Current.RestAngleX = 0.0;   //in "g" unit
+                        EmulatorSettings.Current.RestAngleY = -0.70711;
+                        EmulatorSettings.Current.RestAngleZ = -0.70711;
+
+                        //save to disk
+                        IsolatedStorageSettings.ApplicationSettings[SettingsPage.RestAngleXKey] = 0.0;
+                        IsolatedStorageSettings.ApplicationSettings[SettingsPage.RestAngleYKey] = -0.70711;
+                        IsolatedStorageSettings.ApplicationSettings[SettingsPage.RestAngleZKey] = -0.70711;
+
+                        IsolatedStorageSettings.ApplicationSettings.Save();
+
+                        
+                    }
+                    else if (EmulatorSettings.Current.UseMotionControl == 2)
+                    {
+                        //change setting in memory
+                        EmulatorSettings.Current.RestAngleX = 0.0;  //in dgree
+                        EmulatorSettings.Current.RestAngleY = 45;
+
+
+                        //save to disk
+                        IsolatedStorageSettings.ApplicationSettings[SettingsPage.RestAngleXKey] = 0.0;
+                        IsolatedStorageSettings.ApplicationSettings[SettingsPage.RestAngleYKey] = 45.0;
+
+
+                        IsolatedStorageSettings.ApplicationSettings.Save();
+                    }
+                }
+            }
+        }
+
+        private void MotionSettingBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MotionMappingPage.xaml", UriKind.Relative));
+        }
+
+        private void toggleTurbo_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (initdone)
+            {
+                EmulatorSettings.Current.UseTurbo = this.toggleTurbo.IsChecked.Value ;
+
+                //save to disk
+                //do this here instead of SettingsChangedDelegate() so that we don't always save to disk when camera is half press
+                IsolatedStorageSettings.ApplicationSettings[SettingsPage.UseTurboKey] = this.toggleTurbo.IsChecked.Value;
+            }
         }
 
 

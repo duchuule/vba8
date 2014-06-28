@@ -38,6 +38,7 @@ namespace Emulator
 		void UpdateFormat(int format);
 		void VirtualControllerOnTop(bool onTop);	
 		void SetOrientation(int orientation);
+		int GetOrientation();
 		int GetFormat(void);
 
 		virtual void PointerPressed(PointerPoint ^point);

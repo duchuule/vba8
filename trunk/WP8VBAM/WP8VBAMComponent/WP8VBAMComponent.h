@@ -61,9 +61,9 @@ public:
 	property Windows::Foundation::Size RenderResolution;
 	
 
-	void ToggleTurboMode(void);
-	void StartTurboMode(void);
-	void StopTurboMode(void);
+	void ToggleCameraPress(void);
+	void StartCameraPress(void);
+	void StopCameraPress(void);
 
 	void TriggerSnapshot(void);
 
@@ -92,6 +92,16 @@ public:
 	static Moga::Windows::Phone::ControllerManager^ getController() {
 		return mogacontroller;
 	};
+
+	static Windows::Devices::Sensors::Accelerometer^ getAccelormeter()
+	{
+		return m_accelerometer;
+	};
+
+	static Windows::Devices::Sensors::Inclinometer^ getInclinometer()
+	{
+		return m_inclinometer;
+	};
 	
 
 protected:
@@ -117,6 +127,9 @@ private:
 	int orientation;
 	HANDLE waitEvent;
 	HANDLE linkEndEvent;
+	static Windows::Devices::Sensors::Accelerometer^ m_accelerometer;
+	static Windows::Devices::Sensors::Inclinometer^ m_inclinometer;
+	
 	
 };
 
