@@ -188,56 +188,97 @@
                     </Grid>
                     
                     <!--<Line Margin="0,10,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" Grid.Row="1" StrokeThickness="4" />-->
-                
-                    <ListBox x:Name="gameList" 
-                             Margin="0,10,0,0"
-                             Grid.Row="1"
-                             ItemsSource="{Binding}"
-                                d:DataContext="{Binding DesignCheatInfoList}">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                        
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical" Margin="0,0,0,12">
-                                    <TextBlock Text="{Binding Title}" FontSize="28"
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              Margin="0,0,0,0"
+                                  Grid.Row="1"
+                                  x:Name="gameList" >
+                        <StackPanel >
+
+                            <!--Exact match-->
+                            <ListBox x:Name="exactMatches"
+                                     Margin="0,10,0,0"
+                                     Grid.Row="1"
+                                     ItemsSource="{Binding}"
+                                    d:DataContext="{Binding DesignCheatInfoList}"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical" Margin="0,0,0,12">
+                                            <TextBlock Text="{Binding Title}" FontSize="28"
                                                TextWrapping="Wrap"
                                                FontWeight="Bold"/>
-                                    <Grid >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                            <Grid >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
 
-                                        <Button Content="Game Shark" Grid.Column="0" 
+                                                <Button Content="Game Shark" Grid.Column="0" 
                                                 Margin="-12,0,0,0"
                                                 Style="{StaticResource RoundedButtonStyle}"
                                                 IsEnabled="{Binding HasGS, Converter={StaticResource EnableConverter}}"
                                                 x:Name="GSButton" Tap="GSButton_Tap"/>
-                                        <Button Content="Action Replay" Grid.Column="1"
+                                                <Button Content="Action Replay" Grid.Column="1"
                                                 Margin="0,0,-12,0"
                                                 Style="{StaticResource RoundedButtonStyle}"
                                                 IsEnabled="{Binding HasAR, Converter={StaticResource EnableConverter}}"
                                                 x:Name="ARButton"
                                                 Tap="ARButton_Tap"/>
-                                    </Grid>
-                                    <!--<Line Margin="0,3,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="1" />-->
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                                            </Grid>
+                                            <!--<Line Margin="0,3,0,0" X1="0" Y1="0" X2="800" Y2="0" Stroke="Gray" StrokeThickness="1" />-->
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
 
-                    
+                            <!--Partial match-->
+                            <!--<TextBlock Text="Partial matches" 
+                                       FontSize="28"
+                                               TextWrapping="Wrap"
+                                               FontWeight="Bold"/>-->
+                            <ListBox x:Name="partialMatches"
+                                     Margin="0,10,0,0"
+                                     Grid.Row="1"
+                                     ItemsSource="{Binding}"
+                                        d:DataContext="{Binding DesignPartialCheatMatchList}"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled" Tap="partialMatches_Tap" 
+                                     >
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical" Margin="0,0,0,12">
+                                            <TextBlock Text="{Binding Title}" FontSize="24"
+                                               TextWrapping="Wrap"
+                                               />
+                                           
+ 
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+
+                        </StackPanel>
+                    </ScrollViewer>
 
                     <ListBox x:Name="codeList" 
-                             Margin="0,10,0,0"
-                             Grid.Row="1"
-                             Visibility="Collapsed"
-                             ItemsSource="{Binding}"
-                              d:DataContext="{Binding DesignCheatTextList}" Tap="codeList_Tap">
+                        Margin="0,10,0,0"
+                        Grid.Row="1"
+                        Visibility="Collapsed"
+                        ItemsSource="{Binding}"
+                        d:DataContext="{Binding DesignCheatTextList}" Tap="codeList_Tap">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -248,53 +289,56 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical" Margin="0,0,0,12">
                                     <TextBlock Text="{Binding Title}"
-                                               TextWrapping="Wrap"
-                                               FontSize="28"
-                                               FontWeight="Bold"/>
+                                        TextWrapping="Wrap"
+                                        FontSize="28"
+                                        FontWeight="Bold"/>
                                     <TextBlock Text="{Binding Text}"
-                                               FontSize="22"
-                                               TextWrapping="Wrap"
-                                               />
+                                        FontSize="22"
+                                        TextWrapping="Wrap"
+                                        />
                                     <!--<TextBox Template="{StaticResource PhoneDisabledTextBoxTemplate}"
-                                            Foreground="{StaticResource PhoneForegroundBrush}"
-                                        Background="Blue"
-                                            FontSize="20"
-                                            Margin="0, 0, 0, 0"
-                                            x:Name="tblkCheatText"
-                                              IsReadOnly="True"
-                                            TextWrapping="Wrap"
-                                             Text="{Binding Text}"
-                                            />-->
+                                    Foreground="{StaticResource PhoneForegroundBrush}"
+                                Background="Blue"
+                                    FontSize="20"
+                                    Margin="0, 0, 0, 0"
+                                    x:Name="tblkCheatText"
+                                        IsReadOnly="True"
+                                    TextWrapping="Wrap"
+                                        Text="{Binding Text}"
+                                    />-->
                                     <!--<phone:WebBrowser local:WebBrowserHelper.Html="{Binding Text}" 
-                                                      Height="200"/>-->
+                                                Height="200"/>-->
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
 
                     <Grid x:Name="cheatTextStackpanel"
-                                Margin="0,10,0,0"
-                                    Grid.Row="1"
-                                   Visibility="Collapsed">
+                        Margin="0,10,0,0"
+                            Grid.Row="1"
+                            Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        
+
                         <TextBlock Text="{Binding Title}"
-                                    TextWrapping="NoWrap"
-                                    FontSize="28"
-                                    FontWeight="Bold"
-                                   Margin="0,0,0,12"
-                                   Grid.Row="0" Tap="TextBlock_Tap"
+                            TextWrapping="NoWrap"
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Margin="0,0,0,12"
+                            Grid.Row="0" Tap="TextBlock_Tap"
                                    
-                                   />
+                            />
 
 
                         <phone:WebBrowser x:Name="cheatTextBox"
-                                          Grid.Row="1"
-                                    />
+                                    Grid.Row="1"
+                            />
+
                     </Grid>
+
+                        
                 </Grid>
             </phone:PivotItem>
         </phone:Pivot>

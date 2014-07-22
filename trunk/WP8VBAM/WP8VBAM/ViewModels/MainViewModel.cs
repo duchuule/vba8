@@ -30,6 +30,7 @@ namespace PhoneDirect3DXamlAppInterop.ViewModels
     {
         public ObservableCollection<ROMDBEntry> DesignROMDBEntry {get; set;}  //for design purpose only
         public ObservableCollection<CheatInfo> DesignCheatInfoList { get; set; }
+        public ObservableCollection<CheatInfo> DesignPartialCheatMatchList { get; set; }
         public ObservableCollection<CheatText> DesignCheatTextList { get; set; }
 
         public string FirstName { get; set; }
