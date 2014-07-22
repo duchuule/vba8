@@ -12,6 +12,8 @@ extern bool synchronize;
 bool cameraPressed = false;
 bool autoFireToggle = false;
 int mappedButton = 0;
+int sensorX = 2047;
+int sensorY = 2047;
 
 void log(const char *,...) { }
 
@@ -37,9 +39,7 @@ void systemSoundResume() { }
 void systemSoundReset() { }
 //SoundDriver *systemSoundInit() { return NULL; }
 void systemScreenMessage(const char *) { }
-void systemUpdateMotionSensor() { }
-int  systemGetSensorX() { return 0; }
-int  systemGetSensorY() { return 0; }
+
 bool systemCanChangeSoundQuality() { return false; }
 void systemShowSpeed(int){ }
 void system10Frames(int){ }
@@ -54,6 +54,9 @@ void systemGbPrint(unsigned char *, int, int, int, int, int) { }
 Moga::Windows::Phone::ControllerManager^ GetMogaController(void);
 void GetMogaMapping(int pressedButton, bool* a, bool* b, bool* l, bool* r );
 void GetMotionMapping(int tiltDirection, bool* left, bool* right, bool* up, bool* down, bool* a, bool* b, bool* l, bool* r);
+
+
+
 
 SoundDriver * systemSoundInit()
 {
@@ -113,25 +116,21 @@ double deg2rad(double deg)
 	return deg / 180.0 * 3.14159265;
 }
 
-u32 systemReadJoypad(int gamepad) 
-{ 
-	u32 res = 0;
+u8 getMotionInput()
+{
+	//bit order: left: 1, right: 2, up: 4, down: 8
+	int ret = 0;
+
 
 	VirtualController *controller = VirtualController::GetInstance();
-	if(!controller)
-		return res;
+	if (!controller)
+		return ret;
 
 	bool left = false;
 	bool right = false;
 	bool up = false;
 	bool down = false;
-	bool start = false;
-	bool select = false;
-	bool a = false;
-	bool b = false;
-	bool l = false;
-	bool r = false;
-
+	
 	EmulatorSettings ^settings = EmulatorSettings::Current;
 
 	Windows::Devices::Sensors::Accelerometer^ accl = Direct3DBackground::getAccelormeter();
@@ -142,74 +141,147 @@ u32 systemReadJoypad(int gamepad)
 	//[Gx, Gy, Gz]^T = Rx(phi) Ry(theta) [Gx0, Gy0, Gz0]^T
 	// Combined rotation matrix: [Gx0*cos(theta) - Gz0*sin(theta), Gx0*sin(theta)*sin(phi)+Gy0*cos(phi) + cos(theta)*sin(phi)*Gz0,
 	//							Gx0*cos(phi)*sin(theta) + Gy0*(-sin(phi)) + cos(theta)*cos(phi)*Gz0 ]
-	
+
 	double rotationDeadZone = 10;
 	double g0[3] = { settings->RestAngleX, settings->RestAngleY, settings->RestAngleZ };
+
 	//correct for orientation if needed
 	if (settings->MotionAdaptOrientation)
 	{
-		if (controller->GetOrientation() == ORIENTATION_PORTRAIT) 
+		if (settings->UseMotionControl == 1)
 		{
-			if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
+			if (controller->GetOrientation() == ORIENTATION_PORTRAIT)
 			{
-				g0[0] = settings->RestAngleX;
-				g0[1] = settings->RestAngleY;
+				if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
+				{
+					g0[0] = settings->RestAngleX;
+					g0[1] = settings->RestAngleY;
+
+				}
+				else //phone is calibrated in landscape left
+				{
+					if (settings->RestAngleX < 0)  //calibrated in landscape left
+					{
+						g0[0] = settings->RestAngleY;
+						g0[1] = settings->RestAngleX;
+					}
+					else  //calibrated in landscape right
+					{
+						g0[0] = -settings->RestAngleY;
+						g0[1] = -settings->RestAngleX;
+					}
+				}
 			}
-			else //phone is calibrated in landscape left
+			else if (controller->GetOrientation() == ORIENTATION_LANDSCAPE) //current orientation is landscape left
 			{
-				if (settings->RestAngleX < 0 )  //calibrated in landscape left
+				if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
 				{
 					g0[0] = settings->RestAngleY;
-					g0[1] = settings->RestAngleX;
+					g0[1] = -settings->RestAngleX;
 				}
-				else  //calibrated in landscape right
+				else //phone is calibrated in landscape left
+				{
+					if (settings->RestAngleX < 0)  //calibrated in landscape left
+					{
+						g0[0] = settings->RestAngleX;
+						g0[1] = settings->RestAngleY;
+					}
+					else  //calibrated in landscape right
+					{
+						g0[0] = -settings->RestAngleX;
+						g0[1] = -settings->RestAngleY;
+					}
+				}
+			}
+			else //current orientation is landscape right
+			{
+				if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
 				{
 					g0[0] = -settings->RestAngleY;
 					g0[1] = settings->RestAngleX;
 				}
-			}
-		}
-		else if (controller->GetOrientation() == ORIENTATION_LANDSCAPE) //current orientation is landscape left
-		{
-			if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
-			{
-				g0[0] = settings->RestAngleY;
-				g0[1] = -settings->RestAngleX;
-			}
-			else //phone is calibrated in landscape left
-			{
-				if (settings->RestAngleX < 0)  //calibrated in landscape left
+				else //phone is calibrated in landscape left
 				{
-					g0[0] = settings->RestAngleX;
-					g0[1] = settings->RestAngleY;
-				}
-				else  //calibrated in landscape right
-				{
-					g0[0] = -settings->RestAngleX;
-					g0[1] = -settings->RestAngleY;
+					if (settings->RestAngleX < 0)  //calibrated in landscape left
+					{
+						g0[0] = -settings->RestAngleX;
+						g0[1] = -settings->RestAngleY;
+					}
+					else  //calibrated in landscape right
+					{
+						g0[0] = settings->RestAngleX;
+						g0[1] = settings->RestAngleY;
+					}
 				}
 			}
 		}
-		else //current orientation is landscape right
+		else if (settings->UseMotionControl == 2) //inclinometer
 		{
-			if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = -0.7
+			if (controller->GetOrientation() == ORIENTATION_PORTRAIT) //RestAngleX = 0, Y = 45
 			{
-				g0[0] = -settings->RestAngleY;
-				g0[1] = settings->RestAngleX;
-			}
-			else //phone is calibrated in landscape left
-			{
-				if (settings->RestAngleX < 0)  //calibrated in landscape left
-				{
-					g0[0] = -settings->RestAngleX;
-					g0[1] = -settings->RestAngleY;
-				}
-				else  //calibrated in landscape right
+				if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = 45
 				{
 					g0[0] = settings->RestAngleX;
 					g0[1] = settings->RestAngleY;
+
+				}
+				else //phone is calibrated in landscape 
+				{
+					if (settings->RestAngleX < 0)  //calibrated in landscape left
+					{
+						g0[0] = settings->RestAngleY;
+						g0[1] = -settings->RestAngleX;
+					}
+					else  //calibrated in landscape right
+					{
+						g0[0] = -settings->RestAngleY;
+						g0[1] = settings->RestAngleX;
+					}
 				}
 			}
+			else if (controller->GetOrientation() == ORIENTATION_LANDSCAPE) //current orientation is landscape left, RestAngleX = -45, Y = 0
+			{
+				if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = 45
+				{
+					g0[0] = -settings->RestAngleY;
+					g0[1] = settings->RestAngleX;
+				}
+				else //phone is calibrated in landscape left
+				{
+					if (settings->RestAngleX < 0)  //calibrated in landscape left
+					{
+						g0[0] = settings->RestAngleX;
+						g0[1] = settings->RestAngleY;
+					}
+					else  //calibrated in landscape right
+					{
+						g0[0] = -settings->RestAngleX;
+						g0[1] = -settings->RestAngleY;
+					}
+				}
+			}
+			else //current orientation is landscape right, RestAngleX = 45, Y = 0
+			{
+				if (abs(settings->RestAngleX) < abs(settings->RestAngleY)) //phone is calibrated in portrait, RestAngleX = 0, Y = 45
+				{
+					g0[0] = settings->RestAngleY;
+					g0[1] = -settings->RestAngleX;
+				}
+				else //phone is calibrated in landscape left
+				{
+					if (settings->RestAngleX < 0)  //calibrated in landscape left
+					{
+						g0[0] = -settings->RestAngleX;
+						g0[1] = -settings->RestAngleY;
+					}
+					else  //calibrated in landscape right
+					{
+						g0[0] = settings->RestAngleX;
+						g0[1] = settings->RestAngleY;
+					}
+				}
+			}
+		
 		}
 
 	}
@@ -217,7 +289,7 @@ u32 systemReadJoypad(int gamepad)
 
 
 	double g[3];
-	
+
 	//NOTE: x is phone's short edge, y is phone's long endge, z is phone's thickness
 	if (settings->UseMotionControl == 1 && accl != nullptr)
 	{
@@ -239,42 +311,42 @@ u32 systemReadJoypad(int gamepad)
 		{
 
 			if (theta < -settings->MotionDeadzoneH)
-				GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+				left = true;
 			else if (theta > settings->MotionDeadzoneH)
-				GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+				right = true;
 
 
 			if (phi < -settings->MotionDeadzoneV)
-				GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+				up = true;
 			else if (phi > settings->MotionDeadzoneV)
-				GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+				down = true;
 		}
 		else if (controller->GetOrientation() == ORIENTATION_LANDSCAPE)
 		{
 			if (theta < -settings->MotionDeadzoneH)
-				GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+				down = true;
 			else if (theta > settings->MotionDeadzoneH)
-				GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+				up = true;
 
 
 			if (phi < -settings->MotionDeadzoneV)
-				GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+				left = true;
 			else if (phi > settings->MotionDeadzoneV)
-				GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+				right = true;
 
 		}
 		else
 		{
 			if (theta < -settings->MotionDeadzoneH)
-				GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+				up = true;
 			else if (theta > settings->MotionDeadzoneH)
-				GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+				down = true;
 
 
 			if (phi < -settings->MotionDeadzoneV)
-				GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+				right = true;
 			else if (phi > settings->MotionDeadzoneV)
-				GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+				left = true;
 		}
 	}
 	else if (settings->UseMotionControl == 2 && incl != nullptr)
@@ -282,17 +354,98 @@ u32 systemReadJoypad(int gamepad)
 		Windows::Devices::Sensors::InclinometerReading^ reading = incl->GetCurrentReading();
 
 
+		//account for different orientation
 
-		if (reading->RollDegrees - settings->RestAngleX  < -settings->MotionDeadzoneH)
-			GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
-		else if (reading->RollDegrees - settings->RestAngleX> settings->MotionDeadzoneH)
-			GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+		if (controller->GetOrientation() == ORIENTATION_PORTRAIT)
+		{
+			if (reading->RollDegrees - g0[0] < -settings->MotionDeadzoneH)
+				left = true;
+			else if (reading->RollDegrees - g0[0] > settings->MotionDeadzoneH)
+				right = true;
 
-		if (reading->PitchDegrees - settings->RestAngleY < -settings->MotionDeadzoneV)
-			GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
-		else if (reading->PitchDegrees - settings->RestAngleY > settings->MotionDeadzoneV)
-			GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+			if (reading->PitchDegrees - g0[1] < -settings->MotionDeadzoneV)
+				up = true;
+			else if (reading->PitchDegrees - g0[1] > settings->MotionDeadzoneV)
+				down = true;
+		}
+		else if (controller->GetOrientation() == ORIENTATION_LANDSCAPE)
+		{
+			if (reading->RollDegrees - g0[0] < -settings->MotionDeadzoneH)
+				down = true;
+			else if (reading->RollDegrees - g0[0] > settings->MotionDeadzoneH)
+				up = true;
+
+			if (reading->PitchDegrees - g0[1] < -settings->MotionDeadzoneV)
+				left = true;
+			else if (reading->PitchDegrees - g0[1] > settings->MotionDeadzoneV)
+				right = true;
+
+		}
+		else
+		{
+
+			if (reading->RollDegrees - g0[0] < -settings->MotionDeadzoneH)
+				up = true;
+			else if (reading->RollDegrees - g0[0] > settings->MotionDeadzoneH)
+				down = true;
+
+			if (reading->PitchDegrees - g0[1] < -settings->MotionDeadzoneV)
+				right = true;
+			else if (reading->PitchDegrees - g0[1] > settings->MotionDeadzoneV)
+				left = true;
+		}
+
+		
 	}
+
+	if (left)
+		ret |= 1;
+	if (right)
+		ret |= 2;
+	if (up)
+		ret |= 4;
+	if (down)
+		ret |= 8;
+
+	return ret;
+
+}
+
+u32 systemReadJoypad(int gamepad) 
+{ 
+	u32 res = 0;
+
+	VirtualController *controller = VirtualController::GetInstance();
+	if(!controller)
+		return res;
+
+	bool left = false;
+	bool right = false;
+	bool up = false;
+	bool down = false;
+	bool start = false;
+	bool select = false;
+	bool a = false;
+	bool b = false;
+	bool l = false;
+	bool r = false;
+
+	EmulatorSettings ^settings = EmulatorSettings::Current;
+
+	
+
+	u8 motionInput = getMotionInput();
+
+	if (motionInput & 1)
+		GetMotionMapping(settings->MotionLeft, &left, &right, &up, &down, &a, &b, &l, &r);
+	else if (motionInput & 2)
+		GetMotionMapping(settings->MotionRight, &left, &right, &up, &down, &a, &b, &l, &r);
+
+	if (motionInput & 4)
+		GetMotionMapping(settings->MotionUp, &left, &right, &up, &down, &a, &b, &l, &r);
+	else if (motionInput & 8)
+		GetMotionMapping(settings->MotionDown, &left, &right, &up, &down, &a, &b, &l, &r);
+
 
 	//Moga
 	using namespace Moga::Windows::Phone;
@@ -564,6 +717,71 @@ void GetMotionMapping(int tiltDirection, bool* left, bool* right, bool* up, bool
 
 }
 
+
+void systemUpdateMotionSensor()
+{
+	u8 motionInput = getMotionInput();
+
+	if (motionInput & 1) {
+		sensorX += 3;
+		if (sensorX > 2197)
+			sensorX = 2197;
+		if (sensorX < 2047)
+			sensorX = 2057;
+	}
+	else if (motionInput & 2) {
+		sensorX -= 3;
+		if (sensorX < 1897)
+			sensorX = 1897;
+		if (sensorX > 2047)
+			sensorX = 2037;
+	}
+	else if (sensorX > 2047) {
+		sensorX -= 2;
+		if (sensorX < 2047)
+			sensorX = 2047;
+	}
+	else {
+		sensorX += 2;
+		if (sensorX > 2047)
+			sensorX = 2047;
+	}
+
+	if (motionInput & 4) {
+		sensorY += 3;
+		if (sensorY > 2197)
+			sensorY = 2197;
+		if (sensorY < 2047)
+			sensorY = 2057;
+	}
+	else if (motionInput & 8) {
+		sensorY -= 3;
+		if (sensorY < 1897)
+			sensorY = 1897;
+		if (sensorY > 2047)
+			sensorY = 2037;
+	}
+	else if (sensorY > 2047) {
+		sensorY -= 2;
+		if (sensorY < 2047)
+			sensorY = 2047;
+	}
+	else {
+		sensorY += 2;
+		if (sensorY > 2047)
+			sensorY = 2047;
+	}
+}
+
+
+int  systemGetSensorX() 
+{
+	return sensorX;
+}
+int  systemGetSensorY() 
+{
+	return sensorY;
+}
 
 int RGB_LOW_BITS_MASK = 65793;
 int emulating;

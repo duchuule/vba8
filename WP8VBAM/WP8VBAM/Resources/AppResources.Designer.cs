@@ -348,6 +348,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto backup starting....
+        /// </summary>
+        public static string AutoBackupStartText {
+            get {
+                return ResourceManager.GetString("AutoBackupStartText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically back up save data.
         /// </summary>
         public static string AutoBackupText {

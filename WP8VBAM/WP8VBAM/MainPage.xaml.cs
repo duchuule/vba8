@@ -368,28 +368,35 @@ namespace PhoneDirect3DXamlAppInterop
             }
 
             //ask to rate
-            if (App.metroSettings.NAppLaunch % 50 == 14 && App.metroSettings.CanAskReview)
+            try
             {
-                //ask to rate
-                RadMessageBox.Show(AppResources.ReviewPromptTitle, MessageBoxButtons.OKCancel, AppResources.ReviewPromptText,
-                    AppResources.NeverShowAgainText, closedHandler: (args) =>
-                        {
-                            DialogResult result = args.Result;
-                            if (result == DialogResult.OK)
+                if (App.metroSettings.NAppLaunch % 50 == 14 && App.metroSettings.CanAskReview)
+                {
+                    //ask to rate
+                    RadMessageBox.Show(AppResources.ReviewPromptTitle, MessageBoxButtons.OKCancel, AppResources.ReviewPromptText,
+                        AppResources.NeverShowAgainText, closedHandler: (args) =>
                             {
-                                App.metroSettings.CanAskReview = false;
-                                MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
-                                marketplaceReviewTask.Show();
-                            }
+                                DialogResult result = args.Result;
+                                if (result == DialogResult.OK)
+                                {
+                                    App.metroSettings.CanAskReview = false;
+                                    MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+                                    marketplaceReviewTask.Show();
+                                }
 
-                            if (args.IsCheckBoxChecked) //user don't want to see remind box again
-                            {
-                                App.metroSettings.CanAskReview = false;
-                            }
-                        });
-                
-                App.metroSettings.NAppLaunch++;
+                                if (args.IsCheckBoxChecked) //user don't want to see remind box again
+                                {
+                                    App.metroSettings.CanAskReview = false;
+                                }
+                            });
+
+                    App.metroSettings.NAppLaunch++;
+                }
             }
+            catch (Exception) 
+            { 
+            }
+
             //else if (firstLaunch) //show toast notifications
             //{
             //    firstLaunch = false;
@@ -407,8 +414,13 @@ namespace PhoneDirect3DXamlAppInterop
 
 
             //== auto back up
-            await AutoBackup();
-
+            try
+            {
+                await AutoBackup();
+            }
+            catch (Exception ex)
+            {
+            }
 
 
 
@@ -537,6 +549,11 @@ namespace PhoneDirect3DXamlAppInterop
                 }
 
 
+                var indicator = SystemTray.GetProgressIndicator(this);
+                indicator.IsIndeterminate = true;
+                indicator.Text = AppResources.AutoBackupStartText ;
+
+
                 LiveConnectClient client = new LiveConnectClient(App.session);
                 if (App.exportFolderID == null || App.exportFolderID == "")
                     App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
@@ -559,8 +576,7 @@ namespace PhoneDirect3DXamlAppInterop
                             if (state != null && DateTime.Compare(state.Savetime, App.LastAutoBackupTime) > 0)
                             {
 
-                                var indicator = SystemTray.GetProgressIndicator(this);
-                                indicator.IsIndeterminate = true;
+                                indicator = SystemTray.GetProgressIndicator(this);
                                 indicator.Text = String.Format(AppResources.UploadProgressText, state.FileName);
 
                                 try
@@ -599,7 +615,7 @@ namespace PhoneDirect3DXamlAppInterop
                                 //if (!App.autoSaveCompleteEvent.WaitOne(3000))
                                 //    return;
 
-                                var indicator = SystemTray.GetProgressIndicator(this);
+                                indicator = SystemTray.GetProgressIndicator(this);
                                 indicator.IsIndeterminate = true;
                                 indicator.Text = String.Format(AppResources.UploadProgressText, state.FileName);
 
@@ -643,7 +659,7 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
-                            var indicator = SystemTray.GetProgressIndicator(this);
+                            indicator = SystemTray.GetProgressIndicator(this);
 
                             try
                             {
@@ -752,7 +768,7 @@ namespace PhoneDirect3DXamlAppInterop
                                     string exportFileName = entry.DisplayName +  entry.AutoSaveIndex.ToString() + ".zip";
                                     
 
-                                    var indicator = SystemTray.GetProgressIndicator(this);
+                                    indicator = SystemTray.GetProgressIndicator(this);
                                     indicator.IsIndeterminate = true;
 
                                     indicator.Text = String.Format(AppResources.UploadProgressText, exportFileName);
@@ -842,20 +858,26 @@ namespace PhoneDirect3DXamlAppInterop
 #endif
         private async Task Initialize()
         {
-            await FileHandler.CreateInitialFolderStructure();
-            await this.CopyDemoROM();
+            try
+            {
+                await FileHandler.CreateInitialFolderStructure();
+                await this.CopyDemoROM();
 
 
 
-            //if (db.Initialize())
-            //{
-            //    await FileHandler.FillDatabaseAsync();
-            //    this.RefreshROMList();
-            //}
-            
-            
+                //if (db.Initialize())
+                //{
+                //    await FileHandler.FillDatabaseAsync();
+                //    this.RefreshROMList();
+                //}
 
-            await this.ParseIniFile();
+
+
+                await this.ParseIniFile();
+            }
+            catch (TaskCanceledException)
+            {
+            }   
         }
 
 
@@ -883,32 +905,38 @@ namespace PhoneDirect3DXamlAppInterop
 
         async void btnSignin_SessionChanged(object sender, Microsoft.Live.Controls.LiveConnectSessionChangedEventArgs e)
         {
-            if (e.Status == LiveConnectSessionStatus.Connected)
+            try
             {
-                App.session = e.Session;
-                //this.statusLabel.Text = AppResources.StatusSignedIn;
-                this.gotoImportButton.IsEnabled = true;
-                this.gotoBackupButton.IsEnabled = true;
+                if (e.Status == LiveConnectSessionStatus.Connected)
+                {
+                    App.session = e.Session;
+                    //this.statusLabel.Text = AppResources.StatusSignedIn;
+                    this.gotoImportButton.IsEnabled = true;
+                    this.gotoBackupButton.IsEnabled = true;
 
-                LiveConnectClient client = new LiveConnectClient(App.session);
-                if (App.metroSettings.AutoBackup && (App.exportFolderID == null || App.exportFolderID == ""))
-                    App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
+                    LiveConnectClient client = new LiveConnectClient(App.session);
+                    if (App.metroSettings.AutoBackup && (App.exportFolderID == null || App.exportFolderID == ""))
+                        App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
 
-                //this.gotoRestoreButton.IsEnabled = true;
+                    //this.gotoRestoreButton.IsEnabled = true;
+                }
+                else
+                {
+                    this.gotoImportButton.IsEnabled = false;
+                    this.gotoBackupButton.IsEnabled = false;
+                    //this.gotoRestoreButton.IsEnabled = false;
+                    //this.statusLabel.Text = AppResources.StatusNotSignedIn;
+                    App.session = null;
+
+                    //if (e.Error != null)
+                    //{
+                    //    MessageBox.Show(String.Format(AppResources.SkyDriveError, e.Error.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
+                    //    //statusLabel.Text = e.Error.ToString();
+                    //}
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.gotoImportButton.IsEnabled = false;
-                this.gotoBackupButton.IsEnabled = false;
-                //this.gotoRestoreButton.IsEnabled = false;
-                //this.statusLabel.Text = AppResources.StatusNotSignedIn;
-                App.session = null;
-
-                //if (e.Error != null)
-                //{
-                //    MessageBox.Show(String.Format(AppResources.SkyDriveError, e.Error.Message), AppResources.ErrorCaption, MessageBoxButton.OK);
-                //    //statusLabel.Text = e.Error.ToString();
-                //}
             }
         }
 

@@ -530,9 +530,34 @@ namespace PhoneDirect3DXamlAppInterop
                 return;
             }
 
-            
 
+
+
+            List<CheatInfo> PartialMatchList = new List<CheatInfo>();
             List<CheatInfo> CheatInfoList = new List<CheatInfo>();
+
+
+            //=========get the partial matches
+            MatchCollection partialMatches = Regex.Matches(response, "(?<=<div class=\"search_otherresult\">).*?(?=</div>)", RegexOptions.Singleline); //look for the string between <tr class=\"table_sub\"> and </tr>
+
+            for (int i = 0; i < partialMatches.Count; i++)
+            {
+                CheatInfo cheatInfo = new CheatInfo();
+
+                //get the title
+                Match partialMatch = partialMatches[i];
+                Match matchTitle = Regex.Match(partialMatch.Value, "(?<=<b>).*?(?=</b>)", RegexOptions.Singleline);
+                cheatInfo.Title = matchTitle.Value;
+
+                //===get the platform
+                Match matchPlatform = Regex.Match(partialMatch.Value, "(?<=<a href=.*?>).*?(?=</a>)", RegexOptions.Singleline);
+
+                //====add title to list
+                PartialMatchList.Add(cheatInfo);
+
+            }
+
+
 
             //get rid of the bold tag
             response = response.Replace("<b>", "");
@@ -542,6 +567,7 @@ namespace PhoneDirect3DXamlAppInterop
             //string test = "hhh\n        <tr class=\"table_head_01\">\n\t<td align=\"left\" valign=\"middle\">Cheats</td><td align=\"left\" valign=\"middle\">Hints</td><td align=\"left\" valign=\"middle\">Q&A</td><td align=\"left\" valign=\"middle\">Walkthroughs</td><td align=\"left\" valign=\"middle\">Screens</td><td align=\"left\" valign=\"middle\">Walls</td><td align=\"left\" valign=\"middle\">Videos</td></tr>";
             //MatchCollection tests = Regex.Matches(test, "(?<=<tr class=\"table_head_01\">).*?(?=</tr>)", RegexOptions.Singleline);
 
+            //=====get the exact match
             MatchCollection headers = Regex.Matches(response, "(?<=<tr class=\"table_sub\">).*?(?=</tr>)", RegexOptions.Singleline); //look for the string between <tr class=\"table_sub\"> and </tr>
 
             MatchCollection contents = Regex.Matches(response, "(?<=<tr class=\"table_head_01\">).*?(?=</tr>)"); //look for the string between <tr class=\"table_head_01\"> and </tr>
@@ -608,7 +634,12 @@ namespace PhoneDirect3DXamlAppInterop
 
             }
 
-            this.gameList.DataContext = CheatInfoList;
+
+            
+
+
+            this.exactMatches.DataContext = CheatInfoList;
+            this.partialMatches.DataContext = PartialMatchList;
 
             gameList.Visibility = Visibility.Visible;
             codeList.Visibility = Visibility.Collapsed;
@@ -652,12 +683,9 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
-        private void searchCheatButton_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
-        private async void txtSearchString_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void txtSearchString_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
@@ -954,6 +982,18 @@ namespace PhoneDirect3DXamlAppInterop
         {
             codeList.Visibility = Visibility.Visible;
             cheatTextStackpanel.Visibility = Visibility.Collapsed;
+        }
+
+        private void partialMatches_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            CheatInfo entry = (CheatInfo)partialMatches.SelectedItem;
+            partialMatches.SelectedItem = null;
+
+            txtSearchString.Text = entry.Title;
+
+            searchButton_Click(null, null);
+
+           
         }
 
 

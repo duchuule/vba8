@@ -19,6 +19,11 @@
 
     </vm:MainViewModel.DesignCheatInfoList>
 
+    <vm:MainViewModel.DesignPartialCheatMatchList>
+        <app:CheatInfo Title="Title 1" HasGS="True" HasAR="False" />
+        <app:CheatInfo Title="Title 2" HasGS="False" HasAR="True" />
+         </vm:MainViewModel.DesignPartialCheatMatchList>
+
     <vm:MainViewModel.DesignCheatTextList>
         <app:CheatText Title="List 1" Text="text text text" />
         <app:CheatText Title="List 2" Text="text text text" />
