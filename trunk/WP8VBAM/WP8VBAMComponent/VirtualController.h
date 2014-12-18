@@ -72,7 +72,7 @@ namespace Emulator
 
 		
 
-		Platform::Collections::Map<unsigned int, Windows::UI::Input::PointerPoint ^> ^pointers;
+		Platform::Collections::Map<unsigned int, Windows::Foundation::Point> ^pointers;
 		CRITICAL_SECTION cs;
 		ControllerState state;
 		bool virtualControllerOnTop;

@@ -976,7 +976,8 @@ namespace PhoneDirect3DXamlAppInterop
 
         private async Task ParseIniFile()
         {
-            StorageFile file = await StorageFile.GetFileFromPathAsync("Assets/vba-over.ini");
+            StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFile file = await StorageFile.GetFileFromPathAsync(installedLocation.Path + @"\Assets\vba-over.ini");
 
             GBAIniParser parser = new GBAIniParser();
             EmulatorSettings.Current.ROMConfigurations = await parser.ParseAsync(file);
@@ -989,12 +990,16 @@ namespace PhoneDirect3DXamlAppInterop
             {
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
                 StorageFolder romFolder = await localFolder.CreateFolderAsync("roms", CreationCollisionOption.OpenIfExists);
+                StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
 #if !GBC
-                StorageFile file = await StorageFile.GetFileFromPathAsync("Assets/Bunny Advance (Demo).gba");
+                StorageFile file = await StorageFile.GetFileFromPathAsync(installedLocation.Path + @"\Assets\Bunny Advance (Demo).gba");
 #else
-                StorageFile file = await StorageFile.GetFileFromPathAsync("Assets/Pong.gb");
+                StorageFile file = await StorageFile.GetFileFromPathAsync(installedLocation.Path + @"\Assets\Pong.gb");
 #endif
                 await file.CopyAsync(romFolder);
+
+                
 
                 
                 isoSettings["DEMOCOPIED"] = true;
