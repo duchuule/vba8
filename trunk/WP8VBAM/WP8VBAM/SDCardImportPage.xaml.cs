@@ -306,10 +306,7 @@ namespace PhoneDirect3DXamlAppInterop
             indicator.Text = String.Format(AppResources.DownloadingProgressText, item.Name);
             try
             {
-                string winRtPath = "D:\\" + item.ThisFile.Path;
-                FileStream s = new System.IO.FileStream(winRtPath, FileMode.Open);
-                //Stream s = await item.ThisFile.OpenForReadAsync();
-
+                Stream s = await item.ThisFile.OpenForReadAsync();
                 if (s != null)
                 {
                     item.Stream = s;
