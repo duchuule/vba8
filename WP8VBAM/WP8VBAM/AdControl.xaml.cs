@@ -22,6 +22,8 @@ namespace PhoneDirect3DXamlAppInterop
             
 #if GBC
             AdDuplexAdControl.AppId = "71883";
+            MSAdControl.ApplicationId = "b7015d34-35f7-4f20-8f56-413a6b7d092a";
+            MSAdControl.AdUnitId = "11176308";
 #endif
 
             //mobFoxadControl.NewAd += mobFoxadControl_NewAd;
