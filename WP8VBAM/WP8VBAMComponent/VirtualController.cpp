@@ -31,7 +31,7 @@ namespace Emulator
 		: virtualControllerOnTop(false), stickFingerDown(false)
 	{
 		InitializeCriticalSectionEx(&this->cs, 0, 0);
-		this->pointers = ref new Platform::Collections::Map<unsigned int, Windows::Foundation::Point>();
+		this->pointers = ref new Platform::Collections::Map<unsigned int, PointerPoint ^>();
 		this->pointerDescriptions = ref new Platform::Collections::Map<unsigned int, String^>();
 		vibrationDevice = VibrationDevice::GetDefault();
 
@@ -387,11 +387,8 @@ namespace Emulator
 	void VirtualController::PointerPressed(PointerPoint ^point)
 	{
 		EnterCriticalSection(&this->cs);
-		Windows::Foundation::Point point2 = Windows::Foundation::Point(point->Position.X, point->Position.Y);
-
-		this->pointers->Insert(point->PointerId, point2);
+		this->pointers->Insert(point->PointerId, point);
 		this->pointerDescriptions->Insert(point->PointerId, "");
-
 
 		Windows::Foundation::Point p;
 
@@ -461,12 +458,9 @@ namespace Emulator
 	void VirtualController::PointerMoved(PointerPoint ^point)
 	{
 		EnterCriticalSection(&this->cs);
-
-		Windows::Foundation::Point point2 = Windows::Foundation::Point(point->Position.X, point->Position.Y);
-
 		if(this->pointers->HasKey(point->PointerId))
 		{
-			this->pointers->Insert(point->PointerId, point2);
+			this->pointers->Insert(point->PointerId, point);
 		}
 		
 		Windows::Foundation::Point p;
@@ -568,16 +562,16 @@ namespace Emulator
 		EnterCriticalSection(&this->cs);
 		for (auto i = this->pointers->First(); i->HasCurrent; i->MoveNext())
 		{
-			Windows::Foundation::Point p = i->Current->Value;
-			unsigned int key = i->Current->Key;
+			PointerPoint ^p = i->Current->Value;
+
 
 			Windows::Foundation::Point point;
 
 			if (this->orientation == ORIENTATION_PORTRAIT)
-				point = Windows::Foundation::Point(p.X, p.Y);
+				point = Windows::Foundation::Point(p->Position.X, p->Position.Y);
 			else
 			{
-				point = Windows::Foundation::Point(p.Y, p.X);
+				point = Windows::Foundation::Point(p->Position.Y, p->Position.X);
 				if(this->orientation == ORIENTATION_LANDSCAPE_RIGHT)
 				{
 					point.X = this->touchWidth - point.X;
@@ -657,13 +651,12 @@ namespace Emulator
 					}
 				}
 
-			}
-			else
+			}else
 			{
 				if (this->stickBoundaries.Contains(point))
 					this->pointerDescriptions->Insert(i->Current->Key, "joystick");
 
-				if(this->stickFingerDown && key == this->stickFingerID)
+				if(this->stickFingerDown && p->PointerId == this->stickFingerID)
 				{
 					float deadzone = EmulatorSettings::Current->Deadzone;
 					float controllerScale = EmulatorSettings::Current->ControllerScale / 100.0f;

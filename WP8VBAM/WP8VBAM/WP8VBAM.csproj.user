@@ -5,10 +5,8 @@
     <CurrentDeployID>30F105C9-681E-420b-A277-7C086EAD8A4E</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
-    <CurrentDeployCmdId>
-    </CurrentDeployCmdId>
-    <CurrentDeployID>
-    </CurrentDeployID>
+    <CurrentDeployCmdId>256</CurrentDeployCmdId>
+    <CurrentDeployID>30F105C9-681E-420b-A277-7C086EAD8A4E</CurrentDeployID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <CurrentDeployCmdId>256</CurrentDeployCmdId>
@@ -98,8 +96,8 @@
       <FlavorProperties GUID="{C089C8C0-30E0-4E22-80C0-CE093F111A43}">
         <SilverlightMobileCSProjectFlavor>
           <FullDeploy>False</FullDeploy>
-          <DebuggerType>Mixed</DebuggerType>
-          <DebuggerAgentType>Mixed</DebuggerAgentType>
+          <DebuggerType>Native</DebuggerType>
+          <DebuggerAgentType>Native</DebuggerAgentType>
           <Tombstone>False</Tombstone>
         </SilverlightMobileCSProjectFlavor>
       </FlavorProperties>
