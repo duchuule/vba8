@@ -542,27 +542,34 @@ namespace PhoneDirect3DXamlAppInterop
                         return;
                 }
 
-                if (App.session == null)
-                {
-                    MessageBox.Show(AppResources.BackupFailOnedriveText);
-                    return;
-                }
-
-
-                var indicator = SystemTray.GetProgressIndicator(this);
-                indicator.IsIndeterminate = true;
-                indicator.Text = AppResources.AutoBackupStartText ;
-
-
-                LiveConnectClient client = new LiveConnectClient(App.session);
-                if (App.exportFolderID == null || App.exportFolderID == "")
-                    App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
+                
+              
 
 
                 ROMDBEntry entry = EmulatorPage.currentROMEntry;
 
                 if (DateTime.Compare(entry.LastPlayed, App.LastAutoBackupTime) > 0)
                 {
+
+
+                    //check for one drive logged in
+                    if (App.session == null)
+                    {
+                        MessageBox.Show(AppResources.BackupFailOnedriveText);
+                        return;
+                    }
+
+                    var indicator = SystemTray.GetProgressIndicator(this);
+                    indicator.IsIndeterminate = true;
+                    indicator.Text = AppResources.AutoBackupStartText;
+
+                    
+
+                    //get id of upload folder
+                    LiveConnectClient client = new LiveConnectClient(App.session);
+                    if (App.exportFolderID == null || App.exportFolderID == "")
+                        App.exportFolderID = await ExportSelectionPage.CreateExportFolder(client); //get ID of upload folder
+
 
                     if (App.metroSettings.AutoBackupMode == 0) //simple mode
                     {
@@ -594,12 +601,7 @@ namespace PhoneDirect3DXamlAppInterop
                                 catch (Exception ex)
                                 { }
 
-#if GBC
-                        indicator.Text = AppResources.ApplicationTitle2;
-#else
-                                indicator.Text = AppResources.ApplicationTitle;
-#endif
-                                indicator.IsIndeterminate = false;
+
 
                             }
 
@@ -634,12 +636,7 @@ namespace PhoneDirect3DXamlAppInterop
                                 catch (Exception ex)
                                 { }
 
-#if GBC
-                                indicator.Text = AppResources.ApplicationTitle2;
-#else
-                                indicator.Text = AppResources.ApplicationTitle;
-#endif
-                                indicator.IsIndeterminate = false;
+
 
                             }
 
@@ -682,12 +679,7 @@ namespace PhoneDirect3DXamlAppInterop
                             catch (Exception ex)
                             { }
 
-#if GBC
-                                indicator.Text = AppResources.ApplicationTitle2;
-#else
-                            indicator.Text = AppResources.ApplicationTitle;
-#endif
-                            indicator.IsIndeterminate = false;
+
                         }
                     } //end simple mode
 
@@ -786,12 +778,6 @@ namespace PhoneDirect3DXamlAppInterop
                                     }
                                     catch (Exception ex) { }
 
-#if GBC
-                                    indicator.Text = AppResources.ApplicationTitle2;
-#else
-                                    indicator.Text = AppResources.ApplicationTitle;
-#endif
-                                    indicator.IsIndeterminate = false;
                                 }
 
 
@@ -800,6 +786,14 @@ namespace PhoneDirect3DXamlAppInterop
                     } //end rotating mode
                     
                     App.LastAutoBackupTime = DateTime.Now;
+
+                    //set back title
+#if GBC
+                        indicator.Text = AppResources.ApplicationTitle2;
+#else
+                    indicator.Text = AppResources.ApplicationTitle;
+#endif
+                    indicator.IsIndeterminate = false;
 
                 }
             }
