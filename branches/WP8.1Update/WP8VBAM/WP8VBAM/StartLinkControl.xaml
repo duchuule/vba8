@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="PhoneDirect3DXamlAppInterop.StartLinkControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input" 
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="680" d:DesignWidth="480">
+
+
+
+        <StackPanel x:Name="LayoutRoot"
+                    Background="{StaticResource PhoneChromeBrush}"
+                    Margin="0,0,0,0"
+                        Width="480"
+                    >
+            <toolkit:ListPicker Header="{Binding Path=LocalizedResources.LinkTypeText, Source={StaticResource LocalizedStrings}}" 
+                                            Name="linkTypePicker"
+                                            >
+            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.CableSocketText, Source={StaticResource LocalizedStrings}}" />
+        </toolkit:ListPicker>
+
+        <toolkit:ListPicker Header="{Binding Path=LocalizedResources.RoleText, Source={StaticResource LocalizedStrings}}" 
+                                            Name="rolePicker"
+                                           SelectionChanged="rolePicker_SelectionChanged"
+                                            >
+            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.HostText, Source={StaticResource LocalizedStrings}}" />
+            <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.ClientText, Source={StaticResource LocalizedStrings}}" />
+        </toolkit:ListPicker>
+
+            <telerikPrimitives:RadTextBox x:Name="txtAddress"
+                     Header="{Binding Path=LocalizedResources.IPAddressText, Source={StaticResource LocalizedStrings}}" 
+                    Watermark="{Binding Path=LocalizedResources.EnterHostIPText, Source={StaticResource LocalizedStrings}}" 
+                        Visibility="Collapsed" InputScope="Number"/>
+            
+            <TextBlock Text="{Binding Path=LocalizedResources.LinkTimeoutText, Source={StaticResource LocalizedStrings}}" 
+                       Margin="12,0,0,0" 
+                       Foreground="{StaticResource PhoneSubtleBrush}" 
+                       x:Name="tblkTimeout" />
+            <TextBox x:Name="txtTimeout" Text="5000" />
+
+
+
+
+
+        <Button Content="{Binding Path=LocalizedResources.StartServerText, Source={StaticResource LocalizedStrings}}" 
+                    x:Name="ConnectButton"
+                    Click="ConnectButton_Click"/>
+
+            <TextBlock x:Name="tblkStatus" Height="70" 
+                       Margin="12, 0, 12, 0"
+                       TextWrapping="Wrap"
+                       Text="{Binding Path=LocalizedResources.TapStartServerIPText, Source={StaticResource LocalizedStrings}}" />
+        <TextBlock      Foreground="Red"
+                       Margin="12, 0, 12, 0"
+                       TextWrapping="Wrap"
+                       Text="{Binding Path=LocalizedResources.LinkingNote, Source={StaticResource LocalizedStrings}}" />
+
+
+        <c4f:RoundButton ImageSource="Assets\ApplicationBar.Cancel.png"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Top"
+                            x:Name="Cancelbtn"
+                             Click="Cancelbtn_Click"
+                            Margin="0,24,0,0"
+                        />
+
+
+        </StackPanel>
+
+</UserControl>

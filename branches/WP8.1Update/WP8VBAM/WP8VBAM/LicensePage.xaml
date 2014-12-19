@@ -1,0 +1,99 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PhoneDirect3DXamlAppInterop.LicensePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource SystemTrayColor}">
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="False" 
+                                 IsVisible="True" 
+                                 Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+                                  />
+    </shell:SystemTray.ProgressIndicator>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <!--Pivot Control-->
+        <phone:Pivot Grid.Row="0"
+            Name="pivot">
+            
+            <phone:Pivot.Title>
+                <TextBlock Text="{Binding LocalizedResources.LicenseTitle, Source={StaticResource LocalizedStrings}}"
+                                FontSize="20"
+                           FontWeight="Bold"
+                           Margin="0,-8,0,0"/>
+            </phone:Pivot.Title>
+
+            <phone:Pivot.Background>
+                <ImageBrush ImageSource="{Binding Source={StaticResource AppSettings}, Path=BackgroundUri, Converter={StaticResource ImageSourceConverter}}"
+                            Stretch="None"
+                            AlignmentX="Center"
+                            AlignmentY="Top"
+                            Opacity="{Binding Source={StaticResource AppSettings}, Path=BackgroundOpacity}"/>
+            </phone:Pivot.Background>
+            
+            
+            <!--Pivot item one-->
+            <phone:PivotItem 
+                             Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding LocalizedResources.LicenseCopyRightTitle, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" 
+                                  HorizontalScrollBarVisibility="Disabled" 
+                                  Grid.Row="0">
+                        <TextBlock
+                        Text="{Binding LocalizedResources.CopyRightText, Source={StaticResource LocalizedStrings}}"
+                            TextWrapping="Wrap"/>
+                    </ScrollViewer>
+                    <Button Content="{Binding LocalizedResources.GPLButtonText, Source={StaticResource LocalizedStrings}}"
+                        Grid.Row="1" Name="gplButton" 
+                            Click="gplButton_Click"
+                            Margin="-12,0, -12, 0"/>
+                </Grid> 
+
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem 
+                             Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding LocalizedResources.SourceHeader, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0"
+                        Content="{Binding LocalizedResources.SourceButtonText, Source={StaticResource LocalizedStrings}}" 
+                            Click="sourceButton_Click" Name="sourceButton"
+                            Margin="-12,0, -12, 0"/>
+                </Grid>
+            </phone:PivotItem>
+
+        </phone:Pivot>
+    </Grid>
+    
+</phone:PhoneApplicationPage>
