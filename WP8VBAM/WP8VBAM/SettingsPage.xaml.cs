@@ -67,6 +67,7 @@ namespace PhoneDirect3DXamlAppInterop
         public const String FullPressStickABLRKey = "FullPressStickABLRKey";
         public const String UseMotionControlKey = "UseMotionControlKey";
         public const String UseTurboKey = "UseTurboKey";
+        public const String UseGameboyColorKey = "UseGameboyColorKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -82,6 +83,8 @@ namespace PhoneDirect3DXamlAppInterop
         public const String LTopPKey = "LTopPKey";
         public const String RRightPKey = "RRightPKey";
         public const String RTopPKey = "RTopPKey";
+        public const String TurboLeftPKey = "TurboLeftPKey";
+        public const String TurboTopPKey = "TurboTopPKey";
 
 
         public const String PadCenterXLKey = "PadCenterXLKey";
@@ -98,6 +101,9 @@ namespace PhoneDirect3DXamlAppInterop
         public const String LTopLKey = "LTopLKey";
         public const String RRightLKey = "RRightLKey";
         public const String RTopLKey = "RTopLKey";
+        public const String TurboLeftLKey = "TurboLeftLKey";
+        public const String TurboTopLKey = "TurboTopLKey";
+
 
         public const String MogaAKey = "MogaAKey";
         public const String MogaBKey = "MogaBKey";
@@ -235,6 +241,7 @@ namespace PhoneDirect3DXamlAppInterop
             this.autoFireSwitch.IsChecked = emuSettings.EnableAutoFire;
             this.mapABLRTurboSwitch.IsChecked = emuSettings.MapABLRTurbo;
             this.fullPressStickABRLSwitch.IsChecked = emuSettings.FullPressStickABLR;
+            this.useGameboyColorSwitch.IsChecked = emuSettings.UseGameboyColor;
 
             if (App.metroSettings.BackgroundUri != null)
             {
@@ -1189,6 +1196,14 @@ namespace PhoneDirect3DXamlAppInterop
                 //save to disk
                 //do this here instead of SettingsChangedDelegate() so that we don't always save to disk when camera is half press
                 IsolatedStorageSettings.ApplicationSettings[SettingsPage.UseTurboKey] = this.toggleTurbo.IsChecked.Value;
+            }
+        }
+
+        private void useGameboyColorSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (initdone)
+            {
+                EmulatorSettings.Current.UseGameboyColor = this.useGameboyColorSwitch.IsChecked.Value;
             }
         }
 

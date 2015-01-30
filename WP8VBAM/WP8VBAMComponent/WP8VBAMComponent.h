@@ -55,6 +55,7 @@ public:
 	property SnapshotCallback ^SnapshotAvailable;
 	property SavestateCreatedCallback ^SavestateCreated;
 	property static WrongCheatVersionCallback ^WrongCheatVersion;
+	property static ToggleTurboModeCallback ^ToggleTurboMode;
 
 	property Windows::Foundation::Size WindowBounds;
 	property Windows::Foundation::Size NativeResolution;

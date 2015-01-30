@@ -213,12 +213,7 @@
                         </toolkit:ListPicker>
                     </ListBoxItem>
 
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <Button x:Name="CustomizeBgcolorBtn"
-                                Content="{Binding Path=LocalizedResources.ChoosePortraitBackgroundColorText, Source={StaticResource LocalizedStrings}}"
-                                Click="CustomizeBgcolorBtn_Click"
-                                />
-                        </ListBoxItem>
+                   
 
                         <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
@@ -515,21 +510,233 @@
                     </ScrollViewer>
                 </phone:PivotItem>
 
-                <phone:PivotItem Name="generalPivot"
+            <phone:PivotItem Name="gameplayPivot"
                              Margin="12,18, 12, 0">
-                    <phone:PivotItem.Header>
-                        <TextBlock Text="{Binding Path=LocalizedResources.GeneralSettingsTitle, Source={StaticResource LocalizedStrings}}"
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.GameplaySettingsTitle, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource MyTitle1Style}" />
-                    </phone:PivotItem.Header>
-                    <ListBox>
-                        
+                </phone:PivotItem.Header>
+                <ListBox>
+
+
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="true" 
+                                            Name="loadLastStateSwitch" Click="loaLastStateSwitch_Click"
+                                                >
+                            <TextBlock Text="{Binding Path=LocalizedResources.AutoLoadLastStateText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+
+                    </ListBoxItem>
+
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="false" 
+                                      Name="autoBackupSwitch"
+                                      Click="autoBackupSwitch_Click"
+                                                >
+                            <TextBlock Text="{Binding Path=LocalizedResources.AutoBackupText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Button x:Name="SetupAutoBackupBtn"
+                                Content="{Binding Path=LocalizedResources.SetupAutoBackupText, Source={StaticResource LocalizedStrings}}"
+                                Click="SetupAutoBackupBtn_Click"
+                                />
+                    </ListBoxItem>
+
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox IsChecked="true" 
+                                            Name="useGameboyColorSwitch" Click="useGameboyColorSwitch_Click"
+                                                >
+                            <TextBlock Text="{Binding Path=LocalizedResources.UseGameboyColorText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+
+                        <CheckBox Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
+                                            IsChecked="true" Name="enableSoundSwitch"
+                                            >
+                            <TextBlock Text="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="syncSoundSwitch_Checked_1" Unchecked="syncSoundSwitch_Unchecked_1"
+                                            IsChecked="true" Name="syncSoundSwitch"
+                                            >
+                            <TextBlock Text="{Binding Path=LocalizedResources.SyncSoundSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+
+
+
+
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="confirmationSwitch_Checked_1" Unchecked="confirmationSwitch_Unchecked_1"
+                                IsChecked="false" Name="confirmationSwitch"
+                                        >
+                            <TextBlock Text="{Binding Path=LocalizedResources.HideConfirmationSetting, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="confirmationLoadSwitch_Checked_1" Unchecked="confirmationLoadSwitch_Unchecked_1"
+                                          IsChecked="false" Name="confirmationLoadSwitch"
+                                          >
+                            <TextBlock Text="{Binding Path=LocalizedResources.HideConfirmationLoadSetting, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="autoIncSwitch_Checked_1" Unchecked="autoIncSwitch_Unchecked_1"
+                                            IsChecked="false" Name="autoIncSwitch"
+                                            >
+                            <TextBlock Text="{Binding Path=LocalizedResources.AutoIncSavestateSetting, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+                    <!--<ListBoxItem HorizontalContentAlignment="Stretch">
+                            <CheckBox Content="{Binding Path=LocalizedResources.RestoreLastStateSetting, Source={StaticResource LocalizedStrings}}"
+                                            Checked="restoreLastStateSwitch_Checked_1" Unchecked="restoreLastStateSwitch_Unchecked_1"
+                                            IsChecked="true" Name="restoreLastStateSwitch"
+                                            />
+
+                        </ListBoxItem>-->
+
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
+                                          IsChecked="false" Name="cheatRestoreSwitch"
+                                           >
+                            <TextBlock Text="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"/>
+
+                        </CheckBox>
+
+                    </ListBoxItem>
+
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <Button x:Name="ChangeVoiceCommandPrefixBtn"
                                 Content="{Binding Path=LocalizedResources.ChangeVoicePrefixText, Source={StaticResource LocalizedStrings}}"
                                 Click="ChangeVoiceCommandPrefixBtn_Click"
                                 />
                     </ListBoxItem>
-                        
+                </ListBox>
+
+            </phone:PivotItem>
+
+            <phone:PivotItem Name="appearancePivot"
+                             Margin="12,18, 12, 0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.AppearanceSettingsTitle, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource MyTitle1Style}" />
+                </phone:PivotItem.Header>
+                
+                
+                <ListBox>
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.ThemeText, Source={StaticResource LocalizedStrings}}" 
+                                        SelectionChanged="themePicker_SelectionChanged_1" 
+                                                Name="themePicker" >
+                            <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.LightText, Source={StaticResource LocalizedStrings}}" />
+                            <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.DarkText, Source={StaticResource LocalizedStrings}}" />
+                        </telerikInput:RadListPicker>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <CheckBox 
+                                  Name="useBackgroundImageSwitch"
+                                Click="useBackgroundImageSwitch_Click"
+                                  >
+                            <TextBlock Text="{Binding Path=LocalizedResources.UseBackgroundImageSetting, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                        </CheckBox>
+                    </ListBoxItem>
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <Grid x:Name="ChooseBackgroundImageGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="ChooseBackgroundImageBtn"
+                                        Content="{Binding Path=LocalizedResources.ChooseImageText, Source={StaticResource LocalizedStrings}}"
+                                        Click="ChooseBackgroundImageBtn_Click"
+                                        />
+
+                            <Button x:Name="ResetBackgroundImageBtn"
+                                        Content="{Binding Path=LocalizedResources.ResetImageText, Source={StaticResource LocalizedStrings}}"
+                                        Click="ResetBackgroundImageBtn_Click"
+                                        Grid.Column="1"
+                                        />
+                        </Grid>
+                    </ListBoxItem>
+
+
+                    <ListBoxItem HorizontalContentAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Stretch"
+                                        x:Name="backgroundOpacityPanel"
+                                        >
+                            <TextBlock Text="{Binding Path=LocalizedResources.BackgroundOpacitySetting, Source={StaticResource LocalizedStrings}}" 
+                                           Margin="10,0,0,0" Foreground="{StaticResource PhoneSubtleBrush}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+
+
+                                    <Slider Minimum="0" 
+                                                Maximum="100" 
+                                                Value="30" 
+                                                ValueChanged="backgroundOpacitySlider_ValueChanged_1" 
+                                                Name="backgroundOpacitySlider"
+                                                IsEnabled="False"
+                                        />
+                                    <Grid>
+                                        <TextBlock Margin="10,-40,0,0" HorizontalAlignment="Left"  Text="0%" Foreground="{StaticResource PhoneSubtleBrush}" />
+                                        <TextBlock Margin="10,-40,0,0" HorizontalAlignment="Center" 
+                                               Text="{Binding Value, ElementName=backgroundOpacitySlider, StringFormat='{}{0:#}'}" 
+                                               Foreground="{StaticResource PhoneSubtleBrush}"/>
+                                        <TextBlock Margin="10,-40,0,0" HorizontalAlignment="Right" Text="100%" Foreground="{StaticResource PhoneSubtleBrush}" />
+                                    </Grid>
+                                </StackPanel>
+
+                                <Rectangle  Width="50" 
+                                                    Height="50"
+                                                    HorizontalAlignment="Right"
+                                                VerticalAlignment="Top"
+                                                    Fill="{StaticResource PhoneContrastBackgroundBrush}"
+                                                    Grid.Column="1" 
+                                                    x:Name="backgroundOpacityLock" 
+                                                Tap="backgroundOpacityLock_Tap"
+                                                
+                                            
+                                                >
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush Stretch="UniformToFill" 
+                                                        x:Name="backgroundOpacityImage"
+                                                        ImageSource="/Assets/Icons/appbar.lock.png"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Grid>
+                        </StackPanel>
+                    </ListBoxItem>
+                    
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox x:Name="chkUseAccentColor" 
                                           Tap="chkUseAccentColor_Tap" >
@@ -545,53 +752,8 @@
                                 />
                     </ListBoxItem>
 
-
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox IsChecked="false" 
-                                      Name="autoBackupSwitch"
-                                      Click="autoBackupSwitch_Click"
-                                                >
-                            <TextBlock Text="{Binding Path=LocalizedResources.AutoBackupText, Source={StaticResource LocalizedStrings}}" 
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                    </ListBoxItem>
-                        
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <Button x:Name="SetupAutoBackupBtn"
-                                Content="{Binding Path=LocalizedResources.SetupAutoBackupText, Source={StaticResource LocalizedStrings}}"
-                                Click="SetupAutoBackupBtn_Click"
-                                />
-                    </ListBoxItem>
-
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox IsChecked="true" 
-                                            Name="loadLastStateSwitch" Click="loaLastStateSwitch_Click"
-                                                >
-                            <TextBlock Text="{Binding Path=LocalizedResources.AutoLoadLastStateText, Source={StaticResource LocalizedStrings}}" 
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-
-                    </ListBoxItem>
-                        
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-
-                        <CheckBox Checked="enableSoundSwitch_Checked_1" Unchecked="enableSoundSwitch_Unchecked_1"
-                                            IsChecked="true" Name="enableSoundSwitch"
-                                            >
-                            <TextBlock Text="{Binding Path=LocalizedResources.EnableSoundSetting, Source={StaticResource LocalizedStrings}}" 
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                    </ListBoxItem>
-                        
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Checked="syncSoundSwitch_Checked_1" Unchecked="syncSoundSwitch_Unchecked_1"
-                                            IsChecked="true" Name="syncSoundSwitch"
-                                            >
-                            <TextBlock Text="{Binding Path=LocalizedResources.SyncSoundSetting, Source={StaticResource LocalizedStrings}}" 
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                    </ListBoxItem>
-
+                    
+                    
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <Grid Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
@@ -628,95 +790,7 @@
                         </Grid>
                     </ListBoxItem>
 
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <telerikInput:RadListPicker Header="{Binding Path=LocalizedResources.ThemeText, Source={StaticResource LocalizedStrings}}" 
-                                        SelectionChanged="themePicker_SelectionChanged_1" 
-                                                Name="themePicker" >
-                            <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.LightText, Source={StaticResource LocalizedStrings}}" />
-                            <telerikInput:RadListPickerItem Content="{Binding Path=LocalizedResources.DarkText, Source={StaticResource LocalizedStrings}}" />
-                        </telerikInput:RadListPicker>
-                    </ListBoxItem>
-
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox 
-                                  Name="useBackgroundImageSwitch"
-                                Click="useBackgroundImageSwitch_Click"
-                                  >
-                            <TextBlock Text="{Binding Path=LocalizedResources.UseBackgroundImageSetting, Source={StaticResource LocalizedStrings}}" 
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                    </ListBoxItem>
-
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <Grid x:Name="ChooseBackgroundImageGrid">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="1*" />
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="ChooseBackgroundImageBtn"
-                                        Content="{Binding Path=LocalizedResources.ChooseImageText, Source={StaticResource LocalizedStrings}}"
-                                        Click="ChooseBackgroundImageBtn_Click"
-                                        />
-
-                                <Button x:Name="ResetBackgroundImageBtn"
-                                        Content="{Binding Path=LocalizedResources.ResetImageText, Source={StaticResource LocalizedStrings}}"
-                                        Click="ResetBackgroundImageBtn_Click"
-                                        Grid.Column="1"
-                                        />
-                            </Grid>
-                        </ListBoxItem>
-                        
-
-                        <ListBoxItem HorizontalContentAlignment="Stretch">
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch"
-                                        x:Name="backgroundOpacityPanel"
-                                        >
-                                <TextBlock Text="{Binding Path=LocalizedResources.BackgroundOpacitySetting, Source={StaticResource LocalizedStrings}}" 
-                                           Margin="10,0,0,0" Foreground="{StaticResource PhoneSubtleBrush}" />
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="50" />
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Column="0">
-
-
-                                        <Slider Minimum="0" 
-                                                Maximum="100" 
-                                                Value="30" 
-                                                ValueChanged="backgroundOpacitySlider_ValueChanged_1" 
-                                                Name="backgroundOpacitySlider"
-                                                IsEnabled="False"
-                                        />
-                                        <Grid>
-                                            <TextBlock Margin="10,-40,0,0" HorizontalAlignment="Left"  Text="0%" Foreground="{StaticResource PhoneSubtleBrush}" />
-                                            <TextBlock Margin="10,-40,0,0" HorizontalAlignment="Center" 
-                                               Text="{Binding Value, ElementName=backgroundOpacitySlider, StringFormat='{}{0:#}'}" 
-                                               Foreground="{StaticResource PhoneSubtleBrush}"/>
-                                            <TextBlock Margin="10,-40,0,0" HorizontalAlignment="Right" Text="100%" Foreground="{StaticResource PhoneSubtleBrush}" />
-                                        </Grid>
-                                    </StackPanel>
-
-                                    <Rectangle  Width="50" 
-                                                    Height="50"
-                                                    HorizontalAlignment="Right"
-                                                VerticalAlignment="Top"
-                                                    Fill="{StaticResource PhoneContrastBackgroundBrush}"
-                                                    Grid.Column="1" 
-                                                    x:Name="backgroundOpacityLock" 
-                                                Tap="backgroundOpacityLock_Tap"
-                                                
-                                            
-                                                >
-                                        <Rectangle.OpacityMask>
-                                            <ImageBrush Stretch="UniformToFill" 
-                                                        x:Name="backgroundOpacityImage"
-                                                        ImageSource="/Assets/Icons/appbar.lock.png"/>
-                                        </Rectangle.OpacityMask>
-                                    </Rectangle>
-                                </Grid>
-                            </StackPanel>
-                        </ListBoxItem>
+                    
 
 
 
@@ -728,8 +802,8 @@
                                        TextWrapping="Wrap"/>
                         </CheckBox>
                     </ListBoxItem>
-                        
-                        
+
+
                     <ListBoxItem HorizontalContentAlignment="Stretch">
                         <CheckBox 
                                   Name="showThreeDotsSwitch"
@@ -740,59 +814,21 @@
                         </CheckBox>
                     </ListBoxItem>
 
-                    
-                        
                     <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Checked="confirmationSwitch_Checked_1" Unchecked="confirmationSwitch_Unchecked_1"
-                                IsChecked="false" Name="confirmationSwitch"
-                                        >
-                            <TextBlock Text="{Binding Path=LocalizedResources.HideConfirmationSetting, Source={StaticResource LocalizedStrings}}"
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
+                        <Button x:Name="CustomizeBgcolorBtn"
+                                Content="{Binding Path=LocalizedResources.ChoosePortraitBackgroundColorText, Source={StaticResource LocalizedStrings}}"
+                                Click="CustomizeBgcolorBtn_Click"
+                                />
                     </ListBoxItem>
-                        
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Checked="confirmationLoadSwitch_Checked_1" Unchecked="confirmationLoadSwitch_Unchecked_1"
-                                          IsChecked="false" Name="confirmationLoadSwitch"
-                                          >
-                            <TextBlock Text="{Binding Path=LocalizedResources.HideConfirmationLoadSetting, Source={StaticResource LocalizedStrings}}"
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                    </ListBoxItem>
-                        
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Checked="autoIncSwitch_Checked_1" Unchecked="autoIncSwitch_Unchecked_1"
-                                            IsChecked="false" Name="autoIncSwitch"
-                                            >
-                            <TextBlock Text="{Binding Path=LocalizedResources.AutoIncSavestateSetting, Source={StaticResource LocalizedStrings}}"
-                                       TextWrapping="Wrap"/>
-                        </CheckBox>
-                    </ListBoxItem>
-                        <!--<ListBoxItem HorizontalContentAlignment="Stretch">
-                            <CheckBox Content="{Binding Path=LocalizedResources.RestoreLastStateSetting, Source={StaticResource LocalizedStrings}}"
-                                            Checked="restoreLastStateSwitch_Checked_1" Unchecked="restoreLastStateSwitch_Unchecked_1"
-                                            IsChecked="true" Name="restoreLastStateSwitch"
-                                            />
+                </ListBox>
 
-                        </ListBoxItem>-->
+                
+                
+            </phone:PivotItem>
 
-                    
-                    <ListBoxItem HorizontalContentAlignment="Stretch">
-                        <CheckBox Checked="cheatRestoreSwitch_Checked" Unchecked="cheatRestoreSwitch_Unchecked"
-                                          IsChecked="false" Name="cheatRestoreSwitch"
-                                           >
-                            <TextBlock Text="{Binding Path=LocalizedResources.CheatRestoreValuesOption, Source={StaticResource LocalizedStrings}}"
-                                       TextWrapping="Wrap"/>
-                            
-                        </CheckBox>
+  
 
-                    </ListBoxItem>
-                    </ListBox>
-
-                </phone:PivotItem>
-
-
-            </phone:Pivot>
+        </phone:Pivot>
 
         </Grid>
         <!--<Image Source="/Assets/AlignmentGrid.png" 

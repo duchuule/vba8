@@ -272,8 +272,10 @@ void EmulatorRenderer::Update(float timeTotal, float timeDelta)
 	r_color = color;
 	select_color = color;
 	start_color = color;
+	turbo_color = color;
 	a_color = color;
 	b_color = color;
+	
 	
 	float text_opacity = (sinf(timeTotal*2) + 1.0f) / 2.0f;
 	resume_text_color = Color(1.0f, 0.0f, 0.0f, text_opacity);
@@ -299,6 +301,8 @@ void EmulatorRenderer::Render()
 		WaitForSingleObjectEx(this->waitEvent, INFINITE, false);
 		autosaving = false;
 	}
+
+	
 
 	m_d3dContext->OMSetRenderTargets(
 		1,
@@ -509,6 +513,7 @@ void EmulatorRenderer::Render()
 		this->controller->GetCrossRectangle(&crossRectangle);
 		this->controller->GetStartRectangle(&startRectangle);
 		this->controller->GetSelectRectangle(&selectRectangle);
+		this->controller->GetTurboRectangle(&turboRectangle);
 		this->controller->GetLRectangle(&lRectangle);
 		this->controller->GetRRectangle(&rRectangle);
 		this->controller->GetStickRectangle(&stickRect);

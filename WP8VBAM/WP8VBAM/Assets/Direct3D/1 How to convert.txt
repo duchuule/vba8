@@ -1,0 +1,2 @@
+1. Go to D:\Programs\Texture converter tool
+2. texconv -m 1 pad_a_button_color.png 

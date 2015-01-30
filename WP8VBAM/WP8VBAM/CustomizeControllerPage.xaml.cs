@@ -120,9 +120,9 @@ namespace PhoneDirect3DXamlAppInterop
 
             //set position
             if (orientation == 2) //portrait
-                m_d3dBackground.SetControllerPosition(cpos.Slice(0, 14));
+                m_d3dBackground.SetControllerPosition(cpos.Slice(0, 16));
             else
-                m_d3dBackground.SetControllerPosition(cpos.Slice(14, 28));
+                m_d3dBackground.SetControllerPosition(cpos.Slice(16, 32));
 
 
         }
@@ -135,7 +135,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         private void okButton_click(object sender, EventArgs e)
         {
-            int[] cpos = new int[14];
+            int[] cpos = new int[16];
             m_d3dBackground.GetControllerPosition(cpos);
 
             if (orientation == 2) //portrait
@@ -155,7 +155,8 @@ namespace PhoneDirect3DXamlAppInterop
                 EmulatorSettings.Current.LTopP = cpos[11];
                 EmulatorSettings.Current.RRightP = cpos[12];
                 EmulatorSettings.Current.RTopP = cpos[13];
-
+                EmulatorSettings.Current.TurboLeftP = cpos[14];
+                EmulatorSettings.Current.TurboTopP = cpos[15];
 
                 //save to disk
                 IsolatedStorageSettings isoSettings = IsolatedStorageSettings.ApplicationSettings;
@@ -175,6 +176,8 @@ namespace PhoneDirect3DXamlAppInterop
                 isoSettings[SettingsPage.LTopPKey] = cpos[11];
                 isoSettings[SettingsPage.RRightPKey] = cpos[12];
                 isoSettings[SettingsPage.RTopPKey] = cpos[13];
+                isoSettings[SettingsPage.TurboLeftPKey] = cpos[14];
+                isoSettings[SettingsPage.TurboTopPKey] = cpos[15];
 
                 isoSettings.Save();
 
@@ -196,7 +199,8 @@ namespace PhoneDirect3DXamlAppInterop
                 EmulatorSettings.Current.LTopL = cpos[11];
                 EmulatorSettings.Current.RRightL = cpos[12];
                 EmulatorSettings.Current.RTopL = cpos[13];
-
+                EmulatorSettings.Current.TurboLeftL = cpos[14];
+                EmulatorSettings.Current.TurboTopL = cpos[15];
 
                 //save to disk
                 IsolatedStorageSettings isoSettings = IsolatedStorageSettings.ApplicationSettings;
@@ -216,6 +220,8 @@ namespace PhoneDirect3DXamlAppInterop
                 isoSettings[SettingsPage.LTopLKey] = cpos[11];
                 isoSettings[SettingsPage.RRightLKey] = cpos[12];
                 isoSettings[SettingsPage.RTopLKey] = cpos[13];
+                isoSettings[SettingsPage.TurboLeftLKey] = cpos[14];
+                isoSettings[SettingsPage.TurboTopLKey] = cpos[15];
 
                 isoSettings.Save();
             }
@@ -232,7 +238,7 @@ namespace PhoneDirect3DXamlAppInterop
             int nativeWidth = (int)(Application.Current.Host.Content.ActualWidth * Application.Current.Host.Content.ScaleFactor / 100.0f + 0.5f);
             int nativeHeight = (int)(Application.Current.Host.Content.ActualHeight * Application.Current.Host.Content.ScaleFactor / 100.0f + 0.5f);
 
-            int[] ret = new int[28]; //see EmulatorSettings.h for order of the elements
+            int[] ret = new int[32]; //see EmulatorSettings.h for order of the elements
 
 
                 
@@ -261,29 +267,36 @@ namespace PhoneDirect3DXamlAppInterop
             ret[12] = nativeWidth;
             ret[13] = (int)(nativeHeight * 0.87f); 
 
+            //turbo
+            ret[14] = (int)(nativeWidth * 0.6f);
+            ret[15] = (int)(nativeHeight * 0.63f); 
+
             //==landscape
             //joy stick
-            ret[14] = (int)(nativeHeight * 0.17f);
-            ret[15] =  (int)(nativeWidth * 0.75f);
+            ret[16] = (int)(nativeHeight * 0.17f);
+            ret[17] =  (int)(nativeWidth * 0.75f);
 
             //a-b
-            ret[16] = (int)(nativeHeight * 0.85f);
-            ret[17] = (int)(nativeWidth * 0.45f);
-            ret[18] = (int)(nativeHeight * 0.75f);
-            ret[19] = (int)(nativeWidth * 0.70f);
+            ret[18] = (int)(nativeHeight * 0.85f);
+            ret[19] = (int)(nativeWidth * 0.45f);
+            ret[20] = (int)(nativeHeight * 0.75f);
+            ret[21] = (int)(nativeWidth * 0.70f);
 
             //start-select
-            ret[20] = (int)(nativeHeight * 0.53f);
-            ret[21] = (int)(nativeWidth * 0.90f);
-            ret[22] = (int)(nativeHeight * 0.47f);
+            ret[22] = (int)(nativeHeight * 0.53f);
             ret[23] = (int)(nativeWidth * 0.90f);
+            ret[24] = (int)(nativeHeight * 0.47f);
+            ret[25] = (int)(nativeWidth * 0.90f);
 
             //L-R
-            ret[24] = 0;
-            ret[25] = (int)(nativeWidth * 0.3f);
-            ret[26] = nativeHeight;
-            ret[27] = (int)(nativeWidth * 0.3f); 
-           
+            ret[26] = 0;
+            ret[27] = (int)(nativeWidth * 0.3f);
+            ret[28] = nativeHeight;
+            ret[29] = (int)(nativeWidth * 0.3f);
+
+            //turbo
+            ret[30] = (int)(nativeHeight * 0.77f);
+            ret[31] = (int)(nativeWidth * 0.55f);
             return ret;
         }
     } //end class

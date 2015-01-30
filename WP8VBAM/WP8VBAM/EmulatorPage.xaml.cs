@@ -280,7 +280,11 @@ namespace PhoneDirect3DXamlAppInterop
 
         void resetButton_Click()
         {
-            this.m_d3dBackground.Reset();
+            var result = MessageBox.Show(AppResources.ConfirmResetText, AppResources.InfoCaption, MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                this.m_d3dBackground.Reset();
+            }
         }
 
 
@@ -511,6 +515,16 @@ namespace PhoneDirect3DXamlAppInterop
             base.OnNavigatedTo(e);
         }
 
+        void ToggleTurboMode()
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                //change turbo mode and save
+                EmulatorSettings.Current.UseTurbo = !(bool)IsolatedStorageSettings.ApplicationSettings[SettingsPage.UseTurboKey];
+                IsolatedStorageSettings.ApplicationSettings[SettingsPage.UseTurboKey] = EmulatorSettings.Current.UseTurbo;
+            }));
+        }
+
         void CameraButtons_ShutterKeyReleased(object sender, EventArgs e)
         {
             if (this.m_d3dBackground != null )
@@ -645,6 +659,8 @@ namespace PhoneDirect3DXamlAppInterop
                 this.m_d3dBackground.SavestateCreated = FileHandler.CreateSavestate;
                 this.m_d3dBackground.SavestateSelected = this.savestateSelected;
                 Direct3DBackground.WrongCheatVersion = this.wrongCheatVersion;
+                Direct3DBackground.ToggleTurboMode = this.ToggleTurboMode;
+
                 this.InitAppBar();
 
                 // Set window bounds in dips
