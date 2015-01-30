@@ -85,7 +85,8 @@ namespace PhoneDirect3DXamlAppInterop
         public const String RTopPKey = "RTopPKey";
         public const String TurboLeftPKey = "TurboLeftPKey";
         public const String TurboTopPKey = "TurboTopPKey";
-
+        public const String ComboLeftPKey = "ComboLeftPKey";
+        public const String ComboTopPKey = "ComboTopPKey";
 
         public const String PadCenterXLKey = "PadCenterXLKey";
         public const String PadCenterYLKey = "PadCenterYLKey";
@@ -103,7 +104,8 @@ namespace PhoneDirect3DXamlAppInterop
         public const String RTopLKey = "RTopLKey";
         public const String TurboLeftLKey = "TurboLeftLKey";
         public const String TurboTopLKey = "TurboTopLKey";
-
+        public const String ComboLeftLKey = "ComboLeftLKey";
+        public const String ComboTopLKey = "ComboTopLKey";
 
         public const String MogaAKey = "MogaAKey";
         public const String MogaBKey = "MogaBKey";

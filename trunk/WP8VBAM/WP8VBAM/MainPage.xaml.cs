@@ -1238,71 +1238,87 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     isoSettings[SettingsPage.TurboTopPKey] = cpos[15];
                 }
+                if (!isoSettings.Contains(SettingsPage.ComboLeftPKey))
+                {
+                    isoSettings[SettingsPage.ComboLeftPKey] = cpos[16];
+                }
+                if (!isoSettings.Contains(SettingsPage.ComboTopPKey))
+                {
+                    isoSettings[SettingsPage.ComboTopPKey] = cpos[17];
+                }
 
 
                 if (!isoSettings.Contains(SettingsPage.PadCenterXLKey))
                 {
-                    isoSettings[SettingsPage.PadCenterXLKey] = cpos[16];
+                    isoSettings[SettingsPage.PadCenterXLKey] = cpos[18];
                 }
                 if (!isoSettings.Contains(SettingsPage.PadCenterYLKey))
                 {
-                    isoSettings[SettingsPage.PadCenterYLKey] = cpos[17];
+                    isoSettings[SettingsPage.PadCenterYLKey] = cpos[19];
                 }
                 if (!isoSettings.Contains(SettingsPage.ALeftLKey))
                 {
-                    isoSettings[SettingsPage.ALeftLKey] = cpos[18];
+                    isoSettings[SettingsPage.ALeftLKey] = cpos[20];
                 }
                 if (!isoSettings.Contains(SettingsPage.ATopLKey))
                 {
-                    isoSettings[SettingsPage.ATopLKey] = cpos[19];
+                    isoSettings[SettingsPage.ATopLKey] = cpos[21];
                 }
                 if (!isoSettings.Contains(SettingsPage.BLeftLKey))
                 {
-                    isoSettings[SettingsPage.BLeftLKey] = cpos[20];
+                    isoSettings[SettingsPage.BLeftLKey] = cpos[22];
                 }
                 if (!isoSettings.Contains(SettingsPage.BTopLKey))
                 {
-                    isoSettings[SettingsPage.BTopLKey] = cpos[21];
+                    isoSettings[SettingsPage.BTopLKey] = cpos[23];
                 }
                 if (!isoSettings.Contains(SettingsPage.StartLeftLKey))
                 {
-                    isoSettings[SettingsPage.StartLeftLKey] = cpos[22];
+                    isoSettings[SettingsPage.StartLeftLKey] = cpos[24];
                 }
                 if (!isoSettings.Contains(SettingsPage.StartTopLKey))
                 {
-                    isoSettings[SettingsPage.StartTopLKey] = cpos[23];
+                    isoSettings[SettingsPage.StartTopLKey] = cpos[25];
                 }
                 if (!isoSettings.Contains(SettingsPage.SelectRightLKey))
                 {
-                    isoSettings[SettingsPage.SelectRightLKey] = cpos[24];
+                    isoSettings[SettingsPage.SelectRightLKey] = cpos[26];
                 }
                 if (!isoSettings.Contains(SettingsPage.SelectTopLKey))
                 {
-                    isoSettings[SettingsPage.SelectTopLKey] = cpos[25];
+                    isoSettings[SettingsPage.SelectTopLKey] = cpos[27];
                 }
                 if (!isoSettings.Contains(SettingsPage.LLeftLKey))
                 {
-                    isoSettings[SettingsPage.LLeftLKey] = cpos[26];
+                    isoSettings[SettingsPage.LLeftLKey] = cpos[28];
                 }
                 if (!isoSettings.Contains(SettingsPage.LTopLKey))
                 {
-                    isoSettings[SettingsPage.LTopLKey] = cpos[27];
+                    isoSettings[SettingsPage.LTopLKey] = cpos[29];
                 }
                 if (!isoSettings.Contains(SettingsPage.RRightLKey))
                 {
-                    isoSettings[SettingsPage.RRightLKey] = cpos[28];
+                    isoSettings[SettingsPage.RRightLKey] = cpos[30];
                 }
                 if (!isoSettings.Contains(SettingsPage.RTopLKey))
                 {
-                    isoSettings[SettingsPage.RTopLKey] = cpos[29];
+                    isoSettings[SettingsPage.RTopLKey] = cpos[31];
                 }
                 if (!isoSettings.Contains(SettingsPage.TurboLeftLKey))
                 {
-                    isoSettings[SettingsPage.TurboLeftLKey] = cpos[30];
+                    isoSettings[SettingsPage.TurboLeftLKey] = cpos[32];
                 }
                 if (!isoSettings.Contains(SettingsPage.TurboTopLKey))
                 {
-                    isoSettings[SettingsPage.TurboTopLKey] = cpos[31];
+                    isoSettings[SettingsPage.TurboTopLKey] = cpos[33];
+                }
+                if (!isoSettings.Contains(SettingsPage.ComboLeftLKey))
+                {
+                    isoSettings[SettingsPage.ComboLeftLKey] = cpos[34];
+                }
+                if (!isoSettings.Contains(SettingsPage.ComboTopLKey))
+                {
+                    isoSettings[SettingsPage.ComboTopLKey] = cpos[35];
                 }
 
                 //moga mapping
@@ -1427,6 +1443,8 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.RTopP = (int)isoSettings[SettingsPage.RTopPKey];
                 settings.TurboLeftP = (int)isoSettings[SettingsPage.TurboLeftPKey];
                 settings.TurboTopP = (int)isoSettings[SettingsPage.TurboTopPKey];
+                settings.ComboLeftP = (int)isoSettings[SettingsPage.ComboLeftPKey];
+                settings.ComboTopP = (int)isoSettings[SettingsPage.ComboTopPKey];
 
                 settings.PadCenterXL = (int)isoSettings[SettingsPage.PadCenterXLKey];
                 settings.PadCenterYL = (int)isoSettings[SettingsPage.PadCenterYLKey];
@@ -1444,6 +1462,8 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.RTopL = (int)isoSettings[SettingsPage.RTopLKey];
                 settings.TurboLeftL = (int)isoSettings[SettingsPage.TurboLeftLKey];
                 settings.TurboTopL = (int)isoSettings[SettingsPage.TurboTopLKey];
+                settings.ComboLeftL = (int)isoSettings[SettingsPage.ComboLeftLKey];
+                settings.ComboTopL = (int)isoSettings[SettingsPage.ComboTopLKey];
 
                 settings.MogaA = (int)isoSettings[SettingsPage.MogaAKey];
                 settings.MogaB = (int)isoSettings[SettingsPage.MogaBKey];

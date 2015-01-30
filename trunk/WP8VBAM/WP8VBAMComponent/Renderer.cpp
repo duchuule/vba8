@@ -69,11 +69,17 @@ void Renderer::DrawController(void)
 	this->selectResource.As(&texSS);
 	this->dxSpriteBatch->Draw(selectRectE, this->selectSRV.Get(), texSS.Get(), select_color);
 
-	//turbo buttons
+	//turbo button
 	Engine::Rectangle turboRectE(turboRectangle.left, turboRectangle.top, turboRectangle.right - turboRectangle.left, turboRectangle.bottom - turboRectangle.top);
 	ComPtr<ID3D11Texture2D> texT;
 	this->turboResource.As(&texT);
 	this->dxSpriteBatch->Draw(turboRectE, this->turboSRV.Get(), texT.Get(), turbo_color);
+
+	//combo button
+	Engine::Rectangle comboRectE(comboRectangle.left, comboRectangle.top, comboRectangle.right - comboRectangle.left, comboRectangle.bottom - comboRectangle.top);
+	ComPtr<ID3D11Texture2D> texC;
+	this->comboResource.As(&texC);
+	this->dxSpriteBatch->Draw(comboRectE, this->comboSRV.Get(), texC.Get(), combo_color);
 
 	//L-R buttons
 	if(should_draw_LR)
@@ -173,6 +179,13 @@ void Renderer::CreateDeviceResources()
 			);
 
 		LoadTextureFromFile(
+			this->m_d3dDevice.Get(),
+			COMBO_GBASP_TEXTURE_FILE_NAME,
+			this->comboResource.GetAddressOf(),
+			this->comboSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
 			this->m_d3dDevice.Get(), 
 			L_GBASP_TEXTURE_FILE_NAME,
 			this->lButtonResource.GetAddressOf(), 
@@ -241,6 +254,13 @@ void Renderer::CreateDeviceResources()
 			);
 
 		LoadTextureFromFile(
+			this->m_d3dDevice.Get(),
+			COMBO_COLOR_TEXTURE_FILE_NAME,
+			this->comboResource.GetAddressOf(),
+			this->comboSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
 			this->m_d3dDevice.Get(), 
 			L_COLOR_TEXTURE_FILE_NAME,
 			this->lButtonResource.GetAddressOf(), 
@@ -305,6 +325,13 @@ void Renderer::CreateDeviceResources()
 			TURBO_TEXTURE_FILE_NAME,
 			this->turboResource.GetAddressOf(),
 			this->turboSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(),
+			COMBO_TEXTURE_FILE_NAME,
+			this->comboResource.GetAddressOf(),
+			this->comboSRV.GetAddressOf()
 			);
 
 		LoadTextureFromFile(

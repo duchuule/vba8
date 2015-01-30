@@ -130,6 +130,7 @@ void CPositionRenderer::Update(float timeTotal, float timeDelta)
 	a_color = color;
 	b_color = color;
 	turbo_color = color;
+	combo_color = color;
 
 	//change color if button is pressed
 	if (cstate->JoystickPressed)
@@ -158,6 +159,9 @@ void CPositionRenderer::Update(float timeTotal, float timeDelta)
 
 	if (cstate->TurboPressed)
 		turbo_color = color2;
+
+	if (cstate->ComboPressed)
+		combo_color = color2;
 
 	this->controller->GetStickRectangle(&stickRect);
 	this->controller->GetStickCenterRectangle(&centerRect);
@@ -208,7 +212,7 @@ void CPositionRenderer::Render()
 	this->controller->GetLRectangle(&lRectangle);
 	this->controller->GetRRectangle(&rRectangle);
 	this->controller->GetTurboRectangle(&turboRectangle);
-
+	this->controller->GetComboRectangle(&comboRectangle);
 	DrawController();
 
 	//end 

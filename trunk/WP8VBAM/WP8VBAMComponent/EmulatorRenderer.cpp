@@ -275,6 +275,7 @@ void EmulatorRenderer::Update(float timeTotal, float timeDelta)
 	turbo_color = color;
 	a_color = color;
 	b_color = color;
+	combo_color = color;
 	
 	
 	float text_opacity = (sinf(timeTotal*2) + 1.0f) / 2.0f;
@@ -514,6 +515,7 @@ void EmulatorRenderer::Render()
 		this->controller->GetStartRectangle(&startRectangle);
 		this->controller->GetSelectRectangle(&selectRectangle);
 		this->controller->GetTurboRectangle(&turboRectangle);
+		this->controller->GetComboRectangle(&comboRectangle);
 		this->controller->GetLRectangle(&lRectangle);
 		this->controller->GetRRectangle(&rRectangle);
 		this->controller->GetStickRectangle(&stickRect);

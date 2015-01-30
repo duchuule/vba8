@@ -109,6 +109,8 @@ namespace Emulator
 			rTop = settings->RTopL;
 			turboLeft = settings->TurboLeftL;
 			turboTop = settings->TurboTopL;
+			comboLeft = settings->ComboLeftL;
+			comboTop = settings->ComboTopL;
 		}
 		else
 		{
@@ -128,6 +130,8 @@ namespace Emulator
 			rTop = settings->RTopP;
 			turboLeft = settings->TurboLeftP;
 			turboTop = settings->TurboTopP;
+			comboLeft = settings->ComboLeftP;
+			comboTop = settings->ComboTopP;
 		}
 	}
 
@@ -168,6 +172,11 @@ namespace Emulator
 		this->turboRectangle.right = this->turboRectangle.left + 50 * value2 * this->hscale;
 		this->turboRectangle.top = turboTop;
 		this->turboRectangle.bottom = this->turboRectangle.top + 50 * value2 * this->hscale;
+
+		this->comboRectangle.left = comboLeft;
+		this->comboRectangle.right = this->comboRectangle.left + 50 * value2 * this->hscale;
+		this->comboRectangle.top = comboTop;
+		this->comboRectangle.bottom = this->comboRectangle.top + 50 * value2 * this->hscale;
 
 		this->lRectangle.left = lLeft;
 		this->lRectangle.right = this->lRectangle.left +  90 * value2 * this->hscale;
@@ -264,6 +273,10 @@ namespace Emulator
 		this->turboRect.Width = (this->turboRectangle.right - this->turboRectangle.left) / touchVisualQuotient;
 		this->turboRect.Height = (this->turboRectangle.bottom - this->turboRectangle.top) / touchVisualQuotient;
 
+		this->comboRect.X = this->comboRectangle.left / touchVisualQuotient;
+		this->comboRect.Y = (this->height - this->comboRectangle.bottom) / touchVisualQuotient;
+		this->comboRect.Width = (this->comboRectangle.right - this->comboRectangle.left) / touchVisualQuotient;
+		this->comboRect.Height = (this->comboRectangle.bottom - this->comboRectangle.top) / touchVisualQuotient;
 
 		int dpad = settings->DPadStyle;
 
@@ -355,6 +368,11 @@ namespace Emulator
 		this->turboRect.Height = (this->turboRectangle.bottom - this->turboRectangle.top) / touchVisualQuotient;
 		this->turboRect.Width = (this->turboRectangle.right - this->turboRectangle.left) / touchVisualQuotient;
 
+		this->comboRect.Y = this->comboRectangle.top / touchVisualQuotient;
+		this->comboRect.X = this->comboRectangle.left / touchVisualQuotient;
+		this->comboRect.Height = (this->comboRectangle.bottom - this->comboRectangle.top) / touchVisualQuotient;
+		this->comboRect.Width = (this->comboRectangle.right - this->comboRectangle.left) / touchVisualQuotient;
+
 		int dpad = EmulatorSettings::Current->DPadStyle;
 
 		this->stickBoundaries.X = this->padCrossRectangle.left / touchVisualQuotient;
@@ -393,7 +411,7 @@ namespace Emulator
 	bool VirtualController::CheckTouchableArea(Windows::Foundation::Point p)
 	{
 		if (this->stickBoundaries.Contains(p) || this->aRect.Contains(p) || this->bRect.Contains(p) || this->lRect.Contains(p)
-			|| this->rRect.Contains(p) || this->startRect.Contains(p) || this->selectRect.Contains(p) ||this->turboRect.Contains(p))
+			|| this->rRect.Contains(p) || this->startRect.Contains(p) || this->selectRect.Contains(p) ||this->turboRect.Contains(p) ||this->comboRect.Contains(p))
 			return true;
 
 		else
@@ -808,6 +826,11 @@ namespace Emulator
 	void VirtualController::GetTurboRectangle(RECT *rect)
 	{
 		*rect = this->turboRectangle;
+	}
+
+	void VirtualController::GetComboRectangle(RECT *rect)
+	{
+		*rect = this->comboRectangle;
 	}
 
 

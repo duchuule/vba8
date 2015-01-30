@@ -22,6 +22,7 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define START_TEXTURE_FILE_NAME						L"Assets/Direct3D/pad_start.dds"
 #define SELECT_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_select.dds"
 #define TURBO_TEXTURE_FILE_NAME						L"Assets/Direct3D/pad_turbo_button.dds"
+#define COMBO_TEXTURE_FILE_NAME						L"Assets/Direct3D/pad_combo_button.dds"
 #define A_TEXTURE_FILE_NAME							L"Assets/Direct3D/pad_a_button.dds"
 #define B_TEXTURE_FILE_NAME							L"Assets/Direct3D/pad_b_button.dds"
 #define L_TEXTURE_FILE_NAME							L"Assets/Direct3D/pad_l_button.dds"
@@ -33,6 +34,7 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define START_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_start_color.dds"
 #define SELECT_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_select_color.dds"
 #define TURBO_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_turbo_button_color.dds"
+#define COMBO_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_combo_button_color.dds"
 #define A_COLOR_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_a_button_color.dds"
 #define B_COLOR_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_b_button_color.dds"
 #define L_COLOR_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_l_button_color.dds"
@@ -43,6 +45,7 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define START_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_start_gbasp.dds"
 #define SELECT_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_select_gbasp.dds"
 #define TURBO_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_turbo_button_gbasp.dds"
+#define COMBO_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_combo_button_gbasp.dds"
 #define A_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_a_button_gbasp.dds"
 #define B_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_b_button_gbasp.dds"
 #define L_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_l_button_gbasp.dds"
@@ -91,6 +94,7 @@ internal:
 	RECT startRectangle;
 	RECT selectRectangle;
 	RECT turboRectangle;
+	RECT comboRectangle;
 	RECT lRectangle;
 	RECT rRectangle;
 	RECT stickRect;
@@ -103,6 +107,7 @@ internal:
 	Color select_color;
 	Color start_color;
 	Color turbo_color;
+	Color combo_color;
 	Color a_color;
 	Color b_color;
 	Color resume_text_color;
@@ -138,6 +143,8 @@ internal:
 	ComPtr<ID3D11ShaderResourceView>	selectSRV;
 	ComPtr<ID3D11Resource>				turboResource;
 	ComPtr<ID3D11ShaderResourceView>	turboSRV;
+	ComPtr<ID3D11Resource>				comboResource;
+	ComPtr<ID3D11ShaderResourceView>	comboSRV;
 	ComPtr<ID3D11Resource>				lButtonResource;
 	ComPtr<ID3D11ShaderResourceView>	lButtonSRV;
 	ComPtr<ID3D11Resource>				rButtonResource;
