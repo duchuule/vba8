@@ -610,6 +610,10 @@ namespace PhoneDirect3DXamlAppComponent
 		property int TurboLeftL;
 		property int TurboTopL;
 
+		property int ComboLeftP;
+		property int ComboTopP;
+		property int ComboLeftL;
+		property int ComboTopL;
 
 		property int MogaA;
 		property int MogaB;

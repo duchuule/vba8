@@ -390,6 +390,9 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Content Include="Assets\Direct3D\pad_a_button.dds" />
+    <Content Include="Assets\Direct3D\pad_combo_button.dds" />
+    <Content Include="Assets\Direct3D\pad_combo_button_color.dds" />
+    <Content Include="Assets\Direct3D\pad_combo_button_gbasp.dds" />
     <Content Include="Assets\Direct3D\pad_turbo_button.dds" />
     <Content Include="Assets\Direct3D\pad_turbo_button_color.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
