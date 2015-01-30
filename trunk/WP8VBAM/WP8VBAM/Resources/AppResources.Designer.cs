@@ -239,6 +239,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to appearance.
+        /// </summary>
+        public static string AppearanceSettingsTitle {
+            get {
+                return ResourceManager.GetString("AppearanceSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APP FUNCTION.
         /// </summary>
         public static string AppFunctionText {
@@ -1005,6 +1014,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to reset the game (equivalent to turn the console ON/OFF).
+        /// </summary>
+        public static string ConfirmResetText {
+            get {
+                return ResourceManager.GetString("ConfirmResetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to save? This will overwrite the selected save state..
         /// </summary>
         public static string ConfirmSaveText {
@@ -1630,6 +1648,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string GameboyText {
             get {
                 return ResourceManager.GetString("GameboyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gameplay.
+        /// </summary>
+        public static string GameplaySettingsTitle {
+            get {
+                return ResourceManager.GetString("GameplaySettingsTitle", resourceCulture);
             }
         }
         
@@ -3628,6 +3655,15 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         public static string UseBackgroundImageSetting {
             get {
                 return ResourceManager.GetString("UseBackgroundImageSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use dimmed Gameboy colors (GBC).
+        /// </summary>
+        public static string UseGameboyColorText {
+            get {
+                return ResourceManager.GetString("UseGameboyColorText", resourceCulture);
             }
         }
         

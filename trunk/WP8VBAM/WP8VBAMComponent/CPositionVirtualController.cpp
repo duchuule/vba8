@@ -52,6 +52,8 @@ namespace Emulator
 		lTop = cpos->GetAt(11);
 		rRight = cpos->GetAt(12);
 		rTop = cpos->GetAt(13);
+		turboLeft = cpos->GetAt(14);
+		turboTop = cpos->GetAt(15);
 	
 
 		//update 
@@ -81,6 +83,8 @@ namespace Emulator
 		ret->SetAt(11, lTop);
 		ret->SetAt(12, rRight);
 		ret->SetAt(13, rTop);
+		ret->SetAt(14, turboLeft);
+		ret->SetAt(15, turboTop);
 		
 
 	}
@@ -163,6 +167,11 @@ namespace Emulator
 			{
 				this->startLeft += dx;
 				this->startTop += dy;
+			}
+			else if (pinfo->description == "turbo")
+			{
+				this->turboLeft += dx;
+				this->turboTop += dy;
 			}
 
 			//record new touch position
@@ -249,6 +258,14 @@ namespace Emulator
 				i->second->description = "select";
 
 			}
+
+			if (this->turboRect.Contains(point))
+			{
+				state.TurboPressed = true;
+				i->second->description = "turbo";
+
+			}
+
 			if(this->lRect.Contains(point))
 			{
 				state.LPressed = true;

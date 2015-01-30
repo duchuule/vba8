@@ -26,6 +26,7 @@ namespace Emulator
 		bool BPressed;
 		bool LPressed;
 		bool RPressed;
+		bool TurboPressed;
 	};
 
 	class VirtualController
@@ -57,6 +58,7 @@ namespace Emulator
 
 		void GetStartRectangle(RECT *rect);
 		void GetSelectRectangle(RECT *rect);
+		void GetTurboRectangle(RECT *rect);
 		void GetLRectangle(RECT *rect);
 		void GetRRectangle(RECT *rect);
 
@@ -93,6 +95,7 @@ namespace Emulator
 		RECT padCrossRectangle;
 		RECT startRectangle;
 		RECT selectRectangle;
+		RECT turboRectangle;
 		RECT aRectangle;
 		RECT bRectangle;
 		RECT lRectangle;
@@ -103,6 +106,7 @@ namespace Emulator
 		Windows::Foundation::Rect downRect;
 		Windows::Foundation::Rect startRect;
 		Windows::Foundation::Rect selectRect;
+		Windows::Foundation::Rect turboRect;
 		Windows::Foundation::Rect lRect;
 		Windows::Foundation::Rect rRect;
 		Windows::Foundation::Rect aRect;
@@ -118,6 +122,8 @@ namespace Emulator
 		int startTop;
 		int selectRight;
 		int selectTop;
+		int turboLeft;
+		int turboTop;
 		int lLeft;
 		int lTop;
 		int rRight;

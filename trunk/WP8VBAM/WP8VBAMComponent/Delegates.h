@@ -8,4 +8,5 @@ namespace PhoneDirect3DXamlAppComponent
 	public delegate void SavestateCreatedCallback(int slot, Platform::String ^romFileName);
 	public delegate void SavestateSelectedCallback(int newSlot, int oldSlot);
 	public delegate void WrongCheatVersionCallback(Platform::String ^code, Platform::String ^cheatRomID, Platform::String ^currentRomID);
+	public delegate void ToggleTurboModeCallback();
 }

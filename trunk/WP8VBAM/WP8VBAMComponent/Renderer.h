@@ -21,6 +21,7 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define CROSS_TEXTURE_FILE_NAME						L"Assets/Direct3D/pad_cross.dds"
 #define START_TEXTURE_FILE_NAME						L"Assets/Direct3D/pad_start.dds"
 #define SELECT_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_select.dds"
+#define TURBO_TEXTURE_FILE_NAME						L"Assets/Direct3D/pad_turbo_button.dds"
 #define A_TEXTURE_FILE_NAME							L"Assets/Direct3D/pad_a_button.dds"
 #define B_TEXTURE_FILE_NAME							L"Assets/Direct3D/pad_b_button.dds"
 #define L_TEXTURE_FILE_NAME							L"Assets/Direct3D/pad_l_button.dds"
@@ -31,6 +32,7 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define CROSS_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_cross_color.dds"
 #define START_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_start_color.dds"
 #define SELECT_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_select_color.dds"
+#define TURBO_COLOR_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_turbo_button_color.dds"
 #define A_COLOR_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_a_button_color.dds"
 #define B_COLOR_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_b_button_color.dds"
 #define L_COLOR_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_l_button_color.dds"
@@ -40,6 +42,7 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define CROSS_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_cross_gbasp.dds"
 #define START_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_start_gbasp.dds"
 #define SELECT_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_select_gbasp.dds"
+#define TURBO_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/pad_turbo_button_gbasp.dds"
 #define A_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_a_button_gbasp.dds"
 #define B_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_b_button_gbasp.dds"
 #define L_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_l_button_gbasp.dds"
@@ -87,8 +90,11 @@ internal:
 	RECT crossRectangle;
 	RECT startRectangle;
 	RECT selectRectangle;
+	RECT turboRectangle;
 	RECT lRectangle;
 	RECT rRectangle;
+	RECT stickRect;
+	RECT centerRect;
 
 	Color joystick_color;
 	Color joystick_center_color;
@@ -96,13 +102,13 @@ internal:
 	Color r_color;
 	Color select_color;
 	Color start_color;
+	Color turbo_color;
 	Color a_color;
 	Color b_color;
 	Color resume_text_color;
 	int pad_to_draw;
 	bool should_draw_LR;
-	RECT stickRect;
-	RECT centerRect;
+
 
 	int									orientation;
 	int									format;
@@ -130,6 +136,8 @@ internal:
 	ComPtr<ID3D11ShaderResourceView>	startSRV;
 	ComPtr<ID3D11Resource>				selectResource;
 	ComPtr<ID3D11ShaderResourceView>	selectSRV;
+	ComPtr<ID3D11Resource>				turboResource;
+	ComPtr<ID3D11ShaderResourceView>	turboSRV;
 	ComPtr<ID3D11Resource>				lButtonResource;
 	ComPtr<ID3D11ShaderResourceView>	lButtonSRV;
 	ComPtr<ID3D11Resource>				rButtonResource;

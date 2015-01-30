@@ -69,6 +69,11 @@ void Renderer::DrawController(void)
 	this->selectResource.As(&texSS);
 	this->dxSpriteBatch->Draw(selectRectE, this->selectSRV.Get(), texSS.Get(), select_color);
 
+	//turbo buttons
+	Engine::Rectangle turboRectE(turboRectangle.left, turboRectangle.top, turboRectangle.right - turboRectangle.left, turboRectangle.bottom - turboRectangle.top);
+	ComPtr<ID3D11Texture2D> texT;
+	this->turboResource.As(&texT);
+	this->dxSpriteBatch->Draw(turboRectE, this->turboSRV.Get(), texT.Get(), turbo_color);
 
 	//L-R buttons
 	if(should_draw_LR)
@@ -161,6 +166,13 @@ void Renderer::CreateDeviceResources()
 			);
 
 		LoadTextureFromFile(
+			this->m_d3dDevice.Get(),
+			TURBO_GBASP_TEXTURE_FILE_NAME,
+			this->turboResource.GetAddressOf(),
+			this->turboSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
 			this->m_d3dDevice.Get(), 
 			L_GBASP_TEXTURE_FILE_NAME,
 			this->lButtonResource.GetAddressOf(), 
@@ -222,6 +234,13 @@ void Renderer::CreateDeviceResources()
 			);
 
 		LoadTextureFromFile(
+			this->m_d3dDevice.Get(),
+			TURBO_COLOR_TEXTURE_FILE_NAME,
+			this->turboResource.GetAddressOf(),
+			this->turboSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
 			this->m_d3dDevice.Get(), 
 			L_COLOR_TEXTURE_FILE_NAME,
 			this->lButtonResource.GetAddressOf(), 
@@ -279,6 +298,13 @@ void Renderer::CreateDeviceResources()
 			SELECT_TEXTURE_FILE_NAME,
 			this->selectResource.GetAddressOf(), 
 			this->selectSRV.GetAddressOf()
+			);
+
+		LoadTextureFromFile(
+			this->m_d3dDevice.Get(),
+			TURBO_TEXTURE_FILE_NAME,
+			this->turboResource.GetAddressOf(),
+			this->turboSRV.GetAddressOf()
 			);
 
 		LoadTextureFromFile(

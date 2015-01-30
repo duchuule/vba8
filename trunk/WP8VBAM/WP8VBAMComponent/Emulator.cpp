@@ -7,6 +7,7 @@
 #include <GBA.h>
 #include <Util.h>
 #include <SoundDriver.h>
+#include <gbGlobals.h>
 
 /* Link
 ---------------------*/
@@ -284,6 +285,9 @@ namespace Emulator
 		WaitForSingleObjectEx(this->updateEvent, INFINITE, false);
 		while(!stopThread)
 		{
+			//set gameboycolor/real color here
+			gbColorOption = EmulatorSettings::Current->UseGameboyColor;
+
 			//if(emulating)
 			//{
 

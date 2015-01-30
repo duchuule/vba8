@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "VirtualController.h"
 #include "EmulatorSettings.h"
+#include "WP8VBAMComponent.h"
 #include <string>
 #include <xstring>
 #include <sstream>
@@ -106,6 +107,8 @@ namespace Emulator
 			lTop = settings->LTopL;
 			rRight = settings->RRightL;
 			rTop = settings->RTopL;
+			turboLeft = settings->TurboLeftL;
+			turboTop = settings->TurboTopL;
 		}
 		else
 		{
@@ -123,6 +126,8 @@ namespace Emulator
 			lTop = settings->LTopP;
 			rRight = settings->RRightP;
 			rTop = settings->RTopP;
+			turboLeft = settings->TurboLeftP;
+			turboTop = settings->TurboTopP;
 		}
 	}
 
@@ -159,7 +164,10 @@ namespace Emulator
 		this->selectRectangle.top = selectTop; 
 		this->selectRectangle.bottom = this->selectRectangle.top + 50 * value2 * this->hscale;
 
-
+		this->turboRectangle.left = turboLeft;
+		this->turboRectangle.right = this->turboRectangle.left + 50 * value2 * this->hscale;
+		this->turboRectangle.top = turboTop;
+		this->turboRectangle.bottom = this->turboRectangle.top + 50 * value2 * this->hscale;
 
 		this->lRectangle.left = lLeft;
 		this->lRectangle.right = this->lRectangle.left +  90 * value2 * this->hscale;
@@ -251,6 +259,10 @@ namespace Emulator
 		this->startRect.Height = (this->startRectangle.bottom - this->startRectangle.top)  / touchVisualQuotient;
 
 
+		this->turboRect.X = this->turboRectangle.left / touchVisualQuotient;
+		this->turboRect.Y = (this->height - this->turboRectangle.bottom) / touchVisualQuotient;
+		this->turboRect.Width = (this->turboRectangle.right - this->turboRectangle.left) / touchVisualQuotient;
+		this->turboRect.Height = (this->turboRectangle.bottom - this->turboRectangle.top) / touchVisualQuotient;
 
 
 		int dpad = settings->DPadStyle;
@@ -338,6 +350,11 @@ namespace Emulator
 		this->startRect.Height = (this->startRectangle.bottom - this->startRectangle.top) / touchVisualQuotient;
 		this->startRect.Width = (this->startRectangle.right - this->startRectangle.left) / touchVisualQuotient;
 
+		this->turboRect.Y = this->turboRectangle.top / touchVisualQuotient;
+		this->turboRect.X = this->turboRectangle.left / touchVisualQuotient;
+		this->turboRect.Height = (this->turboRectangle.bottom - this->turboRectangle.top) / touchVisualQuotient;
+		this->turboRect.Width = (this->turboRectangle.right - this->turboRectangle.left) / touchVisualQuotient;
+
 		int dpad = EmulatorSettings::Current->DPadStyle;
 
 		this->stickBoundaries.X = this->padCrossRectangle.left / touchVisualQuotient;
@@ -376,7 +393,7 @@ namespace Emulator
 	bool VirtualController::CheckTouchableArea(Windows::Foundation::Point p)
 	{
 		if (this->stickBoundaries.Contains(p) || this->aRect.Contains(p) || this->bRect.Contains(p) || this->lRect.Contains(p)
-			|| this->rRect.Contains(p) || this->startRect.Contains(p) || this->selectRect.Contains(p))
+			|| this->rRect.Contains(p) || this->startRect.Contains(p) || this->selectRect.Contains(p) ||this->turboRect.Contains(p))
 			return true;
 
 		else
@@ -527,6 +544,14 @@ namespace Emulator
 						break; //has to break or the loop will cause Changed_state exception
 					}
 
+				}
+
+				if (desc == "turbo") //user just released the turbo button, so we toggle turbo mode
+				{
+					if (Direct3DBackground::ToggleTurboMode)
+					{
+						Direct3DBackground::ToggleTurboMode();
+					}
 				}
 			}
 			
@@ -716,6 +741,11 @@ namespace Emulator
 				state.SelectPressed = true;
 				this->pointerDescriptions->Insert(i->Current->Key, "select");
 			}
+			if (this->turboRect.Contains(point))
+			{
+				state.TurboPressed = true;
+				this->pointerDescriptions->Insert(i->Current->Key, "turbo");
+			}
 			if(this->lRect.Contains(point))
 			{
 				state.LPressed = true;
@@ -773,6 +803,11 @@ namespace Emulator
 	void VirtualController::GetSelectRectangle(RECT *rect)
 	{
 		*rect = this->selectRectangle;
+	}
+
+	void VirtualController::GetTurboRectangle(RECT *rect)
+	{
+		*rect = this->turboRectangle;
 	}
 
 

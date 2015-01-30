@@ -1383,4 +1383,16 @@ Device ID: {0}</value>
   <data name="AutoBackupStartText" xml:space="preserve">
     <value>Auto backup starting...</value>
   </data>
+  <data name="ConfirmResetText" xml:space="preserve">
+    <value>Are you sure you want to reset the game (equivalent to turn the console ON/OFF)</value>
+  </data>
+  <data name="AppearanceSettingsTitle" xml:space="preserve">
+    <value>appearance</value>
+  </data>
+  <data name="GameplaySettingsTitle" xml:space="preserve">
+    <value>gameplay</value>
+  </data>
+  <data name="UseGameboyColorText" xml:space="preserve">
+    <value>Use dimmed Gameboy colors (GBC)</value>
+  </data>
 </root>

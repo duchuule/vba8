@@ -549,6 +549,21 @@ namespace PhoneDirect3DXamlAppComponent
 			void set(bool value)
 			{
 				this->useTurbo = value;
+
+				//don't need this, we do it in the C# project already
+				//if (this->SettingsChanged)
+				//{
+				//	this->SettingsChanged();
+				//}
+			}
+		}
+
+		property bool UseGameboyColor
+		{
+			bool get(void) { return this->useGameboyColor; }
+			void set(bool value)
+			{
+				this->useGameboyColor = value;
 				if (this->SettingsChanged)
 				{
 					this->SettingsChanged();
@@ -574,7 +589,6 @@ namespace PhoneDirect3DXamlAppComponent
 		property int RTopP;
 
 
-
 		property int PadCenterXL;
 		property int PadCenterYL;
 		property int ALeftL;
@@ -589,6 +603,13 @@ namespace PhoneDirect3DXamlAppComponent
 		property int LTopL;
 		property int RRightL;
 		property int RTopL;
+
+		//turbo button is added later, so it stay separate
+		property int TurboLeftP;
+		property int TurboTopP;
+		property int TurboLeftL;
+		property int TurboTopL;
+
 
 		property int MogaA;
 		property int MogaB;
@@ -653,6 +674,7 @@ namespace PhoneDirect3DXamlAppComponent
 		bool fullPressStickABLR;
 		int useMotionControl;
 		bool useTurbo;
+		bool useGameboyColor;
 
 
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;

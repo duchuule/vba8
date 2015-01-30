@@ -4027,14 +4027,14 @@ union u8h
       /* 4*/	unsigned hi:4;
    } __attribute__ ((packed));
 #else
-#pragma pack(push)
-#pragma pack(1)
+	__pragma(pack(push, 1));
 	struct
 	{
-		/* 0*/	unsigned lo:4;
-		/* 4*/	unsigned hi:4;
+		/* 0*/	unsigned char lo:4;
+		/* 4*/	unsigned char hi:4;
 	};
-#pragma pack(pop)
+	__pragma(pack(pop));
+
 #endif
 
    u8 val;

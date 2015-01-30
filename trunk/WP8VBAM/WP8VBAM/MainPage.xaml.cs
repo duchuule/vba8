@@ -1044,7 +1044,7 @@ namespace PhoneDirect3DXamlAppInterop
                 }
                 if (!isoSettings.Contains(SettingsPage.AspectKey))
                 {
-                    isoSettings[SettingsPage.AspectKey] = AspectRatioMode.Original;
+                    isoSettings[SettingsPage.AspectKey] = AspectRatioMode.Stretch;
                 }
                 if (!isoSettings.Contains(SettingsPage.SkipFramesKey))
                 {
@@ -1166,6 +1166,8 @@ namespace PhoneDirect3DXamlAppInterop
 
                 if (!isoSettings.Contains(SettingsPage.UseTurboKey))
                     isoSettings[SettingsPage.UseTurboKey] = false;
+                if (!isoSettings.Contains(SettingsPage.UseGameboyColorKey))
+                    isoSettings[SettingsPage.UseGameboyColorKey] = false;
 
                 //get default controller position
                 int[] cpos = CustomizeControllerPage.GetDefaultControllerPosition();
@@ -1228,61 +1230,79 @@ namespace PhoneDirect3DXamlAppInterop
                 {
                     isoSettings[SettingsPage.RTopPKey] = cpos[13];
                 }
+                if (!isoSettings.Contains(SettingsPage.TurboLeftPKey))
+                {
+                    isoSettings[SettingsPage.TurboLeftPKey] = cpos[14];
+                }
+                if (!isoSettings.Contains(SettingsPage.TurboTopPKey))
+                {
+                    isoSettings[SettingsPage.TurboTopPKey] = cpos[15];
+                }
+
+
                 if (!isoSettings.Contains(SettingsPage.PadCenterXLKey))
                 {
-                    isoSettings[SettingsPage.PadCenterXLKey] = cpos[14];
+                    isoSettings[SettingsPage.PadCenterXLKey] = cpos[16];
                 }
                 if (!isoSettings.Contains(SettingsPage.PadCenterYLKey))
                 {
-                    isoSettings[SettingsPage.PadCenterYLKey] = cpos[15];
+                    isoSettings[SettingsPage.PadCenterYLKey] = cpos[17];
                 }
                 if (!isoSettings.Contains(SettingsPage.ALeftLKey))
                 {
-                    isoSettings[SettingsPage.ALeftLKey] = cpos[16];
+                    isoSettings[SettingsPage.ALeftLKey] = cpos[18];
                 }
                 if (!isoSettings.Contains(SettingsPage.ATopLKey))
                 {
-                    isoSettings[SettingsPage.ATopLKey] = cpos[17];
+                    isoSettings[SettingsPage.ATopLKey] = cpos[19];
                 }
                 if (!isoSettings.Contains(SettingsPage.BLeftLKey))
                 {
-                    isoSettings[SettingsPage.BLeftLKey] = cpos[18];
+                    isoSettings[SettingsPage.BLeftLKey] = cpos[20];
                 }
                 if (!isoSettings.Contains(SettingsPage.BTopLKey))
                 {
-                    isoSettings[SettingsPage.BTopLKey] = cpos[19];
+                    isoSettings[SettingsPage.BTopLKey] = cpos[21];
                 }
                 if (!isoSettings.Contains(SettingsPage.StartLeftLKey))
                 {
-                    isoSettings[SettingsPage.StartLeftLKey] = cpos[20];
+                    isoSettings[SettingsPage.StartLeftLKey] = cpos[22];
                 }
                 if (!isoSettings.Contains(SettingsPage.StartTopLKey))
                 {
-                    isoSettings[SettingsPage.StartTopLKey] = cpos[21];
+                    isoSettings[SettingsPage.StartTopLKey] = cpos[23];
                 }
                 if (!isoSettings.Contains(SettingsPage.SelectRightLKey))
                 {
-                    isoSettings[SettingsPage.SelectRightLKey] = cpos[22];
+                    isoSettings[SettingsPage.SelectRightLKey] = cpos[24];
                 }
                 if (!isoSettings.Contains(SettingsPage.SelectTopLKey))
                 {
-                    isoSettings[SettingsPage.SelectTopLKey] = cpos[23];
+                    isoSettings[SettingsPage.SelectTopLKey] = cpos[25];
                 }
                 if (!isoSettings.Contains(SettingsPage.LLeftLKey))
                 {
-                    isoSettings[SettingsPage.LLeftLKey] = cpos[24];
+                    isoSettings[SettingsPage.LLeftLKey] = cpos[26];
                 }
                 if (!isoSettings.Contains(SettingsPage.LTopLKey))
                 {
-                    isoSettings[SettingsPage.LTopLKey] = cpos[25];
+                    isoSettings[SettingsPage.LTopLKey] = cpos[27];
                 }
                 if (!isoSettings.Contains(SettingsPage.RRightLKey))
                 {
-                    isoSettings[SettingsPage.RRightLKey] = cpos[26];
+                    isoSettings[SettingsPage.RRightLKey] = cpos[28];
                 }
                 if (!isoSettings.Contains(SettingsPage.RTopLKey))
                 {
-                    isoSettings[SettingsPage.RTopLKey] = cpos[27];
+                    isoSettings[SettingsPage.RTopLKey] = cpos[29];
+                }
+                if (!isoSettings.Contains(SettingsPage.TurboLeftLKey))
+                {
+                    isoSettings[SettingsPage.TurboLeftLKey] = cpos[30];
+                }
+                if (!isoSettings.Contains(SettingsPage.TurboTopLKey))
+                {
+                    isoSettings[SettingsPage.TurboTopLKey] = cpos[31];
                 }
 
                 //moga mapping
@@ -1388,6 +1408,7 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.FullPressStickABLR = (bool)isoSettings[SettingsPage.FullPressStickABLRKey];
                 settings.UseMotionControl = (int)isoSettings[SettingsPage.UseMotionControlKey];
                 settings.UseTurbo = (bool)isoSettings[SettingsPage.UseTurboKey];
+                settings.UseGameboyColor = (bool)isoSettings[SettingsPage.UseGameboyColorKey];
                 
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
@@ -1404,7 +1425,8 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.LTopP = (int)isoSettings[SettingsPage.LTopPKey];
                 settings.RRightP = (int)isoSettings[SettingsPage.RRightPKey];
                 settings.RTopP = (int)isoSettings[SettingsPage.RTopPKey];
-
+                settings.TurboLeftP = (int)isoSettings[SettingsPage.TurboLeftPKey];
+                settings.TurboTopP = (int)isoSettings[SettingsPage.TurboTopPKey];
 
                 settings.PadCenterXL = (int)isoSettings[SettingsPage.PadCenterXLKey];
                 settings.PadCenterYL = (int)isoSettings[SettingsPage.PadCenterYLKey];
@@ -1420,6 +1442,8 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.LTopL = (int)isoSettings[SettingsPage.LTopLKey];
                 settings.RRightL = (int)isoSettings[SettingsPage.RRightLKey];
                 settings.RTopL = (int)isoSettings[SettingsPage.RTopLKey];
+                settings.TurboLeftL = (int)isoSettings[SettingsPage.TurboLeftLKey];
+                settings.TurboTopL = (int)isoSettings[SettingsPage.TurboTopLKey];
 
                 settings.MogaA = (int)isoSettings[SettingsPage.MogaAKey];
                 settings.MogaB = (int)isoSettings[SettingsPage.MogaBKey];
@@ -1491,7 +1515,8 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.MapABLRTurboKey] = settings.MapABLRTurbo;
             isoSettings[SettingsPage.FullPressStickABLRKey] = settings.FullPressStickABLR;
             isoSettings[SettingsPage.UseMotionControlKey] = settings.UseMotionControl;
-            
+            isoSettings[SettingsPage.UseGameboyColorKey] = settings.UseGameboyColor;
+
             isoSettings.Save();
         }
 
@@ -1599,12 +1624,7 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
-            var settingsButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/feature.settings.png", UriKind.Relative))
-            {
-                Text = AppResources.SettingsButtonText
-            };
-            settingsButton.Click += settingsButton_Click;
-            ApplicationBar.Buttons.Add(settingsButton);
+
 
 
             var purchaseButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/marketplace.png", UriKind.Relative))
@@ -1620,7 +1640,17 @@ namespace PhoneDirect3DXamlAppInterop
             };
             reviewButton.Click += reviewButton_Click;
             ApplicationBar.Buttons.Add(reviewButton);
+
+
+            var settingsButton = new ApplicationBarIconButton(new Uri("/Assets/Icons/feature.settings.png", UriKind.Relative))
+            {
+                Text = AppResources.SettingsButtonText
+            };
+            settingsButton.Click += settingsButton_Click;
+            ApplicationBar.Buttons.Add(settingsButton);
         }
+
+       
 
 
 
