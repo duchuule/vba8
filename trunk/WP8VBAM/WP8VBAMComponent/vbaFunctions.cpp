@@ -602,9 +602,9 @@ u32 systemReadJoypad(int gamepad)
 		const Emulator::ControllerState *state = controller->GetControllerState();
 
 
-		if(state->APressed || a)
+		if(state->APressed || state->ComboPressed || a)
 			res |= 1;
-		if(state->BPressed || b)
+		if (state->BPressed || state->ComboPressed || b)
 			res |= 2;
 		if(state->SelectPressed || select)
 			res |= 4;

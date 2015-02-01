@@ -51,6 +51,8 @@ namespace Emulator
 		void StartThread(void);
 
 		bool saveSRAMWhenStop;
+
+
 	private:
 		static EmulatorGame instance;
 		static bool initialized;
