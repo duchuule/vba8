@@ -54,7 +54,8 @@ namespace Emulator
 		rTop = cpos->GetAt(13);
 		turboLeft = cpos->GetAt(14);
 		turboTop = cpos->GetAt(15);
-	
+		comboLeft = cpos->GetAt(16);
+		comboTop = cpos->GetAt(17);
 
 		//update 
 		this->CreateRenderRectangles();
@@ -85,7 +86,8 @@ namespace Emulator
 		ret->SetAt(13, rTop);
 		ret->SetAt(14, turboLeft);
 		ret->SetAt(15, turboTop);
-		
+		ret->SetAt(16, comboLeft);
+		ret->SetAt(17, comboTop);
 
 	}
 	
@@ -172,6 +174,11 @@ namespace Emulator
 			{
 				this->turboLeft += dx;
 				this->turboTop += dy;
+			}
+			else if (pinfo->description == "combo")
+			{
+				this->comboLeft += dx;
+				this->comboTop += dy;
 			}
 
 			//record new touch position
@@ -263,6 +270,13 @@ namespace Emulator
 			{
 				state.TurboPressed = true;
 				i->second->description = "turbo";
+
+			}
+
+			if (this->comboRect.Contains(point))
+			{
+				state.ComboPressed = true;
+				i->second->description = "combo";
 
 			}
 

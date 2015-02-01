@@ -764,6 +764,11 @@ namespace Emulator
 				state.TurboPressed = true;
 				this->pointerDescriptions->Insert(i->Current->Key, "turbo");
 			}
+			if (this->comboRect.Contains(point))
+			{
+				state.ComboPressed = true;
+				this->pointerDescriptions->Insert(i->Current->Key, "combo");
+			}
 			if(this->lRect.Contains(point))
 			{
 				state.LPressed = true;

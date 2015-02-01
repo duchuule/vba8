@@ -81,7 +81,8 @@ namespace PhoneDirect3DXamlAppComponent
 	{
 		this->ContinueEmulationNotifier = notifier;
 	}
-	
+
+
 
 
 	void Direct3DBackground::ChangeOrientation(int orientation)

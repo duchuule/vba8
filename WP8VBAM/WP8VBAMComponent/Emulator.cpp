@@ -283,10 +283,11 @@ namespace Emulator
 	void EmulatorGame::UpdateAsync(void)
 	{
 		WaitForSingleObjectEx(this->updateEvent, INFINITE, false);
+
+		gbColorOption = EmulatorSettings::Current->UseGameboyColor;
 		while(!stopThread)
 		{
-			//set gameboycolor/real color here
-			gbColorOption = EmulatorSettings::Current->UseGameboyColor;
+			
 
 			//if(emulating)
 			//{

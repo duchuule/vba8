@@ -78,6 +78,7 @@ public:
 	void Reset(void);
 	void SetContinueNotifier(ContinueEmulationNotifier ^notifier);
 
+
 	void ChangeOrientation(int orientation);
 	bool IsROMLoaded(void);
 	void PauseEmulation(void);
