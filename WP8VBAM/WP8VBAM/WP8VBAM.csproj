@@ -436,7 +436,7 @@
     <Content Include="Assets\Direct3D\pad_start_gbasp.dds" />
     <Content Include="Assets\Direct3D\thumbstick_gbasp.dds" />
     <Content Include="Assets\GameboyAdvance.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Icons\appbar.link.png" />
     <Content Include="Assets\Icons\appbar.question.png" />
@@ -446,7 +446,7 @@
     <Content Include="Assets\Icons\selectall.png" />
     <Content Include="Assets\Icons\selectnone.png" />
     <Content Include="Assets\no_snapshot_gbc.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Direct3D\pad_cross_gbasp.dds" />
     <Content Include="Assets\Tiles\FlipCycleTileSmallFilled.png">
@@ -556,7 +556,7 @@
     <Content Include="Assets\Direct3D\pad_a_button_color.dds" />
     <Content Include="Assets\Direct3D\pad_b_button_color.dds" />
     <Content Include="Assets\Direct3D\pad_cross_color.dds">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Direct3D\pad_l_button_color.dds" />
     <Content Include="Assets\Direct3D\pad_r_button_color.dds" />
@@ -588,7 +588,7 @@
     <Content Include="Assets\Tiles\icon33x33GBC.png" />
     <Content Include="Assets\Tiles\icon69x69GBC.png" />
     <Content Include="Assets\no_snapshot.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Direct3D\pad_cross.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -608,7 +608,7 @@
     <Content Include="SplashScreenImage.screen-WXGA.jpg" />
     <Content Include="tileIcon.png" />
     <Content Include="Assets\vba-over.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Bunny Advance %28Demo%29.gba" />
     <Content Include="Assets\Direct3D\thumbstick.dds">

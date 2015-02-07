@@ -143,7 +143,7 @@ namespace PhoneDirect3DXamlAppInterop
             var dictionaries = new ResourceDictionary();
             string source;
             Color systemTrayColor;
-            SolidColorBrush brush;
+
 
 
 

@@ -1301,7 +1301,7 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         ///
         ///
         ///
-        ///Device ID: {0}.
+        ///Device model: {0}.
         /// </summary>
         public static string EmailBodyText {
             get {

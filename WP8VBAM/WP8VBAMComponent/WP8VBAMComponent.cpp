@@ -242,6 +242,7 @@ namespace PhoneDirect3DXamlAppComponent
 		m_renderer->UpdateForWindowSizeChange(WindowBounds.Width, WindowBounds.Height);
 		
 		//moga controler
+		//NOTE: NEED TO ENABLE CAPABILITY PROXIMITY!!!!!!
 		if (EmulatorSettings::Current->UseMogaController)
 		{
 			if (mogacontroller == nullptr)
