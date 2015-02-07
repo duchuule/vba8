@@ -777,7 +777,7 @@ VBA8 and VGBC8 now have identical feature set. You should only purchase features
 
 
 
-Device ID: {0}</value>
+Device model: {0}</value>
   </data>
   <data name="EmailSubjectText" xml:space="preserve">
     <value>VBA8/VGBC bug report or feature suggestion</value>

@@ -36,7 +36,6 @@ using Windows.Foundation;
 using DucLe.Extensions;
 using Windows.Phone.Speech.VoiceCommands;
 using Windows.Storage.Streams;
-using Windows.Storage;
 using System.Text;
 
 

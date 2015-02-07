@@ -1,0 +1,23 @@
+Here is a reason why it's slow [IMG]
+This is how a real GBA works in multiplayer mode(up to 4 players), it exchanges 16bit data between GBAs within a short time on interval bases(many times within every seconds).
+
+Transfer Started
+1). GBA0(Master/Server/Host/Parent) broadcast it's 16bit data to all GBAs(GBA1,GB2,GBA3), GBA0 also included but done locally
+2). GBA1(Slave/Client/Child) broadcast it's 16bit data to all GBAs(GBA0,GB2,GBA3), GBA1 also included but done locally
+3). GBA2(Slave/Client/Child) broadcast it's 16bit data to all GBAs(GBA0,GB1,GBA3), GBA2 also included but done locally
+4). GBA3(Slave/Client/Child) broadcast it's 16bit data to all GBAs(GBA0,GB1,GBA2), GBA3 also included but done locally
+Transfer Ended
+
+In emulation, Client GBAs doesn't have direct access to each other, it uses Server GBA as a bridge to broadcast it's data to other Clients.
+
+Assuming you're linking through internet and need 50ms to transfer a data and using VBALink w/ integrated server,
+With 4 players it will need, 50*3[server sending data to 3 other GBAs] + 3[3 Client GBAs]*(50*(2[remaining GBAs]+1[server as bridge])) ms, which is about 600ms for one time exchange(and it occurs several times within a second), this is where the network timeout settings (supposed to be) make affect.
+
+Since the game usually only gives a few clock cycles timeout (in-game timeouts) to consider a 16bit data fully exchanged(as it supposed to be sufficient when using a real hardware with a not-to-long cable), so in emulation, CPU execution may need to be halted/slowed down to maintain linking stability(to make sure data fully exchanged through network before the game getting timeout) which will cause great slowdown/stop-responding-like.
+
+The one that gets the most lag are clients because clients never know when data need to be exchanged until it received the first data(from server as server is the only one that can initiate a transfer), so it keeps checking the socket with blocking function and could gets up to a few seconds delays(depend on networks timeout settings) if there are no incoming data, i tried to improve it by using a non-blocking alternative or checking it on a different thread, but it cause instability because if it missed a few clock cycle the game might gets timeout(and it happened alot especially when there are more than 2 players, also when frame being skipped), this is why halting/slowing down CPU execution is important.
+
+You can change the network timeout settings to prevent Emulators getting timeouts while communicating.
+But if the game it self getting the in-game timeout and thinking that there are link problem, emulators can't do anything about it, the only way to prevent the game from getting in-game timeout is by halting CPU emulation until data fully exchanged (since many games are using cpu cycles as timeout counter)
+
+Using Wireless mode might be better for high latency linking [IMG] as it uses a better protocol, but not all games support it.
