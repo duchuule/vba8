@@ -14,7 +14,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Landscape"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     shell:SystemTray.IsVisible="True"
@@ -77,7 +77,8 @@
                                     toolkit:TiltEffect.IsTiltEnabled="True"
                                     VerticalAlignment="Stretch" 
                                   HorizontalAlignment="Stretch">-->
-                            <Grid Tap="Image_Tap">
+                            <Grid Tap="Image_Tap"
+                                  >
                                 <Image Source="{Binding SnapshotURI, Converter={StaticResource IsoImageConverter}}" 
                                     Stretch="UniformToFill"  
                                     HorizontalAlignment="Center"

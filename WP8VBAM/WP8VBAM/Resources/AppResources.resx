@@ -1395,4 +1395,11 @@ Device model: {0}</value>
   <data name="UseGameboyColorText" xml:space="preserve">
     <value>Use dimmed Gameboy colors (GBC)</value>
   </data>
+  <data name="EnableAutoSaveLoadPromptText" xml:space="preserve">
+    <value>WARNING: only choose Yes if you use quick save function. If you use in-game save function, please choose No to prevent data loss.
+You can  later change the setting by going to Settings -&gt; Gameplay.</value>
+  </data>
+  <data name="EnableAutoSaveLoadPromptTitle" xml:space="preserve">
+    <value>Enable automatic save/load?</value>
+  </data>
 </root>

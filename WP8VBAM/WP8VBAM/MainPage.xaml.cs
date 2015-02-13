@@ -113,19 +113,10 @@ namespace PhoneDirect3DXamlAppInterop
             this.RefreshRecentROMList();
 
 
-            //refresh rom list
-            //this.db.Commit += () =>
-            //{
-            //    this.RefreshROMList();
-            //};
-
-            
 
             this.Loaded += MainPage_Loaded;
 
             
-
-
         }
 
         private void SortRomList()
@@ -159,6 +150,30 @@ namespace PhoneDirect3DXamlAppInterop
                 ApplicationBar.ForegroundColor = (Color)App.Current.Resources["CustomForegroundColor"];
             }
 
+            MainPage.LoadInitialSettings();
+
+            //if first launch the enable automatic save/load
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("DEMOCOPIED") == false) //this is the frist time we start the app
+            {
+                EmulatorSettings.Current.AutoSaveLoad = true;
+            }
+            else if (!App.metroSettings.FirstAutoSaveLoadPrompt && !EmulatorSettings.Current.AutoSaveLoad) //if not first time then ask if user want to enable automatic saveload)
+            {
+                RadMessageBox.Show(AppResources.EnableAutoSaveLoadPromptTitle, MessageBoxButtons.YesNo, AppResources.EnableAutoSaveLoadPromptText,
+                    closedHandler: (args) =>
+                    {
+                        DialogResult result = args.Result;
+                        if (result == DialogResult.OK)
+                        {
+                            EmulatorSettings.Current.AutoSaveLoad = true;
+
+                        }
+
+                        App.metroSettings.FirstAutoSaveLoadPrompt = true;
+                    });
+
+            }
+
             //await this.createFolderTask;
             //await this.copyDemoTask;
             if (shouldInitialize)  //create folder structure and copy demon rom
@@ -167,7 +182,6 @@ namespace PhoneDirect3DXamlAppInterop
                 shouldInitialize = false;
             }
 
-            MainPage.LoadInitialSettings();
 
             //ask to enable turbo mode
             if (!App.metroSettings.FirstTurboPrompt)
@@ -179,11 +193,16 @@ namespace PhoneDirect3DXamlAppInterop
                         if (result == DialogResult.OK)
                         {
                             EmulatorSettings.Current.UseTurbo = true;
+                            //save to disk
+                            //do this here instead of SettingsChangedDelegate() so that we don't always save to disk when camera is half press
+                            IsolatedStorageSettings.ApplicationSettings[SettingsPage.UseTurboKey] = true;
                         }
+
+                        App.metroSettings.FirstTurboPrompt = true;
 
 
                     });
-                App.metroSettings.FirstTurboPrompt = true;
+
             }
 
             if (shouldUpdateBackgroud)
@@ -1114,10 +1133,6 @@ namespace PhoneDirect3DXamlAppInterop
                     isoSettings[SettingsPage.UseMogaControllerKey] = false;
 #endif
                 }
-                if (!isoSettings.Contains(SettingsPage.UseColorButtonKey))
-                {
-                    isoSettings[SettingsPage.UseColorButtonKey] = true;
-                }
                 if (!isoSettings.Contains(SettingsPage.BgcolorRKey))
                 {
                     isoSettings[SettingsPage.BgcolorRKey] = 210;
@@ -1389,8 +1404,7 @@ namespace PhoneDirect3DXamlAppInterop
 
                 settings.LowFrequencyMode = (bool)isoSettings[SettingsPage.LowFreqModeKey];
                 settings.SoundEnabled = (bool)isoSettings[SettingsPage.EnableSoundKey];
-                //settings.VirtualControllerOnTop = (bool)isoSettings[SettingsPage.VControllerPosKey];
-                //settings.LowFrequencyModeMeasured = (bool)isoSettings[SettingsPage.LowFreqModeMeasuredKey];
+
                 settings.Orientation = (int)isoSettings[SettingsPage.OrientationKey];
                 settings.ControllerScale = (int)isoSettings[SettingsPage.ControllerScaleKey];
                 settings.ButtonScale = (int)isoSettings[SettingsPage.ButtonScaleKey];
@@ -1500,9 +1514,7 @@ namespace PhoneDirect3DXamlAppInterop
             IsolatedStorageSettings isoSettings = IsolatedStorageSettings.ApplicationSettings;
 
             isoSettings[SettingsPage.EnableSoundKey] = settings.SoundEnabled;
-            //isoSettings[SettingsPage.VControllerPosKey] = settings.VirtualControllerOnTop;
             isoSettings[SettingsPage.LowFreqModeKey] = settings.LowFrequencyMode;
-            //isoSettings[SettingsPage.LowFreqModeMeasuredKey] = settings.LowFrequencyModeMeasured;
             isoSettings[SettingsPage.OrientationKey] = settings.Orientation;
             isoSettings[SettingsPage.ControllerScaleKey] = settings.ControllerScale;
             isoSettings[SettingsPage.ButtonScaleKey] = settings.ButtonScale;
@@ -1551,18 +1563,19 @@ namespace PhoneDirect3DXamlAppInterop
             //{
             //    romNames.Add(new ROMEntry() { Name = file.Name } );
             //}
-            this.lastRomImage.DataContext = ROMDatabase.Current.GetLastPlayed();
+            this.lastRomGrid.DataContext = ROMDatabase.Current.GetLastPlayed();
 
-            if (this.lastRomImage.DataContext != null)
+            if (this.lastRomGrid.DataContext != null)
                 this.resumeButton.IsEnabled = true;
             else
                 this.resumeButton.IsEnabled = false;
 
-            if (this.lastRomImage.DataContext != null && App.metroSettings.ShowLastPlayedGame == true)
+            if (this.lastRomGrid.DataContext != null && App.metroSettings.ShowLastPlayedGame == true)
                 lastRomGrid.Visibility = Visibility.Visible;
             else
                 lastRomGrid.Visibility = Visibility.Collapsed;
 
+            //don't do this here to optimize performance, only do this when we add/delete rom
             //this.romList.ItemsSource = ROMDatabase.Current.GetROMList();
 
             this.recentList.ItemsSource = ROMDatabase.Current.GetRecentlyPlayed();
@@ -1733,25 +1746,7 @@ namespace PhoneDirect3DXamlAppInterop
 
         }
 
-        private void gotoRestoreButton_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (!App.IsTrial)
-            {
-                if (App.session != null)
-                {
-                    PhoneApplicationService.Current.State["parameter"] = App.session;
-                    this.NavigationService.Navigate(new Uri("/RestorePage.xaml", UriKind.Relative));
-                }
-                else
-                {
-                    MessageBox.Show(AppResources.NotSignedInError, AppResources.ErrorCaption, MessageBoxButton.OK);
-                }
-            }
-            else
-            {
-                ShowBuyDialog();
-            }
-        }
+        
 
         void ShowBuyDialog()
         {

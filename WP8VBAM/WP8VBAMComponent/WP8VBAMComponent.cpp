@@ -183,17 +183,6 @@ namespace PhoneDirect3DXamlAppComponent
 		this->ContinueEmulationNotifier();
 	}
 
-	//void Direct3DBackground::LoadState(void)
-	//{
-	//	this->m_renderer->should_show_resume_text = false;
-
-	//	LoadStateAsync().then([this]()
-	//	{
-	//		this->emulator->Unpause();
-	//	});
-	//	this->ContinueEmulationNotifier();
-	//}
-
 	void Direct3DBackground::LoadState(int slot)
 	{
 		this->m_renderer->should_show_resume_text = false;
@@ -325,15 +314,14 @@ namespace PhoneDirect3DXamlAppComponent
 			this->emulator->Pause();
 			SaveSRAMAsync().wait();
 
-			//if (EmulatorSettings::Current->AutoSaveLoad)
-			{
-				int oldstate = SavestateSlot;
-				SavestateSlot = AUTOSAVE_SLOT;
-				SaveStateAsync().wait();
-				this->SavestateCreated(SavestateSlot, ROMFile->Name);
 
-				SavestateSlot = oldstate;
-			}
+			int oldstate = SavestateSlot;
+			SavestateSlot = AUTOSAVE_SLOT;
+			SaveStateAsync().wait();
+			this->SavestateCreated(SavestateSlot, ROMFile->Name);
+
+			SavestateSlot = oldstate;
+
 			this->emulator->Unpause();
 		}).then([this]()
 		{

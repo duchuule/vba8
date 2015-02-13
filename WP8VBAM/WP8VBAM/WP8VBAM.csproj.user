@@ -98,7 +98,7 @@
           <FullDeploy>False</FullDeploy>
           <DebuggerType>Native</DebuggerType>
           <DebuggerAgentType>Native</DebuggerAgentType>
-          <Tombstone>False</Tombstone>
+          <Tombstone>True</Tombstone>
         </SilverlightMobileCSProjectFlavor>
       </FlavorProperties>
     </VisualStudio>

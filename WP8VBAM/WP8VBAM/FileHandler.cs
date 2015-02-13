@@ -181,48 +181,6 @@ namespace PhoneDirect3DXamlAppInterop
             {
             }
 
-            //WriteableBitmap bitmap = new WriteableBitmap(pitch / 4, (int)pixeldata.Length / (pitch));
-            //int x = 0;
-            //int y = 0;
-            //for (int i = 0; i < pitch * bitmap.PixelHeight; i += 4)
-            //{
-            //    byte r = pixeldata[i];
-            //    byte g = pixeldata[i + 1];
-            //    byte b = pixeldata[i + 2];
-            //    bitmap.SetPixel(x, y, r, g, b);
-            //    x++;
-            //    if (x >= bitmap.PixelWidth)
-            //    {
-            //        y++;
-            //        x = 0;
-            //    }
-            //}
-
-            //int index = filename.LastIndexOf('.');
-            //int diff = filename.Length - 1 - index;
-
-            //String snapshotName = filename.Substring(0, filename.Length - diff) + "jpg";
-            //try
-            //{
-            //    IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
-            //    using (IsolatedStorageFileStream fs = new IsolatedStorageFileStream("/Shared/ShellContent/" + snapshotName, System.IO.FileMode.Create, iso))
-            //    {
-            //        bitmap.SaveJpeg(fs, bitmap.PixelWidth, bitmap.PixelHeight, 0, 90);
-
-            //        fs.Flush(true);
-            //    }
-            //    ROMDatabase db = ROMDatabase.Current;
-            //    ROMDBEntry entry = db.GetROM(filename);
-            //    entry.SnapshotURI = "Shared/ShellContent/" + snapshotName;
-            //    db.CommitChanges();
-
-            //    UpdateLiveTile();
-
-            //    UpdateROMTile(filename);
-            //}
-            //catch (Exception)
-            //{
-            //}
         }
 
         public static void UpdateLiveTile()

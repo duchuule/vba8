@@ -1346,6 +1346,25 @@ namespace PhoneDirect3DXamlAppInterop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WARNING: only choose Yes if you use quick save function. If you use in-game save function, please choose No to prevent data loss.
+        ///You can  later change the setting by going to Settings -&gt; Gameplay..
+        /// </summary>
+        public static string EnableAutoSaveLoadPromptText {
+            get {
+                return ResourceManager.GetString("EnableAutoSaveLoadPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable automatic save/load?.
+        /// </summary>
+        public static string EnableAutoSaveLoadPromptTitle {
+            get {
+                return ResourceManager.GetString("EnableAutoSaveLoadPromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Sound.
         /// </summary>
         public static string EnableSoundSetting {

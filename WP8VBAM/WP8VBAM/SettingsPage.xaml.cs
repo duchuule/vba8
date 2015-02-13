@@ -54,7 +54,6 @@ namespace PhoneDirect3DXamlAppInterop
         public const String RestoreCheatKey = "RestoreCheatKey";
         public const String CreateManualSnapshotKey = "ManualSnapshotKey";
         public const String UseMogaControllerKey = "UseMogaControllerKey";
-        public const String UseColorButtonKey = "UseColorButtonKey";
         public const String BgcolorRKey = "BgcolorRKey";
         public const String BgcolorGKey = "BgcolorGKey";
         public const String BgcolorBKey = "BgcolorBKey";
@@ -216,10 +215,10 @@ namespace PhoneDirect3DXamlAppInterop
         {
             EmulatorSettings emuSettings = EmulatorSettings.Current;
 
-            //this.vcontrollerPosSwitch.IsChecked = emuSettings.VirtualControllerOnTop;
+
             this.enableSoundSwitch.IsChecked = emuSettings.SoundEnabled;
             this.lowFreqSwitch.IsChecked = emuSettings.LowFrequencyMode;
-            //this.stretchToggle.IsChecked = emuSettings.FullscreenStretch;
+
             this.scaleSlider.Value = emuSettings.ControllerScale;
             this.buttonScaleSlider.Value = emuSettings.ButtonScale;
             this.opacitySlider.Value = emuSettings.ControllerOpacity;
@@ -232,7 +231,7 @@ namespace PhoneDirect3DXamlAppInterop
             //this.restoreLastStateSwitch.IsChecked = emuSettings.SelectLastState;
             this.cheatRestoreSwitch.IsChecked = emuSettings.RestoreOldCheatValues;
             this.manualSnapshotSwitch.IsChecked = emuSettings.ManualSnapshots;
-            //this.useColorButtonSwitch.IsChecked = emuSettings.UseColorButtons;
+
 
             this.showThreeDotsSwitch.IsChecked = App.metroSettings.ShowThreeDots;
             this.showLastPlayedGameSwitch.IsChecked = App.metroSettings.ShowLastPlayedGame;
@@ -257,9 +256,6 @@ namespace PhoneDirect3DXamlAppInterop
                 this.backgroundOpacityPanel.Visibility = Visibility.Collapsed;
                 this.ChooseBackgroundImageGrid.Visibility = Visibility.Collapsed;
             }
-
-
-
             if (emuSettings.VirtualControllerStyle != 2)
                 CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
             else
@@ -468,37 +464,9 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        //private void restoreLastStateSwitch_Checked_1(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.SelectLastState = true;
-        //    }
-        //}
 
-        //private void restoreLastStateSwitch_Unchecked_1(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.SelectLastState = false;
-        //    }
-        //}
 
-        private void cheatRestoreSwitch_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.RestoreOldCheatValues = true;
-            }
-        }
 
-        private void cheatRestoreSwitch_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.RestoreOldCheatValues = false;
-            }
-        }
 
         private void manualSnapshotSwitch_Checked(object sender, RoutedEventArgs e)
         {
@@ -535,29 +503,7 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        private void orientationBothRadio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.Orientation = 0;
-            }
-        }
 
-        private void orientationLandscapeRadio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.Orientation = 1;
-            }
-        }
-
-        private void orientationPortraitRadio_Checked(object sender, RoutedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.Orientation = 2;
-            }
-        }
 
         private void assignPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
@@ -588,6 +534,13 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+        private void turboFrameSkipPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                EmulatorSettings.Current.TurboFrameSkip = this.turboFrameSkipPicker.SelectedIndex;
+            }
+        }        
         private void frameSkipPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             if (this.initdone)
@@ -597,13 +550,6 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
-        //private void powerFrameSkipPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.PowerFrameSkip = this.powerFrameSkipPicker.SelectedIndex;
-        //    }
-        //}
 
         private void toggleUseMogaController_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -721,26 +667,10 @@ namespace PhoneDirect3DXamlAppInterop
             NavigationService.Navigate(new Uri("/CustomizeControllerPage.xaml?orientation=0", UriKind.Relative));
         }
 
-        private void turboFrameSkipPicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            if (this.initdone)
-            {
-                EmulatorSettings.Current.TurboFrameSkip = this.turboFrameSkipPicker.SelectedIndex;
-            }
-        }
 
-        //private void useColorButtonSwitch_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.useColorButtonSwitch.IsChecked.Value)
-        //        CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Visible;
-        //    else
-        //        CustomizeBgcolorBtn.Visibility = System.Windows.Visibility.Collapsed;
 
-        //    if (this.initdone)
-        //    {
-        //        EmulatorSettings.Current.UseColorButtons = this.useColorButtonSwitch.IsChecked.Value;
-        //    }
-        //}
+
+
 
         private void CustomizeBgcolorBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -786,6 +716,7 @@ namespace PhoneDirect3DXamlAppInterop
         {
             NavigationService.Navigate(new Uri("/MogaMappingPage.xaml", UriKind.Relative));
         }
+
 
         private void themePicker_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
@@ -1006,8 +937,6 @@ namespace PhoneDirect3DXamlAppInterop
 
                 App.metroSettings.UseAccentColor = chkUseAccentColor.IsChecked.Value;
 
-                //MessageBox.Show(AppResources.UnpinTilePromptText);
-
 
                 FileHandler.UpdateLiveTile();
 
@@ -1208,7 +1137,21 @@ namespace PhoneDirect3DXamlAppInterop
                 EmulatorSettings.Current.UseGameboyColor = this.useGameboyColorSwitch.IsChecked.Value;
             }
         }
+        private void cheatRestoreSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                EmulatorSettings.Current.RestoreOldCheatValues = true;
+            }
+        }
 
+        private void cheatRestoreSwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                EmulatorSettings.Current.RestoreOldCheatValues = false;
+            }
+        }
 
 
 
