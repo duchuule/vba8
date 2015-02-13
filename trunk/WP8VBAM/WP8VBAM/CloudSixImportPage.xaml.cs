@@ -135,70 +135,6 @@ namespace PhoneDirect3DXamlAppInterop
 
 
 
-        private async Task<List<ImportFileItem>> GetFilesInZip(IStorageFile file)
-        {
-            List<ImportFileItem> listItems = new List<ImportFileItem>();
-
-            if (file != null)
-            {
-                IRandomAccessStream accessStream = await file.OpenReadAsync();
-                Stream s = accessStream.AsStreamForRead((int)accessStream.Size);
-
-                //get list of file
-                using (ZipFile zip = ZipFile.Read(s))
-                {
-                    foreach (ZipEntry entry in zip)
-                    {
-                        MemoryStream data = new MemoryStream();
-                        entry.Extract(data);
-                        data.Seek(0, SeekOrigin.Begin);
-                        String name = entry.FileName;
-
-                        SkyDriveItemType type = SkyDriveItemType.File;
-                        int dotIndex = -1;
-                        if ((dotIndex = name.LastIndexOf('.')) != -1)
-                        {
-                            String substrName = name.Substring(dotIndex).ToLower();
-                            if (substrName.Equals(".gb") || substrName.Equals(".gbc") || substrName.Equals(".gba"))
-                            {
-                                type = SkyDriveItemType.ROM;
-                            }
-                            else if (substrName.Equals(".sgm"))
-                            {
-                                type = SkyDriveItemType.Savestate;
-                            }
-                            else if (substrName.Equals(".sav"))
-                            {
-                                type = SkyDriveItemType.SRAM;
-                            }
-                        }
-
-                        if (type == SkyDriveItemType.File)
-                        {
-                            data.Close();
-                            continue;
-                        }
-
-                        ImportFileItem listItem = new ImportFileItem()
-                        {
-                            Name = name,
-                            Type = type,
-                            Stream = data
-                        };
-
-                        listItems.Add(listItem);
-
-                    }
-                }
-
-                //close the zip stream since we have the stream of each item inside it already
-                s.Close();
-                s = null;
-            }
-
-            return listItems;
-        }
-
 
 
         private async Task<List<ImportFileItem>> GetFilesInArchive(SkyDriveItemType parentType, IStorageFile file)
@@ -234,18 +170,7 @@ namespace PhoneDirect3DXamlAppInterop
                         if ((dotIndex = name.LastIndexOf('.')) != -1)
                         {
                             String substrName = name.Substring(dotIndex).ToLower();
-                            if (substrName.Equals(".gb") || substrName.Equals(".gbc") || substrName.Equals(".gba"))
-                            {
-                                type = SkyDriveItemType.ROM;
-                            }
-                            else if (substrName.Equals(".sgm"))
-                            {
-                                type = SkyDriveItemType.Savestate;
-                            }
-                            else if (substrName.Equals(".sav"))
-                            {
-                                type = SkyDriveItemType.SRAM;
-                            }
+                            type = SkyDriveImportPage.GetSkyDriveItemType(substrName);
                         }
 
                         if (type == SkyDriveItemType.File)
