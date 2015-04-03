@@ -1402,4 +1402,10 @@ You can  later change the setting by going to Settings -&gt; Gameplay.</value>
   <data name="EnableAutoSaveLoadPromptTitle" xml:space="preserve">
     <value>Enable automatic save/load?</value>
   </data>
+  <data name="ButtonPositionWarning" xml:space="preserve">
+    <value>WARNING: Virtual buttons do not work probably if they overlap the system tray area. This mostly happens in landscape for button near the edge of the screen such as L, R, Left and A.   This is a limitation of windows phone; the only solution is to reposition the buttons so that they are not too close to the edge.</value>
+  </data>
+  <data name="UseLinearFilterText" xml:space="preserve">
+    <value>Use linear filter</value>
+  </data>
 </root>

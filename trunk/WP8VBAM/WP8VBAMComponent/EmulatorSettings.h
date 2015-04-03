@@ -571,6 +571,19 @@ namespace PhoneDirect3DXamlAppComponent
 			}
 		}
 
+		property bool UseLinearFilter
+		{
+			bool get(void) { return this->useLinearFilter; }
+			void set(bool value)
+			{
+				this->useLinearFilter = value;
+				if (this->SettingsChanged)
+				{
+					this->SettingsChanged();
+				}
+			}
+		}
+
 		EmulatorSettings(void);
 
 		property int PadCenterXP;
@@ -679,6 +692,7 @@ namespace PhoneDirect3DXamlAppComponent
 		int useMotionControl;
 		bool useTurbo;
 		bool useGameboyColor;
+		bool useLinearFilter;
 
 
 		IMap<Platform::String ^, ROMConfig> ^romConfigs;

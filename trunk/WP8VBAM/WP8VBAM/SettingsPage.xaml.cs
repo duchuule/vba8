@@ -67,6 +67,7 @@ namespace PhoneDirect3DXamlAppInterop
         public const String UseMotionControlKey = "UseMotionControlKey";
         public const String UseTurboKey = "UseTurboKey";
         public const String UseGameboyColorKey = "UseGameboyColorKey";
+        public const String UseLinearFilterKey = "UseLinearFilterKey";
 
         public const String PadCenterXPKey = "PadCenterXPKey";
         public const String PadCenterYPKey = "PadCenterYPKey";
@@ -243,6 +244,7 @@ namespace PhoneDirect3DXamlAppInterop
             this.mapABLRTurboSwitch.IsChecked = emuSettings.MapABLRTurbo;
             this.fullPressStickABRLSwitch.IsChecked = emuSettings.FullPressStickABLR;
             this.useGameboyColorSwitch.IsChecked = emuSettings.UseGameboyColor;
+            this.useLinearFilterSwitch.IsChecked = emuSettings.UseLinearFilter;
 
             if (App.metroSettings.BackgroundUri != null)
             {
@@ -664,6 +666,8 @@ namespace PhoneDirect3DXamlAppInterop
 
         private void CPositionLandscapeBtn_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(AppResources.ButtonPositionWarning);
+
             NavigationService.Navigate(new Uri("/CustomizeControllerPage.xaml?orientation=0", UriKind.Relative));
         }
 
@@ -1150,6 +1154,14 @@ namespace PhoneDirect3DXamlAppInterop
             if (this.initdone)
             {
                 EmulatorSettings.Current.RestoreOldCheatValues = false;
+            }
+        }
+
+        private void useLinearFilterSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.initdone)
+            {
+                EmulatorSettings.Current.UseLinearFilter = useLinearFilterSwitch.IsChecked.Value;
             }
         }
 

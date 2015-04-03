@@ -1182,6 +1182,8 @@ namespace PhoneDirect3DXamlAppInterop
                     isoSettings[SettingsPage.UseTurboKey] = false;
                 if (!isoSettings.Contains(SettingsPage.UseGameboyColorKey))
                     isoSettings[SettingsPage.UseGameboyColorKey] = false;
+                if (!isoSettings.Contains(SettingsPage.UseLinearFilterKey))
+                    isoSettings[SettingsPage.UseLinearFilterKey] = true;
 
                 //get default controller position
                 int[] cpos = CustomizeControllerPage.GetDefaultControllerPosition();
@@ -1438,7 +1440,7 @@ namespace PhoneDirect3DXamlAppInterop
                 settings.UseMotionControl = (int)isoSettings[SettingsPage.UseMotionControlKey];
                 settings.UseTurbo = (bool)isoSettings[SettingsPage.UseTurboKey];
                 settings.UseGameboyColor = (bool)isoSettings[SettingsPage.UseGameboyColorKey];
-                
+                settings.UseLinearFilter = (bool)isoSettings[SettingsPage.UseLinearFilterKey];
 
                 settings.PadCenterXP = (int)isoSettings[SettingsPage.PadCenterXPKey];
                 settings.PadCenterYP = (int)isoSettings[SettingsPage.PadCenterYPKey];
@@ -1547,7 +1549,7 @@ namespace PhoneDirect3DXamlAppInterop
             isoSettings[SettingsPage.FullPressStickABLRKey] = settings.FullPressStickABLR;
             isoSettings[SettingsPage.UseMotionControlKey] = settings.UseMotionControl;
             isoSettings[SettingsPage.UseGameboyColorKey] = settings.UseGameboyColor;
-
+            isoSettings[SettingsPage.UseLinearFilterKey] = settings.UseLinearFilter;
             isoSettings.Save();
         }
 

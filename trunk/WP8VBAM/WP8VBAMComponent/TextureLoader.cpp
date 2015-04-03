@@ -1,11 +1,15 @@
 #include "pch.h"
 #include "TextureLoader.h"
+#include <time.h>  
 
 using namespace Microsoft::WRL;
 
 void LoadTextureFromFile(ID3D11Device1 *device, const wchar_t *filename, ID3D11Resource **texture, ID3D11ShaderResourceView **textureSRV)
 {
+	//clock_t t, t1, t2, t3, t4;
 	FILE *file;
+
+	//t = clock();
 	if(_wfopen_s(&file, filename, L"rb") != 0)
 	{
 		return;
@@ -30,6 +34,8 @@ void LoadTextureFromFile(ID3D11Device1 *device, const wchar_t *filename, ID3D11R
 	}
 	fclose(file);
 
+
+
 	const char *magic = "DDS ";
 	uint32_t magicValue = *(reinterpret_cast<const uint32_t *>(magic));
 
@@ -46,6 +52,7 @@ void LoadTextureFromFile(ID3D11Device1 *device, const wchar_t *filename, ID3D11R
 
 	int width = header->dwWidth;
 	int height = header->dwHeight;
+
 
 
 	D3D11_TEXTURE2D_DESC desc;
@@ -67,13 +74,20 @@ void LoadTextureFromFile(ID3D11Device1 *device, const wchar_t *filename, ID3D11R
 	pixelData.SysMemPitch = 4 * width;
 	
 	ID3D11Texture2D *tex;
+
+	//this takes a lot of time in W10 technical preview
 	if(FAILED(device->CreateTexture2D(&desc, &pixelData, &tex)))
 	{
 		delete [] bytes;
 		return;
 	}
 
+	/*t3 = clock() - t;
+	if (t3 > 100)
+		t3 = t3 - 1;*/
+
 	delete [] bytes;
+
 
 
 	D3D11_SHADER_RESOURCE_VIEW_DESC descSRV;
@@ -89,4 +103,7 @@ void LoadTextureFromFile(ID3D11Device1 *device, const wchar_t *filename, ID3D11R
 		return;
 	}
 	*texture = tex;
+
+
+	
 }

@@ -286,14 +286,14 @@ namespace PhoneDirect3DXamlAppInterop
 
             //==landscape
             //joy stick
-            ret[18] = (int)(nativeHeight * 0.17f);
+            ret[18] = (int)(nativeHeight * 0.19f);
             ret[19] =  (int)(nativeWidth * 0.75f);
 
             //a-b
-            ret[20] = (int)(nativeHeight * 0.85f);
+            ret[20] = (int)(nativeHeight * 0.82f);
             ret[21] = (int)(nativeWidth * 0.45f);
-            ret[22] = (int)(nativeHeight * 0.75f);
-            ret[23] = (int)(nativeWidth * 0.70f);
+            ret[22] = (int)(nativeHeight * 0.71f);
+            ret[23] = (int)(nativeWidth * 0.69f);
 
             //start-select
             ret[24] = (int)(nativeHeight * 0.53f);
@@ -302,17 +302,17 @@ namespace PhoneDirect3DXamlAppInterop
             ret[27] = (int)(nativeWidth * 0.90f);
 
             //L-R
-            ret[28] = 0;
+            ret[28] = (int)(nativeHeight * 0.03f);
             ret[29] = (int)(nativeWidth * 0.3f);
-            ret[30] = nativeHeight;
+            ret[30] = (int)(nativeHeight * 0.97f);
             ret[31] = (int)(nativeWidth * 0.3f);
 
             //turbo
-            ret[32] = (int)(nativeHeight * 0.77f);
+            ret[32] = (int)(nativeHeight * 0.74f);
             ret[33] = (int)(nativeWidth * 0.55f);
 
             //combo
-            ret[34] = (int)(nativeHeight * 0.92f);
+            ret[34] = (int)(nativeHeight * 0.89f);
             ret[35] = (int)(nativeWidth * 0.72f);
             return ret;
         }

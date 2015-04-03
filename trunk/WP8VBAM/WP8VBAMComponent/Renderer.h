@@ -52,6 +52,17 @@ using namespace PhoneDirect3DXamlAppComponent;
 #define R_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/pad_r_button_gbasp.dds"
 #define STICK_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/thumbstick_gbasp.dds"
 
+//#define CROSS_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define START_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define SELECT_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define TURBO_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define COMBO_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define A_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define B_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define L_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define R_GBASP_TEXTURE_FILE_NAME					L"Assets/Direct3D/Gba_Button1Landscape.dds"
+//#define STICK_GBASP_TEXTURE_FILE_NAME				L"Assets/Direct3D/Gba_Button1Landscape.dds"
+
 #define DIVIDER_TEXTURE_FILE_NAME					L"Assets/Direct3D/divider.dds"
 #define RESUME_TEXTURE_FILE_NAME					L"Assets/Direct3D/resumetext.dds"
 
