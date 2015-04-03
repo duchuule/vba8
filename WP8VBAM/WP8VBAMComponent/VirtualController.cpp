@@ -33,7 +33,7 @@ namespace Emulator
 	{
 		InitializeCriticalSectionEx(&this->cs, 0, 0);
 		this->pointers = ref new Platform::Collections::Map<unsigned int, PointerPoint ^>();
-		this->pointerDescriptions = ref new Platform::Collections::Map<unsigned int, String^>();
+		this->pointerDescriptions = ref new Platform::Collections::Map<unsigned int, Platform::String^>();
 		vibrationDevice = VibrationDevice::GetDefault();
 
 		singleton = this;
@@ -539,7 +539,7 @@ namespace Emulator
 		if(this->pointers->HasKey(point->PointerId))
 		{
 			//get the description
-			String^ desc = pointerDescriptions->Lookup(point->PointerId);
+			Platform::String^ desc = pointerDescriptions->Lookup(point->PointerId);
 			unsigned int key2 = point->PointerId;
 
 			this->pointers->Remove(point->PointerId);
@@ -550,7 +550,7 @@ namespace Emulator
 			{
 				for (auto i = this->pointerDescriptions->First(); i->HasCurrent; i->MoveNext())
 				{
-					String ^desc2= i->Current->Value;
+					Platform::String ^desc2= i->Current->Value;
 					unsigned int key2 = i->Current->Key;
 
 

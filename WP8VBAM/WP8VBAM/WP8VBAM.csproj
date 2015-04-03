@@ -389,6 +389,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Content Include="Assets\Direct3D\Gba_Button1Landscape.dds" />
     <Content Include="Assets\Direct3D\pad_a_button.dds" />
     <Content Include="Assets\Direct3D\pad_combo_button.dds" />
     <Content Include="Assets\Direct3D\pad_combo_button_color.dds" />
@@ -743,8 +744,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.es.xlf</DependentUpon>
-      <culture>es</culture>
       <SubType>Designer</SubType>
+      <culture>es</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.fi-FI.resx">
       <AutoGen>True</AutoGen>
@@ -852,8 +853,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.pt.xlf</DependentUpon>
-      <culture>pt</culture>
       <SubType>Designer</SubType>
+      <culture>pt</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
       <AutoGen>True</AutoGen>

@@ -416,7 +416,7 @@ void Renderer::UpdateForWindowSizeChange(float width, float height)
 
 	if(!this->dxSpriteBatch)
 	{
-		this->dxSpriteBatch = new DXSpriteBatch(this->m_d3dDevice.Get(), this->m_d3dContext.Get(), this->height, this->width);
+		this->dxSpriteBatch = new DXSpriteBatch(this->m_d3dDevice.Get(), this->m_d3dContext.Get(), settings->UseLinearFilter, this->height, this->width);
 	}else
 	{
 		this->dxSpriteBatch->OnResize(this->height, this->width);

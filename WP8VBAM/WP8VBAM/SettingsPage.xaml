@@ -443,6 +443,16 @@
 
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled">
                         <StackPanel>
+                        <ListBoxItem HorizontalContentAlignment="Stretch">
+                            <CheckBox IsChecked="true" 
+                                            Name="useLinearFilterSwitch" Click="useLinearFilterSwitch_Click"
+                                                >
+                                <TextBlock Text="{Binding Path=LocalizedResources.UseLinearFilterText, Source={StaticResource LocalizedStrings}}" 
+                                       TextWrapping="Wrap"/>
+                            </CheckBox>
+
+                        </ListBoxItem>
+                            
 
                         <ListBoxItem HorizontalContentAlignment="Stretch">
                             <toolkit:ToggleSwitch Header="{Binding Path=LocalizedResources.TurboModeText, Source={StaticResource LocalizedStrings}}"
