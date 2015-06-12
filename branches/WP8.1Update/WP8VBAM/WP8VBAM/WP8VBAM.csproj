@@ -13,7 +13,8 @@
     <AssemblyName>VBA8</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
-    <SilverlightVersion></SilverlightVersion>
+    <SilverlightVersion>
+    </SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>ar;cs-CZ;da-DK;de;dv-MV;el-GR;en-GB;es-AR;es;fi-FI;fil-PH;fr;he-IL;hi-IN;hr;hu-HU;id-ID;it;ja-JP;ko-KR;lv-LV;ms;nb-NO;nl;nn-NO;pl-PL;pt;qps-ploc;ru-RU;sr-Latn;sv;th-TH;tr-TR;uk-UA;ur;vi-VN;zh-Hans;zh-Hant</SupportedCultures>
     <XapOutputs>true</XapOutputs>
