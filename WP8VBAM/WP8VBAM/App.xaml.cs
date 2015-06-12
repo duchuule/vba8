@@ -73,26 +73,26 @@ namespace PhoneDirect3DXamlAppInterop
             try
             {
                 EmulatorSettings.Current.IsTrial = IsTrial;
-            }
-            catch (Exception) { }
+            
 
             
 
-            if (CurrentApp.LicenseInformation.ProductLicenses["noads_premium"].IsActive)
-            {
-                HasAds = false;
-                IsPremium = true;
-                return; //no need to check for other 2 licenses
+                if (CurrentApp.LicenseInformation.ProductLicenses["noads_premium"].IsActive)
+                {
+                    HasAds = false;
+                    IsPremium = true;
+                    return; //no need to check for other 2 licenses
+                }
+
+                //get information on in-app purchase
+                if (CurrentApp.LicenseInformation.ProductLicenses["removeads"].IsActive)
+                    HasAds = false;
+
+
+                if (CurrentApp.LicenseInformation.ProductLicenses["premiumfeatures"].IsActive)
+                    IsPremium = true;
             }
-
-            //get information on in-app purchase
-            if (CurrentApp.LicenseInformation.ProductLicenses["removeads"].IsActive)
-                HasAds = false;
-
-
-            if (CurrentApp.LicenseInformation.ProductLicenses["premiumfeatures"].IsActive)
-                IsPremium = true;
-
+            catch (Exception) { }
             //check if a promotion code exists
             if (metroSettings.PromotionCode != null && metroSettings.PromotionCode != "")
             {
