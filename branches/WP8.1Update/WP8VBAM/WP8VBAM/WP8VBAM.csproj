@@ -13,8 +13,7 @@
     <AssemblyName>VBA8</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
-    <SilverlightVersion>
-    </SilverlightVersion>
+    <SilverlightVersion></SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>ar;cs-CZ;da-DK;de;dv-MV;el-GR;en-GB;es-AR;es;fi-FI;fil-PH;fr;he-IL;hi-IN;hr;hu-HU;id-ID;it;ja-JP;ko-KR;lv-LV;ms;nb-NO;nl;nn-NO;pl-PL;pt;qps-ploc;ru-RU;sr-Latn;sv;th-TH;tr-TR;uk-UA;ur;vi-VN;zh-Hans;zh-Hant</SupportedCultures>
     <XapOutputs>true</XapOutputs>
@@ -274,9 +273,6 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AboutPage.xaml.cs">
@@ -712,171 +708,143 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ar.xlf</DependentUpon>
-      <culture>ar</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.cs-CZ.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.cs-CZ.xlf</DependentUpon>
-      <culture>cs-CZ</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.da-DK.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.da-DK.xlf</DependentUpon>
-      <culture>da-DK</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.de.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.de.xlf</DependentUpon>
-      <culture>de</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.dv-MV.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.dv-MV.xlf</DependentUpon>
-      <culture>dv-MV</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.el-GR.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.el-GR.xlf</DependentUpon>
-      <culture>el-GR</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.en-GB.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.en-GB.xlf</DependentUpon>
-      <culture>en-GB</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.es-AR.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.es-AR.xlf</DependentUpon>
-      <culture>es-AR</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.es.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.es.xlf</DependentUpon>
-      <culture>es</culture>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.fi-FI.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.fi-FI.xlf</DependentUpon>
-      <culture>fi-FI</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.fil-PH.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.fil-PH.xlf</DependentUpon>
-      <culture>fil-PH</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.fr.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.fr.xlf</DependentUpon>
-      <culture>fr</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.he-IL.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.he-IL.xlf</DependentUpon>
-      <culture>he-IL</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.hi-IN.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.hi-IN.xlf</DependentUpon>
-      <culture>hi-IN</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.hr.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.hr.xlf</DependentUpon>
-      <culture>hr</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.hu-HU.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.hu-HU.xlf</DependentUpon>
-      <culture>hu-HU</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.id-ID.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.id-ID.xlf</DependentUpon>
-      <culture>id-ID</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.it.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.it.xlf</DependentUpon>
-      <culture>it</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.ja-JP.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ja-JP.xlf</DependentUpon>
-      <culture>ja-JP</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.ko-KR.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ko-KR.xlf</DependentUpon>
-      <culture>ko-KR</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.lv-LV.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.lv-LV.xlf</DependentUpon>
-      <culture>lv-LV</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.ms.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ms.xlf</DependentUpon>
-      <culture>ms</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.nb-NO.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.nb-NO.xlf</DependentUpon>
-      <culture>nb-NO</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.nl.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.nl.xlf</DependentUpon>
-      <culture>nl</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.nn-NO.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.nn-NO.xlf</DependentUpon>
-      <culture>nn-NO</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.pl-PL.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.pl-PL.xlf</DependentUpon>
-      <culture>pl-PL</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.pt.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.pt.xlf</DependentUpon>
-      <culture>pt</culture>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
-      <culture>qps-ploc</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -887,61 +855,51 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ru-RU.xlf</DependentUpon>
-      <culture>ru-RU</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.sr-Latn.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.sr-Latn.xlf</DependentUpon>
-      <culture>sr-Latn</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.sv.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.sv.xlf</DependentUpon>
-      <culture>sv</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.th-TH.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.th-TH.xlf</DependentUpon>
-      <culture>th-TH</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.tr-TR.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.tr-TR.xlf</DependentUpon>
-      <culture>tr-TR</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.uk-UA.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.uk-UA.xlf</DependentUpon>
-      <culture>uk-UA</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.ur.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ur.xlf</DependentUpon>
-      <culture>ur</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.vi-VN.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.vi-VN.xlf</DependentUpon>
-      <culture>vi-VN</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.zh-Hans.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.zh-Hans.xlf</DependentUpon>
-      <culture>zh-Hans</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.zh-Hant.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.zh-Hant.xlf</DependentUpon>
-      <culture>zh-Hant</culture>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1180,7 +1138,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
