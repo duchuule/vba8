@@ -41,8 +41,8 @@
     <Language code="zh-Hans" />
     <!--<Language code="zh-Hant" />-->
   </Languages>
-  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" Title="VGBC8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Duc Le" Description="" Publisher="Duc Le" PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIconFilledGBC.png</IconPath>
+  <App xmlns="" ProductID="{0a409e81-ab14-47f3-bd4e-2f57bb5bae9a}" Title="VBA8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Duc Le" Description="" Publisher="Duc Le" PublisherID="{40c51063-a393-459a-90ec-c33ef4cc7e51}">
+    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIconFilled.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
@@ -62,11 +62,11 @@
     <Tokens>
       <PrimaryToken TokenID="PhoneDirect3DXamlAppInteropToken" TaskName="_default">
         <TemplateFlip>
-          <!--<SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>-->
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmallGBC.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <!--<SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmallGBC.png</SmallImageURI>-->
           <Count>0</Count>
-          <!--<BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>-->
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMediumGBC.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
+          <!--<BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMediumGBC.png</BackgroundImageURI>-->
           <!--<Title>VBA8</Title>-->
           <Title>VGBC8</Title>
           <BackContent>
@@ -75,8 +75,8 @@
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
-          <!--<LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLarge.png</LargeBackgroundImageURI>-->
-          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLargeGBC.png</LargeBackgroundImageURI>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLarge.png</LargeBackgroundImageURI>
+          <!--<LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLargeGBC.png</LargeBackgroundImageURI>-->
           <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
           <HasLarge>False</HasLarge>
@@ -86,16 +86,16 @@
     <Extensions>
       <FileTypeAssociation Name="Gameboy ROM file" TaskID="_default" NavUriFragment="fileToken=%s">
         <Logos>
-          <!--<Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33.png</Logo>
+          <Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33.png</Logo>
           <Logo Size="medium" IsRelative="true">Assets/Tiles/icon69x69.png</Logo>
-          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176.png</Logo>-->
-          <Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33GBC.png</Logo>
+          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176.png</Logo>
+          <!--<Logo Size="small" IsRelative="true">Assets/Tiles/icon33x33GBC.png</Logo>
           <Logo Size="medium" IsRelative="true">Assets/Tiles/icon69x69GBC.png</Logo>
-          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176GBC.png</Logo>
+          <Logo Size="large" IsRelative="true">Assets/Tiles/icon176x176GBC.png</Logo>-->
         </Logos>
         <SupportedFileTypes>
-          <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8</FileType>-->
-          <FileType ContentType="application/cloudsix2vba8">.cloudsix2vgbc8</FileType>
+          <FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8</FileType>
+          <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vgbc8</FileType>-->
           <!--<FileType ContentType="application/cloudsix2vba8">.cloudsix2vba8beta</FileType>-->
           <FileType ContentType="application/gba">.gba</FileType>
           <FileType ContentType="application/gbc">.gbc</FileType>
