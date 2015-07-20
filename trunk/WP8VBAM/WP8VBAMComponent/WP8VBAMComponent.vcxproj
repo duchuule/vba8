@@ -17,22 +17,6 @@
       <Configuration>DebugGBC</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="DebugTrialGBC|ARM">
-      <Configuration>DebugTrialGBC</Configuration>
-      <Platform>ARM</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DebugTrialGBC|Win32">
-      <Configuration>DebugTrialGBC</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DebugTrial|ARM">
-      <Configuration>DebugTrial</Configuration>
-      <Platform>ARM</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DebugTrial|Win32">
-      <Configuration>DebugTrial</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -505,7 +489,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="Moga.Windows.Phone" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+        <Reference Include="Moga.Windows.Phone" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\x86\Moga.Windows.Phone.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
     </Reference>
@@ -530,10 +514,6 @@
       <IsWinMDFile>true</IsWinMDFile>
     </Reference>
     <Reference Include="Moga.Windows.Phone" Condition="'$(Configuration)|$(Platform)'=='ReleaseGBC|ARM'">
-      <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\ARM\Moga.Windows.Phone.winmd</HintPath>
-      <IsWinMDFile>true</IsWinMDFile>
-    </Reference>
-    <Reference Include="Moga.Windows.Phone">
       <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\ARM\Moga.Windows.Phone.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
     </Reference>
