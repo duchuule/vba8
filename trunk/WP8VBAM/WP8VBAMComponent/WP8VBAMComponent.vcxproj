@@ -373,11 +373,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;NO_LINK;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BKPT_SUPPORT;ARM_APP;__WIN32__;_WINRT_DLL;%(PreprocessorDefinitions);NO_ASM;NO_OGL;NO_OAL;C_CORE;NO_PNG;_CRT_SECURE_NO_WARNINGS;DNO_DEFLATE;FINAL_VERSION;NO_DEFLATE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)\VBAM\SFML\include;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -508,6 +509,10 @@
       <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\x86\Moga.Windows.Phone.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
     </Reference>
+    <Reference Include="Moga.Windows.Phone" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+      <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\ARM\Moga.Windows.Phone.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
     <Reference Include="Moga.Windows.Phone" Condition="'$(Configuration)|$(Platform)'=='DebugDevice|ARM'">
       <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\ARM\Moga.Windows.Phone.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
@@ -525,6 +530,10 @@
       <IsWinMDFile>true</IsWinMDFile>
     </Reference>
     <Reference Include="Moga.Windows.Phone" Condition="'$(Configuration)|$(Platform)'=='ReleaseGBC|ARM'">
+      <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\ARM\Moga.Windows.Phone.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+    <Reference Include="Moga.Windows.Phone">
       <HintPath>..\..\packages\WP8_MOGA-SDK_v1.0_20130621\ARM\Moga.Windows.Phone.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
     </Reference>
