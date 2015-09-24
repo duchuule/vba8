@@ -2009,10 +2009,12 @@ namespace PhoneDirect3DXamlAppInterop
             //var saver = new CloudSixSaver("df.dd", )
         }
 
-
-
-
-
+        private void TextBlock_Tap_6(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            WebBrowserTask wbtask = new WebBrowserTask();
+            wbtask.Uri = new Uri("https://www.microsoft.com/store/apps/9NBLGGH2K04V");
+            wbtask.Show();
+        }
     } //end MainPage class
 
 
