@@ -30,6 +30,10 @@ namespace PhoneDirect3DXamlAppInterop
 {
     public partial class PurchasePage : PhoneApplicationPage
     {
+        bool NoAdsBought = false;
+        bool PremiumBought = false;
+        bool NoAdsPremiumBought = false;
+
         public PurchasePage()
         {
 
@@ -74,7 +78,9 @@ namespace PhoneDirect3DXamlAppInterop
                 imageLink = "/Assets/Icons/noad_plus_icon.png";
                 if (li.ProductListings.TryGetValue(key, out pListing))
                 {
-                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
+                    ProductLicense license = Store.CurrentApp.LicenseInformation.ProductLicenses[key];
+                    NoAdsPremiumBought = license.IsActive;
+                    status = license.IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
                     buyButtonVisibility = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? Visibility.Collapsed : Visibility.Visible;
                     pname = pListing.Name;
                 }
@@ -102,6 +108,7 @@ namespace PhoneDirect3DXamlAppInterop
                 if (li.ProductListings.TryGetValue(key, out pListing))
                 {
                     ProductLicense license = Store.CurrentApp.LicenseInformation.ProductLicenses[key];
+                    NoAdsBought = license.IsActive;
                     status = license.IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
                     //string receipt = await Store.CurrentApp.GetProductReceiptAsync(license.ProductId);
 
@@ -132,7 +139,10 @@ namespace PhoneDirect3DXamlAppInterop
                 imageLink = "/Assets/Icons/plus_sign.png";
                 if (li.ProductListings.TryGetValue(key, out pListing))
                 {
-                    status = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
+                    ProductLicense license = Store.CurrentApp.LicenseInformation.ProductLicenses[key];
+                    PremiumBought = license.IsActive;
+                    
+                    status = license.IsActive ? AppResources.PurchasedThankYouText : pListing.FormattedPrice;
                     buyButtonVisibility = Store.CurrentApp.LicenseInformation.ProductLicenses[key].IsActive ? Visibility.Collapsed : Visibility.Visible;
                     pname = pListing.Name;
                 }
@@ -303,6 +313,40 @@ namespace PhoneDirect3DXamlAppInterop
             }
         }
 
+        private async void GetVBA10CodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!NoAdsBought && !PremiumBought && !NoAdsPremiumBought && (App.metroSettings.PromotionCode == null || App.metroSettings.PromotionCode == ""))
+            {
+                MessageBox.Show(AppResources.NoActiveProductText);
+                return;
+            }
+
+            EmailComposeTask emailcomposer = new EmailComposeTask();
+
+            emailcomposer.To = AppResources.AboutContact;
+
+            emailcomposer.Subject = "VBA10 unlock code request";
+            emailcomposer.Body = "Dear developers, \n";
+            emailcomposer.Body += "I would like to request the VBA10 equivalence of the following products:\n\n";
+            if (NoAdsBought)
+                emailcomposer.Body += await Store.CurrentApp.GetProductReceiptAsync("removeads") + "\n\n";
+
+            if (PremiumBought)
+                emailcomposer.Body += await Store.CurrentApp.GetProductReceiptAsync("premiumfeatures") + "\n\n";
+
+            if (NoAdsPremiumBought)
+                emailcomposer.Body += await Store.CurrentApp.GetProductReceiptAsync("noads_premium") + "\n\n";
+
+            if (App.metroSettings.PromotionCode != null && App.metroSettings.PromotionCode != "")
+            {
+                emailcomposer.Body += "Promotion code used: " + App.metroSettings.PromotionCode + "\n\n";
+            }
+
+            emailcomposer.Body += "Device ID: " + Convert.ToBase64String(DeviceExtendedProperties.GetValue("DeviceUniqueId") as byte[]);
+
+            emailcomposer.Show();
+
+        }
     }  //endclass
 
 
