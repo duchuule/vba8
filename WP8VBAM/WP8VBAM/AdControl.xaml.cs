@@ -29,8 +29,8 @@ namespace PhoneDirect3DXamlAppInterop
             //mobFoxadControl.NewAd += mobFoxadControl_NewAd;
             //mobFoxadControl.NoAd += mobFoxadControl_NoAd;
 
-            AdMobControl.ReceivedAd += AdMobOnAdReceived;
-            AdMobControl.FailedToReceiveAd += AdMobOnFailedToReceiveAd;
+            //AdMobControl.ReceivedAd += AdMobOnAdReceived;
+            //AdMobControl.FailedToReceiveAd += AdMobOnFailedToReceiveAd;
 
             MSAdControl.ErrorOccurred += MSAdControl_AdControlError;
             MSAdControl.AdRefreshed += MSAdControl_NewAd;
@@ -78,7 +78,7 @@ namespace PhoneDirect3DXamlAppInterop
             System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 AdDuplexAdControl.Visibility = Visibility.Collapsed;
-                AdMobControl.Visibility = Visibility.Collapsed;
+
 
 
             });
@@ -90,42 +90,42 @@ namespace PhoneDirect3DXamlAppInterop
             {
 
                 MSAdControl.Visibility = Visibility.Collapsed;
-                AdMobControl.Visibility = Visibility.Visible;
-
-                //this will make admob to try to get ad
-                AdMobControl.LoadAd(new AdRequest());
-            });
-
-            
-        }
-
-
-
-        private void AdMobOnAdReceived(object sender, AdEventArgs e)
-        {
-
-            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
-            {
-                AdDuplexAdControl.Visibility = Visibility.Collapsed;
-                MSAdControl.Visibility = Visibility.Collapsed;
-
-            });
-
-            
-        }
-
-        private void AdMobOnFailedToReceiveAd(object sender, GoogleAds.AdErrorEventArgs errorCode)
-        {
-            
-            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
-            {
-               
-                AdMobControl.Visibility = Visibility.Collapsed;
                 AdDuplexAdControl.Visibility = Visibility.Visible;
 
-
+                //this will make admob to try to get ad
+                //AdMobControl.LoadAd(new AdRequest());
             });
+
+            
         }
+
+
+
+        //private void AdMobOnAdReceived(object sender, AdEventArgs e)
+        //{
+
+        //    System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
+        //    {
+        //        AdDuplexAdControl.Visibility = Visibility.Collapsed;
+        //        MSAdControl.Visibility = Visibility.Collapsed;
+
+        //    });
+
+            
+        //}
+
+        //private void AdMobOnFailedToReceiveAd(object sender, GoogleAds.AdErrorEventArgs errorCode)
+        //{
+            
+        //    System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
+        //    {
+               
+        //        AdMobControl.Visibility = Visibility.Collapsed;
+        //        AdDuplexAdControl.Visibility = Visibility.Visible;
+
+
+        //    });
+        //}
 
         
     }
