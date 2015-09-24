@@ -1408,4 +1408,10 @@ You can  later change the setting by going to Settings -&gt; Gameplay.</value>
   <data name="UseLinearFilterText" xml:space="preserve">
     <value>Use linear filter</value>
   </data>
+  <data name="GetVBA10CodeText" xml:space="preserve">
+    <value>Request VBA10 unlock code</value>
+  </data>
+  <data name="NoActiveProductText" xml:space="preserve">
+    <value>You currently don't have any purchased product.</value>
+  </data>
 </root>
