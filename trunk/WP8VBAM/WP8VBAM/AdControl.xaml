@@ -33,12 +33,12 @@
                       AdUnitId="Image480_80"-->
 
 
-        <GoogleAds:AdView AdUnitID="ca-app-pub-1886943527754591/5489275628"
+        <!--<GoogleAds:AdView AdUnitID="ca-app-pub-1886943527754591/5489275628"
                           x:Name="AdMobControl"
                           Format="SmartBanner"
                        
                           VerticalAlignment="Bottom"
-                          Visibility="Collapsed"/>
+                          Visibility="Collapsed"/>-->
 
         <UI:AdControl ApplicationId="d7be2291-a01f-477c-8287-19156cbb47ee" 
                       AdUnitId="10720404" 
